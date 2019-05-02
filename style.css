@@ -1,0 +1,193 @@
+body
+{
+	font-family: 'Comfortaa', cursive;
+}
+
+.title
+{
+	padding: 10px; margin: 10px;
+	margin-bottom: 0; margin-top: 20px;
+	color: white;
+	font-family: Raleway;
+}
+.info
+{
+	margin:10px; padding:20px;
+	margin-top: 0; margin-bottom: 20px;
+	text-align: center;
+}
+
+.iconcard
+{
+	min-width:200px; min-height:200px;
+	margin:20px; padding: 0px;
+	border-radius: 3px;
+	user-select: none;
+}
+
+.iconcard_icon
+{
+	width: 200px; height: 200px;
+	margin:0px; padding: 0px;
+	color: white;
+	line-height: 240px;
+	border-top-left-radius: 3px; border-top-right-radius: 3px;
+}
+.iconcard_icon > i
+{
+	font-size: 85px;
+}
+.iconcard_text
+{
+	height: 40px;
+	padding: 5px;
+	font-family: 'Raleway', sans-serif;
+	border-bottom-left-radius: 3px; border-bottom-right-radius: 3px;
+}
+.iconcard_text_mid
+{
+	line-height: 40px;
+}
+
+.iconcard_status
+{
+	padding: 5px;
+	height:7px;
+	color: white;
+	line-height: 15px;
+}
+
+.close_but
+{
+	width:30px; height:30px;
+	background-color: red; color: white;
+	line-height: 30px;
+	font-size: 20px; font-weight: bold;
+	text-align: center;
+	float: right;
+	user-select: none;
+}
+
+.notice
+{
+	max-width:250px; min-width: 240px;
+}
+
+.notice > .c
+{
+	margin: 10px;
+}
+.notice_close
+{
+	background-color: red;
+	color: white;
+	user-select: none;
+	cursor: pointer;
+}
+.noticeboard_info
+{
+	padding: 10px;
+	/**border-bottom-left-radius: 3px; border-bottom-right-radius: 3px;**/
+	color: white;
+	font-family: 'Comfortaa', cursive;
+	user-select: none;
+	/**font-family: 'Special Elite', cursive;**/
+}
+.noticeboard_elem
+{
+	max-width: 300px;
+}
+
+.hey
+{
+	box-shadow: 0 0 10px 5px orange;
+}
+
+.sales
+{
+	padding: 10px; margin:10px;
+	background-color: white;
+	border-radius: 3px;
+	user-select: none;
+}
+.sales > div 
+{
+	border-radius: 3px;
+}
+.sales_notes
+{
+	padding: 5px; margin: 10px;
+	min-height: 75px; width: 250px;
+}
+.sales_notes > img
+{
+	width: 75px; height: 75px;
+}
+.sales_initial
+{
+	padding: 10px;
+	color: white;
+	text-decoration: line-through;
+}
+.sales_final
+{
+	padding: 10px;
+	color: white;
+}
+.sales_type
+{
+	padding: 10px;
+}
+.sales_real
+{
+	padding: 10px; margin-top: 5px;
+	color: white;
+	border-radius: 3px;
+}
+.sales_currency
+{
+	padding: 10px; margin-top: 5px;
+	color: white;
+	border-radius: 3px;
+}
+
+.adv
+{
+	margin: 10px;
+	float: left;
+}
+.adv_icon
+{
+	width: 320px; /**height: 120px;**/
+	margin: 0;
+	/**line-height: 120px;**/
+	/**float: left;**/
+	font-size: 25px;
+}
+.adv_info
+{
+	width:300px; height: 100px;
+	margin: 0; padding: 10px;
+	/**float: right;**/
+	/**overflow-y: scroll;**/
+}
+.adv_info > div
+{
+	font-size: 20px;
+	margin-bottom: 10px;
+}
+
+.add_mar
+{
+	margin-bottom: 15px;
+}
+
+.by
+{
+	width:200px; height: 200px;
+}
+
+.flower
+{
+	margin: 10px;
+}
