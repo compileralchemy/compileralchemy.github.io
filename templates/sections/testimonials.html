@@ -1,0 +1,62 @@
+<div class="section">
+        <div class="content">
+            <div class="has-text-centered">
+                <p class="has-text-centered ">
+                    <span class="title has-background-white-ter  has-text-centered" style="width: 50px; height:50px; padding: 20px; border-radius: 50%;">
+                        <i class="em em---1" aria-role="presentation" aria-label="THUMBS UP SIGN"></i>
+                    </span>
+                </p><br>
+                <p class="title">Testimonials</p>
+                <p class="subtitle">What do people say?</p>
+            </div>
+            <!-- Swiper -->
+            <div class="swiper-container">
+                <div class="swiper-wrapper">
+                    {%for testimonial in testimonials%}
+                    <div class="swiper-slide">
+                        <div class="card  is-shadowless">
+                            <div class="card-content">
+                                <div class="content">
+                                    <i class="notes__image fa fa fa-bookmark"></i>
+                                    <h2 class="notes__caption">{{testimonial['name']}}
+                                        <br><i class="notes__utitle">{{testimonial['title']}}</i>
+                                
+                                    </h2>
+                                    <p class="notes__txt" style="">
+                                        <i class="fa fa-quote-left"></i><br>
+                                        {{testimonial['text']}}
+                                        <br>
+                                        <i class="fa fa-quote-right"></i></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    {%endfor%}
+                </div>
+                <!-- Add Pagination -->
+                <div class="swiper-pagination"></div>
+                <!-- Add Arrows -->
+                <div class="swiper-button-next"></div>
+                <div class="swiper-button-prev"></div>
+            </div>
+            <!-- Swiper JS -->
+            <script src="../package/swiper-bundle.min.js"></script>
+            <!-- Initialize Swiper -->
+            <script>
+            var swiper = new Swiper('.swiper-container', {
+                spaceBetween: 30,
+                hashNavigation: {
+                    watchState: true,
+                },
+                pagination: {
+                    el: '.swiper-pagination',
+                    clickable: true,
+                },
+                navigation: {
+                    nextEl: '.swiper-button-next',
+                    prevEl: '.swiper-button-prev',
+                },
+            });
+            </script>
+        </div>
+    </div>
