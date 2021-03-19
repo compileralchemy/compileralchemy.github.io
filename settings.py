@@ -69,7 +69,7 @@ writings = [
         "url": "https://dev.to/abdurrahmaanj/using-python-functions-as-classes-10j0"
     },
     {
-        "title": "Python Generators: The In-depth Article You’ve Always Wanted",
+        "title": "Python Generators: The In-depth Article You Always Wanted",
         "url": "https://www.pythonkitchen.com/python-generators-in-depth/"
     },
     {
@@ -83,6 +83,14 @@ writings = [
     {
         "title": "How To Change Your Github Contribution Graph Colour To Something Cool",
         "url": "https://dev.to/abdurrahmaanj/how-to-change-your-github-contribution-graph-colour-to-something-cool-34gg"
+    },
+    {
+        "title": "Creating Custom Widgets in PyQt5",
+        "url": "https://www.geeksforgeeks.org/creating-custom-widgets-in-pyqt5/"
+    },
+    {
+        "title": "Migrate PyQt5 app to PySide2",
+        "url": "https://www.geeksforgeeks.org/migrate-pyqt5-app-to-pyside2/"
     },
     {
         "title": "Using Anaconda On Sublime Text (without installing any package)",
@@ -182,6 +190,10 @@ writings = [
     },
     {
         "title": "How To Build A Lexer In Python",
+        "url": "https://www.pythonkitchen.com/building-a-lexer-in-python-tutorial/"
+    },
+    {
+        "title": "How To Build An Indentation Lexer In Python",
         "url": "https://www.pythonkitchen.com/building-a-lexer-in-python-tutorial/"
     },
     {

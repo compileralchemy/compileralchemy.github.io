@@ -38,7 +38,8 @@ def generate(file_in_templates, out_path, template_dir='templates', assets_path_
 context = {
     'testimonials': settings.testimonials,
     'writings': settings.writings,
-    'talks': settings.talks
+    'talks': settings.talks,
+    'str': str
 }
 
 
