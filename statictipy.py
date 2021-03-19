@@ -12,6 +12,12 @@ from livereload import Server
 
 import settings
 
+import re
+def titlecase(s):
+    return re.sub(r"[A-Za-z]+('[A-Za-z]+)?",
+                  lambda mo: mo.group(0).capitalize(),
+                  s)
+
 
 def generate(file_in_templates, out_path, template_dir='templates', assets_path_append='', **kwargs):
     """
@@ -39,7 +45,8 @@ context = {
     'testimonials': settings.testimonials,
     'writings': settings.writings,
     'talks': settings.talks,
-    'str': str
+    'str': str,
+    'titlecase': titlecase
 }
 
 

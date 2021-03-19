@@ -14,7 +14,7 @@
             </div>
             <div class="writings notification is-white">
                 {%for writing in writings%}
-                    <span class="url p-0">{{str(loop.index).zfill(2)}}. <a href="{{ writing['url'] }}">{{ writing['title'].title() }}</a></span>
+                    <span class="url p-0">{{str(loop.index).zfill(2)}}. <a href="{{ writing['url'] }}">{{ titlecase(writing['title']) }}</a></span>
                 {%endfor%}
             </div>
         </div>
