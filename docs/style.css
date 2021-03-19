@@ -86,6 +86,13 @@
 .ccc{
   width: 100%;
 }
+.writings a {
+  word-wrap: break-word;
+}
+.writings .url{
+  display: block;
+  margin-bottom: 10px !important;
+}
 .ccc div, input, h2, p, i{
   box-sizing: border-box;
 

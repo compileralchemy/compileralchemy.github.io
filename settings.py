@@ -54,3 +54,353 @@ His work in both professional and open source setting speaks itself but this rec
     },
 ]
 
+
+writings = [
+    {
+        "title": "The Zen Of Python Is A Joke And Here Is Why",
+        "url": "https://dev.to/abdurrahmaanj/the-zen-of-python-is-a-joke-and-here-is-why-you-should-not-take-it-too-seriously-508d"
+    },
+    {
+        "title": "The Zen Of Python: The Most In-depth Article Ever Written",
+        "url": "https://www.pythonkitchen.com/zen-of-python-in-depth/"
+    },
+    {
+        "title": "Using Python Functions As Classes",
+        "url": "https://dev.to/abdurrahmaanj/using-python-functions-as-classes-10j0"
+    },
+    {
+        "title": "Python Generators: The In-depth Article You’ve Always Wanted",
+        "url": "https://www.pythonkitchen.com/python-generators-in-depth/"
+    },
+    {
+        "title": "The Most Complete List of Legally Free Python Books On The Internet",
+        "url": "https://www.pythonkitchen.com/legally-free-python-books-list/"
+    },
+    {
+        "title": "Python: Running makefile on windows using git mingw bash",
+        "url": "https://www.pythonkitchen.com/python-running-makefile-on-windows/"
+    },
+    {
+        "title": "How To Change Your Github Contribution Graph Colour To Something Cool",
+        "url": "https://dev.to/abdurrahmaanj/how-to-change-your-github-contribution-graph-colour-to-something-cool-34gg"
+    },
+    {
+        "title": "Using Anaconda On Sublime Text (without installing any package)",
+        "url": "https://dev.to/abdurrahmaanj/using-anaconda-on-sublime-text-39le"
+    },
+    {
+        "title": "Requests: What You Need To Build Useful Apps",
+        "url": "https://dmerej.info/blog/post/requests-what-you-need-to-build-useful-apps/"
+    },
+    {
+        "title": "A Treatment of Deque In Python",
+        "url": "https://dev.to/abdurrahmaanj/add-superpowers-to-your-python-lists-using-this-feature-24nf"
+    },
+    {
+        "title": "Flask 1 - Planning",
+        "url": "https://dev.to/abdurrahmaanj/flask-delicious-tutorial-building-a-library-management-system-part-1-planning-5h4k"
+    },
+    {
+        "title": "Flask 2 - Start With A Loaded Skeleton",
+        "url": "https://dev.to/abdurrahmaanj/flask-delicious-tutorial-building-a-library-management-system-part-2-start-with-a-loaded-skeleton-3j96"
+    },
+    {
+        "title": "Flask 3 - Routes",
+        "url": "https://dev.to/abdurrahmaanj/flask-delicious-tutorial-building-a-library-management-system-part-3-routes-d68"
+    },
+    {
+        "title": "Flask 4 - Focus On Responses",
+        "url": "https://dev.to/abdurrahmaanj/flask-delicious-tutorial-building-a-library-management-system-part-4-focus-on-responses-4j18"
+    },
+    {
+        "title": "Flask 5 - A Dip Into Templates Logic",
+        "url": "https://dev.to/abdurrahmaanj/flask-delicious-tutorial-building-a-library-management-system-part-5-a-dip-into-templates-logic-gpl"
+    },
+    {
+        "title": "Metabob, a Github tool for your Python repos",
+        "url": "https://dev.to/abdurrahmaanj/metabob-a-github-tool-for-your-python-repos-pi1"
+    },
+    {
+        "title": "How to run a Flask Linux-only app on windows",
+        "url": "https://www.pythonkitchen.com/run-flask-linux-only-windows-afpy/"
+    },
+    {
+        "title": "Building A Color Picker in PyGame using Hooman",
+        "url": "https://dev.to/abdurrahmaanj/building-a-color-picker-in-pygame-using-hooman-307m"
+    },
+    {
+        "title": "How to build a CSS pre-processor (like SASS) from scratch",
+        "url": "https://dev.to/abdurrahmaanj/how-to-build-a-css-pre-processor-like-sass-from-scratch-33mc"
+    },
+    {
+        "title": "An Advanced Flask App: Shopyo",
+        "url": "https://www.pythonkitchen.com/shopyo-understand-advanced-flask-app/"
+    },
+    {
+        "title": "Packaging An Sqlite db-included CRUD PyQt5 app using PyInstaller",
+        "url": "https://www.pythonkitchen.com/packaging-an-sqlite-db-included-crud-pyqt5-app-using-pyinstaller/"
+    },
+    {
+        "title": "Get Python’s help() function stored as string just like console",
+        "url": "https://www.pythonkitchen.com/get-pythons-help-function-stored-as-string-just-like-console/"
+    },
+    {
+        "title": "Plotting Hotspots in Mauritius with Python and Folium",
+        "url": "https://www.pythonkitchen.com/plotting-hotspots-in-mauritius-with-python-and-folium/"
+    },
+    {
+        "title": "Machine Learning Crash Course 1: Introduction",
+        "url": "https://www.pythonkitchen.com/machine-learning-part-1-introduction/"
+    },
+    {
+        "title": "Machine Learning Crash Course 2: Supervised Learning",
+        "url": "https://www.pythonkitchen.com/432/"
+    },
+    {
+        "title": "Machine Learning Crash Course 3: Regression",
+        "url": "https://www.pythonkitchen.com/machine-learning-part-3-regression/"
+    },
+    {
+        "title": "Machine Learning Crash Course 4: Gradient Descent and cost function",
+        "url": "https://www.pythonkitchen.com/machine-learning-part-4-gradient-descent-and-cost-function/"
+    },
+    {
+        "title": "Machine Learning Crash Course 5: Mixed Method",
+        "url": "https://www.pythonkitchen.com/machine-learning-part-5-mixed-methods/"
+    },
+    {
+        "title": "Machine Learning Crash Course 6: Enthropy And Gain",
+        "url": "https://www.pythonkitchen.com/machine-learning-part-6-enthropy-and-gain/"
+    },
+    {
+        "title": "Machine Learning Crash Course 7: Random Forests",
+        "url": "https://www.pythonkitchen.com/machine-learning-part-7-random-forests-explained/"
+    },
+    {
+        "title": "Reviving Bertrand Russell Through Python",
+        "url": "https://www.pythonkitchen.com/reviving-bertrand-russell-through-python/"
+    },
+    {
+        "title": "How To Build A Lexer In Python",
+        "url": "https://www.pythonkitchen.com/building-a-lexer-in-python-tutorial/"
+    },
+    {
+        "title": "How to correctly use the next parameter in login and logout in Flask",
+        "url": "https://www.pythonkitchen.com/how-to-correctly-use-the-next-parameter-in-login-and-logout-in-flask/"
+    },
+    {
+        "title": "How to use Flask-admin with Flask-login",
+        "url": "https://www.pythonkitchen.com/how-to-use-flask-admin-with-flask-login/"
+    },
+    {
+        "title": "How to disable csrf protection for particular routes in Flask-wtf",
+        "url": "https://www.pythonkitchen.com/how-to-disable-csrf-protection-in-flask-wtf-for-particular-routes/"
+    },
+    {
+        "title": "How to define global template variables in Flask",
+        "url": "https://www.pythonkitchen.com/how-to-define-global-template-variables-in-flask/"
+    },
+    {
+        "title": "How to prevent the Open Redirect vulnerability with the next parameter in Flask",
+        "url": "https://www.pythonkitchen.com/how-prevent-open-redirect-vulnerab-flask/"
+    },
+    {
+        "title": "How to implement beautiful notifications in Flask",
+        "url": "https://www.pythonkitchen.com/how-implement-beautiful-notifications-flask/"
+    },
+
+]
+
+talks = [
+    {
+        "title": "Django Clone From Scratch With Flask",
+        "event": "EuroPython 2020",
+        "res": [
+            {
+                "type": "video",
+                "url": "https://www.youtube.com/watch?v=rkzXQOC1T0Q"
+            },
+        ]
+    },
+    {
+        "title": "Python - The Joyful Parts",
+        "event": "Pymug Meetup",
+        "res": [
+            {
+                "type": "slides",
+                "url": "https://github.com/pymug/Slides/blob/master/ARJ_March19_PythonTheJoyfulParts.pdf"
+            },
+        ]
+    },
+    {
+        "title": "Iter Boosts From The Std Lib",
+        "event": "Pymug Meetup",
+        "res": [
+            {
+                "type": "slides",
+                "url": "https://github.com/pymug/Slides/blob/master/ARJ_July19_BoostsFromTheStdLibItertools.pdf"
+            },
+        ]
+    },
+    {
+        "title": "Honeybot - Diving Into An IRC Bot",
+        "event": "Pymug Meetup",
+        "res": [
+            {
+                "type": "slides",
+                "url": "https://github.com/pymug/Slides/blob/master/ARJ_honeybot_presentationv2.pdf"
+            },
+        ]
+    },
+    {
+        "title": "Become A True Faker",
+        "event": "Pymug Meetup",
+        "res": [
+            {
+                "type": "slides",
+                "url": "https://github.com/pymug/Slides/blob/master/become_a_true_faker.pdf"
+            },
+        ]
+    },
+    {
+        "title": "Deriving Async Io",
+        "event": "Pymug Meetup",
+        "res": [
+            {
+                "type": "slides",
+                "url": "https://github.com/pymug/Slides/blob/master/deriving_asyncio.pdf"
+            },
+        ]
+    },
+    {
+        "title": "Weekly Workshop - Python From Scratch",
+        "event": "Pymug Workshop",
+        "res": [
+            {
+                "type": "slides",
+                "url": "https://github.com/pymug/Slides/blob/master/pymug_python_from_scratch.pdf"
+            },
+        ]
+    },
+    {
+        "title": "Standard Library Essentials",
+        "event": "Pymug Meetup",
+        "res": [
+            {
+                "type": "slides",
+                "url": "https://github.com/pymug/Slides/blob/master/pymug_std_lib_essentials.pdf"
+            },
+        ]
+    },
+    {
+        "title": "Where Python Used",
+        "event": "Unversity of Mauritius 2020 Python Intro",
+        "res": [
+            {
+                "type": "slides",
+                "url": ""
+            },
+        ]
+    },
+    {
+        "title": "Scrapy Code Base Reflections",
+        "event": "Pymug Meetup",
+        "res": [
+            {
+                "type": "slides",
+                "url": "scrapy_arj_jan_2020.md"
+            },
+        ]
+    },
+    {
+        "title": "Shopyo: Flasquer Flask",
+        "event": "France: AFPy monthly conf",
+        "res": [
+            {
+                "type": "slides",
+                "url": "https://github.com/pymug/Slides/blob/master/shopyo.pdf"
+            },
+        ]
+    },
+    {
+        "title": "Canvas Theory With PyGame",
+        "event": "Pymug Meetup",
+        "res": [
+            {
+                "type": "slides",
+                "url": ""
+            },
+        ]
+    },
+    {
+        "title": "Workshop: Flask Round The World",
+        "event": "Pymug Meetup",
+        "res": [
+            {
+                "type": "repo",
+                "url": "https://github.com/pymug/ARJ_Flask_March2020"
+            },
+        ]
+    },
+    {
+        "title": "Key To Django And Flask",
+        "event": "Pymug Meetup",
+        "res": [
+            {
+                "type": "repo",
+                "url": "https://github.com/pymug/ARJ_KeyToDjangoAndFlask_Feb2020"
+            },
+        ]
+    },
+    {
+        "title": "The CPython Translation Protocol",
+        "event": "Pymug Meetup",
+        "res": [
+            {
+                "type": "repo",
+                "url": "https://github.com/pymug/ARAugust19DocsTranslations"
+            },
+        ]
+    },
+    {
+        "title": "Workshop: Requests",
+        "event": "Pymug Meetup",
+        "res": [
+            {
+                "type": "repo",
+                "url": "https://github.com/pymug/ARJune19Requests"
+            },
+        ]
+    },
+    {
+        "title": "Machine Learning Overview",
+        "event": "University of Mauritius - Ai Workshop 2019",
+        "res": [
+            {
+                "type": "slides",
+                "url": "https://github.com/pymug/Ai_UoM_2019/blob/master/ARJ_ML_Overview/human_guide_to_ml.pdf"
+            },
+        ]
+    },
+    {
+        "title": "Workshop: Numpy Pandas",
+        "event": "University of Mauritius - Ai Workshop 2019",
+        "res": [
+            {
+                "type": "repo",
+                "url": "https://github.com/pymug/Ai_UoM_2019/tree/master/ARJ_Numpy_Pandas"
+            },
+        ]
+    },
+]
+
+    # {
+    #     "title": "",
+    #     "event": "",
+    #     "res": [
+    #         {
+    #             "type": "slides",
+    #             "url": ""
+    #         },
+    #     ]
+    # },

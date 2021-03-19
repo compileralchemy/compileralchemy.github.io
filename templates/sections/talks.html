@@ -1,0 +1,35 @@
+    <div class="section" id="talks">
+        <div class="container">
+            <div class="notification is-white">
+                <div class="notification is-white has-text-centered">
+                    <br>
+                    <p class="has-text-centered ">
+                        <span class="title has-background-white-ter  has-text-centered" style="width: 50px; height:50px; padding: 15px; border-radius: 50%;">
+                            <i class="em em-spiral_note_pad" aria-role="presentation" aria-label=""></i>
+                        </span>
+                    </p><br>
+                    <p class="title">Talks</p>
+                    <p class="subtitle">Meetups & Confs</p>
+                </div>
+            </div>
+            <div class="writings is-white">
+                    {%for talk in talks%}
+                            <p class="is-size-4">{{ talk['title'] }}
+                                {%for res in talk['res']%}
+                                    {% if res['type'] == 'video' %}
+                                        [<a href="{{res['url']}}">video</a>]
+                                    {% elif res['type'] == 'slides' %}
+                                        [<a href="{{res['url']}}">slides</a>]
+                                    {% elif res['type'] == 'repo' %}
+                                        [<a href="{{res['url']}}">repo</a>]
+                                    {% endif %}
+                                {%endfor%}
+                            </p>
+
+                            <i>{{ talk['event'] }}</i><br>
+                            {{talk['description']}}
+                            <hr>
+                    {%endfor%}
+            </div>
+        </div>
+    </div>

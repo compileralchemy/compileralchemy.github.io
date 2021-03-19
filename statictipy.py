@@ -36,7 +36,9 @@ def generate(file_in_templates, out_path, template_dir='templates', assets_path_
 
 
 context = {
-    'testimonials': settings.testimonials
+    'testimonials': settings.testimonials,
+    'writings': settings.writings,
+    'talks': settings.talks
 }
 
 
@@ -60,6 +62,7 @@ def main(args):
         # run a function
 
         server.watch('.', gen, delay=5)
+        server.watch('*.py')
 
         # output stdout into a file
         # server.watch('style.less', shell('lessc style.less', output='style.css'))

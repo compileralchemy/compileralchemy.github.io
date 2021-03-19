@@ -1,0 +1,21 @@
+    <div class="section" id="articles">
+        <div class="container">
+            <div class="notification is-white">
+                <div class="notification is-white has-text-centered">
+                    <br>
+                    <p class="has-text-centered ">
+                        <span class="title has-background-white-ter  has-text-centered" style="width: 50px; height:50px; padding: 15px; border-radius: 50%;">
+                            <i class="em em-books" aria-role="presentation" aria-label="BOOKS"></i>
+                        </span>
+                    </p><br>
+                    <p class="title">Writings</p>
+                    <p class="subtitle">Articles & More</p>
+                </div>
+            </div>
+            <div class="writings notification is-white">
+                {%for writing in writings%}
+                    <span class="url p-0"><a href="{{ writing['url'] }}">{{writing['title']}}</a></span>
+                {%endfor%}
+            </div>
+        </div>
+    </div>
