@@ -185,6 +185,26 @@ writings = [
         "url": "https://www.pythonkitchen.com/machine-learning-part-7-random-forests-explained/"
     },
     {
+        "title": "Machine Learning Crash Course 8: Support Vector Machines",
+        "url": "https://www.pythonkitchen.com/machine-learning-part-8-support-vector-machines/"
+    },
+    {
+        "title": "Machine Learning Crash Course 9: Neural Networks",
+        "url": "https://www.pythonkitchen.com/machine-learning-part-9-neural-networks/"
+    },
+    {
+        "title": "Machine Learning Crash Course 10: Naive Bayes",
+        "url": "https://www.pythonkitchen.com/machine-learning-part-10-naive-bayes/"
+    },
+    {
+        "title": "Machine Learning Crash Course 11: Unsupervised Learning",
+        "url": "https://www.pythonkitchen.com/machine-learning-part-11-unpervised-learning/"
+    },
+    {
+        "title": "Machine Learning Crash Course 12: Association Analysis",
+        "url": "https://www.pythonkitchen.com/machine-learning-part-12-association-analysis/"
+    },
+    {
         "title": "Reviving Bertrand Russell Through Python",
         "url": "https://www.pythonkitchen.com/reviving-bertrand-russell-through-python/"
     },
