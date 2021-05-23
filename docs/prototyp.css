@@ -1,0 +1,290 @@
+/***
+                        PROTOTYP.CSS
+    PROTOTYP.CSS IS A LIGHTWEIGHT CSS LIBRARY FOR QUICK PROTOTYPING
+    PRICE : FREE
+    LICENSE : OPEN SOURCE | MIT
+    LINK : https://github.com/open4all/ProtoTyp
+***/
+/***
+INDEX
+CARD
+    BACKGROUND
+    SHADOW
+    COLOR
+COLORS
+    WHITE
+    BLACK
+BG-COLORS
+    WHITE
+    BLACK
+    RED
+    BLUE
+    YELLOW
+    GREEN
+    ORANGE
+    PINK
+    PURPLE
+    BROWN
+    GRAY
+SHAPES
+    ROUND
+BEHAVIOUR
+    FLOW
+***/
+
+/*** CARD ***/
+.cardbg
+{
+    background-color: #F1F1F1;
+}
+
+.cardsha {
+  box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+  transition: all 0.3s cubic-bezier(.25,.8,.25,1);
+}
+
+.cardsha:hover {
+  box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
+}
+/*card color is white*/
+
+/*** COLORS ***/
+.cwhite
+{
+    color:white;
+}
+.cblack
+{
+    color: black;
+}
+
+/*** BG-COLORS ***/
+/*white*/
+.bgwhite
+{
+    background-color: #fff;
+}
+
+/*black*/
+.bgblack
+{
+    background-color: #000;
+}
+
+/*red*/
+.bgred5
+{
+    background-color:#f00;
+}
+.bgred4
+{
+    background-color:#b71c1c;
+}
+.bgred3
+{
+    background-color:#d32f2f;
+}
+.bgred2
+{
+    background-color:#e57373;
+}
+.bgred1
+{
+    background-color:#ffcdd2;
+}
+
+/*blue*/
+.bgblue5
+{
+    background-color:#00f;
+}
+.bgblue4
+{
+    background-color:#1565c0;
+}
+.bgblue3
+{
+    background-color:#2196f3;
+}
+.bgblue2
+{
+    background-color:#bbdefb;
+}
+.bgblue1
+{
+    background-color:#bbdefb;
+}
+
+/*yellow*/
+.bgyellow5
+{
+    background-color: yellow;
+}
+.bgyellow4
+{
+    background-color:#ffeb3b;
+}
+.bgyellow3
+{
+    background-color:#ffee58;
+}
+.bgyellow2
+{
+    background-color:#fff176;
+}
+.bgyellow1
+{
+    background-color:#fff9c4;
+}
+
+/*green*/
+.bggreen5
+{
+    background-color:green;
+}
+.bggreen4
+{
+    background-color:#2e7d32;
+}
+.bggreen3
+{
+    background-color:#43a047;
+}
+.bggreen2
+{
+    background-color:#81c784;
+}
+.bggreen1
+{
+    background-color:#c8e6c9;
+}
+
+/*orange*/
+.bgorange5
+{
+    background-color:orange;
+}
+.bgorange4
+{
+    background-color:#ef6c00;
+}
+.bgorange3
+{
+    background-color:#fb8c00;
+}
+.bgorange2
+{
+    background-color:#ffb74d;
+}
+.bgorange1
+{
+    background-color:#ffcc80;
+}
+
+/*pink*/
+.bgpink5
+{
+    background-color:pink;
+}
+.bgpink4
+{
+    background-color:#ff4081;
+}
+.bgpink3
+{
+    background-color:#e91e63;
+}
+.bgpink2
+{
+    background-color:#f48fb1;
+}
+.bgpink1
+{
+    background-color:#f8bbd0;
+}
+
+/*purple*/
+.bgviolet5
+{
+    background-color:purple;
+}
+.bgviolet4
+{
+    background-color:#6a1b9a;
+}
+.bgviolet3
+{
+    background-color:#8e24aa;
+}
+.bgviolet2
+{
+    background-color:#ce93d8;
+}
+.bgviolet1
+{
+    background-color:#e1beef;
+}
+
+/*brown*/
+.bgbrown5
+{
+    background-color:#2e342e;
+}
+.bgbrown4
+{
+    background-color:#6d4c41;
+}
+.bgbrown3
+{
+    background-color:#8d6e63;
+}
+.bgbrown2
+{
+    background-color:#bcaaa4;
+}
+.bgbrown1
+{
+    background-color:#d7ccc8;
+}
+
+/*gray*/
+.bggray5
+{
+    background-color:gray;
+}
+.bggray4
+{
+    background-color:#616161;
+}
+.bggray3
+{
+    background-color:#757575;
+}
+.bggray2
+{
+    background-color:#bdbdbd;
+}
+.bggray1
+{
+    background-color:#e0e0e0;
+}
+
+.r
+{
+    border-radius: 50%;
+}
+
+.f
+{
+    display: inline-block;
+}
+
+.c
+{
+    text-align: center;
+}
+
+.sq25
+{
+    width: 25px; height: 25px;
+}
