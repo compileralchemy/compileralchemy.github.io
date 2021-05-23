@@ -55,6 +55,7 @@ def main(args):
 
         server.serve()
     else:
+        print(':::')
         gen()
 
 if __name__ == '__main__':

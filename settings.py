@@ -245,6 +245,20 @@ writings = [
 
 talks = [
     {
+        "title": "Spoonfeeding Sockets",
+        "event": "Pymug Meetup April 2021",
+        "res": [
+            {
+                "type": "video",
+                "url": "https://www.youtube.com/watch?v=85QxbTuDeMs&t=4900s"
+            },
+            {
+                "type": "slides",
+                "url": "https://github.com/pymug/ARJ_SpoonfeedingSockets_APR2021"
+            },
+        ]
+    },
+    {
         "title": "Django Clone From Scratch With Flask",
         "event": "EuroPython 2020",
         "res": [

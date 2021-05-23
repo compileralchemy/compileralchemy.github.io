@@ -6,7 +6,7 @@ import socketserver
 # /IM py37.exe /F
 # 
 hostname = socket.gethostname()
-PORT = 8000
+PORT = 8001
 IP = socket.gethostbyname(hostname)
 print('serving on:', IP)
 
