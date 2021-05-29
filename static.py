@@ -9,6 +9,7 @@ from flask import Flask
 from jamstack.api.template import generate
 from jamstack.api.template import base_context
 from livereload import Server
+import markdown
 
 import settings
 
@@ -19,15 +20,25 @@ def titlecase(s):
                   s)
 
 
+def md_to_html_raw(text, extentions=["extra", "smarty", "meta"]):
+    md = markdown.Markdown(extensions=extentions)
+    html = md.convert(text)
+    metadata = md.Meta
+    return html, metadata
+
+def md_to_html(*args, **kwargs):
+    return md_to_html_raw(*args, **kwargs)[0]
+
 context = base_context()
 context .update({
     'testimonials': settings.testimonials,
     'writings': settings.writings,
     'talks': settings.talks,
     'str': str,
-    'titlecase': titlecase
+    'titlecase': titlecase,
+    'settings': settings,
+    'md_to_html': md_to_html
 })
-
 
 
 def main(args):

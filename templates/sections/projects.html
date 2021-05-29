@@ -1,0 +1,72 @@
+<div class="section" id="projects">
+    <div class="container">
+        <div class="notification is-white">
+            <div class="notification is-white has-text-centered">
+                <br>
+                <p class="has-text-centered ">
+                    <span class="title has-background-white-ter  has-text-centered" style="width: 50px; height:50px; padding: 15px; border-radius: 50%;">
+                        <i class="em em-building_construction" aria-role="presentation" aria-label=""></i>
+                    </span>
+                </p><br>
+                <p class="title">OpenSource Projects</p>
+                <p class="subtitle">Some fun, some serious</p>
+            </div>
+        </div>
+        <div class="is-white">
+                {% for project in settings.github_projects %}
+                <div class="card">
+                  <div class="card-content">
+                    <div class="media">
+                      <div class="media-left">
+                        <figure class="image is-48x48" style="border: 5px solid orange !important;">
+                          <img src="{{ project['logo_link'] }}" alt="">
+                        </figure>
+                      </div>
+                      <div class="media-content">
+                        <p class="title is-4">{{ project['name'] }} 
+                            {% if 'featured' in project['features'] %}
+                            <span class="tag is-primary">
+                              featured
+                              <button class="delete is-small"></button>
+                            </span>
+                            {% endif %}
+                            {% if 'quality' in project['features'] %}
+                            <span class="tag is-success">
+                              quality
+                              <button class="delete is-small"></button>
+                            </span>
+                            {% endif %}
+                            {% if 'stale' in project['features'] %}
+                            <span class="tag is-danger">
+                              stale
+                              <button class="delete is-small"></button>
+                            </span>
+                            {% endif %}
+                        </p>
+                        <p class="subtitle is-6"><a href="{{ project['main_link'] }}">view</a></p>
+                      </div>
+                    </div>
+
+                    <div class="content">
+                      {{ md_to_html(project['info']) | safe }}
+                      <br>
+                      
+                      <div class="field is-grouped is-grouped-multiline">
+                        {% for key in project['links'] %}
+                          {% set link = project['links'][key] %}
+                            <div class="control">
+                                <div class="tags has-addons">
+                                  <a class="tag is-link" href="{{ link }}" target="_blank">{{ key.capitalize() }}</a>
+                                  <a class="tag is-delete"></a>
+                                </div>
+                              </div>
+                        {% endfor %}
+                          
+                        </div>
+                    </div>
+                  </div>
+                </div><br>
+                {% endfor %}
+        </div>
+    </div>
+</div>

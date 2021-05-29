@@ -289,6 +289,26 @@ talks = [
         ]
     },
     {
+        "title": "Decorating Your Code",
+        "event": "Pymug Meetup",
+        "res": [
+            {
+                "type": "slides",
+                "url": "https://speakerdeck.com/osdotsystem/python-decorating-your-code"
+            },
+        ]
+    },
+    {
+        "title": "Where is Python used?",
+        "event": "Python Sprint, UoM",
+        "res": [
+            {
+                "type": "slides",
+                "url": "https://speakerdeck.com/osdotsystem/where-is-python-used"
+            },
+        ]
+    },
+    {
         "title": "Honeybot - Diving Into An IRC Bot",
         "event": "Pymug Meetup",
         "res": [
@@ -335,16 +355,6 @@ talks = [
             {
                 "type": "slides",
                 "url": "https://github.com/pymug/Slides/blob/master/pymug_std_lib_essentials.pdf"
-            },
-        ]
-    },
-    {
-        "title": "Where Python Used",
-        "event": "Unversity of Mauritius 2020 Python Intro",
-        "res": [
-            {
-                "type": "slides",
-                "url": ""
             },
         ]
     },
@@ -438,6 +448,429 @@ talks = [
             },
         ]
     },
+]
+
+
+github_projects = [
+    {
+        "name": "Shopyo",
+        "info": '''
+Built on top of Flask, Shopyo gives superpowers in terms of self-contained modules and supports Django
+commands like collecstatic and startapp.
+''',
+        "features": ['featured', 'quality'],
+        "main_link": "https://github.com/shopyo/shopyo",
+        "logo_link": "https://github.com/shopyo/shopyo/raw/dev/shopyo.png",
+        "links": {
+            "pypi": "https://pypi.org/project/shopyo/",
+            "github": "https://github.com/shopyo/shopyo",
+            "chat": "https://discord.gg/k37Ef6w",
+            "twitter": "https://twitter.com/shopyoproject",
+            "docs": "https://shopyo.readthedocs.io/en/latest/"
+        }
+    },
+    {
+        "name": "Jamstack",
+        "info": '''
+Lets you build static sites with Jinja, as simple or as complex as you like. It powers among others the site you 
+are looking at as well as [the FlaskCWG site](https://flaskcwg.github.io/) which features a blog with tagging capabilities
+among others.
+''',
+        "features": [],
+        "main_link": "https://github.com/shopyo/shopyo",
+        "logo_link": "https://camo.githubusercontent.com/f0032923bdbef48f97bb92030e46f1d48e79a15215bda33b11f678659361bbf1/68747470733a2f2f692e696d6775722e636f6d2f7358554164594a2e706e67",
+        "links": {
+            "pypi": "https://pypi.org/project/jamstack/",
+            "github": "https://github.com/abdur-rahmaanj/jamstack",
+        }
+    },
+    {
+        "name": "Honeybot",
+        "info": '''
+An IRC bot built from scratch with an awesome collection of Plugins. It even has a contributed Monopoly plugin!
+''',
+        "features": ['featured'],
+        "main_link": "https://github.com/pyhoneybot/honeybot",
+        "logo_link": "https://github.com/pyhoneybot/honeybot/raw/master/honeybot_real.png",
+        "links": {
+            "github": "https://github.com/pyhoneybot/honeybot",
+            "chat": "https://discord.com/invite/E6zD4XT",
+        }
+    },
+    {
+        "name": "ShopCube",
+        "info": '''
+An ecommerce project in Flask which has among others:
+
+- cart editing
+- multi-picture product zooming
+- checkout
+- orders
+- themes
+''',
+        "features": ['featured'],
+        "main_link": "https://github.com/shopyo/shopcube",
+        "logo_link": "",
+        "links": {
+            "github": "https://github.com/shopyo/shopcube",
+        }
+    },
+    {
+        "name": "meteomoris",
+        "info": '''
+A package to get weather info about Mauritius taken from the country's weather station
+''',
+        "features": [],
+        "main_link": "https://github.com/Abdur-rahmaanJ/meteomoris",
+        "logo_link": "",
+        "links": {
+            "github": "https://github.com/Abdur-rahmaanJ/meteomoris",
+            "pypi": "https://pypi.org/project/meteomoris/"
+        }
+    },
+    {
+        "name": "newsmoris",
+        "info": '''
+A package to get news about Mauritius grouped by topnews as well as by category and article reading.
+''',
+        "features": [],
+        "main_link": "https://github.com/Abdur-rahmaanJ/newsmoris",
+        "logo_link": "",
+        "links": {
+            "github": "https://github.com/Abdur-rahmaanJ/newsmoris",
+            "pypi": "https://pypi.org/project/newsmoris/"
+        }
+    },
+    {
+        "name": "MarketFlow",
+        "info": '''
+A marketplace in Flask which has among others:
+
+- vendor registration
+- vendor isolation
+- cart
+- multi-picture product zooming
+- checkout
+- orders
+- themes
+''',
+        "features": ['featured'],
+        "main_link": "https://github.com/shopyo/marketflow",
+        "logo_link": "",
+        "links": {
+            "github": "https://github.com/shopyo/marketflow",
+        }
+    },
+    {
+    "name": "GreenBerry",
+    "info": '''
+A one line statement language with IDE,
+''',
+        "features": [],
+        "main_link": "https://github.com/Abdur-rahmaanJ/greenBerry",
+        "logo_link": "https://github.com/Abdur-rahmaanJ/greenBerry/raw/master/docs/images/logo.png",
+        "links": {
+            "github": "https://github.com/Abdur-rahmaanJ/greenBerry",
+            "docs": "https://abdur-rahmaanj.github.io/greenBerry/",
+        }
+    },
+    {
+    "name": "Hooman",
+    "info": '''
+A wrapper around PyGame for clean codebases.
+''',
+        "features": [],
+        "main_link": "https://github.com/abdur-rahmaanj/hooman",
+        "logo_link": "",
+        "links": {
+            "github": "https://github.com/abdur-rahmaanj/hooman",
+            "pypi": "https://pypi.org/project/hooman/",
+            "chat": "https://discord.gg/Q23ATve"
+        }
+    },
+    {
+    "name": "PPython",
+    "info": '''
+Implementing [processing.org](https://www.processing.org)'s lib in pure Python with absolutely no dependencies
+''',
+        "features": [],
+        "main_link": "https://github.com/Abdur-rahmaanJ/ppython",
+        "logo_link": "",
+        "links": {
+            "github": "https://github.com/Abdur-rahmaanJ/ppython",
+        }
+    },
+    {
+    "name": "Reditty Walls",
+    "info": '''
+Wallpaper changer soft with walls pulled from Reddit
+''',
+        "features": [],
+        "main_link": "https://github.com/Abdur-rahmaanJ/RedittyWalls",
+        "logo_link": "",
+        "links": {
+            "github": "https://github.com/Abdur-rahmaanJ/RedittyWalls",
+        }
+    },
+    {
+    "name": "pyMsPaint",
+    "info": '''
+Program MsPaint using python. As accurate as your canvas
+''',
+        "features": [],
+        "main_link": "https://github.com/Abdur-rahmaanJ/pyMsPaint",
+        "logo_link": "",
+        "links": {
+            "github": "https://github.com/Abdur-rahmaanJ/pyMsPaint",
+        }
+    },
+    {
+    "name": "InternalO",
+    "info": '''
+An employee roster system with in-mail written in PHP
+''',
+        "features": [],
+        "main_link": "https://github.com/Abdur-rahmaanJ/InternalO",
+        "logo_link": "",
+        "links": {
+            "github": "https://github.com/Abdur-rahmaanJ/InternalO",
+        }
+    },
+    {
+    "name": "Aidre",
+    "info": '''
+An editor for .po translations
+''',
+        "features": [],
+        "main_link": "https://github.com/Abdur-rahmaanJ/aidre",
+        "logo_link": "",
+        "links": {
+            "github": "https://github.com/Abdur-rahmaanJ/aidre",
+        }
+    },
+    {
+    "name": "SololearnOS",
+    "info": '''
+An old OS recreation software written in JS, a fun side project
+''',
+        "features": ['stale'],
+        "main_link": "https://github.com/Abdur-rahmaanJ/sololearnOS",
+        "logo_link": "",
+        "links": {
+            "github": "https://github.com/Abdur-rahmaanJ/sololearnOS",
+            "demo": "https://abdur-rahmaanj.github.io/sololearnOS/"
+        }
+    },
+    {
+    "name": "POSMS",
+    "info": '''
+An old Python Open Subscriber Mailing System using TKinter. One of the nice times
+i was using plain SQL
+''',
+        "features": ['stale'],
+        "main_link": "https://github.com/Abdur-rahmaanJ/POSMS",
+        "logo_link": "",
+        "links": {
+            "github": "https://github.com/Abdur-rahmaanJ/POSMS"
+        }
+    },
+    {
+    "name": "SoloLang",
+    "info": '''
+An old super simple lang implementation
+''',
+        "features": ['stale'],
+        "main_link": "https://github.com/Abdur-rahmaanJ/soloLang",
+        "logo_link": "",
+        "links": {
+            "github": "https://github.com/Abdur-rahmaanJ/soloLang",
+            "website": "http://abdur-rahmaanj.github.io/soloLang/"
+        }
+    },
+]
+
+
+facts = [
+    {
+        "date": "April 19",
+        "link": "https://www.blog.pythonlibrary.org/2019/04/08/pydev-of-the-week-abdur-rahmaan-janhangeer/",
+        "title": "PyDev Of The Week",
+        "notes": ""
+    },
+    {
+        "date": "July 2019",
+        "link": "https://lwn.net/Articles/794273/",
+        "title": "LWN.net",
+        "notes": "Discussion on the idea i proposed"
+    },
+    {
+        "date": "July 2019",
+        "link": "https://twitter.com/TechRunEn/status/1153457206928347136?s=20",
+        "title": "Article Featured On Dev.to!",
+        "notes": 'How To Build A CSS Pre-processor From Scratch" got featured on dev.to'
+    },
+    {
+        "date": "July 2019",
+        "link": "https://python.libhunt.com/newsletter/165",
+        "title": "Article Featured In Awesome Python",
+        "notes": '"How To Build A CSS Pre-processor From Scratch" got featured in Awesome Python newsletter issue 165'
+    },
+    {
+        "date": "Aug 2019",
+        "link": "https://pythonawesome.com/implementation-of-processing-orgs-processing-in-pure-python/",
+        "title": "Project Listed On pythonawesome.com",
+        "notes": "Pure Python implementation of processing.org's processing (github.com/Abdur-rahmaanJ/ppython) got listed on pythonawesome.com"
+    },
+    {
+        "date": "Sept 2019",
+        "link": "https://www.linkedin.com/posts/appinv_python-processing-mauritius-activity-6569293875998003202-EStJ",
+        "title": "Post Got Trending Status For #python On LinkedIn",
+        "notes": "Post on ppython got trending status on LinkedIn!"
+    },
+    {
+        "date": "Dec 2019",
+        "link": "https://www.pyladies.com/blog/PyLadies-Global-Council-Selection-Process-Voting-Now-Open/pyladies-global-council-process-vote/",
+        "title": "PyLadies",
+        "notes": "PyLadies thanking for Arabic translations."
+    },
+    {
+        "date": "Jan 2020",
+        "link": "https://scikit-learn.org/stable/_downloads/scikit-learn-docs.pdf",
+        "title": "ScikitLearn",
+        "notes": 'Thanks under "Code and Documentation Contributors" in User Guide.'
+    },
+    {
+        "date": "Jan 2020",
+        "link": "https://py.checkio.org/blog/missions-of-the-week-unruly-etc/",
+        "title": "Checkio.org Shared Blog Post",
+        "notes": 'Checkio.org shared blog post about "Legally Free Python Books"'
+    },
+    {
+        "date": "Jan 2020",
+        "link": "https://python.libhunt.com/newsletter/192",
+        "title": "Article Featured In Awesome Python",
+        "notes": '"Legally Free Python Books" got featured in Awesome Python newsletter issue 192'
+    },
+    {
+        "date": "Feb 2020",
+        "link": "https://python.libhunt.com/newsletter/192",
+        "title": "Open Source Project Featured In Python Weekly",
+        "notes": '<a href="https://www.github.com/Abdur-rahmaanJ/Shopyo">github.com/shopyo/Shopyo</a> got featured in Python Weekly newsletter issue 436'
+    },
+    {
+        "date": "Feb 2020",
+        "link": "https://github.com/Pilifer/awesome-zen-of-python/",
+        "title": 'Article Added In Awesome Zen Repo',
+        "notes": '"The Zen Of Python Is A Joke And Here Is Why" added as a resource for understanding the Zen of Python'
+    },
+    {
+        "date": "Feb 2020",
+        "link": "https://pythonbytes.fm/episodes/show/170/visualize-this-visualizing-python-s-visualization-ecosystem",
+        "title": "Podcast Calls Article A Must Read",
+        "notes": 'PythonBytes (same folks as talkpython.fm) tells: "Abdur-Rahmaan Janhangeer: The Zen Of Python Is A Joke And Here Is Why is a must read."'
+    },
+    {
+        "date": "Feb 2020",
+        "link": "https://www.geeksforgeeks.org/migrate-pyqt5-app-to-pyside2/",
+        "title": "Article published on Geeksforgeeks.org",
+        "notes": '"Migrate PyQt5 app to PySide2" is published'
+    },
+    {
+        "date": "Mar 2020",
+        "link": "http://www.tuxmachines.org/node/134905",
+        "title": "Tuxmachines.org Featured 2 Articles",
+        "notes": ""
+    },
+    {
+        "date": "Mar 2020",
+        "link": "http://www.tuxmachines.org/node/134966?quicktabs_authors=2",
+        "title": "Tuxmachines.org Featured 1 Article",
+        "notes": ""
+    },
+    {
+        "date": "Mar 2020",
+        "link": "",
+        "title": "Article Featured In Weekly Digest On Codementor.io",
+        "notes": "Article gets 2nd top post of the wee"
+    },
+    {
+        "date": "Mar 2020",
+        "link": "https://www.linkedin.com/posts/appinv_the-key-to-django-and-flask-activity-6642695171144318976-QEpN",
+        "title": "Post Got Trending Status For #python On LinkedIn",
+        "notes": 'Post on "Grasping Both Flask And Django In One Session" got trending status on LinkedIn!'
+    },
+    {
+        "date": "Apr 2020",
+        "link": "",
+        "title": "Authored the FlaskCon initiative",
+        "notes": "FlaskCon becomes an approved PSF trademark"
+    },
+    {
+        "date": "May 2020",
+        "link": "https://www.geeksforgeeks.org/creating-custom-widgets-in-pyqt5/",
+        "title": "Article published on Geeksforgeeks.org",
+        "notes": '"Creating Custom Widgets in PyQt5" is published'
+    },
+    {
+        "date": "Jun 2020",
+        "link": "https://flaskcon.com",
+        "title": "FlaskCon close up",
+        "notes": 'After months of preparation, the event is finally over with <a href="https://www.youtube.com/channel/UC3QC5pASs8v5YVxKwJDtZeQ">lots of good talks! </a>Lots of awesome speakers and fantastic response from the community outlets like RealPython, PythonWeekly etc'
+    },
+    {
+        "date": "Jul 2020",
+        "link": "https://www.youtube.com/watch?v=rkzXQOC1T0Q&list=PL8uoeex94UhHgMD9GOCbEHWku7pEPx9fW&index=34",
+        "title": "Euro Python Talk",
+        "notes": 'My talk "Django Clone From Scratch" got delivered at EuroPython'
+    },
+    {
+        "date": "Sep 2020",
+        "link": "https://hackernoon.com/the-zen-of-python-as-related-by-masters-n32h3tu3",
+        "title": "Hackernoon.com published article",
+        "notes": 'My article "The Zen of Python: As related by Master" got published on hackernoon.'
+    },
+    {
+        "date": "Sep 2020",
+        "link": "https://twitter.com/CodementorIO/status/1306295790441246725?s=20",
+        "title": "Codementor.io included article in #100DaysOfCode",
+        "notes": "Hooman is a library i maintain."
+    },
+    {
+        "date": "Nov 2020",
+        "link": "https://porter.io/digest/20201125/e9df7d222ec311eb87d9361b9c01e521/",
+        "title": "Porter.io adds article in recommended news!",
+        "notes": 'The article "Python: Running Makefiles on Windows" got recommended.'
+    },
+    {
+        "date": "Dec 2020",
+        "link": "https://pycoders.com/issues/453",
+        "title": "RealPython's Newsletter selected article in issue #453",
+        "notes": 'The article <a href="https://www.pythonkitchen.com/zen-of-python-in-depth/">"The Zen Of Python: A Most In Depth Article"</a> got selected in PyCoders weekly. I could not find a more thourough article on the Zen written before. Hence the claim: "The most in-depth article about the Zen ever written in history"'
+    },
+    {
+        "date": "Dec 2020",
+        "link": "https://news.ycombinator.com/item?id=25427504",
+        "title": "Article Makes it to the HackerNews front page",
+        "notes": '<a href="https://www.pythonkitchen.com/legally-free-python-books-list/">The Most Complete List of Legally Free Python Books</a> makes it, reteeted and reshared a lot here and there'
+    },
+    {
+        "date": "Mar 2021",
+        "link": "https://pepy.tech/project/hooman",
+        "title": "Hooman gets 18k downloads",
+        "notes": "The PyGame library seems to get adopted on PyPi"
+    },
+    {
+        "date": "Mar 2021",
+        "link": "https://www.linkedin.com/posts/appinv_opensource-mauritius-activity-6774529671146037248-bKLA",
+        "title": "We helped 100+ people get into OpenSource",
+        "notes": "Counted from my Github projects!"
+    },
+    {
+        "date": "April 2021",
+        "link": "https://github.com/Abdur-RahmaanJ",
+        "title": "Github Badge Awarded for the Ingenuity Mars Helicopter Mission",
+        "notes": "Appended to awardees Github profile."
+    }
 ]
 
     # {

@@ -1,0 +1,66 @@
+<div class="section">
+    <div class="container"><br><br>
+        <div class="has-text-centered">
+            <p class="has-text-centered">
+                <span class="title has-background-white-ter  has-text-centered" style="width: 50px; height:50px; padding: 20px; border-radius: 50%;">
+                    <i class="em em-tada" aria-role="presentation" aria-label="PARTY POPPER"></i>
+                </span>
+            </p><br>
+            <p class="title">Fun Facts</p>
+            <p class="subtitle">Some cool info about <a href="https://www.twitter.com/osdotsystem">
+                    @osdotsystem
+                </a></p>
+        </div>
+        <div class="">
+            <div class="container notification is-white">
+                <hr>
+                <div class="field is-grouped is-grouped-multiline">
+                    <div class="control">
+                      <div class="tags has-addons">
+                        <span class="tag is-dark">Dev.to article views</span>
+                        <span class="tag is-info">44k</span>
+                      </div>
+                    </div>
+
+                    <div class="control">
+                        <div class="tags has-addons">
+                          <span class="tag is-dark">Codementor.io article views</span>
+                          <span class="tag is-info">42k</span>
+                        </div>
+                      </div>
+
+                      <div class="control">
+                        <div class="tags has-addons">
+                          <span class="tag is-dark">Pypi downloads</span>
+                          <span class="tag is-info">42k</span>
+                        </div>
+                      </div>
+                  
+
+                  </div>
+                {% for fact in settings.facts %}
+                <hr>
+                <div class="notification is-white ">
+                    <div class="columns">
+                        <div class="column">
+                            <span class="tag is-info">{{ fact['date'] }}</span>
+                        </div>
+                    </div>
+                    <div class="columns">
+                        <div class="column is-1">
+                            <i class="em em-medal coolinfo-icon" aria-role="presentation" aria-label=""></i>
+                        </div>
+                        <div class="column is-11">
+                            <span class="coolinfo-text">
+                                <a href="{{ fact['link'] }}">{{ fact['title'] }}</a>
+                            </span><br>
+                            <span>{{ fact['notes'] | safe }}</span>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            <!--Holder end-->
+        </div>
+    </div>
+</div>
+</div>
