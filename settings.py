@@ -647,46 +647,7 @@ An editor for .po translations
         "links": {
             "github": "https://github.com/Abdur-rahmaanJ/aidre",
         }
-    },
-    {
-    "name": "SololearnOS",
-    "info": '''
-An old OS recreation software written in JS, a fun side project
-''',
-        "features": ['stale'],
-        "main_link": "https://github.com/Abdur-rahmaanJ/sololearnOS",
-        "logo_link": "",
-        "links": {
-            "github": "https://github.com/Abdur-rahmaanJ/sololearnOS",
-            "demo": "https://abdur-rahmaanj.github.io/sololearnOS/"
-        }
-    },
-    {
-    "name": "POSMS",
-    "info": '''
-An old Python Open Subscriber Mailing System using TKinter. One of the nice times
-i was using plain SQL
-''',
-        "features": ['stale'],
-        "main_link": "https://github.com/Abdur-rahmaanJ/POSMS",
-        "logo_link": "",
-        "links": {
-            "github": "https://github.com/Abdur-rahmaanJ/POSMS"
-        }
-    },
-    {
-    "name": "SoloLang",
-    "info": '''
-An old super simple lang implementation
-''',
-        "features": ['stale'],
-        "main_link": "https://github.com/Abdur-rahmaanJ/soloLang",
-        "logo_link": "",
-        "links": {
-            "github": "https://github.com/Abdur-rahmaanJ/soloLang",
-            "website": "http://abdur-rahmaanj.github.io/soloLang/"
-        }
-    },
+    }
 ]
 
 
