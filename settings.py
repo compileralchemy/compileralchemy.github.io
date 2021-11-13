@@ -938,7 +938,8 @@ federal gov
     {
         "initiative": "Flask Community Workgroup",
         "info": '''
-Instituted with the help of Pallets and Flask folks: [FlaskCWG](https://flaskcwg.github.io/)
+I instituted it with the help of Pallets and Flask folks: [FlaskCWG](https://flaskcwg.github.io/). It's the
+logical conclusion of FlaskCon.
 
 - Aim to cater for the Flask community including events, abandoned plugins, workshops and translations
 - Pallets instituted Pallets-eco to cater for abandoned plugins
@@ -949,6 +950,7 @@ Instituted with the help of Pallets and Flask folks: [FlaskCWG](https://flaskcwg
         "initiative": "Arabic Coordinator for The Python Docs",
         "info": '''
 Stated the translations with ups and downs
+
 - Managed to find another coordinator before he got busy. Back to being the coordinator
         '''
     },
@@ -962,6 +964,16 @@ one of the aspects which enables Bodhi Linux to fly on low specs while being an 
 - Updated Jeff's series (the only Python-elf tutos) to reflect current versions
 - Davide Andreoli agreed to put a [Github mirror](https://github.com/DaveMDS/python-efl) for Python-efl to better reach out to the
 community
+        '''
+    },
+    {
+        "initiative": "General",
+        "info": '''
+Many individual enterprises end up being good for the general community. For example:
+
+- Maintaining the page where [legally free python books](https://www.pythonkitchen.com/legally-free-python-books-list/) can be found on the internet
+- Maintaining a page of awesome [Python engineering articles](https://www.pythonkitchen.com/python-engineering-articles/) 
+so that Python teams can skill up members faster.
         '''
     },
 ]
