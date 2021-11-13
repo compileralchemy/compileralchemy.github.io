@@ -958,7 +958,7 @@ Stated the translations with ups and downs
 Helping make EFL and Python-efl specifically more accessible. EFL is what Samsung's Tizen uses for smartwatches etc. It's
 one of the aspects which enables Bodhi Linux to fly on low specs while being an everyday OS
 
-- Helping out with Bodhi Linux's Python apps
+- Helping out with dead Bodhi Linux's Python-efl apps
 - Updated Jeff's series (the only Python-elf tutos) to reflect current versions
 - Davide Andreoli agreed to put a [Github mirror](https://github.com/DaveMDS/python-efl) for Python-efl to better reach out to the
 community
