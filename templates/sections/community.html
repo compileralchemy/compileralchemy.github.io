@@ -1,0 +1,31 @@
+<div class="section has-background-success-light">
+    <div class="container">
+        <div class="notification is-white myshadow">
+            <div class="notification is-white has-text-centered">
+                <br>
+                <p class="has-text-centered ">
+                    <span class="title has-background-white-ter  has-text-centered" style="width: 50px; height:50px; padding: 15px; border-radius: 50%;">
+                        <i class="em em-raised_hands" aria-role="presentation" aria-label="PERSON RAISING BOTH HANDS IN CELEBRATION"></i>
+                    </span>
+                </p><br>
+                <p class="title" id="community"><a href="#community" class="no-link-dec">Community Engagement</a></p>
+                <p class="subtitle">For the love of it</p>
+            </div>
+            <div class="is-white p-6">
+                {% for project in settings.community %}
+                <p class="is-size-3">{{ project['initiative'] }}</p>
+                <table class="table">
+                    <tbody>
+                        <tr>
+                            <td></td>
+                            <td class="md-to-html">
+                                {{ md_to_html(project['info']) | safe }}
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</div>

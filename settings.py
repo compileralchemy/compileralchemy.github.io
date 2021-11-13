@@ -57,6 +57,10 @@ His work in both professional and open source setting speaks itself but this rec
 
 writings = [
     {
+        "title": "Python Engineering Articles",
+        "url": "https://www.pythonkitchen.com/python-engineering-articles/"
+    },
+    {
         "title": "The Zen Of Python Is A Joke And Here Is Why",
         "url": "https://dev.to/abdurrahmaanj/the-zen-of-python-is-a-joke-and-here-is-why-you-should-not-take-it-too-seriously-508d"
     },
@@ -244,6 +248,54 @@ writings = [
 ]
 
 talks = [
+    {
+        "title": "Advanced Flask: Recipes For An All-weather Craft",
+        "event": "PyCon Sweden 2021",
+        "res": [
+            {
+                "type": "video",
+                "url": "https://youtu.be/veMSbl2fbXE"
+            },
+            {
+                "type": "slides",
+                "url": "https://speakerdeck.com/osdotsystem/advanced-flask-recipes-for-an-all-weather-craft"
+            },
+        ]
+    },
+    {
+        "title": "Shopyo: Your Mega Machine For Flask",
+        "event": "PyCon South Africa 2021",
+        "res": [
+            {
+                "type": "video",
+                "url": "https://youtu.be/W4Gmc8q42YA"
+            },
+        ]
+    },
+    {
+        "title": "Shopyo: Your Mega Machine For Flask",
+        "event": "Conf 42 Python 2021",
+        "res": [
+            {
+                "type": "video",
+                "url": "https://youtu.be/pvwvRi6iMds"
+            },
+        ]
+    },
+    {
+        "title": "OpenSource: The What N Why",
+        "event": "OSCA Mauritius Meetup Aug 2021",
+        "res": [
+            {
+                "type": "video",
+                "url": "https://youtu.be/veMSbl2fbXE"
+            },
+            {
+                "type": "slides",
+                "url": "https://speakerdeck.com/osdotsystem/advanced-flask-recipes-for-an-all-weather-craft"
+            },
+        ]
+    },
     {
         "title": "Spoonfeeding Sockets",
         "event": "Pymug Meetup April 2021",
@@ -844,3 +896,72 @@ facts = [
     #         },
     #     ]
     # },
+
+
+community = [
+    {
+        "initiative": "Python Mauritius Usergroup",
+        "info": '''
+Started the usergroup for Mauritius: [pymug.com](https://pymug.com)
+
+- Only (maybe) usergroup having end of year reports. See [2019](https://www.pymug.com/assets/pymug_2019_report.pdf) 
+and [2020](https://www.pymug.com/assets/pymug_end_of_year_2020_v2.pdf)
+- We had an Ai mini course by different members of the ug with certificates of participation signed by the dean of faculty
+- We organised python from scratch sessions
+- We organised a mini course on Web Scraping, covering from requests to infinite feed scraping
+- We organised online Python sessions at the Uni of Mauritius 
+on different topics during lockdown 2020. We had web dev, ai and more.
+- We became an O'reilly media partner
+- We invited speakers from different countries for our meetups like Mridu Bhatnagar for example.
+- Our members spoke at different confs from PyCon Tanzania to EuroPython
+- We invited industry experts to present their Python insights, Dr. Heman Mohabeer for example.
+- We managed to pull in paid Python tasks for our members
+- Members managed to find more locations to organise meetups
+- Managed to maintain regularity even in the pandemic period
+        '''
+    },
+    {
+        "initiative": "FlaskCon",
+        "info": '''
+Wrote the original draft for FlaskCon: [flaskcon.com](https://flaskcon.com)
+
+- Contacted various entities to support the conf and provide experience and help
+- Communicated with Pallets about the terms and direction of the conf
+- Asked the PSF in collaboration with Pallets to make FlaskCon a PSF-backed conference
+- Composed team
+- First edition hosted great speakers including PSF director Dustin Ingram, well known maintainers and people from the
+federal gov
+- Adopted a community-first approach and sacrifised sponsors to get the conf running
+- Second edition ongoing 2021
+        '''
+    },
+    {
+        "initiative": "Flask Community Workgroup",
+        "info": '''
+Instituted with the help of Pallets and Flask folks: [FlaskCWG](https://flaskcwg.github.io/)
+
+- Aim to cater for the Flask community including events, abandoned plugins, workshops and translations
+- Pallets instituted Pallets-eco to cater for abandoned plugins
+- Translations started substantially for chinese, spanish and french with instituted protocols
+        '''
+    },
+    {
+        "initiative": "Arabic Coordinator for The Python Docs",
+        "info": '''
+Stated the translations with ups and downs
+- Managed to find another coordinator before he got busy. Back to being the coordinator
+        '''
+    },
+    {
+        "initiative": "Python-efl revival",
+        "info": '''
+Helping make EFL and Python-efl specifically more accessible. EFL is what Samsung's Tizen uses for smartwatches etc. It's
+one of the aspects which enables Bodhi Linux to fly on low specs while being an everyday OS
+
+- Helping out with Bodhi Linux's Python apps
+- Updated Jeff's series (the only Python-elf tutos) to reflect current versions
+- Davide Andreoli agreed to put a [Github mirror](https://github.com/DaveMDS/python-efl) for Python-efl to better reach out to the
+community
+        '''
+    },
+]
