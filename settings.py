@@ -996,7 +996,7 @@ podcast = {
 podcasts = [
     {
         'title': 'Knowledge Transfer in OpenSource',
-        'link': 'https://compileralchemy.com/alfa-podcast/data/2.mp3',
+        'link': 'https://archive.org/download/alfa-podcast/2.mp3',
         'site_link': 'alfa-podcast/data/2.mp3',
         'date': '10-03-2022',
         'episode': 2,
@@ -1030,7 +1030,7 @@ A dream podcast for me!
     },
     {
         'title': 'Breaking Into Tech: The Traditional Way v/s OpenSource',
-        'link': 'https://compileralchemy.com/alfa-podcast/data/1.mp3',
+        'link': 'https://archive.org/download/alfa-podcast/1.mp3',
         'site_link': 'alfa-podcast/data/1.mp3',
         'date': '19-02-2022',
         'episode': 1,
