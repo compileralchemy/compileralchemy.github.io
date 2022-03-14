@@ -25,10 +25,10 @@ being onboarded to the Pypy project. It also contrasts the Pypy experience with 
 A dream podcast for me!
 </description>
       <pubDate>Wed, 09 Mar 2022 20:00:00 -0000</pubDate>
-      <enclosure url="https://compileralchemy.com/alfa-podcast/data/2.mp3"
-                 type="audio/mpeg" length="34216300"/>
+      <enclosure url="https://archive.org/download/alfa-podcast/2.mp3"
+                 type="audio/mpeg" />
       <itunes:duration>1:28:55</itunes:duration>
-      <guid isPermaLink="false">https://compileralchemy.com/alfa-podcast/data/2.mp3</guid>
+      <guid isPermaLink="false">https://archive.org/download/alfa-podcast/2.mp3</guid>
     </item>
     
     <item>
@@ -40,10 +40,10 @@ can be an incredible shortcut. It also covers the evolution of tech back then an
 It's a breal break into tech podcast!
 </description>
       <pubDate>Fri, 18 Feb 2022 20:00:00 -0000</pubDate>
-      <enclosure url="https://compileralchemy.com/alfa-podcast/data/1.mp3"
-                 type="audio/mpeg" length="34216300"/>
+      <enclosure url="https://archive.org/download/alfa-podcast/1.mp3"
+                 type="audio/mpeg" />
       <itunes:duration>1:41:34</itunes:duration>
-      <guid isPermaLink="false">https://compileralchemy.com/alfa-podcast/data/1.mp3</guid>
+      <guid isPermaLink="false">https://archive.org/download/alfa-podcast/1.mp3</guid>
     </item>
     
   </channel>

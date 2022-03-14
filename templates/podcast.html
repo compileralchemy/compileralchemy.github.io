@@ -85,12 +85,14 @@
                         </p>
 
 
-        <div class="player">
+      <div class="player">
     <audio>
-        <source src="{{ path + podcast['site_link'] }}" type="audio/mpeg">
+        <source src="{{ podcast['link'] }}" type="audio/mpeg">
     </audio>
 </div>
-                        <br> {{ podcast['date'] }} | {{ podcast['duration'] }}<br><br>
+                        <br> 
+
+                        <!-- <a href="{{ podcast['space_link'] }}">listen</a> | --> {{ podcast['date'] }} | {{ podcast['duration'] }}<br><br>
                         {% for people in podcast['people'] %}
                         <div class="mb-3">
                             <p class="is-size-6">

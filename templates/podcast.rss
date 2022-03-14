@@ -18,7 +18,7 @@
       <description>{{ podcast['description'] }}</description>
       <pubDate>{{ podcast['pubDate'] }}</pubDate>
       <enclosure url="{{ podcast['link'] }}"
-                 type="audio/mpeg" length="34216300"/>
+                 type="audio/mpeg" />
       <itunes:duration>{{ podcast['duration'] }}</itunes:duration>
       <guid isPermaLink="false">{{ podcast['link'] }}</guid>
     </item>
