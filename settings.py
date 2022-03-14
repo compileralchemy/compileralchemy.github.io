@@ -938,7 +938,7 @@ federal gov
     {
         "initiative": "Flask Community Workgroup",
         "info": '''
-I instituted it with the help of Pallets and Flask folks: [FlaskCWG](https://flaskcwg.github.io/). It's the
+Instituted it with the help of Pallets and Flask folks: [FlaskCWG](https://flaskcwg.github.io/). It's the
 logical conclusion of FlaskCon.
 
 - Aim to cater for the Flask community including events, abandoned plugins, workshops and translations
@@ -967,6 +967,15 @@ community
         '''
     },
     {
+        "initiative": "PyHerald",
+        "info": '''
+Mailing lists summary and news. [site](https://pyherald.com)
+
+- Brings to general readership Python mailing list discussions
+- Catches important but easy to miss news
+        '''
+    },
+    {
         "initiative": "General",
         "info": '''
 Many individual enterprises end up being good for the general community. For example:
@@ -976,4 +985,73 @@ Many individual enterprises end up being good for the general community. For exa
 so that Python teams can skill up members faster.
         '''
     },
+]
+
+
+podcast = {
+    'title': 'The Alfa Podcast',
+    'description': 'Touches Python, freelancing, career, dev and OpenSource',
+    'tagline': 'Illustrious devs and bright topics'
+}
+podcasts = [
+    {
+        'title': 'Knowledge Transfer in OpenSource',
+        'link': 'https://compileralchemy.com/alfa-podcast/data/2.mp3',
+        'site_link': 'alfa-podcast/data/2.mp3',
+        'date': '10-03-2022',
+        'episode': 2,
+        'description': '''
+Projects like Pypy and CPython are complex undertakings. Even to start contributing, 
+people are intimidated. As maintainers of such projects, the amount of knowledge 
+accumulated over the years is just huge. This episode explores the history and evoltion of Pypy.
+It debunks the myth of it's difficult to contribute to Pypy. It covers efforts undertaken to
+help people get initiated and progress. We also get to listen to Bahutan's own experience of 
+being onboarded to the Pypy project. It also contrasts the Pypy experience with the CPython one.
+A dream podcast for me!
+''',
+        'duration': '1:28:55',
+        'people':[
+            {
+                'name': 'Carl Friedrich Bolz-Tereick',
+                'status': 'guest',
+                'info': 'Long time Pypy core developer'
+            },
+            {
+                'name': 'Batuhan Taskaya',
+                'status': 'co-host',
+                'info': 'CPython and Pypy core developer'
+            },
+            {
+                'name': 'Abdur-Rahmaan Janhangeer',
+                'status': 'host',
+                'info': ''
+            }
+        ]
+    },
+    {
+        'title': 'Breaking Into Tech: The Traditional Way v/s OpenSource',
+        'link': 'https://compileralchemy.com/alfa-podcast/data/1.mp3',
+        'site_link': 'alfa-podcast/data/1.mp3',
+        'date': '19-02-2022',
+        'episode': 1,
+        'description': '''
+Osmar Mansoor has had a rich career at big tech companies. My path has been built on 
+OpenSource. It covers the normal path preparation as well as illustrates how OpenSource
+can be an incredible shortcut. It also covers the evolution of tech back then and now.
+It's a breal break into tech podcast!
+''',
+        'duration': '1:41:34',
+        'people':[
+            {
+                'name': 'Osmar Mansoor',
+                'status': 'guest',
+                'info': 'Amazon engineering manager. Ex-Apple, Uber, Microsoft'
+            },
+            {
+                'name': 'Abdur-Rahmaan Janhangeer',
+                'status': 'host',
+                'info': ''
+            }
+        ]
+    }
 ]

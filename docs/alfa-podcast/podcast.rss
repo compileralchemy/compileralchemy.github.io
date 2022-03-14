@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0"
+    xmlns:itunes="http://www.itunes.com/dtds/podcast-1.0.dtd"
+    xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>The Alfa Podcast</title>
+    <itunes:owner>
+        <itunes:email>arj.python@gmail.com</itunes:email>
+    </itunes:owner>
+    <itunes:author>Abdur-Rahmaan Janhangeer</itunes:author>
+    <description>Touches Python, freelancing, career, dev and OpenSource</description>
+    <itunes:image href="https://twemoji.maxcdn.com/2/72x72/2615.png"/>
+    <language>en-us</language>
+    <link>https://compileralchemy.com/alfa-podcast/</link>
+    
+    <item>
+      <title>Knowledge Transfer in OpenSource</title>
+      <description>
+Projects like Pypy and CPython are complex undertakings. Even to start contributing, 
+people are intimidated. As maintainers of such projects, the amount of knowledge 
+accumulated over the years is just huge. This episode explores the history and evoltion of Pypy.
+It debunks the myth of it's difficult to contribute to Pypy. It covers efforts undertaken to
+help people get initiated and progress. We also get to listen to Bahutan's own experience of 
+being onboarded to the Pypy project. It also contrasts the Pypy experience with the CPython one.
+A dream podcast for me!
+</description>
+      <pubDate>Wed, 09 Mar 2022 20:00:00 -0000</pubDate>
+      <enclosure url="https://compileralchemy.com/alfa-podcast/data/2.mp3"
+                 type="audio/mpeg" length="34216300"/>
+      <itunes:duration>1:28:55</itunes:duration>
+      <guid isPermaLink="false">https://compileralchemy.com/alfa-podcast/data/2.mp3</guid>
+    </item>
+    
+    <item>
+      <title>Breaking Into Tech: The Traditional Way v/s OpenSource</title>
+      <description>
+Osmar Mansoor has had a rich career at big tech companies. My path has been built on 
+OpenSource. It covers the normal path preparation as well as illustrates how OpenSource
+can be an incredible shortcut. It also covers the evolution of tech back then and now.
+It's a breal break into tech podcast!
+</description>
+      <pubDate>Fri, 18 Feb 2022 20:00:00 -0000</pubDate>
+      <enclosure url="https://compileralchemy.com/alfa-podcast/data/1.mp3"
+                 type="audio/mpeg" length="34216300"/>
+      <itunes:duration>1:41:34</itunes:duration>
+      <guid isPermaLink="false">https://compileralchemy.com/alfa-podcast/data/1.mp3</guid>
+    </item>
+    
+  </channel>
+</rss>

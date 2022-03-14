@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0"
+    xmlns:itunes="http://www.itunes.com/dtds/podcast-1.0.dtd"
+    xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>{{ settings.podcast['title'] }}</title>
+    <itunes:owner>
+        <itunes:email>arj.python@gmail.com</itunes:email>
+    </itunes:owner>
+    <itunes:author>Abdur-Rahmaan Janhangeer</itunes:author>
+    <description>{{ settings.podcast['description'] }}</description>
+    <itunes:image href="https://twemoji.maxcdn.com/2/72x72/2615.png"/>
+    <language>en-us</language>
+    <link>https://compileralchemy.com/alfa-podcast/</link>
+    {% for podcast in podcast_info %}
+    <item>
+      <title>{{ podcast['title'] }}</title>
+      <description>{{ podcast['description'] }}</description>
+      <pubDate>{{ podcast['pubDate'] }}</pubDate>
+      <enclosure url="{{ podcast['link'] }}"
+                 type="audio/mpeg" length="34216300"/>
+      <itunes:duration>{{ podcast['duration'] }}</itunes:duration>
+      <guid isPermaLink="false">{{ podcast['link'] }}</guid>
+    </item>
+    {% endfor %}
+  </channel>
+</rss>

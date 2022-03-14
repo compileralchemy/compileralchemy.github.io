@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-161612035-1"></script>
+    <script>
+    window.dataLayer = window.dataLayer || [];
+
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+    gtag('config', 'UA-161612035-1');
+    </script>
+    <!--Start of Tawk.to Script-->
+    <script type="text/javascript">
+    var Tawk_API = Tawk_API || {},
+        Tawk_LoadStart = new Date();
+    (function() {
+        var s1 = document.createElement("script"),
+            s0 = document.getElementsByTagName("script")[0];
+        s1.async = true;
+        s1.src = 'https://embed.tawk.to/600547c5c31c9117cb6fac40/1esaa0ni2';
+        s1.charset = 'UTF-8';
+        s1.setAttribute('crossorigin', '*');
+        s0.parentNode.insertBefore(s1, s0);
+    })();
+    </script>
+    <!--End of Tawk.to Script-->
+    <title>web and software dev</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="utf-8">
+    <meta name="description" content="software and web services">
+    <meta name="keywords" content="HTML,CSS,JavaScript,Python,Java,C++,websites,software,code audits">
+    <meta name="author" content="compileralchemy">
+    <meta name="theme-color" content="#ffb74d" />
+    <link rel="icon" href="{{path}}COMP_ALC.png">
+    <link rel="stylesheet" type="text/css" href="prototyp.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/greghub/green-audio-player/dist/css/green-audio-player.min.css">
+
+
+    <link href='https://fonts.googleapis.com/css?family=Comfortaa' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Raleway:700' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Special+Elite' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.0/css/bulma.min.css">
+    <link href="https://emoji-css.afeld.me/emoji.css" rel="stylesheet">
+    <script defer src="https://use.fontawesome.com/releases/v5.8.2/js/all.js"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha384-tsQFqpEReu7ZLhBV2VZlAu7zcOV+rXbYlF2cqB8txI/8aZajjp4Bqd+V6D5IgvKT" crossorigin="anonymous">
+    </script>
+    <script type="text/javascript" src="{{ path }}js/script.js"></script>
+    </script>
+    <style type="text/css">
+    .podcast-section {}
+
+    .card {
+        box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.18);
+    }
+    </style>
+</head>
+
+<body class="">
+    <div class="section has-background-white">
+        <div class="container">
+            <div class="notification is-white">
+                <div class="notification is-white has-text-centered">
+                    <br>
+                    <p class="has-text-centered ">
+                        <span class="title has-background-white-ter  has-text-centered" style="width: 50px; height:50px; padding: 15px; border-radius: 50%;">
+                            <i class="em em-coffee" aria-role="presentation" aria-label="HOT BEVERAGE"></i>
+                        </span>
+                    </p><br>
+                    <p class="title">{{ settings.podcast['title'] }}</p>
+                    <p class="subtitle m-0 p-0" style="margin: 0; padding: 0;">{{ settings.podcast['tagline'] }}, hosted by <a href="https://twitter.com/osdotsystem">@osdotsystem</a><br>
+                        <p class="is-size-7 m-0 p-0">{{ settings.podcast['description'] }}</p><br><br><button class="button is-small is-link">
+                            <a href="/">back</a></button>
+                    </p>
+                </div>
+            </div>
+            <div class="container">
+                <div class="podcast-section " style="">
+                    {% for podcast in settings.podcasts %}
+                    <div class="card" style="padding: 30px; margin-bottom: 30px;" class="mb-3">
+                        <p class="is-size-3">
+                            {{ podcast['title'] }}
+                        </p>
+
+
+        <div class="player">
+    <audio>
+        <source src="{{ path + podcast['site_link'] }}" type="audio/mpeg">
+    </audio>
+</div>
+                        <br> {{ podcast['date'] }} | {{ podcast['duration'] }}<br><br>
+                        {% for people in podcast['people'] %}
+                        <div class="mb-3">
+                            <p class="is-size-6">
+                                <b>{{ people['name'] }} <span class="tag is-success">{{ people['status'] }}</span></b>
+                            </p>
+                            <p>
+                                {{ people['info'] }}
+                            </p>
+                        </div>
+                        {% endfor %}
+                        <hr>
+                        {{ md_to_html(podcast['description']) }}
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+    {% include 'sections/footer.html' %}
+
+<script src="https://cdn.jsdelivr.net/gh/greghub/green-audio-player/dist/js/green-audio-player.min.js"></script>
+    <script type="text/javascript">
+        GreenAudioPlayer.init({
+    selector: '.player', // inits Green Audio Player on each audio container that has class "player"
+    stopOthersOnPlay: true
+});
+    </script>
+</body>
+
+</html>
