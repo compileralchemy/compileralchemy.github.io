@@ -1012,7 +1012,7 @@ A dream podcast for me!
         'duration': '1:28:55',
         'people':[
             {
-                'name': 'Carl Friedrich Bolz-Tereick',
+                'name': 'Dr. Carl Friedrich Bolz-Tereick',
                 'status': 'guest',
                 'info': 'Long time Pypy core developer'
             },
