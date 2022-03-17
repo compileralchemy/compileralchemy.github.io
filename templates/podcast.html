@@ -33,15 +33,11 @@
     <meta name="keywords" content="HTML,CSS,JavaScript,Python,Java,C++,websites,software,code audits">
     <meta name="author" content="compileralchemy">
     <meta name="theme-color" content="#ffb74d" />
-    <link rel="alternate" type="application/rss+xml"
-          href="https://www.compileralchemy.com/alfa-podcast/podcast.rss"
-          title="The Alfa Podcast episodes">
+    <link rel="alternate" type="application/rss+xml" href="https://www.compileralchemy.com/alfa-podcast/podcast.rss" title="The Alfa Podcast episodes">
     <link rel="icon" href="{{path}}COMP_ALC.png">
     <link rel="stylesheet" type="text/css" href="prototyp.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/greghub/green-audio-player/dist/css/green-audio-player.min.css">
-
-
     <link href='https://fonts.googleapis.com/css?family=Comfortaa' rel='stylesheet' type='text/css'>
     <link href='https://fonts.googleapis.com/css?family=Raleway:700' rel='stylesheet' type='text/css'>
     <link href='https://fonts.googleapis.com/css?family=Special+Elite' rel='stylesheet' type='text/css'>
@@ -59,6 +55,17 @@
         box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.18);
     }
     </style>
+    <script type="text/javascript">
+    (function(c, l, a, r, i, t, y) {
+        c[a] = c[a] || function() {
+            (c[a].q = c[a].q || []).push(arguments) };
+        t = l.createElement(r);
+        t.async = 1;
+        t.src = "https://www.clarity.ms/tag/" + i;
+        y = l.getElementsByTagName(r)[0];
+        y.parentNode.insertBefore(t, y);
+    })(window, document, "clarity", "script", "b2ltvgn5pp");
+    </script>
 </head>
 
 <body class="">
@@ -86,15 +93,12 @@
                         <p class="is-size-3">
                             {{ podcast['title'] }}
                         </p>
-
-
-      <div class="player">
-    <audio>
-        <source src="{{ podcast['link'] }}" type="audio/mpeg">
-    </audio>
-</div>
-                        <br> 
-
+                        <div class="player">
+                            <audio>
+                                <source src="{{ podcast['link'] }}" type="audio/mpeg">
+                            </audio>
+                        </div>
+                        <br>
                         <!-- <a href="{{ podcast['space_link'] }}">listen</a> | --> {{ podcast['date'] }} | {{ podcast['duration'] }}<br><br>
                         {% for people in podcast['people'] %}
                         <div class="mb-3">
@@ -115,13 +119,12 @@
         </div>
     </div>
     {% include 'sections/footer.html' %}
-
-<script src="https://cdn.jsdelivr.net/gh/greghub/green-audio-player/dist/js/green-audio-player.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/greghub/green-audio-player/dist/js/green-audio-player.min.js"></script>
     <script type="text/javascript">
-        GreenAudioPlayer.init({
-    selector: '.player', // inits Green Audio Player on each audio container that has class "player"
-    stopOthersOnPlay: true
-});
+    GreenAudioPlayer.init({
+        selector: '.player', // inits Green Audio Player on each audio container that has class "player"
+        stopOthersOnPlay: true
+    });
     </script>
 </body>
 
