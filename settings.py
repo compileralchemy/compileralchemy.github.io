@@ -991,22 +991,25 @@ so that Python teams can skill up members faster.
 podcast = {
     'title': 'The Alfa Podcast',
     'description': 'Touches Python, freelancing, career, dev and OpenSource',
-    'tagline': 'Illustrious devs and bright topics'
+    'rss_description': 'Illustrious devs and bright topics. Touches Python, freelancing, career, dev and OpenSource',
+    'tagline': 'Illustrious devs and bright topics',
+    'google_podcast': 'https://podcasts.google.com/feed/aHR0cHM6Ly93d3cuY29tcGlsZXJhbGNoZW15LmNvbS9hbGZhLXBvZGNhc3QvcG9kY2FzdC5yc3M?sa=X&ved=0CBoQ27cFahcKEwj4q5XXl872AhUAAAAAHQAAAAAQTQ'
 }
 podcasts = [
     {
         'title': 'Knowledge Transfer in OpenSource',
         'link': 'https://archive.org/download/alfa-podcast/2.mp3',
-        'site_link': 'alfa-podcast/data/2.mp3',
+        'space': 'https://twitter.com/osdotsystem/status/1498948153042636800?s=20&t=oCNlNAoqN-TBVYY9LkqywQ',
         'date': '10-03-2022',
         'episode': 2,
         'description': '''
-Projects like Pypy and CPython are complex undertakings. Even to start contributing, 
+This podcast features two Pypy and one CPython core devs. Projects like Pypy and CPython are complex undertakings. Even to start contributing, 
 people are intimidated. As maintainers of such projects, the amount of knowledge 
 accumulated over the years is just huge. This episode explores the history and evoltion of Pypy.
 It debunks the myth of it's difficult to contribute to Pypy. It covers efforts undertaken to
 help people get initiated and progress. We also get to listen to Bahutan's own experience of 
 being onboarded to the Pypy project. It also contrasts the Pypy experience with the CPython one.
+You also get a lots of Pythonista gems along the way.
 A dream podcast for me!
 ''',
         'duration': '1:28:55',
@@ -1014,30 +1017,41 @@ A dream podcast for me!
             {
                 'name': 'Dr. Carl Friedrich Bolz-Tereick',
                 'status': 'guest',
-                'info': 'Long time Pypy core developer'
+                'info': 'Long time Pypy core developer',
+                'social': {
+                    'twitter': 'https://twitter.com/cfbolz'
+                }
             },
             {
                 'name': 'Batuhan Taskaya',
                 'status': 'co-host',
-                'info': 'CPython and Pypy core developer'
+                'info': 'CPython and Pypy core developer',
+                'social': {
+                    'twitter': 'https://twitter.com/isidentical'
+                }
             },
             {
                 'name': 'Abdur-Rahmaan Janhangeer',
                 'status': 'host',
-                'info': ''
+                'info': '',
+                'social': {
+                    'twitter': 'https://twitter.com/osdotsystem'
+                }
             }
         ]
     },
     {
         'title': 'Breaking Into Tech: The Traditional Way v/s OpenSource',
         'link': 'https://archive.org/download/alfa-podcast/1.mp3',
-        'site_link': 'alfa-podcast/data/1.mp3',
+        'space': 'https://twitter.com/osdotsystem/status/1492398798013878272?s=20&t=oDANgx6LqN0HIUrF62-s0g',
         'date': '19-02-2022',
         'episode': 1,
         'description': '''
-Osmar Mansoor has had a rich career at big tech companies. My path has been built on 
-OpenSource. It covers the normal path preparation as well as illustrates how OpenSource
-can be an incredible shortcut. It also covers the evolution of tech back then and now.
+Osmar Mansoor has had a rich career at big tech companies. Now an Engineering Manager at Amazon, 
+he has been at Apple, Uber and Microsoft. Me i owe my path 100 percent to
+OpenSource. The episode covers the normal break into tech path preparation as well as 
+illustrates how OpenSource can be an incredible shortcut. It also covers the evolution of 
+tech back then and now.
 It's a breal break into tech podcast!
 ''',
         'duration': '1:41:34',
@@ -1045,12 +1059,18 @@ It's a breal break into tech podcast!
             {
                 'name': 'Osmar Mansoor',
                 'status': 'guest',
-                'info': 'Amazon engineering manager. Ex-Apple, Uber, Microsoft'
+                'info': 'Amazon engineering manager. Ex-Apple, Uber, Microsoft',
+                'social': {
+                    'twitter': 'https://twitter.com/MansoorOsmar'
+                }
             },
             {
                 'name': 'Abdur-Rahmaan Janhangeer',
                 'status': 'host',
-                'info': ''
+                'info': '',
+                'social': {
+                    'twitter': 'https://twitter.com/osdotsystem'
+                }
             }
         ]
     }

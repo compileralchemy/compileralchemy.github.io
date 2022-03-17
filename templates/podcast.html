@@ -81,8 +81,13 @@
                     </p><br>
                     <p class="title">{{ settings.podcast['title'] }}</p>
                     <p class="subtitle m-0 p-0" style="margin: 0; padding: 0;">{{ settings.podcast['tagline'] }}, hosted by <a href="https://twitter.com/osdotsystem">@osdotsystem</a><br>
-                        <p class="is-size-7 m-0 p-0">{{ settings.podcast['description'] }}</p><br><br><button class="button is-small is-link">
-                            <a href="/">back</a></button>
+                        <p class="is-size-7 m-0 p-0">{{ settings.podcast['description'] }}</p><br><br>
+                        <button class="button is-small is-link">
+                            <a href="/">back</a>
+                        </button>
+                        <button class="button is-small is-link">
+                            <a href="{{ settings.podcast['google_podcast'] }}" target="_blank">Google Podcast</a>
+                        </button>
                     </p>
                 </div>
             </div>
@@ -99,11 +104,11 @@
                             </audio>
                         </div>
                         <br>
-                        <!-- <a href="{{ podcast['space_link'] }}">listen</a> | --> {{ podcast['date'] }} | {{ podcast['duration'] }}<br><br>
+                        <!-- <a href="{{ podcast['space_link'] }}">listen</a> | --> {{ podcast['date'] }} | {{ podcast['duration'] }} | <a href="{{ podcast['space'] }}">space</a><br><br>
                         {% for people in podcast['people'] %}
                         <div class="mb-3">
                             <p class="is-size-6">
-                                <b>{{ people['name'] }} <span class="tag is-success">{{ people['status'] }}</span></b>
+                                <b>{{ people['name'] }} (<a href="{{ people['social']['twitter'] }}">twitter</a>) <span class="tag is-success">{{ people['status'] }}</span></b>
                             </p>
                             <p>
                                 {{ people['info'] }}
