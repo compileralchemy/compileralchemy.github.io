@@ -989,7 +989,7 @@ so that Python teams can skill up members faster.
 
 
 podcast = {
-    'title': 'The Alfa Podcast',
+    'title': 'The Alfa Coding Podcast',
     'description': 'Touches Python, freelancing, career, dev and OpenSource',
     'rss_description': 'Illustrious devs and bright topics. Touches Python, freelancing, career, dev and OpenSource',
     'tagline': 'Illustrious devs and bright topics',

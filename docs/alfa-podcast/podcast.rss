@@ -3,7 +3,7 @@
     xmlns:itunes="http://www.itunes.com/dtds/podcast-1.0.dtd"
     xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>The Alfa Podcast</title>
+    <title>The Alfa Coding Podcast</title>
     <itunes:owner>
         <itunes:email>arj.python@gmail.com</itunes:email>
     </itunes:owner>
