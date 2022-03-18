@@ -997,7 +997,40 @@ podcast = {
 }
 podcasts = [
     {
-        'title': 'Knowledge Transfer in OpenSource',
+        'title': '#3. 14 Years Old And Teaching Typing To The World',
+        'link': 'https://archive.org/download/alfa-podcast/3.m4a',
+        'space': 'https://twitter.com/i/spaces/1vAxRkgbayzKl',
+        'date': '18-03-2022',
+        'episode': 3,
+        'description': '''
+A casual chat with the maintainer of the pypi commandline package and typesplainer.
+A dive into his journey into tech and how he tackles projects. We talk along the way
+of a discord.py/nextcord visual code extension, mypy from the programming interface and
+a linter specifically for discord bots projects. We also get to hear the secret behind
+recipe behind awesome projects!
+''',
+        'duration': '43:30',
+        'people':[
+            {
+                'name': 'Arian Mollick Wasi / WasiMaster',
+                'status': 'guest',
+                'info': 'Pypi cmd and Typesplainer maintainer',
+                'social': {
+                    'twitter': 'https://twitter.com/wasi_master'
+                }
+            },
+            {
+                'name': 'Abdur-Rahmaan Janhangeer',
+                'status': 'host',
+                'info': '',
+                'social': {
+                    'twitter': 'https://twitter.com/osdotsystem'
+                }
+            }
+        ]
+    },
+    {
+        'title': '#2. Knowledge Transfer in OpenSource',
         'link': 'https://archive.org/download/alfa-podcast/2.mp3',
         'space': 'https://twitter.com/osdotsystem/status/1498948153042636800?s=20&t=oCNlNAoqN-TBVYY9LkqywQ',
         'date': '10-03-2022',
@@ -1041,7 +1074,7 @@ A dream podcast for me!
         ]
     },
     {
-        'title': 'Breaking Into Tech: The Traditional Way v/s OpenSource',
+        'title': '#1. Breaking Into Tech: The Traditional Way v/s OpenSource',
         'link': 'https://archive.org/download/alfa-podcast/1.mp3',
         'space': 'https://twitter.com/osdotsystem/status/1492398798013878272?s=20&t=oDANgx6LqN0HIUrF62-s0g',
         'date': '19-02-2022',

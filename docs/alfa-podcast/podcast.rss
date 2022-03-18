@@ -14,7 +14,23 @@
     <link>https://compileralchemy.com/alfa-podcast/</link>
     
     <item>
-      <title>Knowledge Transfer in OpenSource</title>
+      <title>#3. 14 Years Old And Teaching Typing To The World</title>
+      <description>
+A casual chat with the maintainer of the pypi commandline package and typesplainer.
+A dive into his journey into tech and how he tackles projects. We talk along the way
+of a discord.py/nextcord visual code extension, mypy from the programming interface and
+a linter specifically for discord bots projects. We also get to hear the secret behind
+recipe behind awesome projects!
+</description>
+      <pubDate>Thu, 17 Mar 2022 20:00:00 -0000</pubDate>
+      <enclosure url="https://archive.org/download/alfa-podcast/3.m4a"
+                 type="audio/mpeg" />
+      <itunes:duration>43:30</itunes:duration>
+      <guid isPermaLink="false">https://archive.org/download/alfa-podcast/3.m4a</guid>
+    </item>
+    
+    <item>
+      <title>#2. Knowledge Transfer in OpenSource</title>
       <description>
 This podcast features two Pypy and one CPython core devs. Projects like Pypy and CPython are complex undertakings. Even to start contributing, 
 people are intimidated. As maintainers of such projects, the amount of knowledge 
@@ -33,7 +49,7 @@ A dream podcast for me!
     </item>
     
     <item>
-      <title>Breaking Into Tech: The Traditional Way v/s OpenSource</title>
+      <title>#1. Breaking Into Tech: The Traditional Way v/s OpenSource</title>
       <description>
 Osmar Mansoor has had a rich career at big tech companies. Now an Engineering Manager at Amazon, 
 he has been at Apple, Uber and Microsoft. Me i owe my path 100 percent to
