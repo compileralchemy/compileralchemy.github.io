@@ -1018,7 +1018,7 @@ Learn about running an MLops business with Bojan Miletic!
             {
                 'name': 'Mostafa Moradian',
                 'status': 'co-host',
-                'info': 'Senior software engineer at k6.io and Graphana, specialised in load testing',
+                'info': 'Senior software engineer at k6.io and Grafana, specialised in load testing',
                 'social': {
                     'twitter': 'https://twitter.com/MosiMoradian'
                 }
