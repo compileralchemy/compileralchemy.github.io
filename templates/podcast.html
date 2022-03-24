@@ -101,7 +101,7 @@
                     {% for podcast in settings.podcasts %}
                     <div class="card" style="padding: 30px; margin-bottom: 30px;" class="mb-3">
                         <p class="is-size-3">
-                            {{ podcast['title'] }}
+                            <a id="{{ podcast['episode'] }}" href="#{{ podcast['episode'] }}">#{{ podcast['episode'] }}.</a> {{ podcast['title'] }}
                         </p>
                         <div class="player">
                             <audio>

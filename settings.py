@@ -997,7 +997,7 @@ podcast = {
 }
 podcasts = [
     {
-        'title': '#5. Business, The Serious Side of Python',
+        'title': 'Business, The Serious Side of Python',
         'link': 'https://archive.org/download/alfa-podcast/5.m4a',
         'space': 'https://twitter.com/i/spaces/1OyJADBwDlrGb',
         'date': '23-03-2022',
@@ -1034,7 +1034,7 @@ Learn about running an MLops business with Bojan Miletic!
         ]
     },
     {
-        'title': '#4. The Passion For Python',
+        'title': 'The Passion For Python',
         'link': 'https://archive.org/download/alfa-podcast/4.m4a',
         'space': 'https://twitter.com/i/spaces/1MnGnkLdlOjJO',
         'date': '21-03-2022',
@@ -1065,7 +1065,7 @@ interviews Python world's interviewer!
         ]
     },
     {
-        'title': '#3. 14 Years Old And Teaching Typing To The World',
+        'title': '14 Years Old And Teaching Typing To The World',
         'link': 'https://archive.org/download/alfa-podcast/3.m4a',
         'space': 'https://twitter.com/i/spaces/1vAxRkgbayzKl',
         'date': '18-03-2022',
@@ -1098,7 +1098,7 @@ recipe behind awesome projects!
         ]
     },
     {
-        'title': '#2. Knowledge Transfer in OpenSource',
+        'title': 'Knowledge Transfer in OpenSource',
         'link': 'https://archive.org/download/alfa-podcast/2.mp3',
         'space': 'https://twitter.com/osdotsystem/status/1498948153042636800?s=20&t=oCNlNAoqN-TBVYY9LkqywQ',
         'date': '10-03-2022',
@@ -1142,7 +1142,7 @@ A dream podcast for me!
         ]
     },
     {
-        'title': '#1. Breaking Into Tech: The Traditional Way v/s OpenSource',
+        'title': 'Breaking Into Tech: The Traditional Way v/s OpenSource',
         'link': 'https://archive.org/download/alfa-podcast/1.mp3',
         'space': 'https://twitter.com/osdotsystem/status/1492398798013878272?s=20&t=oDANgx6LqN0HIUrF62-s0g',
         'date': '19-02-2022',
