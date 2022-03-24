@@ -14,6 +14,32 @@
     <link>https://compileralchemy.com/alfa-podcast/</link>
     
     <item>
+      <title>#5. Business, The Serious Side of Python</title>
+      <description>
+Learn about running an MLops business with Bojan Miletic!
+</description>
+      <pubDate>Tue, 22 Mar 2022 20:00:00 -0000</pubDate>
+      <enclosure url="https://archive.org/download/alfa-podcast/5.m4a"
+                 type="audio/mpeg" />
+      <itunes:duration>46:34</itunes:duration>
+      <guid isPermaLink="false">https://archive.org/download/alfa-podcast/5.m4a</guid>
+    </item>
+    
+    <item>
+      <title>#4. The Passion For Python</title>
+      <description>
+Michael Driscoll has been a Python fan since the days PyPI did not yet exist. He is an author,
+blogger and tinkerer. He runs PyDev of The Week. He needs no introduction. This episode
+interviews Python world's interviewer!
+</description>
+      <pubDate>Sun, 20 Mar 2022 20:00:00 -0000</pubDate>
+      <enclosure url="https://archive.org/download/alfa-podcast/4.m4a"
+                 type="audio/mpeg" />
+      <itunes:duration>49:02</itunes:duration>
+      <guid isPermaLink="false">https://archive.org/download/alfa-podcast/4.m4a</guid>
+    </item>
+    
+    <item>
       <title>#3. 14 Years Old And Teaching Typing To The World</title>
       <description>
 A casual chat with the maintainer of the pypi commandline package and typesplainer.
