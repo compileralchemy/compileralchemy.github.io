@@ -88,7 +88,25 @@
 </head>
 
 <body class="">
-    <div class="section has-background-info">
+    
+<div id="gdpr-thing">
+    By using this website, you consent to use Google Analytics and MS Clarity. [ <a id="consent-button" href="#">Ok</a> ]
+</div>
+<script type="text/javascript">
+
+    window.addEventListener('load', (event) => {
+        if (localStorage.getItem('gdpr-accept')===true){
+            document.getElementById("gdpr-thing").style.display='none';
+        }
+        
+      document.getElementById("consent-button").onclick = function() {
+
+        document.getElementById("gdpr-thing").style.display='none';
+        localStorage.setItem('gdpr-accept', true);
+      };
+    });
+</script>
+<div class="section has-background-info">
     <div class="container">
         <div class="tile is-ancestor">
             <div class="tile is-vertical is-8">
@@ -105,7 +123,7 @@
                                     <p class="title">Shining Lamp Club</p>
                                 </div>
                                 <div class="content has-text-centered">
-                                    A café for developers about freelance and Python 'career' growth<br> <br> 
+                                    A café for developers about freelance and Python 'career' growth<br> <br>
                                     <div>
                                         <button class="button is-link" disabled>Enter</button>
                                     </div>
@@ -123,7 +141,7 @@
                                     <p class="title">The Alfa Coding Podcast</p>
                                 </div>
                                 <div class="content has-text-centered">
-                                    Illustrious devs and bright topics<br> <br> 
+                                    Illustrious devs and bright topics<br> <br>
                                     <div>
                                         <button class="button is-link"><a href='/alfa-podcast'>Listen</a></button>
                                     </div>
@@ -156,7 +174,7 @@
                                         </li>
                                     </ul>
                                     <br>
-                                    I have experience in remote/long-distance work.
+                                    I have experience in remote/long-distance work. You can always have a look at <a href="#testimonials">testimonials</a>, read some <a href="#writings">articles</a>, view past <a href="#talks">talks</a>, <a href="#facts">cool facts</a> and <a href="#community">community engagements.</a>
                                 </div>
                             </div>
                         </div>
@@ -178,8 +196,8 @@
                                 </div>
                             </div>
                             <div class="column">
-                                I make it a point to develop easy to use products. Softwares can save you a lot of pain, yes mail me: <b>arj.python at gmail.com</b> to have a chat!<br><br>
-                                We also invest heavily in programming education, hoping for a brighter future
+                                I make it a point to develop easy to use products. Softwares can save you a lot of pain, yes mail me: <b>arj.python at gmail.com</b> to have a chat! We also invest heavily in programming education, hoping for a brighter future.
+                                <br><br><a href="https://www.codementor.io/@abdurrahmaanj?refer=badge" target="_blank"><img src="https://www.codementor.io/m-badges/abdurrahmaanj/get-help.svg" alt="Codementor badge"></a><a href="https://www.linkedin.com/in/appinv"><i class="fab fa-linkedin heartbeat smediaicon" style="color: green;"></i></a><a href="https://twitter.com/osdotsystem"><i class="fab fa-twitter heartbeat smediaicon" style="color: green;"></i></a>
                             </div>
                         </div>
                     </article>
@@ -198,17 +216,32 @@
                     <div class="content" id="news-section">
                         <div class="content tweetcontain">
                             <!-- Content -->
-                            <blockquote class="twitter-tweet" data-dnt="true"><p lang="en" dir="ltr"><a href="https://twitter.com/osdotsystem?ref_src=twsrc%5Etfw">@osdotsystem</a> from Mauritius will be giving a talk about <br>Shopyo: Your Mega Flask Machine<br><br>Get your tickets now at <a href="https://t.co/NsWMvcyj4U">https://t.co/NsWMvcyj4U</a><br><br>PyCon APAC 2021 Our Python. Our Future<a href="https://twitter.com/hashtag/pyconapac2021?src=hash&amp;ref_src=twsrc%5Etfw">#pyconapac2021</a> <a href="https://twitter.com/hashtag/pyconth?src=hash&amp;ref_src=twsrc%5Etfw">#pyconth</a> <a href="https://t.co/56Fct3diU1">pic.twitter.com/56Fct3diU1</a></p>&mdash; PyCon Thailand (@pyconthailand) <a href="https://twitter.com/pyconthailand/status/1459332722124595205?ref_src=twsrc%5Etfw">November 13, 2021</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
-                            <blockquote class="twitter-tweet"><p lang="en" dir="ltr">🟢 ❝Shopyo: Your Mega Flask Machine❞ <br><br> 🐼 🐍 Register: <a href="https://t.co/dzmHoEL3to">https://t.co/dzmHoEL3to</a><br>by <a href="https://twitter.com/osdotsystem?ref_src=twsrc%5Etfw">@osdotsystem</a>, Founder Compiler Alchemy<a href="https://twitter.com/hashtag/Conf42?src=hash&amp;ref_src=twsrc%5Etfw">#Conf42</a> <a href="https://twitter.com/hashtag/Python?src=hash&amp;ref_src=twsrc%5Etfw">#Python</a> 2021 <a href="https://t.co/2Xo6YTyBme">pic.twitter.com/2Xo6YTyBme</a></p>&mdash; Conf42 (@conf42com) <a href="https://twitter.com/conf42com/status/1390565038998622210?ref_src=twsrc%5Etfw">May 7, 2021</a></blockquote>
-                            <blockquote class="twitter-tweet" data-dnt="true"><p lang="en" dir="ltr">Speaker Name: Abdur-Rahmaan Janhangeer<br>Speaker Title: Independent Software Developer (Python)<br>He&#39;s also a PyMUG organizing member (Python Mauritius)<br><br>Event Title: &quot;Why opensource and why we should care?&quot;<br>Date: 26 Aug 2021<br>Time: 18:30 Mauritius Time <a href="https://t.co/bwKdrF7xrW">https://t.co/bwKdrF7xrW</a></p>&mdash; OSCA Mauritius (@OSCAMauritius) <a href="https://twitter.com/OSCAMauritius/status/1429631332339134469?ref_src=twsrc%5Etfw">August 23, 2021</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
-                            <blockquote class="twitter-tweet"><p lang="en" dir="ltr">We&#39;re excited for you to and cannot wait to see how you&#39;ll grow as a mentor and developer!</p>&mdash; Codementor (@CodementorIO) <a href="https://twitter.com/CodementorIO/status/1374561517417361408?ref_src=twsrc%5Etfw">March 24, 2021</a></blockquote>
-                            <blockquote class="twitter-tweet"><p lang="en" dir="ltr">The Zen Of Python: A Most In Depth Article <a href="https://t.co/fVsG9pUjqG">https://t.co/fVsG9pUjqG</a></p>&mdash; PyCoder’s Weekly (@pycoders) <a href="https://twitter.com/pycoders/status/1343668800554729473?ref_src=twsrc%5Etfw">December 28, 2020</a></blockquote>
+                            <blockquote class="twitter-tweet" data-dnt="true">
+                                <p lang="en" dir="ltr"><a href="https://twitter.com/osdotsystem?ref_src=twsrc%5Etfw">@osdotsystem</a> from Mauritius will be giving a talk about <br>Shopyo: Your Mega Flask Machine<br><br>Get your tickets now at <a href="https://t.co/NsWMvcyj4U">https://t.co/NsWMvcyj4U</a><br><br>PyCon APAC 2021 Our Python. Our Future<a href="https://twitter.com/hashtag/pyconapac2021?src=hash&amp;ref_src=twsrc%5Etfw">#pyconapac2021</a> <a href="https://twitter.com/hashtag/pyconth?src=hash&amp;ref_src=twsrc%5Etfw">#pyconth</a> <a href="https://t.co/56Fct3diU1">pic.twitter.com/56Fct3diU1</a></p>&mdash; PyCon Thailand (@pyconthailand) <a href="https://twitter.com/pyconthailand/status/1459332722124595205?ref_src=twsrc%5Etfw">November 13, 2021</a>
+                            </blockquote>
+                            <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+                            <blockquote class="twitter-tweet">
+                                <p lang="en" dir="ltr">🟢 ❝Shopyo: Your Mega Flask Machine❞ <br><br> 🐼 🐍 Register: <a href="https://t.co/dzmHoEL3to">https://t.co/dzmHoEL3to</a><br>by <a href="https://twitter.com/osdotsystem?ref_src=twsrc%5Etfw">@osdotsystem</a>, Founder Compiler Alchemy<a href="https://twitter.com/hashtag/Conf42?src=hash&amp;ref_src=twsrc%5Etfw">#Conf42</a> <a href="https://twitter.com/hashtag/Python?src=hash&amp;ref_src=twsrc%5Etfw">#Python</a> 2021 <a href="https://t.co/2Xo6YTyBme">pic.twitter.com/2Xo6YTyBme</a></p>&mdash; Conf42 (@conf42com) <a href="https://twitter.com/conf42com/status/1390565038998622210?ref_src=twsrc%5Etfw">May 7, 2021</a>
+                            </blockquote>
+                            <blockquote class="twitter-tweet" data-dnt="true">
+                                <p lang="en" dir="ltr">Speaker Name: Abdur-Rahmaan Janhangeer<br>Speaker Title: Independent Software Developer (Python)<br>He&#39;s also a PyMUG organizing member (Python Mauritius)<br><br>Event Title: &quot;Why opensource and why we should care?&quot;<br>Date: 26 Aug 2021<br>Time: 18:30 Mauritius Time <a href="https://t.co/bwKdrF7xrW">https://t.co/bwKdrF7xrW</a></p>&mdash; OSCA Mauritius (@OSCAMauritius) <a href="https://twitter.com/OSCAMauritius/status/1429631332339134469?ref_src=twsrc%5Etfw">August 23, 2021</a>
+                            </blockquote>
+                            <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+                            <blockquote class="twitter-tweet">
+                                <p lang="en" dir="ltr">We&#39;re excited for you to and cannot wait to see how you&#39;ll grow as a mentor and developer!</p>&mdash; Codementor (@CodementorIO) <a href="https://twitter.com/CodementorIO/status/1374561517417361408?ref_src=twsrc%5Etfw">March 24, 2021</a>
+                            </blockquote>
+                            <blockquote class="twitter-tweet">
+                                <p lang="en" dir="ltr">The Zen Of Python: A Most In Depth Article <a href="https://t.co/fVsG9pUjqG">https://t.co/fVsG9pUjqG</a></p>&mdash; PyCoder’s Weekly (@pycoders) <a href="https://twitter.com/pycoders/status/1343668800554729473?ref_src=twsrc%5Etfw">December 28, 2020</a>
+                            </blockquote>
                             <blockquote class="twitter-tweet">
                                 <p lang="en" dir="ltr">&quot;The Zen of Python: As Related by Masters&quot; by <a href="https://twitter.com/osdotsystem?ref_src=twsrc%5Etfw">@osdotsystem</a> <a href="https://t.co/fIuqSrlDtK">https://t.co/fIuqSrlDtK</a> <a href="https://twitter.com/hashtag/zen?src=hash&amp;ref_src=twsrc%5Etfw">#zen</a> <a href="https://twitter.com/hashtag/python?src=hash&amp;ref_src=twsrc%5Etfw">#python</a></p>&mdash; HackerNoon (@hackernoon) <a href="https://twitter.com/hackernoon/status/1313363388953657346?ref_src=twsrc%5Etfw">October 6, 2020</a>
                             </blockquote>
-                            <blockquote class="twitter-tweet"><p lang="en" dir="ltr">It&#39;s really cool that <a href="https://twitter.com/europython?ref_src=twsrc%5Etfw">@europython</a> highlighted my talk on <a href="https://twitter.com/ThePracticalDev?ref_src=twsrc%5Etfw">@ThePracticalDev</a> <br><br>🍃❤💯👍🎉<a href="https://t.co/O8HvlKQMvu">https://t.co/O8HvlKQMvu</a></p>&mdash; Abdur-Rahmaan 🇲🇺 Janhangeer (@osdotsystem) <a href="https://twitter.com/osdotsystem/status/1313489262969585665?ref_src=twsrc%5Etfw">October 6, 2020</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
                             <blockquote class="twitter-tweet">
-                                <p lang="en" dir="ltr">Python developer <a href="https://twitter.com/osdotsystem?ref_src=twsrc%5Etfw">@osdotsystem</a> will be presenting at the Developers Conference 2020! Come join him! To learn more about the sessions: <a href="https://t.co/86TpjPIMS1">https://t.co/86TpjPIMS1</a><a href="https://twitter.com/hashtag/devconmu?src=hash&amp;ref_src=twsrc%5Etfw">#devconmu</a> <a href="https://twitter.com/hashtag/developers?src=hash&amp;ref_src=twsrc%5Etfw">#developers</a> <a href="https://twitter.com/hashtag/conference?src=hash&amp;ref_src=twsrc%5Etfw">#conference</a> <a href="https://twitter.com/hashtag/mauritius?src=hash&amp;ref_src=twsrc%5Etfw">#mauritius</a> <a href="https://t.co/hw3rxaPlpW">pic.twitter.com/hw3rxaPlpW</a></p>&mdash; MSCC (@MSCraftsman) <a href="https://twitter.com/MSCraftsman/status/1237377669324591104?ref_src=twsrc%5Etfw">March 10, 2020</a>
+                                <p lang="en" dir="ltr">It&#39;s really cool that <a href="https://twitter.com/europython?ref_src=twsrc%5Etfw">@europython</a> highlighted my talk on <a href="https://twitter.com/ThePracticalDev?ref_src=twsrc%5Etfw">@ThePracticalDev</a> <br><br>🍃❤💯👍🎉<a href="https://t.co/O8HvlKQMvu">https://t.co/O8HvlKQMvu</a></p>&mdash; Abdur-Rahmaan 🇲🇺 Janhangeer (@osdotsystem) <a href="https://twitter.com/osdotsystem/status/1313489262969585665?ref_src=twsrc%5Etfw">October 6, 2020</a>
+                            </blockquote>
+                            <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+                            <blockquote class="twitter-tweet">
+                                <p lang="en" dir="ltr">Python developer <a href="https://twitter.com/osdotsystem?ref_src=twsrc%5Etfw">@osdotsystem</a> will be presenting at the Developers Conference 2020! Come join him! To learn more about the sessions: <a href="https://t.co/86TpjPIMS1">https://t.co/86TpjPIMS1</a><a href="https://twitter.com/hashtag/devconmu?src=hash&<p></p>amp;ref_src=twsrc%5Etfw">#devconmu</a> <a href="https://twitter.com/hashtag/developers?src=hash&amp;ref_src=twsrc%5Etfw">#developers</a> <a href="https://twitter.com/hashtag/conference?src=hash&amp;ref_src=twsrc%5Etfw">#conference</a> <a href="https://twitter.com/hashtag/mauritius?src=hash&amp;ref_src=twsrc%5Etfw">#mauritius</a> <a href="https://t.co/hw3rxaPlpW">pic.twitter.com/hw3rxaPlpW</a></p>&mdash; MSCC (@MSCraftsman) <a href="https://twitter.com/MSCraftsman/status/1237377669324591104?ref_src=twsrc%5Etfw">March 10, 2020</a>
                             </blockquote>
                             <blockquote class="twitter-tweet" data-dnt="true">
                                 <p lang="en" dir="ltr">Legally Free Python Books List is a great collection of books that you can get your hands on no payment required. But note that these books are available at the moment, so you might want to hurry! <a href="https://t.co/J247bljJuX">https://t.co/J247bljJuX</a></p>&mdash; CheckiO (@PlayCheckiO) <a href="https://twitter.com/PlayCheckiO/status/1222928686686638081?ref_src=twsrc%5Etfw">January 30, 2020</a>
@@ -239,11 +272,36 @@
         </span>
       </p><br>
       <p class="title" id="testimonials"><a href="#testimonials" class="no-link-dec">Testimonials</a></p>
-      <p class="subtitle">What do people say?</p>
+      <p class="subtitle">What do people say? <a href="https://www.linkedin.com/in/appinv/">(source)</a></p>
     </div>
     <!-- Swiper -->
     <div class="swiper-container">
       <div class="swiper-wrapper">
+        
+        <div class="swiper-slide">
+          <div class="card  is-shadowless">
+            <div class="card-content">
+              <div class="content">
+                <i class="notes__image fa fa fa-bookmark"></i>
+                <h2 class="notes__caption">Shamsuddin Rehmani
+                <br><i class="notes__utitle">Software Development Engineer, Amazon</i>
+                
+                </h2>
+                <p class="notes__txt" style="padding: 30px">
+                  <i class="fa fa-quote-left"></i><br>
+                  I worked with Abdur-Rahmaan's on one of his many open source software project, Shopyo. As this was my first time contributing to open source, I was not very confident in my skills. However, Abdur-Rahmaan was very patient and helped with the process of project setup and contribution. Looking back since my first open source contribution, I couldn't have asked for a better mentor than Abdur-Rahmaan. As I worked more with him, I learned that he has a vast knowledge not only of software engineering but also possess excellent communication and leadership skills. His attention to details, clear guidance, pursuit of best industry practices, and past experience and success in managing a team of engineers makes him a great leader
+and asset to any team.
+
+As if this was not enough, he also possess the gift of being artistic and creative, with the ability to make software not only functional but also marketable with design skills that he pursues as a hobby.
+
+His work in both professional and open source setting speaks itself but this recommendation is just a token of appreciation on behalf of countless engineers whom he has helped improve and break into the open source community. I wish him the best in his future endeavors and I am excited to see where his work takes him.
+                  <br>
+                  <i class="fa fa-quote-right"></i>
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
         
         <div class="swiper-slide">
           <div class="card  is-shadowless">
@@ -277,12 +335,32 @@ He would be a great fit any organisation or team
               <div class="content">
                 <i class="notes__image fa fa fa-bookmark"></i>
                 <h2 class="notes__caption">Gico Carlo Evangelista
-                <br><i class="notes__utitle">Software Engineering Intern at Outward, Inc.</i>
+                <br><i class="notes__utitle">Software Engineer at Outward Inc.</i>
                 
                 </h2>
                 <p class="notes__txt" style="padding: 30px">
                   <i class="fa fa-quote-left"></i><br>
                   I have worked with Abdur-Rahmaan on one of his Open Source Python projects on GitHub. He has helped mentored me in not only understanding the project thoroughly, but has also taught me the basics of contributing to an open source repository. He is very helpful when it comes to answering questions to both experienced developers and newcomers who are interested in learning about open source. Abdur-Rahmaan is a great mentor who I recommend working with.
+                  <br>
+                  <i class="fa fa-quote-right"></i>
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="swiper-slide">
+          <div class="card  is-shadowless">
+            <div class="card-content">
+              <div class="content">
+                <i class="notes__image fa fa fa-bookmark"></i>
+                <h2 class="notes__caption">Justin Triplett
+                <br><i class="notes__utitle">Software Engineer and Consultant at Caledonia Systems</i>
+                
+                </h2>
+                <p class="notes__txt" style="padding: 30px">
+                  <i class="fa fa-quote-left"></i><br>
+                  Working with Abdur-Rahmaan has been a really great experience. He did so much to make sure Flaskcon was a great success. He organized the teams of volunteers and stepped up to fill roles and provide advise wherever and whenever needed. I love working on a project knowing someone else is as dedicated to it's success as I am and I look forward to working with him again soon.Working with Abdur-Rahmaan has been a really great experience. He did so much to make sure Flaskcon was a great success. He organized the teams of volunteers and stepped up to fill roles and provide advise wherever and whenever needed. I love working on a project knowing someone else is as dedicated to it's success as I am and I look forward to working with him again soon.
                   <br>
                   <i class="fa fa-quote-right"></i>
                 </p>
@@ -320,6 +398,48 @@ So I would just like to say thank you.
             <div class="card-content">
               <div class="content">
                 <i class="notes__image fa fa fa-bookmark"></i>
+                <h2 class="notes__caption">Zahur Meerun
+                <br><i class="notes__utitle">Full Stack Software Development Student/First officer at Air Mauritius</i>
+                
+                </h2>
+                <p class="notes__txt" style="padding: 30px">
+                  <i class="fa fa-quote-left"></i><br>
+                  I have known Abdur-Rahman for over 2 years since I started my coding journey. At that time he provided me with advice on how to navigate such a career. Recently he assigned me a project which involved the integration of several modules using an Open Source Framework whereby I reported directly to himself.
+
+I cannot speak highly enough of his programming ability and vision in tackling technical issues. He was always available for meetings to address hiccups that I had during the project. The experience I have had working with him has been extremely pleasant and beneficial for me and would recommend him for any projects you might have.I have known Abdur-Rahman for over 2 years since I started my coding journey. At that time he provided me with advice on how to navigate such a career. Recently he assigned me a project which involved the integration of several modules using an Open Source Framework whereby I reported directly to himself. I cannot speak highly enough of his programming ability and vision in tackling technical issues. He was always available for meetings to address hiccups that I had during the project. The experience I have had working with him has been extremely pleasant and beneficial for me and would recommend him for any projects you might have.
+                  <br>
+                  <i class="fa fa-quote-right"></i>
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="swiper-slide">
+          <div class="card  is-shadowless">
+            <div class="card-content">
+              <div class="content">
+                <i class="notes__image fa fa fa-bookmark"></i>
+                <h2 class="notes__caption">Girish Mahabir
+                <br><i class="notes__utitle">System & Security Engineer at OceanDBA</i>
+                
+                </h2>
+                <p class="notes__txt" style="padding: 30px">
+                  <i class="fa fa-quote-left"></i><br>
+                  Abdur-Rahmaan Janhangeer was a blessing to have worked with. With his simple guides and helps, I successfully did my first opensource contribution. Being in the Python Mauritius Community with him, I got to learn a lot from him and still learning.
+                  <br>
+                  <i class="fa fa-quote-right"></i>
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="swiper-slide">
+          <div class="card  is-shadowless">
+            <div class="card-content">
+              <div class="content">
+                <i class="notes__image fa fa fa-bookmark"></i>
                 <h2 class="notes__caption">Angelo Giacco
                 <br><i class="notes__utitle">Computer Science Student at Imperial College London</i>
                 
@@ -341,7 +461,7 @@ So I would just like to say thank you.
               <div class="content">
                 <i class="notes__image fa fa fa-bookmark"></i>
                 <h2 class="notes__caption">Hans Maulloo
-                <br><i class="notes__utitle">Information Technology Trainee at SWAN Mauritius</i>
+                <br><i class="notes__utitle">Software Developer at SWAN Mauritius</i>
                 
                 </h2>
                 <p class="notes__txt" style="padding: 30px">
@@ -380,18 +500,14 @@ So I would just like to say thank you.
             <div class="card-content">
               <div class="content">
                 <i class="notes__image fa fa fa-bookmark"></i>
-                <h2 class="notes__caption">Shamsuddin Rehmani
-                <br><i class="notes__utitle">MS in Computer Science at University of Southern California</i>
+                <h2 class="notes__caption">Sandeep Chatterjee
+                <br><i class="notes__utitle">MSc, Distributed Computing</i>
                 
                 </h2>
                 <p class="notes__txt" style="padding: 30px">
                   <i class="fa fa-quote-left"></i><br>
-                  I worked with Abdur-Rahmaan's on one of his many open source software project, Shopyo. As this was my first time contributing to open source, I was not very confident in my skills. However, Abdur-Rahmaan was very patient and helped with the process of project setup and contribution. Looking back since my first open source contribution, I couldn't have asked for a better mentor than Abdur-Rahmaan. As I worked more with him, I learned that he has a vast knowledge not only of software engineering but also possess excellent communication and leadership skills. His attention to details, clear guidance, pursuit of best industry practices, and past experience and success in managing a team of engineers makes him a great leader
-and asset to any team.
-
-As if this was not enough, he also possess the gift of being artistic and creative, with the ability to make software not only functional but also marketable with design skills that he pursues as a hobby.
-
-His work in both professional and open source setting speaks itself but this recommendation is just a token of appreciation on behalf of countless engineers whom he has helped improve and break into the open source community. I wish him the best in his future endeavors and I am excited to see where his work takes him.
+                  Amazing polymath... a good teacher, addictive author and cool coder. His articles are always full of well done research, and there is always something new to learn from it , no matter how experienced you are with the technology.
+Scholar of Arabic, as well as well versed in English. Good teacher of Python, and artistically skilled in vector logo design. Really proud to be his old friend.Amazing polymath... a good teacher, addictive author and cool coder. His articles are always full of well done research, and there is always something new to learn from it , no matter how experienced you are with the technology. Scholar of Arabic, as well as well versed in English. Good teacher of Python, and artistically skilled in vector logo design. Really proud to be his old friend.
                   <br>
                   <i class="fa fa-quote-right"></i>
                 </p>
@@ -426,218 +542,6 @@ His work in both professional and open source setting speaks itself but this rec
     });
     </script>
   </div>
-</div>
-    <div class="section has-background-white">
-    <div class="container">
-        <div class="notification is-white">
-            <div class="notification is-white has-text-centered">
-                <br>
-                <p class="has-text-centered ">
-                    <span class="title has-background-white-ter  has-text-centered" style="width: 50px; height:50px; padding: 15px; border-radius: 50%;">
-                        <i class="em em-pancakes" aria-role="presentation" aria-label="PANCAKES"></i>
-                    </span>
-                </p><br>
-                <p class="title">Services</p>
-                <p class="subtitle">What is there on the menu?</p>
-            </div>
-            <div class="tile is-ancestor">
-                <div class="tile is-parent">
-                    <article class="tile is-child box has-text-centered">
-                        <p class="title"><i class="fab fa-python servicesicon" style="color: #CD5C5C"></i></p>
-                        <p class="subtitle"><b>Python Developement</b></p>
-                        <hr>
-                        <p>Since our language of choice is Python, we offer development services from scripts to libraries and everything in between</p>
-                    </article>
-                </div>
-                <div class="tile is-parent">
-                    <article class="tile is-child box has-text-centered">
-                        <p class="title"><i class="fas fa-database servicesicon" style="color: rgb(165, 100, 175);"></i></p>
-                        <p class="subtitle"><b>Web Development</b></p>
-                        <hr>
-                        <p>
-                            Your back-end need to integrate and combine complicated schemes? You are at the right pot!
-                        </p>
-                    </article>
-                </div>
-                <div class="tile is-parent">
-                    <article class="tile is-child box has-text-centered">
-                        <p class="title"><i class="fas fa-desktop servicesicon" style="color: rgb(245, 85, 10);"></i></p>
-                        <p class="subtitle"><b>Desktop Development</b></p>
-                        <hr>
-                        <p>
-                            Submerged by files or manual setups? A dedicated software can help you be more productive
-                        </p>
-                    </article>
-                </div>
-            </div>
-            <div class="tile is-ancestor">
-                <div class="tile is-parent">
-                    <article class="tile is-child box has-text-centered">
-                        <p class="title"><i class="fas fa-cloud servicesicon" style="color: rgb(0, 110, 215);"></i></p>
-                        <p class="subtitle"><b>IoT</b></p>
-                        <hr>
-                        <p>Helping you with cloud infrastructures and realtime data</p>
-                    </article>
-                </div>
-                <div class="tile is-parent">
-                    <article class="tile is-child box has-text-centered">
-                        <p class="title"><i class="fas fa-spider servicesicon" style="color: rgb(255, 0, 0);"></i></p>
-                        <p class="subtitle"><b>Web Scraping</b></p>
-                        <hr>
-                        <p>
-                            You need to organise a wide hunt or just automation, we can put your scraping job on auto-pilot
-                        </p>
-                    </article>
-                </div>
-                <div class="tile is-parent">
-                    <article class="tile is-child box has-text-centered">
-                        <p class="title"><i class="fas fa-dice-d20 servicesicon" style="color: rgb(75, 165, 255);"></i></p>
-                        <p class="subtitle"><b>Data Science & Machine Learning</b></p>
-                        <hr>
-                        <p>
-                            Helping you with huge amounts of data and applying the proper ML algorithm including NLP
-                        </p>
-                    </article>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-    <div class="section has-background-success">
-    <div class="container">
-        <div class="notification is-white myshadow">
-            Mail me: <b>arj.python at gmail.com</b> or find me on
-            <br><br>
-            <ul>
-                <li>Codementor<br>
-                    <a href="https://www.codementor.io/@abdurrahmaanj?refer=badge" target="_blank"><img src="https://www.codementor.io/m-badges/abdurrahmaanj/get-help.svg" alt="Codementor badge"></a>
-                </li>
-            </ul>
-            <ul>
-                <li>LinkedIn<br>
-                    <a href="https://www.linkedin.com/in/appinv"><i class="fab fa-linkedin heartbeat smediaicon" style="color: green;"></i></a>
-                </li>
-            </ul>
-            <ul>
-                <li>Twitter<br>
-                    <a href="https://twitter.com/osdotsystem"><i class="fab fa-twitter heartbeat smediaicon" style="color: green;"></i></a>
-                </li>
-            </ul>
-        </div>
-    </div>
-</div>
-    <div class="section" id="articles">
-    <div class="container">
-        <div class="notification is-white">
-            <div class="notification is-white has-text-centered">
-                <br>
-                <p class="has-text-centered ">
-                    <span class="title has-background-white-ter  has-text-centered" style="width: 50px; height:50px; padding: 15px; border-radius: 50%;">
-                        <i class="em em-books" aria-role="presentation" aria-label="BOOKS"></i>
-                    </span>
-                </p><br>
-                <p class="title" id="writings"><a href="#writings" class="no-link-dec">Writings</a></p>
-                <p class="subtitle">Articles & More</p>
-            </div>
-        </div>
-        <div class="writings notification is-white">
-            
-            <span class="url p-0">01. <a href="https://www.pythonkitchen.com/python-engineering-articles/">Python Engineering Articles</a></span>
-            
-            <span class="url p-0">02. <a href="https://dev.to/abdurrahmaanj/the-zen-of-python-is-a-joke-and-here-is-why-you-should-not-take-it-too-seriously-508d">The Zen Of Python Is A Joke And Here Is Why</a></span>
-            
-            <span class="url p-0">03. <a href="https://www.pythonkitchen.com/zen-of-python-in-depth/">The Zen Of Python: The Most In-Depth Article Ever Written</a></span>
-            
-            <span class="url p-0">04. <a href="https://dev.to/abdurrahmaanj/using-python-functions-as-classes-10j0">Using Python Functions As Classes</a></span>
-            
-            <span class="url p-0">05. <a href="https://www.pythonkitchen.com/python-generators-in-depth/">Python Generators: The In-Depth Article You Always Wanted</a></span>
-            
-            <span class="url p-0">06. <a href="https://www.pythonkitchen.com/legally-free-python-books-list/">The Most Complete List Of Legally Free Python Books On The Internet</a></span>
-            
-            <span class="url p-0">07. <a href="https://www.pythonkitchen.com/python-running-makefile-on-windows/">Python: Running Makefile On Windows Using Git Mingw Bash</a></span>
-            
-            <span class="url p-0">08. <a href="https://dev.to/abdurrahmaanj/how-to-change-your-github-contribution-graph-colour-to-something-cool-34gg">How To Change Your Github Contribution Graph Colour To Something Cool</a></span>
-            
-            <span class="url p-0">09. <a href="https://www.geeksforgeeks.org/creating-custom-widgets-in-pyqt5/">Creating Custom Widgets In Pyqt5</a></span>
-            
-            <span class="url p-0">10. <a href="https://www.geeksforgeeks.org/migrate-pyqt5-app-to-pyside2/">Migrate Pyqt5 App To Pyside2</a></span>
-            
-            <span class="url p-0">11. <a href="https://dev.to/abdurrahmaanj/using-anaconda-on-sublime-text-39le">Using Anaconda On Sublime Text (Without Installing Any Package)</a></span>
-            
-            <span class="url p-0">12. <a href="https://dmerej.info/blog/post/requests-what-you-need-to-build-useful-apps/">Requests: What You Need To Build Useful Apps</a></span>
-            
-            <span class="url p-0">13. <a href="https://dev.to/abdurrahmaanj/add-superpowers-to-your-python-lists-using-this-feature-24nf">A Treatment Of Deque In Python</a></span>
-            
-            <span class="url p-0">14. <a href="https://dev.to/abdurrahmaanj/flask-delicious-tutorial-building-a-library-management-system-part-1-planning-5h4k">Flask 1 - Planning</a></span>
-            
-            <span class="url p-0">15. <a href="https://dev.to/abdurrahmaanj/flask-delicious-tutorial-building-a-library-management-system-part-2-start-with-a-loaded-skeleton-3j96">Flask 2 - Start With A Loaded Skeleton</a></span>
-            
-            <span class="url p-0">16. <a href="https://dev.to/abdurrahmaanj/flask-delicious-tutorial-building-a-library-management-system-part-3-routes-d68">Flask 3 - Routes</a></span>
-            
-            <span class="url p-0">17. <a href="https://dev.to/abdurrahmaanj/flask-delicious-tutorial-building-a-library-management-system-part-4-focus-on-responses-4j18">Flask 4 - Focus On Responses</a></span>
-            
-            <span class="url p-0">18. <a href="https://dev.to/abdurrahmaanj/flask-delicious-tutorial-building-a-library-management-system-part-5-a-dip-into-templates-logic-gpl">Flask 5 - A Dip Into Templates Logic</a></span>
-            
-            <span class="url p-0">19. <a href="https://dev.to/abdurrahmaanj/metabob-a-github-tool-for-your-python-repos-pi1">Metabob, A Github Tool For Your Python Repos</a></span>
-            
-            <span class="url p-0">20. <a href="https://www.pythonkitchen.com/run-flask-linux-only-windows-afpy/">How To Run A Flask Linux-Only App On Windows</a></span>
-            
-            <span class="url p-0">21. <a href="https://dev.to/abdurrahmaanj/building-a-color-picker-in-pygame-using-hooman-307m">Building A Color Picker In Pygame Using Hooman</a></span>
-            
-            <span class="url p-0">22. <a href="https://dev.to/abdurrahmaanj/how-to-build-a-css-pre-processor-like-sass-from-scratch-33mc">How To Build A Css Pre-Processor (Like Sass) From Scratch</a></span>
-            
-            <span class="url p-0">23. <a href="https://www.pythonkitchen.com/shopyo-understand-advanced-flask-app/">An Advanced Flask App: Shopyo</a></span>
-            
-            <span class="url p-0">24. <a href="https://www.pythonkitchen.com/packaging-an-sqlite-db-included-crud-pyqt5-app-using-pyinstaller/">Packaging An Sqlite Db-Included Crud Pyqt5 App Using Pyinstaller</a></span>
-            
-            <span class="url p-0">25. <a href="https://www.pythonkitchen.com/get-pythons-help-function-stored-as-string-just-like-console/">Get Python’S Help() Function Stored As String Just Like Console</a></span>
-            
-            <span class="url p-0">26. <a href="https://www.pythonkitchen.com/plotting-hotspots-in-mauritius-with-python-and-folium/">Plotting Hotspots In Mauritius With Python And Folium</a></span>
-            
-            <span class="url p-0">27. <a href="https://www.pythonkitchen.com/machine-learning-part-1-introduction/">Machine Learning Crash Course 1: Introduction</a></span>
-            
-            <span class="url p-0">28. <a href="https://www.pythonkitchen.com/432/">Machine Learning Crash Course 2: Supervised Learning</a></span>
-            
-            <span class="url p-0">29. <a href="https://www.pythonkitchen.com/machine-learning-part-3-regression/">Machine Learning Crash Course 3: Regression</a></span>
-            
-            <span class="url p-0">30. <a href="https://www.pythonkitchen.com/machine-learning-part-4-gradient-descent-and-cost-function/">Machine Learning Crash Course 4: Gradient Descent And Cost Function</a></span>
-            
-            <span class="url p-0">31. <a href="https://www.pythonkitchen.com/machine-learning-part-5-mixed-methods/">Machine Learning Crash Course 5: Mixed Method</a></span>
-            
-            <span class="url p-0">32. <a href="https://www.pythonkitchen.com/machine-learning-part-6-enthropy-and-gain/">Machine Learning Crash Course 6: Enthropy And Gain</a></span>
-            
-            <span class="url p-0">33. <a href="https://www.pythonkitchen.com/machine-learning-part-7-random-forests-explained/">Machine Learning Crash Course 7: Random Forests</a></span>
-            
-            <span class="url p-0">34. <a href="https://www.pythonkitchen.com/machine-learning-part-8-support-vector-machines/">Machine Learning Crash Course 8: Support Vector Machines</a></span>
-            
-            <span class="url p-0">35. <a href="https://www.pythonkitchen.com/machine-learning-part-9-neural-networks/">Machine Learning Crash Course 9: Neural Networks</a></span>
-            
-            <span class="url p-0">36. <a href="https://www.pythonkitchen.com/machine-learning-part-10-naive-bayes/">Machine Learning Crash Course 10: Naive Bayes</a></span>
-            
-            <span class="url p-0">37. <a href="https://www.pythonkitchen.com/machine-learning-part-11-unpervised-learning/">Machine Learning Crash Course 11: Unsupervised Learning</a></span>
-            
-            <span class="url p-0">38. <a href="https://www.pythonkitchen.com/machine-learning-part-12-association-analysis/">Machine Learning Crash Course 12: Association Analysis</a></span>
-            
-            <span class="url p-0">39. <a href="https://www.pythonkitchen.com/reviving-bertrand-russell-through-python/">Reviving Bertrand Russell Through Python</a></span>
-            
-            <span class="url p-0">40. <a href="https://www.pythonkitchen.com/building-a-lexer-in-python-tutorial/">How To Build A Lexer In Python</a></span>
-            
-            <span class="url p-0">41. <a href="https://www.pythonkitchen.com/building-a-lexer-in-python-tutorial/">How To Build An Indentation Lexer In Python</a></span>
-            
-            <span class="url p-0">42. <a href="https://www.pythonkitchen.com/how-to-correctly-use-the-next-parameter-in-login-and-logout-in-flask/">How To Correctly Use The Next Parameter In Login And Logout In Flask</a></span>
-            
-            <span class="url p-0">43. <a href="https://www.pythonkitchen.com/how-to-use-flask-admin-with-flask-login/">How To Use Flask-Admin With Flask-Login</a></span>
-            
-            <span class="url p-0">44. <a href="https://www.pythonkitchen.com/how-to-disable-csrf-protection-in-flask-wtf-for-particular-routes/">How To Disable Csrf Protection For Particular Routes In Flask-Wtf</a></span>
-            
-            <span class="url p-0">45. <a href="https://www.pythonkitchen.com/how-to-define-global-template-variables-in-flask/">How To Define Global Template Variables In Flask</a></span>
-            
-            <span class="url p-0">46. <a href="https://www.pythonkitchen.com/how-prevent-open-redirect-vulnerab-flask/">How To Prevent The Open Redirect Vulnerability With The Next Parameter In Flask</a></span>
-            
-            <span class="url p-0">47. <a href="https://www.pythonkitchen.com/how-implement-beautiful-notifications-flask/">How To Implement Beautiful Notifications In Flask</a></span>
-            
-        </div>
-    </div>
 </div>
     <div class="section" id="talks">
     <div class="container">
@@ -934,6 +838,219 @@ His work in both professional and open source setting speaks itself but this rec
         </div>
     </div>
 </div>
+    <!--<div class="section has-background-white">
+    <div class="container">
+        <div class="notification is-white">
+            <div class="notification is-white has-text-centered">
+                <br>
+                <p class="has-text-centered ">
+                    <span class="title has-background-white-ter  has-text-centered" style="width: 50px; height:50px; padding: 15px; border-radius: 50%;">
+                        <i class="em em-pancakes" aria-role="presentation" aria-label="PANCAKES"></i>
+                    </span>
+                </p><br>
+                <p class="title">Services</p>
+                <p class="subtitle">What is there on the menu?</p>
+            </div>
+            <div class="tile is-ancestor">
+                <div class="tile is-parent">
+                    <article class="tile is-child box has-text-centered">
+                        <p class="title"><i class="fab fa-python servicesicon" style="color: #CD5C5C"></i></p>
+                        <p class="subtitle"><b>Python Developement</b></p>
+                        <hr>
+                        <p>Since our language of choice is Python, we offer development services from scripts to libraries and everything in between</p>
+                    </article>
+                </div>
+                <div class="tile is-parent">
+                    <article class="tile is-child box has-text-centered">
+                        <p class="title"><i class="fas fa-database servicesicon" style="color: rgb(165, 100, 175);"></i></p>
+                        <p class="subtitle"><b>Web Development</b></p>
+                        <hr>
+                        <p>
+                            Your back-end need to integrate and combine complicated schemes? You are at the right pot!
+                        </p>
+                    </article>
+                </div>
+                <div class="tile is-parent">
+                    <article class="tile is-child box has-text-centered">
+                        <p class="title"><i class="fas fa-desktop servicesicon" style="color: rgb(245, 85, 10);"></i></p>
+                        <p class="subtitle"><b>Desktop Development</b></p>
+                        <hr>
+                        <p>
+                            Submerged by files or manual setups? A dedicated software can help you be more productive
+                        </p>
+                    </article>
+                </div>
+            </div>
+            <div class="tile is-ancestor">
+                <div class="tile is-parent">
+                    <article class="tile is-child box has-text-centered">
+                        <p class="title"><i class="fas fa-cloud servicesicon" style="color: rgb(0, 110, 215);"></i></p>
+                        <p class="subtitle"><b>IoT</b></p>
+                        <hr>
+                        <p>Helping you with cloud infrastructures and realtime data</p>
+                    </article>
+                </div>
+                <div class="tile is-parent">
+                    <article class="tile is-child box has-text-centered">
+                        <p class="title"><i class="fas fa-spider servicesicon" style="color: rgb(255, 0, 0);"></i></p>
+                        <p class="subtitle"><b>Web Scraping</b></p>
+                        <hr>
+                        <p>
+                            You need to organise a wide hunt or just automation, we can put your scraping job on auto-pilot
+                        </p>
+                    </article>
+                </div>
+                <div class="tile is-parent">
+                    <article class="tile is-child box has-text-centered">
+                        <p class="title"><i class="fas fa-dice-d20 servicesicon" style="color: rgb(75, 165, 255);"></i></p>
+                        <p class="subtitle"><b>Data Science & Machine Learning</b></p>
+                        <hr>
+                        <p>
+                            Helping you with huge amounts of data and applying the proper ML algorithm including NLP
+                        </p>
+                    </article>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>-->
+    <!--<div class="section has-background-success">
+    <div class="container">
+        <div class="notification is-white myshadow">
+            Mail me: <b>arj.python at gmail.com</b> or find me on
+            <br><br>
+            <ul>
+                <li>Codementor<br>
+                    <a href="https://www.codementor.io/@abdurrahmaanj?refer=badge" target="_blank"><img src="https://www.codementor.io/m-badges/abdurrahmaanj/get-help.svg" alt="Codementor badge"></a>
+                </li>
+            </ul>
+            <ul>
+                <li>LinkedIn<br>
+                    <a href="https://www.linkedin.com/in/appinv"><i class="fab fa-linkedin heartbeat smediaicon" style="color: green;"></i></a>
+                </li>
+            </ul>
+            <ul>
+                <li>Twitter<br>
+                    <a href="https://twitter.com/osdotsystem"><i class="fab fa-twitter heartbeat smediaicon" style="color: green;"></i></a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>-->
+    <div class="section" id="articles">
+    <div class="container">
+        <div class="notification is-white">
+            <div class="notification is-white has-text-centered">
+                <br>
+                <p class="has-text-centered ">
+                    <span class="title has-background-white-ter  has-text-centered" style="width: 50px; height:50px; padding: 15px; border-radius: 50%;">
+                        <i class="em em-books" aria-role="presentation" aria-label="BOOKS"></i>
+                    </span>
+                </p><br>
+                <p class="title" id="writings"><a href="#writings" class="no-link-dec">Writings</a></p>
+                <p class="subtitle">Articles & More</p>
+            </div>
+        </div>
+        <div class="writings notification is-white">
+            
+            <span class="url p-0">01. <a href="https://www.pythonkitchen.com/python-engineering-articles/">Python Engineering Articles</a></span>
+            
+            <span class="url p-0">02. <a href="https://dev.to/abdurrahmaanj/the-zen-of-python-is-a-joke-and-here-is-why-you-should-not-take-it-too-seriously-508d">The Zen Of Python Is A Joke And Here Is Why</a></span>
+            
+            <span class="url p-0">03. <a href="https://www.pythonkitchen.com/zen-of-python-in-depth/">The Zen Of Python: The Most In-Depth Article Ever Written</a></span>
+            
+            <span class="url p-0">04. <a href="https://dev.to/abdurrahmaanj/using-python-functions-as-classes-10j0">Using Python Functions As Classes</a></span>
+            
+            <span class="url p-0">05. <a href="https://www.pythonkitchen.com/python-generators-in-depth/">Python Generators: The In-Depth Article You Always Wanted</a></span>
+            
+            <span class="url p-0">06. <a href="https://www.pythonkitchen.com/legally-free-python-books-list/">The Most Complete List Of Legally Free Python Books On The Internet</a></span>
+            
+            <span class="url p-0">07. <a href="https://www.pythonkitchen.com/python-running-makefile-on-windows/">Python: Running Makefile On Windows Using Git Mingw Bash</a></span>
+            
+            <span class="url p-0">08. <a href="https://dev.to/abdurrahmaanj/how-to-change-your-github-contribution-graph-colour-to-something-cool-34gg">How To Change Your Github Contribution Graph Colour To Something Cool</a></span>
+            
+            <span class="url p-0">09. <a href="https://www.geeksforgeeks.org/creating-custom-widgets-in-pyqt5/">Creating Custom Widgets In Pyqt5</a></span>
+            
+            <span class="url p-0">10. <a href="https://www.geeksforgeeks.org/migrate-pyqt5-app-to-pyside2/">Migrate Pyqt5 App To Pyside2</a></span>
+            
+            <span class="url p-0">11. <a href="https://dev.to/abdurrahmaanj/using-anaconda-on-sublime-text-39le">Using Anaconda On Sublime Text (Without Installing Any Package)</a></span>
+            
+            <span class="url p-0">12. <a href="https://dmerej.info/blog/post/requests-what-you-need-to-build-useful-apps/">Requests: What You Need To Build Useful Apps</a></span>
+            
+            <span class="url p-0">13. <a href="https://dev.to/abdurrahmaanj/add-superpowers-to-your-python-lists-using-this-feature-24nf">A Treatment Of Deque In Python</a></span>
+            
+            <span class="url p-0">14. <a href="https://dev.to/abdurrahmaanj/flask-delicious-tutorial-building-a-library-management-system-part-1-planning-5h4k">Flask 1 - Planning</a></span>
+            
+            <span class="url p-0">15. <a href="https://dev.to/abdurrahmaanj/flask-delicious-tutorial-building-a-library-management-system-part-2-start-with-a-loaded-skeleton-3j96">Flask 2 - Start With A Loaded Skeleton</a></span>
+            
+            <span class="url p-0">16. <a href="https://dev.to/abdurrahmaanj/flask-delicious-tutorial-building-a-library-management-system-part-3-routes-d68">Flask 3 - Routes</a></span>
+            
+            <span class="url p-0">17. <a href="https://dev.to/abdurrahmaanj/flask-delicious-tutorial-building-a-library-management-system-part-4-focus-on-responses-4j18">Flask 4 - Focus On Responses</a></span>
+            
+            <span class="url p-0">18. <a href="https://dev.to/abdurrahmaanj/flask-delicious-tutorial-building-a-library-management-system-part-5-a-dip-into-templates-logic-gpl">Flask 5 - A Dip Into Templates Logic</a></span>
+            
+            <span class="url p-0">19. <a href="https://dev.to/abdurrahmaanj/metabob-a-github-tool-for-your-python-repos-pi1">Metabob, A Github Tool For Your Python Repos</a></span>
+            
+            <span class="url p-0">20. <a href="https://www.pythonkitchen.com/run-flask-linux-only-windows-afpy/">How To Run A Flask Linux-Only App On Windows</a></span>
+            
+            <span class="url p-0">21. <a href="https://dev.to/abdurrahmaanj/building-a-color-picker-in-pygame-using-hooman-307m">Building A Color Picker In Pygame Using Hooman</a></span>
+            
+            <span class="url p-0">22. <a href="https://dev.to/abdurrahmaanj/how-to-build-a-css-pre-processor-like-sass-from-scratch-33mc">How To Build A Css Pre-Processor (Like Sass) From Scratch</a></span>
+            
+            <span class="url p-0">23. <a href="https://www.pythonkitchen.com/shopyo-understand-advanced-flask-app/">An Advanced Flask App: Shopyo</a></span>
+            
+            <span class="url p-0">24. <a href="https://www.pythonkitchen.com/packaging-an-sqlite-db-included-crud-pyqt5-app-using-pyinstaller/">Packaging An Sqlite Db-Included Crud Pyqt5 App Using Pyinstaller</a></span>
+            
+            <span class="url p-0">25. <a href="https://www.pythonkitchen.com/get-pythons-help-function-stored-as-string-just-like-console/">Get Python’S Help() Function Stored As String Just Like Console</a></span>
+            
+            <span class="url p-0">26. <a href="https://www.pythonkitchen.com/plotting-hotspots-in-mauritius-with-python-and-folium/">Plotting Hotspots In Mauritius With Python And Folium</a></span>
+            
+            <span class="url p-0">27. <a href="https://www.pythonkitchen.com/machine-learning-part-1-introduction/">Machine Learning Crash Course 1: Introduction</a></span>
+            
+            <span class="url p-0">28. <a href="https://www.pythonkitchen.com/432/">Machine Learning Crash Course 2: Supervised Learning</a></span>
+            
+            <span class="url p-0">29. <a href="https://www.pythonkitchen.com/machine-learning-part-3-regression/">Machine Learning Crash Course 3: Regression</a></span>
+            
+            <span class="url p-0">30. <a href="https://www.pythonkitchen.com/machine-learning-part-4-gradient-descent-and-cost-function/">Machine Learning Crash Course 4: Gradient Descent And Cost Function</a></span>
+            
+            <span class="url p-0">31. <a href="https://www.pythonkitchen.com/machine-learning-part-5-mixed-methods/">Machine Learning Crash Course 5: Mixed Method</a></span>
+            
+            <span class="url p-0">32. <a href="https://www.pythonkitchen.com/machine-learning-part-6-enthropy-and-gain/">Machine Learning Crash Course 6: Enthropy And Gain</a></span>
+            
+            <span class="url p-0">33. <a href="https://www.pythonkitchen.com/machine-learning-part-7-random-forests-explained/">Machine Learning Crash Course 7: Random Forests</a></span>
+            
+            <span class="url p-0">34. <a href="https://www.pythonkitchen.com/machine-learning-part-8-support-vector-machines/">Machine Learning Crash Course 8: Support Vector Machines</a></span>
+            
+            <span class="url p-0">35. <a href="https://www.pythonkitchen.com/machine-learning-part-9-neural-networks/">Machine Learning Crash Course 9: Neural Networks</a></span>
+            
+            <span class="url p-0">36. <a href="https://www.pythonkitchen.com/machine-learning-part-10-naive-bayes/">Machine Learning Crash Course 10: Naive Bayes</a></span>
+            
+            <span class="url p-0">37. <a href="https://www.pythonkitchen.com/machine-learning-part-11-unpervised-learning/">Machine Learning Crash Course 11: Unsupervised Learning</a></span>
+            
+            <span class="url p-0">38. <a href="https://www.pythonkitchen.com/machine-learning-part-12-association-analysis/">Machine Learning Crash Course 12: Association Analysis</a></span>
+            
+            <span class="url p-0">39. <a href="https://www.pythonkitchen.com/reviving-bertrand-russell-through-python/">Reviving Bertrand Russell Through Python</a></span>
+            
+            <span class="url p-0">40. <a href="https://www.pythonkitchen.com/building-a-lexer-in-python-tutorial/">How To Build A Lexer In Python</a></span>
+            
+            <span class="url p-0">41. <a href="https://www.pythonkitchen.com/building-a-lexer-in-python-tutorial/">How To Build An Indentation Lexer In Python</a></span>
+            
+            <span class="url p-0">42. <a href="https://www.pythonkitchen.com/how-to-correctly-use-the-next-parameter-in-login-and-logout-in-flask/">How To Correctly Use The Next Parameter In Login And Logout In Flask</a></span>
+            
+            <span class="url p-0">43. <a href="https://www.pythonkitchen.com/how-to-use-flask-admin-with-flask-login/">How To Use Flask-Admin With Flask-Login</a></span>
+            
+            <span class="url p-0">44. <a href="https://www.pythonkitchen.com/how-to-disable-csrf-protection-in-flask-wtf-for-particular-routes/">How To Disable Csrf Protection For Particular Routes In Flask-Wtf</a></span>
+            
+            <span class="url p-0">45. <a href="https://www.pythonkitchen.com/how-to-define-global-template-variables-in-flask/">How To Define Global Template Variables In Flask</a></span>
+            
+            <span class="url p-0">46. <a href="https://www.pythonkitchen.com/how-prevent-open-redirect-vulnerab-flask/">How To Prevent The Open Redirect Vulnerability With The Next Parameter In Flask</a></span>
+            
+            <span class="url p-0">47. <a href="https://www.pythonkitchen.com/how-implement-beautiful-notifications-flask/">How To Implement Beautiful Notifications In Flask</a></span>
+            
+        </div>
+    </div>
+</div>
+    
     <div class="section">
   <div class="container"><br><br>
     <div class="has-text-centered">
@@ -944,8 +1061,8 @@ His work in both professional and open source setting speaks itself but this rec
       </p><br>
       <p class="title" id="facts"><a href="#facts" class="no-link-dec">Fun Facts</a></p>
       <p class="subtitle">Some cool info about <a href="https://www.twitter.com/osdotsystem">
-        @osdotsystem
-      </a></p>
+        @osdotsystem.
+      </a>. </p>
     </div>
     <div class="">
       <div class="container notification is-white">
@@ -954,622 +1071,652 @@ His work in both professional and open source setting speaks itself but this rec
           <div class="control">
             <div class="tags has-addons">
               <span class="tag is-dark">Dev.to article views</span>
-              <span class="tag is-info">44k</span>
+              <span class="tag is-info">58k</span>
             </div>
           </div>
           <div class="control">
             <div class="tags has-addons">
               <span class="tag is-dark">Codementor.io article views</span>
-              <span class="tag is-info">42k</span>
+              <span class="tag is-info">46k</span>
             </div>
           </div>
           <div class="control">
             <div class="tags has-addons">
               <span class="tag is-dark">Pypi downloads</span>
-              <span class="tag is-info">72k</span>
+              <span class="tag is-info">100k</span>
             </div>
           </div>
           
         </div>
         
-          <hr>
-          <div class="notification is-white ">
+
+          <div class="is-white ">
             <div class="columns">
               <div class="column">
                 <span class="tag is-info">April 19</span>
+                <span class="">
+                  <a href="https://www.blog.pythonlibrary.org/2019/04/08/pydev-of-the-week-abdur-rahmaan-janhangeer/">PyDev Of The Week</a>
+                </span><br>
+                <span style="font-size: 15px"></span>
               </div>
             </div>
-            <div class="columns">
-              <div class="column is-1">
-                <i class="em em-medal coolinfo-icon" aria-role="presentation" aria-label=""></i>
-              </div>
+<!--             <div class="columns">
               <div class="column is-11">
-                <span class="coolinfo-text">
+                <span class="">
                   <a href="https://www.blog.pythonlibrary.org/2019/04/08/pydev-of-the-week-abdur-rahmaan-janhangeer/">PyDev Of The Week</a>
                 </span><br>
                 <span></span>
               </div>
-            </div>
+            </div> -->
           </div>
         
-          <hr>
-          <div class="notification is-white ">
+
+          <div class="is-white ">
             <div class="columns">
               <div class="column">
                 <span class="tag is-info">July 2019</span>
+                <span class="">
+                  <a href="https://lwn.net/Articles/794273/">LWN.net</a>
+                </span><br>
+                <span style="font-size: 15px">Discussion on the idea i proposed</span>
               </div>
             </div>
-            <div class="columns">
-              <div class="column is-1">
-                <i class="em em-medal coolinfo-icon" aria-role="presentation" aria-label=""></i>
-              </div>
+<!--             <div class="columns">
               <div class="column is-11">
-                <span class="coolinfo-text">
+                <span class="">
                   <a href="https://lwn.net/Articles/794273/">LWN.net</a>
                 </span><br>
                 <span>Discussion on the idea i proposed</span>
               </div>
-            </div>
+            </div> -->
           </div>
         
-          <hr>
-          <div class="notification is-white ">
+
+          <div class="is-white ">
             <div class="columns">
               <div class="column">
                 <span class="tag is-info">July 2019</span>
+                <span class="">
+                  <a href="https://twitter.com/TechRunEn/status/1153457206928347136?s=20">Article Featured On Dev.to!</a>
+                </span><br>
+                <span style="font-size: 15px">How To Build A CSS Pre-processor From Scratch" got featured on dev.to</span>
               </div>
             </div>
-            <div class="columns">
-              <div class="column is-1">
-                <i class="em em-medal coolinfo-icon" aria-role="presentation" aria-label=""></i>
-              </div>
+<!--             <div class="columns">
               <div class="column is-11">
-                <span class="coolinfo-text">
+                <span class="">
                   <a href="https://twitter.com/TechRunEn/status/1153457206928347136?s=20">Article Featured On Dev.to!</a>
                 </span><br>
                 <span>How To Build A CSS Pre-processor From Scratch" got featured on dev.to</span>
               </div>
-            </div>
+            </div> -->
           </div>
         
-          <hr>
-          <div class="notification is-white ">
+
+          <div class="is-white ">
             <div class="columns">
               <div class="column">
                 <span class="tag is-info">July 2019</span>
+                <span class="">
+                  <a href="https://python.libhunt.com/newsletter/165">Article Featured In Awesome Python</a>
+                </span><br>
+                <span style="font-size: 15px">"How To Build A CSS Pre-processor From Scratch" got featured in Awesome Python newsletter issue 165</span>
               </div>
             </div>
-            <div class="columns">
-              <div class="column is-1">
-                <i class="em em-medal coolinfo-icon" aria-role="presentation" aria-label=""></i>
-              </div>
+<!--             <div class="columns">
               <div class="column is-11">
-                <span class="coolinfo-text">
+                <span class="">
                   <a href="https://python.libhunt.com/newsletter/165">Article Featured In Awesome Python</a>
                 </span><br>
                 <span>"How To Build A CSS Pre-processor From Scratch" got featured in Awesome Python newsletter issue 165</span>
               </div>
-            </div>
+            </div> -->
           </div>
         
-          <hr>
-          <div class="notification is-white ">
+
+          <div class="is-white ">
             <div class="columns">
               <div class="column">
                 <span class="tag is-info">Aug 2019</span>
+                <span class="">
+                  <a href="https://pythonawesome.com/implementation-of-processing-orgs-processing-in-pure-python/">Project Listed On pythonawesome.com</a>
+                </span><br>
+                <span style="font-size: 15px">Pure Python implementation of processing.org's processing (github.com/Abdur-rahmaanJ/ppython) got listed on pythonawesome.com</span>
               </div>
             </div>
-            <div class="columns">
-              <div class="column is-1">
-                <i class="em em-medal coolinfo-icon" aria-role="presentation" aria-label=""></i>
-              </div>
+<!--             <div class="columns">
               <div class="column is-11">
-                <span class="coolinfo-text">
+                <span class="">
                   <a href="https://pythonawesome.com/implementation-of-processing-orgs-processing-in-pure-python/">Project Listed On pythonawesome.com</a>
                 </span><br>
                 <span>Pure Python implementation of processing.org's processing (github.com/Abdur-rahmaanJ/ppython) got listed on pythonawesome.com</span>
               </div>
-            </div>
+            </div> -->
           </div>
         
-          <hr>
-          <div class="notification is-white ">
+
+          <div class="is-white ">
             <div class="columns">
               <div class="column">
                 <span class="tag is-info">Sept 2019</span>
+                <span class="">
+                  <a href="https://www.linkedin.com/posts/appinv_python-processing-mauritius-activity-6569293875998003202-EStJ">Post Got Trending Status For #python On LinkedIn</a>
+                </span><br>
+                <span style="font-size: 15px">Post on ppython got trending status on LinkedIn!</span>
               </div>
             </div>
-            <div class="columns">
-              <div class="column is-1">
-                <i class="em em-medal coolinfo-icon" aria-role="presentation" aria-label=""></i>
-              </div>
+<!--             <div class="columns">
               <div class="column is-11">
-                <span class="coolinfo-text">
+                <span class="">
                   <a href="https://www.linkedin.com/posts/appinv_python-processing-mauritius-activity-6569293875998003202-EStJ">Post Got Trending Status For #python On LinkedIn</a>
                 </span><br>
                 <span>Post on ppython got trending status on LinkedIn!</span>
               </div>
-            </div>
+            </div> -->
           </div>
         
-          <hr>
-          <div class="notification is-white ">
+
+          <div class="is-white ">
             <div class="columns">
               <div class="column">
                 <span class="tag is-info">Dec 2019</span>
+                <span class="">
+                  <a href="https://www.pyladies.com/blog/PyLadies-Global-Council-Selection-Process-Voting-Now-Open/pyladies-global-council-process-vote/">PyLadies</a>
+                </span><br>
+                <span style="font-size: 15px">PyLadies thanking for Arabic translations.</span>
               </div>
             </div>
-            <div class="columns">
-              <div class="column is-1">
-                <i class="em em-medal coolinfo-icon" aria-role="presentation" aria-label=""></i>
-              </div>
+<!--             <div class="columns">
               <div class="column is-11">
-                <span class="coolinfo-text">
+                <span class="">
                   <a href="https://www.pyladies.com/blog/PyLadies-Global-Council-Selection-Process-Voting-Now-Open/pyladies-global-council-process-vote/">PyLadies</a>
                 </span><br>
                 <span>PyLadies thanking for Arabic translations.</span>
               </div>
-            </div>
+            </div> -->
           </div>
         
-          <hr>
-          <div class="notification is-white ">
+
+          <div class="is-white ">
             <div class="columns">
               <div class="column">
                 <span class="tag is-info">Jan 2020</span>
+                <span class="">
+                  <a href="https://scikit-learn.org/stable/_downloads/scikit-learn-docs.pdf">ScikitLearn</a>
+                </span><br>
+                <span style="font-size: 15px">Thanks under "Code and Documentation Contributors" in User Guide.</span>
               </div>
             </div>
-            <div class="columns">
-              <div class="column is-1">
-                <i class="em em-medal coolinfo-icon" aria-role="presentation" aria-label=""></i>
-              </div>
+<!--             <div class="columns">
               <div class="column is-11">
-                <span class="coolinfo-text">
+                <span class="">
                   <a href="https://scikit-learn.org/stable/_downloads/scikit-learn-docs.pdf">ScikitLearn</a>
                 </span><br>
                 <span>Thanks under "Code and Documentation Contributors" in User Guide.</span>
               </div>
-            </div>
+            </div> -->
           </div>
         
-          <hr>
-          <div class="notification is-white ">
+
+          <div class="is-white ">
             <div class="columns">
               <div class="column">
                 <span class="tag is-info">Jan 2020</span>
+                <span class="">
+                  <a href="https://py.checkio.org/blog/missions-of-the-week-unruly-etc/">Checkio.org Shared Blog Post</a>
+                </span><br>
+                <span style="font-size: 15px">Checkio.org shared blog post about "Legally Free Python Books"</span>
               </div>
             </div>
-            <div class="columns">
-              <div class="column is-1">
-                <i class="em em-medal coolinfo-icon" aria-role="presentation" aria-label=""></i>
-              </div>
+<!--             <div class="columns">
               <div class="column is-11">
-                <span class="coolinfo-text">
+                <span class="">
                   <a href="https://py.checkio.org/blog/missions-of-the-week-unruly-etc/">Checkio.org Shared Blog Post</a>
                 </span><br>
                 <span>Checkio.org shared blog post about "Legally Free Python Books"</span>
               </div>
-            </div>
+            </div> -->
           </div>
         
-          <hr>
-          <div class="notification is-white ">
+
+          <div class="is-white ">
             <div class="columns">
               <div class="column">
                 <span class="tag is-info">Jan 2020</span>
+                <span class="">
+                  <a href="https://python.libhunt.com/newsletter/192">Article Featured In Awesome Python</a>
+                </span><br>
+                <span style="font-size: 15px">"Legally Free Python Books" got featured in Awesome Python newsletter issue 192</span>
               </div>
             </div>
-            <div class="columns">
-              <div class="column is-1">
-                <i class="em em-medal coolinfo-icon" aria-role="presentation" aria-label=""></i>
-              </div>
+<!--             <div class="columns">
               <div class="column is-11">
-                <span class="coolinfo-text">
+                <span class="">
                   <a href="https://python.libhunt.com/newsletter/192">Article Featured In Awesome Python</a>
                 </span><br>
                 <span>"Legally Free Python Books" got featured in Awesome Python newsletter issue 192</span>
               </div>
-            </div>
+            </div> -->
           </div>
         
-          <hr>
-          <div class="notification is-white ">
+
+          <div class="is-white ">
             <div class="columns">
               <div class="column">
                 <span class="tag is-info">Feb 2020</span>
+                <span class="">
+                  <a href="https://python.libhunt.com/newsletter/192">Open Source Project Featured In Python Weekly</a>
+                </span><br>
+                <span style="font-size: 15px"><a href="https://www.github.com/Abdur-rahmaanJ/Shopyo">github.com/shopyo/Shopyo</a> got featured in Python Weekly newsletter issue 436</span>
               </div>
             </div>
-            <div class="columns">
-              <div class="column is-1">
-                <i class="em em-medal coolinfo-icon" aria-role="presentation" aria-label=""></i>
-              </div>
+<!--             <div class="columns">
               <div class="column is-11">
-                <span class="coolinfo-text">
+                <span class="">
                   <a href="https://python.libhunt.com/newsletter/192">Open Source Project Featured In Python Weekly</a>
                 </span><br>
                 <span><a href="https://www.github.com/Abdur-rahmaanJ/Shopyo">github.com/shopyo/Shopyo</a> got featured in Python Weekly newsletter issue 436</span>
               </div>
-            </div>
+            </div> -->
           </div>
         
-          <hr>
-          <div class="notification is-white ">
+
+          <div class="is-white ">
             <div class="columns">
               <div class="column">
                 <span class="tag is-info">Feb 2020</span>
+                <span class="">
+                  <a href="https://github.com/Pilifer/awesome-zen-of-python/">Article Added In Awesome Zen Repo</a>
+                </span><br>
+                <span style="font-size: 15px">"The Zen Of Python Is A Joke And Here Is Why" added as a resource for understanding the Zen of Python</span>
               </div>
             </div>
-            <div class="columns">
-              <div class="column is-1">
-                <i class="em em-medal coolinfo-icon" aria-role="presentation" aria-label=""></i>
-              </div>
+<!--             <div class="columns">
               <div class="column is-11">
-                <span class="coolinfo-text">
+                <span class="">
                   <a href="https://github.com/Pilifer/awesome-zen-of-python/">Article Added In Awesome Zen Repo</a>
                 </span><br>
                 <span>"The Zen Of Python Is A Joke And Here Is Why" added as a resource for understanding the Zen of Python</span>
               </div>
-            </div>
+            </div> -->
           </div>
         
-          <hr>
-          <div class="notification is-white ">
+
+          <div class="is-white ">
             <div class="columns">
               <div class="column">
                 <span class="tag is-info">Feb 2020</span>
+                <span class="">
+                  <a href="https://pythonbytes.fm/episodes/show/170/visualize-this-visualizing-python-s-visualization-ecosystem">Podcast Calls Article A Must Read</a>
+                </span><br>
+                <span style="font-size: 15px">PythonBytes (same folks as talkpython.fm) tells: "Abdur-Rahmaan Janhangeer: The Zen Of Python Is A Joke And Here Is Why is a must read."</span>
               </div>
             </div>
-            <div class="columns">
-              <div class="column is-1">
-                <i class="em em-medal coolinfo-icon" aria-role="presentation" aria-label=""></i>
-              </div>
+<!--             <div class="columns">
               <div class="column is-11">
-                <span class="coolinfo-text">
+                <span class="">
                   <a href="https://pythonbytes.fm/episodes/show/170/visualize-this-visualizing-python-s-visualization-ecosystem">Podcast Calls Article A Must Read</a>
                 </span><br>
                 <span>PythonBytes (same folks as talkpython.fm) tells: "Abdur-Rahmaan Janhangeer: The Zen Of Python Is A Joke And Here Is Why is a must read."</span>
               </div>
-            </div>
+            </div> -->
           </div>
         
-          <hr>
-          <div class="notification is-white ">
+
+          <div class="is-white ">
             <div class="columns">
               <div class="column">
                 <span class="tag is-info">Feb 2020</span>
+                <span class="">
+                  <a href="https://www.geeksforgeeks.org/migrate-pyqt5-app-to-pyside2/">Article published on Geeksforgeeks.org</a>
+                </span><br>
+                <span style="font-size: 15px">"Migrate PyQt5 app to PySide2" is published</span>
               </div>
             </div>
-            <div class="columns">
-              <div class="column is-1">
-                <i class="em em-medal coolinfo-icon" aria-role="presentation" aria-label=""></i>
-              </div>
+<!--             <div class="columns">
               <div class="column is-11">
-                <span class="coolinfo-text">
+                <span class="">
                   <a href="https://www.geeksforgeeks.org/migrate-pyqt5-app-to-pyside2/">Article published on Geeksforgeeks.org</a>
                 </span><br>
                 <span>"Migrate PyQt5 app to PySide2" is published</span>
               </div>
-            </div>
+            </div> -->
           </div>
         
-          <hr>
-          <div class="notification is-white ">
+
+          <div class="is-white ">
             <div class="columns">
               <div class="column">
                 <span class="tag is-info">Mar 2020</span>
+                <span class="">
+                  <a href="http://www.tuxmachines.org/node/134905">Tuxmachines.org Featured 2 Articles</a>
+                </span><br>
+                <span style="font-size: 15px"></span>
               </div>
             </div>
-            <div class="columns">
-              <div class="column is-1">
-                <i class="em em-medal coolinfo-icon" aria-role="presentation" aria-label=""></i>
-              </div>
+<!--             <div class="columns">
               <div class="column is-11">
-                <span class="coolinfo-text">
+                <span class="">
                   <a href="http://www.tuxmachines.org/node/134905">Tuxmachines.org Featured 2 Articles</a>
                 </span><br>
                 <span></span>
               </div>
-            </div>
+            </div> -->
           </div>
         
-          <hr>
-          <div class="notification is-white ">
+
+          <div class="is-white ">
             <div class="columns">
               <div class="column">
                 <span class="tag is-info">Mar 2020</span>
+                <span class="">
+                  <a href="http://www.tuxmachines.org/node/134966?quicktabs_authors=2">Tuxmachines.org Featured 1 Article</a>
+                </span><br>
+                <span style="font-size: 15px"></span>
               </div>
             </div>
-            <div class="columns">
-              <div class="column is-1">
-                <i class="em em-medal coolinfo-icon" aria-role="presentation" aria-label=""></i>
-              </div>
+<!--             <div class="columns">
               <div class="column is-11">
-                <span class="coolinfo-text">
+                <span class="">
                   <a href="http://www.tuxmachines.org/node/134966?quicktabs_authors=2">Tuxmachines.org Featured 1 Article</a>
                 </span><br>
                 <span></span>
               </div>
-            </div>
+            </div> -->
           </div>
         
-          <hr>
-          <div class="notification is-white ">
+
+          <div class="is-white ">
             <div class="columns">
               <div class="column">
                 <span class="tag is-info">Mar 2020</span>
+                <span class="">
+                  <a href="">Article Featured In Weekly Digest On Codementor.io</a>
+                </span><br>
+                <span style="font-size: 15px">Article gets 2nd top post of the wee</span>
               </div>
             </div>
-            <div class="columns">
-              <div class="column is-1">
-                <i class="em em-medal coolinfo-icon" aria-role="presentation" aria-label=""></i>
-              </div>
+<!--             <div class="columns">
               <div class="column is-11">
-                <span class="coolinfo-text">
+                <span class="">
                   <a href="">Article Featured In Weekly Digest On Codementor.io</a>
                 </span><br>
                 <span>Article gets 2nd top post of the wee</span>
               </div>
-            </div>
+            </div> -->
           </div>
         
-          <hr>
-          <div class="notification is-white ">
+
+          <div class="is-white ">
             <div class="columns">
               <div class="column">
                 <span class="tag is-info">Mar 2020</span>
+                <span class="">
+                  <a href="https://www.linkedin.com/posts/appinv_the-key-to-django-and-flask-activity-6642695171144318976-QEpN">Post Got Trending Status For #python On LinkedIn</a>
+                </span><br>
+                <span style="font-size: 15px">Post on "Grasping Both Flask And Django In One Session" got trending status on LinkedIn!</span>
               </div>
             </div>
-            <div class="columns">
-              <div class="column is-1">
-                <i class="em em-medal coolinfo-icon" aria-role="presentation" aria-label=""></i>
-              </div>
+<!--             <div class="columns">
               <div class="column is-11">
-                <span class="coolinfo-text">
+                <span class="">
                   <a href="https://www.linkedin.com/posts/appinv_the-key-to-django-and-flask-activity-6642695171144318976-QEpN">Post Got Trending Status For #python On LinkedIn</a>
                 </span><br>
                 <span>Post on "Grasping Both Flask And Django In One Session" got trending status on LinkedIn!</span>
               </div>
-            </div>
+            </div> -->
           </div>
         
-          <hr>
-          <div class="notification is-white ">
+
+          <div class="is-white ">
             <div class="columns">
               <div class="column">
                 <span class="tag is-info">Apr 2020</span>
+                <span class="">
+                  <a href="">Authored the FlaskCon initiative</a>
+                </span><br>
+                <span style="font-size: 15px">FlaskCon becomes an approved PSF trademark</span>
               </div>
             </div>
-            <div class="columns">
-              <div class="column is-1">
-                <i class="em em-medal coolinfo-icon" aria-role="presentation" aria-label=""></i>
-              </div>
+<!--             <div class="columns">
               <div class="column is-11">
-                <span class="coolinfo-text">
+                <span class="">
                   <a href="">Authored the FlaskCon initiative</a>
                 </span><br>
                 <span>FlaskCon becomes an approved PSF trademark</span>
               </div>
-            </div>
+            </div> -->
           </div>
         
-          <hr>
-          <div class="notification is-white ">
+
+          <div class="is-white ">
             <div class="columns">
               <div class="column">
                 <span class="tag is-info">May 2020</span>
+                <span class="">
+                  <a href="https://www.geeksforgeeks.org/creating-custom-widgets-in-pyqt5/">Article published on Geeksforgeeks.org</a>
+                </span><br>
+                <span style="font-size: 15px">"Creating Custom Widgets in PyQt5" is published</span>
               </div>
             </div>
-            <div class="columns">
-              <div class="column is-1">
-                <i class="em em-medal coolinfo-icon" aria-role="presentation" aria-label=""></i>
-              </div>
+<!--             <div class="columns">
               <div class="column is-11">
-                <span class="coolinfo-text">
+                <span class="">
                   <a href="https://www.geeksforgeeks.org/creating-custom-widgets-in-pyqt5/">Article published on Geeksforgeeks.org</a>
                 </span><br>
                 <span>"Creating Custom Widgets in PyQt5" is published</span>
               </div>
-            </div>
+            </div> -->
           </div>
         
-          <hr>
-          <div class="notification is-white ">
+
+          <div class="is-white ">
             <div class="columns">
               <div class="column">
                 <span class="tag is-info">Jun 2020</span>
+                <span class="">
+                  <a href="https://flaskcon.com">FlaskCon close up</a>
+                </span><br>
+                <span style="font-size: 15px">After months of preparation, the event is finally over with <a href="https://www.youtube.com/channel/UC3QC5pASs8v5YVxKwJDtZeQ">lots of good talks! </a>Lots of awesome speakers and fantastic response from the community outlets like RealPython, PythonWeekly etc</span>
               </div>
             </div>
-            <div class="columns">
-              <div class="column is-1">
-                <i class="em em-medal coolinfo-icon" aria-role="presentation" aria-label=""></i>
-              </div>
+<!--             <div class="columns">
               <div class="column is-11">
-                <span class="coolinfo-text">
+                <span class="">
                   <a href="https://flaskcon.com">FlaskCon close up</a>
                 </span><br>
                 <span>After months of preparation, the event is finally over with <a href="https://www.youtube.com/channel/UC3QC5pASs8v5YVxKwJDtZeQ">lots of good talks! </a>Lots of awesome speakers and fantastic response from the community outlets like RealPython, PythonWeekly etc</span>
               </div>
-            </div>
+            </div> -->
           </div>
         
-          <hr>
-          <div class="notification is-white ">
+
+          <div class="is-white ">
             <div class="columns">
               <div class="column">
                 <span class="tag is-info">Jul 2020</span>
+                <span class="">
+                  <a href="https://www.youtube.com/watch?v=rkzXQOC1T0Q&list=PL8uoeex94UhHgMD9GOCbEHWku7pEPx9fW&index=34">Euro Python Talk</a>
+                </span><br>
+                <span style="font-size: 15px">My talk "Django Clone From Scratch" got delivered at EuroPython</span>
               </div>
             </div>
-            <div class="columns">
-              <div class="column is-1">
-                <i class="em em-medal coolinfo-icon" aria-role="presentation" aria-label=""></i>
-              </div>
+<!--             <div class="columns">
               <div class="column is-11">
-                <span class="coolinfo-text">
+                <span class="">
                   <a href="https://www.youtube.com/watch?v=rkzXQOC1T0Q&list=PL8uoeex94UhHgMD9GOCbEHWku7pEPx9fW&index=34">Euro Python Talk</a>
                 </span><br>
                 <span>My talk "Django Clone From Scratch" got delivered at EuroPython</span>
               </div>
-            </div>
+            </div> -->
           </div>
         
-          <hr>
-          <div class="notification is-white ">
+
+          <div class="is-white ">
             <div class="columns">
               <div class="column">
                 <span class="tag is-info">Sep 2020</span>
+                <span class="">
+                  <a href="https://hackernoon.com/the-zen-of-python-as-related-by-masters-n32h3tu3">Hackernoon.com published article</a>
+                </span><br>
+                <span style="font-size: 15px">My article "The Zen of Python: As related by Master" got published on hackernoon.</span>
               </div>
             </div>
-            <div class="columns">
-              <div class="column is-1">
-                <i class="em em-medal coolinfo-icon" aria-role="presentation" aria-label=""></i>
-              </div>
+<!--             <div class="columns">
               <div class="column is-11">
-                <span class="coolinfo-text">
+                <span class="">
                   <a href="https://hackernoon.com/the-zen-of-python-as-related-by-masters-n32h3tu3">Hackernoon.com published article</a>
                 </span><br>
                 <span>My article "The Zen of Python: As related by Master" got published on hackernoon.</span>
               </div>
-            </div>
+            </div> -->
           </div>
         
-          <hr>
-          <div class="notification is-white ">
+
+          <div class="is-white ">
             <div class="columns">
               <div class="column">
                 <span class="tag is-info">Sep 2020</span>
+                <span class="">
+                  <a href="https://twitter.com/CodementorIO/status/1306295790441246725?s=20">Codementor.io included article in #100DaysOfCode</a>
+                </span><br>
+                <span style="font-size: 15px">Hooman is a library i maintain.</span>
               </div>
             </div>
-            <div class="columns">
-              <div class="column is-1">
-                <i class="em em-medal coolinfo-icon" aria-role="presentation" aria-label=""></i>
-              </div>
+<!--             <div class="columns">
               <div class="column is-11">
-                <span class="coolinfo-text">
+                <span class="">
                   <a href="https://twitter.com/CodementorIO/status/1306295790441246725?s=20">Codementor.io included article in #100DaysOfCode</a>
                 </span><br>
                 <span>Hooman is a library i maintain.</span>
               </div>
-            </div>
+            </div> -->
           </div>
         
-          <hr>
-          <div class="notification is-white ">
+
+          <div class="is-white ">
             <div class="columns">
               <div class="column">
                 <span class="tag is-info">Nov 2020</span>
+                <span class="">
+                  <a href="https://porter.io/digest/20201125/e9df7d222ec311eb87d9361b9c01e521/">Porter.io adds article in recommended news!</a>
+                </span><br>
+                <span style="font-size: 15px">The article "Python: Running Makefiles on Windows" got recommended.</span>
               </div>
             </div>
-            <div class="columns">
-              <div class="column is-1">
-                <i class="em em-medal coolinfo-icon" aria-role="presentation" aria-label=""></i>
-              </div>
+<!--             <div class="columns">
               <div class="column is-11">
-                <span class="coolinfo-text">
+                <span class="">
                   <a href="https://porter.io/digest/20201125/e9df7d222ec311eb87d9361b9c01e521/">Porter.io adds article in recommended news!</a>
                 </span><br>
                 <span>The article "Python: Running Makefiles on Windows" got recommended.</span>
               </div>
-            </div>
+            </div> -->
           </div>
         
-          <hr>
-          <div class="notification is-white ">
+
+          <div class="is-white ">
             <div class="columns">
               <div class="column">
                 <span class="tag is-info">Dec 2020</span>
+                <span class="">
+                  <a href="https://pycoders.com/issues/453">RealPython's Newsletter selected article in issue #453</a>
+                </span><br>
+                <span style="font-size: 15px">The article <a href="https://www.pythonkitchen.com/zen-of-python-in-depth/">"The Zen Of Python: A Most In Depth Article"</a> got selected in PyCoders weekly. I could not find a more thourough article on the Zen written before. Hence the claim: "The most in-depth article about the Zen ever written in history"</span>
               </div>
             </div>
-            <div class="columns">
-              <div class="column is-1">
-                <i class="em em-medal coolinfo-icon" aria-role="presentation" aria-label=""></i>
-              </div>
+<!--             <div class="columns">
               <div class="column is-11">
-                <span class="coolinfo-text">
+                <span class="">
                   <a href="https://pycoders.com/issues/453">RealPython's Newsletter selected article in issue #453</a>
                 </span><br>
                 <span>The article <a href="https://www.pythonkitchen.com/zen-of-python-in-depth/">"The Zen Of Python: A Most In Depth Article"</a> got selected in PyCoders weekly. I could not find a more thourough article on the Zen written before. Hence the claim: "The most in-depth article about the Zen ever written in history"</span>
               </div>
-            </div>
+            </div> -->
           </div>
         
-          <hr>
-          <div class="notification is-white ">
+
+          <div class="is-white ">
             <div class="columns">
               <div class="column">
                 <span class="tag is-info">Dec 2020</span>
+                <span class="">
+                  <a href="https://news.ycombinator.com/item?id=25427504">Article Makes it to the HackerNews front page</a>
+                </span><br>
+                <span style="font-size: 15px"><a href="https://www.pythonkitchen.com/legally-free-python-books-list/">The Most Complete List of Legally Free Python Books</a> makes it, reteeted and reshared a lot here and there</span>
               </div>
             </div>
-            <div class="columns">
-              <div class="column is-1">
-                <i class="em em-medal coolinfo-icon" aria-role="presentation" aria-label=""></i>
-              </div>
+<!--             <div class="columns">
               <div class="column is-11">
-                <span class="coolinfo-text">
+                <span class="">
                   <a href="https://news.ycombinator.com/item?id=25427504">Article Makes it to the HackerNews front page</a>
                 </span><br>
                 <span><a href="https://www.pythonkitchen.com/legally-free-python-books-list/">The Most Complete List of Legally Free Python Books</a> makes it, reteeted and reshared a lot here and there</span>
               </div>
-            </div>
+            </div> -->
           </div>
         
-          <hr>
-          <div class="notification is-white ">
+
+          <div class="is-white ">
             <div class="columns">
               <div class="column">
                 <span class="tag is-info">Mar 2021</span>
+                <span class="">
+                  <a href="https://pepy.tech/project/hooman">Hooman gets 18k downloads</a>
+                </span><br>
+                <span style="font-size: 15px">The PyGame library seems to get adopted on PyPi</span>
               </div>
             </div>
-            <div class="columns">
-              <div class="column is-1">
-                <i class="em em-medal coolinfo-icon" aria-role="presentation" aria-label=""></i>
-              </div>
+<!--             <div class="columns">
               <div class="column is-11">
-                <span class="coolinfo-text">
+                <span class="">
                   <a href="https://pepy.tech/project/hooman">Hooman gets 18k downloads</a>
                 </span><br>
                 <span>The PyGame library seems to get adopted on PyPi</span>
               </div>
-            </div>
+            </div> -->
           </div>
         
-          <hr>
-          <div class="notification is-white ">
+
+          <div class="is-white ">
             <div class="columns">
               <div class="column">
                 <span class="tag is-info">Mar 2021</span>
+                <span class="">
+                  <a href="https://www.linkedin.com/posts/appinv_opensource-mauritius-activity-6774529671146037248-bKLA">We helped 100+ people get into OpenSource</a>
+                </span><br>
+                <span style="font-size: 15px">Counted from my Github projects!</span>
               </div>
             </div>
-            <div class="columns">
-              <div class="column is-1">
-                <i class="em em-medal coolinfo-icon" aria-role="presentation" aria-label=""></i>
-              </div>
+<!--             <div class="columns">
               <div class="column is-11">
-                <span class="coolinfo-text">
+                <span class="">
                   <a href="https://www.linkedin.com/posts/appinv_opensource-mauritius-activity-6774529671146037248-bKLA">We helped 100+ people get into OpenSource</a>
                 </span><br>
                 <span>Counted from my Github projects!</span>
               </div>
-            </div>
+            </div> -->
           </div>
         
-          <hr>
-          <div class="notification is-white ">
+
+          <div class="is-white ">
             <div class="columns">
               <div class="column">
                 <span class="tag is-info">April 2021</span>
+                <span class="">
+                  <a href="https://github.com/Abdur-RahmaanJ">Github Badge Awarded for the Ingenuity Mars Helicopter Mission</a>
+                </span><br>
+                <span style="font-size: 15px">Appended to awardees Github profile.</span>
               </div>
             </div>
-            <div class="columns">
-              <div class="column is-1">
-                <i class="em em-medal coolinfo-icon" aria-role="presentation" aria-label=""></i>
-              </div>
+<!--             <div class="columns">
               <div class="column is-11">
-                <span class="coolinfo-text">
+                <span class="">
                   <a href="https://github.com/Abdur-RahmaanJ">Github Badge Awarded for the Ingenuity Mars Helicopter Mission</a>
                 </span><br>
                 <span>Appended to awardees Github profile.</span>
               </div>
-            </div>
+            </div> -->
           </div>
         
         <!--Holder end-->

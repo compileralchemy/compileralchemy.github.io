@@ -8,8 +8,8 @@
       </p><br>
       <p class="title" id="facts"><a href="#facts" class="no-link-dec">Fun Facts</a></p>
       <p class="subtitle">Some cool info about <a href="https://www.twitter.com/osdotsystem">
-        @osdotsystem
-      </a></p>
+        @osdotsystem.
+      </a>. </p>
     </div>
     <div class="">
       <div class="container notification is-white">
@@ -18,42 +18,43 @@
           <div class="control">
             <div class="tags has-addons">
               <span class="tag is-dark">Dev.to article views</span>
-              <span class="tag is-info">44k</span>
+              <span class="tag is-info">58k</span>
             </div>
           </div>
           <div class="control">
             <div class="tags has-addons">
               <span class="tag is-dark">Codementor.io article views</span>
-              <span class="tag is-info">42k</span>
+              <span class="tag is-info">46k</span>
             </div>
           </div>
           <div class="control">
             <div class="tags has-addons">
               <span class="tag is-dark">Pypi downloads</span>
-              <span class="tag is-info">72k</span>
+              <span class="tag is-info">100k</span>
             </div>
           </div>
           
         </div>
         {% for fact in settings.facts %}
-          <hr>
-          <div class="notification is-white ">
+
+          <div class="is-white ">
             <div class="columns">
               <div class="column">
                 <span class="tag is-info">{{ fact['date'] }}</span>
+                <span class="">
+                  <a href="{{ fact['link'] }}">{{ fact['title'] }}</a>
+                </span><br>
+                <span style="font-size: 15px">{{ fact['notes'] | safe }}</span>
               </div>
             </div>
-            <div class="columns">
-              <div class="column is-1">
-                <i class="em em-medal coolinfo-icon" aria-role="presentation" aria-label=""></i>
-              </div>
+<!--             <div class="columns">
               <div class="column is-11">
-                <span class="coolinfo-text">
+                <span class="">
                   <a href="{{ fact['link'] }}">{{ fact['title'] }}</a>
                 </span><br>
                 <span>{{ fact['notes'] | safe }}</span>
               </div>
-            </div>
+            </div> -->
           </div>
         {% endfor %}
         <!--Holder end-->

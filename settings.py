@@ -3,6 +3,16 @@ OUTPUT_FOLDER = 'docs/'
 
 testimonials = [
     {
+        'name': 'Shamsuddin Rehmani',
+        'title': 'Software Development Engineer, Amazon',
+        'text': '''I worked with Abdur-Rahmaan's on one of his many open source software project, Shopyo. As this was my first time contributing to open source, I was not very confident in my skills. However, Abdur-Rahmaan was very patient and helped with the process of project setup and contribution. Looking back since my first open source contribution, I couldn't have asked for a better mentor than Abdur-Rahmaan. As I worked more with him, I learned that he has a vast knowledge not only of software engineering but also possess excellent communication and leadership skills. His attention to details, clear guidance, pursuit of best industry practices, and past experience and success in managing a team of engineers makes him a great leader
+and asset to any team.
+
+As if this was not enough, he also possess the gift of being artistic and creative, with the ability to make software not only functional but also marketable with design skills that he pursues as a hobby.
+
+His work in both professional and open source setting speaks itself but this recommendation is just a token of appreciation on behalf of countless engineers whom he has helped improve and break into the open source community. I wish him the best in his future endeavors and I am excited to see where his work takes him.'''
+    },
+    {
         'name': 'Javed Mahamoodally',
         'title': 'ServiceNow Developer | MRes Applied Mathematics',
         'text': '''I have worked with Abdur-Rahmaan on different programming assignments in C++ and data science projects in Python.
@@ -15,8 +25,13 @@ He would be a great fit any organisation or team'''
     },
     {
         'name': 'Gico Carlo Evangelista',
-        'title': 'Software Engineering Intern at Outward, Inc.',
+        'title': 'Software Engineer at Outward Inc.',
         'text': '''I have worked with Abdur-Rahmaan on one of his Open Source Python projects on GitHub. He has helped mentored me in not only understanding the project thoroughly, but has also taught me the basics of contributing to an open source repository. He is very helpful when it comes to answering questions to both experienced developers and newcomers who are interested in learning about open source. Abdur-Rahmaan is a great mentor who I recommend working with.'''
+    },
+    {
+        'name': 'Justin Triplett',
+        'title': 'Software Engineer and Consultant at Caledonia Systems',
+        'text': '''Working with Abdur-Rahmaan has been a really great experience. He did so much to make sure Flaskcon was a great success. He organized the teams of volunteers and stepped up to fill roles and provide advise wherever and whenever needed. I love working on a project knowing someone else is as dedicated to it's success as I am and I look forward to working with him again soon.Working with Abdur-Rahmaan has been a really great experience. He did so much to make sure Flaskcon was a great success. He organized the teams of volunteers and stepped up to fill roles and provide advise wherever and whenever needed. I love working on a project knowing someone else is as dedicated to it's success as I am and I look forward to working with him again soon.'''
     },
     {
         'name': 'Nathan Heron - Morris',
@@ -28,13 +43,25 @@ From the confidence Abdur-Rahmaan has helped me with. I have managed to land my 
 So I would just like to say thank you.'''
     },
     {
+        'name': 'Zahur Meerun',
+        'title': 'Full Stack Software Development Student/First officer at Air Mauritius',
+        'text': '''I have known Abdur-Rahman for over 2 years since I started my coding journey. At that time he provided me with advice on how to navigate such a career. Recently he assigned me a project which involved the integration of several modules using an Open Source Framework whereby I reported directly to himself.
+
+I cannot speak highly enough of his programming ability and vision in tackling technical issues. He was always available for meetings to address hiccups that I had during the project. The experience I have had working with him has been extremely pleasant and beneficial for me and would recommend him for any projects you might have.I have known Abdur-Rahman for over 2 years since I started my coding journey. At that time he provided me with advice on how to navigate such a career. Recently he assigned me a project which involved the integration of several modules using an Open Source Framework whereby I reported directly to himself. I cannot speak highly enough of his programming ability and vision in tackling technical issues. He was always available for meetings to address hiccups that I had during the project. The experience I have had working with him has been extremely pleasant and beneficial for me and would recommend him for any projects you might have.'''
+    },
+    {
+        'name': 'Girish Mahabir',
+        'title': 'System & Security Engineer at OceanDBA',
+        'text': '''Abdur-Rahmaan Janhangeer was a blessing to have worked with. With his simple guides and helps, I successfully did my first opensource contribution. Being in the Python Mauritius Community with him, I got to learn a lot from him and still learning.'''
+    },
+    {
         'name': 'Angelo Giacco',
         'title': 'Computer Science Student at Imperial College London',
         'text': '''Abdur-Rahmaan is a great mentor. He is very patient when onboarding new members into open source projects and his communication skills are second to known. His vast experience is clear through the effective advice that he gives. He is very good at managing teams and I consider him an expert in all things Python. I hope to work more with him in the future! '''
     },
     {
         'name': 'Hans Maulloo',
-        'title': 'Information Technology Trainee at SWAN Mauritius',
+        'title': 'Software Developer at SWAN Mauritius',
         'text': '''I had the pleasure of working with Abdur-Rahmaan for the FlaskCon 2020. He was a great team player, well organized and very consistent when it came to managing the event. We had organising members from different corners of the world and Abdur made sure remote meetups were organised on a regular basis and would always follow the agenda. Even when facing technical difficulties, he was always ready to help out. I'd gladly work with Abdur on any related project :)'''
     },
     {
@@ -43,14 +70,10 @@ So I would just like to say thank you.'''
         'text': '''Abdur-Rahmaan Janhangeer came off to me as someone who is well organised and gets job done. He does his best in all things and I adore him for that. I highly recommend him because I have worked together with him and his attention to detail was excellent. Well done Abdur-Rahmaan.'''
     },
     {
-        'name': 'Shamsuddin Rehmani',
-        'title': 'MS in Computer Science at University of Southern California',
-        'text': '''I worked with Abdur-Rahmaan's on one of his many open source software project, Shopyo. As this was my first time contributing to open source, I was not very confident in my skills. However, Abdur-Rahmaan was very patient and helped with the process of project setup and contribution. Looking back since my first open source contribution, I couldn't have asked for a better mentor than Abdur-Rahmaan. As I worked more with him, I learned that he has a vast knowledge not only of software engineering but also possess excellent communication and leadership skills. His attention to details, clear guidance, pursuit of best industry practices, and past experience and success in managing a team of engineers makes him a great leader
-and asset to any team.
-
-As if this was not enough, he also possess the gift of being artistic and creative, with the ability to make software not only functional but also marketable with design skills that he pursues as a hobby.
-
-His work in both professional and open source setting speaks itself but this recommendation is just a token of appreciation on behalf of countless engineers whom he has helped improve and break into the open source community. I wish him the best in his future endeavors and I am excited to see where his work takes him.'''
+        'name': 'Sandeep Chatterjee',
+        'title': 'MSc, Distributed Computing',
+        'text': '''Amazing polymath... a good teacher, addictive author and cool coder. His articles are always full of well done research, and there is always something new to learn from it , no matter how experienced you are with the technology.
+Scholar of Arabic, as well as well versed in English. Good teacher of Python, and artistically skilled in vector logo design. Really proud to be his old friend.Amazing polymath... a good teacher, addictive author and cool coder. His articles are always full of well done research, and there is always something new to learn from it , no matter how experienced you are with the technology. Scholar of Arabic, as well as well versed in English. Good teacher of Python, and artistically skilled in vector logo design. Really proud to be his old friend.'''
     },
 ]
 
