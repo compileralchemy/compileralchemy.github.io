@@ -95,14 +95,14 @@
 <script type="text/javascript">
 
     window.addEventListener('load', (event) => {
-        if (localStorage.getItem('gdpr-accept')===true){
+        if (localStorage.getItem('gdpr-accept')==='ok'){
             document.getElementById("gdpr-thing").style.display='none';
         }
-        
+
       document.getElementById("consent-button").onclick = function() {
 
         document.getElementById("gdpr-thing").style.display='none';
-        localStorage.setItem('gdpr-accept', true);
+        localStorage.setItem('gdpr-accept', 'ok');
       };
     });
 </script>
@@ -174,7 +174,17 @@
                                         </li>
                                     </ul>
                                     <br>
-                                    I have experience in remote/long-distance work. You can always have a look at <a href="#testimonials">testimonials</a>, read some <a href="#writings">articles</a>, view past <a href="#talks">talks</a>, <a href="#facts">cool facts</a> and <a href="#community">community engagements.</a>
+                                    I have experience in remote/long-distance work. <br><br>
+                                    You can always have a look at:
+                                    <ul>
+                                        <li><a href="#testimonials">testimonials</a></li>
+                                        <li><a href="#writings">articles</a></li>
+                                        <li><a href="#talks">talks</a></li>
+                                        <li><a href="#open-source">OpenSource</a></li>
+                                        <li><a href="#facts">cool facts</a></li>
+                                        <li><a href="#community">community engagements</a></li>
+                                    </ul>
+                                    
                                 </div>
                             </div>
                         </div>
@@ -543,13 +553,13 @@ Scholar of Arabic, as well as well versed in English. Good teacher of Python, an
     </script>
   </div>
 </div>
-    <div class="section" id="talks">
+    <div class="section" id="talks" style="background-color: #fdfd85;">
     <div class="container">
-        <div class="notification is-white">
-            <div class="notification is-white has-text-centered">
+        <div class="notification" style="background-color: #fdfd85;">
+            <div class="notification has-text-centered"  style="background-color: #fdfd85;">
                 <br>
                 <p class="has-text-centered ">
-                    <span class="title has-background-white-ter  has-text-centered" style="width: 50px; height:50px; padding: 15px; border-radius: 50%;">
+                    <span class="title  has-text-centered" style="width: 50px; height:50px; padding: 15px; border-radius: 50%;">
                         <i class="em em-spiral_note_pad" aria-role="presentation" aria-label=""></i>
                     </span>
                 </p><br>
@@ -937,7 +947,7 @@ Scholar of Arabic, as well as well versed in English. Good teacher of Python, an
         </div>
     </div>
 </div>-->
-    <div class="section" id="articles">
+    <div class="section" id="writings">
     <div class="container">
         <div class="notification is-white">
             <div class="notification is-white has-text-centered">
@@ -947,7 +957,7 @@ Scholar of Arabic, as well as well versed in English. Good teacher of Python, an
                         <i class="em em-books" aria-role="presentation" aria-label="BOOKS"></i>
                     </span>
                 </p><br>
-                <p class="title" id="writings"><a href="#writings" class="no-link-dec">Writings</a></p>
+                <p class="title" ><a href="#writings" class="no-link-dec">Writings</a></p>
                 <p class="subtitle">Articles & More</p>
             </div>
         </div>
@@ -1051,7 +1061,7 @@ Scholar of Arabic, as well as well versed in English. Good teacher of Python, an
     </div>
 </div>
     
-    <div class="section">
+    <div id="facts" class="section">
   <div class="container"><br><br>
     <div class="has-text-centered">
       <p class="has-text-centered">
@@ -1059,7 +1069,7 @@ Scholar of Arabic, as well as well versed in English. Good teacher of Python, an
           <i class="em em-tada" aria-role="presentation" aria-label="PARTY POPPER"></i>
         </span>
       </p><br>
-      <p class="title" id="facts"><a href="#facts" class="no-link-dec">Fun Facts</a></p>
+      <p class="title" ><a href="#facts" class="no-link-dec">Fun Facts</a></p>
       <p class="subtitle">Some cool info about <a href="https://www.twitter.com/osdotsystem">
         @osdotsystem.
       </a>. </p>
@@ -1724,7 +1734,7 @@ Scholar of Arabic, as well as well versed in English. Good teacher of Python, an
     </div>
   </div>
 </div>
-    <div class="section" id="projects">
+    <div class="section" id="open-source">
   <div class="container">
     <div class="notification is-white">
       <div class="notification is-white has-text-centered">
@@ -1734,7 +1744,7 @@ Scholar of Arabic, as well as well versed in English. Good teacher of Python, an
             <i class="em em-building_construction" aria-role="presentation" aria-label=""></i>
           </span>
         </p><br>
-        <p class="title" id="open-source"><a href="#open-source" class="no-link-dec">OpenSource Projects</a></p>
+        <p class="title"><a href="#open-source" class="no-link-dec">OpenSource Projects</a></p>
         <p class="subtitle">Some fun, some serious</p>
       </div>
     </div>
@@ -2146,7 +2156,7 @@ among others.</p></td>
   </div>
 </div>
 </div>
-    <div class="section has-background-success-light">
+    <div id="community" class="section has-background-success-light">
     <div class="container">
         <div class="notification is-white myshadow">
             <div class="notification is-white has-text-centered">
@@ -2156,7 +2166,7 @@ among others.</p></td>
                         <i class="em em-raised_hands" aria-role="presentation" aria-label="PERSON RAISING BOTH HANDS IN CELEBRATION"></i>
                     </span>
                 </p><br>
-                <p class="title" id="community"><a href="#community" class="no-link-dec">Community Engagement</a></p>
+                <p class="title" ><a href="#community" class="no-link-dec">Community Engagement</a></p>
                 <p class="subtitle">For the love of it</p>
             </div>
             <div class="is-white p-6">
