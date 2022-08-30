@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="130.04633mm"
+   height="130.04633mm"
+   viewBox="0 0 130.04633 130.04633"
+   version="1.1"
+   id="svg5"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview7"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:showpageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#d1d1d1"
+     inkscape:document-units="mm"
+     showgrid="false" />
+  <defs
+     id="defs2" />
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1"
+     transform="translate(-34.632172,-28.761153)">
+    <g
+       id="g893"
+       inkscape:export-filename="COMP_ALC2.png"
+       inkscape:export-xdpi="100.982"
+       inkscape:export-ydpi="100.982">
+      <circle
+         style="fill:#67d98f;stroke-width:20;stroke-linecap:round;paint-order:stroke fill markers;stop-color:#000000"
+         id="path234"
+         cx="99.655334"
+         cy="93.784317"
+         r="65.023163" />
+      <circle
+         style="fill:#ffffff;stroke-width:30.1327;stroke-linecap:round;paint-order:stroke fill markers;stop-color:#000000"
+         id="path236"
+         cx="115.5485"
+         cy="125.52078"
+         r="30.975092" />
+      <circle
+         style="fill:#ffffff;stroke-width:8.88301;stroke-linecap:round;paint-order:stroke fill markers;stop-color:#000000"
+         id="path290"
+         cx="69.720528"
+         cy="43.979248"
+         r="7.1481481" />
+      <circle
+         style="fill:#ffffff;stroke-width:8.88301;stroke-linecap:round;paint-order:stroke fill markers;stop-color:#000000"
+         id="circle402"
+         cx="88.63607"
+         cy="51.651516"
+         r="7.1481481" />
+      <rect
+         style="fill:#ffffff;fill-opacity:1;stroke-width:21.5242;stroke-linecap:round;paint-order:stroke fill markers;stop-color:#000000"
+         id="rect734"
+         width="27.682024"
+         height="58.077652"
+         x="46.410999"
+         y="92.908623"
+         ry="8.5421124"
+         rx="0"
+         transform="rotate(-20.724569)" />
+      <circle
+         style="fill:#67d98f;fill-opacity:1;stroke-width:18.4349;stroke-linecap:round;paint-order:stroke fill markers;stop-color:#000000"
+         id="circle404"
+         cx="119.6757"
+         cy="134.60135"
+         r="18.950293" />
+      <rect
+         style="fill:#ffffff;fill-opacity:1;stroke-width:20;stroke-linecap:round;paint-order:stroke fill markers;stop-color:#000000"
+         id="rect879"
+         width="0.557953"
+         height="9.5999451"
+         x="96.624428"
+         y="59.294239"
+         ry="0.2789765" />
+      <rect
+         style="fill:#ffffff;fill-opacity:1;stroke-width:10.3349;stroke-linecap:round;paint-order:stroke fill markers;stop-color:#000000"
+         id="rect881"
+         width="43.354321"
+         height="7.5377307"
+         x="32.688065"
+         y="94.097702"
+         ry="3.1600254"
+         transform="rotate(-23.673219)" />
+    </g>
+  </g>
+</svg>

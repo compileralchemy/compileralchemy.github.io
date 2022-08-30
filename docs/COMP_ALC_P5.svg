@@ -2,9 +2,9 @@
 <!-- Created with Inkscape (http://www.inkscape.org/) -->
 
 <svg
-   width="80.17186mm"
-   height="80.17186mm"
-   viewBox="0 0 80.17186 80.17186"
+   width="79.375mm"
+   height="79.375mm"
+   viewBox="0 0 79.375 79.375"
    version="1.1"
    id="svg5"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
@@ -28,7 +28,7 @@
      inkscape:label="Layer 1"
      inkscape:groupmode="layer"
      id="layer1"
-     transform="translate(136.37436,3.0546607)">
+     transform="translate(156.43058,4.186241)">
     <rect
        style="fill:#ffffff;fill-opacity:1;stroke-width:20;stroke-linecap:round;paint-order:stroke fill markers;stop-color:#000000"
        id="rect1033"
@@ -36,9 +36,16 @@
        height="79.375"
        x="-156.43059"
        y="-4.1862411"
-       ry="0" />
+       ry="0"
+       inkscape:export-filename="COMP_ALC_P.svg"
+       inkscape:export-xdpi="100.982"
+       inkscape:export-ydpi="100.982" />
     <g
-       id="g1066">
+       id="g1066"
+       inkscape:export-filename="COMP_ALC.png"
+       inkscape:export-xdpi="100.982"
+       inkscape:export-ydpi="100.982"
+       transform="matrix(0.70076012,0,0,0.70076012,-49.267997,9.5512223)">
       <circle
          style="fill:#67d98f;stroke-width:12.3297;stroke-linecap:round;paint-order:stroke fill markers;stop-color:#000000"
          id="path234"
