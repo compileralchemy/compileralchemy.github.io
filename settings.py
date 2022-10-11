@@ -3,7 +3,7 @@ OUTPUT_FOLDER = 'docs/'
 
 testimonials = [
     {
-        'name': 'Shamsuddin Rehmani',
+        'name': 'James Luo',
         'title': 'Software Engineer, Facebook',
         'text': '''
 I worked with Abdur at Metabob and when he came in he was able to lead our team in terms of having a proper system design to documentation. He was able to make the engineering team more productive than it was before. If you are looking for an engineer who is strong technically he is the one that can do it. His experience with open source is one of the biggest plus he has bought to the team.
