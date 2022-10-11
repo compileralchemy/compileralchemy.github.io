@@ -4,6 +4,13 @@ OUTPUT_FOLDER = 'docs/'
 testimonials = [
     {
         'name': 'Shamsuddin Rehmani',
+        'title': 'Software Engineer, Facebook',
+        'text': '''
+I worked with Abdur at Metabob and when he came in he was able to lead our team in terms of having a proper system design to documentation. He was able to make the engineering team more productive than it was before. If you are looking for an engineer who is strong technically he is the one that can do it. His experience with open source is one of the biggest plus he has bought to the team.
+        '''
+    },
+    {
+        'name': 'Shamsuddin Rehmani',
         'title': 'Software Development Engineer, Amazon',
         'text': '''I worked with Abdur-Rahmaan's on one of his many open source software project, Shopyo. As this was my first time contributing to open source, I was not very confident in my skills. However, Abdur-Rahmaan was very patient and helped with the process of project setup and contribution. Looking back since my first open source contribution, I couldn't have asked for a better mentor than Abdur-Rahmaan. As I worked more with him, I learned that he has a vast knowledge not only of software engineering but also possess excellent communication and leadership skills. His attention to details, clear guidance, pursuit of best industry practices, and past experience and success in managing a team of engineers makes him a great leader
 and asset to any team.
@@ -68,6 +75,12 @@ I cannot speak highly enough of his programming ability and vision in tackling t
         'name': 'Chukwudi Nwachukwu',
         'title': 'Software Architect',
         'text': '''Abdur-Rahmaan Janhangeer came off to me as someone who is well organised and gets job done. He does his best in all things and I adore him for that. I highly recommend him because I have worked together with him and his attention to detail was excellent. Well done Abdur-Rahmaan.'''
+    },
+    {
+    'name': 'Paulo Ferraz',
+    'title': 'Linux Security Analyst at Banrisul S/A Bank',
+    'text': '''Abdur is the founder of an IRC python GitHub project that I started collaborating on. I was impressed with your skills! He is the creator of several python initiatives like organizations and code projects. Always adopting the latest technologies and still mastering 3 languages ​​too!
+Despite this, he still manages to be an extremely compassionate person, always encouraging and supporting newbies like me. Thank you my friend! Success always!'''
     },
     {
         'name': 'Sandeep Chatterjee',
