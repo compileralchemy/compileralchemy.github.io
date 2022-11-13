@@ -1,43 +1,49 @@
 <div id="facts" class="section">
-  <div class="container"><br><br>
-    <div class="has-text-centered">
-      <p class="has-text-centered">
-        <span class="title has-background-white-ter  has-text-centered" style="width: 50px; height:50px; padding: 20px; border-radius: 50%;">
-          <i class="em em-tada" aria-role="presentation" aria-label="PARTY POPPER"></i>
-        </span>
-      </p><br>
-      <p class="title" ><a href="#facts" class="no-link-dec">Fun Facts</a></p>
-      <p class="subtitle">Some cool info about <a href="https://www.twitter.com/osdotsystem">
-        @osdotsystem.
-      </a>. </p>
-    </div>
-    <div class="">
-      <div class="container notification is-white">
-        <hr>
-        <div class="field is-grouped is-grouped-multiline">
-          <div class="control">
-            <div class="tags has-addons">
-              <span class="tag is-dark">Dev.to article views</span>
-              <span class="tag is-info">58k</span>
-            </div>
-          </div>
-          <div class="control">
-            <div class="tags has-addons">
-              <span class="tag is-dark">Codementor.io article views</span>
-              <span class="tag is-info">46k</span>
-            </div>
-          </div>
-          <div class="control">
-            <div class="tags has-addons">
-              <span class="tag is-dark">Pypi downloads</span>
-              <span class="tag is-info">100k</span>
-            </div>
-          </div>
-          
+    <div class="container"><br><br>
+        <div class="has-text-centered">
+            <p class="has-text-centered">
+                <span class="title has-background-white-ter  has-text-centered" style="width: 50px; height:50px; padding: 20px; border-radius: 50%;">
+                    <i class="em em-tada" aria-role="presentation" aria-label="PARTY POPPER"></i>
+                </span>
+            </p><br>
+            <p class="title"><a href="#facts" class="no-link-dec">Fun Facts</a></p>
+            <p class="subtitle">Some small wins
+                </a>. </p>
         </div>
-        {% for fact in settings.facts %}
-
-          <div class="is-white ">
+        <div class="">
+            <div class="container notification is-white">
+                <hr>
+                <div class="field is-grouped is-grouped-multiline">
+                    <div class="control">
+                        <div class="tags has-addons">
+                            <span class="tag is-dark">Dev.to article views</span>
+                            <span class="tag is-info">58k</span>
+                        </div>
+                    </div>
+                    <div class="control">
+                        <div class="tags has-addons">
+                            <span class="tag is-dark">Codementor.io article views</span>
+                            <span class="tag is-info">46k</span>
+                        </div>
+                    </div>
+                    <div class="control">
+                        <div class="tags has-addons">
+                            <span class="tag is-dark">Pypi downloads</span>
+                            <span class="tag is-info">100k</span>
+                        </div>
+                    </div>
+                </div>
+                <div style=" display:grid;
+        grid-template-columns: repeat(auto-fill, 180px);
+        grid-gap: 10px;">
+                    {% for fact in settings.facts %}
+                    <div style="display: inline-grid; margin-bottom: 5px; width: 150px;">
+                        <p style="background-color: #ffdd55; padding: 5px; height: 35px;">{{ fact['date'] }}</p>
+                        <p class="hide_scroll" style="background-color: #fff2c0; padding: 5px; overflow-wrap: break-word; height:200px; overflow-y:scroll"><a href="{{ fact['link'] }}">{{ fact['title'] }}</a><br>
+                            <span class="is-size-7 hide_scroll" style="height: 200px; overflow-y: scroll;">{{ fact['notes'] | safe }}</span>
+                        </p>
+                    </div>
+                    <!--           <div class="is-white ">
             <div class="columns">
               <div class="column">
                 <span class="tag is-info">{{ fact['date'] }}</span>
@@ -47,18 +53,13 @@
                 <span style="font-size: 15px">{{ fact['notes'] | safe }}</span>
               </div>
             </div>
-<!--             <div class="columns">
-              <div class="column is-11">
-                <span class="">
-                  <a href="{{ fact['link'] }}">{{ fact['title'] }}</a>
-                </span><br>
-                <span>{{ fact['notes'] | safe }}</span>
-              </div>
-            </div> -->
-          </div>
-        {% endfor %}
-        <!--Holder end-->
-      </div>
+
+
+          </div> -->
+                    {% endfor %}
+                </div>
+                <!--Holder end-->
+            </div>
+        </div>
     </div>
-  </div>
 </div>

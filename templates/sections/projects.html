@@ -13,46 +13,35 @@
       </div>
     </div>
     <div class="is-white">
-      <table class="table">
-        <thead>
-          <tr>
-            <th>Project</th>
-            <th>Info</th>
-            <th>Links</th>
-            <th></th>
-          </tr>
-        </thead>
-        {% for project in settings.github_projects %}
-          <tr>
-            <td><a href="{{ project['main_link'] }}">{{ project['name'] }}</a></td>
-            <td>{{ md_to_html(project['info']) | safe }}</td>
-            <td>
+      <div style=" display:grid;
+        grid-template-columns: repeat(auto-fill, 200px);
+        grid-gap: 10px;">
+      {% for project in settings.github_projects %}
+
+          <div style="display: inline-grid; padding: 15px;" class="card">
+            <a href="{{ project['main_link'] }}">{{ project['name'] }}</a>
+              <hr>
+
+              {%if 'badge' in project%}
+                <img src="{{project['badge']}}">
+              {%endif%}
+
+            {{ md_to_html(project['info']) | safe }}
+
+              <span style="overflow-wrap: break-word;">
               {% for key in project['links'] %}
                 {% set link = project['links'][key] %}
-                <div class="control">
-                  <div class="tags has-addons">
-                    <a class="tag is-link" href="{{ link }}" target="_blank">{{ key.capitalize() }}</a>
 
-                  </div>
-                </div>
+                    [<a href="{{ link }}" target="_blank">{{ key.capitalize() }}</a>] 
+
               {% endfor %}
-            </td>
-            <td>
-              {% if 'quality' in project['features'] %}
-                <span class="tag is-success">
-                  quality
-                  <button class="delete is-small"></button>
-                </span>
-              {% endif %}
-              {% if 'stale' in project['features'] %}
-                <span class="tag is-danger">
-                  stale
-                  <button class="delete is-small"></button>
-                </span>
-              {% endif %}
-            </td>
-          </tr>
+            </span>
+          </div>
+          
+
+
         {% endfor %}
+        </div>
       </tbody>
     </table>
   </div>
