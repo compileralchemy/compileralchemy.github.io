@@ -10,11 +10,11 @@
       <p class="subtitle">What do people say? <a href="https://www.linkedin.com/in/appinv/">(source)</a></p>
     </div>
     <!-- Swiper -->
-    <div class="swiper-container">
+    <div class="swiper-container" style="padding: 10%; padding-top: 15px;">
       <div class="swiper-wrapper">
         {%for testimonial in testimonials%}
         <div class="swiper-slide">
-          <div class="card  is-shadowless">
+          <!-- <div class="card  is-shadowless">
             <div class="card-content">
               <div class="content">
                 <i class="notes__image fa fa fa-bookmark"></i>
@@ -27,6 +27,23 @@
                   {{testimonial['text']}}
                   <br>
                   <i class="fa fa-quote-right"></i>
+                </p>
+              </div>
+            </div>
+          </div> -->
+
+          <div class="card">
+            <div class="card-content">
+              <div class="content">
+                <p class="" style="padding: 10px">
+                  <span style="" class="is-size-3">
+                    {{testimonial['name']}}
+                  </span><br>
+                  <span class="is-size-5" style="">
+                    {{testimonial['title']}}
+                  </span><br>
+                  <p style="padding: 10%; padding-top: 5px; padding-bottom: 5px;" class="has-text-justified">“ {{testimonial['text']}}  ”</p>
+                  
                 </p>
               </div>
             </div>

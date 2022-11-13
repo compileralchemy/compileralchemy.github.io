@@ -13,9 +13,11 @@ I worked with Abdur at Metabob and when he came in he was able to lead our team 
         'name': 'Shamsuddin Rehmani',
         'title': 'Software Development Engineer, Amazon',
         'text': '''I worked with Abdur-Rahmaan's on one of his many open source software project, Shopyo. As this was my first time contributing to open source, I was not very confident in my skills. However, Abdur-Rahmaan was very patient and helped with the process of project setup and contribution. Looking back since my first open source contribution, I couldn't have asked for a better mentor than Abdur-Rahmaan. As I worked more with him, I learned that he has a vast knowledge not only of software engineering but also possess excellent communication and leadership skills. His attention to details, clear guidance, pursuit of best industry practices, and past experience and success in managing a team of engineers makes him a great leader
-and asset to any team.
+and asset to any team.<br><br>
 
-As if this was not enough, he also possess the gift of being artistic and creative, with the ability to make software not only functional but also marketable with design skills that he pursues as a hobby.
+As if this was not enough, he also possess the gift of being artistic and creative, 
+with the ability to make software not only functional but also marketable with design 
+skills that he pursues as a hobby.<br><br>
 
 His work in both professional and open source setting speaks itself but this recommendation is just a token of appreciation on behalf of countless engineers whom he has helped improve and break into the open source community. I wish him the best in his future endeavors and I am excited to see where his work takes him.'''
     },
