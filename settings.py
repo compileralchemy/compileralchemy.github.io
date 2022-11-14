@@ -59,7 +59,10 @@ At that time he provided me with advice on how to navigate such a career.
 Recently he assigned me a project which involved the integration of several modules using 
 an Open Source Framework whereby I reported directly to himself.<br><br>
 
-I cannot speak highly enough of his programming ability and vision in tackling technical issues. He was always available for meetings to address hiccups that I had during the project. The experience I have had working with him has been extremely pleasant and beneficial for me and would recommend him for any projects you might have.I have known Abdur-Rahman for over 2 years since I started my coding journey. At that time he provided me with advice on how to navigate such a career. Recently he assigned me a project which involved the integration of several modules using an Open Source Framework whereby I reported directly to himself. I cannot speak highly enough of his programming ability and vision in tackling technical issues. He was always available for meetings to address hiccups that I had during the project. The experience I have had working with him has been extremely pleasant and beneficial for me and would recommend him for any projects you might have.'''
+I cannot speak highly enough of his programming ability and vision in tackling technical issues. 
+He was always available for meetings to address hiccups that I had during the project. 
+The experience I have had working with him has been extremely pleasant and beneficial for me and would 
+recommend him for any projects you might have.'''
     },
     {
         'name': 'Girish Mahabir',
@@ -591,7 +594,22 @@ commands like collecstatic and startapp.
             "twitter": "https://twitter.com/shopyoproject",
             "docs": "https://shopyo.readthedocs.io/en/latest/"
         },
-        'badge': 'https://static.pepy.tech/personalized-badge/shopyo?period=total&units=international_system&left_color=black&right_color=blue&left_text=Downloads'
+        'badges': ['pepy']
+    },
+    {
+    "name": "Hooman",
+    "info": '''
+A wrapper around PyGame for clean codebases.
+''',
+        "features": [],
+        "main_link": "https://github.com/abdur-rahmaanj/hooman",
+        "logo_link": "",
+        "links": {
+            "github": "https://github.com/abdur-rahmaanj/hooman",
+            "pypi": "https://pypi.org/project/hooman/",
+            "chat": "https://discord.gg/Q23ATve"
+        },
+        'badges': ['pepy']
     },
     {
         "name": "Jamstack",
@@ -607,7 +625,21 @@ among others.
             "pypi": "https://pypi.org/project/jamstack/",
             "github": "https://github.com/abdur-rahmaanj/jamstack",
         },
-        'badge': 'https://static.pepy.tech/personalized-badge/jamstack?period=total&units=international_system&left_color=black&right_color=blue&left_text=Downloads'
+        'badges': ['pepy']
+    },
+    {
+        "name": "meteomoris",
+        "info": '''
+A package to get weather info about Mauritius taken from the country's weather station
+''',
+        "features": [],
+        "main_link": "https://github.com/Abdur-rahmaanJ/meteomoris",
+        "logo_link": "",
+        "links": {
+            "github": "https://github.com/Abdur-rahmaanJ/meteomoris",
+            "pypi": "https://pypi.org/project/meteomoris/"
+        },
+        'badges': ['pepy']
     },
     {
         "name": "Download-stats",
@@ -621,8 +653,9 @@ Download stats from pypi
             "pypi": "https://github.com/Abdur-rahmaanJ/download-stats",
             "github": "https://github.com/Abdur-rahmaanJ/download-stats",
         },
-        'badge': 'https://static.pepy.tech/personalized-badge/download-stats?period=total&units=international_system&left_color=black&right_color=blue&left_text=Downloads'
+        'badges': ['pepy']
     },
+
     {
         "name": "Honeybot",
         "info": '''
@@ -635,7 +668,7 @@ An IRC bot built from scratch with an awesome collection of Plugins. It even has
             "github": "https://github.com/pyhoneybot/honeybot",
             "chat": "https://discord.com/invite/E6zD4XT",
         },
-        'badge': 'https://static.pepy.tech/personalized-badge/honeybot?period=total&units=international_system&left_color=black&right_color=blue&left_text=Downloads'
+        'badges': ['pepy']
     },
     {
         "name": "ShopCube",
@@ -654,21 +687,7 @@ An ecommerce project in Flask which has among others:
         "links": {
             "github": "https://github.com/shopyo/shopcube",
         },
-        'badge': 'https://static.pepy.tech/personalized-badge/shopcube?period=total&units=international_system&left_color=black&right_color=blue&left_text=Downloads'
-    },
-    {
-        "name": "meteomoris",
-        "info": '''
-A package to get weather info about Mauritius taken from the country's weather station
-''',
-        "features": [],
-        "main_link": "https://github.com/Abdur-rahmaanJ/meteomoris",
-        "logo_link": "",
-        "links": {
-            "github": "https://github.com/Abdur-rahmaanJ/meteomoris",
-            "pypi": "https://pypi.org/project/meteomoris/"
-        },
-        'badge': 'https://static.pepy.tech/personalized-badge/meteomoris?period=total&units=international_system&left_color=black&right_color=blue&left_text=Downloads'
+        'badges': ['pepy']
     },
     {
         "name": "newsmoris",
@@ -682,7 +701,21 @@ A package to get news about Mauritius grouped by topnews as well as by category 
             "github": "https://github.com/Abdur-rahmaanJ/newsmoris",
             "pypi": "https://pypi.org/project/newsmoris/"
         },
-        'badge': 'https://static.pepy.tech/personalized-badge/newsmoris?period=total&units=international_system&left_color=black&right_color=blue&left_text=Downloads'
+        'badges': ['pepy']
+    },
+    {
+    "name": "termcharts",
+    "info": '''
+Rich-compatible terminal charts
+''',
+        "features": [],
+        "main_link": "https://github.com/abdur-rahmaanj/termcharts",
+        "logo_link": "",
+        "links": {
+            "github": "https://github.com/abdur-rahmaanj/termcharts",
+            "pypi": "https://pypi.org/project/termcharts/",
+        },
+        'badges': ['pepy']
     },
     {
         "name": "MarketFlow",
@@ -702,7 +735,8 @@ A marketplace in Flask which has among others:
         "logo_link": "",
         "links": {
             "github": "https://github.com/shopyo/marketflow",
-        }
+        },
+        'badges': []
     },
     {
     "name": "GreenBerry",
@@ -716,22 +750,7 @@ A one line statement language with IDE,
             "github": "https://github.com/Abdur-rahmaanJ/greenBerry",
             "docs": "https://abdur-rahmaanj.github.io/greenBerry/",
         },
-        'badge': 'https://static.pepy.tech/personalized-badge/greenberry?period=total&units=international_system&left_color=black&right_color=blue&left_text=Downloads'
-    },
-    {
-    "name": "Hooman",
-    "info": '''
-A wrapper around PyGame for clean codebases.
-''',
-        "features": [],
-        "main_link": "https://github.com/abdur-rahmaanj/hooman",
-        "logo_link": "",
-        "links": {
-            "github": "https://github.com/abdur-rahmaanj/hooman",
-            "pypi": "https://pypi.org/project/hooman/",
-            "chat": "https://discord.gg/Q23ATve"
-        },
-        'badge': 'https://static.pepy.tech/personalized-badge/hooman?period=total&units=international_system&left_color=black&right_color=blue&left_text=Downloads'
+        'badges': ['pepy']
     },
     {
     "name": "PPython",
@@ -743,10 +762,11 @@ Implementing [processing.org](https://www.processing.org)'s lib in pure Python w
         "logo_link": "",
         "links": {
             "github": "https://github.com/Abdur-rahmaanJ/ppython",
-        }
+        },
+        'badges': []
     },
     {
-    "name": "Reditty Walls",
+    "name": "Reditty-Walls",
     "info": '''
 Wallpaper changer soft with walls pulled from Reddit
 ''',
@@ -755,7 +775,8 @@ Wallpaper changer soft with walls pulled from Reddit
         "logo_link": "",
         "links": {
             "github": "https://github.com/Abdur-rahmaanJ/RedittyWalls",
-        }
+        },
+        'badges': []
     },
     {
     "name": "pyMsPaint",
@@ -767,7 +788,8 @@ Program MsPaint using python. As accurate as your canvas
         "logo_link": "",
         "links": {
             "github": "https://github.com/Abdur-rahmaanJ/pyMsPaint",
-        }
+        },
+        'badges': []
     },
     {
     "name": "InternalO",
@@ -779,7 +801,8 @@ An employee roster system with in-mail written in PHP
         "logo_link": "",
         "links": {
             "github": "https://github.com/Abdur-rahmaanJ/InternalO",
-        }
+        },
+        'badges': []
     },
     {
     "name": "Aidre",
@@ -791,7 +814,8 @@ An editor for .po translations
         "logo_link": "",
         "links": {
             "github": "https://github.com/Abdur-rahmaanJ/aidre",
-        }
+        },
+        'badges': []
     }
 ]
 

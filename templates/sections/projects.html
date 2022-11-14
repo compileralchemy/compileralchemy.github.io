@@ -22,8 +22,9 @@
             <a href="{{ project['main_link'] }}">{{ project['name'] }}</a>
               <hr>
 
-              {%if 'badge' in project%}
-                <img src="{{project['badge']}}">
+              {%if 'pepy' in project['badges']%}
+                <a target="_blank" href="https://pepy.tech/project/{{project['name'].lower()}}"><img src="https://static.pepy.tech/personalized-badge/{{project['name'].lower()}}?period=total&units=international_system&left_color=black&right_color=green&left_text=Downloads">
+                </a>
               {%endif%}
 
             {{ md_to_html(project['info']) | safe }}
