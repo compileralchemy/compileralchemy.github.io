@@ -293,6 +293,16 @@ writings = [
 
 talks = [
     {
+        "title": "Fast Flask Dev For Big Codebases",
+        "event": "DevCon MU 2022",
+        "res": [
+            {
+                "type": "slides",
+                "url": "https://speakerdeck.com/osdotsystem/flask-big-codebases"
+            },
+        ]
+    },
+    {
         "title": "Python's Bytecode",
         "event": "Pymug Oct Meetup 2022",
         "res": [
