@@ -293,6 +293,16 @@ writings = [
 
 talks = [
     {
+        "title": "Python Bytecode or How Python Operates",
+        "event": "DevCon MU 2022",
+        "res": [
+            {
+                "type": "slides",
+                "url": "https://speakerdeck.com/osdotsystem/python-bytecode-or-how-python-operates"
+            },
+        ]
+    },
+    {
         "title": "Fast Flask Dev For Big Codebases",
         "event": "DevCon MU 2022",
         "res": [
