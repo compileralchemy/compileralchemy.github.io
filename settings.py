@@ -293,6 +293,16 @@ writings = [
 
 talks = [
     {
+        "title": "How To OpenSource",
+        "event": "DevCon MU 2022",
+        "res": [
+            {
+                "type": "slides",
+                "url": "https://speakerdeck.com/osdotsystem/how-to-opensource"
+            },
+        ]
+    },
+    {
         "title": "Python Bytecode or How Python Operates",
         "event": "DevCon MU 2022",
         "res": [
