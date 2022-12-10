@@ -293,6 +293,16 @@ writings = [
 
 talks = [
     {
+        "title": "SQLite Internals: How The World's Most Used Database Works",
+        "event": "Google DevFest 2022",
+        "res": [
+            {
+                "type": "slides",
+                "url": "https://speakerdeck.com/osdotsystem/sqlite-internals-how-the-worlds-most-used-database-works"
+            },
+        ]
+    },
+    {
         "title": "How To OpenSource",
         "event": "DevCon MU 2022",
         "res": [
