@@ -4,6 +4,7 @@ import datetime
 import sys
 import uuid
 from os.path import join
+import os
 from email import utils as emailutils
 import time 
 
@@ -73,11 +74,43 @@ def gen_podcast_rss():
     generate('podcast.rss', join(settings.OUTPUT_FOLDER, 'alfa-podcast', 'podcast.rss'), **prss_context)
 
 
+def gen_books():
+    context = base_context()
+    
+
+    sqlite_book = './data/books/sqlite_internals.md'
+    with open(sqlite_book) as f:
+        text = f.read()
+
+    html = md_to_html(text)
+    book = {
+        'content': html,
+        'title': "SQLite Internals: How The World's Most Used Database Works"
+    }
+
+    context.update({
+        'settings': settings,
+        'path': '../',
+        'book': book
+    })
+
+    try:
+        os.mkdir(os.path.join(settings.OUTPUT_FOLDER, 'books'))
+    except Exception as e:
+        pass 
+
+    try:
+        os.mkdir(os.path.join(settings.OUTPUT_FOLDER, 'books', 'sqlite-internals'))
+    except Exception as e:
+        pass
+    generate('book.html', join(settings.OUTPUT_FOLDER, 'books', 'sqlite-internals', 'index.html'), **context)
+
 def main(args):
     def gen():
         generate('index.html', join(settings.OUTPUT_FOLDER, 'index.html'), **context)
         generate('podcast.html', join(settings.OUTPUT_FOLDER, 'alfa-podcast', 'index.html'), **podcontext)
         gen_podcast_rss()
+        gen_books()
 
     if len(args) > 1 and args[1] == '--server':
         app = Flask(__name__)

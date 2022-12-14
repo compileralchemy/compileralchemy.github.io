@@ -26,7 +26,7 @@
     })();
     </script>
     <!--End of Tawk.to Script-->
-    <title>Abdur-Rahmaan Janhangeer</title>
+    <title>{{ book["title"] }}</title>
     
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta charset="utf-8">
@@ -46,34 +46,8 @@
     <script type="text/javascript" src="js/jquery.js"></script>
     <script type="text/javascript" src="js/script.js"></script>
     <link rel="stylesheet" type="text/css" href="style.css">
-    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.css" />
-    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
-    <link rel="stylesheet" href="https://unpkg.com/swiper@6/swiper-bundle.min.css" />
-    <script src="https://unpkg.com/swiper@6/swiper-bundle.min.js"></script>
     <style type="text/css">
-    .swiper-container {
-        width: 100%;
-        height: 100%;
-    }
 
-    .swiper-slide {
-        text-align: center;
-        font-size: 18px;
-        background: #fff;
-        /* Center slide text vertically */
-        display: -webkit-box;
-        display: -ms-flexbox;
-        display: -webkit-flex;
-        display: flex;
-        -webkit-box-pack: center;
-        -ms-flex-pack: center;
-        -webkit-justify-content: center;
-        justify-content: center;
-        -webkit-box-align: center;
-        -ms-flex-align: center;
-        -webkit-align-items: center;
-        align-items: center;
-    }
     </style>
     <script type="text/javascript">
     (function(c, l, a, r, i, t, y) {
@@ -98,23 +72,107 @@
           -ms-overflow-style: none;  /* IE and Edge */
           scrollbar-width: none;  /* Firefox */
         }
+
+        body{
+            margin-left: 20%;
+            margin-right: 20%;
+        }
+        .book__title{
+            margin-top: 20px;
+            font-size: 45px;
+        }
+        .book__content h1{
+            font-size: 35px;
+            margin-bottom: 20px;
+            margin-top: 20px;
+
+        }
+        .book__content h2{
+            font-size: 30px;
+            margin-bottom: 20px;
+            margin-top: 20px;
+
+        }
+        .book__content p{
+            text-align: justify;
+            margin-bottom: 10px;
+            font-size: 20px;
+        }
+        .book__content{
+            margin-bottom: 50px;
+        }
+        .book__content img{
+            border-radius: 10px;
+            display:block;
+            height: 350px;
+            margin-top: 50px;
+            margin-bottom: 50px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .book__content blockquote{
+            padding: 40px;
+            background-color: #eee;
+            border-left: 10px solid #ccc;
+            margin-top: 40px;
+            margin-bottom: 40px;
+            page-break-inside: avoid;
+        }
+        .book__content pre{
+            margin-top: 40px;
+            margin-bottom: 40px;
+        }
+
+        .book__content li{
+            list-style-type: "👉";
+            padding-left: 5px;
+        }
+        .book__content ul{
+            padding-left: 2rem;
+        }
+        .toc li{
+            list-style-type: "";
+        }
+
+        @page {
+          size: A4;
+          margin: 15mm 16mm 15mm 16mm;
+        }
+
+
+@page:right{ 
+  @bottom-left {
+    margin: 10pt 0 30pt 0;
+    border-top: .25pt solid #666;
+    content: "My book";
+    font-size: 9pt;
+    color: #333;
+  }
+}
+
+        @media print {
+          div.chapter, div.appendix{
+              page-break-after: always;
+            }
+            .book__content blockquote{
+                page-break-inside: avoid;
+            }
+        }
+
+        
+
     </style>
 
 </head>
 
 <body class="">
-    {% include 'sections/intro.html' %}
-    {% include 'sections/testimonials.html' %}
-    {% include 'sections/talks.html' %}
-    <!--{% include 'sections/menu.html' %}-->
-    <!--{% include 'sections/contact.html' %}-->
-    {% include 'sections/writings.html' %}
-    
-    {% include 'sections/facts.html' %}
-    {% include 'sections/projects.html' %}
-    {% include 'sections/community.html' %}
-    {% include 'sections/privacy.html' %}
-    {% include 'sections/footer.html' %}
+
+    <h1 class="book__title">{{ book["title"] }}</h1>
+    <small>by Abdur-Rahmaan Janhangeer</small>
+    <br><br><br>
+    <div class="book__content">
+        {{ book["content"] | safe }}
+    </div>
     
 </body>
 

@@ -1,0 +1,535 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-161612035-1"></script>
+    <script>
+    window.dataLayer = window.dataLayer || [];
+
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+    gtag('config', 'UA-161612035-1');
+    </script>
+    <!--Start of Tawk.to Script-->
+    <script type="text/javascript">
+    var Tawk_API = Tawk_API || {},
+        Tawk_LoadStart = new Date();
+    (function() {
+        var s1 = document.createElement("script"),
+            s0 = document.getElementsByTagName("script")[0];
+        s1.async = true;
+        s1.src = 'https://embed.tawk.to/600547c5c31c9117cb6fac40/1esaa0ni2';
+        s1.charset = 'UTF-8';
+        s1.setAttribute('crossorigin', '*');
+        s0.parentNode.insertBefore(s1, s0);
+    })();
+    </script>
+    <!--End of Tawk.to Script-->
+    <title>SQLite Internals: How The World's Most Used Database Works</title>
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="utf-8">
+    <meta name="description" content="Python, Freelancing, Career & OpenSource">
+    <meta name="keywords" content="HTML,CSS,JavaScript,Python,Java,C++,websites,software,code audits">
+    <meta name="author" content="compileralchemy">
+    <meta name="theme-color" content="#ffb74d" />
+    <link rel="icon" href="COMP_ALC.png">
+    <link rel="stylesheet" type="text/css" href="prototyp.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href='https://fonts.googleapis.com/css?family=Comfortaa' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Raleway:700' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Special+Elite' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.0/css/bulma.min.css">
+    <link href="https://emoji-css.afeld.me/emoji.css" rel="stylesheet">
+    <script defer src="https://use.fontawesome.com/releases/v5.8.2/js/all.js"></script>
+    <script type="text/javascript" src="js/jquery.js"></script>
+    <script type="text/javascript" src="js/script.js"></script>
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <style type="text/css">
+
+    </style>
+    <script type="text/javascript">
+    (function(c, l, a, r, i, t, y) {
+        c[a] = c[a] || function() {
+            (c[a].q = c[a].q || []).push(arguments) };
+        t = l.createElement(r);
+        t.async = 1;
+        t.src = "https://www.clarity.ms/tag/" + i;
+        y = l.getElementsByTagName(r)[0];
+        y.parentNode.insertBefore(t, y);
+    })(window, document, "clarity", "script", "b2ltvgn5pp");
+    </script>
+
+    <style type="text/css">
+        /* Hide scrollbar for Chrome, Safari and Opera */
+        .hide_scroll::-webkit-scrollbar {
+          display: none;
+        }
+
+        /* Hide scrollbar for IE, Edge and Firefox */
+        .hide_scroll {
+          -ms-overflow-style: none;  /* IE and Edge */
+          scrollbar-width: none;  /* Firefox */
+        }
+
+        body{
+            margin-left: 20%;
+            margin-right: 20%;
+        }
+        .book__title{
+            margin-top: 20px;
+            font-size: 45px;
+        }
+        .book__content h1{
+            font-size: 35px;
+            margin-bottom: 20px;
+            margin-top: 20px;
+
+        }
+        .book__content h2{
+            font-size: 30px;
+            margin-bottom: 20px;
+            margin-top: 20px;
+
+        }
+        .book__content p{
+            text-align: justify;
+            margin-bottom: 10px;
+            font-size: 20px;
+        }
+        .book__content{
+            margin-bottom: 50px;
+        }
+        .book__content img{
+            border-radius: 10px;
+            display:block;
+            height: 350px;
+            margin-top: 50px;
+            margin-bottom: 50px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .book__content blockquote{
+            padding: 40px;
+            background-color: #eee;
+            border-left: 10px solid #ccc;
+            margin-top: 40px;
+            margin-bottom: 40px;
+            page-break-inside: avoid;
+        }
+        .book__content pre{
+            margin-top: 40px;
+            margin-bottom: 40px;
+        }
+
+        .book__content li{
+            list-style-type: "👉";
+            padding-left: 5px;
+        }
+        .book__content ul{
+            padding-left: 2rem;
+        }
+        .toc li{
+            list-style-type: "";
+        }
+
+        @page {
+          size: A4;
+          margin: 15mm 16mm 15mm 16mm;
+        }
+
+
+@page:right{ 
+  @bottom-left {
+    margin: 10pt 0 30pt 0;
+    border-top: .25pt solid #666;
+    content: "My book";
+    font-size: 9pt;
+    color: #333;
+  }
+}
+
+        @media print {
+          div.chapter, div.appendix{
+              page-break-after: always;
+            }
+            .book__content blockquote{
+                page-break-inside: avoid;
+            }
+        }
+
+        
+
+    </style>
+
+</head>
+
+<body class="">
+
+    <h1 class="book__title">SQLite Internals: How The World's Most Used Database Works</h1>
+    <small>by Abdur-Rahmaan Janhangeer</small>
+    <br><br><br>
+    <div class="book__content">
+        <div class="chapter"></div>
+
+<ul class="toc">
+<li><a href="#foreword">Foreword</a></li>
+<li><a href="#intro">Introduction</a></li>
+<li><a href="#c1"><abbr title="HyperText Markup Language">The Story Behind</abbr></a></li>
+<li><a href="#c2"><abbr title="HyperText Markup Language">Overview</abbr></a></li>
+<li><a href="#c3"><abbr title="HyperText Markup Language">File & Record Format</abbr></a></li>
+<li><a href="#c4"><abbr title="HyperText Markup Language">Functionalities</abbr></a></li>
+
+</ul>
+<div class="chapter"></div>
+
+<h1 id="foreword">Foreword</h1>
+
+<p>To all SQLite lovers. You can view <a href="https://www.compileralchemy.com">compileralchemy.com</a> or <a href="">contribute to the book</a>. It is OpenSource!</p>
+<div class="chapter"></div>
+
+<h1 id="intro">Introduction</h1>
+
+<p>SQLite is a file-based database which is extremely reliable and stable. 
+It is the world&rsquo;s most used database. 
+The codebase and mechanisms it used is extremely complex. 
+The seemingly simple nature of it and adoption makes a good case for deep diving into in a fascinating piece of software.</p>
+<h1 id="c1">Chapter 1: The Story Behind</h1>
+
+<p>SQLite was written by Dwayne Richard Hipp.
+It is not uncommon to see it being abbreviated to D. Richard Hipp or DRH for short.
+The story of how the database came around is fascinating.
+It sheds light on the author&rsquo;s mindset and SQLite general coding culture.</p>
+<p>DRH holds a computer science doctorate. Since his early days he was very dedicated. 
+He dropped out of academia as the race was full of candidates.
+He turned to consulting.
+During that time, he was signed a software contract with shipyard <em>Bath Iron Works</em>. 
+His work involved finding the solution to pipe burst failure by controlling valves on a warship: the <em>DDG-79 Oscar
+Austin</em>.</p>
+<p><img alt="" src="../../assets/books/sqlite-internals/oscar_austin.jpg" /></p>
+<p>Richard had a problem.
+The software often did not work as the database server was down all the time.
+The ship was using <em>Informix</em>.
+So, he thought of spinning his own database.</p>
+<blockquote>
+<p>one of the guys I was working with says, “Richard, why
+don’t you just write one?” “Okay, I’ll give it a try.</p>
+<p>&hellip;</p>
+<p>all government contracts got shut down, so I was out of
+work for a few months, and I thought, “Well, I’ll just write
+that database engine now.”</p>
+</blockquote>
+<p>Contrary to many popular projects, Richard thought of a bytecode-driven engine since the begining.
+This shows his previous exposure to compiler crafstmanship.</p>
+<blockquote>
+<p>so I wrote a byte code engine that would actually run a
+query and then I wrote a compiler that would translate
+SQL into that byte code and voila, SQLite was born.</p>
+</blockquote>
+<h2>How SQLite picked up speed</h2>
+<p>SQLite was not an overnight success though people did realise it&rsquo;s potential since the early days.
+This is a list of some milestones which led to SQLite what it is today.</p>
+<p><strong>2000 - The Internet:</strong> Since the shipyard was adamant on <em>Informix</em>, SQLite was not used on the warship.
+Robert put the code out in the wild on the internet.
+One great moment was a personal initiative from a user running it on his <em>Palm Pilot</em>.</p>
+<p><strong>2001 - Motorola OS:</strong> Motorola was a phone manufacturing company. 
+The operating system they were using had SQLite on it.
+They wanted some help. 
+During the whole time, Richard has been working on the project as an OpenSource one.
+So, they proposed an $80k contract to Richard for support and enhancements.
+It was the first time that the author realized that OpenSource can bring in money.
+He rounded his OSS team and shipped the project.
+This would be the first in a series of long-lasting relationship with phone companies.</p>
+<p><strong>200x - America Online:</strong> The next serious company to reach out was America Online.
+They wanted the database on CDs they were mailing to customers. 
+Richard enthusiastically accepted the offer and midway realized the solution he had in mind would not work.
+These types of challenges helped SQLite grow into a robust product.</p>
+<p><strong>200x - Symbian OS:</strong> Symbian flew Richard to their office in London.
+Among many databases they evaluated, both OSS and closed-source, SQLite was chosen.
+Symbian was a great company but they had a problem. 
+They wanted to ensure that the project lives on even if Richard is no longer around.
+They wanted to increase the bus factor by having a SQLite consorsium.</p>
+<p><strong>200x - SQLite Consortium:</strong> Richard liked the idea of a consorsium.
+He started devising a plan of his own.
+Luckily someone from the Mozilla foundation reached out to him.
+They did not like the way he was setting up the framework around the consorsium by giving members voting rights.
+They proposed keeping the direction of the project in developers hand. 
+The friend from Mozilla being a lawyer was adamant on this point and saw through the implementation of the current setup.</p>
+<p><strong>200x - Google &amp; Android:</strong> Google was a complete outsider to the phone game.
+Soon, they approached Richard for a daring project.
+Having a phone connected to the internet with a robust software lifecycle was something extraordinary.
+They wanted SQLite to behave perfectly on this innovation.
+Richard&rsquo;s experience with the phone industry knew that Android was going to be a huge hit.</p>
+<blockquote>
+<p>We were going around boasting to everybody naively
+that SQLite didn’t have any bugs in it, or no serious bugs,
+but Android definitely proved us wrong. &hellip; It’s amazing
+how many bugs will crop up when your software
+suddenly gets shipped on millions of devices.</p>
+</blockquote>
+<p><strong>200x - Rockwell Collins:</strong> Rockwell Collins was a multinational corporation providing avionics and information technology systems and services to government agencies and aircraft manufacturers.
+They wanted the <em>DO-178B</em> aviation quality standard for SQLite.
+It meant 100% MCDC test coverage.
+This helped shaped SQLite test-backed approach to development.</p>
+<p>SQLite tests are better than even postgres which relies on peer reviews [3]. This allows the developers to experiment and change code fearlessly.</p>
+<h2>A from scratch principle</h2>
+<p>SQLite is notorious for implenting a bunch of functionalities from scratch.
+It&rsquo;s a daring, amazing, bold and crazy spirit which requires confidence and professionalism.
+People also call it the <em>From First Principles</em> approach.
+With no internet at the tips of the fingers and no wikipedia to consult, the author deserves massive respect.
+His teachers must have been proud to have their student be the living embodiment of what computer science and software engineering should be about.</p>
+<p>DRH does look for alternatives. 
+He does try out libraries.
+But, at the end of the day he ends up coding from scratch.</p>
+<p>First, he needed a database engine, he looked around, was not satisfied and went on to pull off his own implementation.</p>
+<p>The same goes for the b-tree layer.
+Much like a hero from a movie, he pulled Donald Knuth&rsquo;s algorithm book from the shelf and coded the b-tree he needed.
+He also completed the book&rsquo;s exercise about deleting elements. </p>
+<p>He doesn&rsquo;t understand the use of YACC, Bison and Lex when anybody can code their own parsers.</p>
+<p>He was using Git, but some functionalities were scratching his itch to build his own Control Version System. So, as usual, he wrote <em>Fossil</em>. 
+It&rsquo;s the CVS you would download and configure if you download the source as is from the website.</p>
+<blockquote>
+<p>&hellip; And it&rsquo;s GPL, and
+so SQLite Version 1 was GPL, it had to be because it
+was linking against the GPL library.
+But GDBM is only key-value, I can&rsquo;t do range queries
+with it. Then I said, “I&rsquo;m gonna write my own B-tree
+layer</p>
+</blockquote>
+<p>The from scratch spirit is much preferred as it enables the developers to have the freedom they want.
+They can choose what they want or how they implement things.
+Just wrapping over another library might be a problem waiting to happen.</p>
+<p>We can expect the library to be fairly complex as there are several components present which require knoledge of their own.</p>
+<blockquote>
+<p>never understood lex because it&rsquo;s so easy to write a bunch of C codes faster then Lex [1]</p>
+</blockquote>
+<div class="chapter"></div>
+
+<h1 id="c2">Chapter 2: Overview</h1>
+
+<p>A rough overview of SQLite is as follows</p>
+<pre><code>
+--------------     ------------
+| SQLite lib |  ⇐  | SQL code |
+--------------     ------------
+      ⇑ ⇓ 
+---------------
+| Binary file |
+---------------
+</code></pre>
+<p>A brief overview of the compilation step is as follows.
+The compiler takes the SQL code and outputs bytecodes.
+The Virtual Machine (VM) takes the bytecode and executes it.</p>
+<pre><code>+----------+     +----------+     +----+
+| Compiler | --&gt; | bytecode | --&gt; | VM |
++----------+     +----------+     +----+
+</code></pre>
+<h2>The compilation and execution process</h2>
+<p>A better view of the process might be </p>
+<pre><code>  SQL
+   |
+   v
+[ parser ]
+   |
+   v
+[ code generator ] 
+   |
+   v
+[ VM ]
+   |
+   v
+[ btree ]
+   |
+   v
+[ pager ]
+   |
+   v
+[ shim ]
+   |
+   v
+[ OS Interface ]
+</code></pre>
+<p>The first part of the library is called the compiler. 
+It is executed using the <code>sqlite3_prepare_v2()</code> function and outputs prepared statements aka bytecodes.</p>
+<pre><code>[ parser ]          \
+   |                 \ compiler 
+   v                 /
+[ code generator ]  / 
+   |
+   v
+[ VM ]  
+   |      
+   v       
+[ btree ] 
+   |      
+   v      
+[ pager ]   
+   |      
+   v      
+[ shim ] 
+   |    
+   v              
+[ OS Interface ] 
+</code></pre>
+<p>The second part of the library runs the program. 
+It is executed using the <code>sqlite3_step()</code> function.</p>
+<pre><code>[ parser ]         
+   |               
+   v               
+[ code generator ] 
+   |
+   v
+[ VM ]              \
+   |                 \
+   v                  \
+[ btree ]              \
+   |                    \ run the program
+   v                    /
+[ pager ]              /
+   |                  /
+   v                 /
+[ shim ]            /
+   |               /
+   v              / 
+[ OS Interface ] /
+</code></pre>
+<p>The btree layer and onward is called the storage engine.</p>
+<pre><code>[ parser ]       
+   |               
+   v               
+[ code generator ]
+   |
+   v
+[ VM ]             
+   |                
+   v               
+[ btree ]        \           
+   |              \             
+   v               \          
+[ pager ]           \         
+   |                 \ storage engine
+   v                 /
+[ shim ]            /
+   |               /
+   v              /
+[ OS Interface ] /
+</code></pre>
+<h2>Steps explanation</h2>
+<ul>
+<li>
+<p><strong>Tokeniser - Parser:</strong> The parser is a push-down automaton parser.
+It is reentrant and thread-safe. 
+It is generated by lemon. Relevent files include <code>parse.y</code>, <code>tool/lemon.c</code>.
+Outputs AST (<code>sqliteInt.h</code>).</p>
+</li>
+<li>
+<p><strong>Code generator:</strong> It does semantic analysis. 
+It does AST transformation using <code>select.c</code>.
+It determines join order using <code>where*.c</code>, <code>whereInt.h</code>.
+It does query planning using <code>select.c</code>.
+It outputs bytecodes using <code>build.c</code>, <code>delete.c</code>, <code>expr.c</code>, <code>insert.c</code>, <code>update.c</code>.
+It is the section with the most lines of code.</p>
+</li>
+<li>
+<p><strong>Virtual Machine:</strong> It is the section with the 2nd most number of lines of code.
+Relevant files includes <code>vdbe.c</code>, <code>vdbe.h</code>, <code>vdbeLnt.h</code>, <code>vdbe*.c</code>, <code>func.c</code>, <code>date.c</code>.
+It executes bytecode instructions from the previous step.</p>
+</li>
+</ul>
+<pre><code>[ parser ] 
+   |
+   v
+[ code generator ]
+   |
+   v
+[ VM ] 
+   | Interface defined by btree.h
+   v
+[ btree ]
+   |
+   v
+[ pager ]
+   |
+   v
+[ shim ]
+   |
+   v
+[ OS Interface ]
+</code></pre>
+<ul>
+<li>
+<p><strong>B-tree:</strong> SQLite uses both B+ and B- trees. 
+B+ tree is used for storing tables and B- is used for indexes.
+There can be multiple btrees per database file.
+It is read using a cursor.
+Concurrent reads and writes on same table is done using different cursors.</p>
+</li>
+<li>
+<p><strong>Pager:</strong> Also called page cache.
+Prevents from data corruption in case of power loss.
+It uses two mutually exclusive modes to achieve this.
+The Roll back mode or the Write Ahead Log (WAL) mode.
+It also enforces concurrency control.
+It is responsible for dealing with in-memory cache.
+Relevent files include <code>pager.c</code>, <code>pager.h</code>, <code>pcache1.c</code>, <code>pcache.c</code>, <code>pcache.h</code>, <code>wal.c</code>, <code>wal.h</code>.</p>
+</li>
+<li>
+<p><strong>Shim:</strong> The Shim layer is responsible for compression, logging and encryption.
+It is used to emulate an OS layer.
+It is used for tests to simulate hardware failures.
+Relevant files include <code>test_multiplex.c</code>, <code>test_vfstrace.c</code></p>
+</li>
+<li>
+<p><strong>OS Interface:</strong> It is used for os-specific interfacing. 
+It can be changed at runtime.
+It is responsible for I/O (<code>test_onefile.c</code>).
+Relevant files include <code>os.c</code>, <code>os_unix.c</code>, <code>os_win.c</code>, <code>os*.h</code>. </p>
+</li>
+</ul>
+<div class="chapter"></div>
+<h1 id="c3">Chapter 3: File & Record Format</h1>
+
+<p>A SQLite file is a series of bytes.</p>
+<pre><code>[b1 b2 b3 b4 b5 ...]
+</code></pre>
+<p>It is divided into equally-sized chuncks called pages</p>
+<pre><code>----------------------------------------------
+| page 1 | page 2 | page 3 | page 4 | page 5 |
+----------------------------------------------
+</code></pre>
+<p>The first page is the most important. 
+It declares vital information about the file.
+The first page looks like this.
+The first 16 bytes contains the string <code>SQLite format 3</code>.
+The next two bytes states the file size.</p>
+<pre><code>0                 16       18
+------------------------------
+| SQLite format 3 |  4000  |
+------------------------------
+[                     page 1        ..
+</code></pre>
+<p>Here is a complete table about what the first page contains.</p>
+<pre><code>start byte - offset byte - description
+00 - 16: SQLite format 3
+16 - 02: Page size in bytes
+18 - 01: File format write version
+19 - 01: File format read version
+20 - 01: Bytes reserved at the end of each page
+21 - 01: Max embedded payload fraction
+22 - 01: Max embedded payload fraction
+23 - 01: Min leaf payload fraction
+24 - 04: File change counter
+28 - 04: Size of db  in pages
+32 - 04: First freelist page
+36 - 04: Number of freelist pages in the file
+40 - 04: Schema cookie number
+44 - 56: 14 4-byte meta values passed to higher layers
+</code></pre>
+<div class="chapter"></div>
+<h1 id="c4">Chapter 4: Functionalities</h1>
+    </div>
+    
+</body>
+
+</html>
