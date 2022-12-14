@@ -380,7 +380,7 @@ A SQLite file is a series of bytes.
 [b1 b2 b3 b4 b5 ...]
 ```
 
-It is divided into equally-sized chuncks called pages
+It is divided into equally-sized chuncks called pages. There can be one or more pages.
 
 
 ```
@@ -392,14 +392,20 @@ It is divided into equally-sized chuncks called pages
 The first page is the most important. 
 It declares vital information about the file.
 The first page looks like this.
-The first 16 bytes contains the string `SQLite format 3`.
+The first 16 bytes contains the string `SQLite format 3`. 
+In hex it is like this `53 51 4c 69 74 65 20 66 6f 72 6d 61 74 20 33 00`, including the null terminator at the end `\000`.
+
 The next two bytes states the file size.
+Before 3.7.0.1 it had to be between 512 and 32768.
+As from 3.7.1 it can be of size 65536. 
+Since such a large number cannot fit in 2 bytes, the value is set to `0x00 0x01`.
+This represents big-indian 1 and is used to specify a size of 65536.
 
 
 ```
 0                 16       18
 ------------------------------
-| SQLite format 3 |  4000  |
+| SQLite format 3 |  400   |
 ------------------------------
 [                     page 1        ..
 ```
@@ -408,20 +414,52 @@ Here is a complete table about what the first page contains.
 
 ```
 start byte - offset byte - description
-00 - 16: SQLite format 3
-16 - 02: Page size in bytes
-18 - 01: File format write version
-19 - 01: File format read version
-20 - 01: Bytes reserved at the end of each page
-21 - 01: Max embedded payload fraction
-22 - 01: Max embedded payload fraction
-23 - 01: Min leaf payload fraction
-24 - 04: File change counter
-28 - 04: Size of db  in pages
-32 - 04: First freelist page
-36 - 04: Number of freelist pages in the file
-40 - 04: Schema cookie number
-44 - 56: 14 4-byte meta values passed to higher layers
+
+00	16	The header string: "SQLite format 3\000"
+16	02	The database page size in bytes. Must be a power of two between 512 and 32768 inclusive, or the value 1 representing a page size of 65536.
+18	01	File format write version. 1 for legacy; 2 for WAL.
+19	01	File format read version. 1 for legacy; 2 for WAL.
+20	01	Bytes of unused "reserved" space at the end of each page. Usually 0.
+21	01	Maximum embedded payload fraction. Must be 64.
+22	01	Minimum embedded payload fraction. Must be 32.
+23	01	Leaf payload fraction. Must be 32.
+24	04	File change counter.
+28	04	Size of the database file in pages. The "in-header database size".
+32	04	Page number of the first freelist trunk page.
+36	04	Total number of freelist pages.
+40	04	The schema cookie.
+44	04	The schema format number. Supported schema formats are 1, 2, 3, and 4.
+48	04	Default page cache size.
+52	04	The page number of the largest root b-tree page when in auto-vacuum or incremental-vacuum modes, or zero otherwise.
+56	04	The database text encoding. A value of 1 means UTF-8. A value of 2 means UTF-16le. A value of 3 means UTF-16be.
+60	04	The "user version" as read and set by the user_version pragma.
+64	04	True (non-zero) for incremental-vacuum mode. False (zero) otherwise.
+68	04	The "Application ID" set by PRAGMA application_id.
+72	20	Reserved for expansion. Must be zero.
+92	04	The version-valid-for number.
+96	04	SQLITE_VERSION_NUMBER
+```
+
+Pages can be one of the following:
+
+
+```
+- The lock-byte page
+
+- A freelist page -------A freelist trunk page
+				    \
+				     --- A freelist leaf page
+
+- A b-tree page ------ A table b-tree interior page
+				   \
+				    --- A table b-tree leaf page
+				    |
+	                --- An index b-tree interior page
+	                |
+	                --- An index b-tree leaf page
+
+- A payload overflow page
+- A pointer map page
 ```
 
 <div class="chapter"></div>
