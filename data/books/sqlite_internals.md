@@ -1,34 +1,54 @@
 
 
 
-<div class="chapter"></div>
 
-<ul class="toc">
+<ul class="toc chapter">
 <li><a href="#foreword">Foreword</a></li>
 <li><a href="#intro">Introduction</a></li>
+<li><a href="#contribs">Contributors</a></li>
 <li><a href="#c1"><abbr title="HyperText Markup Language">The Story Behind</abbr></a></li>
 <li><a href="#c2"><abbr title="HyperText Markup Language">Overview</abbr></a></li>
 <li><a href="#c3"><abbr title="HyperText Markup Language">File & Record Format</abbr></a></li>
-<li><a href="#c4"><abbr title="HyperText Markup Language">Functionalities</abbr></a></li>
-
+<li><a href="#c4"><abbr title="HyperText Markup Language">Rollback & WAL mode</abbr></a></li>
+<li><a href="#interesting-features"><abbr title="HyperText Markup Language">Interesting Features</abbr></a></li>
+<li><a href="#knowing-internals"><abbr title="HyperText Markup Language">Knowing Internals</abbr></a></li>
+<li><a href="#the-future"><abbr title="HyperText Markup Language">The Future</abbr></a></li>
+<li><a href="#refs"><abbr title="HyperText Markup Language">References</abbr></a></li>
 </ul>
-<div class="chapter"></div>
 
-<h1 id="foreword">Foreword</h1>
+<h1 id="foreword" class="chapter">Foreword</h1>
 
-To all SQLite lovers. You can view [compileralchemy.com](https://www.compileralchemy.com) or [contribute to the book](https://github.com/compileralchemy/compileralchemy.github.io/blob/master/data/books/sqlite_internals.md). It is OpenSource! Feel free to fix typos etc.
+To all SQLite lovers. 
+You can view [compileralchemy.com](https://www.compileralchemy.com) or [contribute to the book](https://github.com/compileralchemy/compileralchemy.github.io/blob/master/data/books/sqlite_internals.md). 
+It is OpenSource! 
+Feel free to contribute a section, propose rewrites, fix typos etc.
 
-<div class="chapter"></div>
+Particular thanks to the [LibSQL](https://github.com/libsql/libsql) maintainers. 
+Started this book as a series of presentations to DevFest and the LibSQL community.
+I wanted to contribute to LibSQL.
+A book is far better than presentation slides.
 
-<h1 id="intro">Introduction</h1>
+I also owe much to Dan Shearer from [LumoSQL](https://github.com/LumoSQL/lumosql). 
+For his time reviewing a pre-run of the presentation.
 
+Also, i just could not find a sane free book on SQLite internals!
+Free books help keep human legacy around.
+Without books, you burn time, a lot of it.
+
+<h1 id="intro" class="chapter">Introduction</h1>
 
 SQLite is a file-based database which is extremely reliable and stable. 
 It is the world's most used database. 
-The codebase and mechanisms it used is extremely complex. 
+The codebase and mechanisms it uses is extremely complex. 
 The seemingly simple nature of it and adoption makes a good case for deep diving into in a fascinating piece of software.
 
-<h1 id="c1">Chapter 1: The Story Behind</h1>
+It also implemented many features years ahead of popular databases like partial indices.
+
+<h1 id="contribs" class="chapter">Contributors</h1>
+
+See end of book
+
+<h1 id="c1" class="chapter">Chapter 1: The Story Behind</h1>
 
 
 SQLite was written by Dwayne Richard Hipp.
@@ -36,7 +56,11 @@ It is not uncommon to see it being abbreviated to D. Richard Hipp or DRH for sho
 The story of how the database came around is fascinating.
 It sheds light on the author's mindset and SQLite general coding culture.
 
-DRH holds a computer science doctorate. Since his early days he was very dedicated. 
+DRH holds a computer science doctorate in computational linguistics whithout taking prior programming courses.
+He also has a masters in electrical engineering and went to work for Bell Labs! [9]
+
+
+Since his early days he was very dedicated. 
 He dropped out of academia as the race was full of candidates.
 He turned to consulting.
 During that time, he was signed a software contract with shipyard _Bath Iron Works_. 
@@ -164,13 +188,16 @@ The from scratch spirit is much preferred as it enables the developers to have t
 They can choose what they want or how they implement things.
 Just wrapping over another library might be a problem waiting to happen.
 
-We can expect the library to be fairly complex as there are several components present which require knoledge of their own.
+We can expect the library to be fairly complex as there are several components present which require knowledge of their own.
 
 > never understood lex because it's so easy to write a bunch of C codes faster then Lex [1]
 
-<div class="chapter"></div>
+## Competing with f-open
 
-<h1 id="c2">Chapter 2: Overview</h1>
+SQLite advertises itself as being in comptetition not with other databases but with saving custom data on file.
+If you want to save data to a file, just use and share SQLite databases.
+
+<h1 id="c2" class="chapter">Chapter 2: Overview</h1>
 
 A rough overview of SQLite is as follows
 
@@ -180,7 +207,7 @@ A rough overview of SQLite is as follows
 --------------     ------------
 | SQLite lib |  ⇐  | SQL code |
 --------------     ------------
-	  ⇑ ⇓ 
+      ⇑ ⇓ 
 ---------------
 | Binary file |
 ---------------
@@ -368,10 +395,40 @@ Relevant files include `test_multiplex.c`, `test_vfstrace.c`
 It can be changed at runtime.
 It is responsible for I/O (`test_onefile.c`).
 Relevant files include `os.c`, `os_unix.c`, `os_win.c`, `os*.h`. 
+The Virtual File System VFS is impemented at this layer.
+
+## Important concepts
 
 
-<div class="chapter"></div>
-<h1 id="c3">Chapter 3: File & Record Format</h1>
+Those are some concepts which occur frequently and it pays to know about the in advance.
+
+**Bytes**
+
+A byte consists of 8 bits.
+
+
+**B-tree**
+
+A B-tree is a data structure providing logarithmmic operation time.
+SQLite keeps the depth as low as possible.
+It plays on the breadth of the 2nd and 3rd layers.
+It provides storage in this usecase for key/data storage with unique and ordered keys.
+
+**Big and small endian**
+
+TODO
+
+**Var int**
+
+TODO
+
+A variable-length integer or "varint" is a static Huffman encoding of 64-bit twos-complement integers that uses less space for small positive values. 
+A varint is between 1 and 9 bytes in length. 
+The varint consists of either zero or more bytes which have the high-order bit set followed by a single byte with the high-order bit clear, or nine bytes, whichever is shorter. 
+The lower seven bits of each of the first eight bytes and all 8 bits of the ninth byte are used to reconstruct the 64-bit twos-complement integer. 
+Varints are big-endian: bits taken from the earlier byte of the varint are more significant than bits taken from the later bytes.
+
+<h1 id="c3" class="chapter">Chapter 3: File & Record Format</h1>
 
 A SQLite file is a series of bytes.
 
@@ -396,7 +453,7 @@ The first 16 bytes contains the string `SQLite format 3`.
 In hex it is like this `53 51 4c 69 74 65 20 66 6f 72 6d 61 74 20 33 00`, including the null terminator at the end `\000`.
 
 The next two bytes states the file size.
-Before 3.7.0.1 it had to be between 512 and 32768.
+Before 3.7.0.1 it had to be a power of two between 512 and 32768.
 As from 3.7.1 it can be of size 65536. 
 Since such a large number cannot fit in 2 bytes, the value is set to `0x00 0x01`.
 This represents big-indian 1 and is used to specify a size of 65536.
@@ -410,57 +467,828 @@ This represents big-indian 1 and is used to specify a size of 65536.
 [                     page 1        ..
 ```
 
+**The first page**
+
 Here is a complete table about what the first page contains.
 
 ```
 start byte - offset byte - description
 
-00	16	The header string: "SQLite format 3\000"
-16	02	The database page size in bytes. Must be a power of two between 512 and 32768 inclusive, or the value 1 representing a page size of 65536.
-18	01	File format write version. 1 for legacy; 2 for WAL.
-19	01	File format read version. 1 for legacy; 2 for WAL.
-20	01	Bytes of unused "reserved" space at the end of each page. Usually 0.
-21	01	Maximum embedded payload fraction. Must be 64.
-22	01	Minimum embedded payload fraction. Must be 32.
-23	01	Leaf payload fraction. Must be 32.
-24	04	File change counter.
-28	04	Size of the database file in pages. The "in-header database size".
-32	04	Page number of the first freelist trunk page.
-36	04	Total number of freelist pages.
-40	04	The schema cookie.
-44	04	The schema format number. Supported schema formats are 1, 2, 3, and 4.
-48	04	Default page cache size.
-52	04	The page number of the largest root b-tree page when in auto-vacuum or incremental-vacuum modes, or zero otherwise.
-56	04	The database text encoding. A value of 1 means UTF-8. A value of 2 means UTF-16le. A value of 3 means UTF-16be.
-60	04	The "user version" as read and set by the user_version pragma.
-64	04	True (non-zero) for incremental-vacuum mode. False (zero) otherwise.
-68	04	The "Application ID" set by PRAGMA application_id.
-72	20	Reserved for expansion. Must be zero.
-92	04	The version-valid-for number.
-96	04	SQLITE_VERSION_NUMBER
+00  16  The header string: "SQLite format 3\000"
+16  02  The database page size in bytes. Must be a power of two 
+        between 512 and 32768 inclusive, or the value 1 
+        representing a page size of 65536.
+18  01  File format write version. 1 for legacy; 2 for WAL.
+19  01  File format read version. 1 for legacy; 2 for WAL.
+20  01  Bytes of unused "reserved" space at the end of each page. 
+        Usually 0.
+21  01  Maximum embedded payload fraction. Must be 64.
+22  01  Minimum embedded payload fraction. Must be 32.
+23  01  Leaf payload fraction. Must be 32.
+24  04  File change counter.
+28  04  Size of the database file in pages. 
+        The "in-header database size".
+32  04  Page number of the first freelist trunk page.
+36  04  Total number of freelist pages.
+40  04  The schema cookie.
+44  04  The schema format number.Supported schema formats are 
+        1, 2, 3, and 4.
+48  04  Default page cache size.
+52  04  The page number of the largest root b-tree page when 
+        in auto-vacuum or incremental-vacuum modes, or zero 
+        otherwise.
+56  04  The database text encoding. A value of 1 means UTF-8. 
+        A value of 2 means UTF-16le. A value of 3 means UTF-16be.
+60  04  The "user version" as read and set by the 
+        user_version pragma.
+64  04  True (non-zero) for incremental-vacuum mode. False 
+        (zero) otherwise.
+68  04  The "Application ID" set by PRAGMA application_id.
+72  20  Reserved for expansion. Must be zero.
+92  04  The version-valid-for number.
+96  04  SQLITE_VERSION_NUMBER
 ```
 
-Pages can be one of the following:
+The first page contains 100 bytes less storage space.
 
 
 ```
+[ db header | free space ]
+    |            |
+   100 bytes     --- Can be any type of page
+```
+
+The free space can be of any type of page, but, it will contain less information than a typical page handles.
+This needs some adjustments in some cases in the way information is stored for that type of page.
+
+## Types of pages
+
+In this section we pass over the different types of pages used by SQLite.
+Any page will be one of these types: 
+
 - The lock-byte page
-
-- A freelist page -------A freelist trunk page
-				    \
-				     --- A freelist leaf page
-
-- A b-tree page ------ A table b-tree interior page
-				   \
-				    --- A table b-tree leaf page
-				    |
-	                --- An index b-tree interior page
-	                |
-	                --- An index b-tree leaf page
-
+- A freelist page
+- A b-tree page
 - A payload overflow page
 - A pointer map page
+
+### The Lock-Byte Page
+
+This page is retained only to preserve backward compatibility.
+It was conceived for Microsoft 95.
+When it is present, it occurs at bytes offset 1073741824 and 1073742335.
+If the file doesn't have that many bytes, the page does not exist.
+If it does have the necessary bytes, there is only one such page.
+It's dealt with by the VFS layer rather than SQLite core.
+
+### Freelist pages
+
+```
+             has 
+             many
+A freelist -------- freelist trunk page [ n1, n2, n3 ]
+   page                                   |   |   |
+                  A freelist leaf page ----   |   |
+                                              |   ---- A freelist
+                  A freelist leaf page --------        leaf page
 ```
 
-<div class="chapter"></div>
-<h1 id="c4">Chapter 4: Functionalities</h1>
+Unused pages are stored on the freelist.
+It is a linked list of trunk pages with each page containing page numbers for zero or more freelist leaf pages, which contain nothing.
+These pages can be reused.
+When using the `VACCUM` command, the freelist is purged and a new database file is written.
+When auto-vaccum is enabled, freelist is not used a new compacted db is written on each commit.
+
+
+### B-Tree pages
+
+
+```
+               can be either
+A b-tree page --------------- 
+                    \                       either
+                     --- table b-tree page --------- leaf page
+                     |                          \
+                     |                           \__ interior page
+                     |
+                     |                       either
+                     --- index b-tree page ---------- leaf page
+                                                 \
+                                                  \__ interior page
+
+```
+
+B-tree pages can be either a table page or an index page. 
+A page is always either a leaf pae of an interior page.
+
+A btree looks like this
+
+```
+                     root page
+                     --------------------------- 
+                     | key | data | key | data |
+                     --------------------------- 
+                              |
+                ---------------
+                |
+interior page   |           interior page               interior page
+--------------------------- --------------------------- ------------
+| key | data | key | data | | key | data | key | data | | key | 
+--------------------------- --------------------------- --------- ...
+                      |
+                      -----
+            leaf page     |         leaf page                 leaf page
+----------------------  ----------------------   ----------------------
+| key |    data      |  | key |    data      |   | key |    data      | 
+----------------------  ----------------------   ----------------------
+|     key   |  data  |  |     key   |  data  |   | key |    data      |
+----------------------  ----------------------   ----------------------
+|   key   |   data   |  |   key   |   data   |   | key |    data      |
+----------------------  ----------------------   ----------------------
+```
+
+Keys are integers. The data of a root page is the key of an interior page.
+The data of an interior page is the key of a leaf page.
+Database records are stored in the data section of a leaf page.
+
+
+A key in a leaf table is a 64-bit signed int
+
+An interior page contains k number of keys, at least 2, upto how many fits on page.
+This is unless page 1 is an interior b-tree page in which case it can handle one key only.
+It also contains k+1 number of pointers to child b-tree pages
+A pointer is a 32-bit unsigned integer page number of the child page.
+
+Conceptually speaking, in an interior b-tree page, the pointers and keys logically alternate with a pointer on both ends, keys in ascending order from left to right.
+
+
+```
+[  pointer  -  key  - pointer - key - pointer - ... - pointer ]
+    |           |                                        |
+    --- cell ----                    stored separately ---   
+```
+
+> A leaf page can be a root page. Root pages are identified by their root page number
+
+There is one table b-tree in each db file for each rowid table.
+
+A rowid table is a table which has a unique key to access data in the b-tree strorage engine.
+
+
+### About overflowing
+
+If the data section in a leaf page becomes bigger than the space available in a page, it is linked to another page. 
+If it's size exceeds the other page, it is added to yet other another page.
+
+
+```
+part of leaf page
+----------------------------------------------
+| key |          data          | page 23     |----
+----------------------------------------------   |
+                                                 |
+overflow page                                    |
+----------------------------------------------   |
+|                  page 23                   |   |
+|                                            |----
+|                                            |
+|                                            |----
+----------------------------------------------   |
+                                                 |
+overflow page                                    |
+----------------------------------------------   |
+|                  page 27                   |   |
+|                                            |----
+|                                            |
+|                                            |
+----------------------------------------------
+```
+
+Large keys on index b-trees are split up into overflow pages so that no single key uses more than one fourth of the available storage space on the page and hence every internal page is able to store at least 4 keys
+
+The integer keys of table b-trees are never large enough to require overflow, so key overflow only occurs on index b-trees.
+
+### Record format
+
+The data part of a leaf page is stored in binary format and consists of 3 parts:
+
+- The header
+- The type part
+- The data part
+
+```
+[ key ][ data ]
+          |
+          v
+        [ header size | type1 | type2 | data1 | data2 ]
+``` 
+
+A row such as this
+
+```
+id     0
+price  3
+name   shoe
+```
+
+Would be encoded as
+
+```
+[ 04 | 01 | 01 | 21 ] [ 00 | 03 | shoe ]
+```
+
+Here's the table SQLite consults for encoding and decoding
+
+```
+Serial Type, Content Size,   Value meaning
+0            0          NULL
+1            1          8-bit twos-complement integer.
+2            2          big-endian 16-bit twos-complement integer.
+3            3          big-endian 24-bit twos-complement integer.
+4            4          big-endian 32-bit twos-complement integer.
+5            6          big-endian 48-bit twos-complement integer.
+6            8          big-endian 64-bit twos-complement integer.
+7            8          big-endian IEEE 754-2008 64-bit floating , number.
+8            0          integer 0. (Only available for schema format >= 4)
+9            0          integer 1. (Only available for schema format >= 4)
+10,11        variable   Reserved for internal use. These serial type codes 
+                        will never appear in a well-formed database file, 
+                        but they might be used in transient and temporary 
+                        database files that SQLite sometimes generates for
+                        its own use. The meanings of these codes can shift
+                        from one release of SQLite to the next.
+N≥12, even   (N-12)/2   Value is a BLOB that is (N-12)/2 bytes in length.
+N≥13, odd    (N-13)/2   Value is a string in the text encoding and 
+                        (N-13)/2 bytes in length. The nul terminator is not
+                        stored.
+```
+
+So, here's what the record means
+
+```
+[ 04 ] header size, including the size itself
+[ 01 ] type 8-bit twos-complement integer.
+[ 01 ] type 8-bit twos-complement integer.
+[ 21 ] As 21 >= 13 and is odd,
+       (N-13)/2 == length of string shoe in encoding defined in db 
+                   here we are assuming utf8
+       (N-13)/2 == 4
+       N == 4 * 2 + 13
+       N == 21
+
+[ 00 ] value of id field
+[ 03 ] value of price field
+[ shoe ] value of name field
+```
+
+
+### Btree page format
+
+
+This is what a b-tree page looks like.
+
+```
+----------------------
+| 100 byte header    | (if page 1)
+----------------------
+| 8 or 12 byte       | b-tree page header
+----------------------       08: leaf page
+| cell pointer array |       12: interior page
+----------------------
+| free space         |
+----------------------
+| cell content area  |
+----------------------
+| reserved region    |
+----------------------
+```
+
+The reserved region is found in all pages except the locking page.
+It can be used by extensions to write per-page information.
+It's size is defined in the database header at an offset of bytes 20.
+
+Here is the format of the b-tree page header.
+
+```
+
+Offset  Size    Description
+0   1   The one-byte flag at offset 0 indicating 
+        the b-tree page type.
+            02 (0x02): page is an interior index b-tree page.
+            05 (0x05): page is an interior table b-tree page.
+            10 (0x0a): page is a leaf index b-tree page.
+            13 (0x0d): page is a leaf table b-tree page.
+            Any other value for the b-tree page type is an error.
+1   2   The two-byte integer at offset 1 gives the start of the 
+        first freeblock on the page, or is zero if there are no 
+        freeblocks.
+3   2   The two-byte integer at offset 3 gives the number of cells 
+        on the page.
+5   2   The two-byte integer at offset 5 designates the start of the 
+        cell content area. A zero value for this integer is interpreted 
+        as 65536.
+7   1   The one-byte integer at offset 7 gives the number of fragmented 
+        free bytes within the cell content area.
+8   4   The four-byte page number at offset 8 is the right-most pointer. 
+        This value appears in the header of interior b-tree pages only 
+        and is omitted from all other pages.
+
+```
+
+TOADD: Freeblock
+
+<h1 id="c4" class="chapter">Chapter 4: Rollback & WAL mode</h1>
+
+In case of power cuts, SQLite ensures that data is not lost.
+The pager layer responsible for executing these two modes.
+The Write Ahead Log (WAL) mode is better than the Rollback for for two reasons:
+
+- It is faster
+- It allows reads and writes at the same time
+
+The Rollback mode is the default primarily due to these reasons
+
+- Some computers are still around which have weird memory mappings
+- Several computers accessing the file might cause issues
+- Backward compatibility is not guaranteed. Waiting until WAL is even more stable.
+- Hash lookup for page in WAL mode is in shared memory
+
+## The Rollback mode
+
+When reading occurs, the process acquires a shared lock.
+
+
+```
+|            |          |      |
+| user space | os cache | disk |
+|      a     |    a     |   x  |
+|      a     |          |   x  |
+|            |    a     |   x  |
+|            |          |   x  |
+                 🔒 shared*
+```
+
+A shared lock prevents processes from changing data.
+
+When **writing**, a reserved lock is acquired.
+A journal is also created.
+Journals in the this mode have the `.database-journal` extension.
+
+```
+|            |          |      |
+| user space | os cache | disk |
+|      a     |    a     |   x  |
+|      a     |          |   x  |
+|            |    a     |   x  |
+|            |          |   x  |
+                 🔒 reserved*
+|            |          |      | file.database-journal
+|            |          |      | 
+|            |          |      |
+|            |          |      |
+|            |          |      |            
+```
+
+Then the data is copied to the journal cache
+
+```
+|            |          |      |
+| user space | os cache | disk |
+|      a     |    a     |   x  |
+|      a     |          |   x  |
+|            |    a     |   x  |
+|            |          |   x  |
+                 🔒 reserved
+|            |          |      | file.database-journal
+|            |          |      | 
+|            |          |      | 
+|            |    a*    |      |
+|            |    a*    |      |  
+```
+
+Then the data is changed
+
+
+```
+|            |          |      |
+| user space | os cache | disk |
+|      b*    |    a     |   x  |
+|      b*    |          |   x  |
+|            |    a     |   x  |
+|            |          |   x  |
+                 🔒 reserved
+|            |          |      | journal
+|            |          |      | 
+|            |          |      | 
+|            |    a     |      |
+|            |    a     |      |  
+```
+
+Then the data in the journal cache is flushed to the journal on disk.
+
+```
+|            |          |      |
+| user space | os cache | disk |
+|      b     |    a     |   x  |
+|      b     |          |   x  |
+|            |    a     |   x  |
+|            |          |   x  |
+                 🔒 reserved
+|            |          |      | journal
+|            |          |      | 
+|            |          |      | 
+|            |    a     |   a* |
+|            |    a     |   a* |  
+```
+
+This takes some times and can be turned off but, won't guarantee that data is safe during power failure.
+
+The an exlclusive lock is acquired.
+This stops writing completely!
+
+```
+|            |          |      |
+| user space | os cache | disk |
+|      b     |    a     |   x  |
+|      b     |          |   x  |
+|            |    a     |   x  |
+|            |          |   x  |
+                 🔒 exclusive*
+|            |          |      | journal
+|            |          |      | 
+|            |          |      | 
+|            |    a     |   a  |
+|            |    a     |   a  |  
+```
+
+The new values are flushed to the os cache.
+
+```
+|            |          |      |
+| user space | os cache | disk |
+|      b     |    b*    |   x  |
+|      b     |          |   x  |
+|            |    b*    |   x  |
+|            |          |   x  |
+                 🔒 exclusive
+|            |          |      | journal
+|            |          |      | 
+|            |          |      | 
+|            |    a     |   a  |
+|            |    a     |   a  |  
+```
+
+Then it is flushed to disk
+
+```
+|            |          |      |
+| user space | os cache | disk |
+|      b     |    b     |   b* |
+|      b     |          |   x  |
+|            |    b     |   b* |
+|            |          |   x  |
+                 🔒 exclusive
+|            |          |      | journal
+|            |          |      | 
+|            |          |      | 
+|            |    a     |   a  |
+|            |    a     |   a  |  
+```
+
+When a commit occurs, it deletes the journal.
+
+```
+|            |          |      |
+| user space | os cache | disk |
+|      b     |    b     |   b  |
+|      b     |          |   x  |
+|            |    b     |   b  |
+|            |          |   x  |
+                 🔒 exclusive
+|            |          |      | journal
+|            |          |      | 
+|            |          |      | 
+|            |          |      |
+|            |          |      |  
+```
+
+Now, if there is a power loss before commit, the situation would be as follows.
+
+
+```
+|            |          |      |
+| user space | os cache | disk |
+|            |          |   b  |
+|            |          |   x  |
+|            |          |   x  |
+|            |          |   x  |
+                 
+|            |          |      | journal
+|            |          |      | 
+|            |          |      | 
+|            |          |   a  |
+|            |          |   a  |  
+```
+
+When power is restored, a shared lock is acquired.
+
+```
+|            |          |      |
+| user space | os cache | disk |
+|            |          |   b  |
+|            |          |   x  |
+|            |          |   x  |
+|            |          |   x  |
+                 🔒 shared*        
+|            |          |      | journal
+|            |          |      | 
+|            |          |      | 
+|            |          |   a  |
+|            |          |   a  |  
+```
+
+Then an exclusive lock is acquired.
+
+```
+|            |          |      |
+| user space | os cache | disk |
+|            |          |   b  |
+|            |          |   x  |
+|            |          |   x  |
+|            |          |   x  |
+                 🔒 exclusive*       
+|            |          |      | journal
+|            |          |      | 
+|            |          |      | 
+|            |          |   a  |
+|            |          |   a  |  
+```
+
+Then data is copied from the journal disk to the journal cache.
+
+```
+|            |          |      |
+| user space | os cache | disk |
+|            |          |   b  |
+|            |          |   x  |
+|            |          |   x  |
+|            |          |   x  |
+                 🔒 exclusive       
+|            |          |      | journal
+|            |          |      | 
+|            |          |      | 
+|            |    a*    |   a  |
+|            |    a*    |   a  |  
+```
+
+Then it is copied from the journal cache to the OS cache.
+
+```
+|            |          |      |
+| user space | os cache | disk |
+|            |    a*    |   b  |
+|            |    a*    |   x  |
+|            |          |   x  |
+|            |          |   x  |
+                 🔒 exclusive       
+|            |          |      | journal
+|            |          |      | 
+|            |          |      | 
+|            |    a     |   a  |
+|            |    a     |   a  |  
+```
+
+Then it is flushed to disk
+
+```
+|            |          |      |
+| user space | os cache | disk |
+|            |    a     |   a* |
+|            |    a     |   a* |
+|            |          |   x  |
+|            |          |   x  |
+                 🔒 exclusive       
+|            |          |      | journal
+|            |          |      | 
+|            |          |      | 
+|            |    a     |   a  |
+|            |    a     |   a  |  
+```
+
+## The Write Ahead Log (WAL) mode
+
+Just as in Rollback mode, first a shared lock is acquired.
+WAL journals have a `.database-wal` extension.
+
+
+```
+|            |          |      |
+| user space | os cache | disk |
+|      a     |    a     |   x  |
+|      a     |          |   x  |
+|            |    a     |   x  |
+|            |          |   x  |
+                 🔒 shared*
+|            |          |      | file.database-wal
+|            |          |      | 
+|            |          |      |
+|            |          |      |
+|            |          |      |            
+```
+
+Then, the value is changed
+
+```
+|            |          |      |
+| user space | os cache | disk |
+|      b*    |    a     |   x  |
+|      b*    |          |   x  |
+|            |    a     |   x  |
+|            |          |   x  |
+                 🔒 shared
+|            |          |      | file.database-wal
+|            |          |      | 
+|            |          |      |
+|            |          |      |
+|            |          |      |            
+```
+
+Now, if another process is accessing the db, the old value is flushed to the journal cache.
+
+
+```
+|            |            |          |      |
+| user2      | user space | os cache | disk |
+|     b*     |      b     |    a     <-  x  |
+|     a*     |      b     |          |   x  |
+|            |            |    a     <-  x  |
+|            |            |          |   x  |
+                 🔒 shared
+                          |          |      | 
+                          |          |      | wal
+                          |          |      |
+                          |    b*    |      |
+                          |    b*    |      |            
+```
+
+The new process gets a snapshot of the data.
+For illustration purposes below, `b` from wal cache, `a` from os cache.
+
+```
+|            |            |          |      |
+| user2      | user space | os cache | disk |
+|     b      |      b     |    a     |   x  |
+|     c*     |      b     |          |   x  |
+|            |            |    a     |   x  |
+|            |            |          |   x  |
+                 🔒 shared
+                          |          |      | 
+                          |          |      | wal
+                          |          |      |
+                          |    b     |      |
+                          |    c*    |      |            
+```
+
+Different reads and writes with snapshot isolation can occur.
+
+
+```
+|            |            |          |      |
+| user2      | user space | os cache | disk |
+|     b      |      b     |    a     |   x  |
+|     c      |      b     |          |   x  |
+|            |            |    a     |   x  |
+|            |            |          |   x  |
+                 🔒 shared
+                          |          |      | 
+                          |          |      | wal
+                          |          |      |
+                          |    b     |   b* |
+                          |    c     |   c* |            
+```
+
+A checkpoint operation truncates the journal cache and disk content.
+
+```
+|            |          |      |
+| user space | os cache | disk |
+|            |    c     |   x  |
+|            |    b     |   x  |
+|            |    c     |   x  |
+|            |    a     |   x  |
+                 🔒 shared
+             |          |      | 
+             |          |      | wal
+             |          |      |
+             |          |      |
+             |          |      |            
+```
+
+<h1 id="interesting-features" class="chapter">Chapter 5: Interesting Features </h1>
+
+## Virtual Tables
+
+## Common Table Expressions
+
+Oracle needed recursive queries and they added common table expressions.
+
+## Save points
+
+## Partial Indices
+
+Developed for Expensify.
+
+<h1 id="knowing-internals" class="chapter">Knowing The Internals </h1>
+
+
+## WebSQL
+
+
+- WebStorage on the web
+- Not going to implement an engine from scratch: Use SQLite
+- "User agents must implement the SQL dialect supported by Sqlite 3.6.19"
+- Example exploit: Omer Gull - SELECT code execution FROM USING SQLite [4]
+- Need upated version of SQLite -> conflict with requirement of 3.6.19
+- Aug 2022 Chrome: Deprecating and Removing webSQL [5]
+- Memory corruption available from JS
+
+---
+
+- Replaced by the beautiful IndexedDB written by a developer from the noble house of Oracle
+
+---
+
+
+<h1 id="the-future" class="chapter">The Future </h1>
+
+
+## LibSQL
+
+LibSQL is a great fork of SQLite with the aim of making SQLite Open Source.
+Currently, SQLite operates in a Source Open rather than OpenSource mode.
+It aims to state compatible with SQLite.
+
+> With the advent of Wasm, SQL or NoSQL solutions can come to the web. One example is DuckDB-Wasm, another is absurd-sql. Based on these creations, we feel that the developer community can iterate on and create new storage solutions faster and better than browser vendors.
+
+libSQL introduced native WASM support to SQLite
+
+
+## LumoSQL
+
+
+LumoSQL is a clone that is 100% on time. 
+It does rely on merging the master.
+It has swappable db engine and btree.
+It has an edge on cryptography.
+
+## Distributed clones
+
+TOADD
+
+
+<h1 id="refs" class="chapter">Ending Quotes</h1>
+
+
+>  I had this crazy idea that I’m going to build a database engine that does not have a server, that talks directly to disk, and ignores the data types, and if you asked any of the experts of the day, they would say, “That’s impossible. That will never work. That’s a stupid idea.” Fortunately, I didn’t know any experts and so I did it anyway, so this sort of thing happens. I think, maybe, just don’t listen to the experts too much and do what makes sense. Solve your problem.
+
+-
+
+> If I'd known how hard it would be I probably
+never would've have written it [3]
+
+-
+
+> (About his Apple II) With just 4k of RAM i could understand everything that was going on in that computer.
+> I can understand everything the computer was doing there but now you know with the smallest computer having 4GB of RAM,
+> there's no way someone coming into this now can understand everything that's going on in that computer.
+> So, i started very simple. 
+> [9]
+
+-
+
+> I accumulated all this knowledge in the course of four decades, five decades almost. How do you learn that in 4 years of university? I don't know. ... you have some things take that as an article of faith, yeah this works believe it.
+> [9]
+
+<h1 id="" class="chapter">Contributors</h1>
+
+```
+Abdur-Rahmaan Janhangeer: Main content
+```
+
+
+<h1 id="refs" class="chapter">References</h1>
+
+- [1] SQLite, A Database for the Edge of the Network, DRH, Databaseology Lectures, Carnegie Mellon (2015)
+- [2] CORECURSIVE Podcast, Episode #066, The Untold Story of SQLite
+- [3] Richard   Hipp Speaks Out on  
+SQLite, ACM SIGMOD interviews with DB people, Marianne  Winslett and Vanessa    Braganholo (2019), https://sigmodrecord.org/publications/sigmodRecord/1906/pdfs/06_Profiles_Hipp.pdf
+- [4] DEF CON 27 - Omer Gull - SELECT code execution FROM USING SQLite, https://www.youtube.com/watch?v=JokZUjwGj4M
+- [5] Deprecating and removing Web SQL, https://developer.chrome.com/blog/deprecating-web-sql/
+- [6] Craft vulnerable db https://github.com/CheckPointSW/QueryOrientedProgramming/blob/master/qop.py
+- [7] https://www.sqlite.org/fileformat.html#record_format
+- [8] https://fly.io/blog/sqlite-internals-btree/
+- [9] Richard Hipp, SQLite main author - Two Weeks of Database, https://www.youtube.com/watch?v=2eaQzahCeh4
+
+Images
+
+- DGG-79: https://news.usni.org/2019/06/04/uss-oscar-austin-fire-damage-repairs-will-stretch-into-2022

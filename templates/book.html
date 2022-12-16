@@ -74,20 +74,26 @@
         }
 
         body{
-            margin-left: 20%;
-            margin-right: 20%;
+            margin-left: 10%;
+            margin-right: 10%;
         }
         .book__title{
             margin-top: 20px;
-            font-size: 45px;
+            font-size: 50px;
         }
         .book__content h1{
-            font-size: 35px;
+            font-size: 45px;
             margin-bottom: 20px;
             margin-top: 20px;
 
         }
         .book__content h2{
+            font-size: 35px;
+            margin-bottom: 20px;
+            margin-top: 20px;
+
+        }
+        .book__content h3{
             font-size: 30px;
             margin-bottom: 20px;
             margin-top: 20px;
@@ -136,30 +142,34 @@
 
         @page {
           size: A4;
-          margin: 15mm 16mm 15mm 16mm;
+          margin: 5mm 5mm 5mm 5mm;
         }
 
 
-@page:right{ 
-  @bottom-left {
-    margin: 10pt 0 30pt 0;
-    border-top: .25pt solid #666;
-    content: "My book";
-    font-size: 9pt;
-    color: #333;
-  }
-}
 
         @media print {
-          div.chapter, div.appendix{
+            div.appendix{
               page-break-after: always;
             }
             .book__content blockquote{
                 page-break-inside: avoid;
             }
+            .chapter{
+                page-break-before: always !important;
+            }
+            pre {
+                break-inside: avoid !important;
+            }
         }
 
-        
+
+        pre {
+ white-space: pre-wrap;       /* css-3 */
+ white-space: -moz-pre-wrap;  /* Mozilla, since 1999 */
+ white-space: -pre-wrap;      /* Opera 4-6 */
+ white-space: -o-pre-wrap;    /* Opera 7 */
+ word-wrap: break-word;       /* Internet Explorer 5.5+ */
+}
 
     </style>
 
