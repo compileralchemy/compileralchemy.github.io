@@ -71,10 +71,7 @@ def gen_podcast_rss():
         'settings': settings,
         'podcast_info': podcast_info
     }
-    try:
-        os.mkdir(join(settings.OUTPUT_FOLDER, 'alfa-podcast'))
-    except:
-        pass
+
     generate('podcast.rss', join(settings.OUTPUT_FOLDER, 'alfa-podcast', 'podcast.rss'), **prss_context)
 
 
@@ -112,6 +109,12 @@ def gen_books():
 def main(args):
     def gen():
         generate('index.html', join(settings.OUTPUT_FOLDER, 'index.html'), **context)
+
+        try:
+            os.mkdir(join(settings.OUTPUT_FOLDER, 'alfa-podcast'))
+        except Exception as e:
+            print(e)
+            pass
         generate('podcast.html', join(settings.OUTPUT_FOLDER, 'alfa-podcast', 'index.html'), **podcontext)
         gen_podcast_rss()
         gen_books()
