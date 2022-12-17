@@ -71,6 +71,10 @@ def gen_podcast_rss():
         'settings': settings,
         'podcast_info': podcast_info
     }
+    try:
+        os.mkdir(join(settings.OUTPUT_FOLDER, 'alfa-podcast'))
+    except:
+        pass
     generate('podcast.rss', join(settings.OUTPUT_FOLDER, 'alfa-podcast', 'podcast.rss'), **prss_context)
 
 
