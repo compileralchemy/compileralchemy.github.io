@@ -113,7 +113,7 @@ def main(args):
         try:
             os.mkdir(join(settings.OUTPUT_FOLDER, 'alfa-podcast'))
         except Exception as e:
-            print(e)
+            print('skip', e)
             pass
         generate('podcast.html', join(settings.OUTPUT_FOLDER, 'alfa-podcast', 'index.html'), **podcontext)
         gen_podcast_rss()
