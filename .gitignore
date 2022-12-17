@@ -129,3 +129,10 @@ dmypy.json
 .pyre/
 
 secret-dir/
+docs/*
+!docs/serve.py
+!docs/assets/
+!docs/js/
+!docs/CNAME
+!docs/slides/
+!docs/style.css
