@@ -90,7 +90,7 @@ def gen_books():
 
     context.update({
         'settings': settings,
-        'path': '../',
+        'path': '../../',
         'book': book
     })
 

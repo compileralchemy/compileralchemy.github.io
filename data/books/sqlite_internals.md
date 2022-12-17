@@ -19,9 +19,15 @@
 <h1 id="foreword" class="chapter">Foreword</h1>
 
 To all SQLite lovers. 
-You can view [compileralchemy.com](https://www.compileralchemy.com) or [contribute to the book](https://github.com/compileralchemy/compileralchemy.github.io/blob/master/data/books/sqlite_internals.md). 
+
+You can view 
+[ [compileralchemy.com](https://www.compileralchemy.com) ] or 
+[ [contribute to the book](https://github.com/compileralchemy/compileralchemy.github.io/blob/master/data/books/sqlite_internals.md) ] or
+[ [download the book](https://www.compileralchemy.com/assets/books/foss_sqlite_internals.pdf) ] 
 It is OpenSource! 
 Feel free to contribute a section, propose rewrites, fix typos etc.
+
+The book is <mark>in progress</mark> as of now!
 
 Particular thanks to the [LibSQL](https://github.com/libsql/libsql) maintainers. 
 Started this book as a series of presentations to DevFest and the LibSQL community.
