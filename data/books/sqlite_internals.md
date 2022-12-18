@@ -42,6 +42,9 @@ Also, i just could not find a sane free book on SQLite internals!
 Free books help keep human legacy around.
 Without books, you burn time, a lot of it.
 
+
+Since i scrapped my notes together, this did not start as a proper book. PRs welcome.
+
 <h1 id="intro" class="chapter">Chapter: Introduction</h1>
 
 SQLite is a file-based database which is extremely reliable and stable. 
