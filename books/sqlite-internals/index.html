@@ -265,7 +265,7 @@ Without books, you burn time, a lot of it.</p>
 <h1 id="intro" class="chapter">Chapter: Introduction</h1>
 
 <p>SQLite is a file-based database which is extremely reliable and stable. 
-It is the world&rsquo;s most used database. 
+It is the world&rsquo;s most used database. It&rsquo;s used on military devices, on planes (the A350 for instance) and in space.
 The codebase and mechanisms it uses is extremely complex. 
 The seemingly simple nature of it and adoption makes a good case for deep diving into in a fascinating piece of software.</p>
 <p>It also implemented many features years ahead of popular databases like partial indices.</p>
@@ -414,10 +414,14 @@ SQLite started as a TCL extension.</p>
 By design, the author aimed not to get into the way of the programmer by allowing data of a different type to be inserted in the db.
 It&rsquo;s directly inspired by scripting languages.</p>
 <h2>The symbionic relationship between SQLite And Fossil</h2>
-<p>SQLite&rsquo;s code is managed by Fossil, it&rsquo;s Control Version System. And, Fossil uses SQLite.</p>
+<p>SQLite&rsquo;s code is managed by Fossil, it&rsquo;s Version Controlf System. And, Fossil uses SQLite.</p>
 <h2>Open licensing</h2>
 <p>Being in the public domain by waiving rights to the code is an incredible decision.
-Add to it no external dependencies it means that people using SQLite have the piece of mind that the SQLite authors are not going to sue them over some piece of code or worry about some 3rd party companies talk about stealing code.</p>
+Add to it no external dependencies it means that people using SQLite have the peace of mind that the SQLite authors are not going to sue them over some piece of code or worry about some 3rd party companies talk about stealing code.</p>
+<h2>One big source file</h2>
+<p>SQLite also provides a source file where all files are amalgamated into so that SQLite can be inserted easily into projects and compiled.</p>
+<h2>Stats</h2>
+<p>SQLite is about 160k lines of code as now, with some 230k if comments and blank lines are included.</p>
 <h1 id="overview" class="chapter">Chapter: Overview</h1>
 
 <p>A rough overview of SQLite is as follows</p>
@@ -1263,6 +1267,11 @@ It has swappable db engine and btree.
 It has an edge on cryptography.</p>
 <h2>Distributed clones</h2>
 <p>TOADD</p>
+<h1 id="modifications" class="chapter">Chapter: How SQLite Is modified</h1>
+
+<h2>Bloomberg</h2>
+<p>Bloomberg uses the SQLite code generator and storage engine.
+The replaced the layers after by their own implementation of a scaled, massively concurrent, multi data center storage engine.</p>
 <h1 id="refs" class="chapter">Chapter: Ending Quotes</h1>
 
 <blockquote>
