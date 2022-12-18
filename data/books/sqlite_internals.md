@@ -14,6 +14,7 @@
 <li><a href="#interesting-features"><abbr title="HyperText Markup Language">Interesting Features</abbr></a></li>
 <li><a href="#knowing-internals"><abbr title="HyperText Markup Language">Knowing Internals</abbr></a></li>
 <li><a href="#the-future"><abbr title="HyperText Markup Language">The Future</abbr></a></li>
+<li><a href="#modifications"><abbr title="HyperText Markup Language">How SQLite Is modified</abbr></a></li>
 <li><a href="#refs"><abbr title="HyperText Markup Language">References</abbr></a></li>
 </ol>
 
