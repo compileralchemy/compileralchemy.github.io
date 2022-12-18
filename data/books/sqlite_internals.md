@@ -2,21 +2,22 @@
 
 
 
-<ul class="toc chapter">
+<ol class="toc chapter">
 <li><a href="#foreword">Foreword</a></li>
 <li><a href="#intro">Introduction</a></li>
 <li><a href="#contribs">Contributors</a></li>
-<li><a href="#c1"><abbr title="HyperText Markup Language">The Story Behind</abbr></a></li>
-<li><a href="#c2"><abbr title="HyperText Markup Language">Overview</abbr></a></li>
-<li><a href="#c3"><abbr title="HyperText Markup Language">File & Record Format</abbr></a></li>
-<li><a href="#c4"><abbr title="HyperText Markup Language">Rollback & WAL mode</abbr></a></li>
+<li><a href="#story"><abbr title="HyperText Markup Language">The Story Behind</abbr></a></li>
+<li><a href="#technical-context"><abbr title="HyperText Markup Language">Technical Context</abbr></a></li>
+<li><a href="#overview"><abbr title="HyperText Markup Language">Overview</abbr></a></li>
+<li><a href="#file-record"><abbr title="HyperText Markup Language">File & Record Format</abbr></a></li>
+<li><a href="#rollback-wal"><abbr title="HyperText Markup Language">Rollback & WAL mode</abbr></a></li>
 <li><a href="#interesting-features"><abbr title="HyperText Markup Language">Interesting Features</abbr></a></li>
 <li><a href="#knowing-internals"><abbr title="HyperText Markup Language">Knowing Internals</abbr></a></li>
 <li><a href="#the-future"><abbr title="HyperText Markup Language">The Future</abbr></a></li>
 <li><a href="#refs"><abbr title="HyperText Markup Language">References</abbr></a></li>
-</ul>
+</ol>
 
-<h1 id="foreword" class="chapter">Foreword</h1>
+<h1 id="foreword" class="chapter">Chapter: Foreword</h1>
 
 To all SQLite lovers. 
 
@@ -41,7 +42,7 @@ Also, i just could not find a sane free book on SQLite internals!
 Free books help keep human legacy around.
 Without books, you burn time, a lot of it.
 
-<h1 id="intro" class="chapter">Introduction</h1>
+<h1 id="intro" class="chapter">Chapter: Introduction</h1>
 
 SQLite is a file-based database which is extremely reliable and stable. 
 It is the world's most used database. 
@@ -50,11 +51,13 @@ The seemingly simple nature of it and adoption makes a good case for deep diving
 
 It also implemented many features years ahead of popular databases like partial indices.
 
-<h1 id="contribs" class="chapter">Contributors</h1>
+It's pronounced S-Q-L-ite, like mineral. But whatever is easy to pronounce is fine [10].
+
+<h1 id="contribs" class="chapter">Chapter: Contributors</h1>
 
 See end of book
 
-<h1 id="c1" class="chapter">Chapter 1: The Story Behind</h1>
+<h1 id="story" class="chapter">Chapter: The Story Behind</h1>
 
 
 SQLite was written by Dwayne Richard Hipp.
@@ -120,9 +123,10 @@ This would be the first in a series of long-lasting relationship with phone comp
 They wanted the database on CDs they were mailing to customers. 
 Richard enthusiastically accepted the offer and midway realized the solution he had in mind would not work.
 These types of challenges helped SQLite grow into a robust product.
+At one point they also requested to be able to handle binary data, the feature was incorporated in SQLite3.
 
-**200x - Symbian OS:** Symbian flew Richard to their office in London.
-Among many databases they evaluated, both OSS and closed-source, SQLite was chosen.
+**2005 - Symbian OS:** Symbian flew Richard to their office in London.
+Among many databases they evaluated, both OSS and closed-source, SQLite was chosen among 10 dbs [10].
 Symbian was a great company but they had a problem. 
 They wanted to ensure that the project lives on even if Richard is no longer around.
 They wanted to increase the bus factor by having a SQLite consorsium.
@@ -130,10 +134,11 @@ They wanted to increase the bus factor by having a SQLite consorsium.
 
 **200x - SQLite Consortium:** Richard liked the idea of a consorsium.
 He started devising a plan of his own.
-Luckily someone from the Mozilla foundation reached out to him.
+Luckily someone from the Mozilla foundation (Mitchell Baker) reached out to him.
 They did not like the way he was setting up the framework around the consorsium by giving members voting rights.
 They proposed keeping the direction of the project in developers hand. 
 The friend from Mozilla being a lawyer was adamant on this point and saw through the implementation of the current setup.
+It is the consortium which really helped SQLite keep going, stay current, relevent and vibrant.
 
 **200x - Google & Android:** Google was a complete outsider to the phone game.
 Soon, they approached Richard for a daring project.
@@ -157,7 +162,7 @@ This helped shaped SQLite test-backed approach to development.
 SQLite tests are better than even postgres which relies on peer reviews [3]. This allows the developers to experiment and change code fearlessly.
 
 
-## A from scratch principle
+<h1 id="technical-context" class="chapter">Chapter: Technical Context</h1>
 
 
 SQLite is notorious for implenting a bunch of functionalities from scratch.
@@ -170,15 +175,16 @@ DRH does look for alternatives.
 He does try out libraries.
 But, at the end of the day he ends up coding from scratch.
 
-First, he needed a database engine, he looked around, was not satisfied and went on to pull off his own implementation.
+**Engine:** First, he needed a database engine, he looked around, was not satisfied and went on to pull off his own implementation.
 
-The same goes for the b-tree layer.
+**B-tree implementation:** The same goes for the b-tree layer.
 Much like a hero from a movie, he pulled Donald Knuth's algorithm book from the shelf and coded the b-tree he needed.
 He also completed the book's exercise about deleting elements. 
 
-He doesn't understand the use of YACC, Bison and Lex when anybody can code their own parsers.
+**Parser:** He doesn't understand the use of YACC, Bison and Lex when anybody can code their own parsers. 
+He coded his own parser-generator called _Lemon_.
 
-He was using Git, but some functionalities were scratching his itch to build his own Control Version System. So, as usual, he wrote _Fossil_. 
+**Version Control System:** He was using Git, but some functionalities were scratching his itch to build his own Version Control System. So, as usual, he wrote _Fossil_. 
 It's the CVS you would download and configure if you download the source as is from the website.
 
 
@@ -189,6 +195,15 @@ It's the CVS you would download and configure if you download the source as is f
 > with it. Then I said, “I'm gonna write my own B-tree
 > layer
 
+Deassembling and re-building is really in his DNA. He had failed episodes of course, but it demonstrates an incredible spirit.
+
+> Printing was not an option. I looked at ways of making my own printer. ... , there was not much electrical interface to it. So that didn’t work out well. [10]
+
+To drive the point home, i think we can leave it at this one.
+
+> And the text editor that I used to write SQLite is one that I wrote myself. [10]
+
+### Why implement from scratch?
 
 The from scratch spirit is much preferred as it enables the developers to have the freedom they want.
 They can choose what they want or how they implement things.
@@ -196,14 +211,46 @@ Just wrapping over another library might be a problem waiting to happen.
 
 We can expect the library to be fairly complex as there are several components present which require knowledge of their own.
 
-> never understood lex because it's so easy to write a bunch of C codes faster then Lex [1]
+At one point, DRH also notes that they were going to use the Berkeley DB at some point but decided against it due to vague documentation [10] and coded their own implementation. 
+The were amused that sometimes after the licesing changing causing lots of people to forsake the DB.
+
+> I never understood lex because it's so easy to write a bunch of C codes faster then Lex [1]
 
 ## Competing with f-open
 
 SQLite advertises itself as being in comptetition not with other databases but with saving custom data on file.
 If you want to save data to a file, just use and share SQLite databases.
 
-<h1 id="c2" class="chapter">Chapter 2: Overview</h1>
+## Relationship with Postgres
+
+SQLite tries hard to keep up to the SQL standard postgres adopts as the team considers the db as the best reference platform [11]. 
+DRH was the keynote speaker at PGCon 2014 with a talk entitled "SQLite: Protégé of PostgreSQL". 
+
+## Relationship with TCL
+
+Sometimes, SQLite talks are given at TCL conferences. 
+This might be tripping from a conceptual and search point of view.
+SQLite started as a TCL extension.
+
+## The spirit of typing
+
+
+SQLite preferred to be called flexibly typed rather than weakly typed.
+By design, the author aimed not to get into the way of the programmer by allowing data of a different type to be inserted in the db.
+It's directly inspired by scripting languages.
+
+## The symbionic relationship between SQLite And Fossil
+
+SQLite's code is managed by Fossil, it's Control Version System. And, Fossil uses SQLite.
+
+## Open licensing
+
+
+Being in the public domain by waiving rights to the code is an incredible decision.
+Add to it no external dependencies it means that people using SQLite have the piece of mind that the SQLite authors are not going to sue them over some piece of code or worry about some 3rd party companies talk about stealing code.
+
+
+<h1 id="overview" class="chapter">Chapter: Overview</h1>
 
 A rough overview of SQLite is as follows
 
@@ -434,7 +481,7 @@ The varint consists of either zero or more bytes which have the high-order bit s
 The lower seven bits of each of the first eight bytes and all 8 bits of the ninth byte are used to reconstruct the 64-bit twos-complement integer. 
 Varints are big-endian: bits taken from the earlier byte of the varint are more significant than bits taken from the later bytes.
 
-<h1 id="c3" class="chapter">Chapter 3: File & Record Format</h1>
+<h1 id="file-record" class="chapter">Chapter: File & Record Format</h1>
 
 A SQLite file is a series of bytes.
 
@@ -594,7 +641,7 @@ A btree looks like this
                      --------------------------- 
                      | key | data | key | data |
                      --------------------------- 
-                              |
+                              | data: interior page key 
                 ---------------
                 |
 interior page   |           interior page               interior page
@@ -803,7 +850,7 @@ Offset  Size    Description
 
 TOADD: Freeblock
 
-<h1 id="c4" class="chapter">Chapter 4: Rollback & WAL mode</h1>
+<h1 id="rollback-wal" class="chapter">Chapter: Rollback & WAL mode</h1>
 
 In case of power cuts, SQLite ensures that data is not lost.
 The pager layer responsible for executing these two modes.
@@ -977,6 +1024,8 @@ When a commit occurs, it deletes the journal.
 |            |          |      |
 |            |          |      |  
 ```
+
+### If power loss before commit 
 
 Now, if there is a power loss before commit, the situation would be as follows.
 
@@ -1190,7 +1239,7 @@ A checkpoint operation truncates the journal cache and disk content.
              |          |      |            
 ```
 
-<h1 id="interesting-features" class="chapter">Chapter 5: Interesting Features </h1>
+<h1 id="interesting-features" class="chapter">Chapter: Interesting Features </h1>
 
 ## Virtual Tables
 
@@ -1204,10 +1253,12 @@ Oracle needed recursive queries and they added common table expressions.
 
 Developed for Expensify.
 
-<h1 id="knowing-internals" class="chapter">Knowing The Internals </h1>
+<h1 id="knowing-internals" class="chapter">Chapter: Knowing The Internals </h1>
 
 
 ## WebSQL
+
+
 
 
 - WebStorage on the web
@@ -1218,14 +1269,11 @@ Developed for Expensify.
 - Aug 2022 Chrome: Deprecating and Removing webSQL [5]
 - Memory corruption available from JS
 
----
-
 - Replaced by the beautiful IndexedDB written by a developer from the noble house of Oracle
 
----
 
 
-<h1 id="the-future" class="chapter">The Future </h1>
+<h1 id="the-future" class="chapter">Chapter: The Future </h1>
 
 
 ## LibSQL
@@ -1252,7 +1300,7 @@ It has an edge on cryptography.
 TOADD
 
 
-<h1 id="refs" class="chapter">Ending Quotes</h1>
+<h1 id="refs" class="chapter">Chapter: Ending Quotes</h1>
 
 
 >  I had this crazy idea that I’m going to build a database engine that does not have a server, that talks directly to disk, and ignores the data types, and if you asked any of the experts of the day, they would say, “That’s impossible. That will never work. That’s a stupid idea.” Fortunately, I didn’t know any experts and so I did it anyway, so this sort of thing happens. I think, maybe, just don’t listen to the experts too much and do what makes sense. Solve your problem.
@@ -1264,6 +1312,10 @@ never would've have written it [3]
 
 <br>
 
+> Apple I came out, and I was about to buy the Apple I and the Apple II came out. And I bought just the motherboard for an Apple II. Got it.
+>
+> Had to build my own keyboard, my own power supply, soldered it altogether. The first board I got didn’t work. I called up Apple, they put me through the technical support <mark>and Steve Wozniak answers the phone</mark>.
+> and said, “Oh, yeah. Send it back. We’ll send you another board.” They sent me another motherboard and that one worked. [10]
 > (About his Apple II) With just 4k of RAM i could understand everything that was going on in that computer.
 > I can understand everything the computer was doing there but now you know with the smallest computer having 4GB of RAM,
 > there's no way someone coming into this now can understand everything that's going on in that computer.
@@ -1278,7 +1330,16 @@ never would've have written it [3]
 <h1 id="" class="chapter">Contributors</h1>
 
 ```
-Abdur-Rahmaan Janhangeer: Main content
+Abdur-Rahmaan Janhangeer, https://compileralchemy.com
+    Main content
+```
+
+
+Thanks
+
+```
+Stephan Beal, https://github.com/sgbeal
+    Reporting and correcting the contribution link
 ```
 
 
@@ -1294,6 +1355,8 @@ SQLite, ACM SIGMOD interviews with DB people, Marianne  Winslett and Vanessa    
 - [7] https://www.sqlite.org/fileformat.html#record_format
 - [8] https://fly.io/blog/sqlite-internals-btree/
 - [9] Richard Hipp, SQLite main author - Two Weeks of Database, https://www.youtube.com/watch?v=2eaQzahCeh4
+- [10] Changelog podcast Episode 201, Why SQLite succeeded as a database https://changelog.com/podcast/201
+- [11] https://www.pgcon.org/2014/schedule/attachments/319_PGCon2014OpeningKeynote.pdf
 
 Images
 
