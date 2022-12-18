@@ -59,7 +59,21 @@ It's pronounced S-Q-L-ite, like mineral. But whatever is easy to pronounce is fi
 
 <h1 id="contribs" class="chapter">Chapter: Contributors</h1>
 
-See end of book
+```
+Abdur-Rahmaan Janhangeer, https://github.com/Abdur-RahmaanJ
+    Main content
+```
+
+
+Thanks
+
+```
+Stephan Beal, https://github.com/sgbeal
+   Reporting and correcting the contribution link
+Jakub Martin, Author of OktoSQL, https://github.com/cube2222/octosql
+   For popularising the book
+```
+
 
 <h1 id="story" class="chapter">Chapter: The Story Behind</h1>
 
@@ -1344,24 +1358,6 @@ never would've have written it [3]
 
 > I accumulated all this knowledge in the course of four decades, five decades almost. How do you learn that in 4 years of university? I don't know. ... you have some things take that as an article of faith, yeah this works believe it.
 > [9]
-
-<h1 id="" class="chapter">Contributors</h1>
-
-```
-Abdur-Rahmaan Janhangeer, https://compileralchemy.com
-    Main content
-```
-
-
-Thanks
-
-```
-Stephan Beal, https://github.com/sgbeal
-   Reporting and correcting the contribution link
-Jakub Martin, Author of OktoSQL, https://github.com/cube2222/octosql
-   For popularising the book
-```
-
 
 <h1 id="refs" class="chapter">References</h1>
 
