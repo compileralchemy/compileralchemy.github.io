@@ -25,7 +25,7 @@ You can view
 [ [contribute to the book](https://github.com/compileralchemy/compileralchemy.github.io/blob/source/data/books/sqlite_internals.md) ] or
 [ [download the book](https://www.compileralchemy.com/assets/books/foss_sqlite_internals.pdf) ] 
 It is OpenSource! 
-Feel free to contribute a section, propose rewrites, fix typos etc.
+Feel free to contribute a section, propose rewrites, fix typos etc. If you have comments, mail them to `arj.python at gmail dot com`.
 
 The book is <mark>in progress</mark> as of now!
 
