@@ -22,7 +22,7 @@ To all SQLite lovers.
 
 You can view 
 [ [compileralchemy.com](https://www.compileralchemy.com) ] or 
-[ [contribute to the book](https://github.com/compileralchemy/compileralchemy.github.io/blob/master/data/books/sqlite_internals.md) ] or
+[ [contribute to the book](https://github.com/compileralchemy/compileralchemy.github.io/blob/source/data/books/sqlite_internals.md) ] or
 [ [download the book](https://www.compileralchemy.com/assets/books/foss_sqlite_internals.pdf) ] 
 It is OpenSource! 
 Feel free to contribute a section, propose rewrites, fix typos etc.
