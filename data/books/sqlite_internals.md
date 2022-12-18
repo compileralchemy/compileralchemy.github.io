@@ -75,6 +75,12 @@ Jakub Martin, Author of OctoSQL, https://github.com/cube2222/octosql
    For popularising the book
 ```
 
+General improvements
+
+```
+Jaime Terreu, https://github.com/Confidenceman02
+```
+
 
 <h1 id="story" class="chapter">Chapter: The Story Behind</h1>
 
