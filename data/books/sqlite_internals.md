@@ -1243,7 +1243,7 @@ libSQL introduced native WASM support to SQLite
 
 
 LumoSQL is a clone that is 100% on time. 
-It does rely on merging the master.
+It does not rely on merging the master.
 It has swappable db engine and btree.
 It has an edge on cryptography.
 
@@ -1257,12 +1257,12 @@ TOADD
 
 >  I had this crazy idea that I’m going to build a database engine that does not have a server, that talks directly to disk, and ignores the data types, and if you asked any of the experts of the day, they would say, “That’s impossible. That will never work. That’s a stupid idea.” Fortunately, I didn’t know any experts and so I did it anyway, so this sort of thing happens. I think, maybe, just don’t listen to the experts too much and do what makes sense. Solve your problem.
 
--
+<br>
 
 > If I'd known how hard it would be I probably
 never would've have written it [3]
 
--
+<br>
 
 > (About his Apple II) With just 4k of RAM i could understand everything that was going on in that computer.
 > I can understand everything the computer was doing there but now you know with the smallest computer having 4GB of RAM,
@@ -1270,7 +1270,7 @@ never would've have written it [3]
 > So, i started very simple. 
 > [9]
 
--
+<br>
 
 > I accumulated all this knowledge in the course of four decades, five decades almost. How do you learn that in 4 years of university? I don't know. ... you have some things take that as an article of faith, yeah this works believe it.
 > [9]
