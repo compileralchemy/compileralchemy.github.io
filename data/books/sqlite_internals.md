@@ -1357,7 +1357,9 @@ Thanks
 
 ```
 Stephan Beal, https://github.com/sgbeal
-    Reporting and correcting the contribution link
+   Reporting and correcting the contribution link
+Jakub Martin, Author of OktoSQL, https://github.com/cube2222/octosql
+   For popularising the book
 ```
 
 
