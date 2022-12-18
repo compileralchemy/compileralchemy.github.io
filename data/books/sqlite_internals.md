@@ -199,7 +199,7 @@ It's the CVS you would download and configure if you download the source as is f
 > with it. Then I said, “I'm gonna write my own B-tree
 > layer
 
-Deassembling and re-building is really in his DNA. He had failed episodes of course, but it demonstrates an incredible spirit.
+Disassembling and re-building is really in his DNA. He had failed episodes of course, but it demonstrates an incredible spirit.
 
 > Printing was not an option. I looked at ways of making my own printer. ... , there was not much electrical interface to it. So that didn’t work out well. [10]
 
@@ -216,13 +216,13 @@ Just wrapping over another library might be a problem waiting to happen.
 We can expect the library to be fairly complex as there are several components present which require knowledge of their own.
 
 At one point, DRH also notes that they were going to use the Berkeley DB at some point but decided against it due to vague documentation [10] and coded their own implementation. 
-The were amused that sometimes after the licesing changing causing lots of people to forsake the DB.
+The were amused that sometimes after the licensing changed causing lots of people to forsake the DB.
 
 > I never understood lex because it's so easy to write a bunch of C codes faster then Lex [1]
 
 ## Competing with f-open
 
-SQLite advertises itself as being in comptetition not with other databases but with saving custom data on file.
+SQLite advertises itself as being in competition not with other databases but with saving custom data on file.
 If you want to save data to a file, just use and share SQLite databases.
 
 ## Relationship with Postgres
@@ -240,18 +240,18 @@ SQLite started as a TCL extension.
 
 
 SQLite preferred to be called flexibly typed rather than weakly typed.
-By design, the author aimed not to get into the way of the programmer by allowing data of a different type to be inserted in the db.
+By design, the author aimed not to get in the way of the programmer by allowing data of a different type to be inserted in the db.
 It's directly inspired by scripting languages.
 
-## The symbionic relationship between SQLite And Fossil
+## The symbiotic relationship between SQLite And Fossil
 
-SQLite's code is managed by Fossil, it's Version Controlf System. And, Fossil uses SQLite.
+SQLite's code is managed by Fossil, it's Version Control System. And, Fossil uses SQLite.
 
 ## Open licensing
 
 
 Being in the public domain by waiving rights to the code is an incredible decision.
-Add to it no external dependencies it means that people using SQLite have the peace of mind that the SQLite authors are not going to sue them over some piece of code or worry about some 3rd party companies talk about stealing code.
+Add to it no external dependencies it means that people using SQLite have the peace of mind that the SQLite authors are not going to sue them over some piece of code or worry about some 3rd party companies talking about stealing code.
 
 ## One big source file
 
@@ -1315,7 +1315,7 @@ TOADD
 ## Bloomberg
 
 Bloomberg uses the SQLite code generator and storage engine.
-The replaced the layers after by their own implementation of a scaled, massively concurrent, multi data center storage engine.
+The replaced the layers after by their own implementation of a scaled, massively concurrent, multi-data center storage engine.
 
 
 <h1 id="refs" class="chapter">Chapter: Ending Quotes</h1>
