@@ -241,13 +241,13 @@ It's directly inspired by scripting languages.
 
 ## The symbionic relationship between SQLite And Fossil
 
-SQLite's code is managed by Fossil, it's Version Control System. And, Fossil uses SQLite.
+SQLite's code is managed by Fossil, it's Version Controlf System. And, Fossil uses SQLite.
 
 ## Open licensing
 
 
 Being in the public domain by waiving rights to the code is an incredible decision.
-Add to it no external dependencies it means that people using SQLite have the piece of mind that the SQLite authors are not going to sue them over some piece of code or worry about some 3rd party companies talk about stealing code.
+Add to it no external dependencies it means that people using SQLite have the peace of mind that the SQLite authors are not going to sue them over some piece of code or worry about some 3rd party companies talk about stealing code.
 
 ## One big source file
 
