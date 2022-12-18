@@ -42,6 +42,7 @@ Also, i just could not find a sane free book on SQLite internals!
 Free books help keep human legacy around.
 Without books, you burn time, a lot of it.
 
+If you want to discuss dbs all day long, i recommend joining the [Multiprocess communnity #db](https://discord.gg/CjYMRrySNq) (Phil Eaton).
 
 Since i scrapped my notes together, this did not start as a proper book. PRs welcome.
 
