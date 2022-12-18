@@ -45,7 +45,7 @@ Without books, you burn time, a lot of it.
 <h1 id="intro" class="chapter">Chapter: Introduction</h1>
 
 SQLite is a file-based database which is extremely reliable and stable. 
-It is the world's most used database. 
+It is the world's most used database. It's used on military devices, on planes (the A350 for instance) and in space.
 The codebase and mechanisms it uses is extremely complex. 
 The seemingly simple nature of it and adoption makes a good case for deep diving into in a fascinating piece of software.
 
@@ -241,7 +241,7 @@ It's directly inspired by scripting languages.
 
 ## The symbionic relationship between SQLite And Fossil
 
-SQLite's code is managed by Fossil, it's Control Version System. And, Fossil uses SQLite.
+SQLite's code is managed by Fossil, it's Version Control System. And, Fossil uses SQLite.
 
 ## Open licensing
 
@@ -249,6 +249,13 @@ SQLite's code is managed by Fossil, it's Control Version System. And, Fossil use
 Being in the public domain by waiving rights to the code is an incredible decision.
 Add to it no external dependencies it means that people using SQLite have the piece of mind that the SQLite authors are not going to sue them over some piece of code or worry about some 3rd party companies talk about stealing code.
 
+## One big source file
+
+SQLite also provides a source file where all files are amalgamated into so that SQLite can be inserted easily into projects and compiled.
+
+## Stats
+
+SQLite is about 160k lines of code as now, with some 230k if comments and blank lines are included.
 
 <h1 id="overview" class="chapter">Chapter: Overview</h1>
 
@@ -1298,6 +1305,13 @@ It has an edge on cryptography.
 ## Distributed clones
 
 TOADD
+
+<h1 id="modifications" class="chapter">Chapter: How SQLite Is modified</h1>
+
+## Bloomberg
+
+Bloomberg uses the SQLite code generator and storage engine.
+The replaced the layers after by their own implementation of a scaled, massively concurrent, multi data center storage engine.
 
 
 <h1 id="refs" class="chapter">Chapter: Ending Quotes</h1>
