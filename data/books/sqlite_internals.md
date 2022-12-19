@@ -1,7 +1,5 @@
 
 
-
-
 <ol class="toc chapter">
 <li><a href="#foreword">Foreword</a></li>
 <li><a href="#intro">Introduction</a></li>
@@ -243,46 +241,32 @@ The were amused that sometimes after the licensing changed causing lots of peopl
 
 > I never understood lex because it's so easy to write a bunch of C codes faster then Lex [1]
 
-## Competing with f-open
 
-SQLite advertises itself as being in competition not with other databases but with saving custom data on file.
+## General points before diving in
+
+**Competing with f-open:** SQLite advertises itself as being in competition not with other databases but with saving custom data on file.
 If you want to save data to a file, just use and share SQLite databases.
 
-## Relationship with Postgres
-
-SQLite tries hard to keep up to the SQL standard postgres adopts as the team considers the db as the best reference platform [11]. 
+**Relationship with Postgres:** SQLite tries hard to keep up to the SQL standard postgres adopts as the team considers the db as the best reference platform [11]. 
 DRH was the keynote speaker at PGCon 2014 with a talk entitled "SQLite: Protégé of PostgreSQL". 
 
-## Relationship with TCL
-
-Sometimes, SQLite talks are given at TCL conferences. 
+**Relationship with TCL:** Sometimes, SQLite talks are given at TCL conferences. 
 This might be tripping from a conceptual and search point of view.
 SQLite started as a TCL extension.
 
-## The spirit of typing
-
-
-SQLite preferred to be called flexibly typed rather than weakly typed.
+**The spirit of typing:** SQLite preferred to be called flexibly typed rather than weakly typed.
 By design, the author aimed not to get in the way of the programmer by allowing data of a different type to be inserted in the db.
 It's directly inspired by scripting languages.
 
-## The symbiotic relationship between SQLite And Fossil
+**The symbiotic relationship between SQLite And Fossil:** SQLite's code is managed by Fossil, it's Version Control System. 
+And, Fossil uses SQLite.
 
-SQLite's code is managed by Fossil, it's Version Control System. And, Fossil uses SQLite.
-
-## Open licensing
-
-
-Being in the public domain by waiving rights to the code is an incredible decision.
+**No license:** Being in the public domain by waiving rights to the code is an incredible decision.
 Add to it no external dependencies it means that people using SQLite have the peace of mind that the SQLite authors are not going to sue them over some piece of code or worry about some 3rd party companies talking about stealing code.
 
-## One big source file
+**One big source file:** SQLite also provides a source file where all files are amalgamated into so that SQLite can be inserted easily into projects and compiled.
 
-SQLite also provides a source file where all files are amalgamated into so that SQLite can be inserted easily into projects and compiled.
-
-## Stats
-
-SQLite is about 160k lines of code as now, with some 230k if comments and blank lines are included.
+**Stats:** SQLite is about 160k lines of code as now, with some 230k if comments and blank lines are included.
 
 <h1 id="overview" class="chapter">Chapter: Overview</h1>
 
@@ -482,12 +466,12 @@ Relevant files include `test_multiplex.c`, `test_vfstrace.c`
 It can be changed at runtime.
 It is responsible for I/O (`test_onefile.c`).
 Relevant files include `os.c`, `os_unix.c`, `os_win.c`, `os*.h`. 
-The Virtual File System VFS is impemented at this layer.
+The Virtual File System (VFS) is another name this layer.
 
 ## Important concepts
 
 
-Those are some concepts which occur frequently and it pays to know about the in advance.
+Those are some concepts which occur frequently and it pays to know about them in advance.
 
 **Bytes**
 
@@ -1341,17 +1325,23 @@ Bloomberg uses the SQLite code generator and storage engine.
 The replaced the layers after by their own implementation of a scaled, massively concurrent, multi-data center storage engine.
 
 
+
 <h1 id="refs" class="chapter">Chapter: Ending Quotes</h1>
 
+**On not listening to institutionilized experts**
 
 >  I had this crazy idea that I’m going to build a database engine that does not have a server, that talks directly to disk, and ignores the data types, and if you asked any of the experts of the day, they would say, “That’s impossible. That will never work. That’s a stupid idea.” Fortunately, I didn’t know any experts and so I did it anyway, so this sort of thing happens. I think, maybe, just don’t listen to the experts too much and do what makes sense. Solve your problem.
 
 <br>
 
+**On not pondering on what lies ahead too much**
+
 > If I'd known how hard it would be I probably
 never would've have written it [3]
 
 <br>
+
+**On the opportunity to learn surrounding techs**
 
 > Apple I came out, and I was about to buy the Apple I and the Apple II came out. And I bought just the motherboard for an Apple II. Got it.
 >
@@ -1364,6 +1354,8 @@ never would've have written it [3]
 > [9]
 
 <br>
+
+**On how to learn the knowledge he posses**
 
 > I accumulated all this knowledge in the course of four decades, five decades almost. How do you learn that in 4 years of university? I don't know. ... you have some things take that as an article of faith, yeah this works believe it.
 > [9]

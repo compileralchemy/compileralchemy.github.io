@@ -92,7 +92,8 @@ def gen_books():
     context.update({
         'settings': settings,
         'path': '../../',
-        'book': book
+        'book': book,
+        'build_number': settings.BUILD_NUMBER
     })
 
     try:

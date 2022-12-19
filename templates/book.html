@@ -208,8 +208,10 @@
 
     {% include 'sections/gdpr.html' %}
     <h1 class="book__title">{{ book["title"] }}</h1>
-    <small>by Abdur-Rahmaan Janhangeer</small>
-    <br><br><br>
+    <span style="font-size: 20px">by Abdur-Rahmaan Janhangeer</span><br><br>
+    <small>build: <span class="web-scrape build-no">{{ build_number }}</span></small>
+    <br>
+    <br>
     <div class="book__content">
         {{ book["content"] | safe }}
     </div>
