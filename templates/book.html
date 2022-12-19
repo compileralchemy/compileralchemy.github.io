@@ -176,8 +176,8 @@
 </head>
 
 <body class="has-background-white">
-    <a 
-    style="
+
+    <div style="
         position: fixed; 
         bottom: 5px;
         right: 5px;
@@ -187,12 +187,24 @@
         background: #fff;
         border-radius: 5px;
         padding: 5px;
-        background-color: #FFE5E5;
-        "
-    href="https://www.compileralchemy.com/assets/books/foss_sqlite_internals.pdf" 
-    >
-    download book if on mobile
-</a>
+        background-color: #eaffe5;
+        ">
+        <a 
+    
+        href="https://github.com/compileralchemy/compileralchemy.github.io/blob/source/data/books/sqlite_internals.md" 
+        target="_blank"
+        >
+        edit
+        </a>
+        |
+        <a 
+        target="_blank"
+        href="https://www.compileralchemy.com/assets/books/foss_sqlite_internals.pdf" 
+        >
+        download if on mobile
+        </a>
+    </div>
+    
 
     {% include 'sections/gdpr.html' %}
     <h1 class="book__title">{{ book["title"] }}</h1>
