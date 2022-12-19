@@ -237,8 +237,10 @@
     });
 </script>
     <h1 class="book__title">SQLite Internals: How The World's Most Used Database Works</h1>
-    <small>by Abdur-Rahmaan Janhangeer</small>
-    <br><br><br>
+    <span style="font-size: 20px">by Abdur-Rahmaan Janhangeer</span><br><br>
+    <small>build: <span class="web-scrape build-no">0.8.1</span></small>
+    <br>
+    <br>
     <div class="book__content">
         <ol class="toc chapter">
 <li><a href="#foreword">Foreword</a></li>
@@ -427,29 +429,23 @@ The were amused that sometimes after the licensing changed causing lots of peopl
 <blockquote>
 <p>I never understood lex because it&rsquo;s so easy to write a bunch of C codes faster then Lex [1]</p>
 </blockquote>
-<h2>Competing with f-open</h2>
-<p>SQLite advertises itself as being in competition not with other databases but with saving custom data on file.
+<h2>General points before diving in</h2>
+<p><strong>Competing with f-open:</strong> SQLite advertises itself as being in competition not with other databases but with saving custom data on file.
 If you want to save data to a file, just use and share SQLite databases.</p>
-<h2>Relationship with Postgres</h2>
-<p>SQLite tries hard to keep up to the SQL standard postgres adopts as the team considers the db as the best reference platform [11]. 
+<p><strong>Relationship with Postgres:</strong> SQLite tries hard to keep up to the SQL standard postgres adopts as the team considers the db as the best reference platform [11]. 
 DRH was the keynote speaker at PGCon 2014 with a talk entitled &ldquo;SQLite: Protégé of PostgreSQL&rdquo;. </p>
-<h2>Relationship with TCL</h2>
-<p>Sometimes, SQLite talks are given at TCL conferences. 
+<p><strong>Relationship with TCL:</strong> Sometimes, SQLite talks are given at TCL conferences. 
 This might be tripping from a conceptual and search point of view.
 SQLite started as a TCL extension.</p>
-<h2>The spirit of typing</h2>
-<p>SQLite preferred to be called flexibly typed rather than weakly typed.
+<p><strong>The spirit of typing:</strong> SQLite preferred to be called flexibly typed rather than weakly typed.
 By design, the author aimed not to get in the way of the programmer by allowing data of a different type to be inserted in the db.
 It&rsquo;s directly inspired by scripting languages.</p>
-<h2>The symbiotic relationship between SQLite And Fossil</h2>
-<p>SQLite&rsquo;s code is managed by Fossil, it&rsquo;s Version Control System. And, Fossil uses SQLite.</p>
-<h2>Open licensing</h2>
-<p>Being in the public domain by waiving rights to the code is an incredible decision.
+<p><strong>The symbiotic relationship between SQLite And Fossil:</strong> SQLite&rsquo;s code is managed by Fossil, it&rsquo;s Version Control System. 
+And, Fossil uses SQLite.</p>
+<p><strong>No license:</strong> Being in the public domain by waiving rights to the code is an incredible decision.
 Add to it no external dependencies it means that people using SQLite have the peace of mind that the SQLite authors are not going to sue them over some piece of code or worry about some 3rd party companies talking about stealing code.</p>
-<h2>One big source file</h2>
-<p>SQLite also provides a source file where all files are amalgamated into so that SQLite can be inserted easily into projects and compiled.</p>
-<h2>Stats</h2>
-<p>SQLite is about 160k lines of code as now, with some 230k if comments and blank lines are included.</p>
+<p><strong>One big source file:</strong> SQLite also provides a source file where all files are amalgamated into so that SQLite can be inserted easily into projects and compiled.</p>
+<p><strong>Stats:</strong> SQLite is about 160k lines of code as now, with some 230k if comments and blank lines are included.</p>
 <h1 id="overview" class="chapter">Chapter: Overview</h1>
 
 <p>A rough overview of SQLite is as follows</p>
@@ -629,11 +625,11 @@ Relevant files include <code>test_multiplex.c</code>, <code>test_vfstrace.c</cod
 It can be changed at runtime.
 It is responsible for I/O (<code>test_onefile.c</code>).
 Relevant files include <code>os.c</code>, <code>os_unix.c</code>, <code>os_win.c</code>, <code>os*.h</code>. 
-The Virtual File System VFS is impemented at this layer.</p>
+The Virtual File System (VFS) is another name this layer.</p>
 </li>
 </ul>
 <h2>Important concepts</h2>
-<p>Those are some concepts which occur frequently and it pays to know about the in advance.</p>
+<p>Those are some concepts which occur frequently and it pays to know about them in advance.</p>
 <p><strong>Bytes</strong></p>
 <p>A byte consists of 8 bits.</p>
 <p><strong>B-tree</strong></p>
@@ -1302,15 +1298,18 @@ It has an edge on cryptography.</p>
 The replaced the layers after by their own implementation of a scaled, massively concurrent, multi-data center storage engine.</p>
 <h1 id="refs" class="chapter">Chapter: Ending Quotes</h1>
 
+<p><strong>On not listening to institutionilized experts</strong></p>
 <blockquote>
 <p>I had this crazy idea that I’m going to build a database engine that does not have a server, that talks directly to disk, and ignores the data types, and if you asked any of the experts of the day, they would say, “That’s impossible. That will never work. That’s a stupid idea.” Fortunately, I didn’t know any experts and so I did it anyway, so this sort of thing happens. I think, maybe, just don’t listen to the experts too much and do what makes sense. Solve your problem.</p>
 </blockquote>
 <p><br></p>
+<p><strong>On not pondering on what lies ahead too much</strong></p>
 <blockquote>
 <p>If I&rsquo;d known how hard it would be I probably
 never would&rsquo;ve have written it [3]</p>
 </blockquote>
 <p><br></p>
+<p><strong>On the opportunity to learn surrounding techs</strong></p>
 <blockquote>
 <p>Apple I came out, and I was about to buy the Apple I and the Apple II came out. And I bought just the motherboard for an Apple II. Got it.</p>
 <p>Had to build my own keyboard, my own power supply, soldered it altogether. The first board I got didn’t work. I called up Apple, they put me through the technical support <mark>and Steve Wozniak answers the phone</mark>.
@@ -1322,6 +1321,7 @@ So, i started very simple.
 [9]</p>
 </blockquote>
 <p><br></p>
+<p><strong>On how to learn the knowledge he posses</strong></p>
 <blockquote>
 <p>I accumulated all this knowledge in the course of four decades, five decades almost. How do you learn that in 4 years of university? I don&rsquo;t know. &hellip; you have some things take that as an article of faith, yeah this works believe it.
 [9]</p>
