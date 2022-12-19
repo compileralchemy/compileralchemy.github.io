@@ -252,7 +252,7 @@
 [ <a href="https://github.com/compileralchemy/compileralchemy.github.io/blob/source/data/books/sqlite_internals.md">contribute to the book</a> ] or
 [ <a href="https://www.compileralchemy.com/assets/books/foss_sqlite_internals.pdf">download the book</a> ] 
 It is OpenSource! 
-Feel free to contribute a section, propose rewrites, fix typos etc. If you have comments, mail them to <code>arj.python at gmail dot com</code>.</p>
+Feel free to contribute a section, propose rewrites, fix typos etc. If you have comments, mail them to <code>arj.python@gmail.com</code>.</p>
 <p>The book is <mark>in progress</mark> as of now!</p>
 <p>Particular thanks to the <a href="https://github.com/libsql/libsql">LibSQL</a> maintainers. 
 Started this book as a series of presentations to DevFest and the LibSQL community.
@@ -293,7 +293,7 @@ Jakub Martin, Author of OctoSQL, https://github.com/cube2222/octosql
 It is not uncommon to see it being abbreviated to D. Richard Hipp or DRH for short.
 The story of how the database came around is fascinating.
 It sheds light on the author&rsquo;s mindset and SQLite general coding culture.</p>
-<p>DRH holds a computer science doctorate in computational linguistics whithout taking prior programming courses.
+<p>DRH holds a computer science doctorate in computational linguistics without taking prior programming courses.
 He also has a masters in electrical engineering and went to work for Bell Labs! [9]</p>
 <p>Since his early days he was very dedicated. 
 He dropped out of academia as the race was full of candidates.
@@ -386,7 +386,7 @@ He also completed the book&rsquo;s exercise about deleting elements. </p>
 <p><strong>Parser:</strong> He doesn&rsquo;t understand the use of YACC, Bison and Lex when anybody can code their own parsers. 
 He coded his own parser-generator called <em>Lemon</em>.</p>
 <p><strong>Version Control System:</strong> He was using Git, but some functionalities were scratching his itch to build his own Version Control System. So, as usual, he wrote <em>Fossil</em>. 
-It&rsquo;s the CVS you would download and configure if you download the source as is from the website.</p>
+It&rsquo;s the VCS you would download and configure if you download the source as is from the website.</p>
 <blockquote>
 <p>&hellip; And it&rsquo;s GPL, and
 so SQLite Version 1 was GPL, it had to be because it
@@ -641,7 +641,7 @@ Varints are big-endian: bits taken from the earlier byte of the varint are more 
 <p>A SQLite file is a series of bytes.</p>
 <pre><code>[b1 b2 b3 b4 b5 ...]
 </code></pre>
-<p>It is divided into equally-sized chuncks called pages. There can be one or more pages.</p>
+<p>It is divided into equally-sized chunks called pages. There can be one or more pages.</p>
 <pre><code>----------------------------------------------
 | page 1 | page 2 | page 3 | page 4 | page 5 |
 ----------------------------------------------
@@ -655,7 +655,7 @@ In hex it is like this <code>53 51 4c 69 74 65 20 66 6f 72 6d 61 74 20 33 00</co
 Before 3.7.0.1 it had to be a power of two between 512 and 32768.
 As from 3.7.1 it can be of size 65536. 
 Since such a large number cannot fit in 2 bytes, the value is set to <code>0x00 0x01</code>.
-This represents big-indian 1 and is used to specify a size of 65536.</p>
+This represents big-endian 1 and is used to specify a size of 65536.</p>
 <pre><code>0                 16       18
 ------------------------------
 | SQLite format 3 |  400   |
