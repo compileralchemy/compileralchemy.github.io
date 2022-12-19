@@ -27,7 +27,7 @@ You can view
 [ [contribute to the book](https://github.com/compileralchemy/compileralchemy.github.io/blob/source/data/books/sqlite_internals.md) ] or
 [ [download the book](https://www.compileralchemy.com/assets/books/foss_sqlite_internals.pdf) ] 
 It is OpenSource! 
-Feel free to contribute a section, propose rewrites, fix typos etc. If you have comments, mail them to `arj.python at gmail dot com`.
+Feel free to contribute a section, propose rewrites, fix typos etc. If you have comments, mail them to `arj.python@gmail.com`.
 
 The book is <mark>in progress</mark> as of now!
 
@@ -90,7 +90,7 @@ It is not uncommon to see it being abbreviated to D. Richard Hipp or DRH for sho
 The story of how the database came around is fascinating.
 It sheds light on the author's mindset and SQLite general coding culture.
 
-DRH holds a computer science doctorate in computational linguistics whithout taking prior programming courses.
+DRH holds a computer science doctorate in computational linguistics without taking prior programming courses.
 He also has a masters in electrical engineering and went to work for Bell Labs! [9]
 
 
@@ -210,7 +210,7 @@ He also completed the book's exercise about deleting elements.
 He coded his own parser-generator called _Lemon_.
 
 **Version Control System:** He was using Git, but some functionalities were scratching his itch to build his own Version Control System. So, as usual, he wrote _Fossil_. 
-It's the CVS you would download and configure if you download the source as is from the website.
+It's the VCS you would download and configure if you download the source as is from the website.
 
 
 > ... And it's GPL, and
@@ -522,7 +522,7 @@ A SQLite file is a series of bytes.
 [b1 b2 b3 b4 b5 ...]
 ```
 
-It is divided into equally-sized chuncks called pages. There can be one or more pages.
+It is divided into equally-sized chunks called pages. There can be one or more pages.
 
 
 ```
@@ -541,7 +541,7 @@ The next two bytes states the file size.
 Before 3.7.0.1 it had to be a power of two between 512 and 32768.
 As from 3.7.1 it can be of size 65536. 
 Since such a large number cannot fit in 2 bytes, the value is set to `0x00 0x01`.
-This represents big-indian 1 and is used to specify a size of 65536.
+This represents big-endian 1 and is used to specify a size of 65536.
 
 
 ```
