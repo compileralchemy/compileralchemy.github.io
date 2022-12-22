@@ -1401,7 +1401,7 @@ It has swappable db engine and btree.
 It has an edge on cryptography.
 
 
-<a href="martina-palmucci-thesis"></a>
+<a id="martina-palmucci-thesis" href="#martina-palmucci-thesis"></a>
 **Martina Palmucci's Master Thesis [11]:** Martina wrote a thesis entitled "Securing databases using Attribute Based
 Encryption and Shamir’s Secret Sharing (SSS)" on the LumoSQL project. 
 It has been merged. 
