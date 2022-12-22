@@ -9,6 +9,7 @@
 <li><a href="#overview"><abbr title="HyperText Markup Language">Overview</abbr></a></li>
 <li><a href="#file-record"><abbr title="HyperText Markup Language">File & Record Format</abbr></a></li>
 <li><a href="#rollback-wal"><abbr title="HyperText Markup Language">Rollback & WAL mode</abbr></a></li>
+<li><a href="#bytecode"><abbr title="HyperText Markup Language">Bytecodes</abbr></a></li>
 <li><a href="#interesting-features"><abbr title="HyperText Markup Language">Interesting Features</abbr></a></li>
 <li><a href="#knowing-internals"><abbr title="HyperText Markup Language">Knowing Internals</abbr></a></li>
 <li><a href="#the-future"><abbr title="HyperText Markup Language">The Future</abbr></a></li>
@@ -1257,6 +1258,92 @@ A checkpoint operation truncates the journal cache and disk content.
              |          |      |            
 ```
 
+<h1 id="bytecode" class="chapter">Chapter: Bytecodes </h1>
+
+
+On compiling the project, `vdbe.c` produces two files: `opcodes.h` which assigns a numerical value to opcodes and `opcodes.c` which designates a symbolic name for an opcode.
+
+
+opcodes.h
+
+```c
+/* Automatically generated.  Do not edit */
+/* See the tool/mkopcodeh.tcl script for details */
+#define OP_Savepoint       0
+#define OP_AutoCommit      1
+#define OP_Transaction     2
+#define OP_Checkpoint      3
+#define OP_JournalMode     4
+#define OP_Vacuum          5
+#define OP_VFilter         6 /* jump, synopsis: iplan=r[P3] zplan='P4'     */
+...
+```
+
+opcodes.c
+
+```c
+/* Automatically generated.  Do not edit */
+/* See the tool/mkopcodec.tcl script for details. */
+#if !defined(SQLITE_OMIT_EXPLAIN) \
+ || defined(VDBE_PROFILE) \
+ || defined(SQLITE_DEBUG)
+#if defined(SQLITE_ENABLE_EXPLAIN_COMMENTS) || defined(SQLITE_DEBUG)
+# define OpHelp(X) "\0" X
+#else
+# define OpHelp(X)
+#endif
+const char *sqlite3OpcodeName(int i){
+ static const char *const azName[] = {
+    /*   0 */ "Savepoint"        OpHelp(""),
+    /*   1 */ "AutoCommit"       OpHelp(""),
+    /*   2 */ "Transaction"      OpHelp(""),
+    /*   3 */ "Checkpoint"       OpHelp(""),
+    /*   4 */ "JournalMode"      OpHelp(""),
+    /*   5 */ "Vacuum"           OpHelp(""),
+    /*   6 */ "VFilter"          OpHelp("iplan=r[P3] zplan='P4'"),
+    ...
+ }
+```
+
+bytecodes are composed of two parts, the opname, short for operation name and the opargs, short for operation arguments.
+
+```
+opname oparg oparg oparg oparg oparg
+```
+
+Using the `EXPLAIN` keyword, we can view an output based on bytecodes.
+
+```
+sqlite3> EXPLAIN SELECT price FROM product WHERE price=100;
+addr  opcode         p1    p2    p3    p4             p5  comment      
+----  -------------  ----  ----  ----  -------------  --  -------------
+0     Init           0     11    0                    0   Start at 11
+1     OpenRead       0     30    0     3              0   root=30 iDb=0; product
+2     Rewind         0     10    0                    0   
+3       Column         0     2     1                    0   r[1]= cursor 0 column 2
+4       RealAffinity   1     0     0                    0   
+5       Ne             2     9     1     BINARY-8       85  if r[1]!=r[2] goto 9
+6       Column         0     2     3                    0   r[3]= cursor 0 column 2
+7       RealAffinity   3     0     0                    0   
+8       ResultRow      3     1     0                    0   output=r[3]
+9     Next           0     3     0                    1   
+10    Halt           0     0     0                    0   
+11    Transaction    0     0     25    0              1   usesStmtJournal=0
+12    Integer        100   2     0                    0   r[2]=100
+13    Goto           0     1     0                    0   
+```
+Opcodes that are used as the bottom of a loop 
+   (OP_Next, OP_Prev, OP_VNext, or OP_SorterNext) all jump here upon
+   completion
+
+
+## Simplified opcode guide
+
+This is a simplified guide designed for speedy referencing.
+It is meant to be within hands reach when dealing with bytecodes.
+If you want more info, read the source or refer to the [opcode docs](https://www.sqlite.org/opcode.html) which contains nearly all that is in the source.
+
+
 <h1 id="interesting-features" class="chapter">Chapter: Interesting Features </h1>
 
 ## Virtual Tables
@@ -1313,6 +1400,38 @@ It does not rely on merging the master.
 It has swappable db engine and btree.
 It has an edge on cryptography.
 
+
+<a href="martina-palmucci-thesis"></a>
+**Martina Palmucci's Master Thesis [11]:** Martina wrote a thesis entitled "Securing databases using Attribute Based
+Encryption and Shamir’s Secret Sharing (SSS)" on the LumoSQL project. 
+It has been merged. 
+The thesis combines SSS and access based on user attributes like SELECT etc.
+It is abbreviated as ABE-SSS Attribute-based Encryption Shamir’s Secret Sharing.
+There is an increased need to saveguard data privacy. 
+File-based encryption means that the data is in the clear once the file is decrypted.
+Another layer of encryption at the data-level, particularly the field level protects against internal attacks.
+
+SSS operates by having shares: secrets that, when combined together produce a key.
+Elliptic curves reveal interesting properties for cryptographic uses. 
+
+A standard protocol used is the Elliptic-curve Diffie–Hellman (ECDH).
+It allows two parties to create a shared secret across an unsecured channel.
+But, many protocols based on ECDH often require a prime-order group.
+Elliptic curve groups are often compound (group that is not made up of prime numbers). 
+Using the Decaf technique, it is possible to obtain a prime-order group from an elliptic curve group. 
+Applying the Decaf technique to Curve25519 yields Ristretto255.
+
+Elliptic-curve Integrated Encryption Scheme (ECIES) is a hybrid encryption scheme.
+The term “hybrid” refers to the use of both symmetrical and asymmetrical cryptosystems inside it. 
+
+The projects implements access control using a policy tree made up of booleans.
+Attributes are encrypted using a private key.
+Resources have corresponding policy trees.
+Access to a resource is granted if the result of evaluating a user policy expression is true.
+For a resource tree there is a corresponding Shamir shares tree which is encrypted.
+
+
+
 ## Distributed clones
 
 TOADD
@@ -1360,6 +1479,99 @@ never would've have written it [3]
 > I accumulated all this knowledge in the course of four decades, five decades almost. How do you learn that in 4 years of university? I don't know. ... you have some things take that as an article of faith, yeah this works believe it.
 > [9]
 
+
+<h1 id="refs" class="chapter">References</h1>
+
+## Simplified Opcode guide.
+
+```
+
+Goto ? P2 * * *
+   An unconditional jump to address P2.
+   P1 sometimes set to 1 for indentation purposes
+
+
+Gosub P1 P2 * * *
+   Write the current address onto register P1
+   and then jump to address P2.
+
+
+Return P1 ? P3 * *
+   Jump to the address stored in register P1.  If P1 is a return address
+   register, then this accomplishes a return from a subroutine.
+  
+   If P3:
+      1: jump is only taken if register P1 holds an integer
+         Used in combination with OP_BeginSubrtn
+      0: then register P1 must hold an
+
+
+EndCoroutine P1 * * * *
+   The instruction at the address in register P1 is a Yield.
+   Jump to the P2 parameter of that Yield.
+   After the jump, register P1 becomes undefined.
+
+
+Yield P1 P2 * * *
+   Swap program counter with value in register P1. This
+   has the effect of yielding to a coroutine.
+   If the coroutine launched ends with Yield or Return:
+      continue to the next instruction.  
+   If coroutine launched ends with EndCoroutine:
+      jump to P2
+
+
+HaltIfNull  P1 P2 P3 P4 P5, if r[P3]=null halt
+   Check value in register P3.  
+   If NULL:
+      Halt using P1, P2, and P4 as if this were a Halt instruction.
+   else:
+      routine is a no-op.
+   P5 parameter should be 1.
+
+
+Halt P1 P2 * P4 P5
+   Exit immediately.  All open cursors, etc are closed
+   automatically.
+   P1: result code returned by sqlite3_exec(), sqlite3_reset(),
+      or sqlite3_finalize(). 
+      For a normal halt, this should be SQLITE_OK (0).
+
+   If P1!=0:
+      P2 will determine whether or not to rollback 
+      the current transaction.  
+      if P2==OE_Fail:
+         Do not rollback
+      if P2==OE_Rollback:
+         Do the rollback
+      if P2==OE_Abort:
+         back out all changes that have occurred during this execution of the
+         VDBE, but do not rollback the transaction. 
+
+   If P4 != null then it is an error message string.
+
+   P5 is a value between 0 and 4, inclusive, that modifies the P4 string.
+
+      0:  (no change)
+      1:  NOT NULL contraint failed: P4
+      2:  UNIQUE constraint failed: P4
+      3:  CHECK constraint failed: P4
+      4:  FOREIGN KEY constraint failed: P4
+  
+   If P5 != zero and P4 is NULL:
+      everything after the ":" is omitted.
+   
+   There is an implied "Halt 0 0 0" instruction inserted at the very end of
+   every program.  So a jump past the last instruction of the program
+   is the same as executing Halt.
+
+Integer P1 P2 * * *, r[P2]=P1
+   32-bit integer value P1 is written into register P2.
+
+
+TODO: complete
+```
+
 <h1 id="refs" class="chapter">References</h1>
 
 - [1] SQLite, A Database for the Edge of the Network, DRH, Databaseology Lectures, Carnegie Mellon (2015)
@@ -1374,6 +1586,8 @@ SQLite, ACM SIGMOD interviews with DB people, Marianne  Winslett and Vanessa    
 - [9] Richard Hipp, SQLite main author - Two Weeks of Database, https://www.youtube.com/watch?v=2eaQzahCeh4
 - [10] Changelog podcast Episode 201, Why SQLite succeeded as a database https://changelog.com/podcast/201
 - [11] https://www.pgcon.org/2014/schedule/attachments/319_PGCon2014OpeningKeynote.pdf
+- [12] Securing databases using Attribute Based
+Encryption and Shamir’s Secret Sharing (SSS), Martina Pulmucci, https://lumosql.org/src/lumosql/raw/c3f5ace49a2139e623be647a3a65753adfe4fddd46fb86f345e0bd75ffa185af?at=LumoSQL-Thesis-Martina-Palmucci-2022.pdf
 
 Images
 
