@@ -74,8 +74,8 @@
         }
 
         body{
-            margin-left: 10%;
-            margin-right: 10%;
+            padding: 0;
+            margin: 0;
         }
         .book__title{
             margin-top: 20px;
@@ -169,7 +169,28 @@
  white-space: -pre-wrap;      /* Opera 4-6 */
  white-space: -o-pre-wrap;    /* Opera 7 */
  word-wrap: break-word;       /* Internet Explorer 5.5+ */
- letter-spacing: -1px;
+ font-size: 15px;
+ font-weight: bold;
+}
+
+    
+div.frontcover { 
+  page: cover; 
+  content: url("../../assets/books/sqlite-internals/cover.png");
+  width: 100%;
+  height: 100%; 
+}
+
+@page :first {
+  margin: 0;
+  padding: 0;
+}
+
+#book-wrapper{
+    margin: 0;
+    padding: 0;
+    margin-left: 10%;
+    margin-right: 10%;
 }
 
     </style>
@@ -181,7 +202,7 @@
     <div style="
         position: fixed; 
         bottom: 5px;
-        right: 5px;
+        left: 5px;
         width: -moz-fit-content;
         width: fit-content;
         z-index: 20;
@@ -237,13 +258,16 @@
       };
     });
 </script>
-    <h1 class="book__title">SQLite Internals: How The World's Most Used Database Works</h1>
-    <span style="font-size: 20px">by Abdur-Rahmaan Janhangeer</span><br><br>
-    <small>build: <span class="web-scrape build-no">0.8.1</span></small>
-    <br>
-    <br>
-    <div class="book__content">
-        <ol class="toc chapter">
+    <div class="frontcover">
+    </div>
+    <div id="book-wrapper">
+        <h1 class="book__title chapter">SQLite Internals: How The World's Most Used Database Works</h1>
+        <span style="font-size: 20px">by Abdur-Rahmaan Janhangeer</span><br><br>
+        <small>build: <span class="web-scrape build-no">0.9.0</span></small>
+        <br>
+        <br>
+        <div class="book__content">
+            <ol class="toc chapter">
 <li><a href="#foreword">Foreword</a></li>
 <li><a href="#intro">Introduction</a></li>
 <li><a href="#contribs">Contributors</a></li>
@@ -255,14 +279,14 @@
 <li><a href="#bytecode"><abbr title="HyperText Markup Language">Bytecodes</abbr></a></li>
 <li><a href="#interesting-features"><abbr title="HyperText Markup Language">Interesting Features</abbr></a></li>
 <li><a href="#knowing-internals"><abbr title="HyperText Markup Language">Knowing Internals</abbr></a></li>
-<li><a href="#the-future"><abbr title="HyperText Markup Language">The Future</abbr></a></li>
 <li><a href="#modifications"><abbr title="HyperText Markup Language">How SQLite Is modified</abbr></a></li>
+<li><a href="#the-future"><abbr title="HyperText Markup Language">The Future</abbr></a></li>
 <li><a href="#refs"><abbr title="HyperText Markup Language">References</abbr></a></li>
 </ol>
 
-<h1 id="foreword" class="chapter">Chapter: Foreword</h1>
+<h1 id="foreword" class="chapter">Chapter: Foreword on SQLite Internals</h1>
 
-<p>To all SQLite lovers. </p>
+<p>To all SQLite lovers. This book discusses SQLite internals in depth.</p>
 <p>You can view 
 [ <a href="https://www.compileralchemy.com">compileralchemy.com</a> ] or 
 [ <a href="https://github.com/compileralchemy/compileralchemy.github.io/blob/source/data/books/sqlite_internals.md">contribute to the book</a> ] or
@@ -1253,7 +1277,7 @@ For illustration purposes below, <code>b</code> from wal cache, <code>a</code> f
 </code></pre>
 <h1 id="bytecode" class="chapter">Chapter: Bytecodes </h1>
 
-<p>On compiling the project, <code>vdbe.c</code> produces two files: <code>opcodes.h</code> which assigns a numerical value to opcodes and <code>opcodes.c</code> which designates a symbolic name for an opcode.</p>
+<p>The entire Virtual Machine is contained in <code>vdbe.c</code>. On compiling the project, <code>vdbe.c</code> produces two files: <code>opcodes.h</code> which assigns a numerical value to opcodes and <code>opcodes.c</code> which designates a symbolic name for an opcode.</p>
 <p>opcodes.h</p>
 <pre><code class="language-c">/* Automatically generated.  Do not edit */
 /* See the tool/mkopcodeh.tcl script for details */
@@ -1311,11 +1335,8 @@ addr  opcode         p1    p2    p3    p4             p5  comment
 12    Integer        100   2     0                    0   r[2]=100
 13    Goto           0     1     0                    0   
 </code></pre>
-<p>Opcodes that are used as the bottom of a loop 
-   (OP_Next, OP_Prev, OP_VNext, or OP_SorterNext) all jump here upon
-   completion</p>
 <h2>Simplified opcode guide</h2>
-<p>This is a simplified guide designed for speedy referencing.
+<p><a href="#simplified-opcode">A simplified guide</a> designed for speedy referencing is available at the end of the book.
 It is meant to be within hands reach when dealing with bytecodes.
 If you want more info, read the source or refer to the <a href="https://www.sqlite.org/opcode.html">opcode docs</a> which contains nearly all that is in the source.</p>
 <h1 id="interesting-features" class="chapter">Chapter: Interesting Features </h1>
@@ -1343,7 +1364,7 @@ If you want more info, read the source or refer to the <a href="https://www.sqli
 <p>Replaced by the beautiful IndexedDB written by a developer from the noble house of Oracle</p>
 </li>
 </ul>
-<h1 id="the-future" class="chapter">Chapter: The Future </h1>
+<h1 id="modifications" class="chapter">Chapter: How SQLite Is modified</h1>
 
 <h2>LibSQL</h2>
 <p>LibSQL is a great fork of SQLite with the aim of making SQLite Open Source.
@@ -1383,11 +1404,12 @@ Access to a resource is granted if the result of evaluating a user policy expres
 For a resource tree there is a corresponding Shamir shares tree which is encrypted.</p>
 <h2>Distributed clones</h2>
 <p>TOADD</p>
-<h1 id="modifications" class="chapter">Chapter: How SQLite Is modified</h1>
-
 <h2>Bloomberg</h2>
 <p>Bloomberg uses the SQLite code generator and storage engine.
 The replaced the layers after by their own implementation of a scaled, massively concurrent, multi-data center storage engine.</p>
+<h1 id="the-future" class="chapter">Chapter: The Future </h1>
+
+<p>LibSQL and LumoSQL are great OpenSource projects.</p>
 <h1 id="refs" class="chapter">Chapter: Ending Quotes</h1>
 
 <p><strong>On not listening to institutionilized experts</strong></p>
@@ -1420,7 +1442,7 @@ So, i started very simple.
 </blockquote>
 <h1 id="refs" class="chapter">References</h1>
 
-<h2>Simplified Opcode guide.</h2>
+<h2><a id="simplified-opcode">Simplified Opcode guide.</a></h2>
 <pre><code>
 Goto ? P2 * * *
    An unconditional jump to address P2.
@@ -1529,7 +1551,9 @@ Encryption and Shamir’s Secret Sharing (SSS), Martina Pulmucci, https://lumosq
 <ul>
 <li>DGG-79: https://news.usni.org/2019/06/04/uss-oscar-austin-fire-damage-repairs-will-stretch-into-2022</li>
 </ul>
+        </div>
     </div>
+    
     
 </body>
 
