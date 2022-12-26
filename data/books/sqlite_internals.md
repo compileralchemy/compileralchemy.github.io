@@ -12,14 +12,14 @@
 <li><a href="#bytecode"><abbr title="HyperText Markup Language">Bytecodes</abbr></a></li>
 <li><a href="#interesting-features"><abbr title="HyperText Markup Language">Interesting Features</abbr></a></li>
 <li><a href="#knowing-internals"><abbr title="HyperText Markup Language">Knowing Internals</abbr></a></li>
-<li><a href="#the-future"><abbr title="HyperText Markup Language">The Future</abbr></a></li>
 <li><a href="#modifications"><abbr title="HyperText Markup Language">How SQLite Is modified</abbr></a></li>
+<li><a href="#the-future"><abbr title="HyperText Markup Language">The Future</abbr></a></li>
 <li><a href="#refs"><abbr title="HyperText Markup Language">References</abbr></a></li>
 </ol>
 
-<h1 id="foreword" class="chapter">Chapter: Foreword</h1>
+<h1 id="foreword" class="chapter">Chapter: Foreword on SQLite Internals</h1>
 
-To all SQLite lovers. 
+To all SQLite lovers. This book discusses SQLite internals in depth.
 
 You can view 
 [ [compileralchemy.com](https://www.compileralchemy.com) ] or 
@@ -1261,7 +1261,7 @@ A checkpoint operation truncates the journal cache and disk content.
 <h1 id="bytecode" class="chapter">Chapter: Bytecodes </h1>
 
 
-On compiling the project, `vdbe.c` produces two files: `opcodes.h` which assigns a numerical value to opcodes and `opcodes.c` which designates a symbolic name for an opcode.
+The entire Virtual Machine is contained in `vdbe.c`. On compiling the project, `vdbe.c` produces two files: `opcodes.h` which assigns a numerical value to opcodes and `opcodes.c` which designates a symbolic name for an opcode.
 
 
 opcodes.h
@@ -1332,14 +1332,10 @@ addr  opcode         p1    p2    p3    p4             p5  comment
 12    Integer        100   2     0                    0   r[2]=100
 13    Goto           0     1     0                    0   
 ```
-Opcodes that are used as the bottom of a loop 
-   (OP_Next, OP_Prev, OP_VNext, or OP_SorterNext) all jump here upon
-   completion
-
 
 ## Simplified opcode guide
 
-This is a simplified guide designed for speedy referencing.
+<a href="#simplified-opcode">A simplified guide</a> designed for speedy referencing is available at the end of the book.
 It is meant to be within hands reach when dealing with bytecodes.
 If you want more info, read the source or refer to the [opcode docs](https://www.sqlite.org/opcode.html) which contains nearly all that is in the source.
 
@@ -1377,8 +1373,8 @@ Developed for Expensify.
 - Replaced by the beautiful IndexedDB written by a developer from the noble house of Oracle
 
 
+<h1 id="modifications" class="chapter">Chapter: How SQLite Is modified</h1>
 
-<h1 id="the-future" class="chapter">Chapter: The Future </h1>
 
 
 ## LibSQL
@@ -1436,13 +1432,18 @@ For a resource tree there is a corresponding Shamir shares tree which is encrypt
 
 TOADD
 
-<h1 id="modifications" class="chapter">Chapter: How SQLite Is modified</h1>
+
 
 ## Bloomberg
 
 Bloomberg uses the SQLite code generator and storage engine.
 The replaced the layers after by their own implementation of a scaled, massively concurrent, multi-data center storage engine.
 
+
+<h1 id="the-future" class="chapter">Chapter: The Future </h1>
+
+
+LibSQL and LumoSQL are great OpenSource projects.
 
 
 <h1 id="refs" class="chapter">Chapter: Ending Quotes</h1>
@@ -1482,7 +1483,8 @@ never would've have written it [3]
 
 <h1 id="refs" class="chapter">References</h1>
 
-## Simplified Opcode guide.
+
+## <a id="simplified-opcode">Simplified Opcode guide.</a>
 
 ```
 

@@ -74,8 +74,8 @@
         }
 
         body{
-            margin-left: 10%;
-            margin-right: 10%;
+            padding: 0;
+            margin: 0;
         }
         .book__title{
             margin-top: 20px;
@@ -169,7 +169,28 @@
  white-space: -pre-wrap;      /* Opera 4-6 */
  white-space: -o-pre-wrap;    /* Opera 7 */
  word-wrap: break-word;       /* Internet Explorer 5.5+ */
- letter-spacing: -1px;
+ font-size: 15px;
+ font-weight: bold;
+}
+
+    
+div.frontcover { 
+  page: cover; 
+  content: url("{{ book['cover'] }}");
+  width: 100%;
+  height: 100%; 
+}
+
+@page :first {
+  margin: 0;
+  padding: 0;
+}
+
+#book-wrapper{
+    margin: 0;
+    padding: 0;
+    margin-left: 10%;
+    margin-right: 10%;
 }
 
     </style>
@@ -181,7 +202,7 @@
     <div style="
         position: fixed; 
         bottom: 5px;
-        right: 5px;
+        left: 5px;
         width: -moz-fit-content;
         width: fit-content;
         z-index: 20;
@@ -208,14 +229,19 @@
     
 
     {% include 'sections/gdpr.html' %}
-    <h1 class="book__title">{{ book["title"] }}</h1>
-    <span style="font-size: 20px">by Abdur-Rahmaan Janhangeer</span><br><br>
-    <small>build: <span class="web-scrape build-no">{{ build_number }}</span></small>
-    <br>
-    <br>
-    <div class="book__content">
-        {{ book["content"] | safe }}
+    <div class="frontcover">
     </div>
+    <div id="book-wrapper">
+        <h1 class="book__title chapter">{{ book["title"] }}</h1>
+        <span style="font-size: 20px">by Abdur-Rahmaan Janhangeer</span><br><br>
+        <small>build: <span class="web-scrape build-no">{{ build_number }}</span></small>
+        <br>
+        <br>
+        <div class="book__content">
+            {{ book["content"] | safe }}
+        </div>
+    </div>
+    
     
 </body>
 

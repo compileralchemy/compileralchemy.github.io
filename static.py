@@ -86,6 +86,7 @@ def gen_books():
     html = md_to_html(text)
     book = {
         'content': html,
+        'cover': '../../assets/books/sqlite-internals/cover.png',
         'title': "SQLite Internals: How The World's Most Used Database Works"
     }
 
