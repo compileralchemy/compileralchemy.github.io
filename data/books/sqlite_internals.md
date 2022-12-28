@@ -53,7 +53,7 @@ It is the world's most used database. It's used on military devices, on planes (
 The codebase and mechanisms it uses is extremely complex. 
 The seemingly simple nature of it and adoption makes a good case for deep diving into in a fascinating piece of software.
 
-It also implemented many features years ahead of popular databases like partial indices.
+It also implemented many features years ahead of popular databases like partial indexes.
 
 It's pronounced S-Q-L-ite, like mineral. But whatever is easy to pronounce is fine [10].
 
@@ -679,12 +679,18 @@ interior page   |           interior page               interior page
 ----------------------  ----------------------   ----------------------
 ```
 
-Keys are integers. The data of a root page is the key of an interior page.
+The data of a root page is the key of an interior page.
 The data of an interior page is the key of a leaf page.
 Database records are stored in the data section of a leaf page.
 
 
-A key in a leaf table is a 64-bit signed int
+A key in a leaf table is a 64-bit signed integer.
+The key of a table B-tree is by default the rowid column of the table.
+If the table has integer primary keys, the primary key column is used instead.
+If the table has been defined `WITHOUT ROWID`, it is stored in an index B-tree.
+The key for such a table is composed of the columns of the primary key followed by all remaining columns.
+There is one index B-tree for each index of the database unless the index is already represented by a table B-tree, like the integer primary key tables mentionned above.
+
 
 An interior page contains k number of keys, at least 2, upto how many fits on page.
 This is unless page 1 is an interior b-tree page in which case it can handle one key only.
@@ -1333,16 +1339,128 @@ addr  opcode         p1    p2    p3    p4             p5  comment
 13    Goto           0     1     0                    0   
 ```
 
-## Simplified opcode guide
+Each byteocode program has many registers.
+Registers store a variety of items like null values, 64-bit integers or frame objects.
 
-<a href="#simplified-opcode">A simplified guide</a> designed for speedy referencing is available at the end of the book.
+The bytecode engine has no stack on which to store the return address of a subroutine. 
+Return addresses must be stored in registers. 
+
+<!-- ## Simplified opcode guide
+
+What follows is a simplified guide designed for speedy referencing.
 It is meant to be within hands reach when dealing with bytecodes.
 If you want more info, read the source or refer to the [opcode docs](https://www.sqlite.org/opcode.html) which contains nearly all that is in the source.
 
 
+
+#### Goto ? P2 * * *
+
+```
+   An unconditional jump to address P2.
+   P1 sometimes set to 1 for indentation purposes
+```
+
+#### Gosub P1 P2 * * *
+
+```
+   Write the current address onto register P1
+   and then jump to address P2.
+```
+
+#### Return P1 ? P3 * *
+
+```
+Jump to the address stored in register P1.  If P1 is a return address
+register, then this accomplishes a return from a subroutine.
+
+If P3:
+   1: jump is only taken if register P1 holds an integer
+      Used in combination with OP_BeginSubrtn
+   0: then register P1 must hold an
+```
+
+#### EndCoroutine P1 * * * *
+```
+   The instruction at the address in register P1 is a Yield.
+   Jump to the P2 parameter of that Yield.
+   After the jump, register P1 becomes undefined.
+```
+
+#### Yield P1 P2 * * *
+```
+   Swap program counter with value in register P1. This
+   has the effect of yielding to a coroutine.
+   If the coroutine launched ends with Yield or Return:
+      continue to the next instruction.  
+   If coroutine launched ends with EndCoroutine:
+      jump to P2
+```
+
+#### HaltIfNull  P1 P2 P3 P4 P5, if r[P3]=null halt
+```
+   Check value in register P3.  
+   If NULL:
+      Halt using P1, P2, and P4 as if this were a Halt instruction.
+   else:
+      routine is a no-op.
+   P5 parameter should be 1.
+```
+
+#### Halt P1 P2 * P4 P5
+```
+   Exit immediately.  All open cursors, etc are closed
+   automatically.
+   P1: result code returned by sqlite3_exec(), sqlite3_reset(),
+      or sqlite3_finalize(). 
+      For a normal halt, this should be SQLITE_OK (0).
+
+   If P1!=0:
+      P2 will determine whether or not to rollback 
+      the current transaction.  
+      if P2==OE_Fail:
+         Do not rollback
+      if P2==OE_Rollback:
+         Do the rollback
+      if P2==OE_Abort:
+         back out all changes that have occurred during this execution of the
+         VDBE, but do not rollback the transaction. 
+
+   If P4 != null then it is an error message string.
+
+   P5 is a value between 0 and 4, inclusive, that modifies the P4 string.
+
+      0:  (no change)
+      1:  NOT NULL contraint failed: P4
+      2:  UNIQUE constraint failed: P4
+      3:  CHECK constraint failed: P4
+      4:  FOREIGN KEY constraint failed: P4
+  
+   If P5 != zero and P4 is NULL:
+      everything after the ":" is omitted.
+   
+   There is an implied "Halt 0 0 0" instruction inserted at the very end of
+   every program.  So a jump past the last instruction of the program
+   is the same as executing Halt.
+```
+#### Integer P1 P2 * * * , r[P2]=P1
+
+```
+   32-bit integer value P1 is written into register P2.
+
+```
+TODO: complete
+ -->
+
+
 <h1 id="interesting-features" class="chapter">Chapter: Interesting Features </h1>
 
+
 ## Virtual Tables
+
+Virtual tables are like any tables but, one cannot create indexes on them, alter and add columns or create triggers.
+Virtual tables involve no reading and writing to the db file.
+
+**shadow tables**: Sometimes, some virtual table implmentations store virtual table informations in real tables called shawdow tables. Shadow tables can be read and modified unless the `SQLITE_DBCONFIG_DEFENSIVE` flag is set.
 
 ## Common Table Expressions
 
@@ -1350,11 +1468,24 @@ Oracle needed recursive queries and they added common table expressions.
 
 ## Save points
 
-## Partial Indices
+## Partial indexes
 
 Developed for Expensify.
 
+## Misc
+
+
+CREATE INDEX Idx1 ON fruitsforsale(fruit);
+
+
+CREATE INDEX creates a new table sorted in the case by fruit.
+
+SORT works on results
+
+
+
 <h1 id="knowing-internals" class="chapter">Chapter: Knowing The Internals </h1>
+
 
 
 ## WebSQL
@@ -1400,7 +1531,6 @@ It has an edge on cryptography.
 
 **<a id="martina-palmucci-thesis" href="#martina-palmucci-thesis">Martina Palmucci's Master Thesis</a> [11]:** Martina wrote a thesis entitled "Securing databases using Attribute Based
 Encryption and Shamir’s Secret Sharing (SSS)" on the LumoSQL project. 
-It has been merged. 
 The thesis combines SSS and access based on user attributes like SELECT etc.
 It is abbreviated as ABE-SSS Attribute-based Encryption Shamir’s Secret Sharing.
 There is an increased need to saveguard data privacy. 
@@ -1426,7 +1556,7 @@ Resources have corresponding policy trees.
 Access to a resource is granted if the result of evaluating a user policy expression is true.
 For a resource tree there is a corresponding Shamir shares tree which is encrypted.
 
-
+## DuckDB
 
 ## Distributed clones
 
@@ -1437,7 +1567,7 @@ TOADD
 ## Bloomberg
 
 Bloomberg uses the SQLite code generator and storage engine.
-The replaced the layers after by their own implementation of a scaled, massively concurrent, multi-data center storage engine.
+The replaced the layers after by their own implementation of a scaled, massively concurrent, multi-data center storage engine. [10]
 
 
 <h1 id="the-future" class="chapter">Chapter: The Future </h1>
@@ -1481,98 +1611,7 @@ never would've have written it [3]
 > [9]
 
 
-<h1 id="refs" class="chapter">References</h1>
 
-
-## <a id="simplified-opcode">Simplified Opcode guide.</a>
-
-```
-
-Goto ? P2 * * *
-   An unconditional jump to address P2.
-   P1 sometimes set to 1 for indentation purposes
-
-
-Gosub P1 P2 * * *
-   Write the current address onto register P1
-   and then jump to address P2.
-
-
-Return P1 ? P3 * *
-   Jump to the address stored in register P1.  If P1 is a return address
-   register, then this accomplishes a return from a subroutine.
-  
-   If P3:
-      1: jump is only taken if register P1 holds an integer
-         Used in combination with OP_BeginSubrtn
-      0: then register P1 must hold an
-
-
-EndCoroutine P1 * * * *
-   The instruction at the address in register P1 is a Yield.
-   Jump to the P2 parameter of that Yield.
-   After the jump, register P1 becomes undefined.
-
-
-Yield P1 P2 * * *
-   Swap program counter with value in register P1. This
-   has the effect of yielding to a coroutine.
-   If the coroutine launched ends with Yield or Return:
-      continue to the next instruction.  
-   If coroutine launched ends with EndCoroutine:
-      jump to P2
-
-
-HaltIfNull  P1 P2 P3 P4 P5, if r[P3]=null halt
-   Check value in register P3.  
-   If NULL:
-      Halt using P1, P2, and P4 as if this were a Halt instruction.
-   else:
-      routine is a no-op.
-   P5 parameter should be 1.
-
-
-Halt P1 P2 * P4 P5
-   Exit immediately.  All open cursors, etc are closed
-   automatically.
-   P1: result code returned by sqlite3_exec(), sqlite3_reset(),
-      or sqlite3_finalize(). 
-      For a normal halt, this should be SQLITE_OK (0).
-
-   If P1!=0:
-      P2 will determine whether or not to rollback 
-      the current transaction.  
-      if P2==OE_Fail:
-         Do not rollback
-      if P2==OE_Rollback:
-         Do the rollback
-      if P2==OE_Abort:
-         back out all changes that have occurred during this execution of the
-         VDBE, but do not rollback the transaction. 
-
-   If P4 != null then it is an error message string.
-
-   P5 is a value between 0 and 4, inclusive, that modifies the P4 string.
-
-      0:  (no change)
-      1:  NOT NULL contraint failed: P4
-      2:  UNIQUE constraint failed: P4
-      3:  CHECK constraint failed: P4
-      4:  FOREIGN KEY constraint failed: P4
-  
-   If P5 != zero and P4 is NULL:
-      everything after the ":" is omitted.
-   
-   There is an implied "Halt 0 0 0" instruction inserted at the very end of
-   every program.  So a jump past the last instruction of the program
-   is the same as executing Halt.
-
-Integer P1 P2 * * *, r[P2]=P1
-   32-bit integer value P1 is written into register P2.
-
-
-TODO: complete
-```
 
 <h1 id="refs" class="chapter">References</h1>
 
@@ -1590,6 +1629,7 @@ SQLite, ACM SIGMOD interviews with DB people, Marianne  Winslett and Vanessa    
 - [11] https://www.pgcon.org/2014/schedule/attachments/319_PGCon2014OpeningKeynote.pdf
 - [12] Securing databases using Attribute Based
 Encryption and Shamir’s Secret Sharing (SSS), Martina Pulmucci, https://lumosql.org/src/lumosql/raw/c3f5ace49a2139e623be647a3a65753adfe4fddd46fb86f345e0bd75ffa185af?at=LumoSQL-Thesis-Martina-Palmucci-2022.pdf
+- [13] SQLite: Past, Present, and Future, https://www.vldb.org/pvldb/vol15/p3535-gaffney.pdf
 
 Images
 
