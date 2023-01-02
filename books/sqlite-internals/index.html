@@ -93,6 +93,12 @@
             margin-top: 20px;
 
         }
+        .book__content table{
+            margin-bottom: 15px;
+        }
+        .book__content th{
+            border-bottom: 1px solid #ddd;
+        }
         .book__content h3{
             font-size: 30px;
             margin-bottom: 20px;
@@ -110,7 +116,7 @@
         .book__content img{
             border-radius: 10px;
             display:block;
-            height: 350px;
+            max-height: 350px;
             margin-top: 50px;
             margin-bottom: 50px;
             margin-left: auto;
@@ -266,7 +272,7 @@ html,body{
     <div id="book-wrapper">
         <h1 class="book__title chapter">SQLite Internals: How The World's Most Used Database Works</h1>
         <span style="font-size: 20px">by Abdur-Rahmaan Janhangeer</span><br><br>
-        <small>build: <span class="web-scrape build-no">0.9.1</span></small>
+        <small>build: <span class="web-scrape build-no">0.10.0</span></small>
         <br>
         <br>
         <div class="book__content">
@@ -290,8 +296,9 @@ html,body{
 <h1 id="foreword" class="chapter">Chapter: Foreword on SQLite Internals</h1>
 
 <p>To all SQLite lovers. This book discusses SQLite internals in depth.</p>
-<p>You can view 
-[ <a href="https://www.compileralchemy.com">compileralchemy.com</a> ] or 
+<p>You can 
+[ <a href="https://www.compileralchemy.com">view compileralchemy.com</a> ] or 
+[ <a href="https://www.compileralchemy.com/books/sqlite-internals/">read online</a> ] or 
 [ <a href="https://github.com/compileralchemy/compileralchemy.github.io/blob/source/data/books/sqlite_internals.md">contribute to the book</a> ] or
 [ <a href="https://www.compileralchemy.com/assets/books/foss_sqlite_internals.pdf">download the book</a> ] 
 It is OpenSource! 
@@ -569,13 +576,9 @@ Varints are big-endian: bits taken from the earlier byte of the varint are more 
 <h1 id="file-record" class="chapter">Chapter: File & Record Format</h1>
 
 <p>A SQLite file is a series of bytes.</p>
-<pre><code>[b1 b2 b3 b4 b5 ...]
-</code></pre>
+<p><img alt="" src="https://www.compileralchemy.com/assets/books/sqlite-internals/file_byte.png" /></p>
 <p>It is divided into equally-sized chunks called pages. There can be one or more pages.</p>
-<pre><code>----------------------------------------------
-| page 1 | page 2 | page 3 | page 4 | page 5 |
-----------------------------------------------
-</code></pre>
+<p><img alt="" src="https://www.compileralchemy.com/assets/books/sqlite-internals/file.png" /></p>
 <p>The first page is the most important. 
 It declares vital information about the file.
 The first page looks like this.
@@ -586,55 +589,137 @@ Before 3.7.0.1 it had to be a power of two between 512 and 32768.
 As from 3.7.1 it can be of size 65536. 
 Since such a large number cannot fit in 2 bytes, the value is set to <code>0x00 0x01</code>.
 This represents big-endian 1 and is used to specify a size of 65536.</p>
-<pre><code>0                 16       18
-------------------------------
-| SQLite format 3 |  400   |
-------------------------------
-[                     page 1        ..
-</code></pre>
+<p><img alt="" src="https://www.compileralchemy.com/assets/books/sqlite-internals/sqlite_format.png" /></p>
 <p><strong>The first page</strong></p>
 <p>Here is a complete table about what the first page contains.</p>
-<pre><code>start byte - offset byte - description
-
-00  16  The header string: &quot;SQLite format 3\000&quot;
-16  02  The database page size in bytes. Must be a power of two 
-        between 512 and 32768 inclusive, or the value 1 
-        representing a page size of 65536.
-18  01  File format write version. 1 for legacy; 2 for WAL.
-19  01  File format read version. 1 for legacy; 2 for WAL.
-20  01  Bytes of unused &quot;reserved&quot; space at the end of each page. 
-        Usually 0.
-21  01  Maximum embedded payload fraction. Must be 64.
-22  01  Minimum embedded payload fraction. Must be 32.
-23  01  Leaf payload fraction. Must be 32.
-24  04  File change counter.
-28  04  Size of the database file in pages. 
-        The &quot;in-header database size&quot;.
-32  04  Page number of the first freelist trunk page.
-36  04  Total number of freelist pages.
-40  04  The schema cookie.
-44  04  The schema format number.Supported schema formats are 
-        1, 2, 3, and 4.
-48  04  Default page cache size.
-52  04  The page number of the largest root b-tree page when 
-        in auto-vacuum or incremental-vacuum modes, or zero 
-        otherwise.
-56  04  The database text encoding. A value of 1 means UTF-8. 
-        A value of 2 means UTF-16le. A value of 3 means UTF-16be.
-60  04  The &quot;user version&quot; as read and set by the 
-        user_version pragma.
-64  04  True (non-zero) for incremental-vacuum mode. False 
-        (zero) otherwise.
-68  04  The &quot;Application ID&quot; set by PRAGMA application_id.
-72  20  Reserved for expansion. Must be zero.
-92  04  The version-valid-for number.
-96  04  SQLITE_VERSION_NUMBER
-</code></pre>
+<table>
+<thead>
+<tr>
+<th>start byte</th>
+<th>offset byte</th>
+<th>description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>00</td>
+<td>16</td>
+<td>The header string: &ldquo;SQLite format 3\000&rdquo;</td>
+</tr>
+<tr>
+<td>16</td>
+<td>02</td>
+<td>The database page size in bytes. Must be a power of two between 512 and 32768 inclusive, or the value 1 representing a page size of 65536.</td>
+</tr>
+<tr>
+<td>18</td>
+<td>01</td>
+<td>File format write version. 1 for legacy; 2 for WAL.</td>
+</tr>
+<tr>
+<td>19</td>
+<td>01</td>
+<td>File format read version. 1 for legacy; 2 for WAL.</td>
+</tr>
+<tr>
+<td>20</td>
+<td>01</td>
+<td>Bytes of unused &ldquo;reserved&rdquo; space at the end of each page. Usually 0.</td>
+</tr>
+<tr>
+<td>21</td>
+<td>01</td>
+<td>Maximum embedded payload fraction. Must be 64.</td>
+</tr>
+<tr>
+<td>22</td>
+<td>01</td>
+<td>Minimum embedded payload fraction. Must be 32.</td>
+</tr>
+<tr>
+<td>23</td>
+<td>01</td>
+<td>Leaf payload fraction. Must be 32.</td>
+</tr>
+<tr>
+<td>24</td>
+<td>04</td>
+<td>File change counter.</td>
+</tr>
+<tr>
+<td>28</td>
+<td>04</td>
+<td>Size of the database file in pages. The &ldquo;in-header database size&rdquo;.</td>
+</tr>
+<tr>
+<td>32</td>
+<td>04</td>
+<td>Page number of the first freelist trunk page.</td>
+</tr>
+<tr>
+<td>36</td>
+<td>04</td>
+<td>Total number of freelist pages.</td>
+</tr>
+<tr>
+<td>40</td>
+<td>04</td>
+<td>The schema cookie.</td>
+</tr>
+<tr>
+<td>44</td>
+<td>04</td>
+<td>The schema format number.Supported schema formats are 1, 2, 3, and 4.</td>
+</tr>
+<tr>
+<td>48</td>
+<td>04</td>
+<td>Default page cache size.</td>
+</tr>
+<tr>
+<td>52</td>
+<td>04</td>
+<td>The page number of the largest root b-tree page when in auto-vacuum or incremental-vacuum modes, or zero otherwise.</td>
+</tr>
+<tr>
+<td>56</td>
+<td>04</td>
+<td>The database text encoding. A value of 1 means UTF-8. A value of 2 means UTF-16le. A value of 3 means UTF-16be.</td>
+</tr>
+<tr>
+<td>60</td>
+<td>04</td>
+<td>The &ldquo;user version&rdquo; as read and set by the user_version pragma.</td>
+</tr>
+<tr>
+<td>64</td>
+<td>04</td>
+<td>True (non-zero) for incremental-vacuum mode. False (zero) otherwise.</td>
+</tr>
+<tr>
+<td>68</td>
+<td>04</td>
+<td>The &ldquo;Application ID&rdquo; set by PRAGMA application_id.</td>
+</tr>
+<tr>
+<td>72</td>
+<td>20</td>
+<td>Reserved for expansion. Must be zero.</td>
+</tr>
+<tr>
+<td>92</td>
+<td>04</td>
+<td>The version-valid-for number.</td>
+</tr>
+<tr>
+<td>96</td>
+<td>04</td>
+<td>SQLITE_VERSION_NUMBER</td>
+</tr>
+</tbody>
+</table>
 <p>The first page contains 100 bytes less storage space.</p>
-<pre><code>[ db header | free space ]
-    |            |
-   100 bytes     --- Can be any type of page
-</code></pre>
+<p><img alt="" src="https://www.compileralchemy.com/assets/books/sqlite-internals/first_page.png" /></p>
 <p>The free space can be of any type of page, but, it will contain less information than a typical page handles.
 This needs some adjustments in some cases in the way information is stored for that type of page.</p>
 <h2>Types of pages</h2>
@@ -655,58 +740,18 @@ If the file doesn&rsquo;t have that many bytes, the page does not exist.
 If it does have the necessary bytes, there is only one such page.
 It&rsquo;s dealt with by the VFS layer rather than SQLite core.</p>
 <h3>Freelist pages</h3>
-<pre><code>             has 
-             many
-A freelist -------- freelist trunk page [ n1, n2, n3 ]
-   page                                   |   |   |
-                  A freelist leaf page ----   |   |
-                                              |   ---- A freelist
-                  A freelist leaf page --------        leaf page
-</code></pre>
+<p><img alt="" src="https://www.compileralchemy.com/assets/books/sqlite-internals/freelist.png" /></p>
 <p>Unused pages are stored on the freelist.
 It is a linked list of trunk pages with each page containing page numbers for zero or more freelist leaf pages, which contain nothing.
 These pages can be reused.
 When using the <code>VACCUM</code> command, the freelist is purged and a new database file is written.
 When auto-vaccum is enabled, freelist is not used a new compacted db is written on each commit.</p>
 <h3>B-Tree pages</h3>
-<pre><code>               can be either
-A b-tree page --------------- 
-                    \                       either
-                     --- table b-tree page --------- leaf page
-                     |                          \
-                     |                           \__ interior page
-                     |
-                     |                       either
-                     --- index b-tree page ---------- leaf page
-                                                 \
-                                                  \__ interior page
-
-</code></pre>
+<p><img alt="" src="https://www.compileralchemy.com/assets/books/sqlite-internals/btree.png" /></p>
 <p>B-tree pages can be either a table page or an index page. 
 A page is always either a leaf pae of an interior page.</p>
 <p>A btree looks like this</p>
-<pre><code>                     root page
-                     --------------------------- 
-                     | key | data | key | data |
-                     --------------------------- 
-                              | data: interior page key 
-                ---------------
-                |
-interior page   |           interior page               interior page
---------------------------- --------------------------- ------------
-| key | data | key | data | | key | data | key | data | | key | 
---------------------------- --------------------------- --------- ...
-                      |
-                      -----
-            leaf page     |         leaf page                 leaf page
-----------------------  ----------------------   ----------------------
-| key |    data      |  | key |    data      |   | key |    data      | 
-----------------------  ----------------------   ----------------------
-|     key   |  data  |  |     key   |  data  |   | key |    data      |
-----------------------  ----------------------   ----------------------
-|   key   |   data   |  |   key   |   data   |   | key |    data      |
-----------------------  ----------------------   ----------------------
-</code></pre>
+<p><img alt="" src="https://www.compileralchemy.com/assets/books/sqlite-internals/tree.png" /></p>
 <p>The data of a root page is the key of an interior page.
 The data of an interior page is the key of a leaf page.
 Database records are stored in the data section of a leaf page.</p>
@@ -721,10 +766,7 @@ This is unless page 1 is an interior b-tree page in which case it can handle one
 It also contains k+1 number of pointers to child b-tree pages
 A pointer is a 32-bit unsigned integer page number of the child page.</p>
 <p>Conceptually speaking, in an interior b-tree page, the pointers and keys logically alternate with a pointer on both ends, keys in ascending order from left to right.</p>
-<pre><code>[  pointer  -  key  - pointer - key - pointer - ... - pointer ]
-    |           |                                        |
-    --- cell ----                    stored separately ---   
-</code></pre>
+<p><img alt="" src="https://www.compileralchemy.com/assets/books/sqlite-internals/page_pointer.png" /></p>
 <blockquote>
 <p>A leaf page can be a root page. Root pages are identified by their root page number</p>
 </blockquote>
@@ -733,27 +775,7 @@ A pointer is a 32-bit unsigned integer page number of the child page.</p>
 <h3>About overflowing</h3>
 <p>If the data section in a leaf page becomes bigger than the space available in a page, it is linked to another page. 
 If it&rsquo;s size exceeds the other page, it is added to yet other another page.</p>
-<pre><code>part of leaf page
-----------------------------------------------
-| key |          data          | page 23     |----
-----------------------------------------------   |
-                                                 |
-overflow page                                    |
-----------------------------------------------   |
-|                  page 23                   |   |
-|                                            |----
-|                                            |
-|                                            |----
-----------------------------------------------   |
-                                                 |
-overflow page                                    |
-----------------------------------------------   |
-|                  page 27                   |   |
-|                                            |----
-|                                            |
-|                                            |
-----------------------------------------------
-</code></pre>
+<p><img alt="" src="https://www.compileralchemy.com/assets/books/sqlite-internals/overflow.png" /></p>
 <p>Large keys on index b-trees are split up into overflow pages so that no single key uses more than one fourth of the available storage space on the page and hence every internal page is able to store at least 4 keys</p>
 <p>The integer keys of table b-trees are never large enough to require overflow, so key overflow only occurs on index b-trees.</p>
 <h3>Record format</h3>
@@ -763,11 +785,7 @@ overflow page                                    |
 <li>The type part</li>
 <li>The data part</li>
 </ul>
-<pre><code>[ key ][ data ]
-          |
-          v
-        [ header size | type1 | type2 | data1 | data2 ]
-</code></pre>
+<p><img alt="" src="https://www.compileralchemy.com/assets/books/sqlite-internals/btree_data.png" /></p>
 <p>A row such as this</p>
 <pre><code>id     0
 price  3
@@ -777,28 +795,82 @@ name   shoe
 <pre><code>[ 04 | 01 | 01 | 21 ] [ 00 | 03 | shoe ]
 </code></pre>
 <p>Here&rsquo;s the table SQLite consults for encoding and decoding</p>
-<pre><code>Serial Type, Content Size,   Value meaning
-0            0          NULL
-1            1          8-bit twos-complement integer.
-2            2          big-endian 16-bit twos-complement integer.
-3            3          big-endian 24-bit twos-complement integer.
-4            4          big-endian 32-bit twos-complement integer.
-5            6          big-endian 48-bit twos-complement integer.
-6            8          big-endian 64-bit twos-complement integer.
-7            8          big-endian IEEE 754-2008 64-bit floating , number.
-8            0          integer 0. (Only available for schema format &gt;= 4)
-9            0          integer 1. (Only available for schema format &gt;= 4)
-10,11        variable   Reserved for internal use. These serial type codes 
-                        will never appear in a well-formed database file, 
-                        but they might be used in transient and temporary 
-                        database files that SQLite sometimes generates for
-                        its own use. The meanings of these codes can shift
-                        from one release of SQLite to the next.
-N≥12, even   (N-12)/2   Value is a BLOB that is (N-12)/2 bytes in length.
-N≥13, odd    (N-13)/2   Value is a string in the text encoding and 
-                        (N-13)/2 bytes in length. The nul terminator is not
-                        stored.
-</code></pre>
+<table>
+<thead>
+<tr>
+<th>Serial Type</th>
+<th>Content Size</th>
+<th>Value meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0</td>
+<td>0</td>
+<td>NULL</td>
+</tr>
+<tr>
+<td>1</td>
+<td>1</td>
+<td>8-bit twos-complement integer.</td>
+</tr>
+<tr>
+<td>2</td>
+<td>2</td>
+<td>big-endian 16-bit twos-complement integer.</td>
+</tr>
+<tr>
+<td>3</td>
+<td>3</td>
+<td>big-endian 24-bit twos-complement integer.</td>
+</tr>
+<tr>
+<td>4</td>
+<td>4</td>
+<td>big-endian 32-bit twos-complement integer.</td>
+</tr>
+<tr>
+<td>5</td>
+<td>6</td>
+<td>big-endian 48-bit twos-complement integer.</td>
+</tr>
+<tr>
+<td>6</td>
+<td>8</td>
+<td>big-endian 64-bit twos-complement integer.</td>
+</tr>
+<tr>
+<td>7</td>
+<td>8</td>
+<td>big-endian IEEE 754-2008 64-bit floating , number.</td>
+</tr>
+<tr>
+<td>8</td>
+<td>0</td>
+<td>integer 0. (Only available for schema format &gt;= 4)</td>
+</tr>
+<tr>
+<td>9</td>
+<td>0</td>
+<td>integer 1. (Only available for schema format &gt;= 4)</td>
+</tr>
+<tr>
+<td>10,11</td>
+<td>variable</td>
+<td>Reserved for internal use. These serial type codes will never appear in a well-formed database file,  but they might be used in transient and temporary  database files that SQLite sometimes generates for its own use. The meanings of these codes can shift from one release of SQLite to the next.</td>
+</tr>
+<tr>
+<td>N≥12, even</td>
+<td>(N-12)/2</td>
+<td>Value is a BLOB that is (N-12)/2 bytes in length.</td>
+</tr>
+<tr>
+<td>N≥13, odd</td>
+<td>(N-13)/2</td>
+<td>Value is a string in the text encoding and  (N-13)/2 bytes in length. The nul terminator is not stored.</td>
+</tr>
+</tbody>
+</table>
 <p>So, here&rsquo;s what the record means</p>
 <pre><code>[ 04 ] header size, including the size itself
 [ 01 ] type 8-bit twos-complement integer.
@@ -816,48 +888,77 @@ N≥13, odd    (N-13)/2   Value is a string in the text encoding and
 </code></pre>
 <h3>Btree page format</h3>
 <p>This is what a b-tree page looks like.</p>
-<pre><code>----------------------
-| 100 byte header    | (if page 1)
-----------------------
-| 8 or 12 byte       | b-tree page header
-----------------------       08: leaf page
-| cell pointer array |       12: interior page
-----------------------
-| free space         |
-----------------------
-| cell content area  |
-----------------------
-| reserved region    |
-----------------------
-</code></pre>
+<p><img alt="" src="https://www.compileralchemy.com/assets/books/sqlite-internals/btree_header.png" /></p>
 <p>The reserved region is found in all pages except the locking page.
 It can be used by extensions to write per-page information.
 It&rsquo;s size is defined in the database header at an offset of bytes 20.</p>
 <p>Here is the format of the b-tree page header.</p>
-<pre><code>
-Offset  Size    Description
-0   1   The one-byte flag at offset 0 indicating 
-        the b-tree page type.
-            02 (0x02): page is an interior index b-tree page.
-            05 (0x05): page is an interior table b-tree page.
-            10 (0x0a): page is a leaf index b-tree page.
-            13 (0x0d): page is a leaf table b-tree page.
-            Any other value for the b-tree page type is an error.
-1   2   The two-byte integer at offset 1 gives the start of the 
-        first freeblock on the page, or is zero if there are no 
-        freeblocks.
-3   2   The two-byte integer at offset 3 gives the number of cells 
-        on the page.
-5   2   The two-byte integer at offset 5 designates the start of the 
-        cell content area. A zero value for this integer is interpreted 
-        as 65536.
-7   1   The one-byte integer at offset 7 gives the number of fragmented 
-        free bytes within the cell content area.
-8   4   The four-byte page number at offset 8 is the right-most pointer. 
-        This value appears in the header of interior b-tree pages only 
-        and is omitted from all other pages.
-
-</code></pre>
+<table>
+<thead>
+<tr>
+<th>Offset</th>
+<th>Size</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0</td>
+<td>1</td>
+<td>The one-byte flag at offset 0 indicating the b-tree page type.</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td>02 (0x02): page is an interior index b-tree page.</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td>05 (0x05): page is an interior table b-tree page.</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td>10 (0x0a): page is a leaf index b-tree page.</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td>13 (0x0d): page is a leaf table b-tree page.</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td>Any other value for the b-tree page type is an error.</td>
+</tr>
+<tr>
+<td>1</td>
+<td>2</td>
+<td>The two-byte integer at offset 1 gives the start of the  first freeblock on the page, or is zero if there are no  freeblocks.</td>
+</tr>
+<tr>
+<td>3</td>
+<td>2</td>
+<td>The two-byte integer at offset 3 gives the number of cells  on the page.</td>
+</tr>
+<tr>
+<td>5</td>
+<td>2</td>
+<td>The two-byte integer at offset 5 designates the start of the  cell content area. A zero value for this integer is interpreted  as 65536.</td>
+</tr>
+<tr>
+<td>7</td>
+<td>1</td>
+<td>The one-byte integer at offset 7 gives the number of fragmented  free bytes within the cell content area.</td>
+</tr>
+<tr>
+<td>8</td>
+<td>4</td>
+<td>The four-byte page number at offset 8 is the right-most pointer.  This value appears in the header of interior b-tree pages only  and is omitted from all other pages.</td>
+</tr>
+</tbody>
+</table>
 <p>TOADD: Freeblock</p>
 <h1 id="rollback-wal" class="chapter">Chapter: Rollback & WAL mode</h1>
 
@@ -877,19 +978,13 @@ The Write Ahead Log (WAL) mode is better than the Rollback for for two reasons:<
 </ul>
 <h2>The Rollback mode</h2>
 <p>When reading occurs, the process acquires a shared lock.</p>
-<pre><code>|            |          |      |
-| user space | os cache | disk |
-|      a     |    a     |   x  |
-|      a     |          |   x  |
-|            |    a     |   x  |
-|            |          |   x  |
-                 🔒 shared*
-</code></pre>
+<p><img alt="" src="https://www.compileralchemy.com/assets/books/sqlite-internals/reading_shared.png" /></p>
 <p>A shared lock prevents processes from changing data.</p>
 <p>When <strong>writing</strong>, a reserved lock is acquired.
 A journal is also created.
 Journals in the this mode have the <code>.database-journal</code> extension.</p>
-<pre><code>|            |          |      |
+<!-- ```
+|            |          |      |
 | user space | os cache | disk |
 |      a     |    a     |   x  |
 |      a     |          |   x  |
@@ -901,279 +996,53 @@ Journals in the this mode have the <code>.database-journal</code> extension.</p>
 |            |          |      |
 |            |          |      |
 |            |          |      |            
-</code></pre>
+``` -->
+
+<p><img alt="" src="https://www.compileralchemy.com/assets/books/sqlite-internals/writing_reserved.png" /></p>
 <p>Then the data is copied to the journal cache</p>
-<pre><code>|            |          |      |
-| user space | os cache | disk |
-|      a     |    a     |   x  |
-|      a     |          |   x  |
-|            |    a     |   x  |
-|            |          |   x  |
-                 🔒 reserved
-|            |          |      | file.database-journal
-|            |          |      | 
-|            |          |      | 
-|            |    a*    |      |
-|            |    a*    |      |  
-</code></pre>
+<p><img alt="" src="https://www.compileralchemy.com/assets/books/sqlite-internals/writing_copied_journal.png" /></p>
 <p>Then the data is changed</p>
-<pre><code>|            |          |      |
-| user space | os cache | disk |
-|      b*    |    a     |   x  |
-|      b*    |          |   x  |
-|            |    a     |   x  |
-|            |          |   x  |
-                 🔒 reserved
-|            |          |      | journal
-|            |          |      | 
-|            |          |      | 
-|            |    a     |      |
-|            |    a     |      |  
-</code></pre>
+<p><img alt="" src="https://www.compileralchemy.com/assets/books/sqlite-internals/writing_data_changed.png" /></p>
 <p>Then the data in the journal cache is flushed to the journal on disk.</p>
-<pre><code>|            |          |      |
-| user space | os cache | disk |
-|      b     |    a     |   x  |
-|      b     |          |   x  |
-|            |    a     |   x  |
-|            |          |   x  |
-                 🔒 reserved
-|            |          |      | journal
-|            |          |      | 
-|            |          |      | 
-|            |    a     |   a* |
-|            |    a     |   a* |  
-</code></pre>
+<p><img alt="" src="https://www.compileralchemy.com/assets/books/sqlite-internals/writing_journal_cache_disk.png" /></p>
 <p>This takes some times and can be turned off but, won&rsquo;t guarantee that data is safe during power failure.</p>
 <p>The an exlclusive lock is acquired.
 This stops writing completely!</p>
-<pre><code>|            |          |      |
-| user space | os cache | disk |
-|      b     |    a     |   x  |
-|      b     |          |   x  |
-|            |    a     |   x  |
-|            |          |   x  |
-                 🔒 exclusive*
-|            |          |      | journal
-|            |          |      | 
-|            |          |      | 
-|            |    a     |   a  |
-|            |    a     |   a  |  
-</code></pre>
+<p><img alt="" src="https://www.compileralchemy.com/assets/books/sqlite-internals/writing_exclusive.png" /></p>
 <p>The new values are flushed to the os cache.</p>
-<pre><code>|            |          |      |
-| user space | os cache | disk |
-|      b     |    b*    |   x  |
-|      b     |          |   x  |
-|            |    b*    |   x  |
-|            |          |   x  |
-                 🔒 exclusive
-|            |          |      | journal
-|            |          |      | 
-|            |          |      | 
-|            |    a     |   a  |
-|            |    a     |   a  |  
-</code></pre>
+<p><img alt="" src="https://www.compileralchemy.com/assets/books/sqlite-internals/writing_values_os_cache.png" /></p>
 <p>Then it is flushed to disk</p>
-<pre><code>|            |          |      |
-| user space | os cache | disk |
-|      b     |    b     |   b* |
-|      b     |          |   x  |
-|            |    b     |   b* |
-|            |          |   x  |
-                 🔒 exclusive
-|            |          |      | journal
-|            |          |      | 
-|            |          |      | 
-|            |    a     |   a  |
-|            |    a     |   a  |  
-</code></pre>
+<p><img alt="" src="https://www.compileralchemy.com/assets/books/sqlite-internals/writing_flushed_disk.png" /></p>
 <p>When a commit occurs, it deletes the journal.</p>
-<pre><code>|            |          |      |
-| user space | os cache | disk |
-|      b     |    b     |   b  |
-|      b     |          |   x  |
-|            |    b     |   b  |
-|            |          |   x  |
-                 🔒 exclusive
-|            |          |      | journal
-|            |          |      | 
-|            |          |      | 
-|            |          |      |
-|            |          |      |  
-</code></pre>
+<p><img alt="" src="https://www.compileralchemy.com/assets/books/sqlite-internals/writing_commit.png" /></p>
 <h3>If power loss before commit</h3>
 <p>Now, if there is a power loss before commit, the situation would be as follows.</p>
-<pre><code>|            |          |      |
-| user space | os cache | disk |
-|            |          |   b  |
-|            |          |   x  |
-|            |          |   x  |
-|            |          |   x  |
-
-|            |          |      | journal
-|            |          |      | 
-|            |          |      | 
-|            |          |   a  |
-|            |          |   a  |  
-</code></pre>
+<p><img alt="" src="https://www.compileralchemy.com/assets/books/sqlite-internals/power_loss.png" /></p>
 <p>When power is restored, a shared lock is acquired.</p>
-<pre><code>|            |          |      |
-| user space | os cache | disk |
-|            |          |   b  |
-|            |          |   x  |
-|            |          |   x  |
-|            |          |   x  |
-                 🔒 shared*        
-|            |          |      | journal
-|            |          |      | 
-|            |          |      | 
-|            |          |   a  |
-|            |          |   a  |  
-</code></pre>
+<p><img alt="" src="https://www.compileralchemy.com/assets/books/sqlite-internals/power_loss_restored.png" /></p>
 <p>Then an exclusive lock is acquired.</p>
-<pre><code>|            |          |      |
-| user space | os cache | disk |
-|            |          |   b  |
-|            |          |   x  |
-|            |          |   x  |
-|            |          |   x  |
-                 🔒 exclusive*       
-|            |          |      | journal
-|            |          |      | 
-|            |          |      | 
-|            |          |   a  |
-|            |          |   a  |  
-</code></pre>
+<p><img alt="" src="https://www.compileralchemy.com/assets/books/sqlite-internals/power_loss_exclusive.png" /></p>
 <p>Then data is copied from the journal disk to the journal cache.</p>
-<pre><code>|            |          |      |
-| user space | os cache | disk |
-|            |          |   b  |
-|            |          |   x  |
-|            |          |   x  |
-|            |          |   x  |
-                 🔒 exclusive       
-|            |          |      | journal
-|            |          |      | 
-|            |          |      | 
-|            |    a*    |   a  |
-|            |    a*    |   a  |  
-</code></pre>
+<p><img alt="" src="https://www.compileralchemy.com/assets/books/sqlite-internals/power_loss_disk_cache.png" /></p>
 <p>Then it is copied from the journal cache to the OS cache.</p>
-<pre><code>|            |          |      |
-| user space | os cache | disk |
-|            |    a*    |   b  |
-|            |    a*    |   x  |
-|            |          |   x  |
-|            |          |   x  |
-                 🔒 exclusive       
-|            |          |      | journal
-|            |          |      | 
-|            |          |      | 
-|            |    a     |   a  |
-|            |    a     |   a  |  
-</code></pre>
+<p><img alt="" src="https://www.compileralchemy.com/assets/books/sqlite-internals/power_loss_cache_cache.png" /></p>
 <p>Then it is flushed to disk</p>
-<pre><code>|            |          |      |
-| user space | os cache | disk |
-|            |    a     |   a* |
-|            |    a     |   a* |
-|            |          |   x  |
-|            |          |   x  |
-                 🔒 exclusive       
-|            |          |      | journal
-|            |          |      | 
-|            |          |      | 
-|            |    a     |   a  |
-|            |    a     |   a  |  
-</code></pre>
+<p><img alt="" src="https://www.compileralchemy.com/assets/books/sqlite-internals/power_loss_disk.png" /></p>
 <h2>The Write Ahead Log (WAL) mode</h2>
 <p>Just as in Rollback mode, first a shared lock is acquired.
 WAL journals have a <code>.database-wal</code> extension.</p>
-<pre><code>|            |          |      |
-| user space | os cache | disk |
-|      a     |    a     |   x  |
-|      a     |          |   x  |
-|            |    a     |   x  |
-|            |          |   x  |
-                 🔒 shared*
-|            |          |      | file.database-wal
-|            |          |      | 
-|            |          |      |
-|            |          |      |
-|            |          |      |            
-</code></pre>
+<p><img alt="" src="https://www.compileralchemy.com/assets/books/sqlite-internals/wal_shared_lock.png" /></p>
 <p>Then, the value is changed</p>
-<pre><code>|            |          |      |
-| user space | os cache | disk |
-|      b*    |    a     |   x  |
-|      b*    |          |   x  |
-|            |    a     |   x  |
-|            |          |   x  |
-                 🔒 shared
-|            |          |      | file.database-wal
-|            |          |      | 
-|            |          |      |
-|            |          |      |
-|            |          |      |            
-</code></pre>
+<p><img alt="" src="https://www.compileralchemy.com/assets/books/sqlite-internals/wal_value.png" /></p>
 <p>Now, if another process is accessing the db, the old value is flushed to the journal cache.</p>
-<pre><code>|            |            |          |      |
-| user2      | user space | os cache | disk |
-|     b*     |      b     |    a     &lt;-  x  |
-|     a*     |      b     |          |   x  |
-|            |            |    a     &lt;-  x  |
-|            |            |          |   x  |
-                 🔒 shared
-                          |          |      | 
-                          |          |      | wal
-                          |          |      |
-                          |    b*    |      |
-                          |    b*    |      |            
-</code></pre>
+<p><img alt="" src="https://www.compileralchemy.com/assets/books/sqlite-internals/wal_another_process.png" /></p>
 <p>The new process gets a snapshot of the data.
 For illustration purposes below, <code>b</code> from wal cache, <code>a</code> from os cache.</p>
-<pre><code>|            |            |          |      |
-| user2      | user space | os cache | disk |
-|     b      |      b     |    a     |   x  |
-|     c*     |      b     |          |   x  |
-|            |            |    a     |   x  |
-|            |            |          |   x  |
-                 🔒 shared
-                          |          |      | 
-                          |          |      | wal
-                          |          |      |
-                          |    b     |      |
-                          |    c*    |      |            
-</code></pre>
+<p><img alt="" src="https://www.compileralchemy.com/assets/books/sqlite-internals/wal_snapshot.png" /></p>
 <p>Different reads and writes with snapshot isolation can occur.</p>
-<pre><code>|            |            |          |      |
-| user2      | user space | os cache | disk |
-|     b      |      b     |    a     |   x  |
-|     c      |      b     |          |   x  |
-|            |            |    a     |   x  |
-|            |            |          |   x  |
-                 🔒 shared
-                          |          |      | 
-                          |          |      | wal
-                          |          |      |
-                          |    b     |   b* |
-                          |    c     |   c* |            
-</code></pre>
+<p><img alt="" src="https://www.compileralchemy.com/assets/books/sqlite-internals/wal_snapshot_isolation.png" /></p>
 <p>A checkpoint operation truncates the journal cache and disk content.</p>
-<pre><code>|            |          |      |
-| user space | os cache | disk |
-|            |    c     |   x  |
-|            |    b     |   x  |
-|            |    c     |   x  |
-|            |    a     |   x  |
-                 🔒 shared
-             |          |      | 
-             |          |      | wal
-             |          |      |
-             |          |      |
-             |          |      |            
-</code></pre>
+<p><img alt="" src="https://www.compileralchemy.com/assets/books/sqlite-internals/wal_checkpoint.png" /></p>
 <h1 id="bytecode" class="chapter">Chapter: Bytecodes </h1>
 
 <p>The entire Virtual Machine is contained in <code>vdbe.c</code>. On compiling the project, <code>vdbe.c</code> produces two files: <code>opcodes.h</code> which assigns a numerical value to opcodes and <code>opcodes.c</code> which designates a symbolic name for an opcode.</p>
@@ -1216,24 +1085,7 @@ const char *sqlite3OpcodeName(int i){
 <pre><code>opname oparg oparg oparg oparg oparg
 </code></pre>
 <p>Using the <code>EXPLAIN</code> keyword, we can view an output based on bytecodes.</p>
-<pre><code>sqlite3&gt; EXPLAIN SELECT price FROM product WHERE price=100;
-addr  opcode         p1    p2    p3    p4             p5  comment      
-----  -------------  ----  ----  ----  -------------  --  -------------
-0     Init           0     11    0                    0   Start at 11
-1     OpenRead       0     30    0     3              0   root=30 iDb=0; product
-2     Rewind         0     10    0                    0   
-3       Column         0     2     1                    0   r[1]= cursor 0 column 2
-4       RealAffinity   1     0     0                    0   
-5       Ne             2     9     1     BINARY-8       85  if r[1]!=r[2] goto 9
-6       Column         0     2     3                    0   r[3]= cursor 0 column 2
-7       RealAffinity   3     0     0                    0   
-8       ResultRow      3     1     0                    0   output=r[3]
-9     Next           0     3     0                    1   
-10    Halt           0     0     0                    0   
-11    Transaction    0     0     25    0              1   usesStmtJournal=0
-12    Integer        100   2     0                    0   r[2]=100
-13    Goto           0     1     0                    0   
-</code></pre>
+<p><img alt="" src="https://www.compileralchemy.com/assets/books/sqlite-internals/bytecode.png" /></p>
 <p>Each byteocode program has many registers.
 Registers store a variety of items like null values, 64-bit integers or frame objects.</p>
 <p>The bytecode engine has no stack on which to store the return address of a subroutine. 
