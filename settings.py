@@ -1,5 +1,5 @@
 OUTPUT_FOLDER = 'docs/'
-BUILD_NUMBER = '0.9.1'
+BUILD_NUMBER = '0.10.0'
 
 
 testimonials = [
