@@ -102,7 +102,7 @@ During that time, he was signed a software contract with shipyard _Bath Iron Wor
 His work involved finding the solution to pipe burst failure by controlling valves on a warship: the _DDG-79 Oscar
 Austin_.
 
-![](../../assets/books/sqlite-internals/oscar_austin.jpg)
+![](https://www.compileralchemy.com/assets/books/sqlite-internals/oscar_austin.jpg)
 
 Richard had a problem.
 The software often did not work as the database server was down all the time.
@@ -274,26 +274,14 @@ Add to it no external dependencies it means that people using SQLite have the pe
 A rough overview of SQLite is as follows
 
 
-```
-
---------------     ------------
-| SQLite lib |  ⇐  | SQL code |
---------------     ------------
-      ⇑ ⇓ 
----------------
-| Binary file |
----------------
-```
+![](https://www.compileralchemy.com/assets/books/sqlite-internals/high_level.png)
 
 A brief overview of the compilation step is as follows.
 The compiler takes the SQL code and outputs bytecodes.
 The Virtual Machine (VM) takes the bytecode and executes it.
 
-```
-+----------+     +----------+     +----+
-| Compiler | --> | bytecode | --> | VM |
-+----------+     +----------+     +----+
-```
+![](https://www.compileralchemy.com/assets/books/sqlite-internals/rough_overview.png)
+
 
 ## The compilation and execution process
 
@@ -301,105 +289,22 @@ A better view of the process might be
 
 
 
-```
-  SQL
-   |
-   v
-[ parser ]
-   |
-   v
-[ code generator ] 
-   |
-   v
-[ VM ]
-   |
-   v
-[ btree ]
-   |
-   v
-[ pager ]
-   |
-   v
-[ shim ]
-   |
-   v
-[ OS Interface ]
-```
+![](https://www.compileralchemy.com/assets/books/sqlite-internals/steps.png)
 
 The first part of the library is called the compiler. 
 It is executed using the `sqlite3_prepare_v2()` function and outputs prepared statements aka bytecodes.
 
-```
-[ parser ]          \
-   |                 \ compiler 
-   v                 /
-[ code generator ]  / 
-   |
-   v
-[ VM ]  
-   |      
-   v       
-[ btree ] 
-   |      
-   v      
-[ pager ]   
-   |      
-   v      
-[ shim ] 
-   |    
-   v              
-[ OS Interface ] 
-```
+![](https://www.compileralchemy.com/assets/books/sqlite-internals/compiler.png)
 
 The second part of the library runs the program. 
 It is executed using the `sqlite3_step()` function.
 
 
-```
-[ parser ]         
-   |               
-   v               
-[ code generator ] 
-   |
-   v
-[ VM ]              \
-   |                 \
-   v                  \
-[ btree ]              \
-   |                    \ run the program
-   v                    /
-[ pager ]              /
-   |                  /
-   v                 /
-[ shim ]            /
-   |               /
-   v              / 
-[ OS Interface ] /
-```
+![](https://www.compileralchemy.com/assets/books/sqlite-internals/run_program.png)
 
 The btree layer and onward is called the storage engine.
 
-```
-[ parser ]       
-   |               
-   v               
-[ code generator ]
-   |
-   v
-[ VM ]             
-   |                
-   v               
-[ btree ]        \           
-   |              \             
-   v               \          
-[ pager ]           \         
-   |                 \ storage engine
-   v                 /
-[ shim ]            /
-   |               /
-   v              /
-[ OS Interface ] /
-```
+![](https://www.compileralchemy.com/assets/books/sqlite-internals/storage_engine.png)
 
 ## Steps explanation
 
@@ -421,27 +326,7 @@ Relevant files includes `vdbe.c`, `vdbe.h`, `vdbeLnt.h`, `vdbe*.c`, `func.c`, `d
 It executes bytecode instructions from the previous step.
 
 
-```
-[ parser ] 
-   |
-   v
-[ code generator ]
-   |
-   v
-[ VM ] 
-   | Interface defined by btree.h
-   v
-[ btree ]
-   |
-   v
-[ pager ]
-   |
-   v
-[ shim ]
-   |
-   v
-[ OS Interface ]
-```
+![](https://www.compileralchemy.com/assets/books/sqlite-internals/interface_btree.png)
 
 - **B-tree:** SQLite uses both B+ and B- trees. 
 B+ tree is used for storing tables and B- is used for indexes.
