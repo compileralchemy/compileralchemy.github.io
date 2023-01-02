@@ -25,7 +25,8 @@ You can
 [ [view compileralchemy.com](https://www.compileralchemy.com) ] or 
 [ [read online](https://www.compileralchemy.com/books/sqlite-internals/) ] or 
 [ [contribute to the book](https://github.com/compileralchemy/compileralchemy.github.io/blob/source/data/books/sqlite_internals.md) ] or
-[ [download the book](https://www.compileralchemy.com/assets/books/foss_sqlite_internals.pdf) ] 
+[ [download the book](https://www.compileralchemy.com/assets/books/foss_sqlite_internals.pdf) ] or
+[ [support by buying on leanpub](https://leanpub.com/sqlite-internals) ]
 It is OpenSource! 
 Feel free to contribute a section, propose rewrites, fix typos etc. If you have comments, mail them to `arj.python at gmail dot com`.
 
