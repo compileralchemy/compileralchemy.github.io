@@ -346,7 +346,7 @@ He turned to consulting.
 During that time, he was signed a software contract with shipyard <em>Bath Iron Works</em>. 
 His work involved finding the solution to pipe burst failure by controlling valves on a warship: the <em>DDG-79 Oscar
 Austin</em>.</p>
-<p><img alt="" src="../../assets/books/sqlite-internals/oscar_austin.jpg" /></p>
+<p><img alt="" src="https://www.compileralchemy.com/assets/books/sqlite-internals/oscar_austin.jpg" /></p>
 <p>Richard had a problem.
 The software often did not work as the database server was down all the time.
 The ship was using <em>Informix</em>.
@@ -478,112 +478,22 @@ Add to it no external dependencies it means that people using SQLite have the pe
 <h1 id="overview" class="chapter">Chapter: Overview</h1>
 
 <p>A rough overview of SQLite is as follows</p>
-<pre><code>
---------------     ------------
-| SQLite lib |  ⇐  | SQL code |
---------------     ------------
-      ⇑ ⇓ 
----------------
-| Binary file |
----------------
-</code></pre>
+<p><img alt="" src="https://www.compileralchemy.com/assets/books/sqlite-internals/high_level.png" /></p>
 <p>A brief overview of the compilation step is as follows.
 The compiler takes the SQL code and outputs bytecodes.
 The Virtual Machine (VM) takes the bytecode and executes it.</p>
-<pre><code>+----------+     +----------+     +----+
-| Compiler | --&gt; | bytecode | --&gt; | VM |
-+----------+     +----------+     +----+
-</code></pre>
+<p><img alt="" src="https://www.compileralchemy.com/assets/books/sqlite-internals/rough_overview.png" /></p>
 <h2>The compilation and execution process</h2>
 <p>A better view of the process might be </p>
-<pre><code>  SQL
-   |
-   v
-[ parser ]
-   |
-   v
-[ code generator ] 
-   |
-   v
-[ VM ]
-   |
-   v
-[ btree ]
-   |
-   v
-[ pager ]
-   |
-   v
-[ shim ]
-   |
-   v
-[ OS Interface ]
-</code></pre>
+<p><img alt="" src="https://www.compileralchemy.com/assets/books/sqlite-internals/steps.png" /></p>
 <p>The first part of the library is called the compiler. 
 It is executed using the <code>sqlite3_prepare_v2()</code> function and outputs prepared statements aka bytecodes.</p>
-<pre><code>[ parser ]          \
-   |                 \ compiler 
-   v                 /
-[ code generator ]  / 
-   |
-   v
-[ VM ]  
-   |      
-   v       
-[ btree ] 
-   |      
-   v      
-[ pager ]   
-   |      
-   v      
-[ shim ] 
-   |    
-   v              
-[ OS Interface ] 
-</code></pre>
+<p><img alt="" src="https://www.compileralchemy.com/assets/books/sqlite-internals/compiler.png" /></p>
 <p>The second part of the library runs the program. 
 It is executed using the <code>sqlite3_step()</code> function.</p>
-<pre><code>[ parser ]         
-   |               
-   v               
-[ code generator ] 
-   |
-   v
-[ VM ]              \
-   |                 \
-   v                  \
-[ btree ]              \
-   |                    \ run the program
-   v                    /
-[ pager ]              /
-   |                  /
-   v                 /
-[ shim ]            /
-   |               /
-   v              / 
-[ OS Interface ] /
-</code></pre>
+<p><img alt="" src="https://www.compileralchemy.com/assets/books/sqlite-internals/run_program.png" /></p>
 <p>The btree layer and onward is called the storage engine.</p>
-<pre><code>[ parser ]       
-   |               
-   v               
-[ code generator ]
-   |
-   v
-[ VM ]             
-   |                
-   v               
-[ btree ]        \           
-   |              \             
-   v               \          
-[ pager ]           \         
-   |                 \ storage engine
-   v                 /
-[ shim ]            /
-   |               /
-   v              /
-[ OS Interface ] /
-</code></pre>
+<p><img alt="" src="https://www.compileralchemy.com/assets/books/sqlite-internals/storage_engine.png" /></p>
 <h2>Steps explanation</h2>
 <ul>
 <li>
@@ -606,26 +516,7 @@ Relevant files includes <code>vdbe.c</code>, <code>vdbe.h</code>, <code>vdbeLnt.
 It executes bytecode instructions from the previous step.</p>
 </li>
 </ul>
-<pre><code>[ parser ] 
-   |
-   v
-[ code generator ]
-   |
-   v
-[ VM ] 
-   | Interface defined by btree.h
-   v
-[ btree ]
-   |
-   v
-[ pager ]
-   |
-   v
-[ shim ]
-   |
-   v
-[ OS Interface ]
-</code></pre>
+<p><img alt="" src="https://www.compileralchemy.com/assets/books/sqlite-internals/interface_btree.png" /></p>
 <ul>
 <li>
 <p><strong>B-tree:</strong> SQLite uses both B+ and B- trees. 
