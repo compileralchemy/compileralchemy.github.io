@@ -74,27 +74,29 @@ def gen_podcast_rss():
 
     generate('podcast.rss', join(settings.OUTPUT_FOLDER, 'alfa-podcast', 'podcast.rss'), **prss_context)
 
-
-def gen_books():
+def gen_book(mdfile, cover, title, build_number, slug, download_link, edit_link):
     context = base_context()
     
 
-    sqlite_book = './data/books/sqlite_internals.md'
+    sqlite_book = mdfile
     with open(sqlite_book) as f:
         text = f.read()
 
     html = md_to_html(text)
+    
     book = {
         'content': html,
-        'cover': '../../assets/books/sqlite-internals/cover.png',
-        'title': "SQLite Internals: How The World's Most Used Database Works"
+        'cover': cover,
+        'title': title,
+        'download_link': download_link,
+        'edit_link': edit_link
     }
 
     context.update({
         'settings': settings,
         'path': '../../',
         'book': book,
-        'build_number': settings.BUILD_NUMBER
+        'build_number': build_number
     })
 
     try:
@@ -103,10 +105,27 @@ def gen_books():
         pass 
 
     try:
-        os.mkdir(os.path.join(settings.OUTPUT_FOLDER, 'books', 'sqlite-internals'))
+        os.mkdir(os.path.join(settings.OUTPUT_FOLDER, 'books', slug))
     except Exception as e:
         pass
-    generate('book.html', join(settings.OUTPUT_FOLDER, 'books', 'sqlite-internals', 'index.html'), **context)
+    generate('book.html', join(settings.OUTPUT_FOLDER, 'books', slug, 'index.html'), **context)
+
+
+def gen_books():
+    gen_book('./data/books/sqlite_internals.md',
+        '../../assets/books/sqlite-internals/cover.png',
+        "SQLite Internals: How The World's Most Used Database Works",
+        '0.10.0',
+        'sqlite-internals',
+        'https://www.compileralchemy.com/assets/books/foss_sqlite_internals.pdf',
+        'https://github.com/compileralchemy/compileralchemy.github.io/blob/source/data/books/sqlite_internals.md')
+    gen_book('./data/books/cracking_tough_parts_python.md',
+        '../../assets/books/cracking-python/cover.png',
+        "Cracking The Tough Parts In Python",
+        '0.1.0',
+        'cracking-python',
+        'https://www.compileralchemy.com/assets/books/cracking_python.pdf',
+        'https://github.com/compileralchemy/compileralchemy.github.io/blob/source/data/books/cracking_tough_parts_python.md')
 
 def main(args):
     def gen():
