@@ -444,7 +444,6 @@ def quote(text):
     return '<<{}>>'.format(text)
 
 print(quote('the sun is rising'))
-#    <<the sun is rising>>
 ```
 which results in
 
