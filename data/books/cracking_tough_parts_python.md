@@ -1,5 +1,6 @@
 <ol class="toc chapter">
 <li><a href="#foreword">Foreword</a></li>
+<li><a href="#contributors">Contributors</a></li>
 <li><a href="#decorators">Decorators</a></li>
 <li><a href="#generators">Generators</a></li>
 <li><a href="#bytecodes">Bytecodes</a></li>
@@ -24,6 +25,12 @@ You can
 - [ [support by buying on leanpub](https://leanpub.com/cracking-python) ]
 
 Feel free to contribute a section, propose rewrites, fix typos etc. If you have comments, mail them to `arj.python at gmail dot com`.
+
+
+<h1 id="contributors" class="chapter">Chapter: Contributors</h1>
+
+
+- Abdur-RahmaanJ: Main content
 
 <h1 id="decorators" class="chapter">Chapter: Decorators</h1>
 
