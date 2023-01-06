@@ -200,8 +200,8 @@ div.frontcover {
 #book-wrapper{
     margin: 0;
     padding: 0;
-    margin-left: 10%;
-    margin-right: 10%;
+    margin-left: 20%;
+    margin-right: 20%;
 }
 
 html,body{
@@ -276,7 +276,7 @@ html,body{
     <div id="book-wrapper">
         <h1 class="book__title chapter">Cracking The Tough Parts In Python</h1>
         <span style="font-size: 20px">by Abdur-Rahmaan Janhangeer</span><br><br>
-        <small>build: <span class="web-scrape build-no">0.1.0</span></small>
+        <small>build: <span class="web-scrape build-no">0.11.0</span></small>
         <br>
         <br>
         <div class="book__content">
@@ -284,9 +284,9 @@ html,body{
 <li><a href="#foreword">Foreword</a></li>
 <li><a href="#contributors">Contributors</a></li>
 <li><a href="#decorators">Decorators</a></li>
+<li><a href="#dunder">Customising Behaviours Through Dunder Methods (new)</a></li>
 <li><a href="#generators">Generators</a></li>
 <li><a href="#bytecodes">Bytecodes</a></li>
-<li><a href="#descriptors">Descriptors (Upcoming)</a></li>
 <li><a href="#lambdas">Mind Twisting Lambdas (Upcoming)</a></li>
 <li><a href="#merge-concurrency">Merging AsyncIO, Threads And Multiprocessing Together (Upcoming)</a></li>
 </ol>
@@ -755,6 +755,223 @@ print(nissan.wheel)
 <p>try help on them</p>
 <pre><code>print(help(property))
 </code></pre>
+<h1 id="dunder" class="chapter">Chapter: Customising Behaviours Through Dunder Methods</h1>
+
+<p>In Python every element is an object. Each object has</p>
+<ul>
+<li>An identity (never changes once created, address in memory)</li>
+<li>A type </li>
+<li>A value</li>
+</ul>
+<p>Objects also possess attributes starting and ending with <code>__</code> called dunder methods, e.g. <code>__doc__</code>.</p>
+<pre><code class="language-bash">&gt;&gt;&gt; class X:
+...     '''
+...     fwfwefewf
+...     '''
+...     def __init__(self):
+...             self.y = 10
+... 
+&gt;&gt;&gt; x = X()
+&gt;&gt;&gt; dir(x)
+['__class__', '__delattr__', '__dict__', '__dir__', '__doc__', '__eq__', '__format__', '__ge__', '__getattribute__', '__gt__', '__hash__', '__init__', '__init_subclass__', '__le__', '__lt__', '__module__', '__ne__', '__new__', '__reduce__', '__reduce_ex__', '__repr__', '__setattr__', '__sizeof__', '__str__', '__subclasshook__', '__weakref__', 'y']
+&gt;&gt;&gt; x = X()
+</code></pre>
+<p><code>x.__dict__()</code> returns <code>{'y': 10}</code>.</p>
+<p>In Python, behind magic behaviours of classes lie special dunder methods.</p>
+<p>What follows are some important dunder methods which customise the way Python features work.</p>
+<h2>Class representations</h2>
+<p>Prehaps the simplest dunder method is <code>__repr__</code>. 
+It enables us to customise the representation of our class.
+Here is a normal class.</p>
+<pre><code class="language-python">class Fruit:
+    pass
+</code></pre>
+<p>When printing the class, it will give us a default representation, <code>&lt;__main__.Fruit object at 0x7f025a484f50&gt;</code>.</p>
+<pre><code class="language-python">apple = Fruit()
+print(apple)
+</code></pre>
+<p>If we want to be more friendly to our users, we can customise what happens when a representation is needed.</p>
+<pre><code class="language-python">class Fruit:
+    def __repr__(self):
+        return '&lt;&lt;Fruit Class&gt;&gt;'
+</code></pre>
+<p>When print is called, we now get <code>'&lt;&lt;Fruit Class&gt;&gt;'</code>.</p>
+<p><code>__repr__</code> should not be confused with <code>__str__</code> which defines what the string representation of an object is.</p>
+<h2>Simulating numbers from a class</h2>
+<p><code>__add__</code> and <code>__radd__</code> are called when encounering the <code>+</code> operator.</p>
+<p>Here is a class which handles adding to other numbers as well as adding to classes of itself.</p>
+<pre><code class="language-python">class Number:
+    def __init__(self, val): 
+        self.val = val 
+    def __add__(self, other):
+        print('__add__ called')
+        return self.val + other
+    def __radd__(self, other):
+        print('__radd__ called')
+        return self.val + other
+
+x = Number(1) 
+y = Number(2) 
+
+print(x + 1)
+print(1 + x)
+print(x + y + 1)
+
+# __add__ called
+# 2
+# __radd__ called
+# 2
+# __add__ called
+# __radd__ called
+# 4
+</code></pre>
+<p>As seen above, <code>__radd__</code> is called when the class is on the right hand-side of the operation.
+The <em><a href="https://docs.python.org/3.10/reference/datamodel.html#emulating-numeric-types">emulating numeric types</a></em> section of the docs has the complete list of descriptors to implement to fully simulate a number.
+As a side note, <code>__i.*__</code> for example <code>__iadd__</code> is used to implement <code>+=</code>.</p>
+<h2>Context Managers</h2>
+<p>We can open file in Python as follows:</p>
+<pre><code class="language-python">with open('filename') as f:
+    ...
+</code></pre>
+<p>The <code>with</code> keyword hints to a context manager. 
+The code enclosed in the with block is executed within a context.
+To implement a context manager, we implement the <code>__enter__</code> and <code>__exit__</code> descriptors.
+Before executing the code, whatever is defined in <code>__enter__</code> is executed.
+After executing the code, whatever is in <code>__exit__</code> is executed.
+This can be useful for pre and post processing.</p>
+<p>Here is a toy example which sends a mail before and after a file is processed.</p>
+<pre><code class="language-python">def send_mail(message):
+    print(message)
+
+def notify_process(filename, action):
+    send_mail('Process for '+filename+': '+action)
+
+class ProcessFile:
+    def __init__(self, filename):
+        self.filename = filename
+
+    def __enter__(self):
+        notify_process(self.filename, 'enter')
+        return 'value of p'
+
+    def __exit__(self, exc_type, exc_value, traceback): # args None if exited without exception
+        notify_process(self.filename, 'exit')
+
+pfile = ProcessFile('fruits.txt')
+
+with pfile as p:
+    print(p)
+
+# Process for fruits.txt: enter
+# value of p
+# Process for fruits.txt: exit
+</code></pre>
+<p>Asynchronous context managers have the <code>__aenter__</code> and <code>__aexit__</code> methods.</p>
+<h2>Iterators</h2>
+<p>Lists implement the iterator protocol as well as generators, as we&rsquo;ll see in the next chapter.</p>
+<p>Here is a class which behaves like a list.
+It implements the <code>__iter__</code> and <code>__next__</code> methods.
+<code>__next__</code> returns the next element while iterating </p>
+<pre><code class="language-python">class FlexibleNum:
+    def __init__(self, num):
+        self.num = num
+    def __iter__(self):
+        return self
+    def __next__(self):
+        self.num += 1
+        return self.num - 1
+
+
+x = FlexibleNum(5)
+</code></pre>
+<p>It will just increment the number to infinity.</p>
+<pre><code class="language-python">
+for n in x:
+    print(n)
+</code></pre>
+<p>To break, we can manually check the indices</p>
+<pre><code class="language-python">
+for i, _ in enumerate(x):
+    print(_)
+    if i == 3:
+        break
+# 5
+# 6
+# 7
+# 8
+</code></pre>
+<p>However, we can also bake in the end number in the class itself.
+We stop iteration by raising <code>StopIteration</code>.</p>
+<pre><code class="language-python">class FlexibleNum:
+    def __init__(self, num, end_number):
+        self.num = num
+        self.end_number = end_number
+    def __iter__(self):
+        return self
+    def __next__(self):
+        self.num += 1
+        to_return = self.num-1
+        if to_return &gt;= self.end_number:
+            raise StopIteration
+        return to_return
+
+x = FlexibleNum(5, 10)
+
+for n in x:
+    print(n)
+
+# 5
+# 6
+# 7
+# 8
+# 9
+</code></pre>
+<p>As a side note, we could have incremented the number after the return statement by using <code>yield</code> instead of <code>return</code>.</p>
+<p>We will cover generators in the next chapter.</p>
+<h2>How attribute access works</h2>
+<p>Let&rsquo;s define another class which inherits from X.</p>
+<pre><code class="language-bash">&gt;&gt;&gt; class X:
+...     '''
+...     fwfwefewf
+...     '''
+...     def __init__(self):
+...             self.y = 10
+... 
+&gt;&gt;&gt; class B(X):
+...     pass
+... 
+&gt;&gt;&gt; b = B()
+&gt;&gt;&gt; b.y 
+10
+</code></pre>
+<p>When accessing an attribute for example <code>b.y</code>, Python uses the Method Resolution Order (MRO) to determine if b has a y.</p>
+<pre><code class="language-bash">&gt;&gt;&gt; type(b).mro()
+[&lt;class '__main__.B'&gt;, &lt;class '__main__.X'&gt;, &lt;class 'object'&gt;]
+</code></pre>
+<p>Python looks up on the type rather than the instace for performance reasons.</p>
+<p>If we were to define a custom function for fetching y, it will be in brief:</p>
+<pre><code class="language-python">def get_attribute(object_, attribute):
+    # safety and elegance net removed
+    for base_class in type(object_).mro():
+        return base_class.__dict__[&quot;__getattribute__&quot;](obj, attr)
+</code></pre>
+<p>Here we saw that <code>__getattribute__</code> is a dunder method used to preform attribute lookup.</p>
+<h3>Acting like a dictionary</h3>
+<pre><code class="language-python">class NumToWord:
+    def __init__(self):
+        self.data = {1: 'one', 2: 'two'}
+    def __getitem__(self, item):
+        return self.data[item]
+
+num2word = NumToWord()
+print(num2word[1])
+</code></pre>
+<h2>Misc.</h2>
+<p><a href="https://docs.python.org/3/howto/descriptor.html">Descriptors</a> are objects which define <code>__get__</code>, <code>__set__</code>, or <code>__delete__</code>. Personally, i prefer <code>@property</code> to set and get attributes.</p>
+<h2>Refs</h2>
+<ul>
+<li>[1] https://snarky.ca/unravelling-attribute-access-in-python/</li>
+</ul>
 <h1 id="generators" class="chapter">Chapter: Generators</h1>
 
 <p>In Python, generators form part of the intermediate topics. Since it differs from conventional functions, beginners have to take sometimes to wrap their head around it. This article presents materials that will be useful both for beginners and advanced programmers. It attempts to give enough to understand generators in depth but don&rsquo;t cover all use cases.</p>
@@ -1242,12 +1459,11 @@ copied over and over by Python sites, see David Beazley&rsquo;s 3 parts series:<
 <ul>
 <li><a href="http://www.dabeaz.com/generators">Generator Tricks for Systems Programmers</a></li>
 <li><a href="http://www.dabeaz.com/coroutines/">A Curious Course on Coroutines and Concurrency</a></li>
-<li>
-<p><a href="http://www.dabeaz.com/finalgenerator/">Generators: The Final Frontier</a></p>
-</li>
-<li>
-<p>[1] https://www.python.org/dev/peps/pep-0255/</p>
-</li>
+<li><a href="http://www.dabeaz.com/finalgenerator/">Generators: The Final Frontier</a></li>
+</ul>
+<h2>Refs</h2>
+<ul>
+<li>[1] https://www.python.org/dev/peps/pep-0255/</li>
 <li>[2] https://www.python.org/dev/peps/pep-0289/</li>
 <li>[3] https://dev.to/abdurrahmaanj/add-superpowers-to-your-python-lists-using-this-feature-24nf</li>
 <li>[4] Python Cookbook, David Beazley</li>
