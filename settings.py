@@ -1,5 +1,6 @@
 OUTPUT_FOLDER = 'docs/'
-BUILD_NUMBER = '0.10.0'
+BUILD_NUMBER = '0.11.0'
+book_generate = False
 
 
 testimonials = [

@@ -200,8 +200,8 @@ div.frontcover {
 #book-wrapper{
     margin: 0;
     padding: 0;
-    margin-left: 10%;
-    margin-right: 10%;
+    margin-left: 20%;
+    margin-right: 20%;
 }
 
 html,body{
@@ -212,7 +212,7 @@ html,body{
 </head>
 
 <body class="has-background-white">
-
+{% if not settings.book_generate %}
    <div style="
         position: fixed; 
         bottom: 5px;
@@ -240,14 +240,14 @@ html,body{
         download if on mobile
         </a>
     </div>
-
+{% endif %}
     {% include 'sections/gdpr.html' %}
     <div class="frontcover">
     </div>
     <div id="book-wrapper">
         <h1 class="book__title chapter">{{ book["title"] }}</h1>
         <span style="font-size: 20px">by Abdur-Rahmaan Janhangeer</span><br><br>
-        <small>build: <span class="web-scrape build-no">{{ build_number }}</span></small>
+        <small>build: <span class="web-scrape build-no">{{ settings.BUILD_NUMBER }}</span></small>
         <br>
         <br>
         <div class="book__content">

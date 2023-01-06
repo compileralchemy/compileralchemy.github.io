@@ -2,9 +2,9 @@
 <li><a href="#foreword">Foreword</a></li>
 <li><a href="#contributors">Contributors</a></li>
 <li><a href="#decorators">Decorators</a></li>
+<li><a href="#dunder">Customising Behaviours Through Dunder Methods (new)</a></li>
 <li><a href="#generators">Generators</a></li>
 <li><a href="#bytecodes">Bytecodes</a></li>
-<li><a href="#descriptors">Descriptors (Upcoming)</a></li>
 <li><a href="#lambdas">Mind Twisting Lambdas (Upcoming)</a></li>
 <li><a href="#merge-concurrency">Merging AsyncIO, Threads And Multiprocessing Together (Upcoming)</a></li>
 </ol>
@@ -40,7 +40,7 @@ Decorators occur prefixed by `@`. `@app.route` in the example below is a decorat
 ```python
 @app.route('/home')
 def index_page():
-	pass
+    pass
 ```
 
 ## Properties of functions
@@ -642,6 +642,299 @@ try help on them
 ```
 print(help(property))
 ```
+
+<h1 id="dunder" class="chapter">Chapter: Customising Behaviours Through Dunder Methods</h1>
+
+In Python every element is an object. Each object has
+
+- An identity (never changes once created, address in memory)
+- A type 
+- A value
+
+Objects also possess attributes starting and ending with `__` called dunder methods, e.g. `__doc__`.
+
+
+```bash
+>>> class X:
+...     '''
+...     fwfwefewf
+...     '''
+...     def __init__(self):
+...             self.y = 10
+... 
+>>> x = X()
+>>> dir(x)
+['__class__', '__delattr__', '__dict__', '__dir__', '__doc__', '__eq__', '__format__', '__ge__', '__getattribute__', '__gt__', '__hash__', '__init__', '__init_subclass__', '__le__', '__lt__', '__module__', '__ne__', '__new__', '__reduce__', '__reduce_ex__', '__repr__', '__setattr__', '__sizeof__', '__str__', '__subclasshook__', '__weakref__', 'y']
+>>> x = X()
+```
+
+
+`x.__dict__()` returns `{'y': 10}`.
+
+In Python, behind magic behaviours of classes lie special dunder methods.
+
+What follows are some important dunder methods which customise the way Python features work.
+
+
+## Class representations
+
+
+Prehaps the simplest dunder method is `__repr__`. 
+It enables us to customise the representation of our class.
+Here is a normal class.
+
+```python
+class Fruit:
+    pass
+```
+
+When printing the class, it will give us a default representation, `<__main__.Fruit object at 0x7f025a484f50>`.
+
+
+```python
+apple = Fruit()
+print(apple)
+```
+
+If we want to be more friendly to our users, we can customise what happens when a representation is needed.
+
+```python
+class Fruit:
+    def __repr__(self):
+        return '<<Fruit Class>>'
+```
+
+When print is called, we now get `'<<Fruit Class>>'`.
+
+`__repr__` should not be confused with `__str__` which defines what the string representation of an object is.
+
+## Simulating numbers from a class
+
+
+`__add__` and `__radd__` are called when encounering the `+` operator.
+
+Here is a class which handles adding to other numbers as well as adding to classes of itself.
+
+```python
+class Number:
+    def __init__(self, val): 
+        self.val = val 
+    def __add__(self, other):
+        print('__add__ called')
+        return self.val + other
+    def __radd__(self, other):
+        print('__radd__ called')
+        return self.val + other
+
+x = Number(1) 
+y = Number(2) 
+
+print(x + 1)
+print(1 + x)
+print(x + y + 1)
+
+# __add__ called
+# 2
+# __radd__ called
+# 2
+# __add__ called
+# __radd__ called
+# 4
+```
+
+As seen above, `__radd__` is called when the class is on the right hand-side of the operation.
+The _[emulating numeric types](https://docs.python.org/3.10/reference/datamodel.html#emulating-numeric-types)_ section of the docs has the complete list of descriptors to implement to fully simulate a number.
+As a side note, `__i.*__` for example `__iadd__` is used to implement `+=`.
+
+## Context Managers
+
+We can open file in Python as follows:
+
+```python
+with open('filename') as f:
+    ...
+```
+
+The `with` keyword hints to a context manager. 
+The code enclosed in the with block is executed within a context.
+To implement a context manager, we implement the `__enter__` and `__exit__` descriptors.
+Before executing the code, whatever is defined in `__enter__` is executed.
+After executing the code, whatever is in `__exit__` is executed.
+This can be useful for pre and post processing.
+
+Here is a toy example which sends a mail before and after a file is processed.
+
+```python
+def send_mail(message):
+    print(message)
+
+def notify_process(filename, action):
+    send_mail('Process for '+filename+': '+action)
+
+class ProcessFile:
+    def __init__(self, filename):
+        self.filename = filename
+
+    def __enter__(self):
+        notify_process(self.filename, 'enter')
+        return 'value of p'
+        
+    def __exit__(self, exc_type, exc_value, traceback): # args None if exited without exception
+        notify_process(self.filename, 'exit')
+        
+pfile = ProcessFile('fruits.txt')
+
+with pfile as p:
+    print(p)
+
+# Process for fruits.txt: enter
+# value of p
+# Process for fruits.txt: exit
+```
+
+Asynchronous context managers have the `__aenter__` and `__aexit__` methods.
+
+## Iterators
+
+Lists implement the iterator protocol as well as generators, as we'll see in the next chapter.
+
+Here is a class which behaves like a list.
+It implements the `__iter__` and `__next__` methods.
+`__next__` returns the next element while iterating 
+
+```python
+class FlexibleNum:
+    def __init__(self, num):
+        self.num = num
+    def __iter__(self):
+        return self
+    def __next__(self):
+        self.num += 1
+        return self.num - 1
+        
+        
+x = FlexibleNum(5)
+```
+
+It will just increment the number to infinity.
+
+```python
+
+for n in x:
+    print(n)
+```
+
+To break, we can manually check the indices
+
+```python
+
+for i, _ in enumerate(x):
+    print(_)
+    if i == 3:
+        break
+# 5
+# 6
+# 7
+# 8
+```
+
+However, we can also bake in the end number in the class itself.
+We stop iteration by raising `StopIteration`.
+
+```python
+class FlexibleNum:
+    def __init__(self, num, end_number):
+        self.num = num
+        self.end_number = end_number
+    def __iter__(self):
+        return self
+    def __next__(self):
+        self.num += 1
+        to_return = self.num-1
+        if to_return >= self.end_number:
+            raise StopIteration
+        return to_return
+        
+x = FlexibleNum(5, 10)
+
+for n in x:
+    print(n)
+
+# 5
+# 6
+# 7
+# 8
+# 9
+```
+
+As a side note, we could have incremented the number after the return statement by using `yield` instead of `return`.
+
+We will cover generators in the next chapter.
+
+## How attribute access works
+
+
+Let's define another class which inherits from X.
+
+```bash
+>>> class X:
+...     '''
+...     fwfwefewf
+...     '''
+...     def __init__(self):
+...             self.y = 10
+... 
+>>> class B(X):
+...     pass
+... 
+>>> b = B()
+>>> b.y 
+10
+```
+When accessing an attribute for example `b.y`, Python uses the Method Resolution Order (MRO) to determine if b has a y.
+
+```bash
+>>> type(b).mro()
+[<class '__main__.B'>, <class '__main__.X'>, <class 'object'>]
+```
+
+Python looks up on the type rather than the instace for performance reasons.
+
+If we were to define a custom function for fetching y, it will be in brief:
+
+```python
+def get_attribute(object_, attribute):
+    # safety and elegance net removed
+    for base_class in type(object_).mro():
+        return base_class.__dict__["__getattribute__"](obj, attr)
+```
+
+Here we saw that `__getattribute__` is a dunder method used to preform attribute lookup.
+
+
+
+### Acting like a dictionary
+
+```python
+class NumToWord:
+    def __init__(self):
+        self.data = {1: 'one', 2: 'two'}
+    def __getitem__(self, item):
+        return self.data[item]
+
+num2word = NumToWord()
+print(num2word[1])
+```
+
+## Misc.
+
+
+[Descriptors](https://docs.python.org/3/howto/descriptor.html) are objects which define `__get__`, `__set__`, or `__delete__`. Personally, i prefer `@property` to set and get attributes.
+
+
+## Refs
+
+- [1] https://snarky.ca/unravelling-attribute-access-in-python/
 
 
 <h1 id="generators" class="chapter">Chapter: Generators</h1>
@@ -1332,6 +1625,7 @@ copied over and over by Python sites, see David Beazley's 3 parts series:
 * [A Curious Course on Coroutines and Concurrency](http://www.dabeaz.com/coroutines/)
 * [Generators: The Final Frontier](http://www.dabeaz.com/finalgenerator/)
 
+## Refs
 
 - [1] https://www.python.org/dev/peps/pep-0255/
 - [2] https://www.python.org/dev/peps/pep-0289/
@@ -1892,3 +2186,5 @@ Also, the Intermediate Represetation (parse tree or Concrete Syntax Tree) was ar
 - [3] Understanding Python Bytecode, Reza Bagheri https://www.linkedin.com/in/reza-bagheri-71882a76/
 - [4] https://github.com/python/cpython/blob/3db0a21f731cec28a89f7495a82ee2670bce75fe/Include/cpython/funcobject.h#L25
 - [5] https://tenthousandmeters.com/blog
+
+
