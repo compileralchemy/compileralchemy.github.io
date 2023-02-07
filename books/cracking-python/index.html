@@ -80,22 +80,28 @@
         body{
             padding: 0;
             margin: 0;
+             counter-reset: chapternum;
         }
         .book__title{
             margin-top: 20px;
             font-size: 50px;
         }
-        .book__content h1{
+        .book__content .chapter{
             font-size: 45px;
-            margin-bottom: 20px;
-            margin-top: 20px;
-
+            margin-top: 60px;
+            display: block;
+        }
+        .book__content hr{
+            margin-top: 0;
         }
         .book__content h2{
             font-size: 35px;
             margin-bottom: 20px;
             margin-top: 20px;
 
+        }
+        .book__content ul{
+            padding-left: 2rem;
         }
         .book__content table{
             margin-bottom: 15px;
@@ -143,10 +149,12 @@
             list-style-type: "👉";
             padding-left: 5px;
         }
-        .book__content ul{
+        .book__content .toc{
             padding-left: 2rem;
+            content: leader('.') target-counter(attr(href), page);
+
         }
-        .toc li{
+        .book__content .toc li{
             list-style-type: "";
         }
 
@@ -175,37 +183,60 @@
 
 
         pre {
- white-space: pre-wrap;       /* css-3 */
- white-space: -moz-pre-wrap;  /* Mozilla, since 1999 */
- white-space: -pre-wrap;      /* Opera 4-6 */
- white-space: -o-pre-wrap;    /* Opera 7 */
- word-wrap: break-word;       /* Internet Explorer 5.5+ */
- font-size: 15px;
- font-weight: bold;
-}
+         white-space: pre-wrap;       /* css-3 */
+         white-space: -moz-pre-wrap;  /* Mozilla, since 1999 */
+         white-space: -pre-wrap;      /* Opera 4-6 */
+         white-space: -o-pre-wrap;    /* Opera 7 */
+         word-wrap: break-word;       /* Internet Explorer 5.5+ */
+         font-size: 15px;
+         font-weight: bold;
+        }
 
-    
-div.frontcover { 
-  page: cover; 
-  content: url("../../assets/books/cracking-python/cover.png");
-  width: 100%;
-  height: 100%; 
-}
+            
+        div.frontcover { 
+          page: cover; 
+          content: url("../../assets/books/cracking-python/cover.png");
+          width: 100%;
+          height: 100%; 
+        }
 
-@page :first {
-  margin: 0;
-  padding: 0;
-}
+        @page :first {
+          margin: 0;
+          padding: 0;
+        }
 
-#book-wrapper{
+        #book-wrapper{
+            margin: 0;
+            padding: 0;
+            margin-left: 20%;
+            margin-right: 20%;
+        }
+
+        html,body{
+            overflow-x: hidden;
+        }
+
+        .chapter:before {
+          counter-increment: chapternum;
+          content: counter(chapternum) ". ";
+        }
+
+        .book__title{
+            font-size: 50px;
+        }
+
+        
+
+@page:first {
+  @bottom-right {
+    content: normal;
     margin: 0;
-    padding: 0;
-    margin-left: 20%;
-    margin-right: 20%;
-}
+  }
 
-html,body{
-    overflow-x: hidden;
+  @bottom-left {
+    content: normal;
+    margin: 0;
+  }
 }
     </style>
 
@@ -274,24 +305,25 @@ html,body{
     <div class="frontcover">
     </div>
     <div id="book-wrapper">
-        <h1 class="book__title chapter">Cracking The Tough Parts In Python</h1>
+        <h1 class="book__title">Cracking The Tough Parts In Python</h1>
         <span style="font-size: 20px">by Abdur-Rahmaan Janhangeer</span><br><br>
-        <small>build: <span class="web-scrape build-no">0.11.0</span></small>
+        <small>build: <span class="web-scrape build-no">0.1.0</span></small>
         <br>
         <br>
         <div class="book__content">
-            <ol class="toc chapter">
+            <ul class="toc">
 <li><a href="#foreword">Foreword</a></li>
 <li><a href="#contributors">Contributors</a></li>
-<li><a href="#decorators">Decorators</a></li>
+<li><a href="#decorators">Deriving Decorators</a></li>
 <li><a href="#dunder">Customising Behaviours Through Dunder Methods (new)</a></li>
-<li><a href="#generators">Generators</a></li>
-<li><a href="#bytecodes">Bytecodes</a></li>
+<li><a href="#generators">Diving Generators</a></li>
+<li><a href="#bytecodes">Exploring Bytecodes</a></li>
 <li><a href="#lambdas">Mind Twisting Lambdas (Upcoming)</a></li>
 <li><a href="#merge-concurrency">Merging AsyncIO, Threads And Multiprocessing Together (Upcoming)</a></li>
-</ol>
+</ul>
 
-<h1 id="foreword" class="chapter">Chapter: Foreword</h1>
+<p><a id="foreword" class="chapter xref" href="#foreword">Foreword</a></p>
+<hr>
 
 <p>This is a free and OpenSource book on Python. </p>
 <p>The is only one criteria to chapters in this book: They must start from scratch and dive really, really deep.</p>
@@ -304,12 +336,14 @@ html,body{
 <li>[ <a href="https://leanpub.com/cracking-python">support by buying on leanpub</a> ]</li>
 </ul>
 <p>Feel free to contribute a section, propose rewrites, fix typos etc. If you have comments, mail them to <code>arj.python at gmail dot com</code>.</p>
-<h1 id="contributors" class="chapter">Chapter: Contributors</h1>
+<p><a id="contributors" class="chapter xref" href="#contributors">Contributors</a></p>
+<hr>
 
 <ul>
 <li>Abdur-RahmaanJ: Main content</li>
 </ul>
-<h1 id="decorators" class="chapter">Chapter: Decorators</h1>
+<p><a id="decorators" class="chapter xref" href="#decorators">Deriving Decorators</a></p>
+<hr>
 
 <p>Decorators occur prefixed by <code>@</code>. <code>@app.route</code> in the example below is a decorator.</p>
 <pre><code class="language-python">@app.route('/home')
@@ -755,7 +789,8 @@ print(nissan.wheel)
 <p>try help on them</p>
 <pre><code>print(help(property))
 </code></pre>
-<h1 id="dunder" class="chapter">Chapter: Customising Behaviours Through Dunder Methods</h1>
+<p><a id="dunder" class="chapter xref" href="#dunder">Customising Behaviours Through Dunder Methods</a></p>
+<hr>
 
 <p>In Python every element is an object. Each object has</p>
 <ul>
@@ -972,7 +1007,8 @@ print(num2word[1])
 <ul>
 <li>[1] https://snarky.ca/unravelling-attribute-access-in-python/</li>
 </ul>
-<h1 id="generators" class="chapter">Chapter: Generators</h1>
+<p><a id="generators" class="chapter xref" href="#generators"> Diving Into Generators</a></p>
+<hr>
 
 <p>In Python, generators form part of the intermediate topics. Since it differs from conventional functions, beginners have to take sometimes to wrap their head around it. This article presents materials that will be useful both for beginners and advanced programmers. It attempts to give enough to understand generators in depth but don&rsquo;t cover all use cases.</p>
 <h3>Why were Python generators introduced?</h3>
@@ -1231,7 +1267,6 @@ func_runner.add_func(odd_till(6))
 func_runner.run()
 
 </code></pre>
-<hr />
 <p>output</p>
 <pre><code class="language-python">odd_till 5 currently: 1
 even_till 4 currently: 0
@@ -1472,7 +1507,8 @@ copied over and over by Python sites, see David Beazley&rsquo;s 3 parts series:<
 <li>[7] https://wiki.python.org/moin/Generators</li>
 <li>[8] Brett Cannon: Python 3.3: Trust Me, It&rsquo;s Better Than Python 2.7</li>
 </ul>
-<h1 id="bytecodes" class="chapter">Chapter: Bytecodes</h1>
+<p><a id="bytecodes" class="chapter xref" href="#byteocodes">Exploring Bytecodes</a></p>
+<hr>
 
 <p>Traditionally, this is how Python&rsquo;s execution ensured.
 Python was an interpreter ingesting source strings and executing instructions.</p>

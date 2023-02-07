@@ -80,22 +80,28 @@
         body{
             padding: 0;
             margin: 0;
+             counter-reset: chapternum;
         }
         .book__title{
             margin-top: 20px;
             font-size: 50px;
         }
-        .book__content h1{
+        .book__content .chapter{
             font-size: 45px;
-            margin-bottom: 20px;
-            margin-top: 20px;
-
+            margin-top: 60px;
+            display: block;
+        }
+        .book__content hr{
+            margin-top: 0;
         }
         .book__content h2{
             font-size: 35px;
             margin-bottom: 20px;
             margin-top: 20px;
 
+        }
+        .book__content ul{
+            padding-left: 2rem;
         }
         .book__content table{
             margin-bottom: 15px;
@@ -143,10 +149,12 @@
             list-style-type: "👉";
             padding-left: 5px;
         }
-        .book__content ul{
+        .book__content .toc{
             padding-left: 2rem;
+            content: leader('.') target-counter(attr(href), page);
+
         }
-        .toc li{
+        .book__content .toc li{
             list-style-type: "";
         }
 
@@ -175,37 +183,60 @@
 
 
         pre {
- white-space: pre-wrap;       /* css-3 */
- white-space: -moz-pre-wrap;  /* Mozilla, since 1999 */
- white-space: -pre-wrap;      /* Opera 4-6 */
- white-space: -o-pre-wrap;    /* Opera 7 */
- word-wrap: break-word;       /* Internet Explorer 5.5+ */
- font-size: 15px;
- font-weight: bold;
-}
+         white-space: pre-wrap;       /* css-3 */
+         white-space: -moz-pre-wrap;  /* Mozilla, since 1999 */
+         white-space: -pre-wrap;      /* Opera 4-6 */
+         white-space: -o-pre-wrap;    /* Opera 7 */
+         word-wrap: break-word;       /* Internet Explorer 5.5+ */
+         font-size: 15px;
+         font-weight: bold;
+        }
 
-    
-div.frontcover { 
-  page: cover; 
-  content: url("../../assets/books/sqlite-internals/cover.png");
-  width: 100%;
-  height: 100%; 
-}
+            
+        div.frontcover { 
+          page: cover; 
+          content: url("../../assets/books/sqlite-internals/cover.png");
+          width: 100%;
+          height: 100%; 
+        }
 
-@page :first {
-  margin: 0;
-  padding: 0;
-}
+        @page :first {
+          margin: 0;
+          padding: 0;
+        }
 
-#book-wrapper{
+        #book-wrapper{
+            margin: 0;
+            padding: 0;
+            margin-left: 20%;
+            margin-right: 20%;
+        }
+
+        html,body{
+            overflow-x: hidden;
+        }
+
+        .chapter:before {
+          counter-increment: chapternum;
+          content: counter(chapternum) ". ";
+        }
+
+        .book__title{
+            font-size: 50px;
+        }
+
+        
+
+@page:first {
+  @bottom-right {
+    content: normal;
     margin: 0;
-    padding: 0;
-    margin-left: 20%;
-    margin-right: 20%;
-}
+  }
 
-html,body{
-    overflow-x: hidden;
+  @bottom-left {
+    content: normal;
+    margin: 0;
+  }
 }
     </style>
 
@@ -274,13 +305,13 @@ html,body{
     <div class="frontcover">
     </div>
     <div id="book-wrapper">
-        <h1 class="book__title chapter">SQLite Internals: How The World's Most Used Database Works</h1>
+        <h1 class="book__title">SQLite Internals: How The World's Most Used Database Works</h1>
         <span style="font-size: 20px">by Abdur-Rahmaan Janhangeer</span><br><br>
-        <small>build: <span class="web-scrape build-no">0.11.0</span></small>
+        <small>build: <span class="web-scrape build-no">0.12.0</span></small>
         <br>
         <br>
         <div class="book__content">
-            <ol class="toc chapter">
+            <ol class="toc">
 <li><a href="#foreword">Foreword</a></li>
 <li><a href="#intro">Introduction</a></li>
 <li><a href="#contribs">Contributors</a></li>
@@ -297,7 +328,7 @@ html,body{
 <li><a href="#refs"><abbr title="HyperText Markup Language">References</abbr></a></li>
 </ol>
 
-<h1 id="foreword" class="chapter">Chapter: Foreword on SQLite Internals</h1>
+<h1 id="foreword" class="chapter">Foreword on SQLite Internals</h1>
 
 <p>To all SQLite lovers. This book discusses SQLite internals in depth.</p>
 <p>You can 
@@ -320,7 +351,7 @@ Free books help keep human legacy around.
 Without books, you burn time, a lot of it.</p>
 <p>If you want to discuss dbs all day long, i recommend joining the <a href="https://discord.gg/CjYMRrySNq">Multiprocess communnity #db</a> (Phil Eaton).</p>
 <p>Since i scrapped my notes together, this did not start as a proper book. PRs welcome.</p>
-<h1 id="intro" class="chapter">Chapter: Introduction</h1>
+<h1 id="intro" class="chapter">Introduction</h1>
 
 <p>SQLite is a file-based database which is extremely reliable and stable. 
 It is the world&rsquo;s most used database. It&rsquo;s used on military devices, on planes (the A350 for instance) and in space.
@@ -328,7 +359,7 @@ The codebase and mechanisms it uses is extremely complex.
 The seemingly simple nature of it and adoption makes a good case for deep diving into in a fascinating piece of software.</p>
 <p>It also implemented many features years ahead of popular databases like partial indexes.</p>
 <p>It&rsquo;s pronounced S-Q-L-ite, like mineral. But whatever is easy to pronounce is fine [10].</p>
-<h1 id="contribs" class="chapter">Chapter: Contributors</h1>
+<h1 id="contribs" class="chapter">Contributors</h1>
 
 <pre><code>Main content:
    Abdur-Rahmaan Janhangeer, https://github.com/Abdur-RahmaanJ
@@ -344,7 +375,7 @@ Jakub Martin, Author of OctoSQL, https://github.com/cube2222/octosql
 <pre><code>Jaime Terreu, https://github.com/Confidenceman02
 Aryan Arora, https://github.com/aryanA101a
 </code></pre>
-<h1 id="story" class="chapter">Chapter: The Story Behind</h1>
+<h1 id="story" class="chapter">The Story Behind</h1>
 
 <p>SQLite was written by Dwayne Richard Hipp.
 It is not uncommon to see it being abbreviated to D. Richard Hipp or DRH for short.
@@ -426,7 +457,7 @@ They wanted the <em>DO-178B</em> aviation quality standard for SQLite.
 It meant 100% MCDC test coverage.
 This helped shaped SQLite test-backed approach to development.</p>
 <p>SQLite tests are better than even postgres which relies on peer reviews [3]. This allows the developers to experiment and change code fearlessly.</p>
-<h1 id="technical-context" class="chapter">Chapter: Technical Context</h1>
+<h1 id="technical-context" class="chapter">Technical Context</h1>
 
 <p>SQLite is notorious for implenting a bunch of functionalities from scratch.
 It&rsquo;s a daring, amazing, bold and crazy spirit which requires confidence and professionalism.
@@ -487,7 +518,7 @@ And, Fossil uses SQLite.</p>
 Add to it no external dependencies it means that people using SQLite have the peace of mind that the SQLite authors are not going to sue them over some piece of code or worry about some 3rd party companies talking about stealing code.</p>
 <p><strong>One big source file:</strong> SQLite also provides a source file where all files are amalgamated into so that SQLite can be inserted easily into projects and compiled.</p>
 <p><strong>Stats:</strong> SQLite is about 160k lines of code as now, with some 230k if comments and blank lines are included.</p>
-<h1 id="overview" class="chapter">Chapter: Overview</h1>
+<h1 id="overview" class="chapter">Overview</h1>
 
 <p>A rough overview of SQLite is as follows</p>
 <p><img alt="" src="https://www.compileralchemy.com/assets/books/sqlite-internals/high_level.png" /></p>
@@ -578,7 +609,7 @@ A varint is between 1 and 9 bytes in length.
 The varint consists of either zero or more bytes which have the high-order bit set followed by a single byte with the high-order bit clear, or nine bytes, whichever is shorter. 
 The lower seven bits of each of the first eight bytes and all 8 bits of the ninth byte are used to reconstruct the 64-bit twos-complement integer. 
 Varints are big-endian: bits taken from the earlier byte of the varint are more significant than bits taken from the later bytes.</p>
-<h1 id="file-record" class="chapter">Chapter: File & Record Format</h1>
+<h1 id="file-record" class="chapter">File & Record Format</h1>
 
 <p>A SQLite file is a series of bytes.</p>
 <p><img alt="" src="https://www.compileralchemy.com/assets/books/sqlite-internals/file_byte.png" /></p>
@@ -965,7 +996,7 @@ It&rsquo;s size is defined in the database header at an offset of bytes 20.</p>
 </tbody>
 </table>
 <p>TOADD: Freeblock</p>
-<h1 id="rollback-wal" class="chapter">Chapter: Rollback & WAL mode</h1>
+<h1 id="rollback-wal" class="chapter">Rollback & WAL mode</h1>
 
 <p>In case of power cuts, SQLite ensures that data is not lost.
 The pager layer responsible for executing these two modes.
@@ -1048,7 +1079,7 @@ For illustration purposes below, <code>b</code> from wal cache, <code>a</code> f
 <p><img alt="" src="https://www.compileralchemy.com/assets/books/sqlite-internals/wal_snapshot_isolation.png" /></p>
 <p>A checkpoint operation truncates the journal cache and disk content.</p>
 <p><img alt="" src="https://www.compileralchemy.com/assets/books/sqlite-internals/wal_checkpoint.png" /></p>
-<h1 id="bytecode" class="chapter">Chapter: Bytecodes </h1>
+<h1 id="bytecode" class="chapter">Bytecodes </h1>
 
 <p>The entire Virtual Machine is contained in <code>vdbe.c</code>. On compiling the project, <code>vdbe.c</code> produces two files: <code>opcodes.h</code> which assigns a numerical value to opcodes and <code>opcodes.c</code> which designates a symbolic name for an opcode.</p>
 <p>opcodes.h</p>
@@ -1209,7 +1240,7 @@ If P3:
 TODO: complete
  -->
 
-<h1 id="interesting-features" class="chapter">Chapter: Interesting Features </h1>
+<h1 id="interesting-features" class="chapter">Interesting Features </h1>
 
 <h2>Virtual Tables</h2>
 <p>Virtual tables are like any tables but, one cannot create indexes on them, alter and add columns or create triggers.
@@ -1224,7 +1255,7 @@ Virtual tables involve no reading and writing to the db file.</p>
 <p>CREATE INDEX Idx1 ON fruitsforsale(fruit);</p>
 <p>CREATE INDEX creates a new table sorted in the case by fruit.</p>
 <p>SORT works on results</p>
-<h1 id="knowing-internals" class="chapter">Chapter: Knowing The Internals </h1>
+<h1 id="knowing-internals" class="chapter">Knowing The Internals </h1>
 
 <h2>WebSQL</h2>
 <ul>
@@ -1241,7 +1272,7 @@ Virtual tables involve no reading and writing to the db file.</p>
 <p>Replaced by the beautiful IndexedDB written by a developer from the noble house of Oracle</p>
 </li>
 </ul>
-<h1 id="modifications" class="chapter">Chapter: How SQLite Is modified</h1>
+<h1 id="modifications" class="chapter">How SQLite Is modified</h1>
 
 <h2>LibSQL</h2>
 <p>LibSQL is a great fork of SQLite with the aim of making SQLite Open Source.
@@ -1284,10 +1315,10 @@ For a resource tree there is a corresponding Shamir shares tree which is encrypt
 <h2>Bloomberg</h2>
 <p>Bloomberg uses the SQLite code generator and storage engine.
 The replaced the layers after by their own implementation of a scaled, massively concurrent, multi-data center storage engine. [10]</p>
-<h1 id="the-future" class="chapter">Chapter: The Future </h1>
+<h1 id="the-future" class="chapter">The Future </h1>
 
 <p>LibSQL and LumoSQL are great OpenSource projects.</p>
-<h1 id="refs" class="chapter">Chapter: Ending Quotes</h1>
+<h1 id="refs" class="chapter">Ending Quotes</h1>
 
 <p><strong>On not listening to institutionilized experts</strong></p>
 <blockquote>
