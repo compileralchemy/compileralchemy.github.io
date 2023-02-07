@@ -1,16 +1,16 @@
-<ol class="toc chapter">
+<ul class="toc">
 <li><a href="#foreword">Foreword</a></li>
 <li><a href="#contributors">Contributors</a></li>
-<li><a href="#decorators">Decorators</a></li>
+<li><a href="#decorators">Deriving Decorators</a></li>
 <li><a href="#dunder">Customising Behaviours Through Dunder Methods (new)</a></li>
-<li><a href="#generators">Generators</a></li>
-<li><a href="#bytecodes">Bytecodes</a></li>
+<li><a href="#generators">Diving Generators</a></li>
+<li><a href="#bytecodes">Exploring Bytecodes</a></li>
 <li><a href="#lambdas">Mind Twisting Lambdas (Upcoming)</a></li>
 <li><a href="#merge-concurrency">Merging AsyncIO, Threads And Multiprocessing Together (Upcoming)</a></li>
-</ol>
+</ul>
 
-<h1 id="foreword" class="chapter">Chapter: Foreword</h1>
-
+<a id="foreword" class="chapter xref" href="#foreword">Foreword</a>
+<hr>
 
 This is a free and OpenSource book on Python. 
 
@@ -27,13 +27,13 @@ You can
 Feel free to contribute a section, propose rewrites, fix typos etc. If you have comments, mail them to `arj.python at gmail dot com`.
 
 
-<h1 id="contributors" class="chapter">Chapter: Contributors</h1>
-
+<a id="contributors" class="chapter xref" href="#contributors">Contributors</a>
+<hr>
 
 - Abdur-RahmaanJ: Main content
 
-<h1 id="decorators" class="chapter">Chapter: Decorators</h1>
-
+<a id="decorators" class="chapter xref" href="#decorators">Deriving Decorators</a>
+<hr>
 
 Decorators occur prefixed by `@`. `@app.route` in the example below is a decorator.
 
@@ -643,7 +643,8 @@ try help on them
 print(help(property))
 ```
 
-<h1 id="dunder" class="chapter">Chapter: Customising Behaviours Through Dunder Methods</h1>
+<a id="dunder" class="chapter xref" href="#dunder">Customising Behaviours Through Dunder Methods</a>
+<hr>
 
 In Python every element is an object. Each object has
 
@@ -937,7 +938,8 @@ print(num2word[1])
 - [1] https://snarky.ca/unravelling-attribute-access-in-python/
 
 
-<h1 id="generators" class="chapter">Chapter: Generators</h1>
+<a id="generators" class="chapter xref" href="#generators"> Diving Into Generators</a>
+<hr>
 
 
 In Python, generators form part of the intermediate topics. Since it differs from conventional functions, beginners have to take sometimes to wrap their head around it. This article presents materials that will be useful both for beginners and advanced programmers. It attempts to give enough to understand generators in depth but don't cover all use cases.
@@ -1316,11 +1318,6 @@ func_runner.run()
 ```
 
 
-
----
-
-
-
 output
 
 
@@ -1638,7 +1635,8 @@ copied over and over by Python sites, see David Beazley's 3 parts series:
 
 
 
-<h1 id="bytecodes" class="chapter">Chapter: Bytecodes</h1>
+<a id="bytecodes" class="chapter xref" href="#byteocodes">Exploring Bytecodes</a>
+<hr>
 
 Traditionally, this is how Python's execution ensured.
 Python was an interpreter ingesting source strings and executing instructions.

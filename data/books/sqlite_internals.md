@@ -1,6 +1,6 @@
 
 
-<ol class="toc chapter">
+<ol class="toc">
 <li><a href="#foreword">Foreword</a></li>
 <li><a href="#intro">Introduction</a></li>
 <li><a href="#contribs">Contributors</a></li>
@@ -17,7 +17,7 @@
 <li><a href="#refs"><abbr title="HyperText Markup Language">References</abbr></a></li>
 </ol>
 
-<h1 id="foreword" class="chapter">Chapter: Foreword on SQLite Internals</h1>
+<h1 id="foreword" class="chapter">Foreword on SQLite Internals</h1>
 
 To all SQLite lovers. This book discusses SQLite internals in depth.
 
@@ -48,7 +48,7 @@ If you want to discuss dbs all day long, i recommend joining the [Multiprocess c
 
 Since i scrapped my notes together, this did not start as a proper book. PRs welcome.
 
-<h1 id="intro" class="chapter">Chapter: Introduction</h1>
+<h1 id="intro" class="chapter">Introduction</h1>
 
 SQLite is a file-based database which is extremely reliable and stable. 
 It is the world's most used database. It's used on military devices, on planes (the A350 for instance) and in space.
@@ -59,7 +59,7 @@ It also implemented many features years ahead of popular databases like partial 
 
 It's pronounced S-Q-L-ite, like mineral. But whatever is easy to pronounce is fine [10].
 
-<h1 id="contribs" class="chapter">Chapter: Contributors</h1>
+<h1 id="contribs" class="chapter">Contributors</h1>
 
 ```
 Main content:
@@ -85,7 +85,7 @@ Aryan Arora, https://github.com/aryanA101a
 ```
 
 
-<h1 id="story" class="chapter">Chapter: The Story Behind</h1>
+<h1 id="story" class="chapter">The Story Behind</h1>
 
 
 SQLite was written by Dwayne Richard Hipp.
@@ -190,7 +190,7 @@ This helped shaped SQLite test-backed approach to development.
 SQLite tests are better than even postgres which relies on peer reviews [3]. This allows the developers to experiment and change code fearlessly.
 
 
-<h1 id="technical-context" class="chapter">Chapter: Technical Context</h1>
+<h1 id="technical-context" class="chapter">Technical Context</h1>
 
 
 SQLite is notorious for implenting a bunch of functionalities from scratch.
@@ -271,7 +271,7 @@ Add to it no external dependencies it means that people using SQLite have the pe
 
 **Stats:** SQLite is about 160k lines of code as now, with some 230k if comments and blank lines are included.
 
-<h1 id="overview" class="chapter">Chapter: Overview</h1>
+<h1 id="overview" class="chapter">Overview</h1>
 
 A rough overview of SQLite is as follows
 
@@ -387,7 +387,7 @@ The varint consists of either zero or more bytes which have the high-order bit s
 The lower seven bits of each of the first eight bytes and all 8 bits of the ninth byte are used to reconstruct the 64-bit twos-complement integer. 
 Varints are big-endian: bits taken from the earlier byte of the varint are more significant than bits taken from the later bytes.
 
-<h1 id="file-record" class="chapter">Chapter: File & Record Format</h1>
+<h1 id="file-record" class="chapter">File & Record Format</h1>
 
 A SQLite file is a series of bytes.
 
@@ -632,7 +632,7 @@ Here is the format of the b-tree page header.
 
 TOADD: Freeblock
 
-<h1 id="rollback-wal" class="chapter">Chapter: Rollback & WAL mode</h1>
+<h1 id="rollback-wal" class="chapter">Rollback & WAL mode</h1>
 
 In case of power cuts, SQLite ensures that data is not lost.
 The pager layer responsible for executing these two modes.
@@ -770,7 +770,7 @@ A checkpoint operation truncates the journal cache and disk content.
 
 ![](https://www.compileralchemy.com/assets/books/sqlite-internals/wal_checkpoint.png)
 
-<h1 id="bytecode" class="chapter">Chapter: Bytecodes </h1>
+<h1 id="bytecode" class="chapter">Bytecodes </h1>
 
 
 The entire Virtual Machine is contained in `vdbe.c`. On compiling the project, `vdbe.c` produces two files: `opcodes.h` which assigns a numerical value to opcodes and `opcodes.c` which designates a symbolic name for an opcode.
@@ -940,7 +940,7 @@ TODO: complete
  -->
 
 
-<h1 id="interesting-features" class="chapter">Chapter: Interesting Features </h1>
+<h1 id="interesting-features" class="chapter">Interesting Features </h1>
 
 
 ## Virtual Tables
@@ -972,7 +972,7 @@ SORT works on results
 
 
 
-<h1 id="knowing-internals" class="chapter">Chapter: Knowing The Internals </h1>
+<h1 id="knowing-internals" class="chapter">Knowing The Internals </h1>
 
 
 
@@ -992,7 +992,7 @@ SORT works on results
 - Replaced by the beautiful IndexedDB written by a developer from the noble house of Oracle
 
 
-<h1 id="modifications" class="chapter">Chapter: How SQLite Is modified</h1>
+<h1 id="modifications" class="chapter">How SQLite Is modified</h1>
 
 
 
@@ -1058,13 +1058,13 @@ Bloomberg uses the SQLite code generator and storage engine.
 The replaced the layers after by their own implementation of a scaled, massively concurrent, multi-data center storage engine. [10]
 
 
-<h1 id="the-future" class="chapter">Chapter: The Future </h1>
+<h1 id="the-future" class="chapter">The Future </h1>
 
 
 LibSQL and LumoSQL are great OpenSource projects.
 
 
-<h1 id="refs" class="chapter">Chapter: Ending Quotes</h1>
+<h1 id="refs" class="chapter">Ending Quotes</h1>
 
 **On not listening to institutionilized experts**
 

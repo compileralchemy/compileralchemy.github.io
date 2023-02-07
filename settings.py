@@ -1,5 +1,4 @@
 OUTPUT_FOLDER = 'docs/'
-BUILD_NUMBER = '0.11.0'
 book_generate = False
 
 
@@ -1151,7 +1150,7 @@ podcast = {
     'title': 'The Alfa Coding Podcast',
     'description': 'Touches Python, freelancing, career, dev and OpenSource',
     'rss_description': 'Illustrious devs and bright topics. Touches Python, freelancing, career, dev and OpenSource',
-    'tagline': 'Illustrious devs and bright topics',
+    'tagline': 'Devs from Amazon, Pypy, CPython, bright topics and popular figures',
     'google_podcast': 'https://podcasts.google.com/feed/aHR0cHM6Ly93d3cuY29tcGlsZXJhbGNoZW15LmNvbS9hbGZhLXBvZGNhc3QvcG9kY2FzdC5yc3M?sa=X&ved=0CBoQ27cFahcKEwj4q5XXl872AhUAAAAAHQAAAAAQTQ'
 }
 podcasts = [

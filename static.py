@@ -115,7 +115,7 @@ def gen_books():
     gen_book('./data/books/sqlite_internals.md',
         '../../assets/books/sqlite-internals/cover.png',
         "SQLite Internals: How The World's Most Used Database Works",
-        '0.10.0',
+        '0.12.0',
         'sqlite-internals',
         'https://www.compileralchemy.com/assets/books/foss_sqlite_internals.pdf',
         'https://github.com/compileralchemy/compileralchemy.github.io/blob/source/data/books/sqlite_internals.md')

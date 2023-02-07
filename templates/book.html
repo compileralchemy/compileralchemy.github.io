@@ -80,22 +80,28 @@
         body{
             padding: 0;
             margin: 0;
+             counter-reset: chapternum;
         }
         .book__title{
             margin-top: 20px;
             font-size: 50px;
         }
-        .book__content h1{
+        .book__content .chapter{
             font-size: 45px;
-            margin-bottom: 20px;
-            margin-top: 20px;
-
+            margin-top: 60px;
+            display: block;
+        }
+        .book__content hr{
+            margin-top: 0;
         }
         .book__content h2{
             font-size: 35px;
             margin-bottom: 20px;
             margin-top: 20px;
 
+        }
+        .book__content ul{
+            padding-left: 2rem;
         }
         .book__content table{
             margin-bottom: 15px;
@@ -143,10 +149,12 @@
             list-style-type: "👉";
             padding-left: 5px;
         }
-        .book__content ul{
+        .book__content .toc{
             padding-left: 2rem;
+            content: leader('.') target-counter(attr(href), page);
+
         }
-        .toc li{
+        .book__content .toc li{
             list-style-type: "";
         }
 
@@ -175,37 +183,60 @@
 
 
         pre {
- white-space: pre-wrap;       /* css-3 */
- white-space: -moz-pre-wrap;  /* Mozilla, since 1999 */
- white-space: -pre-wrap;      /* Opera 4-6 */
- white-space: -o-pre-wrap;    /* Opera 7 */
- word-wrap: break-word;       /* Internet Explorer 5.5+ */
- font-size: 15px;
- font-weight: bold;
-}
+         white-space: pre-wrap;       /* css-3 */
+         white-space: -moz-pre-wrap;  /* Mozilla, since 1999 */
+         white-space: -pre-wrap;      /* Opera 4-6 */
+         white-space: -o-pre-wrap;    /* Opera 7 */
+         word-wrap: break-word;       /* Internet Explorer 5.5+ */
+         font-size: 15px;
+         font-weight: bold;
+        }
 
-    
-div.frontcover { 
-  page: cover; 
-  content: url("{{ book['cover'] }}");
-  width: 100%;
-  height: 100%; 
-}
+            
+        div.frontcover { 
+          page: cover; 
+          content: url("{{ book['cover'] }}");
+          width: 100%;
+          height: 100%; 
+        }
 
-@page :first {
-  margin: 0;
-  padding: 0;
-}
+        @page :first {
+          margin: 0;
+          padding: 0;
+        }
 
-#book-wrapper{
+        #book-wrapper{
+            margin: 0;
+            padding: 0;
+            margin-left: 20%;
+            margin-right: 20%;
+        }
+
+        html,body{
+            overflow-x: hidden;
+        }
+
+        .chapter:before {
+          counter-increment: chapternum;
+          content: counter(chapternum) ". ";
+        }
+
+        .book__title{
+            font-size: 50px;
+        }
+
+        
+
+@page:first {
+  @bottom-right {
+    content: normal;
     margin: 0;
-    padding: 0;
-    margin-left: 20%;
-    margin-right: 20%;
-}
+  }
 
-html,body{
-    overflow-x: hidden;
+  @bottom-left {
+    content: normal;
+    margin: 0;
+  }
 }
     </style>
 
@@ -245,9 +276,9 @@ html,body{
     <div class="frontcover">
     </div>
     <div id="book-wrapper">
-        <h1 class="book__title chapter">{{ book["title"] }}</h1>
+        <h1 class="book__title">{{ book["title"] }}</h1>
         <span style="font-size: 20px">by Abdur-Rahmaan Janhangeer</span><br><br>
-        <small>build: <span class="web-scrape build-no">{{ settings.BUILD_NUMBER }}</span></small>
+        <small>build: <span class="web-scrape build-no">{{ build_number }}</span></small>
         <br>
         <br>
         <div class="book__content">
