@@ -294,6 +294,16 @@ writings = [
 
 talks = [
     {
+        "title": "Flet: Flutter in Python",
+        "event": "PyMug Meetup April 2023",
+        "res": [
+            {
+                "type": "slides",
+                "url": "https://speakerdeck.com/osdotsystem/flet-flutter-in-python"
+            },
+        ]
+    },
+    {
         "title": "SQLite Internals: How The World's Most Used Database Works",
         "event": "Google DevFest 2022",
         "res": [
