@@ -102,6 +102,26 @@ Scholar of Arabic, as well as well versed in English. Good teacher of Python, an
 
 writings = [
     {
+        "title": "A Turing Machine Expressed As A State Machine",
+        "url": "https://compileralchemy.substack.com/p/a-turing-machine-expressed-as-a-states"
+    },
+    {
+        "title": "Merge Sort And It's Early History",
+        "url": "https://compileralchemy.substack.com/p/merge-sort-and-its-early-history"
+    },
+    {
+        "title": "Kubernetes Internals: Inside The Mind of A Monster",
+        "url": "https://compileralchemy.substack.com/p/kubernetes-internals-inside-the-mind"
+    },
+    {
+        "title": "Step By Step Parsing of Mathematical Expressions From Scratch",
+        "url": "https://compileralchemy.substack.com/p/step-by-step-parsing-of-mathematical"
+    },
+    {
+        "title": "The World Of Helm",
+        "url": "https://compileralchemy.substack.com/p/the-world-of-helm"
+    },
+    {
         "title": "Python Engineering Articles",
         "url": "https://www.pythonkitchen.com/python-engineering-articles/"
     },

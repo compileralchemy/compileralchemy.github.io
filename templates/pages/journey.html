@@ -1,3 +1,7 @@
+{%extends "pages/base.html"%}
+
+{%block body%}
+
 <div id="facts" class="section">
 
     <div class="container"><br><br>
@@ -8,7 +12,7 @@
                     <i class="em em-tada" aria-role="presentation" aria-label="PARTY POPPER"></i>
                 </span>
             </p><br>
-            <p class="title"><a href="#journey" class="no-link-dec">Dev Journey</a></p>
+            <p class="title"><a href="#facts" class="no-link-dec">Dev Journey</a></p>
             <p class="subtitle">Milestones
                 </a>. </p>
         </div>
@@ -38,28 +42,28 @@
                 <div style="">
                     <div class="timeline">
                         <header class="timeline-header">
-                            <span class="tag is-medium is-primary">End</span>
+                          <span class="tag is-medium is-primary">End</span>
                         </header>
 
                         {% for fact in reversed(settings.facts) %}
-                        {%if loop.index <=5 %} <div class="timeline-item">
-                            <div class="timeline-marker"></div>
-                            <div class="timeline-content">
-                                <p class="heading">[{{fact['date']}}] <a href="{{ fact['link'] }}">{{ fact['title']
-                                        }}</a></p>
-                                <p>{{fact['notes'] | safe }}</p>
-                            </div>
-                    </div>
-                    {%endif%}
-                    {%endfor%}
+                        <div class="timeline-item">
+                          <div class="timeline-marker"></div>
+                          <div class="timeline-content">
+                            <p class="heading">[{{fact['date']}}] <a href="{{ fact['link'] }}">{{ fact['title'] }}</a></p>
+                            <p>{{fact['notes'] | safe }}</p>
+                          </div>
+                        </div>
+                        {%endfor%}
+                        <div class="timeline-header">
+                          <span class="tag is-medium is-primary">Start</span>
+                        </div>
+                      </div>
 
                 </div>
-                <br>
-                <button class="button is-link "><a class="has-text-white" target="_blank" href="{{path}}journey">View
-                        dev journey</a></button>
+                <!--Holder end-->
             </div>
-            <!--Holder end-->
         </div>
     </div>
 </div>
-</div>
+{% include "sections/footer.html" %}
+{%endblock%}

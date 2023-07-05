@@ -1,114 +1,17 @@
-<!DOCTYPE html>
-<html lang="en">
+{%extends "pages/base.html"%}
 
-<head>
-    <!-- Global site tag (gtag.js) - Google Analytics -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-161612035-1"></script>
-    <script>
-    window.dataLayer = window.dataLayer || [];
+{%block head%}
 
-    function gtag() { dataLayer.push(arguments); }
-    gtag('js', new Date());
-    gtag('config', 'UA-161612035-1');
-    </script>
-    <!--Start of Tawk.to Script-->
-    <script type="text/javascript">
-    var Tawk_API = Tawk_API || {},
-        Tawk_LoadStart = new Date();
-    (function() {
-        var s1 = document.createElement("script"),
-            s0 = document.getElementsByTagName("script")[0];
-        s1.async = true;
-        s1.src = 'https://embed.tawk.to/600547c5c31c9117cb6fac40/1esaa0ni2';
-        s1.charset = 'UTF-8';
-        s1.setAttribute('crossorigin', '*');
-        s0.parentNode.insertBefore(s1, s0);
-    })();
-    </script>
-    <!--End of Tawk.to Script-->
-    <title>Abdur-Rahmaan Janhangeer</title>
-    
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta charset="utf-8">
-    <meta name="description" content="Python, Freelancing, Career & OpenSource">
-    <meta name="keywords" content="HTML,CSS,JavaScript,Python,Java,C++,websites,software,code audits">
-    <meta name="author" content="compileralchemy">
-    <meta name="theme-color" content="#ffb74d" />
-    <link rel="icon" href="{{path}}assets/COMP_ALC.png">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link href='https://fonts.googleapis.com/css?family=Comfortaa' rel='stylesheet' type='text/css'>
-    <link href='https://fonts.googleapis.com/css?family=Raleway:700' rel='stylesheet' type='text/css'>
-    <link href='https://fonts.googleapis.com/css?family=Special+Elite' rel='stylesheet' type='text/css'>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.0/css/bulma.min.css">
-    <link href="https://emoji-css.afeld.me/emoji.css" rel="stylesheet">
-    <script defer src="https://use.fontawesome.com/releases/v5.8.2/js/all.js"></script>
-    <script type="text/javascript" src="js/jquery.js"></script>
-    <link rel="stylesheet" type="text/css" href="style.css">
-    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.css" />
-    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
-    <link rel="stylesheet" href="https://unpkg.com/swiper@6/swiper-bundle.min.css" />
-    <script src="https://unpkg.com/swiper@6/swiper-bundle.min.js"></script>
-    <style type="text/css">
-    .swiper-container {
-        width: 100%;
-        height: 100%;
-    }
+{%endblock%}
 
-    .swiper-slide {
-        text-align: center;
-        font-size: 18px;
-        background: #fff;
-        /* Center slide text vertically */
-        display: -webkit-box;
-        display: -ms-flexbox;
-        display: -webkit-flex;
-        display: flex;
-        -webkit-box-pack: center;
-        -ms-flex-pack: center;
-        -webkit-justify-content: center;
-        justify-content: center;
-        -webkit-box-align: center;
-        -ms-flex-align: center;
-        -webkit-align-items: center;
-        align-items: center;
-    }
-    </style>
-    <script type="text/javascript">
-    (function(c, l, a, r, i, t, y) {
-        c[a] = c[a] || function() {
-            (c[a].q = c[a].q || []).push(arguments) };
-        t = l.createElement(r);
-        t.async = 1;
-        t.src = "https://www.clarity.ms/tag/" + i;
-        y = l.getElementsByTagName(r)[0];
-        y.parentNode.insertBefore(t, y);
-    })(window, document, "clarity", "script", "b2ltvgn5pp");
-    </script>
-
-    <style type="text/css">
-        /* Hide scrollbar for Chrome, Safari and Opera */
-        .hide_scroll::-webkit-scrollbar {
-          display: none;
-        }
-
-        /* Hide scrollbar for IE, Edge and Firefox */
-        .hide_scroll {
-          -ms-overflow-style: none;  /* IE and Edge */
-          scrollbar-width: none;  /* Firefox */
-        }
-    </style>
-    
-    <link href="https://assets.calendly.com/assets/external/widget.css" rel="stylesheet">
-    <script src="https://assets.calendly.com/assets/external/widget.js" type="text/javascript" async></script>
-</head>
-
-<body class="">
+{%block body%}
     {% include 'sections/intro.html' %}
     {% include 'sections/testimonials.html' %}
+    {% include 'sections/writings.html' %}
     {% include 'sections/talks.html' %}
     <!--{% include 'sections/menu.html' %}-->
     <!--{% include 'sections/contact.html' %}-->
-    {% include 'sections/writings.html' %}
+    
     
     {% include 'sections/facts.html' %}
     {% include 'sections/projects.html' %}
@@ -116,6 +19,4 @@
     {% include 'sections/privacy.html' %}
     {% include 'sections/footer.html' %}
     
-</body>
-
-</html>
+{%endblock%}

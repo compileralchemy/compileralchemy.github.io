@@ -79,7 +79,7 @@ def gen_book(mdfile, cover, title, build_number, slug, download_link, edit_link)
     
 
     sqlite_book = mdfile
-    with open(sqlite_book) as f:
+    with open(sqlite_book, encoding='utf8') as f:
         text = f.read()
 
     html = md_to_html(text)
@@ -127,6 +127,36 @@ def gen_books():
         'https://www.compileralchemy.com/assets/books/cracking_python.pdf',
         'https://github.com/compileralchemy/compileralchemy.github.io/blob/source/data/books/cracking_tough_parts_python.md')
 
+def gen_writings():
+    context.update({
+        'path': '../'
+    })
+    try:
+        os.mkdir(os.path.join(settings.OUTPUT_FOLDER, 'articles'))
+    except Exception as e:
+        pass
+    generate('pages/writings.html', join(settings.OUTPUT_FOLDER, 'articles', 'index.html'), **context)
+
+def gen_talks():
+    context.update({
+        'path': '../'
+    })
+    try:
+        os.mkdir(os.path.join(settings.OUTPUT_FOLDER, 'talks'))
+    except Exception as e:
+        pass
+    generate('pages/talks.html', join(settings.OUTPUT_FOLDER, 'talks', 'index.html'), **context)
+
+def gen_journey():
+    context.update({
+        'path': '../'
+    })
+    try:
+        os.mkdir(os.path.join(settings.OUTPUT_FOLDER, 'journey'))
+    except Exception as e:
+        pass
+    generate('pages/journey.html', join(settings.OUTPUT_FOLDER, 'journey', 'index.html'), **context)
+
 def main(args):
     def gen():
         generate('index.html', join(settings.OUTPUT_FOLDER, 'index.html'), **context)
@@ -139,6 +169,9 @@ def main(args):
         generate('podcast.html', join(settings.OUTPUT_FOLDER, 'alfa-podcast', 'index.html'), **podcontext)
         gen_podcast_rss()
         gen_books()
+        gen_writings()
+        gen_talks()
+        gen_journey()
 
     if len(args) > 1 and args[1] == '--server':
         app = Flask(__name__)

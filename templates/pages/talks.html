@@ -1,3 +1,6 @@
+{%extends "pages/base.html"%}
+
+{%block body%}
 <div class="section" id="talks" style="background-color: #fffff5;">
     <div class="container">
         <div class="notification" style="background-color: #fffff5;">
@@ -14,7 +17,7 @@
         </div>
         <div class="writings is-white">
             {%for talk in talks%}
-            {%if loop.index <= 5%}
+
             <p class="is-size-4">{{ talk['title'] }}
                 {%for res in talk['res']%}
                 {% if res['type'] == 'video' %}
@@ -29,10 +32,12 @@
             <i>{{ talk['event'] }}</i><br>
             {{talk['description']}}
             <hr>
-            {%endif%}
+
             {%endfor%}
-            <br>
-            <button class="button is-link "><a class="has-text-white" target="_blank" href="{{path}}talks">Older talks</a></button>
+            
         </div>
     </div>
 </div>
+
+{% include "sections/footer.html" %}
+{%endblock%}
