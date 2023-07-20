@@ -314,6 +314,16 @@ writings = [
 
 talks = [
     {
+        "title": "Boosting Python with Rust!",
+        "event": "MSCC DevCon 2023",
+        "res": [
+            {
+                "type": "slides",
+                "url": "https://speakerdeck.com/osdotsystem/boosting-python-with-rust"
+            },
+        ]
+    },
+    {
         "title": "Flet: Flutter in Python",
         "event": "PyMug Meetup April 2023",
         "res": [
