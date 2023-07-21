@@ -314,6 +314,16 @@ writings = [
 
 talks = [
     {
+        "title": "libSQL: Taking SQLite to the moon",
+        "event": "MSCC DevCon 2023",
+        "res": [
+            {
+                "type": "slides",
+                "url": "https://speakerdeck.com/osdotsystem/libsql-taking-sqlite-to-the-moon"
+            },
+        ]
+    },
+    {
         "title": "Boosting Python with Rust!",
         "event": "MSCC DevCon 2023",
         "res": [
