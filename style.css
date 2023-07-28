@@ -211,3 +211,11 @@
   padding-inline: 1ch;
   margin-inline-end: 1ch;
 }
+
+#open-source li::before {
+  content: "  --> ";
+/*  background: lightgray;*/
+  border-radius: 1ch;
+  padding-inline: 1ch;
+  margin-inline-end: 1ch;
+}
