@@ -1,10 +1,10 @@
-<div class="section" id="open-source">
+<div class="section" id="open-source" style="background-color: #fff5f5;">
   <div class="container">
-    <div class="notification is-white">
-      <div class="notification is-white has-text-centered">
+    <div class="notification " style="background-color: #fff5f5;">
+      <div class="notification has-text-centered" style="background-color: #fff5f5;">
         <br>
         <p class="has-text-centered ">
-          <span class="title has-background-white-ter  has-text-centered" style="width: 50px; height:50px; padding: 15px; border-radius: 50%;">
+          <span class="title  has-text-centered" style="width: 50px; height:50px; padding: 15px; border-radius: 50%;">
             <i class="em em-building_construction" aria-role="presentation" aria-label=""></i>
           </span>
         </p><br>
@@ -12,25 +12,26 @@
         <p class="subtitle">Some fun, some serious</p>
       </div>
     </div>
-    <div class="is-white">
-      
-      <div style=" display:grid;
-        grid-template-columns: repeat(auto-fill, 200px);
-        grid-gap: 10px;">
-      {% for project in settings.github_projects %}
+    <div class="" style="background-color: #fff5f5;">
+      <table class="table" style="background-color: #fff5f5;">
+  <thead>
+    <tr>
+      <th><abbr title="Projects">Projects</abbr> <div class="control">
+                        <div class="tags has-addons">
+                            <span class="tag is-dark">Pypi downloads</span>
+                            <span class="tag is-info">166k</span>
+                        </div>
+                    </div></th>
 
-          <div style="display: inline-grid; padding: 15px;" class="card">
+    </tr>
+  </thead>
+  <tfoot>
+    {% for project in settings.github_projects %}
+    <tr>
+      <td>
+
             <a href="{{ project['main_link'] }}">{{ project['name'] }}</a>
-              <hr>
-
-              {%if 'pepy' in project['badges']%}
-                <a target="_blank" href="https://pepy.tech/project/{{project['name'].lower()}}"><img src="https://static.pepy.tech/personalized-badge/{{project['name'].lower()}}?period=total&units=international_system&left_color=black&right_color=green&left_text=Downloads">
-                </a>
-              {%endif%}
-
-            {{ md_to_html(project['info']) | safe }}
-
-              <span style="overflow-wrap: break-word;">
+<span style="overflow-wrap: break-word;">
               {% for key in project['links'] %}
                 {% set link = project['links'][key] %}
 
@@ -38,14 +39,31 @@
 
               {% endfor %}
             </span>
-          </div>
+              {%if 'pepy' in project['badges']%}
+                <a target="_blank" href="https://pepy.tech/project/{{project['name'].lower()}}"><img src="https://static.pepy.tech/personalized-badge/{{project['name'].lower()}}?period=total&units=international_system&left_color=black&right_color=green&left_text=Downloads">
+                </a>
+              {%elif 'cratesio' in project['badges']%}
+                <a target="_blank" href="https://crates.io/crates/{{project['name'].lower()}}"><img alt="Crates.io" src="https://img.shields.io/crates/d/{{project['name'].lower()}}">
+
+                </a>
+              {%endif%}
+
+            {{ md_to_html(project['info']) | safe }}
+
+              
+
+      </td>
+    </tr>
+          
           
 
 
         {% endfor %}
-        </div>
-      </tbody>
-    </table>
+
+  </tfoot>
+</table>
+      
+      
   </div>
 </div>
 </div>

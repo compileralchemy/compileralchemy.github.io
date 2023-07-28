@@ -733,6 +733,20 @@ A package to get weather info about Mauritius taken from the country's weather s
         'badges': ['pepy']
     },
     {
+        "name": "phoning-home",
+        "info": '''
+Phoning home, analytics and leaderboard with 0 server setup. Powered by Turso
+''',
+        "features": [],
+        "main_link": "https://github.com/Abdur-rahmaanJ/phoning-home",
+        "logo_link": "",
+        "links": {
+            "github": "https://github.com/Abdur-rahmaanJ/phoning-home",
+            "pypi": "https://pypi.org/project/phoning-home/"
+        },
+        'badges': ['pepy']
+    },
+    {
         "name": "Download-stats",
         "info": '''
 Download stats from pypi
@@ -746,7 +760,20 @@ Download stats from pypi
         },
         'badges': ['pepy']
     },
-
+    {
+        "name": "richterm",
+        "info": '''
+Rich terminals in rust. Follows Python's rich
+''',
+        "features": [],
+        "main_link": "https://github.com/Abdur-rahmaanJ/richterm",
+        "logo_link": "",
+        "links": {
+            "cratesio": "https://crates.io/crates/richterm",
+            "github": "https://github.com/Abdur-rahmaanJ/richterm",
+        },
+        'badges': ['cratesio']
+    },
     {
         "name": "Honeybot",
         "info": '''
@@ -764,13 +791,11 @@ An IRC bot built from scratch with an awesome collection of Plugins. It even has
     {
         "name": "ShopCube",
         "info": '''
-An ecommerce project in Flask which has among others:
-
-- cart editing
-- multi-picture product zooming
-- checkout
-- orders
-- themes
+An ecommerce project in Flask which has among others: cart editing
+, multi-picture product zooming
+, checkout
+, orders
+, themes
 ''',
         "features": ['featured'],
         "main_link": "https://github.com/shopyo/shopcube",
@@ -809,17 +834,29 @@ Rich-compatible terminal charts
         'badges': ['pepy']
     },
     {
+    "name": "pythoncms",
+    "info": '''
+A CMS that you understand.
+''',
+        "features": [],
+        "main_link": "https://github.com/shopyo/pythoncms/",
+        "logo_link": "",
+        "links": {
+            "github": "https://github.com/shopyo/pythoncms/",
+            "pypi": "https://pypi.org/project/pythoncms/",
+        },
+        'badges': ['pepy']
+    },
+    {
         "name": "MarketFlow",
         "info": '''
-A marketplace in Flask which has among others:
-
-- vendor registration
-- vendor isolation
-- cart
-- multi-picture product zooming
-- checkout
-- orders
-- themes
+A marketplace in Flask which has among others: vendor registration
+, vendor isolation
+, cart
+, multi-picture product zooming
+, checkout
+, orders
+, themes
 ''',
         "features": ['featured'],
         "main_link": "https://github.com/shopyo/marketflow",
