@@ -102,6 +102,10 @@ Scholar of Arabic, as well as well versed in English. Good teacher of Python, an
 
 writings = [
     {
+        "title": "libSQL: Diving Into a Database Engineering Epic",
+        "url": "https://compileralchemy.substack.com/p/libsql-diving-into-a-database-engineering"
+    },
+    {
         "title": "A Turing Machine Expressed As A State Machine",
         "url": "https://compileralchemy.substack.com/p/a-turing-machine-expressed-as-a-states"
     },
@@ -1127,7 +1131,7 @@ facts = [
         "date": "April 2021",
         "link": "https://github.com/Abdur-RahmaanJ",
         "title": "Github Badge Awarded for the Ingenuity Mars Helicopter Mission",
-        "notes": "Appended to awardees Github profile."
+        "notes": "Appended to Github profile."
     }
 ]
 
@@ -1420,4 +1424,31 @@ It's a breal break into tech podcast!
             }
         ]
     }
+]
+
+
+publish = [
+    {
+        "name":"Flask Masterclass",
+        "link": "https://leanpub.com/c/flask-masterclass",
+        "type":"course",
+        "embed": """<iframe width='160' height='400' src='https://leanpub.com/courses/leanpub/flask-masterclass/embed' frameborder='0' allowtransparency='true'></iframe>
+  """,
+        "info":"""Featured twice by LeanPub. Weekly bestseller."""
+    },
+    {
+        "name":"SQLite Internals: How The World's Most Used Database Works",
+        "link": "https://www.compileralchemy.com/books/sqlite-internals/",
+        "type":"book",
+        "embed": """""",
+                "info":"""First free and open book on SQLite internals"""
+    },
+    {
+        "name":"Cracking the tough parts in Python",
+        "link": "https://www.compileralchemy.com/books/sqlite-internals/",
+        "type":"book",
+        "embed": """<iframe width='160' height='400' src='https://leanpub.com/cracking-python/embed' frameborder='0' allowtransparency='true'></iframe>
+  """,
+        "info":"""Crack the really tough parts in Python"""
+    },
 ]

@@ -119,13 +119,13 @@ def gen_books():
         'sqlite-internals',
         'https://www.compileralchemy.com/assets/books/foss_sqlite_internals.pdf',
         'https://github.com/compileralchemy/compileralchemy.github.io/blob/source/data/books/sqlite_internals.md')
-    gen_book('./data/books/cracking_tough_parts_python.md',
-        '../../assets/books/cracking-python/cover.png',
-        "Cracking The Tough Parts In Python",
-        '0.1.0',
-        'cracking-python',
-        'https://www.compileralchemy.com/assets/books/cracking_python.pdf',
-        'https://github.com/compileralchemy/compileralchemy.github.io/blob/source/data/books/cracking_tough_parts_python.md')
+    # gen_book('./data/books/cracking_tough_parts_python.md',
+    #     '../../assets/books/cracking-python/cover.png',
+    #     "Cracking The Tough Parts In Python",
+    #     '0.1.0',
+    #     'cracking-python',
+    #     'https://www.compileralchemy.com/assets/books/cracking_python.pdf',
+    #     'https://github.com/compileralchemy/compileralchemy.github.io/blob/source/data/books/cracking_tough_parts_python.md')
 
 def gen_writings():
     context.update({
