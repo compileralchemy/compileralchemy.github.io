@@ -11,7 +11,7 @@
     </div>
     <div class="" style="background-color: #fff7ec">
       <div class="container notification" style="background-color: #fff7ec">
-        
+
       {% for pub in settings["publish"]%}
       <a href='{{pub["link"]}}'><h3 class="is-size-3">{{pub["name"]}}</h3></a>
       <span class="tag is-info">{{pub["type"]}}</span>
@@ -19,6 +19,8 @@
         <br><br>
       {%endfor%}
       </div>
+
+      
     </div>
   </div>
 </div>

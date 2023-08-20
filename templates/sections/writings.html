@@ -17,6 +17,8 @@
                 {%include "snippets/substack.html"%}
             </p>
             <br>
+                    Writings selected in PyCoders Weekly, Awesome Python, DevOps Weekly, Gitops Weekly, SQLite news. Hackernews front page hits: 2.
+            <br><br>
             {%for writing in writings%}
                 {%  if loop.index <= 5 %}
                 <span class="url p-0">{{str(loop.index).zfill(2)}}. <a href="{{ writing['url'] }}">{{ titlecase(writing['title']) }}</a></span>
