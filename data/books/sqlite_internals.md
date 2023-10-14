@@ -48,6 +48,10 @@ If you want to discuss dbs all day long, i recommend joining the [Multiprocess c
 
 Since i scrapped my notes together, this did not start as a proper book. PRs welcome.
 
+My other SQLite writings:
+
+- [libSQL: Diving Into a Database Engineering Epic](https://compileralchemy.substack.com/p/libsql-diving-into-a-database-engineering)
+
 <h1 id="intro" class="chapter">Introduction</h1>
 
 SQLite is a file-based database which is extremely reliable and stable. 
