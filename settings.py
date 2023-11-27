@@ -318,6 +318,16 @@ writings = [
 
 talks = [
     {
+        "title": "The state of NLP in production",
+        "event": "Pymug August 2023",
+        "res": [
+            {
+                "type": "slides",
+                "url": "https://speakerdeck.com/osdotsystem/the-state-of-nlp-in-production"
+            },
+        ]
+    },
+    {
         "title": "libSQL: Taking SQLite to the moon",
         "event": "MSCC DevCon 2023",
         "res": [
