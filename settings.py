@@ -23,14 +23,59 @@ skills that he pursues as a hobby.<br><br>
 His work in both professional and open source setting speaks itself but this recommendation is just a token of appreciation on behalf of countless engineers whom he has helped improve and break into the open source community. I wish him the best in his future endeavors and I am excited to see where his work takes him.'''
     },
     {
+        'name': 'Donald Knuth',
+        'title': 'Programming Legend',
+        'text': '''
+Dear Abdur-Rahmaan,
+<br><br>
+Please excuse the fact that I haven't had time to look at your email
+message from April until today.
+<br><br>
+In that program, MOVEIN is not an instruction; it is a symbolic name
+for the address where a dynamically changing instruction will be
+stored. (His computer was a LOT different from what we have now!)
+<br><br>
+Line 41 of the program says that we should reserve one "storage tank"
+(RST 1) to be called MOVEIN. Line 46 puts a PIK instruction into
+that storage tank. Eventually, control is transferred so that
+the machine executes that PIK instruction (which moves a block
+of words into a sequence of short tanks called BUFFER).
+<br><br>
+<b>Thanks for your interest in history,</b> and for your patience.
+<br><br>
+Best wishes, Don Knuth 
+<a href="https://www.linkedin.com/posts/appinv_asm-computerscience-activity-7134615165097922562-Mb7q?utm_source=share&utm_medium=member_desktop">
+    (source)
+</a>
+'''
+    },
+    {
+        'name': 'AnushKrishna Venkatakrishnan',
+        'title': 'Ex-Data Engineer @Metabob | Global FInalist IBM CFC',
+        'text': '''I have had the privilege of collaborating closely with Abdur at Metabob, where we tackled a multitude of challenging software engineering and data engineering projects together. Over the course of our year-long professional relationship, Abdur consistently demonstrated remarkable skills and dedication. He is an exceptionally versatile software engineer, seamlessly transitioning between backend development, data engineering and even venturing into the complexities of machine learning and natural language processing. Abdur's ability to confidently navigate new and intricate codebases, along with his fearlessness in optimizing for efficiency, truly sets him apart.
+<br><br>
+Beyond his technical prowess, Abdur's contributions to the team are invaluable. His effective communication, both within the team and in remote work settings, showcases his adaptability and commitment to seamless collaboration. Abdur's disciplined approach to maintaining code quality, combined with his openness to feedback and alternative viewpoints, highlights his dedication to both personal growth and the success of the team. His versatility extends to leadership roles, where he effortlessly transitions between guiding the team and providing support. Moreover, Abdur's willingness to dedicate time to community initiatives underlines his commitment to giving his best.
+<br><br>
+In summation, I wholeheartedly recommend Abdur as a remarkable and capable team member. His technical excellence, adaptability, and commitment to continuous improvement make him an asset to any project or organization. Abdur's ability to excel in various domains, coupled with his collaborative spirit, positions him for continued success in all his future endeavours.'''
+    },
+    {
+        'name': 'Parth Shukla',
+        'title': 'Petroleum Engineering + Data Science | 70+ Published Articles on Data Science',
+        'text': '''I’ve had the pleasure of working with many professionals in my career, but Mr. Abdur Rahmaan sir is someone who I will always remember fondly for his kind guidance throughout my technical writing experience.
+<br><br>
+Under his supervision, I was able to complete some of my best articles related to data science and was able to gain valuable professional experience.
+<br><br>
+His ability to coach others is something that is completely unique. I’m grateful to have worked with Mr. Abdur Rahmaan sir and highly recommend him.'''
+    },
+    {
         'name': 'Javed Mahamoodally',
         'title': 'ServiceNow Developer | MRes Applied Mathematics',
         'text': '''I have worked with Abdur-Rahmaan on different programming assignments in C++ and data science projects in Python.
-
+<br><br>
 His exceptional understanding of coding paradigms, ability to grasp high-level material quickly and his outstanding communication skills make him a great lad to work with.
-
+<br><br>
 I have benefited extensive from his deep understanding of pandas, NumPy and SciPy libraries of Python on my work in Artificial Neural Network.
-
+<br><br>
 He would be a great fit any organisation or team'''
     },
     {
@@ -1444,7 +1489,7 @@ publish = [
         "type":"course",
         "embed": """<iframe width='160' height='400' src='https://leanpub.com/courses/leanpub/flask-masterclass/embed' frameborder='0' allowtransparency='true'></iframe>
   """,
-        "info":"""Featured twice by LeanPub. Weekly bestseller."""
+        "info":"""Featured thrice by LeanPub. Weekly bestseller."""
     },
     {
         "name":"SQLite Internals: How The World's Most Used Database Works",
