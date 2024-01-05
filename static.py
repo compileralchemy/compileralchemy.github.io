@@ -13,6 +13,7 @@ from jamstack.api.template import generate
 from jamstack.api.template import base_context
 from livereload import Server
 import markdown
+import toml
 
 import settings
 
@@ -111,6 +112,58 @@ def gen_book(mdfile, cover, title, build_number, slug, download_link, edit_link)
     generate('book.html', join(settings.OUTPUT_FOLDER, 'books', slug, 'index.html'), **context)
 
 
+def gen_diary(mdfile, cover, title, build_number, slug, download_link, edit_link, weasy=False):
+    context = base_context()
+    
+
+    # sqlite_book = mdfile
+    # with open(sqlite_book, encoding='utf8') as f:
+    #     text = f.read()
+
+    # html = md_to_html(text)
+
+    data = toml.load(mdfile)
+
+    toc = []
+
+    for elem in data['elements']:
+        title = elem['title']
+        title_slug = title.replace(' ', '-')
+        toc.append(f'''<li><a href="#{title_slug}">{title}</a></li>''')
+    
+    book = {
+        'content': content,
+        'cover': cover,
+        'title': title,
+        'download_link': download_link,
+        'edit_link': edit_link
+    }
+
+    context.update({
+        'settings': settings,
+        'path': '../../',
+        'book': book,
+        'build_number': build_number
+    })
+
+    try:
+        os.mkdir(os.path.join(settings.OUTPUT_FOLDER, 'diaries'))
+    except Exception as e:
+        pass 
+
+    try:
+        os.mkdir(os.path.join(settings.OUTPUT_FOLDER, 'diaries', slug))
+    except Exception as e:
+        pass
+    generate('diary.html', join(settings.OUTPUT_FOLDER, 'diaries', slug, 'index.html'), **context)
+    
+    if weasy:
+        try:
+            os.mkdir(os.path.join(settings.OUTPUT_FOLDER, 'diaries', slug+'-weasy'))
+        except Exception as e:
+            pass
+        generate('diary-weasy.html', join(settings.OUTPUT_FOLDER, 'diaries', slug+'-weasy', 'index.html'), **context)
+
 def gen_books():
     gen_book('./data/books/sqlite_internals.md',
         '../../assets/books/sqlite-internals/cover.png',
@@ -118,7 +171,7 @@ def gen_books():
         '0.12.0',
         'sqlite-internals',
         'https://www.compileralchemy.com/assets/books/foss_sqlite_internals.pdf',
-        'https://github.com/compileralchemy/compileralchemy.github.io/blob/source/data/books/sqlite_internals.md')
+        'https://github.com/compileralchemy/compileralchemy.github.io/blob/source/data/books/sqlite_internals.md',)
     # gen_book('./data/books/cracking_tough_parts_python.md',
     #     '../../assets/books/cracking-python/cover.png',
     #     "Cracking The Tough Parts In Python",
@@ -126,6 +179,16 @@ def gen_books():
     #     'cracking-python',
     #     'https://www.compileralchemy.com/assets/books/cracking_python.pdf',
     #     'https://github.com/compileralchemy/compileralchemy.github.io/blob/source/data/books/cracking_tough_parts_python.md')
+
+def gen_diaries():
+    gen_diary('./data/diaries/2023.md',
+        '../../assets/books/sqlite-internals/cover.png',
+        "Abdur-Rahmaan's Diary 2023",
+        '0.12.0',
+        '2023',
+        'https://www.compileralchemy.com/assets/books/foss_sqlite_internals.pdf',
+        'https://github.com/compileralchemy/compileralchemy.github.io/blob/source/data/books/sqlite_internals.md',
+        weasy=settings.book_generate)
 
 def gen_writings():
     context.update({
@@ -169,6 +232,7 @@ def main(args):
         generate('podcast.html', join(settings.OUTPUT_FOLDER, 'alfa-podcast', 'index.html'), **podcontext)
         gen_podcast_rss()
         gen_books()
+        gen_diaries()
         gen_writings()
         gen_talks()
         gen_journey()

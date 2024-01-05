@@ -1,0 +1,249 @@
+<!doctype html>
+<html lang="fr">
+  <meta charset="utf-8">
+  <meta name="author" content="Madcats">
+
+  <link href='https://fonts.googleapis.com/css?family=Kalam' rel='stylesheet' type='text/css'>
+  <title>All Cats Are Beautiful</title>
+    <head>
+        <style>
+
+@page {
+  margin: 2cm 2cm 3cm 2cm;
+  size: 148mm 210mm;
+}
+
+@page :left {
+  @bottom-left {
+    content: counter(page);
+    position: absolute;
+    z-index: -1;
+  }
+  @bottom-right {
+    content: string(heading);
+    position: absolute;
+    z-index: -1;
+  }
+}
+
+@page :right {
+  @bottom-left {
+    content: string(heading);
+    position: absolute;
+    z-index: -1;
+  }
+  @bottom-right {
+    content: counter(page);
+    position: absolute;
+    z-index: -1;
+  }
+}
+
+@page full {
+  @bottom-right {
+    content: none;
+  }
+
+  @bottom-left {
+    content: none;
+  }
+
+  background: black;
+  margin: 0;
+}
+
+@page :blank {
+  @bottom-right {
+    content: none;
+  }
+
+  @bottom-left {
+    content: none;
+  }
+}
+
+@page clean {
+  @bottom-right {
+    content: none;
+  }
+
+  @bottom-left {
+    content: none;
+  }
+}
+
+html {
+  counter-reset: h2-counter;
+  font-family: OpenDyslexic;
+  font-size: 10pt;
+}
+body {
+  margin: 0;
+  font-family: 'Kalam', cursive;
+}
+
+
+.hide_scroll::-webkit-scrollbar {
+          display: none;
+        }
+
+        /* Hide scrollbar for IE, Edge and Firefox */
+        .hide_scroll {
+          -ms-overflow-style: none;  /* IE and Edge */
+          scrollbar-width: none;  /* Firefox */
+        }
+
+        body{
+            padding: 0;
+            margin: 0;
+             counter-reset: chapternum;
+        }
+        .book__title{
+            margin-top: 20px;
+            font-size: 50px;
+        }
+        .book__content .chapter{
+            font-size: 45px;
+            margin-top: 60px;
+            display: block;
+        }
+        .book__content hr{
+            margin-top: 0;
+        }
+        .book__content h2{
+            font-size: 35px;
+            margin-bottom: 20px;
+            margin-top: 20px;
+
+        }
+        .book__content ul{
+            padding-left: 2rem;
+        }
+        .book__content table{
+            margin-bottom: 15px;
+        }
+        .book__content th{
+            border-bottom: 1px solid #ddd;
+        }
+        .book__content h3{
+            font-size: 30px;
+            margin-bottom: 20px;
+            margin-top: 20px;
+
+        }
+        .book__content p{
+            text-align: justify;
+            margin-bottom: 10px;
+            font-size: 20px;
+        }
+        .book__content{
+            margin-bottom: 50px;
+        }
+        .book__content img{
+            border-radius: 10px;
+            display:block;
+            max-height: 350px;
+            margin-top: 50px;
+            margin-bottom: 50px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .book__content blockquote{
+            padding: 40px;
+            background-color: #eee;
+            border-left: 10px solid #ccc;
+            margin-top: 40px;
+            margin-bottom: 40px;
+            page-break-inside: avoid;
+        }
+        .book__content pre{
+            margin-top: 40px;
+            margin-bottom: 40px;
+        }
+
+        .book__content li{
+            list-style-type: "👉";
+            padding-left: 5px;
+        }
+        .book__content .toc{
+            padding-left: 2rem;
+            content: leader('.') target-counter(attr(href), page);
+
+        }
+        .book__content .toc li{
+            list-style-type: "";
+        }
+
+.outro {
+  border-radius: 50% 50% 0 0 / 15mm 15mm 0 0;
+  display: block;
+  height: 90mm;
+  left: -30mm;
+  max-width: none;
+  object-fit: cover;
+  position: absolute;
+  top: 120mm;
+  width: 168mm;
+  z-index: -1;
+}
+img {
+  display: block;
+  margin: 2em auto;
+  max-width: 70%;
+}
+.fullpage {
+  page: full;
+}
+.fullpage img {
+  bottom: 0;
+  height: 210mm;
+  left: 0;
+  margin: 0;
+  max-width: none;
+  object-fit: cover;
+  position: absolute;
+  width: 148mm;
+  z-index: 1;
+}
+.fullpage:last-child {
+  break-before: left;
+}
+        </style>
+    </head>
+
+  <h1>All Cats Are Beautiful</h1>
+
+  <section class="fullpage">
+    <img src="img/affiche.jpg" alt="Affiche">
+  </section>
+
+  <section id="authors">
+    <img src="img/logo-intro.png" alt="Intro">
+    <p>
+      Écritures collaboratives
+    </p>
+    <dl>
+      <dt>Écrivain·e·s</dt>
+      <dd>Antoine Cénet</dd>
+      <dd>Tzara Auffray</dd>
+      <dd>Alban Haouaci</dd>
+      <dd>Alexandre Masson</dd>
+      <dd>Jérémie Richard</dd>
+    </dl>
+  </section>
+
+  <section id="contents book__content">
+    <p>Table des matières</p>
+    <ul>
+      <li><a href="#self-pub">Self-Publishing</a></li>
+      <li><a href="#quality-please-people">Pleasing People v/s Quality</a></li>
+    </ul>
+    {{ book["content"] | safe }}
+  </section>
+
+
+
+  <section class="fullpage">
+    <img src="img/silhouettes_color.jpg" alt="Silhouettes">
+  </section>
+</html>
