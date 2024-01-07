@@ -113,6 +113,7 @@ def gen_book(mdfile, cover, title, build_number, slug, download_link, edit_link)
 
 
 def gen_diary(mdfile, cover, title, build_number, slug, download_link, edit_link, weasy=False):
+    book_title = title
     context = base_context()
     
 
@@ -124,17 +125,29 @@ def gen_diary(mdfile, cover, title, build_number, slug, download_link, edit_link
 
     data = toml.load(mdfile)
 
-    toc = []
+
+    content_elems = []
+    toc_elems = ['<ol class="toc">']
 
     for elem in data['elements']:
         title = elem['title']
+        body = elem['body']
         title_slug = title.replace(' ', '-')
-        toc.append(f'''<li><a href="#{title_slug}">{title}</a></li>''')
+        toc_elems.append(f'''<li><a href="#{title_slug}">{title}</a></li>''')
+        content_elems.append(f'<h1 id="{title_slug}" class="chapter">{title}</h1>')
+        content_elems.append(md_to_html(body))
+    toc_elems.append('</ol>')
+
+    toc = '\n'.join(toc_elems)
+
+    content_ = '\n'.join(content_elems)
+
+    content = toc + '\n' + content_
     
     book = {
         'content': content,
         'cover': cover,
-        'title': title,
+        'title': book_title,
         'download_link': download_link,
         'edit_link': edit_link
     }
@@ -181,13 +194,13 @@ def gen_books():
     #     'https://github.com/compileralchemy/compileralchemy.github.io/blob/source/data/books/cracking_tough_parts_python.md')
 
 def gen_diaries():
-    gen_diary('./data/diaries/2023.md',
+    gen_diary('./data/diaries/2023.toml',
         '../../assets/books/sqlite-internals/cover.png',
         "Abdur-Rahmaan's Diary 2023",
-        '0.12.0',
+        '0.1.0',
         '2023',
-        'https://www.compileralchemy.com/assets/books/foss_sqlite_internals.pdf',
-        'https://github.com/compileralchemy/compileralchemy.github.io/blob/source/data/books/sqlite_internals.md',
+        '#',
+        'https://github.com/compileralchemy/compileralchemy.github.io/blob/source/data/diaries/2023.toml',
         weasy=settings.book_generate)
 
 def gen_writings():
