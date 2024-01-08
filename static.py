@@ -195,11 +195,11 @@ def gen_books():
 
 def gen_diaries():
     gen_diary('./data/diaries/2023.toml',
-        '../../assets/books/sqlite-internals/cover.png',
-        "Abdur-Rahmaan's Diary 2023",
+        '../../assets/diaries/2023.png',
+        "Diary 2023",
         '0.1.0',
         '2023',
-        '#',
+        'https://www.compileralchemy.com/assets/diaries/2023.pdf',
         'https://github.com/compileralchemy/compileralchemy.github.io/blob/source/data/diaries/2023.toml',
         weasy=settings.book_generate)
 
