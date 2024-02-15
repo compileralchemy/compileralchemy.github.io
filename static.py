@@ -202,6 +202,15 @@ def gen_diaries():
         'https://www.compileralchemy.com/assets/diaries/2023.pdf',
         'https://github.com/compileralchemy/compileralchemy.github.io/blob/source/data/diaries/2023.toml',
         weasy=settings.book_generate)
+    
+    gen_diary('./data/diaries/2024.toml',
+        '../../assets/diaries/2023.png',
+        "Diary 2024",
+        '0.1.0',
+        '2024',
+        'https://www.compileralchemy.com/assets/diaries/2023.pdf',
+        'https://github.com/compileralchemy/compileralchemy.github.io/blob/source/data/diaries/2023.toml',
+        weasy=settings.book_generate)
 
 def gen_writings():
     context.update({

@@ -1,0 +1,353 @@
+[[elements]]
+title = "Original Memory"
+body = """
+It's very interesting to note that Ancient Babylonians had procedures and parameters in their mathematics. It evokes programming concepts. 
+
+However, I think the parallelism is overdrawn at this point:
+
+<< Note that both in this example and in the very first one 
+we discussed we are told to make two copies of some 
+number; this indicates that actual numerical calcula- 
+tions generally destroyed the operands in the process of 
+finding a result. Similarly we find in other texts the in- 
+struction to \"Keep this number in your head\" [6, pp. 
+50-51], a remarkable parallelism with today's notion 
+that a computer stores numbers in its \"memory.\" >>
+
+It is to be noted that the memory of a computer stems directly from the human brain, it is not that we are advanced, it is that we copied an original reference.
+
+Paper: https://lnkd.in/dBMAt-6M
+"""
+
+[[elements]]
+title = "Documention is also about documenting internals"
+body = """
+When talking about documentation, people often refer to the end-user experience. However, when things go wrong internally, the end-users don't have a clue on how to solve it.
+
+It is not only necessary to state the how of things. But the why and rationale also. It's a pleasure to read well-documented code, for sure. But, if you have 100Ks of lines, it's not enough.
+
+There are various techniques to document internals. If ever I am doing it, I'd explain:
+
+- The what and why of the project, including the context
+- A conceptual overview of the project
+- An internal overview
+- Techniques to achieve features
+- Codebase layout in brief
+
+Current documentation advice is like people advising on how to write good books. But, you always deal with libraries. Sure, you can start shelf by shelf until you find the book you are looking for and get an overview of the library along the way. But, if you need a particular book, it makes sense to have a catalog so that you know what book exists and a library layout, enabling you to navigate your way to the book. Once you get to the book, of course, you'd relish a well-written book.
+
+Documentation is a time investment you make to save someone else's time. People often say that you should not invest too much in the docs as when changing code, it takes time to re-write the docs and sometimes it slogs you down. True. But, documenting the internals as well as techniques used is not mirrored at the code-line level. It's a high-level explanation to get an idea of how things are achieved. This way you can replace a whole code section if needed.
+
+At the end of the day, it's about enabling users to use the product as if you cannot support them. Imagine launching some people on a planet, for one year, with no outside contact. You'd like to produce documentation that is self-reliant as far as possible. It's about giving more power to your users. 
+"""
+
+[[elements]]
+title = "Tech bro's opacity & marriage"
+body = """
+The tech bro's appearance at community meetups is inversely proportional to the time passed after marriage, at least in Mauritius. This begs the question: why do you attend meetups?
+
+The Mauritian answer it seems, is that I have too much free time on my hands: let's try attending a meetup. Your career goals are the same 1s before marriage and 1s after marriage. Why do you just disappear?
+
+If you think of community meetups as incredible investments,
+
+1. You will attend
+2. You will push for the sessions to be contentful
+
+Else,
+
+1. You will nearly not attend
+2. You will prefer flashy events over technical content
+
+Not having enough time is relative to the importance you attach to something. If something is really important, you'd be prepared to even shift your life paradigm. If after having kids you don't have time, then I think that your poor time-management skills are finally showing cracks.
+
+Work is work, you'd say. I am getting my paycheck, that's fine. Yes, that's fine. But, why do you pursue a Masters after a BA? To land better opportunities. Same thing with community meetups. You gear up your skills. You meet people. hashtag#OpenSource-wise, core developers-led sprints are an incredible opportunity to stack up expertise in your field of choice.
+"""
+
+[[elements]]
+title = "KVM & RedHat"
+body = """
+KVM or Kernel-based Virtual Machine has been integrated into the Linux kernel since 2007. It allows the kernel to be used as a hypervisor, allowing instructions to be run at the hardware level.
+
+It's very comprehensible for such a piece to be integrated early in the Linux kernel. I just wasn't aware of the term.
+
+I was perplexed by why Redhat pages kept appearing when looking for KVM. KVM was developed by Qumranet, an Israeli-based company that was acquired by ... RedHat in 2008. Very comprehensible.
+
+It's great to see RedHat's vision from early on. Since RedHat offers OpenSource solutions, it secures it's expertise over it.
+"""
+
+[[elements]]
+title = "The ​Google Developer Experts​ is a thoroughly useless program"
+body = """
+The ​Google Developer Experts​ is a thoroughly useless program (except for Google, of course). The people in the program are great enough without this nugatory marketing scheme. They dazzle you with flights to events etc which does not happen for most GDEs.
+
+I never gave GDE much thought as you just don't become a sellout to boost a for-profit company's influence for free. A company that indoctrinates you into believing you are doing pro-bono work for the community. When a great friend proposed that I apply for the GDE program, I considered the request and invested one week to build a case for it. I was trying to lay down footholds to support my decision that it was indeed worth it. But sadly enough, I could not find in the GDE members' own experiences, grounds to support my decision.
+
+GDE is like freemasonry. You cannot apply, a member must contact you. This should tip people that something strange is afoot. You can have high standards, but, let the doors open. It's a way for them to also identify their best fishermen and target them more.
+
+Another thing is that they also look for influence within the community. In addition to technical expertise, you need to be already speaking at events, publishing content, mentoring, and advising others. They need to ensure that you will be able to pump down Google's marketing through enough throats; hooks, sinks, and lines. And oh, if you don't qualify yearly, you'll have your fisherman license removed.
+
+In sum, you need to be already great to be part of a program that uses you to promote its products and services and give you access to relevant events and resources for you to be able to do your job better. It also gives you exclusive access to other fishermen so that you can fish better.
+
+It is your responsibility as a developer to prevent initiatives like the GDE from wrapping people up. We must allow all companies to be the corporate-as-community entity. Since we cannot, we must give the privilege to none. The community is the community. Sure Google can have a community of its own experts. But, the GDE program also includes OpenSource and machine learning for example even if they don't have a direct link to specific Google products.
+
+We do need corporations but as community sponsors. Not that the corporation becomes the community. GDE is not like Microsoft's MVP program where you are recognized for your work in relation to the company's products. This one tries to pass Google as a community evaluator with a title branded under its own banner, not even a community-focused title.
+
+We don't need Google, the privacy freak's validation to be expert developers. And we need to keep Google and its fake tech-agnostic sugar-coated goodwill at bay. We must purge the community from economic foxes and keep the community spirit untainted. You can be great without Google and noble if you refuse to be corrupted and tempted by its economic lures.
+
+Long live hashtag#opensource and may mountebanks marketing always foil!
+"""
+
+[[elements]]
+title = "Google's nose dive further accentuates"
+body = """
+Google's nose dive further accentuates after the maze in the mouse saga 11 months ago. In a scathing take, senior staff engineer Diane Hirsh Theriault describes the soulless state Google find itself in.
+
+She writes:
+
+\"My hot take: Google does not have one single visionary leader. Not a one. From the C-suite to the SVPs to the VPs, they are all profoundly boring and glassy-eyed. 
+
+Google has not launched one single successful executive-driven thing in years. Sometimes, VPs try to decree \"we need a new chat app or AI-first demo for I/O!\" There's a huge death march, and in the end, the thing is half-baked and roundly derided. If it doesn't get 100 million users in six months, they give up and shut it down. It's like that joke algorithm I learned about in college -- BogoSort. In each iteration of the algorithm, you reorder everything randomly and if the elements happen to land in order, you are done. 
+
+Some of Google's executives are competent referees. I couldn't name which, but I feel like I've seen it done in my 8+ years. They point in a direction, their subordinates swarm the area, try a bunch of stuff, and sometimes something sticks and is cool. 
+
+Right now, all of these boring, glassy-eyed leaders are trying to point in a vague direction (AI) while at the same time killing their golden goose. Given that they have no real vision of their own, they really need their subordinates to come up with cool stuff for them. And at the same time, there have been rolling layoffs for the past 6-12 months throughout the company, including engineering, sales, support, UX, product, data science, SRE, everything. Just randomly firing people, torching institutional knowledge, and blowing up perfectly functional teams. 
+
+...
+
+There is a pervasive sense of nihilism that has taken hold. \"Well, I guess I will just do the job until they fire me.\" A lot of people have golden handcuffs situations and aren't going to walk away from the salary, but nobody works late anymore. The buildings are half empty at 4:30. I know a lot of people, myself included, who used to happily do extra work evenings and weekends to get the demo done or just out of boredom. That's gone. 
+
+Google really was a magical place, not very long ago. And for some reason, executives are cashing out their human capital at the very moment it seems to me like they really need it. Who can be dawn-of-a-new-era-of-humanity creative in this environment of fear? It's really sad. I have no way to align myself with any unspoken VP strategy or do good enough work to save myself if my whole team is cut. So I guess I will just hang around and do my job until Google no longer wants me.\"
+
+Do we get answers if we google \"How to save Google\"?
+
+OP: https://lnkd.in/dYrScRRp
+
+Maze in the mouse:
+https://lnkd.in/ddpC2xwB
+"""
+
+[[elements]]
+title = "Google Killed By Google?"
+body = """
+KilledByGoogle is a website listing the filicides of Google. It lists the lifespan of products Google started and shut down. When looking at this erratic behavior, it feels like looking at the handiwork of a deranged mind. I remember clearly reading an engineer's account of how people start products in a bid to land promotions.
+
+I find it disturbing that a senior staff engineer (the top of the top brass in the engineering track) describes this practice akin to BogoSort, where you randomly sort and expect it to land correctly.
+
+\"Google has not launched one single successful executive-driven thing in years. Sometimes, VPs try to decree \"we need a new chat app or AI-first demo for I/O!\" There's a huge death march, and in the end, the thing is half-baked and roundly derided. If it doesn't get 100 million users in six months, they give up and shut it down. It's like that joke algorithm I learned about in college -- BogoSort. In each iteration of the algorithm, you reorder everything randomly and if the elements happen to land in order, you are done.\"
+
+The saddest part of it is that it has been gobbled up by ... itself.
+
+KilledByGoogle:
+https://lnkd.in/d3ZRHy_n
+
+Senior staff engineer's account of Google:
+https://lnkd.in/dcC2qnvt
+"""
+
+[[elements]]
+title = "Google customers fund SquareSpace"
+body = """
+In an epic hashtag#killedByGoogle move, Google domains customers now find themselves funding Squarespace.
+
+Some interesting takes:
+
+> a. \"I can’t even imagine the consequences of this happening to google photos, drive, gmail\"
+> b. \"Neither those who bought a Stadia, invested $5,000 into a Google JamBoard, those who relied on Google Reader and many others.
+
+We'll probably see Google shutting+selling down not-profitable-enough businesses as they focus more on profitability (it's what investors want).\"
+
+Google is squarely sacking itself off the competition board.
+"""
+
+[[elements]]
+title = "Saas ideas are easier to find"
+body = """
+When looking for SaaS ideas it might be simpler than we think. 
+I found an interesting perspective from the story of Shoji Morimoto, 
+who rents himself out for cleaning services, no I'm kidding, 
+he rents himself out for doing absolutely nothing!
+
+Can we develop a SaaS that does nothing? I think so. 
+If for example we develop an app to emulate accounting software so that people 
+can pretend to be working hard.
+
+I'm pretty sure that any boring service 
+that already exists can be profitable. 
+It's hard to find new ideas all the time as 
+it's hard to be original among billions of people. 
+It can be argued that doing nothing is an original idea 
+that's why he is successful. But ideas can be and are always copied. 
+So, a nice product vision and continued development of trite ideas can be profitable.
+
+Starting out I think is the best advice. 
+Accompanied by a proposal that works. 
+Then even if the service is very common, people will drop by.
+
+Story shared by Trung Phan on Twitter.
+"""
+
+
+[[elements]]
+title = "Luminotes: Read by engineers at Google, Amazon, Apple, IBM, ..."
+body = """When I started Luminotes in March 2023, I intended it to be a collection of random interesting technical content. Now it has a combined audience of around 1.3k on LinkedIn and Substack. It grew from a personal blog to an engineering newsletter read by interesting profiles.
+
+Some weeks ago I was looking at subscribers and I was amazed to see engineers working at different prominent companies subscribed to it. Amazon, Facebook, Google, Apple, IBM, Dell, Nokia, Siemens, VMware ... as well as great Mauritian-based ones. There is also a readership amongst academia, including professors and doctors.
+
+So, wherever you are, if you publish interesting pieces, it's sure to attract the right audience. I have no secret, just a curiosity to explore how awesome pieces of software work under the hood. It's always fun to see what human ingenuity can cook up.
+
+And yes, exploring hashtag#opensource systems also renders a community service by empowering more people to take collective ownership of codebases.
+
+I am planning to cover the software side of robotic systems, you can subscribe on:
+substack: https://lnkd.in/drJETzB3
+linkedin: https://lnkd.in/dkmuHYUP
+
+hashtag#newsletter
+"""
+
+[[elements]]
+title = "Ai rocks the product landscape"
+body = """
+After analyzing 75k votes, Product Hunt announced the very best products of 2023. One conspicuous landmark was, unsurprisingly ... Ai. This offers compelling evidence that the world is just mad about it.
+
+This year even had dedicated Ai categories: 
+
+- Ai product
+- Ai Features
+- Ai models
+- Ai Infra
+
+which is wild. But, even in other categories, we see many Ai products topping the leaderboard. Ai is doing awesome, useful work despite the routine jailbreaks we hear daily.
+
+ChatGPT is the cornerstone of the 2023 revolution. As we scroll, we see more products relying on chatGPT to deliver features. It also projects a product vision that with Ai, we can. With Ai, we just do it. With Ai, the crafted product is insanely good and aligned with expectations.
+
+LLMs are not 100% reliable but I guess that the end-result counts, a lot!
+
+Golden Kitty Awards:
+https://lnkd.in/dHwsRryC
+"""
+
+[[elements]]
+title = "Opensource: Author's vision v/s Product's vision"
+body = """
+Linus Benedict Torvalds started Linux as an educational project to learn more about the i386 microprocessor. It was based on the educational operating system called Minix. Like many opensource projects, many people have questioned Linus' engineering choices on various topics. Like Jose Crespo mentioned today concerning interrupt handling in RISC-V where they operate in a serial manner where each interrupt is processed sequentially.
+
+But, questioning Linus starts right from the inception of Linux itself by none other than the creator of Minix, Andy Tanenbaum. Minix used a microkernel approach, where the userspace and kernel are separated. Linux used a monolithic approach. Andy told Linus in exasperation that \"While I could go into a long story here about the relative merits of the two designs, suffice it to say that among the people who actually design operating systems, the debate is essentially over. Microkernels have won.\"
+
+Being on the research side of things, Andy labeled Linus' approach as pure misguidance. He accused him of catapulting us back to prehistoric ages: \"LINUX is
+a monolithic style system. This is a giant step back into the 1970s. That is like taking an existing, working C program and rewriting it in BASIC. To me, writing a monolithic system in 1991 is a truly poor idea.\" 
+
+And to that Linus agreed. From a theoretical point of view, he chose a bad design, but, he argued, Minix did not implement microkernels correctly. He preferred something that he could make to work well. 
+
+There is always this rift in hashtag#opensource between the original author's wishes and basically everybody else. The original author often has the project's wellness and survival at heart. While people might be quick to judge and point out validly, the original author considers things holistically. A certain way of doing might be better but, the original author might prefer ease of use over doing things the right way. The original author has in addition, the vision behind the product.
+
+But, of course, Linus is mortal. So, how do we keep the original author's vision, intentions, and definition around? It depends on the author, how much he taught about himself to others, and how much of the relationship between himself and the carving process he exposed to the world.
+
+That's why many authors prefer to remain a dictator over the project, to guide the project to their dreams, not to a dream guided by the weathering process of maintainers' majority votes. 
+"""
+
+[[elements]]
+title = "Google officially joins the stodgy club"
+body = """
+Google officially joins the stodgy club. With the wipe-out of the engineering vision at the top, it struggles to find a purpose. Google has been fully embracing the corporate spirit. Amid cuts, immoral profits, and decimations certified to be senseless by engineering's top brasses, Google has been quacking like corporate proper for some time now. Perks flashing on social media no longer works to attract people.
+
+Even employees themselves are no longer deluded, Google is simply free-falling. Not knowing what to do, Google leadership is now simply pushing levers up and down. With harsh, inconsiderate layoffs, it is expected that the creativity and innovation of employees will go down.
+
+Google is no stranger to the AI game. There was a time when Jeff Dean was buying any AI/Neural book he could find and replaced quite a few services with AI. But, the rise of generative AI proved to be a hard blow to Google's business model. The technological shift was of such a magnitude that Google struggled despite its engineering force.
+
+Google is displaying the signs of a lean corporate — one where the company's value is sought in business practices rather than a strong engineering culture. If a company's value lies in engineering, trying to pump its value through cuts and buybacks will eventually show, harshly. Google it seems, is out of phase with its own spirit. Googlers now feel like they are living in a stranger's home, a stranger, in addition, ready to kick them out all of a sudden. 
+
+Working for Google used to be 'sexy and exciting,' with a strong sense of security. Now, not so much. - https://lnkd.in/dVA9p4bg
+
+Google's nose dive further accentuates - https://lnkd.in/dNVTbZcd
+"""
+
+
+[[elements]]
+title = "An engineering company deriving value through corporate tactics"
+body = """
+When a company derives value through engineering, if it seeks value through business practices, will simply tank. When Airbus launched the A320 Neo engine, it led to a series of events, which showed Boeing's disregard for engineering boomerangs back hard.
+
+Airbus decided to launch a 15% more efficient engine, which companies can use to lower their fares. This was so attractive that even American Airlines decided to buy the planes from Europe. This prompted Boeing to work on a competing product. Everybody expected a robust engineering response, one which polishes the American prestige, but, unfortunately, it revealed that the company officially stooped to flying-coffins levels long ago.
+
+Boeing readied the 787-Max as a response. But, soon it became clear that something was wrong as planes crashed. It was revealed that the company had changed from being an engineer's paradise to a hotbed of sheer incompetence. Probes into the company revealed that even employees did not trust to fly their families on Boeing planes. The shift started when Boeing merged with McDonnell Douglas, a company rooted in General Electric's (GE) management style. The merger found Boeing's key staff being replaced by cut-throat business-minded people. Within 2 years, under the pretense of cost-saving, the R&D budget was cut by a staggering 60%. Then the usual patterns of other cost cuts appear, including the selling of plants and firing of people, including its most valuable assets. \"If you hire a team that you think is really good and they’re performing well, why in the hell would you eliminate 10 percent every year?\"
+
+Before the 787-Max, the Dreamliner, a plane produced under the draconian leadership was plagued with quality issues due to replacing quality with cost at each turn. Continuing under the same tone, the 787-Max design was influenced by cash flow more than everything else. They developed great, efficient engines that were too big and had to be refitted further up the wings. This resulted in a change in the centre of gravity which could be solved by the expensive change in tail design. Instead, they found a cheaper alternative by programming the software of the board computer to automatically push the nose of the airplane down by moving the small horizontal stabilizer wing at the back. This relied on unreliable sensors, which Boeing tried hard to hide from regulators and escaped expensive fixes to the system as more and more problems emerged. Pilots in turn could not find anything to help them when erratic behaviours emerged leading to fatal crashes.
+
+Even after two 787-Max crashed, the company was hailed as a true dividend rockstar. But, as with the Dreamliner, increasing production rates increased further quality defects leading to backlogs and canceled contracts. The net result was that eventually, Boeing asked the government for a 60 billion USD bailout, the amount it spent on buybacks and dividends between 2013 and 2019.
+
+This is what is happening to hashtag#Google.
+"""
+
+
+[[elements]]
+title = "The current education system is an insult to intelligence"
+body = """
+The current education system is a thorough insult to intelligence. It's an imposed filler-episode service for your life, from 3 - 18 years. It's a fundamentally broken system that feeds you the worst aspects of teen life for free. In stark opposition to human nature, it stifles creativity and coerces you into a factory life routine. It's a grossly inefficient system, that is falling apart, failing its moral duties, and filled with bureaucracy. By shackling educators to copy-paste policies from abroad, the sincere ones among them now silently, every day, mourn the last days of a zombie.
+
+Yesterday we celebrated the top achievers of a dysfunctional system. What does it mean when you excel in a broken system? It means that you conform to it and will champion it. The more effort you put into a system, the dearer it is to your heart. Some people speculate as to the secret laureate formula. Knowing teachers of laureates, it is surprisingly not a matter of superior intelligence, just like rocket scientists and brain surgeons [1]. It is rather a change in study methodology. Even very average students, with poor grades, became laureates with a change of study regime. 
+
+The general school life is one where family ties are blasted to bits and moral education is left to the wind. It's one where a social animal is reduced to a trained robot, tied to a legal leash. It's one where time is a luxury and paradise is promised after work. With tuition, students are tortured mentally, physically, financially, and, ironically, cognitively. 
+
+People sacrifice life skills for A-level success. A success that stops at the university door. Then it's completely out of your life. You won't see it twice. Whereas life skills serve sincerely until death. If ever in developing life skills, you have to sacrifice academic excellence, it's completely worth it. A mediocre performance I fear, is the just retribution for a mediocre system. It does not behold the status of the mind to conceive that people have been learning English since 3 years of age, for 16 years more and not being able to hold basic conversations. Or to carry on with basic English mistakes. When people don't invest in themselves, it comes to haunt and bite later at infrastructure and societal levels.
+
+A top illusion is the fact that by working hard you'll get a nice certificate. By this you'll enter Ivy League universities. With the university degree you will land a job in the top 5% pay percentile. Then you'll have a nice house and a seaside villa, a university-hooked sweetheart and a hot mistress and you'll send your kids to the best private school in town in one of your 3 Ferraris. During your 14 days vacations per year, you'll go surfing in Hawaii and have a blast like there's no tomorrow. Wake up mate. Wealth, power and influence is another game. And it's not like if you nipped yourself in the bud personally, you'll have the faculty to discern. 
+"""
+
+
+[[elements]]
+title = "But Abdur"
+body = """
+\"But Abdur, the French educational system is a great one.\" Yes, indeed, it's a great one. For whom? For France, of course. At the end of the cycle, it seems, and I hope I am wrong, that students in colonies and former colonies end up like guided minions, aligning their dishes with Paris, ready to receive, with eagerness, whatever their overlords over there will beam.
+
+Make no mistakes dear friends, I eat tartine in the morning: sliced baguette, with butter, jam, and even marmelade. I enjoy all sorts of coffee and even special cheese at the end of meals. I speak French, needless to say. But, this does not mean that I have an internalized over-glorification of France in my mind. I don't see la métropole as the epitome of perfection at each turn of the conversation.
+
+My French friends even refer to the French educational system as \"éducation nationale pourrie\". But, people from outside France see it as the world's beacon. Injected with France's gloriole and dependent on a specific setting, they cannot fathom further studies away from the hive. 
+
+Oftentimes I see our neighbors in Reunion comment on the uncultured Mauritians on the net. As the French system teaches art and biased, polarised philosophy, brainwashed products look down upon other people. People can study silly topics for long enough, develop respect for people producing silliness, and listen to people certifying silliness as grand, it is their wish. As for people who don't worship crap, they congratulate themselves on the lack of it in their lives.
+
+As a way to dissolve surrounding societal structures, students of the system are taught l'analyse critique, to rethink, and question assumptions. A critical and inquisitive mind should also be used on France, its beloved educational system, how it maintains itself as one of the world's top weapon exporters, how it still derives its power and influence, and the horrifying, despicable, shamelessly bloody, forever stained history behind gifting this educational system to various parts of the world.
+
+Once I proposed to include the French flag in the French README of the Python docs. The main maintainer did not want to. He said that French is the language of people speaking French, around the globe and not the exclusivity of France. It's good to see people maintaining an inclusive spirit and putting everyone on the same pedestal. People in the French system outside of France in contrast see it as their duty-bound mission to roll out their tongues as the red carpet on which French icons tread as haughty aristocrats.
+
+I sincerely hope that regular trips and activities and rigourous standards are not treated as grounds to preach with pride. Educational systems around the world are wrecking humanity, the French one included. They are failing in the self-assigned role of upbringing. They are at best, very dutiful in producing moulded workers. They don't care about the collateral damage to the human psyche or desirable human qualities. 
+"""
+
+[[elements]]
+title = "Elements of a good educational system"
+body = """
+\"I feel that there's a subtle question that is not answered though - what are the characteristics of a good educational system and why?\" Well, do we need education or do we need an educational system? When there is mass production, a natural occurrence is rejects. Now, when mass-producing animate products, the trauma is upon life.
+
+Since education is done through a system that everyone has to pass through, and that too for a decade, it ensures that everybody has the same treatment for a long time. This contrasts with the diversity of human profiles. Unfortunately, people can't be molded into perfect, finished robots as they won't give up part of their profile to fit the system's vision. Many people just switch off their receiving end and cruise through the system without absorbing anything.
+
+With the system in place, it has become like a robust funnel. Whatever ill there is in the society, it ends up through school friends in a person's life. There is no need to wait for people selling hazardous products on the streets to initiate students. Friends and regrettably now, teachers sell health-damaging products on school premises. Even if a student only goes to school and back home, with no additional trips, it is sufficient to lead a broken life. It is happening around us. This is why today it's a shivering statement to put the educational system as one of society's worst ills. We hope it's not the worst evil as it's mandatory, compound, and severely damaging.
+
+Is it good to keep dogs in cages with some food during the day and release them at night? I don't know about dogs but surely I think that keeping human beings in cages from 08:00 to 14:30 with some food and then back into the cages again until dusk is bound to routinely erupt. Maybe some people like it but not all. Man is a social, physical creature that ensures its survival by moving around. The system of forcing everyone to sit on a chair for hours on end is bound to generate hate and dissidence.
+
+Educational systems view books as a fundamental teaching tool. It has to be the focal laughingstock of contemporary pedagogy to feed books to children as early as 6 years of age. Man is intelligent, curious, and understands quickly. But, forcing pages down the throats of youngsters shows the superimposition of an adult mind on the workings of a nascent organism.
+
+An educational system, if there is one, should serve the needs of society. With the current one, society bends to the whims of the system. Responsible parties plan their daily schedule and yearly plans according to an inherited system that obliterates the individual and was not conceived to help society achieve its goals.
+
+We need education, but not an indiscriminate educational system. There is a mandatory part of education that should be imparted. Education should also be centered around man, not the movement of matter. Home is the first school. We should cater according to desire. And we surely don't need an overdose of education.
+"""
+
+[[elements]]
+title = "Educational excellence for teens"
+body = """
+\"A mediocre performance I fear, is the just retribution for a mediocre system\" Just like we don't waste time with foolish people, similarly, if a system is foolish and takes us as fools, we don't invest our resources with it. If we are legally bound to do so, we invest an average amount of resources. Kicking academic excellence out of the door for teens might be, sadly, a good bet for kids' future.
+
+There is a difference between man's child and that of animals. A man's child is not ready to hit the road straight out of birth. Its functional abilities reach a stable level years later. During this time and after, care should be devoted to upbringing. They should be inculcated with great values, awareness of their environment, and social skills.
+
+The current educational system has set education as a teen's life goal. Its curriculum is filled with everything but what relates to man's upbringing. Parents should bring up the child I hear you say, but, the system takes up so much time that no time is left for upbringing. And it sucks so much energy that a child is drained when reaching home. And this sick routine as early as 3 years of age, holidays included.
+
+Is the curriculum geared toward financial success? No, it does not teach about economics as a foundational topic or managing money or wealth creation or studying how people hit millions and billions. It seems tailor-made for people to be employees. And people think that it's good to excel in a system that is preparing you to work hard for someone's else economic success.
+
+People leave the educational system as uneducated animals. They know how the environment works, and what exists in the world, but they are uneducated as to how they should act in society. Education also includes practice. If in pursuing 'education' you never respected elders, then you were never educated in terms of respect. 
+
+To excel in a system, you need to devote focus, time, and energy. You invested so much in a system that leaves you deprived of good moral grounding and excellent human character. You take care to prepare for exams as you know great results don't materialize out of thin air, but, you rely on society's hazy hangover to become a wholesome human.
+
+As the educational system completely does not care about man and his standard of life, it's the responsibility of parents to ensure that family ties are maintained, that cooperation exists in a society, that a child returns good for the bad, is altruistic, and knows about good and evil. To do that, if we have to invest less in an educational system, it's worth it.
+
+If we don't invest in man to become good, material investment will turn out to be wasteful or harmful. People in control of powerful technologies will be selfish and people, while abandoning their upbringing for 'education', turn rogues, will demolish the very advanced infrastructure everyone has been working to further. 
+
+Good, wholesome and competent people bring out good, wholesome and competent systems.
+"""
