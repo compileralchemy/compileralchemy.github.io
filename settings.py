@@ -363,6 +363,16 @@ writings = [
 
 talks = [
     {
+        "title": "PEPs that hit the front page",
+        "event": "Pymug Meetup Feb 2024",
+        "res": [
+            {
+                "type": "slides",
+                "url": "https://speakerdeck.com/osdotsystem/peps-that-hit-the-front-page"
+            },
+        ]
+    },
+    {
         "title": "The state of NLP in production",
         "event": "Pymug August 2023",
         "res": [
