@@ -352,6 +352,11 @@
 <li><a href="#Raising-vipers">Raising vipers</a></li>
 <li><a href="#Education-and-role-models">Education and role models</a></li>
 <li><a href="#Education-and-humanity">Education and humanity</a></li>
+<li><a href="#Killedbygoogle:-A-signature-move">Killedbygoogle: A signature move</a></li>
+<li><a href="#How-marketing-shapes-Rust-development">How marketing shapes Rust development</a></li>
+<li><a href="#Modular-monolith">Modular monolith</a></li>
+<li><a href="#Cell-based-architecture">Cell-based architecture</a></li>
+<li><a href="#My-first-course-on-Enterprise-Python">My first course on Enterprise Python</a></li>
 </ol>
 <h1 id="Original-Memory" class="chapter">Original Memory</h1>
 <p>It&rsquo;s very interesting to note that Ancient Babylonians had procedures and parameters in their mathematics. It evokes programming concepts.</p>
@@ -562,6 +567,55 @@ a monolithic style system. This is a giant step back into the 1970s. That is lik
 <p>People are ready to blame a decaying society, including health on everything except what they sowed with their hands. Schools are your regional tavern, gambling house, drug den, whore house, and chamber of horrors all in one. People in my country should verify these statements one by one. Setting foot in even one of these places is sufficient to be doomed. This means that a child is surrounded by drunkards, gamblers, drug addicts, whores, and psychological abusers. To come even clean is a miracle.</p>
 <p>We follow people we take as friends. Bad companionship is like hanging out with a blacksmith. Even if sparks don&rsquo;t burn your clothes, you and your clothes will drink smoke and stink. </p>
 <p>It&rsquo;s the individual responsibility of everybody to share good advice. If humans are good, society will be a nice place to live and people will look forward to living. Else people will envy the inhabitants of graves if only they were friends with them instead of living with arc-demons in a hellish reality.</p>
+<h1 id="Killedbygoogle:-A-signature-move" class="chapter">Killedbygoogle: A signature move</h1>
+<p>killedbygoogle is such a signature move that even Google Cloud CEO, Thomas Kurian, got jarred trying to announce Gemini for Workspace on Twitter.</p>
+<p>Thomas Kurian: &ldquo;We&rsquo;re introducing a new offering called Gemini Business, which lets organizations use generative AI in Workspace at a lower price point than Gemini Enterprise, which replaces Duet AI for Workspace Enterprise.&rdquo;</p>
+<p>Sacha Sayan: &ldquo;Hey Thomas, can I pay for it with Google Pay in Google Wallet, which replaced Google Pay, which replaced Android Pay, formerly known as Google Wallet?&rdquo;</p>
+<p>Sacha Sayan: &ldquo;If not we can jump on a call and discuss billing. I&rsquo;ll send you an invite on Google Meet, the enterprise Google Chat, previously Duo, which replaced Allo, the replacement for Hangouts, the rebrand of +Hangouts, which replaced Talk and Voice.&rdquo;</p>
+<p>Michael Parker: &ldquo;Just to clarify do you mean you&rsquo;ll send an invite on Google Meet, or Google Meet (original)?&rdquo; (Two apps on the Play Store)</p>
+<p>Sacha Sayan: &ldquo;Great question Michael. As a Google Workspace user, formerly GSuite, otherwise known as Google Apps for Work, previously Google Apps Premier Edition, aka Gmail for Your Domain, which would you recommend?&rdquo;</p>
+<p>I get it that hashtag#Google guillotines cashless cows, but, the product department looks like a distributed system aiming for eventual consistency.</p>
+<p>Google&rsquo;s graveyard currently lists 293 items, the majority of which are services.</p>
+<p>Hardware customers are the unfortunate ones, scratching their heads over dead devices.</p>
+<p>Thread: https://lnkd.in/dEUagM6w</p>
+<h1 id="How-marketing-shapes-Rust-development" class="chapter">How marketing shapes Rust development</h1>
+<p>Rust always felt hypy. For the simple reason that if you try it, it leaves an unsavoury aftertaste which comes as a surprise not tallied with marketing. It&rsquo;s like a super-energy food which just has a bad mix of ingredients. Here we have the person who oversaw the introduction of async/await into the language. In a beautiful piece about Async Rust, he explains how marketing shapes features in Rustland.</p>
+<p>&ldquo;In early 2018, the Rust project had committed to the idea of releasing a new “edition” that year, to fix some of the syntactic issues that had emerged with 1.0. It was also decided to use this edition as an opportunity to promote a narrative around Rust being ready for prime-time; the Mozilla team was mostly compiler hackers and type theorists, but we had some basic idea about marketing and recognized the edition as an opportunity to get eyeballs on the product. I proposed to Aaron Turon that we should focus on four basic user stories which seemed like growth opportunities for Rust. These were:</p>
+<ul>
+<li>Embedded systems</li>
+<li>WebAssembly</li>
+<li>Command-line interfaces</li>
+<li>Network services</li>
+</ul>
+<p>This remark was the jumping off point for the creation of the “Domain Working Groups”, which were intended to be cross-functional groups focused on a particular use “domains” (in contrast to the pre-existing “teams” controlling some technical or organizational bailiwick). The concept of working groups in the Rust project has morphed since then and mostly lost this sense, but I digress.
+The work on async/await was pioneered by the “network services” working group, which eventually become known as simply the async working group (and still exists under this name today). However, we were also acutely aware that given its lack of runtime dependencies, async Rust could also be of great service in the other domains, especially embedded systems. We designed the feature with both of these use cases in mind.</p>
+<p>It was clear, though usually left unsaid, that what Rust needed to succeed was industry adoption, so that it could continue to receive support once Mozilla stopped being willing to fund an experimental new language. And it was clear that the most likely path to short-term industry adoption was in network services, especially those with a performance profile that compelled them at the time to be written in C/C++. This use case fit the niche of Rust perfectly - these systems need high degrees of control to achieve their performance requirements but avoiding exploitable memory bugs is critical because they are exposed to the network.&rdquo;</p>
+<p>&ndash; withoutboats, https://lnkd.in/dEbNU26F</p>
+<p>The pressing need for industry adoption might explain the entire culture around the Rust userbase. </p>
+<h1 id="Modular-monolith" class="chapter">Modular monolith</h1>
+<p>Modular monolith, an incredible twist in architecture. I was pleasantly surprised to encounter this term and view its applications. A monolith has been traditionally viewed as being unmaintainable with difficulties for teams managing features.</p>
+<p>A monolith centralizes features and reduces the whole codebase into one unit. Features are all together and teams work across the codebase as they have to touch everywhere to implement features. Running the whole codebase runs every feature.</p>
+<p>People have been thinking of isolating features and abstracting them into their own services for better organization and redundancy. But, they soon presented their own challenges, including complexity. Blindly migrating to microservices was a &ldquo;mistake&rdquo; apparently.</p>
+<p>Google now offers serviceweaver, which is a modular monolith framework. &ldquo;The main advantage of components is that they decouple how you write your code from how you run your code. They let you write your application as a monolith, but when you go to run your code, you can run components in a separate process or on a different machine entirely.&rdquo; </p>
+<p>As to whether turning to monolith is a wrong turn, serviceweaver answers: &rdquo;
+Service Weaver is trying to encourage a modular monolith model, where the application is written as a single modularized binary that runs as separate microservices. This is different from the monolith model, where the binary runs as a single (replicated) service.</p>
+<p>We believe that the Service Weaver&rsquo;s modular monolith model has the best of both worlds: the ease of development of monolithic applications, with the runtime benefits of microservices.&rdquo;</p>
+<p>Nice paper Ruoyu Su and Xiaozhou Li, but reference [1] seems super vague to me. Nothing specific to see where you concluded that.</p>
+<h1 id="Cell-based-architecture" class="chapter">Cell-based architecture</h1>
+<p>A cell-based architecture is real candy for enterprises. I sense it is a great Kubernetes companion. A cell-based architecture is traditionally introduced like compartments in a ship, containing water or fire spread. The cell contains damage, preventing disruption of the entire system. Services are designed to be autonomous and message-driven.</p>
+<p>A cell consists of components. These can be monoliths or microservices or whatever. A cell is independently deployable, manageable, and observable. This is great if you ask me. Each cell has a control plane and a data plane. They can communicate outside with each other using a sidecar via a cell gateway. Communication planes inside a cell are called the local mesh and the communication planes outside the cells are called the global mesh. </p>
+<p>The components are grouped by key elements or functions which can also mirror an enterprise&rsquo;s team structure.</p>
+<p>A cell can be scaled as needed.</p>
+<p>Databases can occupy a cell or each cell can have its own database.</p>
+<p>With pool architecture, each cell can have its client. This seems like a dreamland concept for Saas founders. Each client starts with a basic cell which can be scaled appropriately, with a consequent initial cost though.</p>
+<p>Architecture reference: https://lnkd.in/dvPwQvVH</p>
+<h1 id="My-first-course-on-Enterprise-Python" class="chapter">My first course on Enterprise Python</h1>
+<p>Preparing my first course on Enterprise Python for, fortunately, a Mauritian company. When choosing Python as one main tech, knowing Python engineering or how the industry currently operates Python projects is a great boost to efficiency, automatically takes away pains, and increases team collaboration, making switching teams seamless.</p>
+<p>My first exposition to the Enterprise Python concept was through a beloved friend Mahmoud Hashemi, Ex-paypal lead. It was deeply profound, with counter-intuitive practices. For this company, I am topping with my own experience, both industry and OpenSource.</p>
+<p>Python is easy to pick up, but, as with all tech, some superpowers enable us to surf development deadlines and enrich the programming pleasure index. Python has a gazillion ways of doing things in terms of packaging for example. Good Python engineers are aware of the whole landscape, keep up with recent enhancements, and most importantly ensure spotless clean usage.</p>
+<p>There are also hidden gems to be aware of, PEPs that got accepted but not enhanced for a long time. There are packages that build up on those PEPs, providing awesome, stable solutions tried in big tech.</p>
+<p>Enterprise Python is beyond programming practices. It&rsquo;s about being pro shipping and maintaining great Python projects, smashing tech stack dead ends and finely sculpting unheard-of, robust solutions.</p>
+<p>Doing that for a Mauritian company is extraordinary. But, the Python ecosystem seems to be growing in here based on merit. If Python is rocking the programming craft to and fro, it&rsquo;s conceivable that the shockwave will hit our shores sooner or later.</p>
         </div>
     </div>
     
