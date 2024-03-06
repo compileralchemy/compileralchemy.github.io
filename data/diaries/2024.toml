@@ -552,3 +552,16 @@ Codewise, each cache key has 3 components (abstract class CacheKey with 3 compon
 A key is referenced by cache_name->cache_key->cache_key_id, across all services.
 """
 
+[[elements]]
+title = "Most poignat darts for engineering success"
+body = """
+I heard the most poignant darts for engineering success from Suhail Patel of Monzo Bank. The team at Monzo runs 1000s of microservices on the cloud with tools like Kubernetes. It's a spectacular feat for banking, tech's most dinosaur industry. This also means that they operate sparkling, seamlessly performing systems as money is a very, very serious matter.
+
+The first thing that strikes me is knowing your investments well. They chose Kubernetes when it was still around version 1.0. They even had dead endpoints due to an etcd compatibility issue. And, needless to say, at that time there were very few resources on the planet about k8s. This prompted them to be really good at knowing Kubernetes and its eccentricities. That knowledge has paid off handsomely over the years. They kept that spirit with Cassandra as well, when a bad config meant stopping reads and writes to the cluster. They decided to deepen their understanding of it as well as their operations through production runbooks and practice. After this incident, they decided to generalize this approach to their systems as a whole. A tech stack has to be chosen carefully, and, when you adopt a tech like WASM or any hot tech, without the required level of investment, it ends up in disaster. If you are not prepared to invest, better choose boring techs.
+
+Kubernetes YAML is nightmare spelled in reverse. Just kidding. Though they aced Kubernetes for example, they also realize that not all engineers are going to be K8s PhDs. They work much to abstract platforming problems so that people meant to solve business logic can do so easily. They even generate infra codes when needed and engineers don't need to write K8s YAML except when doing something really not standard. They automated deployment, with steps engineers have to follow, pre-push hooks, and automated checks. Engineers worry about code, rather than platform.
+
+2.5k services means that you have to be consistent with the overall setup so that engineers can find themselves in familiar lands in terms of structure and patterns when switching codebases. They take onboarding very, very seriously. They invest much in the experience. They teach people deployment, services structure, legacy patterns, and blacklisted items. They update the onboarding to reflect changes in infra and tooling and work to ensure consistency across all services, refactoring where needed. They also ensure great maintainability, checking off issues so that new pull requests are shown failing checks only related to the code they touched. They have a channel where engineers post about their optimizations. The net effect is that teams are enthusiastic about code and tools upkeep.
+
+They also invest a lot in a high-quality observability stack. Since services are standardized, each new service deployed instantly gets a dashboard with metrics filling in. This is super useful for alerts and quickly identifying root causes of failures and even hotpaths.
+"""
