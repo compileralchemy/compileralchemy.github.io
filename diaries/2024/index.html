@@ -357,6 +357,9 @@
 <li><a href="#Modular-monolith">Modular monolith</a></li>
 <li><a href="#Cell-based-architecture">Cell-based architecture</a></li>
 <li><a href="#My-first-course-on-Enterprise-Python">My first course on Enterprise Python</a></li>
+<li><a href="#Cinammon---Uber's-load-shedder">Cinammon - Uber's load shedder</a></li>
+<li><a href="#Multi-layer-cache-at-DoorDash">Multi-layer cache at DoorDash</a></li>
+<li><a href="#Most-poignat-darts-for-engineering-success">Most poignat darts for engineering success</a></li>
 </ol>
 <h1 id="Original-Memory" class="chapter">Original Memory</h1>
 <p>It&rsquo;s very interesting to note that Ancient Babylonians had procedures and parameters in their mathematics. It evokes programming concepts.</p>
@@ -616,6 +619,44 @@ Service Weaver is trying to encourage a modular monolith model, where the applic
 <p>There are also hidden gems to be aware of, PEPs that got accepted but not enhanced for a long time. There are packages that build up on those PEPs, providing awesome, stable solutions tried in big tech.</p>
 <p>Enterprise Python is beyond programming practices. It&rsquo;s about being pro shipping and maintaining great Python projects, smashing tech stack dead ends and finely sculpting unheard-of, robust solutions.</p>
 <p>Doing that for a Mauritian company is extraordinary. But, the Python ecosystem seems to be growing in here based on merit. If Python is rocking the programming craft to and fro, it&rsquo;s conceivable that the shockwave will hit our shores sooner or later.</p>
+<h1 id="Cinammon---Uber's-load-shedder" class="chapter">Cinammon - Uber's load shedder</h1>
+<p>Uber released Cinnamon, a load-shedder (Using Century Old Tech to Build a Mean Load Shedder). While a load balancer balances loads across servers, load shedding prioritizes important requests and drops less important ones. Well, a load balancer can have surge queues, but a load shedder has far more appropriate elements. This fits in the concept of graceful degradation, where a system reduces its performance predictably rather than go bust abruptly.</p>
+<p>Uber previously had the QALM framework, but, it had quirks. It required configurations which meant that for the thousands of services, values had to be set, and that too routinely as these get outdated. This means lots of man-hours lost. Also, these values were not optimum often. Cinnamon in contrast requires no configuration, has low latencies, and adjusts load-shedding dynamically. Also, in contrast with QALM, this one has priority propagation, and service priority could be tagged.</p>
+<p>Cinnamon is implemented as an RPC middleware, with priorities having 6 tiers (0-5) and a cohort value (0 - 127) where 0 is the highest priority. The component sits behind business logic, dropping requests where needed. Requests pass through a priority checker, rejector, priority queue, scheduler and timeout component with 2 background services: the PID controller (minimize the number of queued requests) and auto-tuner (maximize the throughput of the service, without sacrificing the response latencies much, using a modified TCP Vegas algo).</p>
+<p>The century-old tech is the idea of a PID controller, originating as early as the 17th century. They took inspirations from:</p>
+<ul>
+<li>Jaeger: Distributed Tracing at Uber</li>
+<li>WeChat: DAGOR: individual service-level load shedding, acting collaboratively</li>
+<li>Facebook: Fail at Scale: Reliability in the face of rapid change, particularly the Controlled Delay part.</li>
+<li>Netflix: Performance Under Load (adaptive concurrency limits)</li>
+<li>Amazon: Using load shedding to avoid overload (Elements of load-shedding)</li>
+</ul>
+<p>Cinnamon is being rapidly adopted due to it&rsquo;s performance but also ease of integration and use.</p>
+<h1 id="Multi-layer-cache-at-DoorDash" class="chapter">Multi-layer cache at DoorDash</h1>
+<p>DoorDash implemented a multi-layered cache to homogenize caching across all services (How DoorDash Standardized and Improved Microservices Caching). Caching has its twists which teams have to solve when each one implements their own. Oftentimes they all face similar challenges.</p>
+<p>Doordash teams most commonly use 
+- Caffeine, a high-performance in-memory Java library (for local caching)
+- Lettuce, an advanced Java Redis client for thread-safe sync, async, and reactive usage (for distributed caching)
+- HashMaps
+But, as these were not caches as such and each team had to write caches from scratch, caching problems like staleness appeared, and each team chose their own key schemes, which also made observability less accessible.</p>
+<p>They tested the new cache on the DashPass backend, which was also experiencing spikes. When it was successfully tested, they deployed it everywhere. They set up a single code interface CacheManager, with a suspend function withCache to standardize caching APIs. With a multi-layer cache, if a key is not found in the first layer, it is searched until the source of truth (SoT) is reached. Once this is done, the key is inserted in the first layers to reduce the need to reach the SoT.</p>
+<p>They implemented 3 layers:
+- Request local Cache: Uses HashMap, for the lifetime of the request 
+- Local Cache: Uses a cache made of Caffeine, accessible within a JVM
+- Redis Cache: Uses Lettuce and accessible to all pods sharing the same Redis cluster
+The suspend function (withCache) is the intermediary between databases and services and the layers (suspend -&gt; Redis -&gt; local -&gt; request local).</p>
+<p>Runtime control was also introduced to switch off layers, useful in the case of a bug for example and to enable cache shadowing at a particular percentage. Since all caching uses a single interface, metrics are built in to measure cache hits and generate logs on misses. Using a shadowing mechanism, fresh cache entries are also compared with the SoT. Staleness is measured by the latency between cache updated and cache entry creation, critical for evaluating invalidation strategies.</p>
+<p>Codewise, each cache key has 3 components (abstract class CacheKey with 3 components):
+- unique cache name
+- key type (to categorise keys) and key type id
+- configuration (as CacheKeyConfig)</p>
+<p>A key is referenced by cache_name-&gt;cache_key-&gt;cache_key_id, across all services.</p>
+<h1 id="Most-poignat-darts-for-engineering-success" class="chapter">Most poignat darts for engineering success</h1>
+<p>I heard the most poignant darts for engineering success from Suhail Patel of Monzo Bank. The team at Monzo runs 1000s of microservices on the cloud with tools like Kubernetes. It&rsquo;s a spectacular feat for banking, tech&rsquo;s most dinosaur industry. This also means that they operate sparkling, seamlessly performing systems as money is a very, very serious matter.</p>
+<p>The first thing that strikes me is knowing your investments well. They chose Kubernetes when it was still around version 1.0. They even had dead endpoints due to an etcd compatibility issue. And, needless to say, at that time there were very few resources on the planet about k8s. This prompted them to be really good at knowing Kubernetes and its eccentricities. That knowledge has paid off handsomely over the years. They kept that spirit with Cassandra as well, when a bad config meant stopping reads and writes to the cluster. They decided to deepen their understanding of it as well as their operations through production runbooks and practice. After this incident, they decided to generalize this approach to their systems as a whole. A tech stack has to be chosen carefully, and, when you adopt a tech like WASM or any hot tech, without the required level of investment, it ends up in disaster. If you are not prepared to invest, better choose boring techs.</p>
+<p>Kubernetes YAML is nightmare spelled in reverse. Just kidding. Though they aced Kubernetes for example, they also realize that not all engineers are going to be K8s PhDs. They work much to abstract platforming problems so that people meant to solve business logic can do so easily. They even generate infra codes when needed and engineers don&rsquo;t need to write K8s YAML except when doing something really not standard. They automated deployment, with steps engineers have to follow, pre-push hooks, and automated checks. Engineers worry about code, rather than platform.</p>
+<p>2.5k services means that you have to be consistent with the overall setup so that engineers can find themselves in familiar lands in terms of structure and patterns when switching codebases. They take onboarding very, very seriously. They invest much in the experience. They teach people deployment, services structure, legacy patterns, and blacklisted items. They update the onboarding to reflect changes in infra and tooling and work to ensure consistency across all services, refactoring where needed. They also ensure great maintainability, checking off issues so that new pull requests are shown failing checks only related to the code they touched. They have a channel where engineers post about their optimizations. The net effect is that teams are enthusiastic about code and tools upkeep.</p>
+<p>They also invest a lot in a high-quality observability stack. Since services are standardized, each new service deployed instantly gets a dashboard with metrics filling in. This is super useful for alerts and quickly identifying root causes of failures and even hotpaths.</p>
         </div>
     </div>
     
