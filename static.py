@@ -134,7 +134,7 @@ def gen_diary(mdfile, cover, title, build_number, slug, download_link, edit_link
         body = elem['body']
         title_slug = title.replace(' ', '-')
         toc_elems.append(f'''<li><a href="#{title_slug}">{title}</a></li>''')
-        content_elems.append(f'<h1 id="{title_slug}" class="chapter">{title}</h1>')
+        content_elems.append(f'<a href="#{title_slug}"><h1 id="{title_slug}" class="chapter">{title}</h1></a>')
         content_elems.append(md_to_html(body))
     toc_elems.append('</ol>')
 
@@ -204,7 +204,7 @@ def gen_diaries():
         weasy=settings.book_generate)
     
     gen_diary('./data/diaries/2024.toml',
-        '../../assets/diaries/2023.png',
+        '../../assets/diaries/2024.png',
         "Diary 2024",
         '0.1.0',
         '2024',
