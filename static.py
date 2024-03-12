@@ -129,11 +129,12 @@ def gen_diary(mdfile, cover, title, build_number, slug, download_link, edit_link
     content_elems = []
     toc_elems = ['<ol class="toc">']
 
-    for elem in data['elements']:
+    for i, elem in enumerate(data['elements']):
         title = elem['title']
         body = elem['body']
         title_slug = title.replace(' ', '-')
-        toc_elems.append(f'''<li><a href="#{title_slug}">{title}</a></li>''')
+        index = str(i+1).zfill(2)
+        toc_elems.append(f'''<li><a href="#{title_slug}">{index}. {title}</a></li>''')
         content_elems.append(f'<a href="#{title_slug}"><h1 id="{title_slug}" class="chapter">{title}</h1></a>')
         content_elems.append(md_to_html(body))
     toc_elems.append('</ol>')
