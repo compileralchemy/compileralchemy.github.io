@@ -360,6 +360,7 @@
 <li><a href="#Cinammon---Uber's-load-shedder">27. Cinammon - Uber's load shedder</a></li>
 <li><a href="#Multi-layer-cache-at-DoorDash">28. Multi-layer cache at DoorDash</a></li>
 <li><a href="#Most-poignant-darts-for-engineering-success">29. Most poignant darts for engineering success</a></li>
+<li><a href="#Jaeger,-a-classic-for-distriuted-tracing">30. Jaeger, a classic for distriuted tracing</a></li>
 </ol>
 <a href="#Original-Memory"><h1 id="Original-Memory" class="chapter">Original Memory</h1></a>
 <p>It&rsquo;s very interesting to note that Ancient Babylonians had procedures and parameters in their mathematics. It evokes programming concepts.</p>
@@ -657,6 +658,21 @@ The suspend function (withCache) is the intermediary between databases and servi
 <p>Kubernetes YAML is nightmare spelled in reverse. Just kidding. Though they aced Kubernetes for example, they also realize that not all engineers are going to be K8s PhDs. They work much to abstract platforming problems so that people meant to solve business logic can do so easily. They even generate infra codes when needed and engineers don&rsquo;t need to write K8s YAML except when doing something really not standard. They automated deployment, with steps engineers have to follow, pre-push hooks, and automated checks. Engineers worry about code, rather than platform.</p>
 <p>2.5k services means that you have to be consistent with the overall setup so that engineers can find themselves in familiar lands in terms of structure and patterns when switching codebases. They take onboarding very, very seriously. They invest much in the experience. They teach people deployment, services structure, legacy patterns, and blacklisted items. They update the onboarding to reflect changes in infra and tooling and work to ensure consistency across all services, refactoring where needed. They also ensure great maintainability, checking off issues so that new pull requests are shown failing checks only related to the code they touched. They have a channel where engineers post about their optimizations. The net effect is that teams are enthusiastic about code and tools upkeep.</p>
 <p>They also invest a lot in a high-quality observability stack. Since services are standardized, each new service deployed instantly gets a dashboard with metrics filling in. This is super useful for alerts and quickly identifying root causes of failures and even hotpaths.</p>
+<a href="#Jaeger,-a-classic-for-distriuted-tracing"><h1 id="Jaeger,-a-classic-for-distriuted-tracing" class="chapter">Jaeger, a classic for distriuted tracing</h1></a>
+<p>Jaeger (2017) is a classical tool for distributed tracing invented at Uber but used well outside it. It integrated Dapper-inspired traces (Google, 2010).  It&rsquo;s a Cloud Native Computing Foundation (CNCF) graduate project (2019). Distributed tracing involves following a request and the time taken for each step across services. Jaeger (ˈyā-gər) comes from German for hunter or hunting attendant (Jochen Kirstätter can help us pronounce it maybe). Its crafting comes off as gradual improvements to a Zipkin-like clone, which is another distributed tracing tool.</p>
+<p>Distributed tracing works like this. Let&rsquo;s say we are recording a transaction. The whole recording of it involves several services.  </p>
+<ul>
+<li>Service 1: Check for fraud</li>
+<li>Service 2: Record in database</li>
+<li>Service 3: Effect payment</li>
+</ul>
+<p>A transaction involves passing the data through the 3 services. </p>
+<p>Jaeger will record the time taken for each step as well as the return status. But, of course, if we record every single request path step, we will record a lot of data, most probably more than the system is generating. For this, a nice strategy is to sample the traffic, which it does. A span represents a logical unit of work in Jaeger that has an operation name, the start time of the operation, and the duration. A trace consists of spans.</p>
+<p>Jaeger&rsquo;s predecessor is Merckx, which worked great for a monolith. It stored tracing data as blocks, and users could query the data. It also shipped with a UI for visualizations. It traced calls to other services, databases, and Redis queries but could not go one level deeper, lacking distributed context propagation. Also, data was stored in global states.</p>
+<p>Uber began developing a network multiplexing and framing protocol for RPC called Tchannel. Tracing was specified in the protocol. Since they did not know tracing well then, they integrated with Zipkin. They had tchannel clients sending data to a collector which sent data to a Riak/Solr backend and they used Zipkin for UI and query. Since the backend experienced scaling problems, they switched to Cassandra, a db they had experience with. Clients implemented the OpenTracing API from the start.</p>
+<p>Zipkin was good but lacked good instrumentation outside of Java/Scala and had a fixed strategy. Jaeger implemented a responsive sampling strategy. By now it had its own query service and UI, with the first versions still using tchannel. Later on, reporting was done via UDP. </p>
+<p>Jaeger at first had its own set of client libraries for instrumentation but now these have been deprecated and OpenTelemetry libraries are recommended instead.</p>
+<p>The all-in-one version includes jaeger-collector, jaeger-query, and jaeger-agent.</p>
         </div>
     </div>
     
