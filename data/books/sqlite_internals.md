@@ -19,6 +19,11 @@
 
 <h1 id="foreword" class="chapter">Foreword on SQLite Internals</h1>
 
+> Oh wow! This might just be the best SQLite internals book I've seen so far!
+>
+> -- Michal Pitr, Software Engineer @ Google
+
+
 To all SQLite lovers. This book discusses SQLite internals in depth.
 
 You can 
