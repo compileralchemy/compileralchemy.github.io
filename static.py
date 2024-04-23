@@ -227,6 +227,7 @@ def gen_blog():
         for i, elem in enumerate(toml_data['elements'][::-1]):
             title = elem['title']
             slug = title.casefold().replace(' ', '-').replace('/', '').replace("'", '')
+            content_string = elem['body']
             content = md_to_html(elem['body'])
 
             title_slug.append([title, slug])
@@ -239,7 +240,8 @@ def gen_blog():
                 'settings': settings,
                 'path': '../../',
                 'title': title,
-                'content': content
+                'content': content,
+                'content_string': content_string
             })
             generate('blog.html', join(settings.OUTPUT_FOLDER, 'blog', slug, 'index.html'), **context)
     
