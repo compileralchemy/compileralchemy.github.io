@@ -212,7 +212,43 @@ def gen_diaries():
         'https://www.compileralchemy.com/assets/diaries/2023.pdf',
         'https://github.com/compileralchemy/compileralchemy.github.io/blob/source/data/diaries/2023.toml',
         weasy=settings.book_generate)
+    
 
+def gen_blog():
+    data = ['./data/diaries/2024.toml', './data/diaries/2023.toml']
+    try:
+        os.mkdir(os.path.join(settings.OUTPUT_FOLDER, 'blog'))
+    except Exception as e:
+        pass
+    title_slug = []
+    for source in data:
+        toml_data = toml.load(source)
+        
+        for i, elem in enumerate(toml_data['elements'][::-1]):
+            title = elem['title']
+            slug = title.casefold().replace(' ', '-').replace('/', '').replace("'", '')
+            content = md_to_html(elem['body'])
+
+            title_slug.append([title, slug])
+
+            try:
+                os.mkdir(os.path.join(settings.OUTPUT_FOLDER, 'blog', slug))
+            except Exception as e:
+                pass
+            context.update({
+                'settings': settings,
+                'path': '../../',
+                'title': title,
+                'content': content
+            })
+            generate('blog.html', join(settings.OUTPUT_FOLDER, 'blog', slug, 'index.html'), **context)
+    
+    context.update({
+                'settings': settings,
+                'path': '../',
+                'title_slug': title_slug,
+            })
+    generate('blog_index.html', join(settings.OUTPUT_FOLDER, 'blog', 'index.html'), **context)
 def gen_writings():
     context.update({
         'path': '../'
@@ -259,6 +295,7 @@ def main(args):
         gen_writings()
         gen_talks()
         gen_journey()
+        gen_blog()
 
     if len(args) > 1 and args[1] == '--server':
         app = Flask(__name__)

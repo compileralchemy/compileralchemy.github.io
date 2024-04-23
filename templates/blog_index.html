@@ -1,0 +1,37 @@
+{%extends "pages/base.html"%}
+
+{%block body%}
+<div class="section is-white" id="writings">
+    <div class="container">
+        <div class="notification is-white">
+            <div class="notification is-white has-text-centered">
+                <br>
+                <p class="has-text-centered ">
+                    <span class="title has-background-white-ter  has-text-centered" style="width: 50px; height:50px; padding: 15px; border-radius: 50%;">
+                        <i class="em em-books" aria-role="presentation" aria-label="BOOKS"></i>
+                    </span>
+                </p><br>
+                <p class="title" ><a href="#" class="no-link-dec">Personal Blog</a></p>
+                <p class="subtitle">Musings</p>
+            </div>
+        </div>
+        <div class="writings notification is-white">
+            <p class="has-text-centered">
+                {%include "snippets/substack.html"%}
+            </p>
+            <br><br>
+            {%for data in title_slug%}
+
+                <span class="url p-0">{{str(1+len(title_slug)-loop.index).zfill(2)}}.
+                     <a href="{{ data[1] }}">{{ data[0] }}</a></span>
+
+            {%endfor%}
+            <br>
+
+        </div>
+    </div>
+    
+</div>
+
+{% include "sections/footer.html" %}
+{%endblock%}
