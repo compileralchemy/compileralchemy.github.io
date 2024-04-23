@@ -608,3 +608,136 @@ Next, they reduced the time taken by worker lamdas to deliver tokens to Apple/Go
 
 They used a data-led approach, reverting when necessary. They developed theories, carried out experiments and retained the successful ones. They also learnt the lessons of how small, isolated changes can contribute to the goal.
 """
+
+[[elements]]
+title = "Freelancing Principles"
+body = """
+Freelancing is different from office work. It needs rigor and professionalism. It might be the same work you do at work but more is expected from you as you don't have the company or co-workers to cover for you. Here are some basics for office workers.
+
+The first thing is to give updates. It is crucial for people involved to know where you reached, they don't wait until deadline day to discover that you did not do anything. Even if you delay due to legitimate reasons, it's a bad surprise. Giving continuous updates also helps tune expectations. It also builds a case for paying you more and give them an idea of what the work is really about. It reduces a lot of anxiety when people know a project is alive. Would people want to deal with someone again if the person has been giving them weeks of anxiety?
+
+The second thing is 1. to deliver and as a bonus 2. deliver well. If you don't depend on freelancing for a living, you'll consider 1. only. That's because your reputation and kitchen do not depend on the work done. Freelancing requires you to be conscious of people after you. It might be a random someone from a different part of the world. So, ensure the docs are great and standards adopted are sensible. It also means going above what they asked if you see they missed something interesting that might help them. You need to give them the sweetness of doing business with you once again. If you depend on office work and this is a side gig, you probably won't see the logic of it as you cannot do that in office work, you'll burn out as office work is continuous work. Freelancing is often a one-time affair.
+
+The third thing is to please the client. If they insist on something or a convention or a way of doing it or some diligence, please do it. You can suggest alternatives, but, if they decline, please comply. Freelancers are oftentimes a piece of puzzle, if the piece does not fit, well this is frustrating. The client carries the burden of the app before and after you. They sometimes craft a setting that allows them to deal with the app. They won't change their setting with each new freelancer.
+
+The fourth thing is speed. Ponder if you can do it. While the industry is still doing agile and planning and pokering around, pro teams of freelancers take down projects in swift moves.
+"""
+
+[[elements]]
+title = "PyCon US diary - Planning a US trip"
+body = """
+So, that's my first time getting an invite for a conf. Thanks, Python Software Foundation for thinking about the community and Chukwudi Nwachukwu from the Python Grants Team! Penning down my experiences to help people.
+
+When I first received the email, I was still thinking. This year I had the idea of going to PyCon US as David Lord proposed FlaskCon at the hatchery program. FlaskCon was going to have its first physical presence. On the other hand, going to the US is well, very far and very, very tiring. Pittsburg is further inland. And plane travel is super tiring. Once you fly, twice you fly and then you are like is that the fastest the place can go ... . Considering the year and the opportunity I said yes, it's worth it to attend. 
+
+Except that I was super clueless about visas etc. Pinged Loïc Forget as he likes to travel to Austin. Gave me a few tips. And then I saw that Visas are applied online. Cool, except that hum, looks like a website straight from the 90s with contentful info.
+
+Spent some days checking what's about the visa, criteria and the Rs8500 needed XD. Tried a mock application and then let the application sleep (you are given an application number by which you can save and return to your in-progress application), still figuring out how to deal with airfare - visa, and in what order should i proceed. We decided to have a meeting and had a brief about what we understood about the visa. We decided to complete the visa process as soon as possible. I remember some 21 days written for processing. Since the conference is in May, makes sense to speed things up.
+
+To be continued ...
+"""
+
+[[elements]]
+title = "Mauritians garnering a dubious freelancing reputation"
+body = """
+Mauritians are steadily garnering a dubious reputation in the freelancing market. Mostly due to people looking to make some quick bucks alongside their main job. They are in a period of their lives where they need more money as expenses suddenly rise. They are in for the money and disappear once they get enough. Needless to say, they incinerate their reputation, our reputation as Mauritians, and the reputation of the poor Mauritians who trusted them.
+
+For the past 3 years, I have been collecting lament stories of Mauritians who were kind enough to trust Mauritians with freelancing work for foreign clients, only to be slapped hard in the face. These people don't deliver. Some even provide them with rs100k laptops to work but to no avail. The employers are kind enough to pay them even then ...
+
+This is why I say that freelancing is not office work folks. A real freelancer is often a one-man business or small company, dedicated to his craft, with sharp skills, and conscious about his reputation. He knows the ins and outs of the tech stack and has been doing this for some time. He has also been interacting with customers, planning projects, and estimating deadlines. A CEO, PM, Scrum master, engineer, team lead, marketer, all in one. You don't get this by hiring an irresponsible side-gig seeker or a hit-and-run opportunist. 
+
+Good, strong engineers do deliver even if they don't have freelancing experience. Choose your deck wisely. So, like set up short interviews for freelancers or have an internal checklist. I hope to share some hiring tips in another post. 
+
+But please, if you are looking for freelancers, don't just book anybody who knows a tech stack.
+"""
+
+[[elements]]
+title = "Dr Murat Dogruel's Better Than April Tag Fiducial System"
+body = """
+My blog post about fiducial markers [1], particularly the AprilTag papers led me to a chat with Dr. Murat Dogruel, Professor at Istanbul Sabahattin Zaim University. He presented me with a system supporting the 6 degrees of freedom he developed that might be manyfold better than AprilTag. He gave me permission to talk about the system in public for the first time.
+
+Fiducial markers are markers recognized by systems visually, containing information that the system can use. In the case of a robot, a marker meaning pause, when read, will cause the bot to pause in its path. A QR code can act as a fiducial marker, we just encode some text. However, for robotic and industrial purposes, more performant markers are used that are fast and operate in bad conditions.
+
+The system is really good, with documents presenting tests against AprilTag. In tests conducted,
+
+- 6D Marker achieves almost half the error on average and a third of the maximum error compared to AprilTag. 
+- April Tag does not produce stable results, especially for small scan angles. Up to 10 times or more position errors are produced by AprilTag compared to 6D Marker. - For the average and maximum angle errors, 6D Marker provides 15 times better measurement than AprilTag.
+- Scan time for a 4K frame image is about 1.2ms for 6D marker and 160ms for AprilTag. 6D Marker is 130 times faster than AprilTag.
+
+Below is a demo of a hand drill changing orientation. Notice how the system (masked by a white square) accurately reflects the drill's position.
+
+Refs
+
+- [1] https://lnkd.in/dvYZStr3
+"""
+
+[[elements]]
+title = "How to evaluate freelancers"
+body = """
+Since the internet is anonymous, your LinkedIn connection might be Elon's dog typing away behind the screen. Here are some tips I use to evaluate freelancers.
+
+Since I code, I check their code. Don't believe people recently sh*tpost*ing on GitHub. A GitHub account is a great asset for a freelancer. If they have well-maintained code over there, this gives an insight into how they code, what they use, how they operate, and maybe even how they deal with people. Contributions to projects are very interesting, if they contribute to the tech stack you are looking for, even better. Maintaining an average Github profile helped me land >rs1M. If they have hobby projects glance and move on to other metrics. 
+
+If they have blogs, I like to see what they write about and the depth at which they go. The more technical the better. It reveals 
+
+- the curiosity of the person
+- their passion for tech
+- their community investment
+- their passion for documentation and
+- the clarity of their explanation
+
+Next, I see their overall social activity if they don't have a personal site. Just to see some technical insights.
+
+Then I see their showcase if any, what projects they tackled, case studies if any, and customer testimonials. These are of course metrics for people already freelancing. 
+
+At the end of the day, I just look for people who can deliver fast. Those two words are important. Deliver and fast. If I cannot guarantee fast, I choose people who can deliver. A strong engineer or someone with experience in the tech can deliver. If they are used to freelancing, they'll deliver fast. The fast aspect is also important.
+"""
+
+[[elements]]
+title = "PyCon US diary - Applying for a US visa"
+body = """
+The hardest part of going to the US I bet is the visa application process. It's a 10-page form with various kinds of questions, much like a multi-disciplinary Olympic track which includes archery, skiing, and shooting. I travelled and applied for visas before but the US visa form is interesting.
+
+First of all, you need to solve a captcha and be given an application ID to complete your visa later, pretty standard procedure for countries with long visa forms. The UI comes from the 90s but is very functional. 
+
+The visa type was quite surprising. There are no traditional straightforward tourist, business, or study types. There are B1, B2 and I don't know what kind of weird letters. We figured out we needed a B1 visa which covers tourism and business. 
+
+Of particular note, I noticed that the picture in the form requests to be how you are in everyday life. It is mentioned that if you wear headgear, you should include it. If you wear glasses, the same. This I guess hints towards the open culture America has. This is different from the picture that you have to submit physically which requires to be in passport format, without glasses. For the first one, I took a smartphone picture with a uniform background and passed it through a software online transforming the picture to a passport-size ratio.
+
+The visa also asks about companions traveling with you and the organization paying for the travel. Must tell Mariatta Wijaya or Ewa Jodlowska or Laura Graves to put the PSF address and phone number on the website as we had some trouble finding them. Then it also asks traditional infos like where are you staying at etc. They also ask about your financial details.
+
+At the end, it gives you an application confirmation PDF which I downloaded. I'm glad I did as the UI to get it back is a maze and I just gleaned the submission ID from the PDF. Next, I needed to book an appointment. There is a separate system for appointments needing the submission confirmation ID. 
+
+There is confusion concerning Thursdays being reserved for other nationalities after clarification turns out that Mauritians can apply on Thursdays as well. Cool as the slot is usually free. I booked the earliest Thursday and it was all set. You can edit your scheduled appointment anytime to an earlier or later slot. Sometimes people cancel their's, so you need to log in each time to check if you are in a hurry. Each time after booking, you have a booking confirmation number. Thanks, Lafleur Marie L for clearing the confusion.
+
+Your booking confirmation number is needed to enter the consulate. This number also ensures you have a valid visa submission number since you need the latter to book an interview with a consulate.
+
+Interview experience coming next ...
+
+Note: Penning attending a US conference experience to help anybody who one day needs to go to the US.
+"""
+
+[[elements]]
+title = "Why I won't buy Tesla cars if they come to Mauritius"
+body = """
+What if you are so good at innovation that you flop the boring basics? That's the surprising story of Tesla. Suspensions have existed since the Stone Age of cars and perpetuated in good tradition. However, some users experienced snapped suspensions. One owner experienced it on the day he bought it, less than 24 hours, with extremely low mileage. 40 hours of labor later, yes 40 you read that right, and $14,000 later Tesla refused to cover the cost, blaming the owner. The company has a habit of charging customers with out-of-warranty cars to replace parts that Tesla engineers internally called flawed or that they knew had high failure rates.
+
+In case you think attached wheels are the default for a car, Tesla owners are sometimes afraid to speed after several have had their front wheels fall off. Yes, you are driving and the front wheel decides that being in a car is too boring. Let's innovate and go on a trip, that's true innovation.
+
+All is not so rosy on the marketing side as well. South Korean regulators forced Tesla to apologize and say that it misled customers about range. Musk and two executives publicly apologized. They also requested the "or longer" part to be removed from "You can drive 528 km (328 miles) or longer on a single charge." on the website. The company was fined $2.2M after regulators found that the cars delivered 1/2 their range in cold weather. Authors of the study "Comparison of On-Road Highway Fuel Economy and All-Electric Range to Label Values" confided that three Tesla models offered the worst performance.
+
+Cybertruck owners recently found that their pet was rusting. One owner saw an eruption of orange specks after 11 days in Los Angeles rain. Apparently, the trucks are not rusting but “stainless steel is reactive and free iron that sits on it will rust” and could be cleaned easily. Of course, since Tesla does not come with clear coat, a typical solution for cars, you can buy a  $5,000 urethane-based film, a Tesla exclusivity. Who said Tesla does not have the Apple spirit?
+
+“Your Data Belongs to You,” states Tesla’s website. But reality is grim and spooky. Employees were found to share recorded videos of customers around the company. Employees see kids, people in intimate moments, even without clothes. When cars were having trouble reversing out of garages, Tesla took customers' garage videos it had, labeled the data for its computer vision program and the issue was solved. This is in addition to its constant labeling of customer videos in the bid to ever improve its autopilot. The recordings Tesla says are anonymous. But faces, personal items, and neighborhoods are clearly identifiable. There was also a time when employees saw a submersible vehicle parked inside a garage. They were fascinated and wondered what and to whom it belonged. Turns out it belonged to the CEO of an EV company named Elon Musk.
+
+The stuck pedal problem saw a massive recall, but brakes and pedals have been malfunctioning for some time ...
+
+
+- https://www.reuters.com/investigates/special-report/tesla-musk-steering-suspension/
+- https://www.reuters.com/investigates/special-report/tesla-batteries-range/
+- https://www.reuters.com/markets/commodities/south-korea-fines-tesla-22-mln-exaggerating-driving-range-evs-2023-01-03/
+- https://arstechnica.com/cars/2024/04/tesla-stops-cybertruck-deliveries-accelerator-pedal-may-be-to-blame/
+- https://www.wired.com/story/this-is-why-teslas-stainless-steel-cybertrucks-may-be-rusting/
+- https://qz.com/tesla-cybertrucks-rust-stainless-steel-engineer-1851277631
+- https://www.reuters.com/technology/tesla-workers-shared-sensitive-images-recorded-by-customer-cars-2023-04-06/
+"""
