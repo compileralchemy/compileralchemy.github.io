@@ -370,6 +370,7 @@
 <li><a href="#What-OpenSource-Helped-You-Achieve?">37. What OpenSource Helped You Achieve?</a></li>
 <li><a href="#Distributed-Patterns-Are-Useless?!">38. Distributed Patterns Are Useless?!</a></li>
 <li><a href="#Donald-Knuth-Clarifies">39. Donald Knuth Clarifies</a></li>
+<li><a href="#OpenSource:-Yet-another-way-to-learn-Rust">40. OpenSource: Yet another way to learn Rust</a></li>
 </ol>
 <a href="#Slow-!=-Not-Useful"><h1 id="Slow-!=-Not-Useful" class="chapter">Slow != Not Useful</h1></a>
 <p>I&rsquo;ve definitely heard a lot of rants about Python at dev meetups. If I were to listen to these people, Python seems to be the worst language on planet earth. It&rsquo;s also not a real language since it is a &lsquo;scripting&rsquo; one. And yes, people must be very dumb to choose hashtag#Python as their main language. It also rAiSeS yOuR biLLs sInCe iTs SoO sLoWw.</p>
@@ -706,6 +707,14 @@ of words into a sequence of short tanks called BUFFER).</p>
 <p>Thanks for your interest in history, and for your patience.</p>
 <p>Best wishes, Don Knuth</p>
 </blockquote>
+<a href="#OpenSource:-Yet-another-way-to-learn-Rust"><h1 id="OpenSource:-Yet-another-way-to-learn-Rust" class="chapter">OpenSource: Yet another way to learn Rust</h1></a>
+<p>I read the <a href="https://doc.rust-lang.org/book/">Rust book</a> twice. Also <a href="https://google.github.io/comprehensive-rust/">Comprehensive Rust</a> from Google. Things did not click as i forgot ownership fast when digesting other topics. The Rust book has a lot of concepts to cover. I lost a lot of time starting again. I really wanted to get my feet wet and started programming on some playgrounds as well as trying some <a href="https://www.maturin.rs/">Maturin</a> examples.</p>
+<p>Playgrounds are fine. Until you try to code something on your machine. I thought rustc was how you built things / run scripts. I tried cargo finally and everything worked like a charm. At this point i decided to code something fun which would have the right balance between motivation and fun. It should also ideally have some stuffs i can do, so that i can focus on upskilling in Rust rather than figuring out what to try out next.</p>
+<p>I decided to port Python&rsquo;s library called <a href="https://github.com/Textualize/rich">rich</a> over in a crate called <a href="https://crates.io/crates/richterm">richterm</a>. Since it&rsquo;s a port, i had a syllabus to cover, a lot of todos to tackle already. This in itself carved a path where i learnt Rust progressively. It was like learning Rust by tackling challenges meaningfully.</p>
+<p>In the beginning i used only functions. I wanted the <a href="https://github.com/Abdur-rahmaanJ/richterm/blob/d26e7a9395571fcb846a5f48ecff2d6b8dc9e2e0/src/lib.rs#L10">print function</a> to support both arrays and vectors. This introduced me to rust generics. I also got a gentle introduction to &amp;str and String. Then i saw the need for classes, i explored struct. To hold data, i explored hashmap. Then attempting threads for <a href="https://github.com/Abdur-rahmaanJ/richterm/blob/stable/src/spinners.rs">spinners</a>. I even have the luxury to pause and continue working when i like, for example while coding the panel feature by saving it as a <a href="https://github.com/Abdur-rahmaanJ/richterm/pull/16">pull request</a>. I also got people <a href="https://github.com/Abdur-rahmaanJ/richterm/pull/18">helping out</a>.</p>
+<p>Ah, i also got used to defining modules and adding a crate and use it. I discovered <a href="https://crates.io">crates.io</a> and how to add projects to use.</p>
+<p>I could not have asked for a better way to learn Rust. The community is willing to teach. Building an OpenSource product introduces you to some good practices. I&rsquo;d say think of a nice-to-have thing and give it a try. I even learnt about <code>cargo fmt</code> while <a href="https://github.com/libsql/sqld/pull/551">contributing to libSQL</a>.</p>
+<p>I&rsquo;d say this way is far more lively, real and entertaining! I am not a Rust expert but it motivates me to keep pursuing my Rust journey.</p>
         </div>
     </div>
     
