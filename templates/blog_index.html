@@ -1,5 +1,8 @@
 {%extends "pages/base.html"%}
 
+{%block head%}
+    <title>Abdur-Rahmaan's Blog: Software engineering, OpenSource, System design, Internals & Spicy takes</title>
+{%endblock%}
 {%block body%}
 <div class="section is-white" id="writings">
     <div class="container">
@@ -22,7 +25,7 @@
             <br><br>
             {%for data in title_slug%}
 
-                <span class="url p-0">{{str(1+len(title_slug)-loop.index).zfill(2)}}.
+                <span class="url p-0">{{str(1+len(title_slug)-loop.index).zfill(3)}}.
                      <a href="{{ data[1] }}">{{ data[0] }}</a></span>
 
             {%endfor%}

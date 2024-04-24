@@ -215,7 +215,9 @@ def gen_diaries():
     
 
 def gen_blog():
-    data = ['./data/diaries/2024.toml', './data/diaries/2023.toml']
+    data = ['./data/diaries/2024.toml', './data/diaries/2023.toml', './data/diaries/2022.toml',
+            './data/diaries/2021.toml',
+            './data/diaries/2020.toml', './data/diaries/2019.toml']
     try:
         os.mkdir(os.path.join(settings.OUTPUT_FOLDER, 'blog'))
     except Exception as e:
@@ -226,7 +228,8 @@ def gen_blog():
         
         for i, elem in enumerate(toml_data['elements'][::-1]):
             title = elem['title']
-            slug = title.casefold().replace(' ', '-').replace('/', '').replace("'", '')
+            slug = title.casefold().replace(' ', '-').replace('/', '').replace("'", '').replace('?',
+                     '').replace('---', '-').replace(':', '')
             content_string = elem['body']
             content = md_to_html(elem['body'])
 

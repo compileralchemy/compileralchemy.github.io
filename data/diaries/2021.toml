@@ -1,0 +1,69 @@
+[[elements]]
+title = "PDM: An Option That Wriggles In-Between Existing Options"
+body = """
+PDM allows you to have your packages within your project folder and run your projects as you would do in a vitual env. It's also different from Zipapps as it's not zipped. The closest you can get is by using these ( https://lnkd.in/d49u5v8 ) solutions.
+
+PDM packs your packages in __packages__. The downsides to it i heard is just with NPM (which it tries to emulate), is that it makes it more difficult to manage a dev env on Docker.
+
+Being a fan of Zipapps, i'm a great fan of this as well, it's great for shipping!
+
+Overview:
+https://lnkd.in/dvZZSUp
+
+Demo:
+https://pdm.fming.dev
+"""
+
+[[elements]]
+title = "Mauritius: The Place To Grow & Water Workers"
+body = """
+Tech workers are workers. Tech companies are factories. Workers training and skilling up is education. Businesses seek quality labour at affordable price. The crumbling Mauritian Rupee makes an excellent choice, coupled with multilingual abilities and cultural richness of it's inhabitants. Add to it passport strength. Foreign powers setting up learning centers including universities in Mauritius seem to be doing a nice move. The comparative great stability of the country in Africa further strengthens it's attraction.
+
+There are also some questions. Is Mauritius in Africa? Who put Mauritius in here? Is the economic and social realities comparable to Africa proper? . If you launch something in Mauritius, targeting the African market, do you believe your experiment results to be valid or is it for namesake? Some don't care as they only need to set foot on 'Africa'
+
+The Education industry seems to abstract the industry part. It is by industry, for industry.
+"""
+
+[[elements]]
+title = "Becoming an Airflow contributor by accident"
+body = """
+I became an airflow contributor quite by accident. I was seeing the docs on how to start contributing when i saw step 2: install Docker.
+
+Since this is a python / flask project, requiring Docker might make the contribution flow a bit tedious. When you analyse all docs, it's clear that Docker is optional but, this part made it like it was compulsory. With the help of merger Jarek Potiuk i summarised the whole story, so that people know they can also go the local virtual env way.
+
+Since then i did some improvements here and there, converting md links to rst, fixing not loading image etc. The contributors like Ash Berlin-Taylor are very helpful. The credits go to Marc Lamberti for the renewed interest in Airflow after December's presentation at our PYMUG (Python Mauritius User-Group)'s December meetup.
+
+Looking at other PRs, the maintainers are very responsive and there is huge work ongoing.
+"""
+
+[[elements]]
+title = "Welcome To The Age of The Barter System"
+body = """
+
+
+Back in school i learnt that pre-historic* people used to trade 5 chicken for 1 sheep. We used to find it amusing. Until you see that we some 1000s years after are still at it, way more foolish than before.
+
+The Gold Standard was cannon balled into history's graveyard. The world's economy was vacillating, hinging on some mere concepts. The introduction of online banking changed people's notion about money. The internet also changed people's perception of products.
+
+There is no difference between your in-game credits playing super Mario and the money in your bank balance. The latter is only more tamper proof. Crypto currencies are examples of pure online currencies.
+
+Online currencies and networks is only mere changes in the state of electricity. Now you have products which are entirely virtual. Which are widely used. Domain names for example. In such cases you buy electricity with electricity. Bank notes are not your wealth. It is a representation of your wealth.
+
+We must be really foolish to buy electricity with electricity. But it's doable if you color it enough. It's even more awesome if you can buy gold with electricity. Barrels of oil in millions, rockets, billion of hours of labour. And even pay your electricity bill with it.
+"""
+
+[[elements]]
+title = "The sense of capitalization of letters in OpenSource"
+body = """
+While continuing my contributions to The Apache Software Foundation's airflow, i learn something amazing about capitalisation in the software world from Kamil Breguła.
+
+Example: if SQLAlchemy is used in the sense of a product, it becomes SQLAlchemy. If it is used in the sense of a tool or lib it becomes sqlalchemy. There are many quirks and edge cases but that's the base case.
+
+Xiaodong DENG raised the issue of Python or python. He maintained it was Python. Kaxil Naik helped pin down the issue by providing official examples. It is and remains Python in all cases XD.
+
+Thanks Jarek Potiuk for the usual help. He's like the wish fairy of the project appearing to give helpful hints every time. Much like the in-game character which gives you a guided tour every time.
+
+It's rare to find a community-cool project as airflow. Hope it stays the same!
+
+PR: https://lnkd.in/drajzMc
+"""

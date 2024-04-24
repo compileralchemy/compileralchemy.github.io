@@ -1,0 +1,99 @@
+[[elements]]
+title = "Why Python Needs Python-Specific Tests?"
+body = """
+I took a Python test entitled "[CompanyX] Challenge Technique PYTHON". I thought it was a Python test but it turned out to be an html-javascript-python-git-sql test. There's no wrong in giving a profiling test but labelling it as "Challenge Technique PYTHON" is quite wrong.
+
+Don't take my word for it, take the Python skill assessment here on linked-in (go to your skills section then take it). Register yourself as a freelancer on a popular site then verify yourself in Python. Go to mentoring sites then verify yourself. Go to sites featuring Python interview questions and check them out. That's what "Challenge Technique PYTHON" means.
+
+If you are testing for Python then you'd test things like scope resolution, generators, decorators, descriptors, context managers, exceptions, stdlib modules like itertools, functools, collections ... Then you'd go on to the domain you are looking for. If web, you'd want normal concepts like orm, migrations, REST, caching, the use of brokers. Then you'd go for framework-specific questions like inheritance, third-party modules, asynchronous tasks, views, deployment, CI and security.
+
+When non-Python dedicated companies do Python stuffs, it's a disaster. 
+
+Another complementary way to test candidates is take-home projects. The candidate gets to develop a project within some 1/2 days. It gives a glimpse on the maturity of the candidate. Normally these can be afforded by big companies. In Mauritius there is a company (Not mine) that offers to evaluate Python candidates. They prepare the project brief according to needs. They take the leisure of requiring your db planning and UML schemas. So that companies can afford depth tests without investing in an internal setup. Such a test for a Python framework is really nice. 
+
+What bugged me to write this post is that it was written in the mail: "nous vous invitons à passer un challenge Python" confirming that they really wanted the candidate to take a Python test. It confirms the fact that they labelled the test as a Python one. There is a big malady in thinking that you don't need to verify people deep in Python. That especially comes around if you think that it does not make a difference to know Python well. That is a sign that you don't work on Python specialisation. 
+"""
+
+[[elements]]
+title = "Why Python Programmers Need C?"
+body = """
+If you give someone the choice to choose between C and Python, most will choose Python. It's easy to pick up, has an awesome community, a huge database of already solved issues, a mammoth-sized 3rd party package repository, innumerable open snippets, you could go on ...
+
+However, at the end of the tunnel, you must inevitably shake hands with C/C++. If you really want to understand how Python manages internal details, you must know how the interpreter works. Computing a suuuuper long integer in C gives out infinity while Python computes it easily. How? looking at the source code tells. If you want to do impossible things, C is the way to go.
+
+In the Python world, there is a famous saying: "Python where you can, C++ where you must". If you want a cool bundling and glue language, that's Python. If you want faster Python libraries, you always have C. This has become so successful that now Numpy is among the top 10 imports. And, Numpy makes shameless use of brute C codes.
+
+You might ask why not code in C directly? If you want, Nuitka converts your Python code to C codes ^^_. Well, if you want to become a Core dev, C, though not a requirement (as most Python programmers believe), is the language you can't ignore.
+"""
+
+[[elements]]
+title = "The Two Parts of Python Learning"
+body = """
+Learning Python never ends. Searching for Python on amazon gives out over 10,000 results. Averaging 150 pages per book, that's 1,500,000 pages for you to read. That's nothing compared to 232,000,000 results searching for "Python tutorial".
+
+But, really, to learn Python you must track two things. One is core Python and secondly, applications. Learning the core means mastering the syntax, constructs and standard library well. It also includes the dev environment like pip/poetry, IDEs, paths etc.
+
+Applications of Python is a vast field. You choose some 5 areas like web dev, desktop dev, automation, data science and ml, cryptography. Then, you learn the concepts of each field alongside popular frameworks. Then you are employable. This small paragraph is some 80% of the work.
+
+I restress the point "well". Employers expect you to know frameworks well. If you say you know PyQt5 then they expect you to know it really well. Real-world requirements are way beyond 'portfolio' projects.
+"""
+
+[[elements]]
+title = "How To Evaluate Any Course!"
+body = """
+Courses and free learning materials like blog posts have transformed education. Free contents are available in such quantity that you are literally drowned. In this era, it's about choosing the best materials.
+
+The first thing is to see if the content has been suitably broken down. Something teaching the Dijkstra algorithm is expected to let users have notions of weighted graphs, directed graphs, spanning trees, connected graphs, BFS, DFS, stacks, queues and min heap. Then the algorithm is a piece of cake. Else only a definition then moving to the code is troublesome.
+
+The second thing is to look at the exercise or assignments. Often the material teaches you about mining ores then the first question is about polishing diamonds. If the gap between the level of the exercises and the learning material is too wide, people won't benefit. Actually exercises serve 4 purposes which we'll cover later on. It's best to have a range of questions either separate or as a single continuation.
+
+In short, learning materials should teach you enough for you to master a subject. If you find you don't understand programming it's for you to bridge the gap. That's why the path is more important than contents.
+"""
+
+[[elements]]
+title = "The four purposes of exercises"
+body = """
+Exercises/assignments in learning materials be it courses or related items serve four purposes. Related: https://lnkd.in/gmBBSRB
+
+The first is the consolidation of knowledge. Exercises should help students remember what they learnt. Just going over a material does not mean getting it. Exercises help students go back and see what the lesson was about.
+
+The second purpose is the verification of knowledge. Testing for edge cases for example assume that whatever the student think he knows is actually true. It's aim is to check assumptions.
+
+The third purpose is use case application. The knowledge gained should be applied to solve problems. Scientific knowledge for the sake of it with no use might not be fruitful.
+
+The fourth purpose is about testing which solution is the best. In coding particularly, just solving a problem does not mean it's a solution to be used. Testing against harder problems is among others a way to filter out the best people having knowledge.
+
+These four purposes can be joined in a single multi-part assignment or given as a series of exercises.
+"""
+
+[[elements]]
+title = "Toptal Is NOT Interested About Python, Even Less About Mauritius"
+body = """
+
+There's a company called Toptal that has been hiring remote Python engineers. It's only reference to Python is: "You must have 3+ years of full-time Python experience—preference given to candidates who have experience working for enterprise companies."
+
+Now, that sounds fishy for a Python description. No area or framework listed, nothing. You can expect any random full time scripter to show up.
+
+The application link also is generic, meaning the receiving end has no means of knowing you are applying from where and for what tech. That is not a problem for specialised companies as they know people applying out of the blue must be in line with their technologies.
+
+The ad is just a random reminder that you can apply as remote freelancer at Toptal. Sometimes i agree that better watch StackOverflow's ads if you are in for something real.
+"""
+
+[[elements]]
+title = "Specialising In Python Pays"
+body = """
+Today had the opportunity to get more insight on the question: Are there few Python jobs because Python is a play language or because of a lack of engineers? Namgyal BRISSON always said we lack Python people. It seems absurd, but today i was definitely convinced. One of the largest IT companies in Mauritius is looking to sharpen it's Python team. It needs people who
+
+- knows Python well
+- knows machine learning
+- knows blockchain developement with Python
+
+If you are a good Python dev, you've probably covered it all. Now's a nice time to be a Python developer. And ... that opens global career growth with interesting added benefits.
+
+One advice: learn Python professionally!
+"""
+
+[[elements]]
+title = "Choose Python version: features or syntax?"
+body = "Nice points but point on not using the latest version is becoming less and less true. Since 3.7 switching to the latest version has become more and more of a habit. It's not at all rare to find libraries already supporting the version or supporting only the new version (a new lib)\n\nFor 3.7 if you were not using 3.7 when it was the current version you were in for big surprises. Normally it's no big deal to be some 3 versions behind but recently the Python team has been really nice.\n\n3.8 has the := operator which is known as the walrus operator. It lets you create and assign variable on the fly, even in loop. Dustin Ingram made a nice intro to it. I met people who were waiting for that feature\n\nThe best deal for a Python programmer is not to choose only one version on their pc. It is to choose one version for developing something crucial but for the rest you feel free. Myself i have more than one version installed, even a 2.7. For a crucial project i won't use 3.8 *syntax* but i use it as my everyday Python. I have found <10 projects i need which does not support it.\n\nThe thing is not about the version itself as it's about the syntax. If you use a 3.7 syntax which 3.8 supports, you won't be hit by any consequent roadblock. Version is in this case is meaningless.\n"
+
