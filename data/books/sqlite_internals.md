@@ -131,7 +131,9 @@ So, he thought of spinning his own database.
 > that database engine now.”
 
 Contrary to many popular projects, Richard thought of a bytecode-driven engine since the begining.
-This shows his previous exposure to compiler crafstmanship.
+This shows his previous exposure to compiler crafstmanship. 
+According to him, a byte-code engine has more advantage than an AST, though at the time he did not know that. 
+Based on his background, he thought it was natural for him [14].
 
 > so I wrote a byte code engine that would actually run a
 query and then I wrote a compiler that would translate
@@ -1127,6 +1129,7 @@ SQLite, ACM SIGMOD interviews with DB people, Marianne  Winslett and Vanessa    
 - [12] Securing databases using Attribute Based
 Encryption and Shamir’s Secret Sharing (SSS), Martina Pulmucci, https://lumosql.org/src/lumosql/raw/c3f5ace49a2139e623be647a3a65753adfe4fddd46fb86f345e0bd75ffa185af?at=LumoSQL-Thesis-Martina-Palmucci-2022.pdf
 - [13] SQLite: Past, Present, and Future, https://www.vldb.org/pvldb/vol15/p3535-gaffney.pdf
+- [14] https://x.com/DRichardHipp/status/1784721096668782915
 
 Images
 
