@@ -191,5 +191,7 @@ Ah, i also got used to defining modules and adding a crate and use it. I discove
 
 I could not have asked for a better way to learn Rust. The community is willing to teach. Building an OpenSource product introduces you to some good practices. I'd say think of a nice-to-have thing and give it a try. I even learnt about `cargo fmt` while [contributing to libSQL](https://github.com/libsql/sqld/pull/551).
 
-I'd say this way is far more lively, real and entertaining! I am not a Rust expert but it motivates me to keep pursuing my Rust journey.
+I'd say this way is far more lively, real and entertaining! 
+I am not a Rust expert but it motivates me to keep pursuing my Rust journey.
+
 """
