@@ -363,6 +363,16 @@ writings = [
 
 talks = [
     {
+        "title": "",
+        "event": "FlaskCon 2024",
+        "res": [
+            {
+                "type": "slides",
+                "url": "https://speakerdeck.com/osdotsystem/extending-flask-using-the-flask-plugins-api"
+            },
+        ]
+    },
+    {
         "title": "PEPs that hit the front page",
         "event": "Pymug Meetup Feb 2024",
         "res": [
