@@ -86,7 +86,7 @@ He would be a great fit any organisation or team'''
     {
         'name': 'Justin Triplett',
         'title': 'Software Engineer and Consultant at Caledonia Systems',
-        'text': '''Working with Abdur-Rahmaan has been a really great experience. He did so much to make sure Flaskcon was a great success. He organized the teams of volunteers and stepped up to fill roles and provide advise wherever and whenever needed. I love working on a project knowing someone else is as dedicated to it's success as I am and I look forward to working with him again soon.Working with Abdur-Rahmaan has been a really great experience. He did so much to make sure Flaskcon was a great success. He organized the teams of volunteers and stepped up to fill roles and provide advise wherever and whenever needed. I love working on a project knowing someone else is as dedicated to it's success as I am and I look forward to working with him again soon.'''
+        'text': '''Working with Abdur-Rahmaan has been a really great experience. He did so much to make sure Flaskcon was a great success. He organized the teams of volunteers and stepped up to fill roles and provide advise wherever and whenever needed. I love working on a project knowing someone else is as dedicated to it's success as I am and I look forward to working with him again soon.'''
     },
     {
         'name': 'Nathan Heron - Morris',
@@ -140,7 +140,7 @@ Despite this, he still manages to be an extremely compassionate person, always e
         'name': 'Sandeep Chatterjee',
         'title': 'MSc, Distributed Computing',
         'text': '''Amazing polymath... a good teacher, addictive author and cool coder. His articles are always full of well done research, and there is always something new to learn from it , no matter how experienced you are with the technology.
-Scholar of Arabic, as well as well versed in English. Good teacher of Python, and artistically skilled in vector logo design. Really proud to be his old friend.Amazing polymath... a good teacher, addictive author and cool coder. His articles are always full of well done research, and there is always something new to learn from it , no matter how experienced you are with the technology. Scholar of Arabic, as well as well versed in English. Good teacher of Python, and artistically skilled in vector logo design. Really proud to be his old friend.'''
+Scholar of Arabic, as well as well versed in English. Good teacher of Python, and artistically skilled in vector logo design. Really proud to be his old friend.'''
     },
 ]
 
@@ -163,8 +163,24 @@ writings = [
         "url": "https://compileralchemy.substack.com/p/kubernetes-internals-inside-the-mind"
     },
     {
+        "title": "Ruff: Internals of a Rust-backed Python linter-formatter - Part 1",
+        "url": "https://compileralchemy.substack.com/p/ruff-internals-of-a-rust-backed-python"
+    },
+    {
         "title": "Step By Step Parsing of Mathematical Expressions From Scratch",
         "url": "https://compileralchemy.substack.com/p/step-by-step-parsing-of-mathematical"
+    },
+    {
+        "title": "Scuba: Diving into the extraordinary system Facebook uses to analyse millions of events per second",
+        "url": "https://compileralchemy.substack.com/p/scuba-diving-into-the-extraordinary"
+    },
+    {
+        "title": "AprilTags: Why Robotics Invented Its Own QR Code",
+        "url": "https://compileralchemy.substack.com/p/apriltags-why-robotics-invented-its"
+    },
+    {
+        "title": "GatewayD Internals: Dissecting a Potent OpenSource Database Gateway",
+        "url": "https://compileralchemy.substack.com/p/gatewayd-internals-dissecting-a-potent"
     },
     {
         "title": "The World Of Helm",
