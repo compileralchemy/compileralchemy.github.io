@@ -23,6 +23,10 @@
 >
 > -- Michal Pitr, Software Engineer @ Google
 
+> We need more work like this, comprehensive and open source, helping developers by demystifying the systems we take for granted. Thank you for writing this.
+>
+> -- Jade Daniel Lesh
+
 
 To all SQLite lovers. This book discusses SQLite internals in depth.
 
