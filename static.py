@@ -229,7 +229,7 @@ def gen_blog():
         for i, elem in enumerate(toml_data['elements'][::-1]):
             title = elem['title']
             slug = title.casefold().replace(' ', '-').replace('/', '').replace("'", '').replace('?',
-                     '').replace('---', '-').replace(':', '')
+                     '').replace('---', '-').replace(':', '').replace(',', '')
             content_string = elem['body']
             content = md_to_html(elem['body'])
 
