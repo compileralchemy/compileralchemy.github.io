@@ -828,6 +828,20 @@ A package to get weather info about Mauritius taken from the country's weather s
         'badges': ['pepy']
     },
     {
+        "name": "fastoo",
+        "info": '''
+Super-charged frameworks for building big fastapi apps
+''',
+        "features": [],
+        "main_link": "https://github.com/Abdur-rahmaanJ/fastoo",
+        "logo_link": "",
+        "links": {
+            "github": "https://github.com/Abdur-rahmaanJ/fastoo",
+            "pypi": "https://pypi.org/project/fastoo/"
+        },
+        'badges': ['pepy']
+    },
+    {
         "name": "phoning-home",
         "info": '''
 Phoning home, analytics and leaderboard with 0 server setup. Powered by Turso
@@ -880,6 +894,34 @@ An IRC bot built from scratch with an awesome collection of Plugins. It even has
         "links": {
             "github": "https://github.com/pyhoneybot/honeybot",
             "chat": "https://discord.com/invite/E6zD4XT",
+        },
+        'badges': ['pepy']
+    },
+    {
+        "name": "finance-mauritius",
+        "info": '''
+Useful functions for Mauritius banks and financials institutions like MRA (Mauritius Revenue Authority)
+''',
+        "features": [],
+        "main_link": "https://github.com/Abdur-rahmaanJ/finance-mauritius",
+        "logo_link": "",
+        "links": {
+            "github": "https://github.com/Abdur-rahmaanJ/finance-mauritius",
+            "pypi": "https://pypi.org/project/finance-mauritius/"
+        },
+        'badges': ['pepy']
+    },
+    {
+        "name": "oreiller",
+        "info": '''
+The package for easy image manipulation backed by pillow power.
+''',
+        "features": [],
+        "main_link": "https://github.com/Abdur-rahmaanJ/oreiller",
+        "logo_link": "",
+        "links": {
+            "github": "https://github.com/Abdur-rahmaanJ/oreiller",
+            "pypi": "https://pypi.org/project/oreiller/"
         },
         'badges': ['pepy']
     },
