@@ -79,5 +79,60 @@ Will post about transportation next.
 
 [pics](https://www.linkedin.com/posts/appinv_silicon-valley-diary-san-jose-san-jose-activity-7249073081002934272-TejE?utm_source=share&utm_medium=member_desktop)
 
+"""
+
+[[elements]]
+title = "Waymo and Uber"
+body = """
+As a tourist, the big thing i SF is to ride the driverless cars around. It's really fascinating and eerie to steal occasional glimpses of wheels turning around where you'd expect human hands to be at work.
+
+Waymos are typically more expensive than Ubers. They are spacious and quasi-standard. They are of the Jaguar brand. Once booked, they display your initials on the cone frustum on arrival at the top so that you can be sure it's the right vehicle.
+
+Waymos are equipped with LiDAR sensor (Light Detection and Ranging). It's used to create a 3D map of the environment around the vehicle, allowing it to detect obstacles, pedestrians, and other objects in its surroundings. This constrasts with Tesla's CV-based mapping method.
+
+Uber is the next less expensive option after public transport. If you are going to SF from SFO airport, consider the Bart and busses, way cheaper. On the departures level of SFO, the 2nd lane can be used to wait for Ubers. I mistakenly found a trick. While lost, i went to the 4th floor or something like that and when calling Uber from there, the price is way, way lower.
+
+Uber gets expensive over time and they typically offer you Uber one to upgrade and get some savings. One thing to avoid over there is traffic hours ~8am. You pay for the time it takes for a Uber to reach to you and the time to cruise through traffic.
+
+UberX is usually ok. If you want to save more, try Uber share where they pick 3, 4 people alongside. It's really not worth it if you have an urgent meeting. I took decided to try it before my presentation at Github and it was easily 20mins on top of the normal route.
+
+Uber also provides package sending and receiving. They also accept pre-paid cards. In a tip-driven culture like the US, a tip screen appears after rides with ratings for the driver.
+
+Uber is a life-saver for some people who lost their jobs. The general conversations are nice and drivers generally ok. Pretty nice.
+
+
+[pics](https://www.linkedin.com/posts/appinv_silicon-valley-diary-waymo-uber-as-a-activity-7268315438671876096-va_K?utm_source=share&utm_medium=member_desktop)
+
+<a href="https://www.vecteezy.com/free-vector/badge">Badge Vectors by Vecteezy</a>
+"""
+
+
+[[elements]]
+title = "Bart, Caltrain, Muni and Busses"
+body = """
+Silicon Valley transport can be divided into four:
+
+- Bart (like a train): Goes from Richmond, north east of the bay area, to Berryessa, south east, San Francisco, including Oakland
+
+- Caltrain goes from SF to San Jose. Passes through iconic places like Mountain View, Palo Alto etc
+
+- Muni are light-rail trains in SF
+
+- Buses in SF and outside operate the same way
+
+One important thing is to get a clipper card, a physical one if you can. Clipper cards allow you to use one card for all public transports, from Bart to busses across the Bay Area. Else, you need to have an app for this and that type of public transport.
+
+And it's cheap. A bus ride is $2.50 and valid for some hours. Caltrain rides refund you if you tap again at a station when you leave. Bart are straightforward: you tap, the door opens, same when leaving.
+
+For Muni and busses you tap on entering, pretty simple. I usually refuel my Clipper at Bart stations using real cash. For a rather intensive 2 weeks, $100 on the clipper was enough. Mind you, when inputting cash into the machine, be sure to have small notes (if you don't intend to add a large amount) with you as it expects at max nearing to the nearest 10 or 5. Ex. a clipper card costs lets say some $5, you add $10 to it, you should upload 15 or 20 usd, not a 50 note.
+
+Clipper cards are also available through Google wallet, but, remember to enable contactless payment for your card for easy purchase. You can also add a physical Clipper to your wallet, but might have difficulty unlinking it.
+
+It's best to use Google to plan your route. Beware of it's inaccuracies. Recheck the itinary mid-travel as it sometimes decides to be more intelligent. Works great for busses and barts. Ex. i was going from Milpitas to SF. It suggested to go north of SF then switch Bart and come back. Along the way i entered the station i was in as the starting point and it showed a blue bart some 2 mins away that goes directly to SF. I jumped off, waited 2mins and jumped on that one.
+
+Bart has a map of lines where each colors go. You just check the colors near the door in a square when barts stop. You can see what trains are next in stations displayed on an overhead screen.
+
+[pics](https://www.linkedin.com/posts/appinv_silicon-valley-diary-bart-caltrain-muni-activity-7268318801459380224-Jn0_?utm_source=share&utm_medium=member_desktop)
+
 <a href="https://www.vecteezy.com/free-vector/badge">Badge Vectors by Vecteezy</a>
 """
