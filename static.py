@@ -193,6 +193,13 @@ def gen_books():
     #     'cracking-python',
     #     'https://www.compileralchemy.com/assets/books/cracking_python.pdf',
     #     'https://github.com/compileralchemy/compileralchemy.github.io/blob/source/data/books/cracking_tough_parts_python.md')
+    gen_book('./data/books/freelancing_codex.md',
+        '../../assets/books/freelancing-codex/cover.png',
+        "The Programming Freelancing Codex",
+        '0.1.0',
+        'freelancing-codex',
+        'https://www.compileralchemy.com/assets/books/foss_sqlite_internals.pdf',
+        'https://github.com/compileralchemy/compileralchemy.github.io/blob/source/data/books/freelancing_codex.md',)
 
 def gen_diaries():
     gen_diary('./data/diaries/2023.toml',
@@ -211,6 +218,14 @@ def gen_diaries():
         '2024',
         'https://www.compileralchemy.com/assets/diaries/2023.pdf',
         'https://github.com/compileralchemy/compileralchemy.github.io/blob/source/data/diaries/2023.toml',
+        weasy=settings.book_generate)
+    gen_diary('./data/diaries/silicon-valley.toml',
+        '../../assets/diaries/silicon_valley.png',
+        "Silicon Valley Diary",
+        '0.1.0',
+        'silicon-valley',
+        'https://www.compileralchemy.com/assets/diaries/silicon-valley-abdurrahmaan-janhangeer.pdf',
+        'https://github.com/compileralchemy/compileralchemy.github.io/blob/source/data/diaries/silicon-valley.toml',
         weasy=settings.book_generate)
     
 
