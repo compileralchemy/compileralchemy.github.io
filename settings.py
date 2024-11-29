@@ -379,8 +379,8 @@ writings = [
 
 talks = [
     {
-        "title": "",
-        "event": "FlaskCon 2024",
+        "title": "Extending Flask using the Flask Plugins API",
+        "event": "FlaskCon 2024 @ PyConUS",
         "res": [
             {
                 "type": "slides",
