@@ -798,6 +798,22 @@ A wrapper around PyGame for clean codebases.
         'badges': ['pepy']
     },
     {
+    "name": "Kapsula",
+    "info": '''
+Dead simple docs generator.
+Have a clear view of the codebase without knowing any tooling
+''',
+        "features": [],
+        "main_link": "https://github.com/abdur-rahmaanj/kapsula",
+        "logo_link": "",
+        "links": {
+            "github": "https://github.com/abdur-rahmaanj/kapsula",
+            "pypi": "https://pypi.org/project/kapsula/",
+            "chat": "https://discord.gg/Q23ATve"
+        },
+        'badges': ['pepy']
+    },
+    {
         "name": "Jamstack",
         "info": '''
 Lets you build static sites with Jinja, as simple or as complex as you like. It powers among others the site you 
