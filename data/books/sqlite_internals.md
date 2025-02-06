@@ -28,6 +28,11 @@
 > -- Jade Daniel Lesh
 
 
+> Loved reading your book on sqlite internals!
+>
+> -- Raunak Ramakrishnan, Staff Software Engineer @ Notion
+
+
 To all SQLite lovers. This book discusses SQLite internals in depth.
 
 You can 
