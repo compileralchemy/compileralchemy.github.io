@@ -379,6 +379,36 @@ writings = [
 
 talks = [
     {
+        "title": "Building Ai agents in Python: A Deep Dive",
+        "event": "Pymug March 25 Meetup",
+        "res": [
+            {
+                "type": "slides",
+                "url": "https://docs.google.com/presentation/d/14LkLRBVZc4idFmgQ0S9UmYrA5GxMeecQa5XRZGzhmpc/edit?usp=sharing"
+            },
+        ]
+    },
+    {
+        "title": "UV: A tool worth knowing about",
+        "event": "Pymug February 25 Meetup",
+        "res": [
+            {
+                "type": "slides",
+                "url": "https://docs.google.com/presentation/d/1gP-zQuTKziwcZ7bNtH-HT824kvuHRBZHritti2FDC6M/edit?usp=sharing"
+            },
+        ]
+    },
+    {
+        "title": "Pallets Sprint @ SF Python",
+        "event": "San Francisco Python Pallets Sprint",
+        "res": [
+            {
+                "type": "slides",
+                "url": "https://docs.google.com/presentation/d/1co1JC2riB7rPA8nkjn3kJ3JXfq8kT7GVZiGk4zsYaw0/edit?usp=sharing"
+            },
+        ]
+    },
+    {
         "title": "Extending Flask using the Flask Plugins API",
         "event": "FlaskCon 2024 @ PyConUS",
         "res": [
