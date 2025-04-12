@@ -379,6 +379,16 @@ writings = [
 
 talks = [
     {
+        "title": "Building Ai agents using Langgraph: From Zero to Hero",
+        "event": "Pymug April 25 Meetup",
+        "res": [
+            {
+                "type": "slides",
+                "url": "https://docs.google.com/presentation/d/10eWFRRtppzKi-h_RC4Tv3dZ_XoKS9T-4gBr_m4Fvzqg/edit?usp=sharing"
+            },
+        ]
+    },
+    {
         "title": "Building Ai agents in Python: A Deep Dive",
         "event": "Pymug March 25 Meetup",
         "res": [
