@@ -823,6 +823,118 @@ commands like collecstatic and startapp.
         'badges': ['pepy']
     },
     {
+    "name": "shopyo-auth",
+    "info": '''
+Auth module for Shopyo
+''',
+        "features": [],
+        "main_link": "https://github.com/shopyo/shopyo/tree/dev/default_packages/shopyo_auth",
+        "logo_link": "",
+        "links": {
+            "github": "https://github.com/shopyo/shopyo/tree/dev/default_packages/shopyo_auth",
+            "pypi": "https://pypi.org/project/shopyo-auth/",
+        },
+        'badges': ['pepy']
+    },
+    {
+    "name": "shopyo-appadmin",
+    "info": '''
+Admin panel for Shopyo
+''',
+        "features": [],
+        "main_link": "https://github.com/shopyo/shopyo/tree/dev/default_packages/shopyo_appadmin",
+        "logo_link": "",
+        "links": {
+            "github": "https://github.com/shopyo/shopyo/tree/dev/default_packages/shopyo_appadmin",
+            "pypi": "https://pypi.org/project/shopyo-appadmin/",
+        },
+        'badges': ['pepy']
+    },
+    {
+    "name": "shopyo-base",
+    "info": '''
+Base utils for Shopyo
+''',
+        "features": [],
+        "main_link": "https://github.com/shopyo/shopyo/tree/dev/default_packages/shopyo_base",
+        "logo_link": "",
+        "links": {
+            "github": "https://github.com/shopyo/shopyo/tree/dev/default_packages/shopyo_base",
+            "pypi": "https://pypi.org/project/shopyo-base/",
+        },
+        'badges': ['pepy']
+    },
+    {
+    "name": "shopyo-dashboard",
+    "info": '''
+Dashboard for Shopyo
+''',
+        "features": [],
+        "main_link": "https://github.com/shopyo/shopyo/tree/dev/default_packages/shopyo_dashboard",
+        "logo_link": "",
+        "links": {
+            "github": "https://github.com/shopyo/shopyo/tree/dev/default_packages/shopyo_dashboard",
+            "pypi": "https://pypi.org/project/shopyo-dashboard/",
+        },
+        'badges': ['pepy']
+    },
+    {
+    "name": "shopyo-i18n",
+    "info": '''
+i18n for Shopyo
+''',
+        "features": [],
+        "main_link": "https://github.com/shopyo/shopyo/tree/dev/default_packages/shopyo_i18n",
+        "logo_link": "",
+        "links": {
+            "github": "https://github.com/shopyo/shopyo/tree/dev/default_packages/shopyo_i18n",
+            "pypi": "https://pypi.org/project/shopyo-i18n/",
+        },
+        'badges': ['pepy']
+    },
+    {
+    "name": "shopyo-base",
+    "info": '''
+Page module for Shopyo
+''',
+        "features": [],
+        "main_link": "https://github.com/shopyo/shopyo/tree/dev/default_packages/shopyo_page",
+        "logo_link": "",
+        "links": {
+            "github": "https://github.com/shopyo/shopyo/tree/dev/default_packages/shopyo_page",
+            "pypi": "https://pypi.org/project/shopyo-page/",
+        },
+        'badges': ['pepy']
+    },
+    {
+    "name": "shopyo-settings",
+    "info": '''
+Settings for Shopyo
+''',
+        "features": [],
+        "main_link": "https://github.com/shopyo/shopyo/tree/dev/default_packages/shopyo_settings",
+        "logo_link": "",
+        "links": {
+            "github": "https://github.com/shopyo/shopyo/tree/dev/default_packages/shopyo_settings",
+            "pypi": "https://pypi.org/project/shopyo-settings/",
+        },
+        'badges': ['pepy']
+    },
+    {
+    "name": "shopyo-theme",
+    "info": '''
+Theme for Shopyo
+''',
+        "features": [],
+        "main_link": "https://github.com/shopyo/shopyo/tree/dev/default_packages/shopyo_theme",
+        "logo_link": "",
+        "links": {
+            "github": "https://github.com/shopyo/shopyo/tree/dev/default_packages/shopyo_theme",
+            "pypi": "https://pypi.org/project/shopyo-theme/",
+        },
+        'badges': ['pepy']
+    },
+    {
     "name": "Hooman",
     "info": '''
 A wrapper around PyGame for clean codebases.
