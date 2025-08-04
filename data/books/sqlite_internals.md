@@ -847,7 +847,7 @@ Using the `EXPLAIN` keyword, we can view an output based on bytecodes.
 
 ![](https://www.compileralchemy.com/assets/books/sqlite-internals/bytecode.png)
 
-Each byteocode program has many registers.
+Each bytecode program has many registers.
 Registers store a variety of items like null values, 64-bit integers or frame objects.
 
 The bytecode engine has no stack on which to store the return address of a subroutine. 
@@ -968,7 +968,7 @@ TODO: complete
 Virtual tables are like any tables but, one cannot create indexes on them, alter and add columns or create triggers.
 Virtual tables involve no reading and writing to the db file.
 
-**shadow tables**: Sometimes, some virtual table implmentations store virtual table informations in real tables called shawdow tables. Shadow tables can be read and modified unless the `SQLITE_DBCONFIG_DEFENSIVE` flag is set.
+**shadow tables**: Sometimes, some virtual table implementations store virtual table informations in real tables called shawdow tables. Shadow tables can be read and modified unless the `SQLITE_DBCONFIG_DEFENSIVE` flag is set.
 
 ## Common Table Expressions
 
