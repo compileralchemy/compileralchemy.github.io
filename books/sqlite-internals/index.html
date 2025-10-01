@@ -1139,7 +1139,7 @@ const char *sqlite3OpcodeName(int i){
 </code></pre>
 <p>Using the <code>EXPLAIN</code> keyword, we can view an output based on bytecodes.</p>
 <p><img alt="" src="https://www.compileralchemy.com/assets/books/sqlite-internals/bytecode.png" /></p>
-<p>Each byteocode program has many registers.
+<p>Each bytecode program has many registers.
 Registers store a variety of items like null values, 64-bit integers or frame objects.</p>
 <p>The bytecode engine has no stack on which to store the return address of a subroutine. 
 Return addresses must be stored in registers. </p>
@@ -1262,7 +1262,7 @@ TODO: complete
 <h2>Virtual Tables</h2>
 <p>Virtual tables are like any tables but, one cannot create indexes on them, alter and add columns or create triggers.
 Virtual tables involve no reading and writing to the db file.</p>
-<p><strong>shadow tables</strong>: Sometimes, some virtual table implmentations store virtual table informations in real tables called shawdow tables. Shadow tables can be read and modified unless the <code>SQLITE_DBCONFIG_DEFENSIVE</code> flag is set.</p>
+<p><strong>shadow tables</strong>: Sometimes, some virtual table implementations store virtual table informations in real tables called shawdow tables. Shadow tables can be read and modified unless the <code>SQLITE_DBCONFIG_DEFENSIVE</code> flag is set.</p>
 <h2>Common Table Expressions</h2>
 <p>Oracle needed recursive queries and they added common table expressions.</p>
 <h2>Save points</h2>
