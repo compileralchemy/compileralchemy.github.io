@@ -1,0 +1,649 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Faceblur - Neural Privacy Pro</title>
+    <meta name="description" content="Faceblur is a powerful tool to blur faces from videos in real-time using on-device AI. Protect privacy in your video content instantly.">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;800&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/@mediapipe/tasks-vision@0.10.3"></script>
+    <style>
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: #f1f5f9;
+            color: #1e293b;
+            margin: 0;
+            min-height: 100vh;
+            display: flex;
+            align-items: flex-start;
+            justify-content: center;
+            overflow-x: hidden;
+            overflow-y: auto;
+        }
+        .player-card {
+            background: #ffffff;
+            border: 1px solid #e2e8f0;
+            border-radius: 24px;
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.05), 0 8px 10px -6px rgba(0, 0, 0, 0.05);
+        }
+        .video-wrapper {
+            position: relative;
+            width: 100%;
+            background: #0f172a;
+            border-radius: 20px;
+            overflow: hidden;
+            aspect-ratio: 16/9;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+        }
+        .video-wrapper.portrait {
+            aspect-ratio: 9/16;
+            max-width: 400px;
+        }
+        canvas {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            cursor: pointer;
+        }
+        #inputVideo {
+            position: fixed;
+            top: 0;
+            left: -100%;
+            width: 1px;
+            height: 1px;
+            pointer-events: none;
+            opacity: 0;
+        }
+        
+        .player-controls {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(transparent, rgba(0,0,0,0.7));
+            padding: 24px;
+            padding-top: 60px;
+            opacity: 0;
+            transform: translateY(10px);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            pointer-events: none;
+        }
+        .video-wrapper:hover .player-controls {
+            opacity: 1;
+            transform: translateY(0);
+            pointer-events: auto;
+        }
+        .control-btn {
+            background: rgba(255,255,255,0.2);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255,255,255,0.3);
+            border-radius: 12px;
+            padding: 10px;
+            transition: all 0.2s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+        }
+        .control-btn:hover {
+            background: rgba(255, 255, 255, 0.4);
+            transform: scale(1.05);
+        }
+        .seek-bar {
+            width: 100%;
+            height: 6px;
+            background: rgba(255,255,255,0.2);
+            border-radius: 3px;
+            appearance: none;
+            outline: none;
+            cursor: pointer;
+            overflow: hidden;
+        }
+        .seek-bar::-webkit-slider-thumb {
+            appearance: none;
+            width: 0;
+            box-shadow: -100vw 0 0 100vw #3b82f6;
+        }
+
+        .control-knob::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            height: 16px;
+            width: 16px;
+            border-radius: 50%;
+            background: #3b82f6;
+            cursor: pointer;
+            border: 2px solid white;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        .status-glow {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            transition: all 0.3s ease;
+        }
+        .status-glow.active { background: #10b981; box-shadow: 0 0 8px #10b981; }
+        .status-glow.loading { background: #f59e0b; box-shadow: 0 0 8px #f59e0b; animation: pulse 1s infinite; }
+        .status-glow.idle { background: #ef4444; box-shadow: 0 0 8px #ef4444; }
+        
+        @keyframes pulse { 0% { opacity: 0.4; } 50% { opacity: 1; } 100% { opacity: 0.4; } }
+
+        .loading-screen {
+            position: fixed;
+            inset: 0;
+            background: #ffffff;
+            z-index: 100;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .error-log {
+            background: #fef2f2;
+            border: 1px solid #fee2e2;
+            border-radius: 12px;
+            padding: 16px;
+            margin-top: 16px;
+            display: none;
+        }
+        
+        .brand-watermark {
+            position: absolute;
+            top: 16px;
+            left: 16px;
+            pointer-events: none;
+            transition: opacity 0.3s;
+            z-index: 10;
+        }
+        .video-wrapper.playing .brand-watermark {
+            opacity: 0.6;
+        }
+        .back-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 12px;
+            border-radius: 10px;
+            color: #64748b;
+            font-size: 11px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            transition: all 0.2s;
+            margin-bottom: 24px;
+            border: 1px solid #e2e8f0;
+            background: #f8fafc;
+        }
+        .back-btn:hover {
+            background: #f1f5f9;
+            color: #334155;
+            transform: translateX(-2px);
+        }
+    </style>
+</head>
+<body>
+
+    <div id="loading" class="loading-screen">
+        <div class="w-12 h-12 border-4 border-blue-100 border-t-blue-600 rounded-full animate-spin mb-4"></div>
+        <p class="text-sm font-bold text-slate-600 tracking-tight">Syncing Neural Core...</p>
+    </div>
+
+    <main class="w-full max-w-6xl grid grid-cols-1 lg:grid-cols-12 gap-8 items-start p-6 my-8">
+        
+        <!-- Sidebar -->
+        <div class="lg:col-span-4 space-y-6">
+            <div class="player-card p-8">
+                <a href="https://compileralchemy.com" class="back-btn">
+                    <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M10 19l-7-7m0 0l7-7m-7 7h18"/></svg>
+                    Back to site
+                </a>
+
+                <div class="flex items-center gap-4 mb-8">
+                    <div class="bg-blue-600 p-3 rounded-2xl shadow-lg shadow-blue-500/20 shrink-0">
+                        <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/></svg>
+                    </div>
+                    <div>
+                        <h1 class="text-xl font-bold tracking-tight text-slate-900 leading-none">Faceblur</h1>
+                        <p class="text-[10px] font-bold text-slate-400 uppercase tracking-widest mt-1">Neural Privacy V3.5</p>
+                    </div>
+                </div>
+
+                <div class="space-y-6">
+                    <div>
+                        <label class="text-[11px] font-bold text-slate-500 uppercase tracking-widest block mb-3">Model Engine</label>
+                        <div class="grid grid-cols-2 gap-2 p-1 bg-slate-100 rounded-xl">
+                            <button onclick="changeModel('short_range')" id="btn-short" class="py-2.5 rounded-lg text-[10px] font-bold uppercase tracking-widest transition-all bg-white text-blue-600 shadow-sm">Lite</button>
+                            <button onclick="changeModel('full_range')" id="btn-full" class="py-2.5 rounded-lg text-[10px] font-bold uppercase tracking-widest transition-all text-slate-500 hover:text-slate-700">Pro</button>
+                        </div>
+                    </div>
+
+                    <div>
+                        <label class="text-[11px] font-bold text-slate-500 uppercase tracking-widest block mb-3">Source URL</label>
+                        <div class="flex gap-2">
+                            <input id="urlInput" type="text" placeholder="Direct .mp4 Link" class="flex-1 bg-slate-50 border border-slate-200 rounded-xl px-4 py-2.5 text-sm focus:border-blue-500 focus:ring-2 focus:ring-blue-500/10 outline-none transition-all">
+                            <button onclick="loadFromUrl()" class="bg-blue-600 hover:bg-blue-700 px-5 rounded-xl text-[11px] font-bold text-white uppercase transition-all">Go</button>
+                        </div>
+                    </div>
+
+                    <div class="flex gap-2">
+                        <button onclick="loadDemo()" class="flex-1 bg-slate-50 hover:bg-slate-100 py-3 rounded-xl text-[10px] font-bold text-slate-600 uppercase tracking-widest border border-slate-200 transition-all">Test Demo</button>
+                        <label class="flex-1 bg-slate-50 hover:bg-slate-100 py-3 rounded-xl text-[10px] font-bold text-slate-600 uppercase tracking-widest border border-slate-200 transition-all cursor-pointer text-center">
+                            Local File
+                            <input type="file" class="hidden" accept="video/*" onchange="handleFileUpload(event)">
+                        </label>
+                    </div>
+
+                    <div class="pt-6 border-t border-slate-100">
+                        <div class="flex justify-between mb-3">
+                            <label class="text-[11px] font-bold text-slate-500 uppercase tracking-widest">Confidence</label>
+                            <span id="senseVal" class="text-xs font-bold text-blue-600">High</span>
+                        </div>
+                        <input id="senseSlider" type="range" min="1" max="40" value="5" class="w-full h-1.5 bg-slate-200 rounded-full appearance-none cursor-pointer control-knob">
+                    </div>
+
+                    <div class="pt-2">
+                        <div class="flex justify-between mb-3">
+                            <label class="text-[11px] font-bold text-slate-500 uppercase tracking-widest">Blur Radius</label>
+                            <span id="blurVal" class="text-xs font-bold text-blue-600">100</span>
+                        </div>
+                        <input id="blurSlider" type="range" min="30" max="300" value="100" class="w-full h-1.5 bg-slate-200 rounded-full appearance-none cursor-pointer control-knob">
+                    </div>
+
+                    <div id="errorArea" class="error-log">
+                        <p class="text-[10px] font-bold text-red-600 uppercase tracking-widest mb-2">Neural Link Failed</p>
+                        <p id="errorDetails" class="text-[10px] text-red-800 font-mono break-all leading-relaxed"></p>
+                        <button onclick="copyError()" class="mt-3 w-full py-2 bg-red-600 text-white text-[9px] font-bold uppercase tracking-widest rounded-lg hover:bg-red-700 transition-all">Copy Debug Data</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="player-card p-6 flex items-center justify-between">
+                <div class="flex items-center gap-3">
+                    <div id="statusIndicator" class="status-glow idle"></div>
+                    <span class="text-[11px] font-bold uppercase tracking-widest text-slate-500" id="statusText">System Ready</span>
+                </div>
+                <div id="activeModelTag" class="text-[10px] font-bold text-blue-600/60 uppercase tracking-widest">Lite Engine</div>
+            </div>
+        </div>
+
+        <!-- Player Area -->
+        <div class="lg:col-span-8 space-y-6">
+            <div id="playerWrapper" class="video-wrapper group">
+                <!-- Branding icon watermark inside player -->
+                <div class="brand-watermark opacity-0 group-[.playing]:opacity-60 transition-opacity">
+                    <div class="bg-blue-600/80 p-2 rounded-xl backdrop-blur-sm shadow-lg">
+                        <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/></svg>
+                    </div>
+                </div>
+
+                <video id="inputVideo" loop muted playsinline crossorigin="anonymous"></video>
+                <canvas id="outputCanvas"></canvas>
+                
+                <div id="playOverlay" class="absolute inset-0 flex items-center justify-center bg-black/40 cursor-pointer hidden">
+                    <div class="bg-white p-6 rounded-full shadow-2xl hover:scale-110 transition-all">
+                        <svg class="w-8 h-8 text-blue-600 fill-current" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+                    </div>
+                </div>
+
+                <div class="player-controls">
+                    <div class="mb-4">
+                        <input type="range" id="seekBar" value="0" step="0.1" class="seek-bar">
+                    </div>
+                    <div class="flex items-center justify-between">
+                        <div class="flex items-center gap-4">
+                            <button id="togglePlayBtn" class="control-btn">
+                                <svg id="playIcon" class="w-5 h-5 fill-current" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+                                <svg id="pauseIcon" class="w-5 h-5 fill-current hidden" viewBox="0 0 24 24"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg>
+                            </button>
+                            <div class="text-[11px] font-bold text-white tracking-tight">
+                                <span id="currentTime">00:00</span> / <span id="durationTime">00:00</span>
+                            </div>
+                        </div>
+                        <div class="text-[10px] font-bold text-blue-400 uppercase tracking-widest">Neural Live Feed</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+                <div class="player-card p-5 text-center border-b-4 border-transparent hover:border-blue-500 transition-all">
+                    <p class="text-[10px] font-bold text-slate-400 uppercase mb-1 tracking-widest">Render</p>
+                    <p id="fpsCounter" class="text-sm font-bold text-slate-900 tracking-tight">0 FPS</p>
+                </div>
+                <div class="player-card p-5 text-center border-b-4 border-transparent hover:border-blue-500 transition-all">
+                    <p class="text-[10px] font-bold text-slate-400 uppercase mb-1 tracking-widest">Active</p>
+                    <p id="faceCount" class="text-sm font-bold text-blue-600 tracking-tight">0 FACES</p>
+                </div>
+                <div class="player-card p-5 text-center border-b-4 border-transparent hover:border-blue-500 transition-all">
+                    <p class="text-[10px] font-bold text-slate-400 uppercase mb-1 tracking-widest">Latent</p>
+                    <p id="processTime" class="text-sm font-bold text-slate-900 tracking-tight">0ms</p>
+                </div>
+                <div class="player-card p-5 text-center border-b-4 border-transparent hover:border-green-500 transition-all">
+                    <p class="text-[10px] font-bold text-slate-400 uppercase mb-1 tracking-widest">Mode</p>
+                    <p class="text-sm font-bold text-green-600 tracking-tight uppercase italic">Secure</p>
+                </div>
+            </div>
+
+            <!-- SEO Descriptive Section -->
+            <div class="player-card p-8">
+                <h2 class="text-lg font-bold text-slate-900 mb-4">About Faceblur</h2>
+                <p class="text-slate-600 text-sm leading-relaxed mb-4">
+                    Faceblur is a professional <strong class="text-blue-600 font-semibold">tool to blur faces from videos</strong> directly in your browser. By utilizing advanced on-device neural networks, it ensures your sensitive video data never leaves your machine. 
+                </p>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs text-slate-500 font-medium uppercase tracking-wide">
+                    <div class="flex items-center gap-2">
+                        <svg class="w-4 h-4 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"/></svg>
+                        Privacy-First Architecture
+                    </div>
+                    <div class="flex items-center gap-2">
+                        <svg class="w-4 h-4 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"/></svg>
+                        Real-time AI Processing
+                    </div>
+                    <div class="flex items-center gap-2">
+                        <svg class="w-4 h-4 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"/></svg>
+                        Supports Local & Remote Files
+                    </div>
+                    <div class="flex items-center gap-2">
+                        <svg class="w-4 h-4 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"/></svg>
+                        Customizable Blur intensity
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script type="module">
+        import { FaceDetector, FaceLandmarker, FilesetResolver } from "https://cdn.jsdelivr.net/npm/@mediapipe/tasks-vision@0.10.3";
+
+        const video = document.getElementById("inputVideo");
+        const canvas = document.getElementById("outputCanvas");
+        const playerWrapper = document.getElementById("playerWrapper");
+        const ctx = canvas.getContext("2d", { alpha: false });
+        
+        const togglePlayBtn = document.getElementById('togglePlayBtn');
+        const playIcon = document.getElementById('playIcon');
+        const pauseIcon = document.getElementById('pauseIcon');
+        const seekBar = document.getElementById('seekBar');
+        const currentTimeText = document.getElementById('currentTime');
+        const durationTimeText = document.getElementById('durationTime');
+        const errorArea = document.getElementById('errorArea');
+        const errorDetails = document.getElementById('errorDetails');
+
+        let detector;
+        let visionResolver;
+        let isReady = false;
+        let blurSize = 100;
+        let sensitivity = 0.05;
+        let currentModel = 'short_range';
+        let lastTimestamp = -1;
+        let lastFpsUpdate = 0;
+        let frameCount = 0;
+        
+        let trackedFaces = [];
+        const GHOST_DURATION = 800; 
+        const SMOOTHING_FACTOR = 0.45;
+
+        async function initAI(modelType = 'short_range') {
+            isReady = false;
+            errorArea.style.display = 'none';
+            document.getElementById('statusIndicator').className = 'status-glow loading';
+            document.getElementById('statusText').innerText = `Syncing...`;
+
+            try {
+                if (!visionResolver) {
+                    visionResolver = await FilesetResolver.forVisionTasks(
+                        "https://cdn.jsdelivr.net/npm/@mediapipe/tasks-vision@0.10.3/wasm"
+                    );
+                }
+                
+                if (detector) {
+                    detector.close();
+                    detector = null;
+                }
+
+                const modelPath = modelType === 'short_range' 
+                    ? "https://storage.googleapis.com/mediapipe-models/face_detector/blaze_face_short_range/float16/1/blaze_face_short_range.tflite"
+                    : "https://storage.googleapis.com/mediapipe-models/face_landmarker/face_landmarker/float16/1/face_landmarker.task";
+
+                const baseOptions = {
+                    modelAssetPath: modelPath,
+                    delegate: "GPU"
+                };
+
+                try {
+                    if (modelType === 'short_range') {
+                        detector = await FaceDetector.createFromOptions(visionResolver, {
+                            baseOptions, runningMode: "VIDEO", minDetectionConfidence: sensitivity
+                        });
+                    } else {
+                        detector = await FaceLandmarker.createFromOptions(visionResolver, {
+                            baseOptions, runningMode: "VIDEO", numFaces: 5, minFaceDetectionConfidence: sensitivity
+                        });
+                    }
+                } catch (gpuError) {
+                    baseOptions.delegate = "CPU";
+                    if (modelType === 'short_range') {
+                        detector = await FaceDetector.createFromOptions(visionResolver, {
+                            baseOptions, runningMode: "VIDEO", minDetectionConfidence: sensitivity
+                        });
+                    } else {
+                        detector = await FaceLandmarker.createFromOptions(visionResolver, {
+                            baseOptions, runningMode: "VIDEO", numFaces: 5, minFaceDetectionConfidence: sensitivity
+                        });
+                    }
+                }
+                
+                isReady = true;
+                currentModel = modelType;
+                document.getElementById('loading').style.display = 'none';
+                document.getElementById('statusIndicator').className = 'status-glow active';
+                document.getElementById('statusText').innerText = 'Shield Active';
+                document.getElementById('activeModelTag').innerText = modelType === 'short_range' ? 'Lite Engine' : 'Pro Engine';
+                
+                if (lastTimestamp === -1) requestAnimationFrame(loop);
+            } catch (err) {
+                console.error("Neural Sync Error Details:", err);
+                document.getElementById('statusText').innerText = 'Syncing Error';
+                document.getElementById('statusIndicator').className = 'status-glow idle';
+                errorArea.style.display = 'block';
+                errorDetails.innerText = `[${modelType}] ${err.message || 'Handshake failed'}. Verify connectivity.`;
+            }
+        }
+
+        window.copyError = () => {
+            navigator.clipboard.writeText(errorDetails.innerText).then(() => alert("Error data copied."));
+        }
+
+        function formatTime(seconds) {
+            const m = Math.floor(seconds / 60);
+            const s = Math.floor(seconds % 60);
+            return `${m.toString().padStart(2, '0')}:${s.toString().padStart(2, '0')}`;
+        }
+
+        function loop(now) {
+            frameCount++;
+            if (now - lastFpsUpdate >= 1000) {
+                document.getElementById('fpsCounter').innerText = frameCount + ' FPS';
+                frameCount = 0;
+                lastFpsUpdate = now;
+            }
+
+            if (video.readyState >= 2) {
+                if (canvas.width !== video.videoWidth) {
+                    canvas.width = video.videoWidth;
+                    canvas.height = video.videoHeight;
+                    playerWrapper.classList.toggle('portrait', video.videoHeight > video.videoWidth);
+                    durationTimeText.innerText = formatTime(video.duration);
+                    seekBar.max = video.duration;
+                }
+
+                currentTimeText.innerText = formatTime(video.currentTime);
+                seekBar.value = video.currentTime;
+
+                ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
+
+                const videoTimeMs = video.currentTime * 1000;
+                if (isReady && video.currentTime !== lastTimestamp && !video.paused) {
+                    const start = performance.now();
+                    
+                    try {
+                        let newDetections = [];
+                        if (currentModel === 'short_range') {
+                            const results = detector.detectForVideo(video, videoTimeMs);
+                            newDetections = results.detections.map(d => d.boundingBox);
+                        } else {
+                            const results = detector.detectForVideo(video, videoTimeMs);
+                            if (results.faceLandmarks) {
+                                newDetections = results.faceLandmarks.map(landmarks => {
+                                    const xs = landmarks.map(p => p.x * video.videoWidth);
+                                    const ys = landmarks.map(p => p.y * video.videoHeight);
+                                    const minX = Math.min(...xs);
+                                    const minY = Math.min(...ys);
+                                    return { 
+                                        originX: minX, 
+                                        originY: minY, 
+                                        width: Math.max(...xs) - minX, 
+                                        height: Math.max(...ys) - minY 
+                                    };
+                                });
+                            }
+                        }
+                        
+                        lastTimestamp = video.currentTime;
+                        
+                        if (newDetections.length > 0) {
+                            newDetections.forEach((b, i) => {
+                                const existing = trackedFaces[i];
+                                if (existing) {
+                                    existing.x += (b.originX - existing.x) * SMOOTHING_FACTOR;
+                                    existing.y += (b.originY - existing.y) * SMOOTHING_FACTOR;
+                                    existing.w += (b.width - existing.w) * SMOOTHING_FACTOR;
+                                    existing.h += (b.height - existing.h) * SMOOTHING_FACTOR;
+                                    existing.lastSeen = now;
+                                } else {
+                                    trackedFaces.push({
+                                        x: b.originX, y: b.originY, w: b.width, h: b.height,
+                                        vx: 0, vy: 0, lastSeen: now
+                                    });
+                                }
+                            });
+                            if (trackedFaces.length > newDetections.length) trackedFaces.length = newDetections.length;
+                        }
+                    } catch (e) {}
+                    document.getElementById('processTime').innerText = Math.round(performance.now() - start) + 'ms';
+                }
+
+                trackedFaces = trackedFaces.filter(f => now - f.lastSeen < GHOST_DURATION);
+
+                document.getElementById('faceCount').innerText = trackedFaces.length + ' FACES';
+                if (trackedFaces.length > 0) {
+                    trackedFaces.forEach(face => {
+                        const expansionX = 2.0;
+                        const expansionY = 2.4;
+                        const w = face.w * expansionX;
+                        const h = face.h * expansionY;
+                        const x = face.x + (face.w / 2) - (w / 2);
+                        const y = face.y + (face.h / 2) - (h / 2);
+
+                        ctx.save();
+                        ctx.beginPath();
+                        ctx.ellipse(x + w/2, y + h/2, w/2, h/2, 0, 0, Math.PI * 2);
+                        ctx.clip();
+                        ctx.filter = `blur(${blurSize}px)`;
+                        ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
+                        ctx.restore();
+                    });
+                }
+            }
+            requestAnimationFrame(loop);
+        }
+
+        function togglePlay() {
+            if (video.paused) {
+                video.play();
+                playIcon.classList.add('hidden');
+                pauseIcon.classList.remove('hidden');
+                document.getElementById('playOverlay').classList.add('hidden');
+                playerWrapper.classList.add('playing');
+            } else {
+                video.pause();
+                playIcon.classList.remove('hidden');
+                pauseIcon.classList.add('hidden');
+                playerWrapper.classList.remove('playing');
+            }
+        }
+
+        togglePlayBtn.onclick = togglePlay;
+        canvas.onclick = togglePlay;
+        document.getElementById('playOverlay').onclick = togglePlay;
+
+        seekBar.oninput = (e) => {
+            video.currentTime = e.target.value;
+            trackedFaces = []; 
+        };
+
+        window.changeModel = async (type) => {
+            if (currentModel === type) return;
+            const btnShort = document.getElementById('btn-short');
+            const btnFull = document.getElementById('btn-full');
+            
+            if (type === 'short_range') {
+                btnShort.className = 'py-2.5 rounded-lg text-[10px] font-bold uppercase tracking-widest transition-all bg-white text-blue-600 shadow-sm';
+                btnFull.className = 'py-2.5 rounded-lg text-[10px] font-bold uppercase tracking-widest transition-all text-slate-500 hover:text-slate-700';
+            } else {
+                btnFull.className = 'py-2.5 rounded-lg text-[10px] font-bold uppercase tracking-widest transition-all bg-white text-blue-600 shadow-sm';
+                btnShort.className = 'py-2.5 rounded-lg text-[10px] font-bold uppercase tracking-widest transition-all text-slate-500 hover:text-slate-700';
+            }
+            await initAI(type);
+        };
+
+        window.loadFromUrl = () => {
+            const url = document.getElementById('urlInput').value.trim();
+            if (url) playMedia(url);
+        };
+
+        window.loadDemo = () => {
+            playMedia("https://storage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4");
+        };
+
+        window.handleFileUpload = (e) => {
+            const file = e.target.files[0];
+            if (file) playMedia(URL.createObjectURL(file));
+        };
+
+        function playMedia(src) {
+            trackedFaces = [];
+            video.src = src;
+            video.load();
+            video.play().then(() => {
+                document.getElementById('playOverlay').classList.add('hidden');
+                playIcon.classList.add('hidden');
+                pauseIcon.classList.remove('hidden');
+                playerWrapper.classList.add('playing');
+            }).catch(() => {
+                document.getElementById('playOverlay').classList.remove('hidden');
+                playerWrapper.classList.remove('playing');
+            });
+        }
+
+        document.getElementById('blurSlider').oninput = (e) => {
+            blurSize = e.target.value;
+            document.getElementById('blurVal').innerText = blurSize;
+        };
+
+        document.getElementById('senseSlider').oninput = async (e) => {
+            const val = parseInt(e.target.value);
+            sensitivity = val / 100;
+            document.getElementById('senseVal').innerText = val < 8 ? 'Extreme' : val < 15 ? 'High' : 'Normal';
+            if (detector && currentModel === 'short_range') await detector.setOptions({ minDetectionConfidence: sensitivity });
+            if (detector && currentModel === 'full_range') await detector.setOptions({ minFaceDetectionConfidence: sensitivity });
+        };
+
+        initAI('short_range');
+    </script>
+</body>
+</html>

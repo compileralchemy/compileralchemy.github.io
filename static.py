@@ -299,6 +299,18 @@ def gen_journey():
         pass
     generate('pages/journey.html', join(settings.OUTPUT_FOLDER, 'journey', 'index.html'), **context)
 
+
+def gen_faceblur():
+    context.update({
+        'path': '../'
+    })
+    try:
+        os.mkdir(os.path.join(settings.OUTPUT_FOLDER, 'face-blur'))
+    except Exception as e:
+        pass
+    generate('faceblur.html', join(settings.OUTPUT_FOLDER, 'face-blur', 'index.html'), **context)
+
+
 def main(args):
     def gen():
         generate('index.html', join(settings.OUTPUT_FOLDER, 'index.html'), **context)
@@ -316,6 +328,7 @@ def main(args):
         gen_talks()
         gen_journey()
         gen_blog()
+        gen_faceblur()
 
     if len(args) > 1 and args[1] == '--server':
         app = Flask(__name__)
