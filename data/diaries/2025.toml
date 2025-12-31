@@ -39,6 +39,7 @@ The sample the hacker leaked included millions of location data points. Areas co
 
 The data was sourced from some apps including:
 
+```
 com . facebook . katana (Facebook) 
 com . instagram . android (Instagram)
 com . whatsapp (WhatsApp)
@@ -59,6 +60,7 @@ com . netflix . mediaclient (Netflix)
 com . tinder (Tinder)
 com . microsoft . office . outlook (Outlook)
 com . discord (Discord)
+```
 
 It's a hard jolt to know that our favourite apps can be incredibly dangerous if conditions meet.
 
