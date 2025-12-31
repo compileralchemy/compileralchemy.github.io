@@ -17,6 +17,11 @@ import toml
 
 import settings
 
+from pathlib import Path
+
+def extract_year(path: str) -> int:
+    return int(Path(path).stem)
+
 import re
 def titlecase(s):
     return re.sub(r"[A-Za-z]+('[A-Za-z]+)?",
@@ -202,6 +207,38 @@ def gen_books():
         'https://github.com/compileralchemy/compileralchemy.github.io/blob/source/data/books/freelancing_codex.md',)
 
 def gen_diaries():
+    gen_diary('./data/diaries/2019.toml',
+        '../../assets/diaries/2019.png',
+        "Diary 2019",
+        '0.1.0',
+        '2019',
+        'https://www.compileralchemy.com/assets/diaries/2019.pdf',
+        'https://github.com/compileralchemy/compileralchemy.github.io/blob/source/data/diaries/2023.toml',
+        weasy=settings.book_generate)
+    gen_diary('./data/diaries/2020.toml',
+        '../../assets/diaries/2020.png',
+        "Diary 2020",
+        '0.1.0',
+        '2020',
+        'https://www.compileralchemy.com/assets/diaries/2020.pdf',
+        'https://github.com/compileralchemy/compileralchemy.github.io/blob/source/data/diaries/2023.toml',
+        weasy=settings.book_generate)
+    gen_diary('./data/diaries/2021.toml',
+        '../../assets/diaries/2021.png',
+        "Diary 2021",
+        '0.1.0',
+        '2021',
+        'https://www.compileralchemy.com/assets/diaries/2021.pdf',
+        'https://github.com/compileralchemy/compileralchemy.github.io/blob/source/data/diaries/2023.toml',
+        weasy=settings.book_generate)
+    gen_diary('./data/diaries/2022.toml',
+        '../../assets/diaries/2022.png',
+        "Diary 2022",
+        '0.1.0',
+        '2022',
+        'https://www.compileralchemy.com/assets/diaries/2022.pdf',
+        'https://github.com/compileralchemy/compileralchemy.github.io/blob/source/data/diaries/2023.toml',
+        weasy=settings.book_generate)
     gen_diary('./data/diaries/2023.toml',
         '../../assets/diaries/2023.png',
         "Diary 2023",
@@ -216,9 +253,19 @@ def gen_diaries():
         "Diary 2024",
         '0.1.0',
         '2024',
-        'https://www.compileralchemy.com/assets/diaries/2023.pdf',
+        'https://www.compileralchemy.com/assets/diaries/2024.pdf',
         'https://github.com/compileralchemy/compileralchemy.github.io/blob/source/data/diaries/2023.toml',
         weasy=settings.book_generate)
+
+    gen_diary('./data/diaries/2025.toml',
+        '../../assets/diaries/2025.png',
+        "Diary 2025",
+        '0.1.0',
+        '2025',
+        'https://www.compileralchemy.com/assets/diaries/2025.pdf',
+        'https://github.com/compileralchemy/compileralchemy.github.io/blob/source/data/diaries/2023.toml',
+        weasy=settings.book_generate)
+
     gen_diary('./data/diaries/silicon-valley.toml',
         '../../assets/diaries/silicon_valley.png',
         "Silicon Valley Diary",
@@ -230,7 +277,7 @@ def gen_diaries():
     
 
 def gen_blog():
-    data = ['./data/diaries/2024.toml', './data/diaries/2023.toml', './data/diaries/2022.toml',
+    data = ['./data/diaries/2025.toml', './data/diaries/2024.toml', './data/diaries/2023.toml', './data/diaries/2022.toml',
             './data/diaries/2021.toml',
             './data/diaries/2020.toml', './data/diaries/2019.toml']
     try:
@@ -240,6 +287,7 @@ def gen_blog():
     title_slug = []
     for source in data:
         toml_data = toml.load(source)
+        current_year = extract_year(source)
         
         for i, elem in enumerate(toml_data['elements'][::-1]):
             title = elem['title']
@@ -248,7 +296,7 @@ def gen_blog():
             content_string = elem['body']
             content = md_to_html(elem['body'])
 
-            title_slug.append([title, slug])
+            title_slug.append([title, slug, current_year])
 
             try:
                 os.mkdir(os.path.join(settings.OUTPUT_FOLDER, 'blog', slug))
@@ -261,7 +309,7 @@ def gen_blog():
                 'content': content,
                 'content_string': content_string
             })
-            generate('blog.html', join(settings.OUTPUT_FOLDER, 'blog', slug, 'index.html'), **context)
+            # generate('blog.html', join(settings.OUTPUT_FOLDER, 'blog', slug, 'index.html'), **context)
     
     context.update({
                 'settings': settings,

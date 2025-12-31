@@ -26,7 +26,7 @@
             {%for data in title_slug%}
 
                 <span class="url p-0">{{str(1+len(title_slug)-loop.index).zfill(3)}}.
-                     <a href="{{ data[1] }}">{{ data[0] }}</a></span>
+                     <a href="/diaries/{{ data[2] }}/#{{ data[0].replace(' ', '-') }}">{{ data[0] }}</a></span>
 
             {%endfor%}
             <br>
