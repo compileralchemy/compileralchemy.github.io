@@ -29,6 +29,26 @@
                 &larr; Return to main site
             </a>
         </div>
+        <div class="mb-8">
+            <div class="relative max-w-md mx-auto">
+                <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                    <svg class="h-5 w-5 text-slate-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"
+                        fill="currentColor" aria-hidden="true">
+                        <path fill-rule="evenodd"
+                            d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z"
+                            clip-rule="evenodd" />
+                    </svg>
+                </div>
+                <input type="text" id="tableSearch"
+                    class="block w-full pl-10 pr-3 py-3 border border-slate-200 rounded-xl leading-5 bg-white placeholder-slate-400 focus:outline-none focus:bg-white focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 sm:text-sm shadow-sm transition-all duration-200"
+                    placeholder=" Try 29-06-2025" autocomplete="off">
+            </div>
+            <div id="converterResult"
+                class="max-w-md mx-auto mt-4 text-center hidden p-4 bg-blue-50/80 border border-blue-100 rounded-2xl">
+                <p id="resultText" class="text-slate-800 font-medium"></p>
+            </div>
+        </div>
+
         <div class="bg-white rounded-3xl shadow-xl shadow-slate-200/60 overflow-hidden border border-slate-100">
             <div class="p-6 border-b border-slate-100 bg-slate-50/50 flex justify-between items-center">
                 <div class="flex items-center gap-3">
@@ -105,4 +125,85 @@
 
     </div>
 </div>
+
+<script>
+    const monthsData = {{ months_data_json | safe }};
+
+    function parseDate(dateStr) {
+        const parts = dateStr.match(/(\d{1,2})[-/](\d{1,2})[-/](\d{4})/);
+        if (!parts) return null;
+
+        const day = parseInt(parts[1], 10);
+        const month = parseInt(parts[2], 10) - 1; // JS months 0-11
+        const year = parseInt(parts[3], 10);
+
+        if (isNaN(day) || isNaN(month) || isNaN(year)) return null;
+        return new Date(year, month, day);
+    }
+
+    function getOrdinal(n) {
+        const s = ["th", "st", "nd", "rd"];
+        const v = n % 100;
+        return n + (s[(v - 20) % 10] || s[v] || s[0]);
+    }
+
+    const searchInput = document.getElementById('tableSearch');
+    const resultDisplay = document.getElementById('converterResult');
+    const resultText = document.getElementById('resultText');
+
+    searchInput.addEventListener('keyup', function () {
+        const inputVal = this.value.trim();
+
+        // 1. Table Filtering
+        const searchText = inputVal.toLowerCase();
+        const table = document.querySelector('table');
+        const rows = table.querySelectorAll('tbody tr');
+        rows.forEach(row => {
+            const text = row.textContent.toLowerCase();
+            row.style.display = text.includes(searchText) ? '' : 'none';
+        });
+
+        // 2. Date Conversion Logic
+        const inputDate = parseDate(inputVal);
+
+        if (!inputDate) {
+            if (resultDisplay) resultDisplay.classList.add('hidden');
+            return;
+        }
+
+        let bestRecord = null;
+        let bestRecordDate = null;
+
+        monthsData.forEach(record => {
+            const recordDate = parseDate(record.date);
+            if (!recordDate) return;
+
+            if (recordDate <= inputDate) {
+                if (!bestRecordDate || recordDate > bestRecordDate) {
+                    bestRecordDate = recordDate;
+                    bestRecord = record;
+                }
+            }
+        });
+
+        if (bestRecord && resultDisplay) {
+            const diffTime = Math.abs(inputDate - bestRecordDate);
+            const diffDays = Math.floor(diffTime / (1000 * 60 * 60 * 24));
+            const islamicDay = 1 + diffDays;
+            const monthName = bestRecord.month_name;
+            const year = bestRecord.year;
+
+            resultText.innerHTML = `
+                <span class="block text-xs font-bold text-slate-400 uppercase tracking-widest mb-1">Islamic Date</span>
+                <span class="text-xl font-bold text-blue-700">
+                    ${getOrdinal(islamicDay)} ${monthName} ${year}
+                </span>
+                ${islamicDay > 30 ? '<span class="block text-xs text-orange-500 mt-1 font-medium">(Estimated - Potential month gap)</span>' : ''}
+            `;
+            resultDisplay.classList.remove('hidden');
+        } else if (resultDisplay) {
+            resultDisplay.classList.add('hidden');
+        }
+    });
+</script>
 {% endblock %}
