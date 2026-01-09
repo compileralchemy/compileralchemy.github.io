@@ -14,6 +14,7 @@ from jamstack.api.template import base_context
 from livereload import Server
 import markdown
 import toml
+import json
 
 import settings
 
@@ -348,6 +349,7 @@ def gen_journey():
     generate('pages/journey.html', join(settings.OUTPUT_FOLDER, 'journey', 'index.html'), **context)
 
 
+
 def gen_faceblur():
     context.update({
         'path': '../'
@@ -357,6 +359,74 @@ def gen_faceblur():
     except Exception as e:
         pass
     generate('faceblur.html', join(settings.OUTPUT_FOLDER, 'face-blur', 'index.html'), **context)
+
+ISLAMIC_MONTHS = {
+    "01": "Muharram",
+    "02": "Safar",
+    "03": "Rabi' al-awwal",
+    "04": "Rabi' al-thani",
+    "05": "Jumada al-awwal",
+    "06": "Jumada al-thani",
+    "07": "Rajab",
+    "08": "Sha'ban",
+    "09": "Ramadan",
+    "10": "Shawwal",
+    "11": "Dhu al-Qi'dah",
+    "12": "Dhu al-Hijjah"
+}
+
+def gen_islamic_months():
+    context.update({
+        'path': '../'
+    })
+    
+    months_data = []
+    
+    try:
+        with open('data/months.json', 'r') as f:
+            data = json.load(f)
+            
+            # Navigate structure: months -> year -> month_num -> date
+            if 'months' in data:
+                for year, year_data in data['months'].items():
+                    for month_num, month_info in year_data.items():
+                        month_name = ISLAMIC_MONTHS.get(month_num, f"Month {month_num}")
+                        
+                        date_str = ""
+                        src_link = ""
+                        
+                        if isinstance(month_info, dict):
+                            date_str = month_info.get('date', '')
+                            src_link = month_info.get('src', '')
+                        else:
+                            date_str = str(month_info)
+
+                        months_data.append({
+                            'year': year,
+                            'month_num': month_num,
+                            'month_name': month_name,
+                            'date': date_str,
+                            'src': src_link
+                        })
+                        
+        # Sort by year (desc) then month (desc)
+        months_data.sort(key=lambda x: (x['year'], x['month_num']), reverse=True)
+        
+    except Exception as e:
+        print(f"Error processing months.json: {e}")
+        pass
+
+    islamic_context = context.copy()
+    islamic_context.update({
+        'months_data': months_data
+    })
+
+    try:
+        os.mkdir(os.path.join(settings.OUTPUT_FOLDER, 'islamic-months-mauritius'))
+    except Exception as e:
+        pass
+        
+    generate('islamic-months-mauritius.html', join(settings.OUTPUT_FOLDER, 'islamic-months-mauritius', 'index.html'), **islamic_context)
 
 
 def main(args):
@@ -377,6 +447,7 @@ def main(args):
         gen_journey()
         gen_blog()
         gen_faceblur()
+        gen_islamic_months()
 
     if len(args) > 1 and args[1] == '--server':
         app = Flask(__name__)
