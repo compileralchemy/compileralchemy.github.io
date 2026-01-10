@@ -67,7 +67,9 @@
                     </div>
                     <h2 class="text-lg font-bold text-slate-800">Monthly Sighting Records</h2>
                 </div>
-                <!-- <span class="bg-green-100 text-green-700 text-xs font-bold px-3 py-1.5 rounded-full uppercase tracking-wide">Updated 2025</span> -->
+                <span
+                    class="bg-emerald-100 text-emerald-700 text-xs font-bold px-3 py-1.5 rounded-full uppercase tracking-wide">Records
+                    go back {{ years_count }} Islamic years</span>
             </div>
 
             <div class="overflow-x-auto">
@@ -111,6 +113,14 @@
                                 {% endif %}
                             </td>
                         </tr>
+                        {% if not loop.last and months_data[loop.index].year != record.year %}
+                        <tr class="bg-slate-50">
+                            <td colspan="4" class="px-6 py-3 border-y border-slate-200">
+                                <span class="text-xs font-bold text-slate-400 uppercase tracking-widest">End of {{
+                                    record.year }}</span>
+                            </td>
+                        </tr>
+                        {% endif %}
                         {% else %}
                         <tr>
                             <td colspan="3" class="px-6 py-8 text-center text-slate-500 italic">

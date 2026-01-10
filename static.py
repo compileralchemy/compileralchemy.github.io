@@ -419,7 +419,8 @@ def gen_islamic_months():
     islamic_context = context.copy()
     islamic_context.update({
         'months_data': months_data,
-        'months_data_json': json.dumps(months_data)
+        'months_data_json': json.dumps(months_data),
+        'years_count': len(data.get('months', {}))
     })
 
     try:
