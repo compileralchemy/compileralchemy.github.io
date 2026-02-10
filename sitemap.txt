@@ -46,7 +46,7 @@ https://www.compileralchemy.com/blog/original-memory/
 https://www.compileralchemy.com/blog/documention-is-also-about-documenting-internals/
 https://www.compileralchemy.com/blog/tech-bros-opacity-&-marriage/
 https://www.compileralchemy.com/blog/kvm-&-redhat/
-https://www.compileralchemy.com/blog/the-​google-developer-experts​-is-a-thoroughly-useless-program/
+https://www.compileralchemy.com/blog/the-google-developer-experts-is-a-thoroughly-useless-program/
 https://www.compileralchemy.com/blog/googles-nose-dive-further-accentuates/
 https://www.compileralchemy.com/blog/google-killed-by-google/
 https://www.compileralchemy.com/blog/google-customers-fund-squarespace/
