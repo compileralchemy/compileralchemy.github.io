@@ -310,7 +310,7 @@ def gen_blog():
                 'content': content,
                 'content_string': content_string
             })
-            # generate('blog.html', join(settings.OUTPUT_FOLDER, 'blog', slug, 'index.html'), **context)
+            generate('blog.html', join(settings.OUTPUT_FOLDER, 'blog', slug, 'index.html'), **context)
     
     context.update({
                 'settings': settings,
@@ -431,6 +431,124 @@ def gen_islamic_months():
     generate('islamic-months-mauritius.html', join(settings.OUTPUT_FOLDER, 'islamic-months-mauritius', 'index.html'), **islamic_context)
 
 
+def gen_seo():
+    urls = [
+        '/',
+        '/alfa-podcast/',
+        '/blog/',
+        '/articles/',
+        '/talks/',
+        '/journey/',
+        '/face-blur/',
+        '/islamic-months-mauritius/',
+        '/books/sqlite-internals/',
+        '/books/freelancing-codex/',
+        '/diaries/2019/',
+        '/diaries/2020/',
+        '/diaries/2021/',
+        '/diaries/2022/',
+        '/diaries/2023/',
+        '/diaries/2024/',
+        '/diaries/2025/',
+        '/diaries/silicon-valley/',
+    ]
+
+    # Blog posts
+    blog_data = ['./data/diaries/2025.toml', './data/diaries/2024.toml', './data/diaries/2023.toml', './data/diaries/2022.toml',
+            './data/diaries/2021.toml',
+            './data/diaries/2020.toml', './data/diaries/2019.toml']
+    for source in blog_data:
+        if os.path.exists(source):
+            toml_data = toml.load(source)
+            for elem in toml_data['elements']:
+                title = elem['title']
+                slug = title.casefold().replace(' ', '-').replace('/', '').replace("'", '').replace('?',
+                         '').replace('---', '-').replace(':', '').replace(',', '')
+                urls.append(f'/blog/{slug}/')
+
+    # robots.txt
+    robots_content = """User-agent: *
+Allow: /
+
+User-agent: OpenAI
+Disallow: /
+
+User-agent: GPTBot
+Disallow: /
+
+# Disallow Google AI crawlers
+User-agent: Bard
+Disallow: /
+
+# Disallow Anthropic AI
+User-agent: Claude
+Disallow: /
+
+# Disallow Microsoft AI crawlers
+User-agent: BingAI
+Disallow: /
+
+# Disallow CommonCrawl (often used by AI models for datasets)
+User-agent: CCBot
+Disallow: /
+
+# Disallow Neeva AI (deprecated but still included for completeness)
+User-agent: NeevaBot
+Disallow: /
+
+# Disallow Baidu AI
+User-agent: Baiduspider
+Disallow: /
+
+# Disallow Yandex AI
+User-agent: YandexBot
+Disallow: /
+
+# Disallow other common web crawlers used for AI data collection
+User-agent: DuckDuckGo-Bot
+Disallow: /
+
+User-agent: AhrefsBot
+Disallow: /
+
+User-agent: MJ12bot
+Disallow: /
+
+User-agent: SemrushBot
+Disallow: /
+
+User-agent: DotBot
+Disallow: /
+
+User-agent: BLEXBot
+Disallow: /
+
+User-agent: PetalBot
+Disallow: /
+
+Sitemap: https://compileralchemy.com/sitemap.xml
+Sitemap: https://compileralchemy.com/sitemap.txt"""
+    
+    with open(join(settings.OUTPUT_FOLDER, 'robots.txt'), 'w') as f:
+        f.write(robots_content)
+
+    # sitemap.txt
+    with open(join(settings.OUTPUT_FOLDER, 'sitemap.txt'), 'w') as f:
+        for url in urls:
+            f.write(f"{settings.BASE_URL}{url}\n")
+
+    # sitemap.xml
+    sitemap_xml = ['<?xml version="1.0" encoding="UTF-8"?>', '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">']
+    for url in urls:
+        sitemap_xml.append('  <url>')
+        sitemap_xml.append(f'    <loc>{settings.BASE_URL}{url}</loc>')
+        sitemap_xml.append('  </url>')
+    sitemap_xml.append('</urlset>')
+
+    with open(join(settings.OUTPUT_FOLDER, 'sitemap.xml'), 'w') as f:
+        f.write('\n'.join(sitemap_xml))
+
+
 def main(args):
     def gen():
         generate('index.html', join(settings.OUTPUT_FOLDER, 'index.html'), **context)
@@ -450,6 +568,7 @@ def main(args):
         gen_blog()
         gen_faceblur()
         gen_islamic_months()
+        gen_seo()
 
     if len(args) > 1 and args[1] == '--server':
         app = Flask(__name__)

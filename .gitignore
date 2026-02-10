@@ -137,3 +137,4 @@ docs/*
 !docs/slides/
 !docs/style.css
 !docs/bulma-timeline.min.css
+!docs/robots.txt

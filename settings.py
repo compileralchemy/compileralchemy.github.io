@@ -1,4 +1,5 @@
 OUTPUT_FOLDER = 'docs/'
+BASE_URL = 'https://www.compileralchemy.com'
 book_generate = False
 
 
