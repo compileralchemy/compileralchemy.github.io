@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-161612035-1"></script>
+    <script>
+    window.dataLayer = window.dataLayer || [];
+
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+    gtag('config', 'UA-161612035-1');
+    </script>
+    <!--Start of Tawk.to Script-->
+    <!-- <script type="text/javascript">
+    var Tawk_API = Tawk_API || {},
+        Tawk_LoadStart = new Date();
+    (function() {
+        var s1 = document.createElement("script"),
+            s0 = document.getElementsByTagName("script")[0];
+        s1.async = true;
+        s1.src = 'https://embed.tawk.to/600547c5c31c9117cb6fac40/1esaa0ni2';
+        s1.charset = 'UTF-8';
+        s1.setAttribute('crossorigin', '*');
+        s0.parentNode.insertBefore(s1, s0);
+    })();
+    </script> -->
+    <!--End of Tawk.to Script-->
+    <title>Documention is also about documenting internals</title>
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="utf-8">
+    <meta name="description" content="Python, Freelancing, Career & OpenSource">
+    <meta name="keywords" content="HTML,CSS,JavaScript,Python,Java,C++,websites,software,code audits">
+    <meta name="author" content="Abdur-Rahmaan Janhangeer">
+    <meta property="og:title" content="Documention is also about documenting internals" />
+    <meta property="og:type" content="blog" />
+    <meta property="og:url" content="https://www.compileralchemy.com/blog/documention-is-also-about-documenting-internals/" />
+    <meta property="og:description" content="When talking about documentation, people often refer to the end-user experience. However, when things go wrong internally, the end-users don't have a clue on how to solve it.
+
+It is not only necessary to state the how of things. But the why and rationale also. It's a pleasure to read well-documented code, for sure. But, if you have 100Ks of lines, it's not enough.
+
+There are various techniques to document internals. If ever I am doing it, I'd explain:
+
+- The what and why of the project, includin " />
+    <link rel="canonical" href="https://www.compileralchemy.com/blog/documention-is-also-about-documenting-internals/" />
+    <meta name="theme-color" content="#ffb74d" />
+    <link rel="icon" href="../..//assets/COMP_ALC.png">
+    <link rel="stylesheet" type="text/css" href="prototyp.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href='https://fonts.googleapis.com/css?family=Comfortaa' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Raleway:700' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Special+Elite' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.0/css/bulma.min.css">
+    <link href="https://emoji-css.afeld.me/emoji.css" rel="stylesheet">
+    
+    <link rel="stylesheet"
+      href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/default.min.css">
+
+    <script defer src="https://use.fontawesome.com/releases/v5.8.2/js/all.js"></script>
+    <script type="text/javascript" src="js/jquery.js"></script>
+    <script type="text/javascript" src="js/script.js"></script>
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <style type="text/css">
+
+    </style>
+    <script type="text/javascript">
+    (function(c, l, a, r, i, t, y) {
+        c[a] = c[a] || function() {
+            (c[a].q = c[a].q || []).push(arguments) };
+        t = l.createElement(r);
+        t.async = 1;
+        t.src = "https://www.clarity.ms/tag/" + i;
+        y = l.getElementsByTagName(r)[0];
+        y.parentNode.insertBefore(t, y);
+    })(window, document, "clarity", "script", "b2ltvgn5pp");
+    </script>
+
+    <style type="text/css">
+        /* Hide scrollbar for Chrome, Safari and Opera */
+        .hide_scroll::-webkit-scrollbar {
+          display: none;
+        }
+
+        /* Hide scrollbar for IE, Edge and Firefox */
+        .hide_scroll {
+          -ms-overflow-style: none;  /* IE and Edge */
+          scrollbar-width: none;  /* Firefox */
+        }
+
+        body{
+            padding: 0;
+            margin: 0;
+             counter-reset: chapternum;
+        }
+        .book__title{
+            margin-top: 20px;
+            font-size: 50px;
+        }
+        .book__content .chapter{
+            font-size: 45px;
+            margin-top: 60px;
+            display: block;
+        }
+        .book__content hr{
+            margin-top: 0;
+        }
+        .book__content h2{
+            font-size: 35px;
+            margin-bottom: 20px;
+            margin-top: 20px;
+
+        }
+        .book__content ul{
+            padding-left: 2rem;
+        }
+        .book__content table{
+            margin-bottom: 15px;
+        }
+        .book__content th{
+            border-bottom: 1px solid #ddd;
+        }
+        .book__content h3{
+            font-size: 30px;
+            margin-bottom: 20px;
+            margin-top: 20px;
+
+        }
+        .book__content p{
+            text-align: justify;
+            margin-bottom: 10px;
+            font-size: 20px;
+        }
+        .book__content{
+            margin-bottom: 50px;
+        }
+        .book__content img{
+            border-radius: 10px;
+            display:block;
+            max-height: 350px;
+            margin-top: 50px;
+            margin-bottom: 50px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .book__content blockquote{
+            padding: 40px;
+            background-color: #eee;
+            border-left: 10px solid #ccc;
+            margin-top: 40px;
+            margin-bottom: 40px;
+            page-break-inside: avoid;
+        }
+        .book__content pre{
+            margin-top: 40px;
+            margin-bottom: 40px;
+        }
+
+        .book__content li{
+            list-style-type: "👉";
+            padding-left: 5px;
+        }
+        .book__content .toc{
+            padding-left: 2rem;
+            content: leader('.') target-counter(attr(href), page);
+
+        }
+        .book__content .toc li{
+            list-style-type: "";
+        }
+
+        @page {
+          size: A4;
+          margin: 5mm 5mm 5mm 5mm;
+          padding-top: 15px;
+        }
+
+
+
+        @media print {
+            div.appendix{
+              page-break-after: always;
+            }
+            .book__content blockquote{
+                page-break-inside: avoid;
+            }
+            .chapter{
+                page-break-before: always !important;
+            }
+            pre {
+                break-inside: avoid !important;
+            }
+        }
+
+
+        pre {
+         white-space: pre-wrap;       /* css-3 */
+         white-space: -moz-pre-wrap;  /* Mozilla, since 1999 */
+         white-space: -pre-wrap;      /* Opera 4-6 */
+         white-space: -o-pre-wrap;    /* Opera 7 */
+         word-wrap: break-word;       /* Internet Explorer 5.5+ */
+         font-size: 15px;
+         font-weight: bold;
+        }
+
+            
+
+
+        @page :first {
+          margin: 0;
+          padding: 0;
+        }
+
+        #book-wrapper{
+            margin: 0;
+            padding: 0;
+            margin-left: 20%;
+            margin-right: 20%;
+        }
+
+        html,body{
+            overflow-x: hidden;
+        }
+
+        .chapter:before {
+          counter-increment: chapternum;
+          content: counter(chapternum) ". ";
+        }
+
+        .book__title{
+            font-size: 50px;
+        }
+
+        
+
+@page:first {
+  @bottom-right {
+    content: normal;
+    margin: 0;
+  }
+
+  @bottom-left {
+    content: normal;
+    margin: 0;
+  }
+}
+    </style>
+
+</head>
+
+<body class="has-background-white">
+
+    
+
+<div 
+    id="gdpr-thing" 
+    style="
+        position: fixed; 
+        bottom: 5px;
+        left: 5px;
+        width: 200px;
+        z-index: 20;
+        background: #fff;
+        border-radius: 5px;
+        padding: 5px;
+        background-color: #f5ef85;
+        "
+    >
+    By using this website, you agree to our <a href="../../#privacy-policy">privacy policy</a> [ <a id="consent-button" href="#">Ok</a> ]
+</div>
+<script type="text/javascript">
+
+    window.addEventListener('load', (event) => {
+        if (localStorage.getItem('gdpr-accept')==='ok'){
+            document.getElementById("gdpr-thing").style.display='none';
+        }
+
+      document.getElementById("consent-button").onclick = function() {
+
+        document.getElementById("gdpr-thing").style.display='none';
+        localStorage.setItem('gdpr-accept', 'ok');
+      };
+    });
+</script>
+
+    <div class="frontcover">
+    </div>
+    <div id="book-wrapper">
+        <h1 class="book__title">Documention is also about documenting internals</h1>
+        <span style="font-size: 20px">by Abdur-Rahmaan Janhangeer</span><br><br>
+        <br>
+        <br>
+        <div class="book__content">
+            <p>When talking about documentation, people often refer to the end-user experience. However, when things go wrong internally, the end-users don&rsquo;t have a clue on how to solve it.</p>
+<p>It is not only necessary to state the how of things. But the why and rationale also. It&rsquo;s a pleasure to read well-documented code, for sure. But, if you have 100Ks of lines, it&rsquo;s not enough.</p>
+<p>There are various techniques to document internals. If ever I am doing it, I&rsquo;d explain:</p>
+<ul>
+<li>The what and why of the project, including the context</li>
+<li>A conceptual overview of the project</li>
+<li>An internal overview</li>
+<li>Techniques to achieve features</li>
+<li>Codebase layout in brief</li>
+</ul>
+<p>Current documentation advice is like people advising on how to write good books. But, you always deal with libraries. Sure, you can start shelf by shelf until you find the book you are looking for and get an overview of the library along the way. But, if you need a particular book, it makes sense to have a catalog so that you know what book exists and a library layout, enabling you to navigate your way to the book. Once you get to the book, of course, you&rsquo;d relish a well-written book.</p>
+<p>Documentation is a time investment you make to save someone else&rsquo;s time. People often say that you should not invest too much in the docs as when changing code, it takes time to re-write the docs and sometimes it slogs you down. True. But, documenting the internals as well as techniques used is not mirrored at the code-line level. It&rsquo;s a high-level explanation to get an idea of how things are achieved. This way you can replace a whole code section if needed.</p>
+<p>At the end of the day, it&rsquo;s about enabling users to use the product as if you cannot support them. Imagine launching some people on a planet, for one year, with no outside contact. You&rsquo;d like to produce documentation that is self-reliant as far as possible. It&rsquo;s about giving more power to your users. </p>
+        </div>
+    </div>
+
+
+    
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/highlight.min.js"></script>
+    <script>hljs.highlightAll();</script>
+
+    <footer class="footer has-background-white-ter">
+    <div class="content has-text-centered ">
+        <p>
+            Built using <a href="https://pypi.org/project/jamstack">the jamstack package on pypi</a>
+            <hr>
+            <a href="../../">Home</a>; 
+            <a href="/blog">Personal Blog</a>; 
+            <a href="/articles">Technical Blog</a>;
+            <a href="/diaries">Diaries</a>;
+        </p>
+    </div>
+</footer>
+</body>
+
+</html>
