@@ -15,6 +15,7 @@ from livereload import Server
 import markdown
 import toml
 import json
+import html
 
 import settings
 
@@ -295,7 +296,7 @@ def gen_blog():
         for i, elem in enumerate(toml_data['elements'][::-1]):
             title = elem['title']
             slug = title.casefold().replace(' ', '-').replace('/', '').replace("'", '').replace('?',
-                     '').replace('---', '-').replace(':', '').replace(',', '')
+                     '').replace('---', '-').replace(':', '').replace(',', '').replace('\u200b', '').replace('\u200c', '')
             content_string = elem['body']
             content = md_to_html(elem['body'])
 
@@ -466,7 +467,7 @@ def gen_seo():
             for elem in toml_data['elements']:
                 title = elem['title']
                 slug = title.casefold().replace(' ', '-').replace('/', '').replace("'", '').replace('?',
-                         '').replace('---', '-').replace(':', '').replace(',', '')
+                         '').replace('---', '-').replace(':', '').replace(',', '').replace('\u200b', '').replace('\u200c', '')
                 urls.append(f'/blog/{slug}/')
 
     # robots.txt
@@ -543,8 +544,9 @@ Sitemap: https://compileralchemy.com/sitemap.txt"""
     # sitemap.xml
     sitemap_xml = ['<?xml version="1.0" encoding="UTF-8"?>', '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">']
     for url in urls:
+        escaped_url = html.escape(f"{settings.BASE_URL}{url}")
         sitemap_xml.append('  <url>')
-        sitemap_xml.append(f'    <loc>{settings.BASE_URL}{url}</loc>')
+        sitemap_xml.append(f'    <loc>{escaped_url}</loc>')
         sitemap_xml.append('  </url>')
     sitemap_xml.append('</urlset>')
 
