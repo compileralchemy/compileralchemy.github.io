@@ -103,6 +103,7 @@ def gen_book(mdfile, cover, title, build_number, slug, download_link, edit_link)
         'settings': settings,
         'path': '../../',
         'book': book,
+        'slug': slug,
         'build_number': build_number
     })
 
@@ -163,6 +164,7 @@ def gen_diary(mdfile, cover, title, build_number, slug, download_link, edit_link
         'settings': settings,
         'path': '../../',
         'book': book,
+        'slug': slug,
         'build_number': build_number
     })
 
@@ -307,6 +309,7 @@ def gen_blog():
                 'settings': settings,
                 'path': '../../',
                 'title': title,
+                'slug': slug,
                 'content': content,
                 'content_string': content_string
             })

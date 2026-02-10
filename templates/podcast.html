@@ -26,12 +26,19 @@
     })();
     </script>
     <!--End of Tawk.to Script-->
-    <title>web and software dev</title>
+    <title>{{ settings.podcast['title'] }} - {{ settings.podcast['tagline'] }}</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta charset="utf-8">
-    <meta name="description" content="Python, Freelancing, Career & OpenSource">
-    <meta name="keywords" content="HTML,CSS,JavaScript,Python,Java,C++,websites,software,code audits">
-    <meta name="author" content="compileralchemy">
+    <meta name="description" content="{{ settings.podcast['rss_description'] }}">
+    <meta name="keywords" content="podcast, python, freelancing, career, opensource, tech">
+    <meta name="author" content="Abdur-Rahmaan Janhangeer">
+    
+    <meta property="og:title" content="{{ settings.podcast['title'] }}" />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://www.compileralchemy.com/alfa-podcast/" />
+    <meta property="og:description" content="{{ settings.podcast['rss_description'] }}" />
+    
+    <link rel="canonical" href="https://www.compileralchemy.com/alfa-podcast/" />
     <meta name="theme-color" content="#ffb74d" />
     <link rel="alternate" type="application/rss+xml" href="https://www.compileralchemy.com/alfa-podcast/podcast.rss" title="The Alfa Podcast episodes">
     <link rel="icon" href="{{path}}/assets/COMP_ALC.png">
