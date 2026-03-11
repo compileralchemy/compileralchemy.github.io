@@ -805,6 +805,7 @@ talks = [
 
 
 github_projects = [
+
     {
         "name": "Shopyo",
         "info": '''
@@ -820,6 +821,48 @@ commands like collecstatic and startapp.
             "chat": "https://discord.gg/k37Ef6w",
             "twitter": "https://twitter.com/shopyoproject",
             "docs": "https://shopyo.readthedocs.io/en/latest/"
+        },
+        'badges': ['pepy']
+    },
+    {
+    "name": "angel-claw",
+    "info": '''
+Lean, based openclaw alternative in Python
+''',
+        "features": [],
+        "main_link": "https://github.com/abdur-rahmaanj/angel-claw",
+        "logo_link": "",
+        "links": {
+            "github": "https://github.com/abdur-rahmaanj/angel-claw",
+            "pypi": "https://pypi.org/project/angel-claw/",
+        },
+        'badges': ['pepy']
+    },
+    {
+    "name": "angel-recall",
+    "info": '''
+Memory OS paper implementation for agents.
+''',
+        "features": [],
+        "main_link": "https://github.com/abdur-rahmaanj/angel-recall",
+        "logo_link": "",
+        "links": {
+            "github": "https://github.com/abdur-rahmaanj/angel-recall",
+            "pypi": "https://pypi.org/project/angel-recall/",
+        },
+        'badges': ['pepy']
+    },
+    {
+    "name": "pageindex-open",
+    "info": '''
+Memory OS paper implementation for agents.
+''',
+        "features": [],
+        "main_link": "https://github.com/abdur-rahmaanj/pageindex-open",
+        "logo_link": "",
+        "links": {
+            "github": "https://github.com/abdur-rahmaanj/pageindex-open",
+            "pypi": "https://pypi.org/project/pageindex-open",
         },
         'badges': ['pepy']
     },
