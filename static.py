@@ -297,11 +297,23 @@ def gen_blog():
         os.mkdir(os.path.join(settings.OUTPUT_FOLDER, 'blog'))
     except Exception as e:
         pass
-    title_slug = []
+    # Calculate total posts first for absolute numbering
+    total_posts = 0
     for source in data:
+        if os.path.exists(source):
+            toml_data = toml.load(source)
+            total_posts += len(toml_data['elements'])
+            
+    title_slug = []
+    current_post_num = total_posts
+    for source in data:
+        if not os.path.exists(source):
+            continue
         toml_data = toml.load(source)
         current_year = extract_year(source)
         
+        # Process elements in reverse (newest in file first) 
+        # since files are already ordered 2025 -> 2019
         for i, elem in enumerate(toml_data['elements'][::-1]):
             title = elem['title']
             slug = title.casefold().replace(' ', '-').replace('/', '').replace("'", '').replace('?',
@@ -309,32 +321,44 @@ def gen_blog():
             content_string = elem['body']
             content = md_to_html(elem['body'])
 
-            title_slug.append([title, slug, current_year])
+            # Store the absolute article number
+            title_slug.append({
+                'title': title, 
+                'slug': slug, 
+                'year': current_year,
+                'num': current_post_num
+            })
+            current_post_num -= 1
 
             try:
                 os.mkdir(os.path.join(settings.OUTPUT_FOLDER, 'blog', slug))
             except Exception as e:
                 pass
-            context.update({
+            
+            blog_context = context.copy()
+            blog_context.update({
                 'settings': settings,
                 'path': '../../',
                 'title': title,
                 'slug': slug,
                 'content': content,
                 'content_string': content_string,
+                'article_num': current_post_num + 1,
                 'seo_title': f'{title} | Abdur-Rahmaan Janhangeer Blog',
                 'seo_description': (content_string[:155] + '...') if len(content_string) > 160 else content_string,
                 'page_path': f'blog/{slug}/',
                 'og_type': 'article'
             })
-            generate('blog.html', join(settings.OUTPUT_FOLDER, 'blog', slug, 'index.html'), **context)
+            generate('blog.html', join(settings.OUTPUT_FOLDER, 'blog', slug, 'index.html'), **blog_context)
     
-    context.update({
+    index_context = context.copy()
+    index_context.update({
                 'settings': settings,
                 'path': '../',
                 'title_slug': title_slug,
             })
-    generate('blog_index.html', join(settings.OUTPUT_FOLDER, 'blog', 'index.html'), **context)
+    generate('blog_index.html', join(settings.OUTPUT_FOLDER, 'blog', 'index.html'), **index_context)
+    return title_slug
 def gen_writings():
     context.update({
         'path': '../',
@@ -591,21 +615,49 @@ Sitemap: https://compileralchemy.com/sitemap.txt"""
 
 def main(args):
     def gen():
-        generate('index.html', join(settings.OUTPUT_FOLDER, 'index.html'), **context)
-
-        try:
-            os.mkdir(join(settings.OUTPUT_FOLDER, 'alfa-podcast'))
-        except Exception as e:
-            print('skip', e)
-            pass
-        generate('podcast.html', join(settings.OUTPUT_FOLDER, 'alfa-podcast', 'index.html'), **podcontext)
+        # 1. Generate blog posts and get slugs
+        all_blog_posts = gen_blog()
+        
+        # 2. Create home page specific context to avoid shadowing/mutation issues
+        home_context = context.copy()
+        home_context.update({
+            'path': '',
+            'seo_title': 'Abdur-Rahmaan Janhangeer | Python Software Engineer & Author',
+            'seo_description': 'Software Engineer, Author of SQLite Internals, and Python freelancer specializing in backend systems and open source.',
+            'page_path': ''
+        })
+        
+        # Get latest 5 blog posts for the dedicated homepage section
+        blog_posts = []
+        for post in all_blog_posts[:5]:
+            blog_posts.append({
+                'title': post['title'],
+                'url': f"blog/{post['slug']}/",
+                'num': post['num']
+            })
+        
+        home_context.update({
+            'blog_posts': blog_posts,
+            'writings': settings.writings # Restore original technical writings
+        })
+        
+        # 3. Generate the Home page
+        generate('index.html', join(settings.OUTPUT_FOLDER, 'index.html'), **home_context)
+        
+        # 4. Generate other sections
         gen_podcast_rss()
         gen_books()
         gen_diaries()
         gen_writings()
         gen_talks()
         gen_journey()
-        gen_blog()
+        
+        try:
+            os.mkdir(join(settings.OUTPUT_FOLDER, 'alfa-podcast'))
+        except Exception as e:
+            print('skip', e)
+            pass
+        generate('podcast.html', join(settings.OUTPUT_FOLDER, 'alfa-podcast', 'index.html'), **podcontext)
         gen_faceblur()
         gen_islamic_months()
         gen_seo()
