@@ -615,6 +615,11 @@ Sitemap: https://compileralchemy.com/sitemap.txt"""
 
 def main(args):
     def gen():
+        try:
+            os.mkdir(join(settings.OUTPUT_FOLDER, 'alfa-podcast'))
+        except Exception as e:
+            pass
+
         # 1. Generate blog posts and get slugs
         all_blog_posts = gen_blog()
         
@@ -652,11 +657,6 @@ def main(args):
         gen_talks()
         gen_journey()
         
-        try:
-            os.mkdir(join(settings.OUTPUT_FOLDER, 'alfa-podcast'))
-        except Exception as e:
-            print('skip', e)
-            pass
         generate('podcast.html', join(settings.OUTPUT_FOLDER, 'alfa-podcast', 'index.html'), **podcontext)
         gen_faceblur()
         gen_islamic_months()
