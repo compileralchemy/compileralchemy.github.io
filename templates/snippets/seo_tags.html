@@ -1,0 +1,41 @@
+{# SEO Configuration Logic #}
+{% set default_title = "Abdur-Rahmaan Janhangeer | Python Software Engineer & Author" %}
+{% set default_description = "Portfolio of Abdur-Rahmaan Janhangeer. Software Engineer, Author of SQLite Internals, and Python freelancer specializing in backend systems and open source." %}
+{% set base_url = "https://www.compileralchemy.com/" %}
+
+<title>{{ seo_title if seo_title else default_title }}</title>
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="utf-8">
+<meta name="description" content="{{ seo_description if seo_description else default_description }}">
+<meta name="author" content="Abdur-Rahmaan Janhangeer">
+<link rel="canonical" href="{{ base_url }}{{ page_path if page_path else '' }}">
+
+<!-- Open Graph / Facebook -->
+<meta property="og:type" content="{{ og_type if og_type else 'website' }}">
+<meta property="og:url" content="{{ base_url }}{{ page_path if page_path else '' }}">
+<meta property="og:title" content="{{ seo_title if seo_title else default_title }}">
+<meta property="og:description" content="{{ seo_description if seo_description else default_description }}">
+<meta property="og:image" content="{{ base_url }}{{ og_image if og_image else 'assets/COMP_ALC.png' }}">
+
+<!-- Twitter -->
+<meta property="twitter:card" content="summary_large_image">
+<meta property="twitter:url" content="{{ base_url }}{{ page_path if page_path else '' }}">
+<meta property="twitter:title" content="{{ seo_title if seo_title else default_title }}">
+<meta property="twitter:description" content="{{ seo_description if seo_description else default_description }}">
+<meta property="twitter:image" content="{{ base_url }}{{ og_image if og_image else 'assets/COMP_ALC.png' }}">
+
+{# Structured Data #}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "{{ 'Article' if og_type == 'article' else ('Book' if og_type == 'book' else 'Person') }}",
+  "name": "{{ seo_title if seo_title else default_title }}",
+  "description": "{{ seo_description if seo_description else default_description }}",
+  "url": "{{ base_url }}{{ page_path if page_path else '' }}",
+  "author": {
+    "@type": "Person",
+    "name": "Abdur-Rahmaan Janhangeer"
+  }
+}
+</script>
