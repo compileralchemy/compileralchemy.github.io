@@ -11,21 +11,6 @@ function gtag() { dataLayer.push(arguments); }
 gtag('js', new Date());
 gtag('config', 'UA-161612035-1');
 </script>
-<!--Start of Tawk.to Script-->
-<script type="text/javascript">
-    var Tawk_API = Tawk_API || {},
-        Tawk_LoadStart = new Date();
-    (function() {
-        var s1 = document.createElement("script"),
-            s0 = document.getElementsByTagName("script")[0];
-        s1.async = true;
-        s1.src = 'https://embed.tawk.to/600547c5c31c9117cb6fac40/1esaa0ni2';
-        s1.charset = 'UTF-8';
-        s1.setAttribute('crossorigin', '*');
-        s0.parentNode.insertBefore(s1, s0);
-    })();
-    </script>
-    <!--End of Tawk.to Script-->
 
 
 
@@ -68,6 +53,59 @@ gtag('config', 'UA-161612035-1');
   }
 }
 </script>
+<!-- Global Premium Editorial Styles -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@400;500;700&family=Raleway:wght@700;800&family=Special+Elite&display=swap" rel="stylesheet">
+
+<style type="text/css">
+    :root {
+        --primary-color: #ffb74d;
+        --text-main: #1a1a1a;
+        --text-muted: #666;
+        --font-main: 'Comfortaa', cursive;
+        --font-title: 'Raleway', sans-serif;
+        --container-width: 1000px;
+        --reading-width: 740px;
+    }
+
+    /* Global Typography */
+    body {
+        font-family: var(--font-main);
+        color: var(--text-main);
+        line-height: 1.85;
+        -webkit-font-smoothing: antialiased;
+        background-color: #fff;
+    }
+
+    h1, h2, h3, .title {
+        font-family: var(--font-title);
+        font-weight: 800;
+        letter-spacing: -0.02em;
+        color: #000;
+    }
+
+    .subtitle {
+        font-family: var(--font-main);
+        font-weight: 500;
+        color: var(--text-muted);
+    }
+
+    /* Animated Underline Links - Disabled globally */
+    a:not(.button):not(.tag) {
+        color: inherit;
+        text-decoration: none;
+    }
+
+    /* Section Spacing */
+    .section {
+        padding: 4rem 1.5rem;
+    }
+</style>
+
+<script>
+    // Universal Scroll Reveal - Disabled globally to prevent 'slop' feel on functional pages
+</script>
 
 <meta name="theme-color" content="#ffb74d" />
 <link rel="icon" href="assets/COMP_ALC.png">
@@ -87,7 +125,7 @@ gtag('config', 'UA-161612035-1');
 <link rel="stylesheet" type="text/css" href="bulma-timeline.min.css">
 
 <script defer src="https://use.fontawesome.com/releases/v5.8.2/js/all.js"></script>
-<script type="text/javascript" src="js/jquery.js"></script>
+
 
     <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.css" />
     <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
@@ -144,6 +182,44 @@ gtag('config', 'UA-161612035-1');
 
 <body class="">
 
+    <nav class="navbar is-white" role="navigation" aria-label="main navigation">
+        <div class="container">
+            <div class="navbar-brand">
+                <a class="navbar-item" href="">
+                    <img src="assets/COMP_ALC.png" alt="Compiler Alchemy" style="height: 40px;">
+                </a>
+                <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navMenu">
+                    <span aria-hidden="true"></span>
+                    <span aria-hidden="true"></span>
+                    <span aria-hidden="true"></span>
+                    <span aria-hidden="true"></span>
+                </a>
+            </div>
+            <div id="navMenu" class="navbar-menu">
+                <div class="navbar-end">
+                    <a class="navbar-item" href="blog/">Blog</a>
+                    <a class="navbar-item" href="articles/">Articles</a>
+                    <a class="navbar-item" href="books/sqlite-internals/">Book</a>
+                    <a class="navbar-item" href="talks/">Talks</a>
+                    <a class="navbar-item" href="journey/">Journey</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const burger = document.querySelector('.navbar-burger');
+            const menu = document.querySelector('#navMenu');
+            if (burger && menu) {
+                burger.addEventListener('click', () => {
+                    burger.classList.toggle('is-active');
+                    menu.classList.toggle('is-active');
+                });
+            }
+        });
+    </script>
+
     
     <div class="section has-background-info">
     <div class="container">
@@ -151,34 +227,6 @@ gtag('config', 'UA-161612035-1');
             <div class="tile is-vertical is-8">
                 <div class="tile">
                     <div class="tile is-parent is-vertical">
-                        <div class="tile is-child notification card round-5">
-                            <div class="card-content">
-                                <!-- <div class="notification is-white">
-                                    <p class="has-text-centered ">
-                                        <span class="title has-background-white-ter  has-text-centered" style="width: 50px; height:50px; padding: 20px; border-radius: 50%;">
-                                            <i class="em em-handshake" aria-role="presentation" aria-label="HANDSHAKE"></i>
-                                        </span>
-                                    </p><br>
-                                    <p class="title">Shining Lamp Club</p>
-                                </div>
-                                <div class="content has-text-centered">
-                                    A café for developers about freelance and Python 'career' growth<br> <br>
-                                    <div>
-                                        <button class="button is-link" disabled>Enter</button>
-                                    </div>
-                                </div> -->
-                                <ul>
-                                    <li><a href="#testimonials">Testimonials</a></li>
-                                    <li><a href="/blog">Personal Blog</a></li>
-                                    <li><a href="#writings">Technical Articles</a></li>
-                                    <li><a href="#publish">Books & Courses</a></li>
-                                    <li><a href="#talks">Talks</a></li>
-                                    <li><a href="#open-source">OpenSource</a></li>
-                                    <li><a href="#journey">Journey</a></li>
-                                    <li><a href="#community">Community</a></li>
-                                </ul>
-                            </div>
-                        </div>
                         <div class="tile is-child notification card round-5">
                             <div class="card-content">
                                 <div class="notification is-white">
@@ -312,12 +360,13 @@ Calendly
                         <div class="content tweetcontain">
                             <!-- Content -->
                             <blockquote class="twitter-tweet" data-dnt="true"><p lang="en" dir="ltr">My book on SQLite internals, the first free and open book on the subject now comes up first on Google.<a href="https://t.co/S8bxVyy7mF">https://t.co/S8bxVyy7mF</a> <a href="https://t.co/vYtdtey5ZX">pic.twitter.com/vYtdtey5ZX</a></p>&mdash; Abdur-RahmaanJ | DM always open! (@osdotsystem) <a href="https://twitter.com/osdotsystem/status/1804168433766142014?ref_src=twsrc%5Etfw">June 21, 2024</a></blockquote>
-                            <blockquote class="twitter-tweet"><p lang="en" dir="ltr">Ruff: Internals of a Rust-Backed Python Linter-Formatter <a href="https://t.co/dQTD5Bwsgj">https://t.co/dQTD5Bwsgj</a></p>&mdash; PyCoder’s Weekly (@pycoders) <a href="https://twitter.com/pycoders/status/1802675562344833176?ref_src=twsrc%5Etfw">June 17, 2024</a></blockquote>
+                            <blockquote class="twitter-tweet"><p lang="en" dir="ltr">Ruff: Internals of a Rust-Backed Python Linter-Formatter <a href="https://t.co/dQTD5Bwsgj">https://t.co/dQTD5Bwsgj</a></p>&mdash; PyCoder's Weekly (@pycoders) <a href="https://twitter.com/osdotsystem/status/1802675562344833176?ref_src=twsrc%5Etfw">June 17, 2024</a></blockquote>
                             <blockquote class="twitter-tweet">
                                 <p lang="en" dir="ltr">Flask Masterclass <a
                                         href="https://t.co/s6y2fdx0Yb">https://t.co/s6y2fdx0Yb</a> by Abdur-Rahmaan
                                     Janhangeer is the featured course on the Leanpub homepage! <a
-                                        href="https://t.co/7B8N80eFd1">https://t.co/7B8N80eFd1</a> <a
+                                        href="https://t.co/7B8N80eFd1">https://t.co/7B8N80eFd1</a>
+                                    <a
                                         href="https://twitter.com/hashtag/courses?src=hash&amp;ref_src=twsrc%5Etfw">#courses</a>
                                     <a
                                         href="https://twitter.com/hashtag/Python?src=hash&amp;ref_src=twsrc%5Etfw">#Python</a>
@@ -378,7 +427,7 @@ Calendly
                                     href="https://twitter.com/OSCAMauritius/status/1429631332339134469?ref_src=twsrc%5Etfw">August
                                     23, 2021</a>
                             </blockquote>
-                           
+                            
                             <blockquote class="twitter-tweet">
                                 <p lang="en" dir="ltr">We&#39;re excited for you to and cannot wait to see how
                                     you&#39;ll grow as a mentor and developer!</p>&mdash; Codementor (@CodementorIO) <a
@@ -387,7 +436,7 @@ Calendly
                             </blockquote>
                             <blockquote class="twitter-tweet">
                                 <p lang="en" dir="ltr">The Zen Of Python: A Most In Depth Article <a
-                                        href="https://t.co/fVsG9pUjqG">https://t.co/fVsG9pUjqG</a></p>&mdash; PyCoder’s
+                                        href="https://t.co/fVsG9pUjqG">https://t.co/fVsG9pUjqG</a></p>&mdash; PyCoder's
                                 Weekly (@pycoders) <a
                                     href="https://twitter.com/pycoders/status/1343668800554729473?ref_src=twsrc%5Etfw">December
                                     28, 2020</a>
@@ -414,7 +463,7 @@ Calendly
                                     href="https://twitter.com/osdotsystem/status/1313489262969585665?ref_src=twsrc%5Etfw">October
                                     6, 2020</a>
                             </blockquote>
-                           
+                            
                             <blockquote class="twitter-tweet">
                                 <p lang="en" dir="ltr">Python developer <a
                                         href="https://twitter.com/osdotsystem?ref_src=twsrc%5Etfw">@osdotsystem</a> will
@@ -472,10 +521,10 @@ Calendly
                                         href="https://t.co/MKgLovGSVr">https://t.co/MKgLovGSVr</a> <a
                                         href="https://twitter.com/hashtag/Python?src=hash&amp;ref_src=twsrc%5Etfw">#Python</a>
                                 </p>&mdash; Mike Driscoll (@driscollis) <a
-                                    href="https://twitter.com/driscollis/status/1115241860329607168?ref_src=twsrc%5Etfw">April
+                                    href="https://twitter.com/osdotsystem/status/1115241860329607168?ref_src=twsrc%5Etfw">April
                                     8, 2019</a>
                             </blockquote>
-                           
+                            
                         </div>
                     </div>
 
@@ -498,6 +547,87 @@ Calendly
     <!-- Swiper -->
     <div class="swiper-container" style="padding: 10%; padding-top: 15px;">
       <div class="swiper-wrapper">
+        
+        <div class="swiper-slide">
+          <!-- <div class="card  is-shadowless">
+            <div class="card-content">
+              <div class="content">
+                <i class="notes__image fa fa fa-bookmark"></i>
+                <h2 class="notes__caption">Donald Knuth
+                <br><i class="notes__utitle">Programming Legend</i>
+                
+                </h2>
+                <p class="notes__txt" style="padding: 30px">
+                  <i class="fa fa-quote-left"></i><br>
+                  
+Dear Abdur-Rahmaan,
+<br><br>
+Please excuse the fact that I haven't had time to look at your email
+message from April until today.
+<br><br>
+In that program, MOVEIN is not an instruction; it is a symbolic name
+for the address where a dynamically changing instruction will be
+stored. (His computer was a LOT different from what we have now!)
+<br><br>
+Line 41 of the program says that we should reserve one "storage tank"
+(RST 1) to be called MOVEIN. Line 46 puts a PIK instruction into
+that storage tank. Eventually, control is transferred so that
+the machine executes that PIK instruction (which moves a block
+of words into a sequence of short tanks called BUFFER).
+<br><br>
+<b>Thanks for your interest in history,</b> and for your patience.
+<br><br>
+Best wishes, Don Knuth 
+<a href="https://www.linkedin.com/posts/appinv_asm-computerscience-activity-7134615165097922562-Mb7q?utm_source=share&utm_medium=member_desktop">
+    (source)
+</a>
+
+                  <br>
+                  <i class="fa fa-quote-right"></i>
+                </p>
+              </div>
+            </div>
+          </div> -->
+
+          <div class="card">
+            <div class="card-content">
+              <div class="content">
+                <p class="" style="padding: 10px">
+                  <span style="" class="is-size-3">
+                    Donald Knuth
+                  </span><br>
+                  <span class="is-size-5" style="">
+                    Programming Legend
+                  </span><br>
+                  <p style="padding: 10%; padding-top: 5px; padding-bottom: 5px;" class="has-text-justified">“ 
+Dear Abdur-Rahmaan,
+<br><br>
+Please excuse the fact that I haven't had time to look at your email
+message from April until today.
+<br><br>
+In that program, MOVEIN is not an instruction; it is a symbolic name
+for the address where a dynamically changing instruction will be
+stored. (His computer was a LOT different from what we have now!)
+<br><br>
+Line 41 of the program says that we should reserve one "storage tank"
+(RST 1) to be called MOVEIN. Line 46 puts a PIK instruction into
+that storage tank. Eventually, control is transferred so that
+the machine executes that PIK instruction (which moves a block
+of words into a sequence of short tanks called BUFFER).
+<br><br>
+<b>Thanks for your interest in history,</b> and for your patience.
+<br><br>
+Best wishes, Don Knuth 
+<a href="https://www.linkedin.com/posts/appinv_asm-computerscience-activity-7134615165097922562-Mb7q?utm_source=share&utm_medium=member_desktop">
+    (source)
+</a>
+  ”</p>
+                  
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
         
         <div class="swiper-slide">
           <!-- <div class="card  is-shadowless">
@@ -584,87 +714,6 @@ with the ability to make software not only functional but also marketable with d
 skills that he pursues as a hobby.<br><br>
 
 His work in both professional and open source setting speaks itself but this recommendation is just a token of appreciation on behalf of countless engineers whom he has helped improve and break into the open source community. I wish him the best in his future endeavors and I am excited to see where his work takes him.  ”</p>
-                  
-                </p>
-              </div>
-            </div>
-          </div>
-        </div>
-        
-        <div class="swiper-slide">
-          <!-- <div class="card  is-shadowless">
-            <div class="card-content">
-              <div class="content">
-                <i class="notes__image fa fa fa-bookmark"></i>
-                <h2 class="notes__caption">Donald Knuth
-                <br><i class="notes__utitle">Programming Legend</i>
-                
-                </h2>
-                <p class="notes__txt" style="padding: 30px">
-                  <i class="fa fa-quote-left"></i><br>
-                  
-Dear Abdur-Rahmaan,
-<br><br>
-Please excuse the fact that I haven't had time to look at your email
-message from April until today.
-<br><br>
-In that program, MOVEIN is not an instruction; it is a symbolic name
-for the address where a dynamically changing instruction will be
-stored. (His computer was a LOT different from what we have now!)
-<br><br>
-Line 41 of the program says that we should reserve one "storage tank"
-(RST 1) to be called MOVEIN. Line 46 puts a PIK instruction into
-that storage tank. Eventually, control is transferred so that
-the machine executes that PIK instruction (which moves a block
-of words into a sequence of short tanks called BUFFER).
-<br><br>
-<b>Thanks for your interest in history,</b> and for your patience.
-<br><br>
-Best wishes, Don Knuth 
-<a href="https://www.linkedin.com/posts/appinv_asm-computerscience-activity-7134615165097922562-Mb7q?utm_source=share&utm_medium=member_desktop">
-    (source)
-</a>
-
-                  <br>
-                  <i class="fa fa-quote-right"></i>
-                </p>
-              </div>
-            </div>
-          </div> -->
-
-          <div class="card">
-            <div class="card-content">
-              <div class="content">
-                <p class="" style="padding: 10px">
-                  <span style="" class="is-size-3">
-                    Donald Knuth
-                  </span><br>
-                  <span class="is-size-5" style="">
-                    Programming Legend
-                  </span><br>
-                  <p style="padding: 10%; padding-top: 5px; padding-bottom: 5px;" class="has-text-justified">“ 
-Dear Abdur-Rahmaan,
-<br><br>
-Please excuse the fact that I haven't had time to look at your email
-message from April until today.
-<br><br>
-In that program, MOVEIN is not an instruction; it is a symbolic name
-for the address where a dynamically changing instruction will be
-stored. (His computer was a LOT different from what we have now!)
-<br><br>
-Line 41 of the program says that we should reserve one "storage tank"
-(RST 1) to be called MOVEIN. Line 46 puts a PIK instruction into
-that storage tank. Eventually, control is transferred so that
-the machine executes that PIK instruction (which moves a block
-of words into a sequence of short tanks called BUFFER).
-<br><br>
-<b>Thanks for your interest in history,</b> and for your patience.
-<br><br>
-Best wishes, Don Knuth 
-<a href="https://www.linkedin.com/posts/appinv_asm-computerscience-activity-7134615165097922562-Mb7q?utm_source=share&utm_medium=member_desktop">
-    (source)
-</a>
-  ”</p>
                   
                 </p>
               </div>
@@ -1242,7 +1291,7 @@ Scholar of Arabic, as well as well versed in English. Good teacher of Python, an
             <div class="notification has-text-centered"  style="background-color: #fffff5;">
                 <br>
                 <p class="has-text-centered ">
-                    <span class="title  has-text-centered" style="width: 50px; height:50px; padding: 15px; border-radius: 50%;">
+                    <span class="title has-background-white-ter  has-text-centered" style="width: 50px; height:50px; padding: 20px; border-radius: 50%;">
                         <i class="em em-spiral_note_pad" aria-role="presentation" aria-label=""></i>
                     </span>
                 </p><br>
@@ -1401,7 +1450,7 @@ Scholar of Arabic, as well as well versed in English. Good teacher of Python, an
   <div class="container"><br><br>
     <div class="has-text-centered" style="background-color: #fff7ec">
       <p class="has-text-centered">
-        <span class="title has-text-centered" style="width: 50px; height:50px; padding: 20px; border-radius: 50%;">
+        <span class="title has-background-white-ter  has-text-centered" style="width: 50px; height:50px; padding: 20px; border-radius: 50%;">
           <i class="em em-lower_left_ballpoint_pen" aria-role="presentation" aria-label=""></i>
         </span>
       </p><br>
@@ -1439,7 +1488,7 @@ Scholar of Arabic, as well as well versed in English. Good teacher of Python, an
             <div class="notification has-text-centered" style="background-color: #f8f5ff;">
                 <br>
                 <p class="has-text-centered " >
-                    <span class="title   has-text-centered" style="width: 50px; height:50px; padding: 15px; border-radius: 50%;">
+                    <span class="title has-background-white-ter  has-text-centered" style="width: 50px; height:50px; padding: 20px; border-radius: 50%;">
                         <i class="em em-books" aria-role="presentation" aria-label="BOOKS"></i>
                     </span>
                 </p><br>
@@ -1449,8 +1498,8 @@ Scholar of Arabic, as well as well versed in English. Good teacher of Python, an
         </div>
         <div class="writings notification " style="background-color: #f8f5ff;">
             <p class="has-text-centered">
-                <iframe src="https://compileralchemy.substack.com/embed"  
-    style="border:1px solid #EEE; background:white;" frameborder="0" scrolling="no"></iframe>
+                <!-- <iframe src="https://compileralchemy.substack.com/embed"  
+    style="border:1px solid #EEE; background:white;" frameborder="0" scrolling="no"></iframe> -->
             </p>
             <br>
                     Writings selected in PyCoders Weekly, Awesome Python, Python Byte Podcast, DevOps Weekly, Gitops Weekly, SQLite news. Hackernews front page hits: 2.
@@ -1581,7 +1630,7 @@ Scholar of Arabic, as well as well versed in English. Good teacher of Python, an
                 
             
             <br>
-            <button class="button is-link"><a target="_blank" href="articles">Read more</a></button>
+            <a target="_blank" href="articles" class="button is-link" style="text-decoration: none;">Read more</a>
         </div>
     </div>
     
@@ -1592,7 +1641,7 @@ Scholar of Arabic, as well as well versed in English. Good teacher of Python, an
             <div class="notification has-text-centered" style="background-color: #f5fdf8;">
                 <br>
                 <p class="has-text-centered">
-                    <span class="title has-text-centered" style="width: 50px; height:50px; padding: 15px; border-radius: 50%;">
+                    <span class="title has-background-white-ter  has-text-centered" style="width: 50px; height:50px; padding: 20px; border-radius: 50%;">
                         <i class="em em-pencil2" aria-role="presentation" aria-label="PENCIL"></i>
                     </span>
                 </p><br>
@@ -1613,7 +1662,7 @@ Scholar of Arabic, as well as well versed in English. Good teacher of Python, an
                 <span class="url p-0">164. <a href="blog/achitecting-ai-software-systems-book-review/">Achitecting AI Software systems book review</a></span>
             
             <br>
-            <button class="button is-success"><a style="color: white;" href="blog">Read more posts</a></button>
+            <a href="blog" class="button is-success" style="color: white; text-decoration: none;">Read more posts</a>
         </div>
     </div>
 </div>
@@ -1623,7 +1672,7 @@ Scholar of Arabic, as well as well versed in English. Good teacher of Python, an
       <div class="notification has-text-centered" style="background-color: #fff5f5;">
         <br>
         <p class="has-text-centered ">
-          <span class="title  has-text-centered" style="width: 50px; height:50px; padding: 15px; border-radius: 50%;">
+          <span class="title has-background-white-ter  has-text-centered" style="width: 50px; height:50px; padding: 20px; border-radius: 50%;">
             <i class="em em-building_construction" aria-role="presentation" aria-label=""></i>
           </span>
         </p><br>
@@ -2872,8 +2921,7 @@ among others.</p>
     <div class="container"><br><br>
         <div class="has-text-centered" style="background-color: #f5fff5;">
             <p class="has-text-centered">
-                <span class="title   has-text-centered"
-                    style="width: 50px; height:50px; padding: 20px; border-radius: 50%;">
+                <span class="title has-background-white-ter  has-text-centered" style="width: 50px; height:50px; padding: 20px; border-radius: 50%;">
                     <i class="em em-tada" aria-role="presentation" aria-label="PARTY POPPER"></i>
                 </span>
             </p><br>

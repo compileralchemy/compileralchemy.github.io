@@ -11,21 +11,6 @@ function gtag() { dataLayer.push(arguments); }
 gtag('js', new Date());
 gtag('config', 'UA-161612035-1');
 </script>
-<!--Start of Tawk.to Script-->
-<script type="text/javascript">
-    var Tawk_API = Tawk_API || {},
-        Tawk_LoadStart = new Date();
-    (function() {
-        var s1 = document.createElement("script"),
-            s0 = document.getElementsByTagName("script")[0];
-        s1.async = true;
-        s1.src = 'https://embed.tawk.to/600547c5c31c9117cb6fac40/1esaa0ni2';
-        s1.charset = 'UTF-8';
-        s1.setAttribute('crossorigin', '*');
-        s0.parentNode.insertBefore(s1, s0);
-    })();
-    </script>
-    <!--End of Tawk.to Script-->
 
 
 
@@ -68,6 +53,59 @@ gtag('config', 'UA-161612035-1');
   }
 }
 </script>
+<!-- Global Premium Editorial Styles -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@400;500;700&family=Raleway:wght@700;800&family=Special+Elite&display=swap" rel="stylesheet">
+
+<style type="text/css">
+    :root {
+        --primary-color: #ffb74d;
+        --text-main: #1a1a1a;
+        --text-muted: #666;
+        --font-main: 'Comfortaa', cursive;
+        --font-title: 'Raleway', sans-serif;
+        --container-width: 1000px;
+        --reading-width: 740px;
+    }
+
+    /* Global Typography */
+    body {
+        font-family: var(--font-main);
+        color: var(--text-main);
+        line-height: 1.85;
+        -webkit-font-smoothing: antialiased;
+        background-color: #fff;
+    }
+
+    h1, h2, h3, .title {
+        font-family: var(--font-title);
+        font-weight: 800;
+        letter-spacing: -0.02em;
+        color: #000;
+    }
+
+    .subtitle {
+        font-family: var(--font-main);
+        font-weight: 500;
+        color: var(--text-muted);
+    }
+
+    /* Animated Underline Links - Disabled globally */
+    a:not(.button):not(.tag) {
+        color: inherit;
+        text-decoration: none;
+    }
+
+    /* Section Spacing */
+    .section {
+        padding: 4rem 1.5rem;
+    }
+</style>
+
+<script>
+    // Universal Scroll Reveal - Disabled globally to prevent 'slop' feel on functional pages
+</script>
 
 <meta name="theme-color" content="#ffb74d" />
 <link rel="icon" href="../assets/COMP_ALC.png">
@@ -87,7 +125,7 @@ gtag('config', 'UA-161612035-1');
 <link rel="stylesheet" type="text/css" href="../bulma-timeline.min.css">
 
 <script defer src="https://use.fontawesome.com/releases/v5.8.2/js/all.js"></script>
-<script type="text/javascript" src="../js/jquery.js"></script>
+
 
     <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.css" />
     <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
@@ -141,6 +179,44 @@ gtag('config', 'UA-161612035-1');
 </head>
 
 <body class="">
+
+    <nav class="navbar is-white" role="navigation" aria-label="main navigation">
+        <div class="container">
+            <div class="navbar-brand">
+                <a class="navbar-item" href="../">
+                    <img src="../assets/COMP_ALC.png" alt="Compiler Alchemy" style="height: 40px;">
+                </a>
+                <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navMenu">
+                    <span aria-hidden="true"></span>
+                    <span aria-hidden="true"></span>
+                    <span aria-hidden="true"></span>
+                    <span aria-hidden="true"></span>
+                </a>
+            </div>
+            <div id="navMenu" class="navbar-menu">
+                <div class="navbar-end">
+                    <a class="navbar-item" href="../blog/">Blog</a>
+                    <a class="navbar-item" href="../articles/">Articles</a>
+                    <a class="navbar-item" href="../books/sqlite-internals/">Book</a>
+                    <a class="navbar-item" href="../talks/">Talks</a>
+                    <a class="navbar-item" href="../journey/">Journey</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const burger = document.querySelector('.navbar-burger');
+            const menu = document.querySelector('#navMenu');
+            if (burger && menu) {
+                burger.addEventListener('click', () => {
+                    burger.classList.toggle('is-active');
+                    menu.classList.toggle('is-active');
+                });
+            }
+        });
+    </script>
 
     
 
