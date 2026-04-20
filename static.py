@@ -54,21 +54,20 @@ def to_rfc822(t):
 
 
 context = base_context()
-context.update(
-    {
-        "testimonials": settings.testimonials,
-        "writings": settings.writings,
-        "talks": settings.talks,
-        "str": str,
-        "titlecase": titlecase,
-        "settings": settings,
-        "md_to_html": md_to_html,
-        "path": "/",
-        "seo_title": "Abdur-Rahmaan Janhangeer | Python Software Engineer & Author",
-        "seo_description": "Software Engineer, Author of SQLite Internals, and Python freelancer specializing in backend systems and open source.",
-        "page_path": "",
-    }
-)
+
+context.update({
+    'testimonials': settings.testimonials,
+    'writings': settings.writings,
+    'talks': settings.talks,
+    'str': str,
+    'titlecase': titlecase,
+    'settings': settings,
+    'md_to_html': md_to_html,
+    'path': '/',
+    'seo_title': 'Abdur-Rahmaan Janhangeer | Python Software Engineer & Author',
+    'seo_description': 'Software Engineer, Author of SQLite Internals, and Python freelancer specializing in backend systems and open source.',
+    'page_path': ''
+})
 
 podcontext = base_context()
 podcontext.update({"settings": settings, "md_to_html": md_to_html, "path": "../"})
@@ -125,24 +124,16 @@ def gen_book(mdfile, cover, title, build_number, slug, download_link, edit_link)
         os.mkdir(os.path.join(settings.OUTPUT_FOLDER, "books", slug))
     except Exception as e:
         pass
-    context.update(
-        {
-            "seo_title": f"{title} | Abdur-Rahmaan Janhangeer",
-            "seo_description": f"Explore {title} by Abdur-Rahmaan Janhangeer. Deep dive into database internals, systems engineering, and advanced Python.",
-            "page_path": f"books/{slug}/",
-            "og_type": "book",
-        }
-    )
-    generate(
-        "book.html",
-        join(settings.OUTPUT_FOLDER, "books", slug, "index.html"),
-        **context,
-    )
+    context.update({
+        'seo_title': f'{title} | Abdur-Rahmaan Janhangeer',
+        'seo_description': f'Explore {title} by Abdur-Rahmaan Janhangeer. Deep dive into database internals, systems engineering, and advanced Python.',
+        'page_path': f'books/{slug}/',
+        'og_type': 'book'
+    })
+    generate('book.html', join(settings.OUTPUT_FOLDER, 'books', slug, 'index.html'), **context)
 
 
-def gen_diary(
-    mdfile, cover, title, build_number, slug, download_link, edit_link, weasy=False
-):
+def gen_diary(mdfile, cover, title, build_number, slug, download_link, edit_link, weasy=False):
     book_title = title
     context = base_context()
 
@@ -353,8 +344,8 @@ def gen_blog():
     for source in data:
         if os.path.exists(source):
             toml_data = toml.load(source)
-            total_posts += len(toml_data["elements"])
-
+            total_posts += len(toml_data['elements'])
+            
     title_slug = []
     current_post_num = total_posts
     for source in data:
@@ -362,123 +353,62 @@ def gen_blog():
             continue
         toml_data = toml.load(source)
         current_year = extract_year(source)
-
-        # Process elements in reverse (newest in file first)
+        
+        # Process elements in reverse (newest in file first) 
         # since files are already ordered 2025 -> 2019
-        for i, elem in enumerate(toml_data["elements"][::-1]):
-            title = elem["title"]
-            slug = (
-                title.casefold()
-                .replace(" ", "-")
-                .replace("/", "")
-                .replace("'", "")
-                .replace("?", "")
-                .replace("---", "-")
-                .replace(":", "")
-                .replace(",", "")
-                .replace("\u200b", "")
-                .replace("\u200c", "")
-            )
-            content_string = elem["body"]
-            content = md_to_html(elem["body"])
+        for i, elem in enumerate(toml_data['elements'][::-1]):
+            title = elem['title']
+            slug = title.casefold().replace(' ', '-').replace('/', '').replace("'", '').replace('?',
+                     '').replace('---', '-').replace(':', '').replace(',', '').replace('\u200b', '').replace('\u200c', '')
+            content_string = elem['body']
+            content = md_to_html(elem['body'])
 
             # Store the absolute article number
-            title_slug.append(
-                {
-                    "title": title,
-                    "slug": slug,
-                    "year": current_year,
-                    "num": current_post_num,
-                }
-            )
+            title_slug.append({
+                'title': title, 
+                'slug': slug, 
+                'year': current_year,
+                'num': current_post_num
+            })
             current_post_num -= 1
 
-    # Second pass: generate posts with prev/next links
-    # Pre-load all post bodies for efficiency
-    post_bodies = {}
-    for source in data:
-        if os.path.exists(source):
-            toml_data = toml.load(source)
-            for elem in toml_data["elements"]:
-                slug = (
-                    elem["title"]
-                    .casefold()
-                    .replace(" ", "-")
-                    .replace("/", "")
-                    .replace("'", "")
-                    .replace("?", "")
-                    .replace("---", "-")
-                    .replace(":", "")
-                    .replace(",", "")
-                    .replace("\u200b", "")
-                    .replace("\u200c", "")
-                )
-                post_bodies[slug] = elem["body"]
-
-    for idx, post in enumerate(title_slug):
-        slug = post["slug"]
-        try:
-            os.mkdir(os.path.join(settings.OUTPUT_FOLDER, "blog", slug))
-        except Exception as e:
-            pass
-
-        prev_post = title_slug[idx + 1] if idx + 1 < len(title_slug) else None
-        next_post = title_slug[idx - 1] if idx - 1 >= 0 else None
-
-        body = post_bodies.get(slug, "")
-
-        blog_context = context.copy()
-        blog_context.update(
-            {
-                "settings": settings,
-                "path": "../../",
-                "title": post["title"],
-                "slug": slug,
-                "content": md_to_html(body),
-                "content_string": body,
-                "article_num": post["num"],
-                "seo_title": f"{post['title']} | Abdur-Rahmaan Janhangeer Blog",
-                "seo_description": (post["title"][:155] + "...")
-                if len(post["title"]) > 160
-                else post["title"],
-                "page_path": f"blog/{slug}/",
-                "og_type": "article",
-                "prev_post": prev_post,
-                "next_post": next_post,
-            }
-        )
-        generate(
-            "blog.html",
-            join(settings.OUTPUT_FOLDER, "blog", slug, "index.html"),
-            **blog_context,
-        )
-
+            try:
+                os.mkdir(os.path.join(settings.OUTPUT_FOLDER, 'blog', slug))
+            except Exception as e:
+                pass
+            
+            blog_context = context.copy()
+            blog_context.update({
+                'settings': settings,
+                'path': '../../',
+                'title': title,
+                'slug': slug,
+                'content': content,
+                'content_string': content_string,
+                'article_num': current_post_num + 1,
+                'seo_title': f'{title} | Abdur-Rahmaan Janhangeer Blog',
+                'seo_description': (content_string[:155] + '...') if len(content_string) > 160 else content_string,
+                'page_path': f'blog/{slug}/',
+                'og_type': 'article'
+            })
+            generate('blog.html', join(settings.OUTPUT_FOLDER, 'blog', slug, 'index.html'), **blog_context)
+    
     index_context = context.copy()
-    index_context.update(
-        {
-            "settings": settings,
-            "path": "../",
-            "title_slug": title_slug,
-        }
-    )
-    generate(
-        "blog_index.html",
-        join(settings.OUTPUT_FOLDER, "blog", "index.html"),
-        **index_context,
-    )
+    index_context.update({
+                'settings': settings,
+                'path': '../',
+                'title_slug': title_slug,
+            })
+    generate('blog_index.html', join(settings.OUTPUT_FOLDER, 'blog', 'index.html'), **index_context)
     return title_slug
-
-
 def gen_writings():
-    context.update(
-        {
-            "path": "../",
-            "seo_title": "Technical Writings | Abdur-Rahmaan Janhangeer",
-            "seo_description": "A collection of deep-dive articles on Python, SQLite internals, and system design by Abdur-Rahmaan Janhangeer.",
-            "page_path": "articles/",
-            "og_type": "website",
-        }
-    )
+    context.update({
+        'path': '../',
+        'seo_title': 'Technical Writings | Abdur-Rahmaan Janhangeer',
+        'seo_description': 'A collection of deep-dive articles on Python, SQLite internals, and system design by Abdur-Rahmaan Janhangeer.',
+        'page_path': 'articles/',
+        'og_type': 'website'
+    })
     try:
         os.mkdir(os.path.join(settings.OUTPUT_FOLDER, "articles"))
     except Exception as e:
@@ -491,15 +421,13 @@ def gen_writings():
 
 
 def gen_talks():
-    context.update(
-        {
-            "path": "../",
-            "seo_title": "Conference Talks & Presentations | Abdur-Rahmaan Janhangeer",
-            "seo_description": "Conference talks by Abdur-Rahmaan Janhangeer on Flask, Python internals, and Open Source.",
-            "page_path": "talks/",
-            "og_type": "website",
-        }
-    )
+    context.update({
+        'path': '../',
+        'seo_title': 'Conference Talks & Presentations | Abdur-Rahmaan Janhangeer',
+        'seo_description': 'Conference talks by Abdur-Rahmaan Janhangeer on Flask, Python internals, and Open Source.',
+        'page_path': 'talks/',
+        'og_type': 'website'
+    })
     try:
         os.mkdir(os.path.join(settings.OUTPUT_FOLDER, "talks"))
     except Exception as e:
@@ -512,36 +440,27 @@ def gen_talks():
 
 
 def gen_journey():
-    context.update(
-        {
-            "path": "../",
-            "seo_title": "My Software Engineering Journey | Abdur-Rahmaan Janhangeer",
-            "seo_description": "How I broke into tech, my open-source contributions, and my path as a Python developer.",
-            "page_path": "journey/",
-            "og_type": "website",
-        }
-    )
+    context.update({
+        'path': '../',
+        'seo_title': 'My Software Engineering Journey | Abdur-Rahmaan Janhangeer',
+        'seo_description': 'How I broke into tech, my open-source contributions, and my path as a Python developer.',
+        'page_path': 'journey/',
+        'og_type': 'website'
+    })
     try:
         os.mkdir(os.path.join(settings.OUTPUT_FOLDER, "journey"))
     except Exception as e:
         pass
-    generate(
-        "pages/journey.html",
-        join(settings.OUTPUT_FOLDER, "journey", "index.html"),
-        **context,
-    )
-
+    generate('pages/journey.html', join(settings.OUTPUT_FOLDER, 'journey', 'index.html'), **context)
 
 def gen_faceblur():
-    context.update(
-        {
-            "path": "../",
-            "seo_title": "FaceBlur Tool | Privacy First Photo Editing",
-            "seo_description": "A tool by Abdur-Rahmaan Janhangeer to blur faces in photos for privacy.",
-            "page_path": "face-blur/",
-            "og_type": "website",
-        }
-    )
+    context.update({
+        'path': '../',
+        'seo_title': 'FaceBlur Tool | Privacy First Photo Editing',
+        'seo_description': 'A tool by Abdur-Rahmaan Janhangeer to blur faces in photos for privacy.',
+        'page_path': 'face-blur/',
+        'og_type': 'website'
+    })
     try:
         os.mkdir(os.path.join(settings.OUTPUT_FOLDER, "face-blur"))
     except Exception as e:
@@ -633,33 +552,33 @@ def gen_islamic_months():
 
 def gen_seo():
     urls = [
-        "/",
-        "/alfa-podcast/",
-        "/blog/",
-        "/articles/",
-        "/talks/",
-        "/journey/",
-        "/face-blur/",
-        "/islamic-months-mauritius/",
+        '/',
+        '/alfa-podcast/',
+        '/blog/',
+        '/articles/',
+        '/talks/',
+        '/journey/',
+        '/face-blur/',
+        '/islamic-months-mauritius/',
     ]
 
     # Dynamically discover books
-    data_books_dir = "./data/books/"
+    data_books_dir = './data/books/'
     if os.path.exists(data_books_dir):
         for book_file in os.listdir(data_books_dir):
-            if book_file.endswith(".md"):
-                slug = book_file.replace(".md", "").replace("_", "-")
-                urls.append(f"/books/{slug}/")
+            if book_file.endswith('.md'):
+                slug = book_file.replace('.md', '').replace('_', '-')
+                urls.append(f'/books/{slug}/')
 
     # Dynamically discover diaries
-    data_diaries_dir = "./data/diaries/"
+    data_diaries_dir = './data/diaries/'
     if os.path.exists(data_diaries_dir):
         for diary_file in os.listdir(data_diaries_dir):
-            if diary_file.endswith(".toml") and diary_file != "silicon-valley.toml":
-                year = diary_file.replace(".toml", "")
-                urls.append(f"/diaries/{year}/")
-        if os.path.exists(os.path.join(data_diaries_dir, "silicon-valley.toml")):
-            urls.append("/diaries/silicon-valley/")
+            if diary_file.endswith('.toml') and diary_file != 'silicon-valley.toml':
+                year = diary_file.replace('.toml', '')
+                urls.append(f'/diaries/{year}/')
+        if os.path.exists(os.path.join(data_diaries_dir, 'silicon-valley.toml')):
+            urls.append('/diaries/silicon-valley/')
 
     # Blog posts
     blog_data = [
@@ -786,41 +705,33 @@ def main(args):
 
         # 1. Generate blog posts and get slugs
         all_blog_posts = gen_blog()
-
+        
         # 2. Create home page specific context to avoid shadowing/mutation issues
         home_context = context.copy()
-        home_context.update(
-            {
-                "path": "",
-                "seo_title": "Abdur-Rahmaan Janhangeer | Python Software Engineer & Author",
-                "seo_description": "Software Engineer, Author of SQLite Internals, and Python freelancer specializing in backend systems and open source.",
-                "page_path": "",
-            }
-        )
-
+        home_context.update({
+            'path': '',
+            'seo_title': 'Abdur-Rahmaan Janhangeer | Python Software Engineer & Author',
+            'seo_description': 'Software Engineer, Author of SQLite Internals, and Python freelancer specializing in backend systems and open source.',
+            'page_path': ''
+        })
+        
         # Get latest 5 blog posts for the dedicated homepage section
         blog_posts = []
         for post in all_blog_posts[:5]:
-            blog_posts.append(
-                {
-                    "title": post["title"],
-                    "url": f"blog/{post['slug']}/",
-                    "num": post["num"],
-                }
-            )
-
-        home_context.update(
-            {
-                "blog_posts": blog_posts,
-                "writings": settings.writings,  # Restore original technical writings
-            }
-        )
-
+            blog_posts.append({
+                'title': post['title'],
+                'url': f"blog/{post['slug']}/",
+                'num': post['num']
+            })
+        
+        home_context.update({
+            'blog_posts': blog_posts,
+            'writings': settings.writings # Restore original technical writings
+        })
+        
         # 3. Generate the Home page
-        generate(
-            "index.html", join(settings.OUTPUT_FOLDER, "index.html"), **home_context
-        )
-
+        generate('index.html', join(settings.OUTPUT_FOLDER, 'index.html'), **home_context)
+        
         # 4. Generate other sections
         gen_podcast_rss()
         gen_books()
@@ -828,12 +739,8 @@ def main(args):
         gen_writings()
         gen_talks()
         gen_journey()
-
-        generate(
-            "podcast.html",
-            join(settings.OUTPUT_FOLDER, "alfa-podcast", "index.html"),
-            **podcontext,
-        )
+        
+        generate('podcast.html', join(settings.OUTPUT_FOLDER, 'alfa-podcast', 'index.html'), **podcontext)
         gen_faceblur()
         gen_islamic_months()
         gen_seo()

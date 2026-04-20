@@ -4,7 +4,7 @@
             <div class="notification has-text-centered" style="background-color: #f5fdf8;">
                 <br>
                 <p class="has-text-centered">
-                    <span class="title has-background-white-ter  has-text-centered" style="width: 50px; height:50px; padding: 20px; border-radius: 50%;">
+                    <span class="title has-text-centered" style="width: 50px; height:50px; padding: 15px; border-radius: 50%;">
                         <i class="em em-pencil2" aria-role="presentation" aria-label="PENCIL"></i>
                     </span>
                 </p><br>
@@ -17,7 +17,7 @@
                 <span class="url p-0">{{ str(post.num).zfill(2) }}. <a href="{{ post.url }}">{{ post.title }}</a></span>
             {% endfor %}
             <br>
-            <a href="{{ path }}blog" class="button is-success" style="color: white; text-decoration: none;">Read more posts</a>
+            <button class="button is-success"><a style="color: white;" href="{{ path }}blog">Read more posts</a></button>
         </div>
     </div>
 </div>
