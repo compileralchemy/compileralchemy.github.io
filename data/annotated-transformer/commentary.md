@@ -81,14 +81,6 @@ Components: BPE, Search, Averaging</a></li>
 
 # Prelims
 
-> **Commentary:**
-> The Prelims section sets up the environment. Here's how we import the core libraries:
->
->     import torch
->     import torch.nn as nn
->     import math
->     import copy
-
 # Background
 
 
@@ -142,12 +134,139 @@ RUN_EXAMPLES = True
 ```
 
 > **Commentary:**
->    # Standard library imports
->    import os                          # Operating system utilities (files, paths, environment variables)
->    from os.path import exists         # Shortcut function to check if a file/folder exists
->    import math                        # Mathematical functions (sqrt, sin, log, etc.)
->    import copy                        # Deep/shallow copying of Python objects
-
+> These are some relevant code that needs an explanation.
+>
+>     # From code
+>     import torch          # Main PyTorch library for tensors and deep learning
+>     import torch.nn as nn # Neural network layers and model building tools
+> At this point, it let's see what a tensor is. It is very good to brush up on Scalars, Vectors and Matrices ([Read here](https://www.doitpoms.ac.uk/tlplib/tensors/maths_aside.php)). Tensors are mathematical objects describing physical properties like scalars and vectors. In PyTorch, [a tensor is a data structure](https://docs.pytorch.org/tutorials/beginner/basics/tensorqs_tutorial.html) abstracting the idea of a tensor and is used to encode the input, output as well as the model's parameters. Tensors can run on the CPU, GPU, CUDA or other accelerators.
+>
+>     # From code
+>     from torch.nn.functional import (
+>         log_softmax,      # Numerically stable log(softmax(x))
+>         pad               # Add padding to tensors
+>     )
+>
+> Softmax converts raw scores into probabilities.
+> Study this pieces of code to understand it.
+>
+>     from torch.nn.functional import softmax
+>     import torch
+>     logits = torch.tensor([2.0, 2.0, 1.0])
+>     probs = softmax(logits, dim=0)
+>     print(probs)
+>     
+>     Out: tensor([0.4223, 0.4223, 0.1554])
+> The values of the output tensor sum to 1 and they can be interpreted as probabilities.
+> You can read a nice explanation about [how softmax is calculated](https://victorzhou.com/blog/softmax/). Log softmax is used to [stabilise calculations](https://www.shadecoder.com/topics/log-softmax-a-comprehensive-guide-for-2025).
+>
+> `pad` pads the tensor with values. You can specify where you want to pad.
+>
+>     import torch
+>     import torch.nn.functional as F
+>     x = torch.tensor([[1., 2.],
+>                        [3., 4.]])
+>     y = F.pad(x, (1, 1, 1, 1), mode='constant', value=0)
+>     print(y)
+>     Out: tensor([[0., 0., 0., 0.],
+>       [0., 1., 2., 0.],
+>       [0., 3., 4., 0.],
+>       [0., 0., 0., 0.]])
+>
+> Next we have
+>
+>     # From code
+>     # Learning rate scheduler using a custom lambda function
+>     from torch.optim.lr_scheduler import LambdaLR
+> It's to have a mental model of how PyTorch trains a model.
+> `LambdaLR` allows you to specify how the learning rate evolves with each training step.
+> Here is an example where we set the initial learning rate to be `0.05` then it is modified based on epoch `1.0 / (1.0 + 0.01 * epoch`: 
+>
+>     import torch
+>     import torch.nn as nn
+>     import torch.optim as optim
+>     from torch.optim.lr_scheduler import LambdaLR
+>     X = torch.linspace(-1, 1, 100).unsqueeze(1)
+>     # X = 100 evenly spaced numbers between -1 and 1.
+>     noise = torch.randn_like(X) * 0.1  # small noise (stable learning)
+>     y = 3 * X + 2 + noise # True function, we compare our predictions against this
+>     model = nn.Linear(1, 1)
+>     criterion = nn.MSELoss()
+>     optimizer = optim.SGD(model.parameters(), lr=0.05)
+>     lambda_rule = lambda epoch: 1.0 / (1.0 + 0.01 * epoch)
+>     scheduler = LambdaLR(optimizer, lr_lambda=lambda_rule)
+>     epochs = 100
+>     for epoch in range(epochs):
+>         preds = model(X) # forward pass
+>         loss = criterion(preds, y)
+>         optimizer.zero_grad()
+>         loss.backward() # backward
+>         # gradient clipping (prevents explosion)
+>         torch.nn.utils.clip_grad_norm_(model.parameters(), 1.0)
+>         optimizer.step()
+>         scheduler.step()
+>         lr = optimizer.param_groups[0]["lr"]
+>         if epoch % 10 == 0:
+>             print(f"Epoch {epoch:02d} | Loss: {loss.item():.4f} | LR: {lr:.6f}")
+>     w = model.weight.item()
+>     b = model.bias.item()
+>     print("\nLearned function:")
+>     print(f"y ≈ {w:.3f}x + {b:.3f}")
+> Glossary:
+>
+> | Step             | What it does                                         |
+> | ---------------- | ---------------------------------------------------- |
+> | Forward pass     | Model makes a prediction                             |
+> | Loss computation | Measures how wrong the prediction is                 |
+> | Backpropagation  | Computes how each parameter contributed to the error |
+> | Zero gradients   | Clears old gradient values                           |
+> | Optimizer step   | Updates weights and biases to reduce error           |
+> | Scheduler step   | Adjusts learning rate over time                      |
+> | Epoch            | One full pass over the dataset                       |
+> 
+> In sum it is called a scheduler as it schedules for the entire run, how the learning rate changes.
+> 
+>     import altair as alt 
+> [Altair](https://github.com/vega/altair) (Vega-Altair) is "a declarative statistical visualization library for Python." It aims to provide beautiful visualization with little amount of code. It
+> provides an easy way to provide interactions
+> In Jupyter
+>
+>     import altair as alt
+>     import pandas as pd
+>     df = pd.DataFrame({
+>         "x": [1, 2, 3, 4],
+>         "y": [10, 20, 15, 25]
+>     })
+>     chart = alt.Chart(df).mark_line().encode(
+>         x="x",
+>         y="y"
+>     )
+>     chart
+> Next we have TorchText
+> 
+>     # TorchText utilities for NLP datasets and vocabularies
+>     from torchtext.data.functional import to_map_style_dataset
+>     # Creates mini-batches and handles dataset loading
+>     from torchtext.vocab import build_vocab_from_iterator
+>     # Builds a vocabulary from tokenized text
+>     import torchtext.datasets as datasets
+>
+> [TorchText](https://docs.pytorch.org/text/stable/index.html) **was** primarily used to build the data-loading and preprocessing pipeline for Natural Language Processing (NLP) models in PyTorch.
+>
+>     # Converts iterable datasets into indexable datasets
+>     from torch.utils.data import DataLoader
+>     import spacy  # Industrial-strength NLP toolkit for tokenization, parsing, etc.
+>     import GPUtil # Check available GPUs, memory usage, utilization
+>     # Distributed training
+>     from torch.utils.data.distributed import DistributedSampler
+>     # Splits datasets across multiple GPUs/processes
+>     import torch.distributed as dist
+>     # Backend communication for distributed training
+>     import torch.multiprocessing as mp
+>     # Spawn multiple processes for parallel/distributed training
+>     from torch.nn.parallel import DistributedDataParallel as DDP
+>     # Wraps a model for efficient multi-GPU distributed training
+> Now that we finished the code, on to some interesting reading!
 
 ```python
 # Some convenience helper functions used throughout the notebook
@@ -193,7 +312,40 @@ The goal of reducing sequential computation also forms the
 foundation of the Extended Neural GPU, ByteNet and ConvS2S, all of
 which use convolutional neural networks as basic building block,
 computing hidden representations in parallel for all input and
-output positions. In these models, the number of operations required
+output positions. ...
+
+> **Commentary:**
+>
+> | Term                                         | Simple Explanation                                                                                                      |
+> | -------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------- |
+> | Sequential computation                       | Doing operations step-by-step in order (one after another), instead of all at once                                      |
+> | Convolutional neural networks (CNNs)         | Neural networks that process data using filters; often used in images but also in sequences here                        |
+> 
+> Convolutional filters, also called [kernels are designed to detect specific patterns or features in the input data](https://medium.com/advanced-deep-learning/cnn-operation-with-2-kernels-resulting-in-2-feature-mapsunderstanding-the-convolutional-filter-c4aad26cf32). It may sound surprising but CNN can also be used for text. Just like in images they are used to detect edges or objects, in text they are [used to find key phrases for example](https://medium.com/@aliraza.abro.prog/convolutional-neural-networks-cnns-for-text-classification-bd473c7285a4). A convolution is a small window (called a filter or kernel) that scans over input data and computes a weighted sum at each position. A weighted sum is just a normal sum where each number is multiplied by a weight (importance factor) before adding. $w_1 \cdot 1 + w_2 \cdot 2 + w_3 \cdot 3$. Masking with respect to CNN means zeroing some weights of the convolution kernel or doing some computations so that future positions are not connected to influence training.
+>
+> **Extended Neural GPU**: The [Neural GPUs Learn Algorithms](https://arxiv.org/abs/1511.08228) is co-authored by Ilya Sutskever. Neural Turing Machines (NTMs) were used to learn from examples but, due to them not being parallel, they are hard to train. It is based on a type of convolutional gated recurrent unit.
+>
+> **Extensions and Limitations of the Neural GPU**: Mentionned in the text, [this technique](https://arxiv.org/abs/1611.00736) based on the Extended Neural GPU improves binary addition and binary multiplication in a way that generalizes to inputs of arbitrary length. It also fails on some instances.
+>
+> **Recurrent Neural Network**: An RNN (Recurrent Neural Network) is a type of neural network designed for sequential data like text, time series, or speech. It processes input one step at a time, keeping a "memory" (hidden state) of what it has seen before.
+> At each step $t$, it reads input $x_t$. It updates a hidden memory state $h_t$. A rough formula is $h_t = f(W x_t + U h_{t-1})$
+>
+> | Symbol    | Meaning                                   |
+> | --------- | ----------------------------------------- |
+> | $x_t$     | current input word/token                  |
+> | $h_{t-1}$ | previous memory (hidden state)            |
+> | $h_t$     | updated memory (new hidden state)         |
+> | $W, U$    | learned weight matrices                   |
+> | $f$       | activation function (e.g., $\tanh$, ReLU) |
+>
+> Sine the current $h$ depends on the previous, we cannot compute it in parallel. So, RNN has hidden representations but they are not parallel.
+>
+> **ByteNext**: The [ByteNet](https://arxiv.org/abs/1610.10099) is a one-dimensional convolutional neural network that is composed of two parts, one to encode the source sequence and the other to decode the target sequence. It is a character-level Neural Machine Translation (NMT) approach, which means that it performs translation character by character.
+>
+> **ConvS2S**: ConvS2S ([Convolutional Sequence-to-Sequence Learning](https://arxiv.org/abs/1705.03122)) is a neural network architecture for tasks like machine translation, text summarization, and speech processing, where both input and output are sequences. Contrasting with LSTM which uses RNN, this one uses CNN for the encoder and decoder. RNN processes tokens one by one, this one processes tokens in parallel. It also has [an attention step](https://sh-tsang.medium.com/review-convolutional-sequence-to-sequence-learning-convs2s-510a9eddce05). Notice that it already has multi-attention step, which shows that attention is something that existed well before transformers. We'll cover a brief history of attention later on!
+> 
+
+... In these models, the number of operations required
 to relate signals from two arbitrary input or output positions grows
 in the distance between positions, linearly for ConvS2S and
 logarithmically for ByteNet. This makes it more difficult to learn
