@@ -30,28 +30,28 @@ COMMENTARIES = {
 
     "### Attention": """
 > **Commentary:**
-> Attention is the core mechanism. The formula \\( \\text{Attention}(Q, K, V) = \\text{softmax}(QK^T / \\sqrt{d_k})V \\) 
+> Attention is the core mechanism. The formula $\\text{Attention}(Q, K, V) = \\text{softmax}(QK^T / \\sqrt{d_k})V$ 
 > is worth understanding deeply. Queries, Keys, Values come from the same source in self-attention. 
-> The dot product QK^T measures similarity between each query and all keys. Scaling by \\(\\sqrt{d_k}\\) 
+> The dot product $QK^T$ measures similarity between each query and all keys. Scaling by $\\sqrt{d_k}$ 
 > prevents the softmax from saturating (having extremely small gradients) when dimensions are large.
 """,
 
     "Multi-head attention allows the model to jointly attend to": """
 > **Deep Dive:**
 > The intuition behind multi-head attention: instead of one attention computation, 
-> we project the same input into \\(h\\) different representation subspaces (8 in the paper). 
+> we project the same input into $h$ different representation subspaces (8 in the paper). 
 > Each head can learn different types of relationships -- syntactic, semantic, positional. 
 > Think of it as having 8 different "perspectives" on the same input simultaneously.
 > 
 > The total computation is similar to single-head attention because each head works 
-> in a reduced dimension (\\(d_k = d_{\\text{model}} / h = 64\\)).
+> in a reduced dimension ($d_k = d_{\\text{model}} / h = 64$).
 """,
 
     "## Position-wise Feed-Forward Networks": """
 > **Commentary:**
 > While attention handles interaction between positions, the FFN processes each position 
 > independently. The two linear layers with ReLU in between add non-linearity and 
-> transform the representation. The inner dimension \\(d_{ff} = 2048\\) is 4x the model dimension, 
+> transform the representation. The inner dimension $d_{ff} = 2048$ is 4x the model dimension, 
 > giving the network more capacity.
 """,
 
@@ -59,14 +59,14 @@ COMMENTARIES = {
 > **Commentary:**
 > Since the Transformer has no recurrence or convolution, it has no inherent notion 
 > of position. Positional encodings inject this information. The choice of sinusoids 
-> is deliberate: for any fixed offset \\(k\\), \\(PE_{pos+k}\\) can be expressed as a linear function 
-> of \\(PE_{pos}\\), which makes it easy for the model to learn relative positions. 
+> is deliberate: for any fixed offset $k$, $PE_{pos+k}$ can be expressed as a linear function 
+> of $PE_{pos}$, which makes it easy for the model to learn relative positions. 
 > The frequencies form a geometric progression, giving a unique encoding for each position.
 """,
 
     "## Optimizer": """
 > **Commentary:**
-> The learning rate schedule is critical. It increases linearly for \\(\\text{warmup}_\\text{steps} = 4000\\), 
+> The learning rate schedule is critical. It increases linearly for $\\text{warmup}_{\\text{steps}} = 4000$, 
 > then decreases proportionally to the inverse square root of the step number. This 
 > warmup phase is essential for stable training of Transformers -- without it, the 
 > large initial gradients can cause the model to diverge.
@@ -75,7 +75,7 @@ COMMENTARIES = {
     "### Label Smoothing": """
 > **Commentary:**
 > Label smoothing replaces hard 0/1 targets with soft targets (e.g., 0.9 for correct class, 
-> \\(0.1/|V|\\) for others). This prevents the model from becoming over-confident and improves 
+> $0.1/|V|$ for others). This prevents the model from becoming over-confident and improves 
 > generalization. The KL divergence loss is used instead of cross-entropy. While it hurts 
 > perplexity (the model is less "certain"), it consistently improves BLEU score.
 """,
