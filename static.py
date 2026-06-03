@@ -649,7 +649,7 @@ def gen_annotated_commentary():
         {
             "settings": settings,
             "path": path_prefix,
-            "title": "The Annotated Transformer — with Commentary",
+            "title": "Commentary of The Annotated Transformer",
             "content": content_html,
             "seo_title": "The Annotated Transformer with Commentary | Abdur-Rahmaan Janhangeer",
             "seo_description": "A line-by-line walkthrough of the Transformer architecture from 'Attention is All You Need', with added commentary and explanations.",
