@@ -1,0 +1,2683 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-161612035-1"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+
+function gtag() { dataLayer.push(arguments); }
+gtag('js', new Date());
+gtag('config', 'UA-161612035-1');
+</script>
+
+
+
+
+
+<title>The Annotated Transformer with Commentary | Abdur-Rahmaan Janhangeer</title>
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="utf-8">
+<meta name="description" content="A line-by-line walkthrough of the Transformer architecture from 'Attention is All You Need', with added commentary and explanations.">
+<meta name="author" content="Abdur-Rahmaan Janhangeer">
+<link rel="canonical" href="https://www.compileralchemy.com/annotated-transformer-commentary/">
+
+<!-- Open Graph / Facebook -->
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://www.compileralchemy.com/annotated-transformer-commentary/">
+<meta property="og:title" content="The Annotated Transformer with Commentary | Abdur-Rahmaan Janhangeer">
+<meta property="og:description" content="A line-by-line walkthrough of the Transformer architecture from 'Attention is All You Need', with added commentary and explanations.">
+<meta property="og:image" content="https://www.compileralchemy.com/assets/COMP_ALC.png">
+
+<!-- Twitter -->
+<meta property="twitter:card" content="summary_large_image">
+<meta property="twitter:url" content="https://www.compileralchemy.com/annotated-transformer-commentary/">
+<meta property="twitter:title" content="The Annotated Transformer with Commentary | Abdur-Rahmaan Janhangeer">
+<meta property="twitter:description" content="A line-by-line walkthrough of the Transformer architecture from 'Attention is All You Need', with added commentary and explanations.">
+<meta property="twitter:image" content="https://www.compileralchemy.com/assets/COMP_ALC.png">
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "name": "The Annotated Transformer with Commentary | Abdur-Rahmaan Janhangeer",
+  "description": "A line-by-line walkthrough of the Transformer architecture from 'Attention is All You Need', with added commentary and explanations.",
+  "url": "https://www.compileralchemy.com/annotated-transformer-commentary/",
+  "author": {
+    "@type": "Person",
+    "name": "Abdur-Rahmaan Janhangeer"
+  }
+}
+</script>
+
+<meta name="theme-color" content="#ffb74d" />
+<link rel="icon" href="../assets/COMP_ALC.png">
+
+<!-- Performance Optimized Asset Loading -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preconnect" href="https://cdnjs.cloudflare.com">
+<link rel="preconnect" href="https://emoji-css.afeld.me">
+
+<link href="https://fonts.googleapis.com/css2?family=Comfortaa&family=Raleway:wght@700&family=Special+Elite&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.0/css/bulma.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link href="https://emoji-css.afeld.me/emoji.css" rel="stylesheet">
+
+<link rel="stylesheet" type="text/css" href="../style.css">
+<link rel="stylesheet" type="text/css" href="../bulma-timeline.min.css">
+
+<script defer src="https://use.fontawesome.com/releases/v5.8.2/js/all.js"></script>
+<script type="text/javascript" src="../js/jquery.js"></script>
+
+    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.css" />
+    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
+    <link rel="stylesheet" href="https://unpkg.com/swiper@6/swiper-bundle.min.css" />
+    <script src="https://unpkg.com/swiper@6/swiper-bundle.min.js"></script>
+    <style type="text/css">
+    .swiper-container {
+        width: 100%;
+        height: 100%;
+    }
+
+    .swiper-slide {
+        text-align: center;
+        font-size: 18px;
+        background: #fff;
+        /* Center slide text vertically */
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: -webkit-flex;
+        display: flex;
+        -webkit-box-pack: center;
+        -ms-flex-pack: center;
+        -webkit-justify-content: center;
+        justify-content: center;
+        -webkit-box-align: center;
+        -ms-flex-align: center;
+        -webkit-align-items: center;
+        align-items: center;
+    }
+    </style>
+    <script type="text/javascript">
+    (function(c, l, a, r, i, t, y) {
+        c[a] = c[a] || function() {
+            (c[a].q = c[a].q || []).push(arguments) };
+        t = l.createElement(r);
+        t.async = 1;
+        t.src = "https://www.clarity.ms/tag/" + i;
+        y = l.getElementsByTagName(r)[0];
+        y.parentNode.insertBefore(t, y);
+    })(window, document, "clarity", "script", "b2ltvgn5pp");
+    </script>
+
+<style type="text/css">
+    .hide_scroll::-webkit-scrollbar { display: none; }
+    .hide_scroll { -ms-overflow-style: none; scrollbar-width: none; }
+</style>
+
+<link href="https://assets.calendly.com/assets/external/widget.css" rel="stylesheet">
+<script src="https://assets.calendly.com/assets/external/widget.js" type="text/javascript" async></script>
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css" crossorigin="anonymous">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js" crossorigin="anonymous"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js" crossorigin="anonymous"
+        onload="renderMathInElement(document.body, {
+            delimiters: [
+                {left: '$$', right: '$$', display: true},
+                {left: '$', right: '$', display: false},
+                {left: '\\[', right: '\\]', display: true},
+                {left: '\\(', right: '\\)', display: false},
+            ],
+            throwOnError: false
+        });"></script>
+
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/default.min.css">
+
+    <style>
+        :root {
+            --commentary-bg: #fdf6e3;
+            --commentary-border: #b58900;
+            --original-text: #1a1a1a;
+            --commentary-text: #4a4a4a;
+            --highlight-bg: #fff3cd;
+            --sidebar-width: 320px;
+        }
+
+        .commentary-layout {
+            display: grid;
+            grid-template-columns: 1fr var(--sidebar-width);
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem 1.5rem;
+            gap: 3rem;
+        }
+
+        .commentary-main {
+            min-width: 0;
+            max-width: 740px;
+            overflow-x: auto;
+        }
+
+        .commentary-main .katex-display {
+            overflow-x: auto;
+            overflow-y: hidden;
+            padding: 0.5em 0;
+        }
+
+        .commentary-main h1 {
+            font-size: 2.5rem;
+            margin-top: 3rem;
+            margin-bottom: 1rem;
+            line-height: 1.2;
+        }
+
+        .commentary-main h2 {
+            font-size: 1.8rem;
+            margin-top: 2.5rem;
+            margin-bottom: 0.8rem;
+            border-bottom: 2px solid #eee;
+            padding-bottom: 0.3rem;
+        }
+
+        .commentary-main h3 {
+            font-size: 1.4rem;
+            margin-top: 2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .commentary-main p {
+            line-height: 1.8;
+            margin-bottom: 1.2rem;
+            font-size: 1.1rem;
+            color: var(--original-text);
+        }
+
+        .commentary-main code {
+            background: #f5f5f5;
+            padding: 0.15em 0.4em;
+            border-radius: 3px;
+            font-size: 0.9em;
+        }
+
+        .commentary-main pre {
+            background: #f8f9fa;
+            border: 1px solid #e9ecef;
+            border-radius: 6px;
+            padding: 1.5rem;
+            overflow-x: auto;
+            margin: 1.5rem 0;
+        }
+
+        .commentary-main pre code {
+            background: none;
+            padding: 0;
+            font-size: 0.85rem;
+            line-height: 1.6;
+        }
+
+        .commentary-main img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 6px;
+            margin: 1.5rem auto;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+            display: block;
+        }
+
+        .commentary-main blockquote {
+            border-left: 4px solid #ddd;
+            margin: 1.5rem 0;
+            padding: 0.5rem 1.5rem;
+            color: #555;
+            font-style: italic;
+        }
+
+        blockquote.commentary {
+            border-left: 4px solid var(--commentary-border);
+            background: var(--commentary-bg);
+            padding: 1rem 1.5rem;
+            border-radius: 0 6px 6px 0;
+            margin: 1.5rem 0;
+            font-style: normal;
+            position: relative;
+        }
+
+        blockquote.commentary::before {
+            content: "\201C";
+            font-size: 3rem;
+            color: var(--commentary-border);
+            position: absolute;
+            top: -0.5rem;
+            left: 0.5rem;
+            opacity: 0.3;
+            font-family: Georgia, serif;
+        }
+
+        blockquote.commentary p {
+            color: var(--commentary-text);
+            font-style: normal;
+            margin-bottom: 0.5rem;
+        }
+
+        blockquote table,
+        blockquote.commentary table {
+            border-collapse: collapse;
+            margin: 0.5rem 0;
+            width: 100%;
+        }
+        blockquote th,
+        blockquote td,
+        blockquote.commentary th,
+        blockquote.commentary td {
+            padding: 0.5rem 0.75rem;
+            border: 1px solid #ddd;
+            text-align: left;
+        }
+        blockquote th,
+        blockquote.commentary th {
+            background: #f0f0f0;
+            font-weight: 600;
+        }
+
+        blockquote.commentary .commentary-label {
+            display: inline-block;
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: var(--commentary-border);
+            margin-bottom: 0.5rem;
+        }
+
+        blockquote pre {
+            background: #f8f9fa;
+            border: 1px solid #e9ecef;
+            border-radius: 6px;
+            padding: 1rem 1.25rem;
+            overflow-x: auto;
+            margin: 1rem 0;
+            font-size: 0.85rem;
+            line-height: 1.6;
+            font-style: normal;
+            color: #1a1a1a;
+        }
+        blockquote pre code {
+            background: none;
+            padding: 0;
+            font-style: normal;
+        }
+
+        blockquote.deep-dive {
+            border-left: 4px solid #6c5ce7;
+            background: #f8f7ff;
+            padding: 1rem 1.5rem;
+            border-radius: 0 6px 6px 0;
+            margin: 1.5rem 0;
+        }
+
+        blockquote.deep-dive .commentary-label {
+            color: #6c5ce7;
+        }
+
+        blockquote.deep-dive p {
+            color: #333;
+        }
+
+        .commentary-sidebar {
+            position: sticky;
+            top: 6rem;
+            align-self: start;
+            max-height: calc(100vh - 8rem);
+            overflow-y: auto;
+        }
+
+        .commentary-sidebar .toc-title {
+            font-size: 0.8rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: #999;
+            margin-bottom: 1rem;
+        }
+
+        .commentary-sidebar nav {
+            border-left: 2px solid #eee;
+            padding-left: 1rem;
+        }
+
+        .commentary-sidebar nav a {
+            display: block;
+            font-size: 0.85rem;
+            color: #666;
+            padding: 0.3rem 0;
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+
+        .commentary-sidebar nav a:hover,
+        .commentary-sidebar nav a.active {
+            color: var(--commentary-border);
+        }
+
+        .commentary-sidebar nav a.h3-link {
+            padding-left: 1rem;
+            font-size: 0.8rem;
+        }
+
+        .commentary-meta {
+            margin-bottom: 2rem;
+            font-size: 0.9rem;
+            color: #888;
+        }
+
+        .commentary-meta span {
+            margin-right: 1rem;
+        }
+
+        #progress-bar {
+            position: fixed;
+            top: 0; left: 0; height: 3px;
+            background: var(--primary-color);
+            width: 0%; z-index: 1000;
+        }
+
+        @media (max-width: 1024px) {
+            .commentary-layout {
+                grid-template-columns: 1fr;
+            }
+            .commentary-sidebar {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div id="progress-bar"></div>
+    
+
+<div 
+    id="gdpr-thing" 
+    style="
+        position: fixed; 
+        bottom: 5px;
+        left: 5px;
+        width: 200px;
+        z-index: 20;
+        background: #fff;
+        border-radius: 5px;
+        padding: 5px;
+        background-color: #f5ef85;
+        "
+    >
+    By using this website, you agree to our <a href="../#privacy-policy">privacy policy</a> [ <a id="consent-button" href="#">Ok</a> ]
+</div>
+<script type="text/javascript">
+
+    window.addEventListener('load', (event) => {
+        if (localStorage.getItem('gdpr-accept')==='ok'){
+            document.getElementById("gdpr-thing").style.display='none';
+        }
+
+      document.getElementById("consent-button").onclick = function() {
+
+        document.getElementById("gdpr-thing").style.display='none';
+        localStorage.setItem('gdpr-accept', 'ok');
+      };
+    });
+</script>
+
+
+    <nav class="navbar is-white" role="navigation" aria-label="main navigation">
+        <div class="container">
+            <div class="navbar-brand">
+                <a class="navbar-item" href="../">
+                    <img src="../assets/COMP_ALC.png" alt="Compiler Alchemy" style="height: 40px;">
+                </a>
+                <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navMenu">
+                    <span aria-hidden="true"></span>
+                    <span aria-hidden="true"></span>
+                    <span aria-hidden="true"></span>
+                    <span aria-hidden="true"></span>
+                </a>
+            </div>
+            <div id="navMenu" class="navbar-menu">
+                <div class="navbar-end">
+                    <a class="navbar-item" href="../blog/">Blog</a>
+                    <a class="navbar-item" href="../articles/">Articles</a>
+                    <a class="navbar-item" href="../books/sqlite-internals/">Book</a>
+                    <a class="navbar-item" href="../talks/">Talks</a>
+                    <a class="navbar-item" href="../journey/">Journey</a>
+                    <a class="navbar-item" href="../annotated-transformer-commentary/" style="font-weight: 700; color: var(--primary-color);">Transformer</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const burger = document.querySelector('.navbar-burger');
+            const menu = document.querySelector('#navMenu');
+            if (burger && menu) {
+                burger.addEventListener('click', () => {
+                    burger.classList.toggle('is-active');
+                    menu.classList.toggle('is-active');
+                });
+            }
+        });
+    </script>
+
+    <div class="commentary-layout">
+        <main class="commentary-main">
+            <header style="margin-bottom: 2rem;">
+                <h1>Commentary of The Annotated Transformer</h1>
+                <div class="commentary-meta">
+                    <span>by Abdur-Rahmaan Janhangeer</span>
+                    <span>|</span>
+                    <span id="reading-time">...</span>
+                </div>
+            </header>
+            <p><center><h1>The Annotated Transformer</h1> </center></p>
+<p><center></p>
+<p><a href="https://arxiv.org/abs/1706.03762">Attention is All You Need
+</a></p>
+<p></center></p>
+<p><img src="../assets/annotated-transformer/aiayn.png" width="70%"/></p>
+<ul>
+<li><em>v2022: Austin Huang, Suraj Subramanian, Jonathan Sum, Khalid Almubarak,
+   and Stella Biderman.</em></li>
+<li><em><a href="https://nlp.seas.harvard.edu/2018/04/03/attention.html">Original</a>:
+   <a href="http://rush-nlp.com/">Sasha Rush</a>.</em></li>
+</ul>
+<blockquote class="commentary"><p><span class="commentary-label">Commentary</span>
+My commentary appears in this format. Code and blockquotes are the 
+work of the Harvard NLP group. The aim of this commentary is to help
+complete beginners understand the paper. </p>
+</blockquote>
+<p>The Transformer has been on a lot of
+people&rsquo;s minds over the last <s>year</s> five years.
+This post presents an annotated version of the paper in the
+form of a line-by-line implementation. It reorders and deletes
+some sections from the original paper and adds comments
+throughout. This document itself is a working notebook, and should
+be a completely usable implementation.
+Code is available
+<a href="https://github.com/harvardnlp/annotated-transformer/">here</a>.</p>
+<h3> Table of Contents </h3>
+<ul>
+<li><a href="#prelims">Prelims</a></li>
+<li><a href="#background">Background</a></li>
+<li><a href="#part-1-model-architecture">Part 1: Model Architecture</a></li>
+<li><a href="#model-architecture">Model Architecture</a><ul>
+<li><a href="#encoder-and-decoder-stacks">Encoder and Decoder Stacks</a></li>
+<li><a href="#position-wise-feed-forward-networks">Position-wise Feed-Forward
+Networks</a></li>
+<li><a href="#embeddings-and-softmax">Embeddings and Softmax</a></li>
+<li><a href="#positional-encoding">Positional Encoding</a></li>
+<li><a href="#full-model">Full Model</a></li>
+<li><a href="#inference">Inference:</a></li>
+</ul></li>
+<li><a href="#part-2-model-training">Part 2: Model Training</a></li>
+<li><a href="#training">Training</a><ul>
+<li><a href="#batches-and-masking">Batches and Masking</a></li>
+<li><a href="#training-loop">Training Loop</a></li>
+<li><a href="#training-data-and-batching">Training Data and Batching</a></li>
+<li><a href="#hardware-and-schedule">Hardware and Schedule</a></li>
+<li><a href="#optimizer">Optimizer</a></li>
+<li><a href="#regularization">Regularization</a></li>
+</ul></li>
+<li><a href="#a-first-example">A First Example</a><ul>
+<li><a href="#synthetic-data">Synthetic Data</a></li>
+<li><a href="#loss-computation">Loss Computation</a></li>
+<li><a href="#greedy-decoding">Greedy Decoding</a></li>
+</ul></li>
+<li><a href="#part-3-a-real-world-example">Part 3: A Real World Example</a>
+<ul>
+<li><a href="#data-loading">Data Loading</a></li>
+<li><a href="#iterators">Iterators</a></li>
+<li><a href="#training-the-system">Training the System</a></li>
+</ul></li>
+<li><a href="#additional-components-bpe-search-averaging">Additional
+Components: BPE, Search, Averaging</a></li>
+<li><a href="#results">Results</a><ul>
+<li><a href="#attention-visualization">Attention Visualization</a></li>
+<li><a href="#encoder-self-attention">Encoder Self Attention</a></li>
+<li><a href="#decoder-self-attention">Decoder Self Attention</a></li>
+<li><a href="#decoder-src-attention">Decoder Src Attention</a></li>
+</ul></li>
+<li><a href="#conclusion">Conclusion</a></li>
+</ul>
+
+<h1>Prelims</h1>
+<h1>Background</h1>
+<p><a href="#background">Skip</a></p>
+<pre><code class="language-python"># # !pip install -r requirements.txt
+
+</code></pre>
+<pre><code class="language-python"># # Uncomment for colab
+# #
+# # !pip install -q torchdata==0.3.0 torchtext==0.12 spacy==3.2 altair GPUtil
+# # !python -m spacy download de_core_news_sm
+# # !python -m spacy download en_core_web_sm
+
+
+</code></pre>
+<pre><code class="language-python">import os
+from os.path import exists
+import torch
+import torch.nn as nn
+from torch.nn.functional import log_softmax, pad
+import math
+import copy
+import time
+from torch.optim.lr_scheduler import LambdaLR
+import pandas as pd
+import altair as alt
+from torchtext.data.functional import to_map_style_dataset
+from torch.utils.data import DataLoader
+from torchtext.vocab import build_vocab_from_iterator
+import torchtext.datasets as datasets
+import spacy
+import GPUtil
+import warnings
+from torch.utils.data.distributed import DistributedSampler
+import torch.distributed as dist
+import torch.multiprocessing as mp
+from torch.nn.parallel import DistributedDataParallel as DDP
+
+
+# Set to False to skip notebook execution (e.g. for debugging)
+warnings.filterwarnings(&quot;ignore&quot;)
+RUN_EXAMPLES = True
+
+
+</code></pre>
+<blockquote class="commentary"><p><span class="commentary-label">Commentary</span>
+These are some relevant code that needs an explanation.</p>
+<pre><code># From code
+import torch          # Main PyTorch library for tensors and deep learning
+import torch.nn as nn # Neural network layers and model building tools
+</code></pre>
+<p>At this point, it let&rsquo;s see what a tensor is. It is very good to brush up on Scalars, Vectors and Matrices (<a href="https://www.doitpoms.ac.uk/tlplib/tensors/maths_aside.php">Read here</a>). Tensors are mathematical objects describing physical properties like scalars and vectors. In PyTorch, <a href="https://docs.pytorch.org/tutorials/beginner/basics/tensorqs_tutorial.html">a tensor is a data structure</a> abstracting the idea of a tensor and is used to encode the input, output as well as the model&rsquo;s parameters. Tensors can run on the CPU, GPU, CUDA or other accelerators.</p>
+<pre><code># From code
+from torch.nn.functional import (
+    log_softmax,      # Numerically stable log(softmax(x))
+    pad               # Add padding to tensors
+)
+</code></pre>
+<p>Softmax converts raw scores into probabilities.
+Study this pieces of code to understand it.</p>
+<pre><code>from torch.nn.functional import softmax
+import torch
+logits = torch.tensor([2.0, 2.0, 1.0])
+probs = softmax(logits, dim=0)
+print(probs)
+
+Out: tensor([0.4223, 0.4223, 0.1554])
+</code></pre>
+<p>The values of the output tensor sum to 1 and they can be interpreted as probabilities.
+You can read a nice explanation about <a href="https://victorzhou.com/blog/softmax/">how softmax is calculated</a>. Log softmax is used to <a href="https://www.shadecoder.com/topics/log-softmax-a-comprehensive-guide-for-2025">stabilise calculations</a>.</p>
+<p><code>pad</code> pads the tensor with values. You can specify where you want to pad.</p>
+<pre><code>import torch
+import torch.nn.functional as F
+x = torch.tensor([[1., 2.],
+                   [3., 4.]])
+y = F.pad(x, (1, 1, 1, 1), mode='constant', value=0)
+print(y)
+Out: tensor([[0., 0., 0., 0.],
+  [0., 1., 2., 0.],
+  [0., 3., 4., 0.],
+  [0., 0., 0., 0.]])
+</code></pre>
+<p>Next we have</p>
+<pre><code># From code
+# Learning rate scheduler using a custom lambda function
+from torch.optim.lr_scheduler import LambdaLR
+</code></pre>
+<p>It&rsquo;s to have a mental model of how PyTorch trains a model.
+<code>LambdaLR</code> allows you to specify how the learning rate evolves with each training step.
+Here is an example where we set the initial learning rate to be <code>0.05</code> then it is modified based on epoch <code>1.0 / (1.0 + 0.01 * epoch</code>: </p>
+<pre><code>import torch
+import torch.nn as nn
+import torch.optim as optim
+from torch.optim.lr_scheduler import LambdaLR
+X = torch.linspace(-1, 1, 100).unsqueeze(1)
+# X = 100 evenly spaced numbers between -1 and 1.
+noise = torch.randn_like(X) * 0.1  # small noise (stable learning)
+y = 3 * X + 2 + noise # True function, we compare our predictions against this
+model = nn.Linear(1, 1)
+criterion = nn.MSELoss()
+optimizer = optim.SGD(model.parameters(), lr=0.05)
+lambda_rule = lambda epoch: 1.0 / (1.0 + 0.01 * epoch)
+scheduler = LambdaLR(optimizer, lr_lambda=lambda_rule)
+epochs = 100
+for epoch in range(epochs):
+    preds = model(X) # forward pass
+    loss = criterion(preds, y)
+    optimizer.zero_grad()
+    loss.backward() # backward
+    # gradient clipping (prevents explosion)
+    torch.nn.utils.clip_grad_norm_(model.parameters(), 1.0)
+    optimizer.step()
+    scheduler.step()
+    lr = optimizer.param_groups[0]["lr"]
+    if epoch % 10 == 0:
+        print(f"Epoch {epoch:02d} | Loss: {loss.item():.4f} | LR: {lr:.6f}")
+w = model.weight.item()
+b = model.bias.item()
+print("\nLearned function:")
+print(f"y ≈ {w:.3f}x + {b:.3f}")
+</code></pre>
+<p>Glossary:</p>
+<table>
+<thead>
+<tr>
+<th>Step</th>
+<th>What it does</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Forward pass</td>
+<td>Model makes a prediction</td>
+</tr>
+<tr>
+<td>Loss computation</td>
+<td>Measures how wrong the prediction is</td>
+</tr>
+<tr>
+<td>Backpropagation</td>
+<td>Computes how each parameter contributed to the error</td>
+</tr>
+<tr>
+<td>Zero gradients</td>
+<td>Clears old gradient values</td>
+</tr>
+<tr>
+<td>Optimizer step</td>
+<td>Updates weights and biases to reduce error</td>
+</tr>
+<tr>
+<td>Scheduler step</td>
+<td>Adjusts learning rate over time</td>
+</tr>
+<tr>
+<td>Epoch</td>
+<td>One full pass over the dataset</td>
+</tr>
+</tbody>
+</table>
+<p>In sum it is called a scheduler as it schedules for the entire run, how the learning rate changes.</p>
+<pre><code>import altair as alt
+</code></pre>
+<p><a href="https://github.com/vega/altair">Altair</a> (Vega-Altair) is &ldquo;a declarative statistical visualization library for Python.&rdquo; It aims to provide beautiful visualization with little amount of code. It
+provides an easy way to provide interactions
+In Jupyter</p>
+<pre><code>import altair as alt
+import pandas as pd
+df = pd.DataFrame({
+    "x": [1, 2, 3, 4],
+    "y": [10, 20, 15, 25]
+})
+chart = alt.Chart(df).mark_line().encode(
+    x="x",
+    y="y"
+)
+chart
+</code></pre>
+<p>Next we have TorchText</p>
+<pre><code># TorchText utilities for NLP datasets and vocabularies
+from torchtext.data.functional import to_map_style_dataset
+# Creates mini-batches and handles dataset loading
+from torchtext.vocab import build_vocab_from_iterator
+# Builds a vocabulary from tokenized text
+import torchtext.datasets as datasets
+</code></pre>
+<p><a href="https://docs.pytorch.org/text/stable/index.html">TorchText</a> <strong>was</strong> primarily used to build the data-loading and preprocessing pipeline for Natural Language Processing (NLP) models in PyTorch.</p>
+<pre><code># Converts iterable datasets into indexable datasets
+from torch.utils.data import DataLoader
+import spacy  # Industrial-strength NLP toolkit for tokenization, parsing, etc.
+import GPUtil # Check available GPUs, memory usage, utilization
+# Distributed training
+from torch.utils.data.distributed import DistributedSampler
+# Splits datasets across multiple GPUs/processes
+import torch.distributed as dist
+# Backend communication for distributed training
+import torch.multiprocessing as mp
+# Spawn multiple processes for parallel/distributed training
+from torch.nn.parallel import DistributedDataParallel as DDP
+# Wraps a model for efficient multi-GPU distributed training
+</code></pre>
+<p>Now that we finished the code, on to some interesting reading!</p>
+</blockquote>
+<pre><code class="language-python"># Some convenience helper functions used throughout the notebook
+
+
+def is_interactive_notebook():
+    return __name__ == &quot;__main__&quot;
+
+
+def show_example(fn, args=[]):
+    if __name__ == &quot;__main__&quot; and RUN_EXAMPLES:
+        return fn(*args)
+
+
+def execute_example(fn, args=[]):
+    if __name__ == &quot;__main__&quot; and RUN_EXAMPLES:
+        fn(*args)
+
+
+class DummyOptimizer(torch.optim.Optimizer):
+    def __init__(self):
+        self.param_groups = [{&quot;lr&quot;: 0}]
+        None
+
+    def step(self):
+        None
+
+    def zero_grad(self, set_to_none=False):
+        None
+
+
+class DummyScheduler:
+    def step(self):
+        None
+
+
+</code></pre>
+<blockquote>
+<p>My comments are blockquoted. The main text is all from the paper itself.</p>
+</blockquote>
+<p>The goal of reducing sequential computation also forms the
+foundation of the Extended Neural GPU, ByteNet and ConvS2S, all of
+which use convolutional neural networks as basic building block,
+computing hidden representations in parallel for all input and
+output positions. &hellip;</p>
+<blockquote class="commentary"><p><span class="commentary-label">Commentary</span></p>
+<table>
+<thead>
+<tr>
+<th>Term</th>
+<th>Simple Explanation</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Sequential computation</td>
+<td>Doing operations step-by-step in order (one after another), instead of all at once</td>
+</tr>
+<tr>
+<td>Convolutional neural networks (CNNs)</td>
+<td>Neural networks that process data using filters; often used in images but also in sequences here</td>
+</tr>
+</tbody>
+</table>
+<p>Convolutional filters, also called <a href="https://medium.com/advanced-deep-learning/cnn-operation-with-2-kernels-resulting-in-2-feature-mapsunderstanding-the-convolutional-filter-c4aad26cf32">kernels are designed to detect specific patterns or features in the input data</a>. It may sound surprising but CNN can also be used for text. Just like in images they are used to detect edges or objects, in text they are <a href="https://medium.com/@aliraza.abro.prog/convolutional-neural-networks-cnns-for-text-classification-bd473c7285a4">used to find key phrases for example</a>. A convolution is a small window (called a filter or kernel) that scans over input data and computes a weighted sum at each position. A weighted sum is just a normal sum where each number is multiplied by a weight (importance factor) before adding. $w_1 \cdot 1 + w_2 \cdot 2 + w_3 \cdot 3$. Masking with respect to CNN means zeroing some weights of the convolution kernel or doing some computations so that future positions are not connected to influence training.</p>
+<p><strong>Extended Neural GPU</strong>: The <a href="https://arxiv.org/abs/1511.08228">Neural GPUs Learn Algorithms</a> is co-authored by Ilya Sutskever. Neural Turing Machines (NTMs) were used to learn from examples but, due to them not being parallel, they are hard to train. It is based on a type of convolutional gated recurrent unit.</p>
+<p><strong>Extensions and Limitations of the Neural GPU</strong>: Mentionned in the text, <a href="https://arxiv.org/abs/1611.00736">this technique</a> based on the Extended Neural GPU improves binary addition and binary multiplication in a way that generalizes to inputs of arbitrary length. It also fails on some instances.</p>
+<p><strong>Recurrent Neural Network</strong>: An RNN (Recurrent Neural Network) is a type of neural network designed for sequential data like text, time series, or speech. It processes input one step at a time, keeping a &ldquo;memory&rdquo; (hidden state) of what it has seen before.
+At each step $t$, it reads input $x_t$. It updates a hidden memory state $h_t$. A rough formula is $h_t = f(W x_t + U h_{t-1})$</p>
+<table>
+<thead>
+<tr>
+<th>Symbol</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>$x_t$</td>
+<td>current input word/token</td>
+</tr>
+<tr>
+<td>$h_{t-1}$</td>
+<td>previous memory (hidden state)</td>
+</tr>
+<tr>
+<td>$h_t$</td>
+<td>updated memory (new hidden state)</td>
+</tr>
+<tr>
+<td>$W, U$</td>
+<td>learned weight matrices</td>
+</tr>
+<tr>
+<td>$f$</td>
+<td>activation function (e.g., $\tanh$, ReLU)</td>
+</tr>
+</tbody>
+</table>
+<p>Sine the current $h$ depends on the previous, we cannot compute it in parallel. So, RNN has hidden representations but they are not parallel.</p>
+<p><strong>ByteNext</strong>: The <a href="https://arxiv.org/abs/1610.10099">ByteNet</a> is a one-dimensional convolutional neural network that is composed of two parts, one to encode the source sequence and the other to decode the target sequence. It is a character-level Neural Machine Translation (NMT) approach, which means that it performs translation character by character.</p>
+<p><strong>ConvS2S</strong>: ConvS2S (<a href="https://arxiv.org/abs/1705.03122">Convolutional Sequence-to-Sequence Learning</a>) is a neural network architecture for tasks like machine translation, text summarization, and speech processing, where both input and output are sequences. Contrasting with LSTM which uses RNN, this one uses CNN for the encoder and decoder. RNN processes tokens one by one, this one processes tokens in parallel. It also has <a href="https://sh-tsang.medium.com/review-convolutional-sequence-to-sequence-learning-convs2s-510a9eddce05">an attention step</a>. Notice that it already has multi-attention step, which shows that attention is something that existed well before transformers. We&rsquo;ll cover a brief history of attention later on!
+</p>
+</blockquote>
+<p>&hellip; In these models, the number of operations required
+to relate signals from two arbitrary input or output positions grows
+in the distance between positions, linearly for ConvS2S and
+logarithmically for ByteNet. This makes it more difficult to learn
+dependencies between distant positions. In the Transformer this is
+reduced to a constant number of operations, albeit at the cost of
+reduced effective resolution due to averaging attention-weighted
+positions, an effect we counteract with Multi-Head Attention.</p>
+<p>Self-attention, sometimes called intra-attention is an attention
+mechanism relating different positions of a single sequence in order
+to compute a representation of the sequence. Self-attention has been
+used successfully in a variety of tasks including reading
+comprehension, abstractive summarization, textual entailment and
+learning task-independent sentence representations. End-to-end
+memory networks are based on a recurrent attention mechanism instead
+of sequencealigned recurrence and have been shown to perform well on
+simple-language question answering and language modeling tasks.</p>
+<p>To the best of our knowledge, however, the Transformer is the first
+transduction model relying entirely on self-attention to compute
+representations of its input and output without using sequence
+aligned RNNs or convolution.</p>
+<h1>Part 1: Model Architecture</h1>
+<h1>Model Architecture</h1>
+<p>Most competitive neural sequence transduction models have an
+encoder-decoder structure
+<a href="https://arxiv.org/abs/1409.0473">(cite)</a>. Here, the encoder maps an
+input sequence of symbol representations $(x_1, &hellip;, x_n)$ to a
+sequence of continuous representations $\mathbf{z} = (z_1, &hellip;,
+z_n)$. Given $\mathbf{z}$, the decoder then generates an output
+sequence $(y_1,&hellip;,y_m)$ of symbols one element at a time. At each
+step the model is auto-regressive
+<a href="https://arxiv.org/abs/1308.0850">(cite)</a>, consuming the previously
+generated symbols as additional input when generating the next.</p>
+<pre><code class="language-python">class EncoderDecoder(nn.Module):
+    &quot;&quot;&quot;
+    A standard Encoder-Decoder architecture. Base for this and many
+    other models.
+    &quot;&quot;&quot;
+
+    def __init__(self, encoder, decoder, src_embed, tgt_embed, generator):
+        super(EncoderDecoder, self).__init__()
+        self.encoder = encoder
+        self.decoder = decoder
+        self.src_embed = src_embed
+        self.tgt_embed = tgt_embed
+        self.generator = generator
+
+    def forward(self, src, tgt, src_mask, tgt_mask):
+        &quot;Take in and process masked src and target sequences.&quot;
+        return self.decode(self.encode(src, src_mask), src_mask, tgt, tgt_mask)
+
+    def encode(self, src, src_mask):
+        return self.encoder(self.src_embed(src), src_mask)
+
+    def decode(self, memory, src_mask, tgt, tgt_mask):
+        return self.decoder(self.tgt_embed(tgt), memory, src_mask, tgt_mask)
+
+
+</code></pre>
+<pre><code class="language-python">class Generator(nn.Module):
+    &quot;Define standard linear + softmax generation step.&quot;
+
+    def __init__(self, d_model, vocab):
+        super(Generator, self).__init__()
+        self.proj = nn.Linear(d_model, vocab)
+
+    def forward(self, x):
+        return log_softmax(self.proj(x), dim=-1)
+
+
+</code></pre>
+<p>The Transformer follows this overall architecture using stacked
+self-attention and point-wise, fully connected layers for both the
+encoder and decoder, shown in the left and right halves of Figure 1,
+respectively.</p>
+<p><img alt="ModalNet-21.png" src="../assets/annotated-transformer/ModalNet-21.png" /></p>
+<h2>Encoder and Decoder Stacks</h2>
+<h3>Encoder</h3>
+<p>The encoder is composed of a stack of $N=6$ identical layers.</p>
+<pre><code class="language-python">def clones(module, N):
+    &quot;Produce N identical layers.&quot;
+    return nn.ModuleList([copy.deepcopy(module) for _ in range(N)])
+
+
+</code></pre>
+<pre><code class="language-python">class Encoder(nn.Module):
+    &quot;Core encoder is a stack of N layers&quot;
+
+    def __init__(self, layer, N):
+        super(Encoder, self).__init__()
+        self.layers = clones(layer, N)
+        self.norm = LayerNorm(layer.size)
+
+    def forward(self, x, mask):
+        &quot;Pass the input (and mask) through each layer in turn.&quot;
+        for layer in self.layers:
+            x = layer(x, mask)
+        return self.norm(x)
+
+
+</code></pre>
+<p>We employ a residual connection
+<a href="https://arxiv.org/abs/1512.03385">(cite)</a> around each of the two
+sub-layers, followed by layer normalization
+<a href="https://arxiv.org/abs/1607.06450">(cite)</a>.</p>
+<pre><code class="language-python">class LayerNorm(nn.Module):
+    &quot;Construct a layernorm module (See citation for details).&quot;
+
+    def __init__(self, features, eps=1e-6):
+        super(LayerNorm, self).__init__()
+        self.a_2 = nn.Parameter(torch.ones(features))
+        self.b_2 = nn.Parameter(torch.zeros(features))
+        self.eps = eps
+
+    def forward(self, x):
+        mean = x.mean(-1, keepdim=True)
+        std = x.std(-1, keepdim=True)
+        return self.a_2 * (x - mean) / (std + self.eps) + self.b_2
+
+
+</code></pre>
+<p>That is, the output of each sub-layer is $\mathrm{LayerNorm}(x +
+\mathrm{Sublayer}(x))$, where $\mathrm{Sublayer}(x)$ is the function
+implemented by the sub-layer itself.  We apply dropout
+<a href="http://jmlr.org/papers/v15/srivastava14a.html">(cite)</a> to the
+output of each sub-layer, before it is added to the sub-layer input
+and normalized.</p>
+<p>To facilitate these residual connections, all sub-layers in the
+model, as well as the embedding layers, produce outputs of dimension
+$d_{\text{model}}=512$.</p>
+<pre><code class="language-python">class SublayerConnection(nn.Module):
+    &quot;&quot;&quot;
+    A residual connection followed by a layer norm.
+    Note for code simplicity the norm is first as opposed to last.
+    &quot;&quot;&quot;
+
+    def __init__(self, size, dropout):
+        super(SublayerConnection, self).__init__()
+        self.norm = LayerNorm(size)
+        self.dropout = nn.Dropout(dropout)
+
+    def forward(self, x, sublayer):
+        &quot;Apply residual connection to any sublayer with the same size.&quot;
+        return x + self.dropout(sublayer(self.norm(x)))
+
+
+</code></pre>
+<p>Each layer has two sub-layers. The first is a multi-head
+self-attention mechanism, and the second is a simple, position-wise
+fully connected feed-forward network.</p>
+<pre><code class="language-python">class EncoderLayer(nn.Module):
+    &quot;Encoder is made up of self-attn and feed forward (defined below)&quot;
+
+    def __init__(self, size, self_attn, feed_forward, dropout):
+        super(EncoderLayer, self).__init__()
+        self.self_attn = self_attn
+        self.feed_forward = feed_forward
+        self.sublayer = clones(SublayerConnection(size, dropout), 2)
+        self.size = size
+
+    def forward(self, x, mask):
+        &quot;Follow Figure 1 (left) for connections.&quot;
+        x = self.sublayer[0](x, lambda x: self.self_attn(x, x, x, mask))
+        return self.sublayer[1](x, self.feed_forward)
+
+
+</code></pre>
+<h3>Decoder</h3>
+<p>The decoder is also composed of a stack of $N=6$ identical layers.</p>
+<pre><code class="language-python">class Decoder(nn.Module):
+    &quot;Generic N layer decoder with masking.&quot;
+
+    def __init__(self, layer, N):
+        super(Decoder, self).__init__()
+        self.layers = clones(layer, N)
+        self.norm = LayerNorm(layer.size)
+
+    def forward(self, x, memory, src_mask, tgt_mask):
+        for layer in self.layers:
+            x = layer(x, memory, src_mask, tgt_mask)
+        return self.norm(x)
+
+
+</code></pre>
+<p>In addition to the two sub-layers in each encoder layer, the decoder
+inserts a third sub-layer, which performs multi-head attention over
+the output of the encoder stack.  Similar to the encoder, we employ
+residual connections around each of the sub-layers, followed by
+layer normalization.</p>
+<pre><code class="language-python">class DecoderLayer(nn.Module):
+    &quot;Decoder is made of self-attn, src-attn, and feed forward (defined below)&quot;
+
+    def __init__(self, size, self_attn, src_attn, feed_forward, dropout):
+        super(DecoderLayer, self).__init__()
+        self.size = size
+        self.self_attn = self_attn
+        self.src_attn = src_attn
+        self.feed_forward = feed_forward
+        self.sublayer = clones(SublayerConnection(size, dropout), 3)
+
+    def forward(self, x, memory, src_mask, tgt_mask):
+        &quot;Follow Figure 1 (right) for connections.&quot;
+        m = memory
+        x = self.sublayer[0](x, lambda x: self.self_attn(x, x, x, tgt_mask))
+        x = self.sublayer[1](x, lambda x: self.src_attn(x, m, m, src_mask))
+        return self.sublayer[2](x, self.feed_forward)
+
+
+</code></pre>
+<p>We also modify the self-attention sub-layer in the decoder stack to
+prevent positions from attending to subsequent positions.  This
+masking, combined with fact that the output embeddings are offset by
+one position, ensures that the predictions for position $i$ can
+depend only on the known outputs at positions less than $i$.</p>
+<pre><code class="language-python">def subsequent_mask(size):
+    &quot;Mask out subsequent positions.&quot;
+    attn_shape = (1, size, size)
+    subsequent_mask = torch.triu(torch.ones(attn_shape), diagonal=1).type(
+        torch.uint8
+    )
+    return subsequent_mask == 0
+
+
+</code></pre>
+<blockquote>
+<p>Below the attention mask shows the position each tgt word (row) is
+allowed to look at (column). Words are blocked for attending to
+future words during training.</p>
+</blockquote>
+<pre><code class="language-python">def example_mask():
+    LS_data = pd.concat(
+        [
+            pd.DataFrame(
+                {
+                    &quot;Subsequent Mask&quot;: subsequent_mask(20)[0][x, y].flatten(),
+                    &quot;Window&quot;: y,
+                    &quot;Masking&quot;: x,
+                }
+            )
+            for y in range(20)
+            for x in range(20)
+        ]
+    )
+
+    return (
+        alt.Chart(LS_data)
+        .mark_rect()
+        .properties(height=250, width=250)
+        .encode(
+            alt.X(&quot;Window:O&quot;),
+            alt.Y(&quot;Masking:O&quot;),
+            alt.Color(&quot;Subsequent Mask:Q&quot;, scale=alt.Scale(scheme=&quot;viridis&quot;)),
+        )
+        .interactive()
+    )
+
+
+show_example(example_mask)
+
+</code></pre>
+<h3>Attention</h3>
+<p>An attention function can be described as mapping a query and a set
+of key-value pairs to an output, where the query, keys, values, and
+output are all vectors.  The output is computed as a weighted sum of
+the values, where the weight assigned to each value is computed by a
+compatibility function of the query with the corresponding key.</p>
+<p>We call our particular attention &ldquo;Scaled Dot-Product Attention&rdquo;.
+The input consists of queries and keys of dimension $d_k$, and
+values of dimension $d_v$.  We compute the dot products of the query
+with all keys, divide each by $\sqrt{d_k}$, and apply a softmax
+function to obtain the weights on the values.</p>
+<p><img alt="ModalNet-19.png" src="../assets/annotated-transformer/ModalNet-19.png" /></p>
+<p>In practice, we compute the attention function on a set of queries
+simultaneously, packed together into a matrix $Q$.  The keys and
+values are also packed together into matrices $K$ and $V$.  We
+compute the matrix of outputs as:</p>
+<p>$$
+   \mathrm{Attention}(Q, K, V) = \mathrm{softmax}(\frac{QK^T}{\sqrt{d_k}})V
+$$</p>
+<pre><code class="language-python">def attention(query, key, value, mask=None, dropout=None):
+    &quot;Compute 'Scaled Dot Product Attention'&quot;
+    d_k = query.size(-1)
+    scores = torch.matmul(query, key.transpose(-2, -1)) / math.sqrt(d_k)
+    if mask is not None:
+        scores = scores.masked_fill(mask == 0, -1e9)
+    p_attn = scores.softmax(dim=-1)
+    if dropout is not None:
+        p_attn = dropout(p_attn)
+    return torch.matmul(p_attn, value), p_attn
+
+
+</code></pre>
+<p>The two most commonly used attention functions are additive
+attention <a href="https://arxiv.org/abs/1409.0473">(cite)</a>, and dot-product
+(multiplicative) attention.  Dot-product attention is identical to
+our algorithm, except for the scaling factor of
+$\frac{1}{\sqrt{d_k}}$. Additive attention computes the
+compatibility function using a feed-forward network with a single
+hidden layer.  While the two are similar in theoretical complexity,
+dot-product attention is much faster and more space-efficient in
+practice, since it can be implemented using highly optimized matrix
+multiplication code.</p>
+<p>While for small values of $d_k$ the two mechanisms perform
+similarly, additive attention outperforms dot product attention
+without scaling for larger values of $d_k$
+<a href="https://arxiv.org/abs/1703.03906">(cite)</a>. We suspect that for
+large values of $d_k$, the dot products grow large in magnitude,
+pushing the softmax function into regions where it has extremely
+small gradients (To illustrate why the dot products get large,
+assume that the components of $q$ and $k$ are independent random
+variables with mean $0$ and variance $1$.  Then their dot product,
+$q \cdot k = \sum_{i=1}^{d_k} q_ik_i$, has mean $0$ and variance
+$d_k$.). To counteract this effect, we scale the dot products by
+$\frac{1}{\sqrt{d_k}}$.</p>
+<p><img alt="ModalNet-20.png" src="../assets/annotated-transformer/ModalNet-20.png" /></p>
+<p>Multi-head attention allows the model to jointly attend to</p>
+<blockquote class="deep-dive"><p><span class="commentary-label">Deep Dive</span>
+The intuition behind multi-head attention: instead of one attention computation, 
+we project the same input into $h$ different representation subspaces (8 in the paper). 
+Each head can learn different types of relationships &ndash; syntactic, semantic, positional. 
+Think of it as having 8 different &ldquo;perspectives&rdquo; on the same input simultaneously.</p>
+<p>The total computation is similar to single-head attention because each head works 
+in a reduced dimension ($d_k = d_{\text{model}} / h = 64$).
+information from different representation subspaces at different
+positions. With a single attention head, averaging inhibits this.</p>
+</blockquote>
+<p>$$
+\mathrm{MultiHead}(Q, K, V) =
+    \mathrm{Concat}(\mathrm{head_1}, &hellip;, \mathrm{head_h})W^O \
+    \text{where}~\mathrm{head_i} = \mathrm{Attention}(QW^Q_i, KW^K_i, VW^V_i)
+$$</p>
+<p>Where the projections are parameter matrices $W^Q_i \in
+\mathbb{R}^{d_{\text{model}} \times d_k}$, $W^K_i \in
+\mathbb{R}^{d_{\text{model}} \times d_k}$, $W^V_i \in
+\mathbb{R}^{d_{\text{model}} \times d_v}$ and $W^O \in
+\mathbb{R}^{hd_v \times d_{\text{model}}}$.</p>
+<p>In this work we employ $h=8$ parallel attention layers, or
+heads. For each of these we use $d_k=d_v=d_{\text{model}}/h=64$. Due
+to the reduced dimension of each head, the total computational cost
+is similar to that of single-head attention with full
+dimensionality.</p>
+<pre><code class="language-python">class MultiHeadedAttention(nn.Module):
+    def __init__(self, h, d_model, dropout=0.1):
+        &quot;Take in model size and number of heads.&quot;
+        super(MultiHeadedAttention, self).__init__()
+        assert d_model % h == 0
+        # We assume d_v always equals d_k
+        self.d_k = d_model // h
+        self.h = h
+        self.linears = clones(nn.Linear(d_model, d_model), 4)
+        self.attn = None
+        self.dropout = nn.Dropout(p=dropout)
+
+    def forward(self, query, key, value, mask=None):
+        &quot;Implements Figure 2&quot;
+        if mask is not None:
+            # Same mask applied to all h heads.
+            mask = mask.unsqueeze(1)
+        nbatches = query.size(0)
+
+        # 1) Do all the linear projections in batch from d_model =&gt; h x d_k
+        query, key, value = [
+            lin(x).view(nbatches, -1, self.h, self.d_k).transpose(1, 2)
+            for lin, x in zip(self.linears, (query, key, value))
+        ]
+
+        # 2) Apply attention on all the projected vectors in batch.
+        x, self.attn = attention(
+            query, key, value, mask=mask, dropout=self.dropout
+        )
+
+        # 3) &quot;Concat&quot; using a view and apply a final linear.
+        x = (
+            x.transpose(1, 2)
+            .contiguous()
+            .view(nbatches, -1, self.h * self.d_k)
+        )
+        del query
+        del key
+        del value
+        return self.linears[-1](x)
+
+
+</code></pre>
+<h3>Applications of Attention in our Model</h3>
+<p>The Transformer uses multi-head attention in three different ways:
+1) In &ldquo;encoder-decoder attention&rdquo; layers, the queries come from the
+previous decoder layer, and the memory keys and values come from the
+output of the encoder.  This allows every position in the decoder to
+attend over all positions in the input sequence.  This mimics the
+typical encoder-decoder attention mechanisms in sequence-to-sequence
+models such as <a href="https://arxiv.org/abs/1609.08144">(cite)</a>.</p>
+<p>2) The encoder contains self-attention layers.  In a self-attention
+layer all of the keys, values and queries come from the same place,
+in this case, the output of the previous layer in the encoder.  Each
+position in the encoder can attend to all positions in the previous
+layer of the encoder.</p>
+<p>3) Similarly, self-attention layers in the decoder allow each
+position in the decoder to attend to all positions in the decoder up
+to and including that position.  We need to prevent leftward
+information flow in the decoder to preserve the auto-regressive
+property.  We implement this inside of scaled dot-product attention
+by masking out (setting to $-\infty$) all values in the input of the
+softmax which correspond to illegal connections.</p>
+<h2>Position-wise Feed-Forward Networks</h2>
+<p>In addition to attention sub-layers, each of the layers in our
+encoder and decoder contains a fully connected feed-forward network,
+which is applied to each position separately and identically.  This
+consists of two linear transformations with a ReLU activation in
+between.</p>
+<p>$$\mathrm{FFN}(x)=\max(0, xW_1 + b_1) W_2 + b_2$$</p>
+<p>While the linear transformations are the same across different
+positions, they use different parameters from layer to
+layer. Another way of describing this is as two convolutions with
+kernel size 1.  The dimensionality of input and output is
+$d_{\text{model}}=512$, and the inner-layer has dimensionality
+$d_{ff}=2048$.</p>
+<pre><code class="language-python">class PositionwiseFeedForward(nn.Module):
+    &quot;Implements FFN equation.&quot;
+
+    def __init__(self, d_model, d_ff, dropout=0.1):
+        super(PositionwiseFeedForward, self).__init__()
+        self.w_1 = nn.Linear(d_model, d_ff)
+        self.w_2 = nn.Linear(d_ff, d_model)
+        self.dropout = nn.Dropout(dropout)
+
+    def forward(self, x):
+        return self.w_2(self.dropout(self.w_1(x).relu()))
+
+
+</code></pre>
+<h2>Embeddings and Softmax</h2>
+<p>Similarly to other sequence transduction models, we use learned
+embeddings to convert the input tokens and output tokens to vectors
+of dimension $d_{\text{model}}$.  We also use the usual learned
+linear transformation and softmax function to convert the decoder
+output to predicted next-token probabilities.  In our model, we
+share the same weight matrix between the two embedding layers and
+the pre-softmax linear transformation, similar to
+<a href="https://arxiv.org/abs/1608.05859">(cite)</a>. In the embedding layers,
+we multiply those weights by $\sqrt{d_{\text{model}}}$.</p>
+<pre><code class="language-python">class Embeddings(nn.Module):
+    def __init__(self, d_model, vocab):
+        super(Embeddings, self).__init__()
+        self.lut = nn.Embedding(vocab, d_model)
+        self.d_model = d_model
+
+    def forward(self, x):
+        return self.lut(x) * math.sqrt(self.d_model)
+
+
+</code></pre>
+<h2>Positional Encoding</h2>
+<p>Since our model contains no recurrence and no convolution, in order
+for the model to make use of the order of the sequence, we must
+inject some information about the relative or absolute position of
+the tokens in the sequence.  To this end, we add &ldquo;positional
+encodings&rdquo; to the input embeddings at the bottoms of the encoder and
+decoder stacks.  The positional encodings have the same dimension
+$d_{\text{model}}$ as the embeddings, so that the two can be summed.
+There are many choices of positional encodings, learned and fixed
+<a href="https://arxiv.org/pdf/1705.03122.pdf">(cite)</a>.</p>
+<p>In this work, we use sine and cosine functions of different frequencies:</p>
+<p>$$PE_{(pos,2i)} = \sin(pos / 10000^{2i/d_{\text{model}}})$$</p>
+<p>$$PE_{(pos,2i+1)} = \cos(pos / 10000^{2i/d_{\text{model}}})$$</p>
+<p>where $pos$ is the position and $i$ is the dimension.  That is, each
+dimension of the positional encoding corresponds to a sinusoid.  The
+wavelengths form a geometric progression from $2\pi$ to $10000 \cdot
+2\pi$.  We chose this function because we hypothesized it would
+allow the model to easily learn to attend by relative positions,
+since for any fixed offset $k$, $PE_{pos+k}$ can be represented as a
+linear function of $PE_{pos}$.</p>
+<p>In addition, we apply dropout to the sums of the embeddings and the
+positional encodings in both the encoder and decoder stacks.  For
+the base model, we use a rate of $P_{drop}=0.1$.</p>
+<pre><code class="language-python">class PositionalEncoding(nn.Module):
+    &quot;Implement the PE function.&quot;
+
+    def __init__(self, d_model, dropout, max_len=5000):
+        super(PositionalEncoding, self).__init__()
+        self.dropout = nn.Dropout(p=dropout)
+
+        # Compute the positional encodings once in log space.
+        pe = torch.zeros(max_len, d_model)
+        position = torch.arange(0, max_len).unsqueeze(1)
+        div_term = torch.exp(
+            torch.arange(0, d_model, 2) * -(math.log(10000.0) / d_model)
+        )
+        pe[:, 0::2] = torch.sin(position * div_term)
+        pe[:, 1::2] = torch.cos(position * div_term)
+        pe = pe.unsqueeze(0)
+        self.register_buffer(&quot;pe&quot;, pe)
+
+    def forward(self, x):
+        x = x + self.pe[:, : x.size(1)].requires_grad_(False)
+        return self.dropout(x)
+
+
+</code></pre>
+<blockquote>
+<p>Below the positional encoding will add in a sine wave based on
+position. The frequency and offset of the wave is different for
+each dimension.</p>
+</blockquote>
+<pre><code class="language-python">def example_positional():
+    pe = PositionalEncoding(20, 0)
+    y = pe.forward(torch.zeros(1, 100, 20))
+
+    data = pd.concat(
+        [
+            pd.DataFrame(
+                {
+                    &quot;embedding&quot;: y[0, :, dim],
+                    &quot;dimension&quot;: dim,
+                    &quot;position&quot;: list(range(100)),
+                }
+            )
+            for dim in [4, 5, 6, 7]
+        ]
+    )
+
+    return (
+        alt.Chart(data)
+        .mark_line()
+        .properties(width=800)
+        .encode(x=&quot;position&quot;, y=&quot;embedding&quot;, color=&quot;dimension:N&quot;)
+        .interactive()
+    )
+
+
+show_example(example_positional)
+
+
+</code></pre>
+<p>We also experimented with using learned positional embeddings
+<a href="https://arxiv.org/pdf/1705.03122.pdf">(cite)</a> instead, and found
+that the two versions produced nearly identical results.  We chose
+the sinusoidal version because it may allow the model to extrapolate
+to sequence lengths longer than the ones encountered during
+training.</p>
+<h2>Full Model</h2>
+<blockquote>
+<p>Here we define a function from hyperparameters to a full model.</p>
+</blockquote>
+<pre><code class="language-python">def make_model(
+    src_vocab, tgt_vocab, N=6, d_model=512, d_ff=2048, h=8, dropout=0.1
+):
+    &quot;Helper: Construct a model from hyperparameters.&quot;
+    c = copy.deepcopy
+    attn = MultiHeadedAttention(h, d_model)
+    ff = PositionwiseFeedForward(d_model, d_ff, dropout)
+    position = PositionalEncoding(d_model, dropout)
+    model = EncoderDecoder(
+        Encoder(EncoderLayer(d_model, c(attn), c(ff), dropout), N),
+        Decoder(DecoderLayer(d_model, c(attn), c(attn), c(ff), dropout), N),
+        nn.Sequential(Embeddings(d_model, src_vocab), c(position)),
+        nn.Sequential(Embeddings(d_model, tgt_vocab), c(position)),
+        Generator(d_model, tgt_vocab),
+    )
+
+    # This was important from their code.
+    # Initialize parameters with Glorot / fan_avg.
+    for p in model.parameters():
+        if p.dim() &gt; 1:
+            nn.init.xavier_uniform_(p)
+    return model
+
+
+</code></pre>
+<h2>Inference:</h2>
+<blockquote>
+<p>Here we make a forward step to generate a prediction of the
+model. We try to use our transformer to memorize the input. As you
+will see the output is randomly generated due to the fact that the
+model is not trained yet. In the next tutorial we will build the
+training function and try to train our model to memorize the numbers
+from 1 to 10.</p>
+</blockquote>
+<pre><code class="language-python">def inference_test():
+    test_model = make_model(11, 11, 2)
+    test_model.eval()
+    src = torch.LongTensor([[1, 2, 3, 4, 5, 6, 7, 8, 9, 10]])
+    src_mask = torch.ones(1, 1, 10)
+
+    memory = test_model.encode(src, src_mask)
+    ys = torch.zeros(1, 1).type_as(src)
+
+    for i in range(9):
+        out = test_model.decode(
+            memory, src_mask, ys, subsequent_mask(ys.size(1)).type_as(src.data)
+        )
+        prob = test_model.generator(out[:, -1])
+        _, next_word = torch.max(prob, dim=1)
+        next_word = next_word.data[0]
+        ys = torch.cat(
+            [ys, torch.empty(1, 1).type_as(src.data).fill_(next_word)], dim=1
+        )
+
+    print(&quot;Example Untrained Model Prediction:&quot;, ys)
+
+
+def run_tests():
+    for _ in range(10):
+        inference_test()
+
+
+show_example(run_tests)
+
+
+</code></pre>
+<h1>Part 2: Model Training</h1>
+<h1>Training</h1>
+<p>This section describes the training regime for our models.</p>
+<blockquote>
+<p>We stop for a quick interlude to introduce some of the tools
+needed to train a standard encoder decoder model. First we define a
+batch object that holds the src and target sentences for training,
+as well as constructing the masks.</p>
+</blockquote>
+<h2>Batches and Masking</h2>
+<pre><code class="language-python">class Batch:
+    &quot;&quot;&quot;Object for holding a batch of data with mask during training.&quot;&quot;&quot;
+
+    def __init__(self, src, tgt=None, pad=2):  # 2 = &lt;blank&gt;
+        self.src = src
+        self.src_mask = (src != pad).unsqueeze(-2)
+        if tgt is not None:
+            self.tgt = tgt[:, :-1]
+            self.tgt_y = tgt[:, 1:]
+            self.tgt_mask = self.make_std_mask(self.tgt, pad)
+            self.ntokens = (self.tgt_y != pad).data.sum()
+
+    @staticmethod
+    def make_std_mask(tgt, pad):
+        &quot;Create a mask to hide padding and future words.&quot;
+        tgt_mask = (tgt != pad).unsqueeze(-2)
+        tgt_mask = tgt_mask &amp; subsequent_mask(tgt.size(-1)).type_as(
+            tgt_mask.data
+        )
+        return tgt_mask
+
+
+</code></pre>
+<blockquote>
+<p>Next we create a generic training and scoring function to keep
+track of loss. We pass in a generic loss compute function that
+also handles parameter updates.</p>
+</blockquote>
+<h2>Training Loop</h2>
+<pre><code class="language-python">class TrainState:
+    &quot;&quot;&quot;Track number of steps, examples, and tokens processed&quot;&quot;&quot;
+
+    step: int = 0  # Steps in the current epoch
+    accum_step: int = 0  # Number of gradient accumulation steps
+    samples: int = 0  # total # of examples used
+    tokens: int = 0  # total # of tokens processed
+
+
+</code></pre>
+<pre><code class="language-python">def run_epoch(
+    data_iter,
+    model,
+    loss_compute,
+    optimizer,
+    scheduler,
+    mode=&quot;train&quot;,
+    accum_iter=1,
+    train_state=TrainState(),
+):
+    &quot;&quot;&quot;Train a single epoch&quot;&quot;&quot;
+    start = time.time()
+    total_tokens = 0
+    total_loss = 0
+    tokens = 0
+    n_accum = 0
+    for i, batch in enumerate(data_iter):
+        out = model.forward(
+            batch.src, batch.tgt, batch.src_mask, batch.tgt_mask
+        )
+        loss, loss_node = loss_compute(out, batch.tgt_y, batch.ntokens)
+        # loss_node = loss_node / accum_iter
+        if mode == &quot;train&quot; or mode == &quot;train+log&quot;:
+            loss_node.backward()
+            train_state.step += 1
+            train_state.samples += batch.src.shape[0]
+            train_state.tokens += batch.ntokens
+            if i % accum_iter == 0:
+                optimizer.step()
+                optimizer.zero_grad(set_to_none=True)
+                n_accum += 1
+                train_state.accum_step += 1
+            scheduler.step()
+
+        total_loss += loss
+        total_tokens += batch.ntokens
+        tokens += batch.ntokens
+        if i % 40 == 1 and (mode == &quot;train&quot; or mode == &quot;train+log&quot;):
+            lr = optimizer.param_groups[0][&quot;lr&quot;]
+            elapsed = time.time() - start
+            print(
+                (
+                    &quot;Epoch Step: %6d | Accumulation Step: %3d | Loss: %6.2f &quot;
+                    + &quot;| Tokens / Sec: %7.1f | Learning Rate: %6.1e&quot;
+                )
+                % (i, n_accum, loss / batch.ntokens, tokens / elapsed, lr)
+            )
+            start = time.time()
+            tokens = 0
+        del loss
+        del loss_node
+    return total_loss / total_tokens, train_state
+
+
+</code></pre>
+<h2>Training Data and Batching</h2>
+<p>We trained on the standard WMT 2014 English-German dataset
+consisting of about 4.5 million sentence pairs.  Sentences were
+encoded using byte-pair encoding, which has a shared source-target
+vocabulary of about 37000 tokens. For English-French, we used the
+significantly larger WMT 2014 English-French dataset consisting of
+36M sentences and split tokens into a 32000 word-piece vocabulary.</p>
+<p>Sentence pairs were batched together by approximate sequence length.
+Each training batch contained a set of sentence pairs containing
+approximately 25000 source tokens and 25000 target tokens.</p>
+<h2>Hardware and Schedule</h2>
+<p>We trained our models on one machine with 8 NVIDIA P100 GPUs.  For
+our base models using the hyperparameters described throughout the
+paper, each training step took about 0.4 seconds.  We trained the
+base models for a total of 100,000 steps or 12 hours. For our big
+models, step time was 1.0 seconds.  The big models were trained for
+300,000 steps (3.5 days).</p>
+<h2>Optimizer</h2>
+<p>We used the Adam optimizer <a href="https://arxiv.org/abs/1412.6980">(cite)</a>
+with $\beta_1=0.9$, $\beta_2=0.98$ and $\epsilon=10^{-9}$.  We
+varied the learning rate over the course of training, according to
+the formula:</p>
+<p>$$
+lrate = d_{\text{model}}^{-0.5} \cdot
+  \min({step_num}^{-0.5},
+    {step_num} \cdot {warmup_steps}^{-1.5})
+$$</p>
+<p>This corresponds to increasing the learning rate linearly for the
+first $warmup_steps$ training steps, and decreasing it thereafter
+proportionally to the inverse square root of the step number.  We
+used $warmup_steps=4000$.</p>
+<blockquote>
+<p>Note: This part is very important. Need to train with this setup
+of the model.</p>
+<p>Example of the curves of this model for different model sizes and
+for optimization hyperparameters.</p>
+</blockquote>
+<pre><code class="language-python">def rate(step, model_size, factor, warmup):
+    &quot;&quot;&quot;
+    we have to default the step to 1 for LambdaLR function
+    to avoid zero raising to negative power.
+    &quot;&quot;&quot;
+    if step == 0:
+        step = 1
+    return factor * (
+        model_size ** (-0.5) * min(step ** (-0.5), step * warmup ** (-1.5))
+    )
+
+
+</code></pre>
+<pre><code class="language-python">def example_learning_schedule():
+    opts = [
+        [512, 1, 4000],  # example 1
+        [512, 1, 8000],  # example 2
+        [256, 1, 4000],  # example 3
+    ]
+
+    dummy_model = torch.nn.Linear(1, 1)
+    learning_rates = []
+
+    # we have 3 examples in opts list.
+    for idx, example in enumerate(opts):
+        # run 20000 epoch for each example
+        optimizer = torch.optim.Adam(
+            dummy_model.parameters(), lr=1, betas=(0.9, 0.98), eps=1e-9
+        )
+        lr_scheduler = LambdaLR(
+            optimizer=optimizer, lr_lambda=lambda step: rate(step, *example)
+        )
+        tmp = []
+        # take 20K dummy training steps, save the learning rate at each step
+        for step in range(20000):
+            tmp.append(optimizer.param_groups[0][&quot;lr&quot;])
+            optimizer.step()
+            lr_scheduler.step()
+        learning_rates.append(tmp)
+
+    learning_rates = torch.tensor(learning_rates)
+
+    # Enable altair to handle more than 5000 rows
+    alt.data_transformers.disable_max_rows()
+
+    opts_data = pd.concat(
+        [
+            pd.DataFrame(
+                {
+                    &quot;Learning Rate&quot;: learning_rates[warmup_idx, :],
+                    &quot;model_size:warmup&quot;: [&quot;512:4000&quot;, &quot;512:8000&quot;, &quot;256:4000&quot;][
+                        warmup_idx
+                    ],
+                    &quot;step&quot;: range(20000),
+                }
+            )
+            for warmup_idx in [0, 1, 2]
+        ]
+    )
+
+    return (
+        alt.Chart(opts_data)
+        .mark_line()
+        .properties(width=600)
+        .encode(x=&quot;step&quot;, y=&quot;Learning Rate&quot;, color=&quot;model_size:warmup:N&quot;)
+        .interactive()
+    )
+
+
+example_learning_schedule()
+
+
+</code></pre>
+<h2>Regularization</h2>
+<h3>Label Smoothing</h3>
+<p>During training, we employed label smoothing of value
+$\epsilon_{ls}=0.1$ <a href="https://arxiv.org/abs/1512.00567">(cite)</a>.
+This hurts perplexity, as the model learns to be more unsure, but
+improves accuracy and BLEU score.</p>
+<blockquote>
+<p>We implement label smoothing using the KL div loss. Instead of
+using a one-hot target distribution, we create a distribution that
+has <code>confidence</code> of the correct word and the rest of the
+<code>smoothing</code> mass distributed throughout the vocabulary.</p>
+</blockquote>
+<pre><code class="language-python">class LabelSmoothing(nn.Module):
+    &quot;Implement label smoothing.&quot;
+
+    def __init__(self, size, padding_idx, smoothing=0.0):
+        super(LabelSmoothing, self).__init__()
+        self.criterion = nn.KLDivLoss(reduction=&quot;sum&quot;)
+        self.padding_idx = padding_idx
+        self.confidence = 1.0 - smoothing
+        self.smoothing = smoothing
+        self.size = size
+        self.true_dist = None
+
+    def forward(self, x, target):
+        assert x.size(1) == self.size
+        true_dist = x.data.clone()
+        true_dist.fill_(self.smoothing / (self.size - 2))
+        true_dist.scatter_(1, target.data.unsqueeze(1), self.confidence)
+        true_dist[:, self.padding_idx] = 0
+        mask = torch.nonzero(target.data == self.padding_idx)
+        if mask.dim() &gt; 0:
+            true_dist.index_fill_(0, mask.squeeze(), 0.0)
+        self.true_dist = true_dist
+        return self.criterion(x, true_dist.clone().detach())
+
+
+</code></pre>
+<blockquote>
+<p>Here we can see an example of how the mass is distributed to the
+words based on confidence.</p>
+</blockquote>
+<pre><code class="language-python"># Example of label smoothing.
+
+
+def example_label_smoothing():
+    crit = LabelSmoothing(5, 0, 0.4)
+    predict = torch.FloatTensor(
+        [
+            [0, 0.2, 0.7, 0.1, 0],
+            [0, 0.2, 0.7, 0.1, 0],
+            [0, 0.2, 0.7, 0.1, 0],
+            [0, 0.2, 0.7, 0.1, 0],
+            [0, 0.2, 0.7, 0.1, 0],
+        ]
+    )
+    crit(x=predict.log(), target=torch.LongTensor([2, 1, 0, 3, 3]))
+    LS_data = pd.concat(
+        [
+            pd.DataFrame(
+                {
+                    &quot;target distribution&quot;: crit.true_dist[x, y].flatten(),
+                    &quot;columns&quot;: y,
+                    &quot;rows&quot;: x,
+                }
+            )
+            for y in range(5)
+            for x in range(5)
+        ]
+    )
+
+    return (
+        alt.Chart(LS_data)
+        .mark_rect(color=&quot;Blue&quot;, opacity=1)
+        .properties(height=200, width=200)
+        .encode(
+            alt.X(&quot;columns:O&quot;, title=None),
+            alt.Y(&quot;rows:O&quot;, title=None),
+            alt.Color(
+                &quot;target distribution:Q&quot;, scale=alt.Scale(scheme=&quot;viridis&quot;)
+            ),
+        )
+        .interactive()
+    )
+
+
+show_example(example_label_smoothing)
+
+
+</code></pre>
+<blockquote>
+<p>Label smoothing actually starts to penalize the model if it gets
+very confident about a given choice.</p>
+</blockquote>
+<pre><code class="language-python">
+
+def loss(x, crit):
+    d = x + 3 * 1
+    predict = torch.FloatTensor([[0, x / d, 1 / d, 1 / d, 1 / d]])
+    return crit(predict.log(), torch.LongTensor([1])).data
+
+
+def penalization_visualization():
+    crit = LabelSmoothing(5, 0, 0.1)
+    loss_data = pd.DataFrame(
+        {
+            &quot;Loss&quot;: [loss(x, crit) for x in range(1, 100)],
+            &quot;Steps&quot;: list(range(99)),
+        }
+    ).astype(&quot;float&quot;)
+
+    return (
+        alt.Chart(loss_data)
+        .mark_line()
+        .properties(width=350)
+        .encode(
+            x=&quot;Steps&quot;,
+            y=&quot;Loss&quot;,
+        )
+        .interactive()
+    )
+
+
+show_example(penalization_visualization)
+
+
+</code></pre>
+<h1>A First  Example</h1>
+<blockquote>
+<p>We can begin by trying out a simple copy-task. Given a random set
+of input symbols from a small vocabulary, the goal is to generate
+back those same symbols.</p>
+</blockquote>
+<h2>Synthetic Data</h2>
+<pre><code class="language-python">def data_gen(V, batch_size, nbatches):
+    &quot;Generate random data for a src-tgt copy task.&quot;
+    for i in range(nbatches):
+        data = torch.randint(1, V, size=(batch_size, 10))
+        data[:, 0] = 1
+        src = data.requires_grad_(False).clone().detach()
+        tgt = data.requires_grad_(False).clone().detach()
+        yield Batch(src, tgt, 0)
+
+
+</code></pre>
+<h2>Loss Computation</h2>
+<pre><code class="language-python">class SimpleLossCompute:
+    &quot;A simple loss compute and train function.&quot;
+
+    def __init__(self, generator, criterion):
+        self.generator = generator
+        self.criterion = criterion
+
+    def __call__(self, x, y, norm):
+        x = self.generator(x)
+        sloss = (
+            self.criterion(
+                x.contiguous().view(-1, x.size(-1)), y.contiguous().view(-1)
+            )
+            / norm
+        )
+        return sloss.data * norm, sloss
+
+
+</code></pre>
+<h2>Greedy Decoding</h2>
+<blockquote>
+<p>This code predicts a translation using greedy decoding for simplicity.</p>
+</blockquote>
+<pre><code class="language-python">def greedy_decode(model, src, src_mask, max_len, start_symbol):
+    memory = model.encode(src, src_mask)
+    ys = torch.zeros(1, 1).fill_(start_symbol).type_as(src.data)
+    for i in range(max_len - 1):
+        out = model.decode(
+            memory, src_mask, ys, subsequent_mask(ys.size(1)).type_as(src.data)
+        )
+        prob = model.generator(out[:, -1])
+        _, next_word = torch.max(prob, dim=1)
+        next_word = next_word.data[0]
+        ys = torch.cat(
+            [ys, torch.zeros(1, 1).type_as(src.data).fill_(next_word)], dim=1
+        )
+    return ys
+
+
+</code></pre>
+<pre><code class="language-python"># Train the simple copy task.
+
+
+def example_simple_model():
+    V = 11
+    criterion = LabelSmoothing(size=V, padding_idx=0, smoothing=0.0)
+    model = make_model(V, V, N=2)
+
+    optimizer = torch.optim.Adam(
+        model.parameters(), lr=0.5, betas=(0.9, 0.98), eps=1e-9
+    )
+    lr_scheduler = LambdaLR(
+        optimizer=optimizer,
+        lr_lambda=lambda step: rate(
+            step, model_size=model.src_embed[0].d_model, factor=1.0, warmup=400
+        ),
+    )
+
+    batch_size = 80
+    for epoch in range(20):
+        model.train()
+        run_epoch(
+            data_gen(V, batch_size, 20),
+            model,
+            SimpleLossCompute(model.generator, criterion),
+            optimizer,
+            lr_scheduler,
+            mode=&quot;train&quot;,
+        )
+        model.eval()
+        run_epoch(
+            data_gen(V, batch_size, 5),
+            model,
+            SimpleLossCompute(model.generator, criterion),
+            DummyOptimizer(),
+            DummyScheduler(),
+            mode=&quot;eval&quot;,
+        )[0]
+
+    model.eval()
+    src = torch.LongTensor([[0, 1, 2, 3, 4, 5, 6, 7, 8, 9]])
+    max_len = src.shape[1]
+    src_mask = torch.ones(1, 1, max_len)
+    print(greedy_decode(model, src, src_mask, max_len=max_len, start_symbol=0))
+
+
+# execute_example(example_simple_model)
+
+
+</code></pre>
+<h1>Part 3: A Real World Example</h1>
+<h2>Data Loading</h2>
+<blockquote>
+<p>We will load the dataset using torchtext and spacy for
+tokenization.</p>
+</blockquote>
+<pre><code class="language-python"># Load spacy tokenizer models, download them if they haven't been
+# downloaded already
+
+
+def load_tokenizers():
+
+    try:
+        spacy_de = spacy.load(&quot;de_core_news_sm&quot;)
+    except IOError:
+        os.system(&quot;python -m spacy download de_core_news_sm&quot;)
+        spacy_de = spacy.load(&quot;de_core_news_sm&quot;)
+
+    try:
+        spacy_en = spacy.load(&quot;en_core_web_sm&quot;)
+    except IOError:
+        os.system(&quot;python -m spacy download en_core_web_sm&quot;)
+        spacy_en = spacy.load(&quot;en_core_web_sm&quot;)
+
+    return spacy_de, spacy_en
+
+
+</code></pre>
+<pre><code class="language-python">def tokenize(text, tokenizer):
+    return [tok.text for tok in tokenizer.tokenizer(text)]
+
+
+def yield_tokens(data_iter, tokenizer, index):
+    for from_to_tuple in data_iter:
+        yield tokenizer(from_to_tuple[index])
+
+
+</code></pre>
+<pre><code class="language-python">
+
+def build_vocabulary(spacy_de, spacy_en):
+    def tokenize_de(text):
+        return tokenize(text, spacy_de)
+
+    def tokenize_en(text):
+        return tokenize(text, spacy_en)
+
+    print(&quot;Building German Vocabulary ...&quot;)
+    train, val, test = datasets.Multi30k(language_pair=(&quot;de&quot;, &quot;en&quot;))
+    vocab_src = build_vocab_from_iterator(
+        yield_tokens(train + val + test, tokenize_de, index=0),
+        min_freq=2,
+        specials=[&quot;&lt;s&gt;&quot;, &quot;&lt;/s&gt;&quot;, &quot;&lt;blank&gt;&quot;, &quot;&lt;unk&gt;&quot;],
+    )
+
+    print(&quot;Building English Vocabulary ...&quot;)
+    train, val, test = datasets.Multi30k(language_pair=(&quot;de&quot;, &quot;en&quot;))
+    vocab_tgt = build_vocab_from_iterator(
+        yield_tokens(train + val + test, tokenize_en, index=1),
+        min_freq=2,
+        specials=[&quot;&lt;s&gt;&quot;, &quot;&lt;/s&gt;&quot;, &quot;&lt;blank&gt;&quot;, &quot;&lt;unk&gt;&quot;],
+    )
+
+    vocab_src.set_default_index(vocab_src[&quot;&lt;unk&gt;&quot;])
+    vocab_tgt.set_default_index(vocab_tgt[&quot;&lt;unk&gt;&quot;])
+
+    return vocab_src, vocab_tgt
+
+
+def load_vocab(spacy_de, spacy_en):
+    if not exists(&quot;vocab.pt&quot;):
+        vocab_src, vocab_tgt = build_vocabulary(spacy_de, spacy_en)
+        torch.save((vocab_src, vocab_tgt), &quot;vocab.pt&quot;)
+    else:
+        vocab_src, vocab_tgt = torch.load(&quot;vocab.pt&quot;)
+    print(&quot;Finished.\nVocabulary sizes:&quot;)
+    print(len(vocab_src))
+    print(len(vocab_tgt))
+    return vocab_src, vocab_tgt
+
+
+if is_interactive_notebook():
+    # global variables used later in the script
+    spacy_de, spacy_en = show_example(load_tokenizers)
+    vocab_src, vocab_tgt = show_example(load_vocab, args=[spacy_de, spacy_en])
+
+
+</code></pre>
+<blockquote>
+<p>Batching matters a ton for speed. We want to have very evenly
+divided batches, with absolutely minimal padding. To do this we
+have to hack a bit around the default torchtext batching. This
+code patches their default batching to make sure we search over
+enough sentences to find tight batches.</p>
+</blockquote>
+<h2>Iterators</h2>
+<pre><code class="language-python">def collate_batch(
+    batch,
+    src_pipeline,
+    tgt_pipeline,
+    src_vocab,
+    tgt_vocab,
+    device,
+    max_padding=128,
+    pad_id=2,
+):
+    bs_id = torch.tensor([0], device=device)  # &lt;s&gt; token id
+    eos_id = torch.tensor([1], device=device)  # &lt;/s&gt; token id
+    src_list, tgt_list = [], []
+    for (_src, _tgt) in batch:
+        processed_src = torch.cat(
+            [
+                bs_id,
+                torch.tensor(
+                    src_vocab(src_pipeline(_src)),
+                    dtype=torch.int64,
+                    device=device,
+                ),
+                eos_id,
+            ],
+            0,
+        )
+        processed_tgt = torch.cat(
+            [
+                bs_id,
+                torch.tensor(
+                    tgt_vocab(tgt_pipeline(_tgt)),
+                    dtype=torch.int64,
+                    device=device,
+                ),
+                eos_id,
+            ],
+            0,
+        )
+        src_list.append(
+            # warning - overwrites values for negative values of padding - len
+            pad(
+                processed_src,
+                (
+                    0,
+                    max_padding - len(processed_src),
+                ),
+                value=pad_id,
+            )
+        )
+        tgt_list.append(
+            pad(
+                processed_tgt,
+                (0, max_padding - len(processed_tgt)),
+                value=pad_id,
+            )
+        )
+
+    src = torch.stack(src_list)
+    tgt = torch.stack(tgt_list)
+    return (src, tgt)
+
+
+</code></pre>
+<pre><code class="language-python">def create_dataloaders(
+    device,
+    vocab_src,
+    vocab_tgt,
+    spacy_de,
+    spacy_en,
+    batch_size=12000,
+    max_padding=128,
+    is_distributed=True,
+):
+    # def create_dataloaders(batch_size=12000):
+    def tokenize_de(text):
+        return tokenize(text, spacy_de)
+
+    def tokenize_en(text):
+        return tokenize(text, spacy_en)
+
+    def collate_fn(batch):
+        return collate_batch(
+            batch,
+            tokenize_de,
+            tokenize_en,
+            vocab_src,
+            vocab_tgt,
+            device,
+            max_padding=max_padding,
+            pad_id=vocab_src.get_stoi()[&quot;&lt;blank&gt;&quot;],
+        )
+
+    train_iter, valid_iter, test_iter = datasets.Multi30k(
+        language_pair=(&quot;de&quot;, &quot;en&quot;)
+    )
+
+    train_iter_map = to_map_style_dataset(
+        train_iter
+    )  # DistributedSampler needs a dataset len()
+    train_sampler = (
+        DistributedSampler(train_iter_map) if is_distributed else None
+    )
+    valid_iter_map = to_map_style_dataset(valid_iter)
+    valid_sampler = (
+        DistributedSampler(valid_iter_map) if is_distributed else None
+    )
+
+    train_dataloader = DataLoader(
+        train_iter_map,
+        batch_size=batch_size,
+        shuffle=(train_sampler is None),
+        sampler=train_sampler,
+        collate_fn=collate_fn,
+    )
+    valid_dataloader = DataLoader(
+        valid_iter_map,
+        batch_size=batch_size,
+        shuffle=(valid_sampler is None),
+        sampler=valid_sampler,
+        collate_fn=collate_fn,
+    )
+    return train_dataloader, valid_dataloader
+
+
+</code></pre>
+<h2>Training the System</h2>
+<pre><code class="language-python">def train_worker(
+    gpu,
+    ngpus_per_node,
+    vocab_src,
+    vocab_tgt,
+    spacy_de,
+    spacy_en,
+    config,
+    is_distributed=False,
+):
+    print(f&quot;Train worker process using GPU: {gpu} for training&quot;, flush=True)
+    torch.cuda.set_device(gpu)
+
+    pad_idx = vocab_tgt[&quot;&lt;blank&gt;&quot;]
+    d_model = 512
+    model = make_model(len(vocab_src), len(vocab_tgt), N=6)
+    model.cuda(gpu)
+    module = model
+    is_main_process = True
+    if is_distributed:
+        dist.init_process_group(
+            &quot;nccl&quot;, init_method=&quot;env://&quot;, rank=gpu, world_size=ngpus_per_node
+        )
+        model = DDP(model, device_ids=[gpu])
+        module = model.module
+        is_main_process = gpu == 0
+
+    criterion = LabelSmoothing(
+        size=len(vocab_tgt), padding_idx=pad_idx, smoothing=0.1
+    )
+    criterion.cuda(gpu)
+
+    train_dataloader, valid_dataloader = create_dataloaders(
+        gpu,
+        vocab_src,
+        vocab_tgt,
+        spacy_de,
+        spacy_en,
+        batch_size=config[&quot;batch_size&quot;] // ngpus_per_node,
+        max_padding=config[&quot;max_padding&quot;],
+        is_distributed=is_distributed,
+    )
+
+    optimizer = torch.optim.Adam(
+        model.parameters(), lr=config[&quot;base_lr&quot;], betas=(0.9, 0.98), eps=1e-9
+    )
+    lr_scheduler = LambdaLR(
+        optimizer=optimizer,
+        lr_lambda=lambda step: rate(
+            step, d_model, factor=1, warmup=config[&quot;warmup&quot;]
+        ),
+    )
+    train_state = TrainState()
+
+    for epoch in range(config[&quot;num_epochs&quot;]):
+        if is_distributed:
+            train_dataloader.sampler.set_epoch(epoch)
+            valid_dataloader.sampler.set_epoch(epoch)
+
+        model.train()
+        print(f&quot;[GPU{gpu}] Epoch {epoch} Training ====&quot;, flush=True)
+        _, train_state = run_epoch(
+            (Batch(b[0], b[1], pad_idx) for b in train_dataloader),
+            model,
+            SimpleLossCompute(module.generator, criterion),
+            optimizer,
+            lr_scheduler,
+            mode=&quot;train+log&quot;,
+            accum_iter=config[&quot;accum_iter&quot;],
+            train_state=train_state,
+        )
+
+        GPUtil.showUtilization()
+        if is_main_process:
+            file_path = &quot;%s%.2d.pt&quot; % (config[&quot;file_prefix&quot;], epoch)
+            torch.save(module.state_dict(), file_path)
+        torch.cuda.empty_cache()
+
+        print(f&quot;[GPU{gpu}] Epoch {epoch} Validation ====&quot;, flush=True)
+        model.eval()
+        sloss = run_epoch(
+            (Batch(b[0], b[1], pad_idx) for b in valid_dataloader),
+            model,
+            SimpleLossCompute(module.generator, criterion),
+            DummyOptimizer(),
+            DummyScheduler(),
+            mode=&quot;eval&quot;,
+        )
+        print(sloss)
+        torch.cuda.empty_cache()
+
+    if is_main_process:
+        file_path = &quot;%sfinal.pt&quot; % config[&quot;file_prefix&quot;]
+        torch.save(module.state_dict(), file_path)
+
+
+</code></pre>
+<pre><code class="language-python">def train_distributed_model(vocab_src, vocab_tgt, spacy_de, spacy_en, config):
+    from the_annotated_transformer import train_worker
+
+    ngpus = torch.cuda.device_count()
+    os.environ[&quot;MASTER_ADDR&quot;] = &quot;localhost&quot;
+    os.environ[&quot;MASTER_PORT&quot;] = &quot;12356&quot;
+    print(f&quot;Number of GPUs detected: {ngpus}&quot;)
+    print(&quot;Spawning training processes ...&quot;)
+    mp.spawn(
+        train_worker,
+        nprocs=ngpus,
+        args=(ngpus, vocab_src, vocab_tgt, spacy_de, spacy_en, config, True),
+    )
+
+
+def train_model(vocab_src, vocab_tgt, spacy_de, spacy_en, config):
+    if config[&quot;distributed&quot;]:
+        train_distributed_model(
+            vocab_src, vocab_tgt, spacy_de, spacy_en, config
+        )
+    else:
+        train_worker(
+            0, 1, vocab_src, vocab_tgt, spacy_de, spacy_en, config, False
+        )
+
+
+def load_trained_model():
+    config = {
+        &quot;batch_size&quot;: 32,
+        &quot;distributed&quot;: False,
+        &quot;num_epochs&quot;: 8,
+        &quot;accum_iter&quot;: 10,
+        &quot;base_lr&quot;: 1.0,
+        &quot;max_padding&quot;: 72,
+        &quot;warmup&quot;: 3000,
+        &quot;file_prefix&quot;: &quot;multi30k_model_&quot;,
+    }
+    model_path = &quot;multi30k_model_final.pt&quot;
+    if not exists(model_path):
+        train_model(vocab_src, vocab_tgt, spacy_de, spacy_en, config)
+
+    model = make_model(len(vocab_src), len(vocab_tgt), N=6)
+    model.load_state_dict(torch.load(&quot;multi30k_model_final.pt&quot;))
+    return model
+
+
+if is_interactive_notebook():
+    model = load_trained_model()
+
+
+</code></pre>
+<blockquote>
+<p>Once trained we can decode the model to produce a set of
+translations. Here we simply translate the first sentence in the
+validation set. This dataset is pretty small so the translations
+with greedy search are reasonably accurate.</p>
+</blockquote>
+<h1>Additional Components: BPE, Search, Averaging</h1>
+<blockquote>
+<p>So this mostly covers the transformer model itself. There are four
+aspects that we didn&rsquo;t cover explicitly. We also have all these
+additional features implemented in
+<a href="https://github.com/opennmt/opennmt-py">OpenNMT-py</a>.</p>
+<p>1) BPE/ Word-piece: We can use a library to first preprocess the
+data into subword units. See Rico Sennrich&rsquo;s
+<a href="https://github.com/rsennrich/subword-nmt">subword-nmt</a>
+implementation. These models will transform the training data to
+look like this:</p>
+</blockquote>
+<p>▁Die ▁Protokoll datei ▁kann ▁ heimlich ▁per ▁E - Mail ▁oder ▁FTP
+▁an ▁einen ▁bestimmte n ▁Empfänger ▁gesendet ▁werden .</p>
+<blockquote>
+<p>2) Shared Embeddings: When using BPE with shared vocabulary we can
+share the same weight vectors between the source / target /
+generator. See the <a href="https://arxiv.org/abs/1608.05859">(cite)</a> for
+details. To add this to the model simply do this:</p>
+</blockquote>
+<pre><code class="language-python">if False:
+    model.src_embed[0].lut.weight = model.tgt_embeddings[0].lut.weight
+    model.generator.lut.weight = model.tgt_embed[0].lut.weight
+
+
+</code></pre>
+<blockquote>
+<p>3) Beam Search: This is a bit too complicated to cover here. See the
+<a href="https://github.com/OpenNMT/OpenNMT-py/">OpenNMT-py</a>
+for a pytorch implementation.
+</p>
+<p>4) Model Averaging: The paper averages the last k checkpoints to
+create an ensembling effect. We can do this after the fact if we
+have a bunch of models:</p>
+</blockquote>
+<pre><code class="language-python">def average(model, models):
+    &quot;Average models into model&quot;
+    for ps in zip(*[m.params() for m in [model] + models]):
+        ps[0].copy_(torch.sum(*ps[1:]) / len(ps[1:]))
+
+
+</code></pre>
+<h1>Results</h1>
+<p>On the WMT 2014 English-to-German translation task, the big
+transformer model (Transformer (big) in Table 2) outperforms the
+best previously reported models (including ensembles) by more than
+2.0 BLEU, establishing a new state-of-the-art BLEU score of
+28.4. The configuration of this model is listed in the bottom line
+of Table 3. Training took 3.5 days on 8 P100 GPUs. Even our base
+model surpasses all previously published models and ensembles, at a
+fraction of the training cost of any of the competitive models.</p>
+<p>On the WMT 2014 English-to-French translation task, our big model
+achieves a BLEU score of 41.0, outperforming all of the previously
+published single models, at less than 1/4 the training cost of the
+previous state-of-the-art model. The Transformer (big) model trained
+for English-to-French used dropout rate Pdrop = 0.1, instead of 0.3.</p>
+<blockquote>
+<p>With the addtional extensions in the last section, the OpenNMT-py
+replication gets to 26.9 on EN-DE WMT. Here I have loaded in those
+parameters to our reimplemenation.</p>
+</blockquote>
+<pre><code class="language-python"># Load data and model for output checks
+
+
+</code></pre>
+<pre><code class="language-python">def check_outputs(
+    valid_dataloader,
+    model,
+    vocab_src,
+    vocab_tgt,
+    n_examples=15,
+    pad_idx=2,
+    eos_string=&quot;&lt;/s&gt;&quot;,
+):
+    results = [()] * n_examples
+    for idx in range(n_examples):
+        print(&quot;\nExample %d ========\n&quot; % idx)
+        b = next(iter(valid_dataloader))
+        rb = Batch(b[0], b[1], pad_idx)
+        greedy_decode(model, rb.src, rb.src_mask, 64, 0)[0]
+
+        src_tokens = [
+            vocab_src.get_itos()[x] for x in rb.src[0] if x != pad_idx
+        ]
+        tgt_tokens = [
+            vocab_tgt.get_itos()[x] for x in rb.tgt[0] if x != pad_idx
+        ]
+
+        print(
+            &quot;Source Text (Input)        : &quot;
+            + &quot; &quot;.join(src_tokens).replace(&quot;\n&quot;, &quot;&quot;)
+        )
+        print(
+            &quot;Target Text (Ground Truth) : &quot;
+            + &quot; &quot;.join(tgt_tokens).replace(&quot;\n&quot;, &quot;&quot;)
+        )
+        model_out = greedy_decode(model, rb.src, rb.src_mask, 72, 0)[0]
+        model_txt = (
+            &quot; &quot;.join(
+                [vocab_tgt.get_itos()[x] for x in model_out if x != pad_idx]
+            ).split(eos_string, 1)[0]
+            + eos_string
+        )
+        print(&quot;Model Output               : &quot; + model_txt.replace(&quot;\n&quot;, &quot;&quot;))
+        results[idx] = (rb, src_tokens, tgt_tokens, model_out, model_txt)
+    return results
+
+
+def run_model_example(n_examples=5):
+    global vocab_src, vocab_tgt, spacy_de, spacy_en
+
+    print(&quot;Preparing Data ...&quot;)
+    _, valid_dataloader = create_dataloaders(
+        torch.device(&quot;cpu&quot;),
+        vocab_src,
+        vocab_tgt,
+        spacy_de,
+        spacy_en,
+        batch_size=1,
+        is_distributed=False,
+    )
+
+    print(&quot;Loading Trained Model ...&quot;)
+
+    model = make_model(len(vocab_src), len(vocab_tgt), N=6)
+    model.load_state_dict(
+        torch.load(&quot;multi30k_model_final.pt&quot;, map_location=torch.device(&quot;cpu&quot;))
+    )
+
+    print(&quot;Checking Model Outputs:&quot;)
+    example_data = check_outputs(
+        valid_dataloader, model, vocab_src, vocab_tgt, n_examples=n_examples
+    )
+    return model, example_data
+
+
+# execute_example(run_model_example)
+
+
+</code></pre>
+<h2>Attention Visualization</h2>
+<blockquote>
+<p>Even with a greedy decoder the translation looks pretty good. We
+can further visualize it to see what is happening at each layer of
+the attention</p>
+</blockquote>
+<pre><code class="language-python">def mtx2df(m, max_row, max_col, row_tokens, col_tokens):
+    &quot;convert a dense matrix to a data frame with row and column indices&quot;
+    return pd.DataFrame(
+        [
+            (
+                r,
+                c,
+                float(m[r, c]),
+                &quot;%.3d %s&quot;
+                % (r, row_tokens[r] if len(row_tokens) &gt; r else &quot;&lt;blank&gt;&quot;),
+                &quot;%.3d %s&quot;
+                % (c, col_tokens[c] if len(col_tokens) &gt; c else &quot;&lt;blank&gt;&quot;),
+            )
+            for r in range(m.shape[0])
+            for c in range(m.shape[1])
+            if r &lt; max_row and c &lt; max_col
+        ],
+        # if float(m[r,c]) != 0 and r &lt; max_row and c &lt; max_col],
+        columns=[&quot;row&quot;, &quot;column&quot;, &quot;value&quot;, &quot;row_token&quot;, &quot;col_token&quot;],
+    )
+
+
+def attn_map(attn, layer, head, row_tokens, col_tokens, max_dim=30):
+    df = mtx2df(
+        attn[0, head].data,
+        max_dim,
+        max_dim,
+        row_tokens,
+        col_tokens,
+    )
+    return (
+        alt.Chart(data=df)
+        .mark_rect()
+        .encode(
+            x=alt.X(&quot;col_token&quot;, axis=alt.Axis(title=&quot;&quot;)),
+            y=alt.Y(&quot;row_token&quot;, axis=alt.Axis(title=&quot;&quot;)),
+            color=&quot;value&quot;,
+            tooltip=[&quot;row&quot;, &quot;column&quot;, &quot;value&quot;, &quot;row_token&quot;, &quot;col_token&quot;],
+        )
+        .properties(height=400, width=400)
+        .interactive()
+    )
+
+
+</code></pre>
+<pre><code class="language-python">def get_encoder(model, layer):
+    return model.encoder.layers[layer].self_attn.attn
+
+
+def get_decoder_self(model, layer):
+    return model.decoder.layers[layer].self_attn.attn
+
+
+def get_decoder_src(model, layer):
+    return model.decoder.layers[layer].src_attn.attn
+
+
+def visualize_layer(model, layer, getter_fn, ntokens, row_tokens, col_tokens):
+    # ntokens = last_example[0].ntokens
+    attn = getter_fn(model, layer)
+    n_heads = attn.shape[1]
+    charts = [
+        attn_map(
+            attn,
+            0,
+            h,
+            row_tokens=row_tokens,
+            col_tokens=col_tokens,
+            max_dim=ntokens,
+        )
+        for h in range(n_heads)
+    ]
+    assert n_heads == 8
+    return alt.vconcat(
+        charts[0]
+        # | charts[1]
+        | charts[2]
+        # | charts[3]
+        | charts[4]
+        # | charts[5]
+        | charts[6]
+        # | charts[7]
+        # layer + 1 due to 0-indexing
+    ).properties(title=&quot;Layer %d&quot; % (layer + 1))
+
+
+</code></pre>
+<h2>Encoder Self Attention</h2>
+<pre><code class="language-python">def viz_encoder_self():
+    model, example_data = run_model_example(n_examples=1)
+    example = example_data[
+        len(example_data) - 1
+    ]  # batch object for the final example
+
+    layer_viz = [
+        visualize_layer(
+            model, layer, get_encoder, len(example[1]), example[1], example[1]
+        )
+        for layer in range(6)
+    ]
+    return alt.hconcat(
+        layer_viz[0]
+        # &amp; layer_viz[1]
+        &amp; layer_viz[2]
+        # &amp; layer_viz[3]
+        &amp; layer_viz[4]
+        # &amp; layer_viz[5]
+    )
+
+
+show_example(viz_encoder_self)
+
+
+</code></pre>
+<h2>Decoder Self Attention</h2>
+<pre><code class="language-python">def viz_decoder_self():
+    model, example_data = run_model_example(n_examples=1)
+    example = example_data[len(example_data) - 1]
+
+    layer_viz = [
+        visualize_layer(
+            model,
+            layer,
+            get_decoder_self,
+            len(example[1]),
+            example[1],
+            example[1],
+        )
+        for layer in range(6)
+    ]
+    return alt.hconcat(
+        layer_viz[0]
+        &amp; layer_viz[1]
+        &amp; layer_viz[2]
+        &amp; layer_viz[3]
+        &amp; layer_viz[4]
+        &amp; layer_viz[5]
+    )
+
+
+show_example(viz_decoder_self)
+
+
+</code></pre>
+<h2>Decoder Src Attention</h2>
+<pre><code class="language-python">def viz_decoder_src():
+    model, example_data = run_model_example(n_examples=1)
+    example = example_data[len(example_data) - 1]
+
+    layer_viz = [
+        visualize_layer(
+            model,
+            layer,
+            get_decoder_src,
+            max(len(example[1]), len(example[2])),
+            example[1],
+            example[2],
+        )
+        for layer in range(6)
+    ]
+    return alt.hconcat(
+        layer_viz[0]
+        &amp; layer_viz[1]
+        &amp; layer_viz[2]
+        &amp; layer_viz[3]
+        &amp; layer_viz[4]
+        &amp; layer_viz[5]
+    )
+
+
+show_example(viz_decoder_src)
+
+</code></pre>
+<h1>Conclusion</h1>
+<p>Hopefully this code is useful for future research. Please reach
+ out if you have any issues.</p>
+<p>Cheers,
+ Sasha Rush, Austin Huang, Suraj Subramanian, Jonathan Sum, Khalid Almubarak,
+ Stella Biderman</p>
+        </main>
+
+        <aside class="commentary-sidebar" id="sidebar">
+            <div class="toc-title">Table of Contents</div>
+            <nav id="toc"></nav>
+        </aside>
+    </div>
+
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/highlight.min.js"></script>
+    <script>
+        window.addEventListener('DOMContentLoaded', () => {
+            hljs.highlightAll();
+
+            const main = document.querySelector('.commentary-main');
+            const text = main.innerText;
+            const time = Math.ceil(text.trim().split(/\s+/).length / 225);
+            document.getElementById('reading-time').innerText = `${time} min read`;
+
+            window.addEventListener('scroll', () => {
+                const scrolled = (window.scrollY / (document.documentElement.scrollHeight - window.innerHeight)) * 100;
+                const pb = document.getElementById("progress-bar");
+                if(pb) pb.style.width = scrolled + "%";
+            });
+
+            const toc = document.getElementById('toc');
+            const headings = main.querySelectorAll('h1, h2, h3');
+            headings.forEach(h => {
+                if (h.closest('blockquote')) return;
+                const id = h.textContent.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
+                h.id = id;
+                const a = document.createElement('a');
+                a.href = '#' + id;
+                a.textContent = h.textContent;
+                if (h.tagName === 'H3') a.className = 'h3-link';
+                if (h.tagName === 'H1') a.style.fontWeight = '700';
+                toc.appendChild(a);
+            });
+
+            const activeObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        document.querySelectorAll('.commentary-sidebar nav a').forEach(l => l.classList.remove('active'));
+                        const link = document.querySelector(`.commentary-sidebar nav a[href="#${entry.target.id}"]`);
+                        if (link) link.classList.add('active');
+                    }
+                });
+            }, { rootMargin: "-10% 0px -70% 0px" });
+            headings.forEach(h => activeObserver.observe(h));
+        });
+    </script>
+
+    <footer class="footer has-background-white-ter">
+    <div class="content has-text-centered ">
+        <p>
+            Built using <a href="https://pypi.org/project/jamstack">the jamstack package on pypi</a>
+            <hr>
+            <a href="../">Home</a>; 
+            <a href="/blog">Personal Blog</a>; 
+            <a href="/articles">Technical Blog</a>;
+            <a href="/diaries">Diaries</a>;
+        </p>
+    </div>
+    <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+</footer>
+</body>
+</html>
