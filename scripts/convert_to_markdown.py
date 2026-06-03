@@ -85,15 +85,12 @@ def convert(input_path: str, output_path: str, image_prefix: str = "assets/annot
 
     content = "".join(out_lines)
 
-    # Clean up: remove reference lines like "# (cite)" patterns handled already
-    # Fix image paths to use the site's asset directory
+    # Fix image paths to use the site's asset directory with correct relative path
     content = re.sub(
         r'!\[\]\(images/([^)]+)\)',
         f'![\\1]({image_prefix}\\1)',
         content
     )
-
-    # Ensure the images are referenced correctly
     content = re.sub(
         r'<img src="images/([^"]+)"',
         f'<img src="{image_prefix}\\1"',

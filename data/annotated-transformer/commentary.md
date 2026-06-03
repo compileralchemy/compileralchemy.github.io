@@ -7,7 +7,7 @@
 </a></p>
 </center>
 
-<img src="assets/annotated-transformer/aiayn.png" width="70%"/>
+<img src="../assets/annotated-transformer/aiayn.png" width="70%"/>
 
 * *v2022: Austin Huang, Suraj Subramanian, Jonathan Sum, Khalid Almubarak,
    and Stella Biderman.*
@@ -271,7 +271,7 @@ self-attention and point-wise, fully connected layers for both the
 encoder and decoder, shown in the left and right halves of Figure 1,
 respectively.
 
-![ModalNet-21.png](assets/annotated-transformer/ModalNet-21.png)
+![ModalNet-21.png](../assets/annotated-transformer/ModalNet-21.png)
 
 
 ## Encoder and Decoder Stacks
@@ -514,7 +514,7 @@ function to obtain the weights on the values.
 
 
 
-![ModalNet-19.png](assets/annotated-transformer/ModalNet-19.png)
+![ModalNet-19.png](../assets/annotated-transformer/ModalNet-19.png)
 
 
 
@@ -570,7 +570,7 @@ $\frac{1}{\sqrt{d_k}}$.
 
 
 
-![ModalNet-20.png](assets/annotated-transformer/ModalNet-20.png)
+![ModalNet-20.png](../assets/annotated-transformer/ModalNet-20.png)
 
 
 
@@ -1903,7 +1903,6 @@ previous state-of-the-art model. The Transformer (big) model trained
 for English-to-French used dropout rate Pdrop = 0.1, instead of 0.3.
 
 
-![results.png](assets/annotated-transformer/results.png)
 
 
 
