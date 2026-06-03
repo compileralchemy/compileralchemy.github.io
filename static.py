@@ -455,6 +455,7 @@ def gen_seo():
         '/diaries/2024/',
         '/diaries/2025/',
         '/diaries/silicon-valley/',
+        '/annotated-transformer-commentary/',
     ]
 
     # Blog posts
@@ -554,6 +555,58 @@ Sitemap: https://compileralchemy.com/sitemap.txt"""
         f.write('\n'.join(sitemap_xml))
 
 
+def gen_annotated_commentary():
+    context_data = base_context()
+    path_prefix = "../"
+
+    commentary_md = "./data/annotated-transformer/commentary.md"
+    with open(commentary_md, encoding="utf-8") as f:
+        text = f.read()
+
+    content_html, _ = md_to_html_raw(text)
+
+    # Post-process: add CSS classes to blockquotes containing commentary/dive markers
+    def add_commentary_class(m):
+        label = m.group(1)
+        css_class = "commentary" if "Commentary" in label else "deep-dive"
+        return f'<blockquote class="{css_class}"><p><span class="commentary-label">{label}</span>'
+    content_html = re.sub(
+        r'<blockquote>\s*<p>\s*<strong>(Commentary|Deep Dive):</strong>',
+        add_commentary_class,
+        content_html,
+    )
+
+    context_data.update(
+        {
+            "settings": settings,
+            "path": path_prefix,
+            "title": "The Annotated Transformer — with Commentary",
+            "content": content_html,
+            "seo_title": "The Annotated Transformer with Commentary | Abdur-Rahmaan Janhangeer",
+            "seo_description": "A line-by-line walkthrough of the Transformer architecture from 'Attention is All You Need', with added commentary and explanations.",
+            "page_path": "annotated-transformer-commentary/",
+            "og_type": "article",
+        }
+    )
+
+    try:
+        os.mkdir(
+            os.path.join(settings.OUTPUT_FOLDER, "annotated-transformer-commentary")
+        )
+    except FileExistsError:
+        pass
+
+    generate(
+        "annotated_commentary.html",
+        join(
+            settings.OUTPUT_FOLDER,
+            "annotated-transformer-commentary",
+            "index.html",
+        ),
+        **context_data,
+    )
+
+
 def main(args):
     def gen():
         generate('index.html', join(settings.OUTPUT_FOLDER, 'index.html'), **context)
@@ -573,6 +626,7 @@ def main(args):
         gen_blog()
         gen_faceblur()
         gen_islamic_months()
+        gen_annotated_commentary()
         gen_seo()
 
     if len(args) > 1 and args[1] == '--server':

@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% include "sections/head.html" %}
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css" crossorigin="anonymous">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js" crossorigin="anonymous"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js" crossorigin="anonymous"
+        onload="renderMathInElement(document.body, {
+            delimiters: [
+                {left: '$$', right: '$$', display: true},
+                {left: '$', right: '$', display: false},
+                {left: '\\[', right: '\\]', display: true}
+            ],
+            throwOnError: false
+        });"></script>
+
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/default.min.css">
+
+    <style>
+        :root {
+            --commentary-bg: #fdf6e3;
+            --commentary-border: #b58900;
+            --original-text: #1a1a1a;
+            --commentary-text: #4a4a4a;
+            --highlight-bg: #fff3cd;
+            --sidebar-width: 320px;
+        }
+
+        .commentary-layout {
+            display: grid;
+            grid-template-columns: 1fr var(--sidebar-width);
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem 1.5rem;
+            gap: 3rem;
+        }
+
+        .commentary-main {
+            min-width: 0;
+            max-width: 740px;
+        }
+
+        .commentary-main h1 {
+            font-size: 2.5rem;
+            margin-top: 3rem;
+            margin-bottom: 1rem;
+            line-height: 1.2;
+        }
+
+        .commentary-main h2 {
+            font-size: 1.8rem;
+            margin-top: 2.5rem;
+            margin-bottom: 0.8rem;
+            border-bottom: 2px solid #eee;
+            padding-bottom: 0.3rem;
+        }
+
+        .commentary-main h3 {
+            font-size: 1.4rem;
+            margin-top: 2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .commentary-main p {
+            line-height: 1.8;
+            margin-bottom: 1.2rem;
+            font-size: 1.1rem;
+            color: var(--original-text);
+        }
+
+        .commentary-main code {
+            background: #f5f5f5;
+            padding: 0.15em 0.4em;
+            border-radius: 3px;
+            font-size: 0.9em;
+        }
+
+        .commentary-main pre {
+            background: #f8f9fa;
+            border: 1px solid #e9ecef;
+            border-radius: 6px;
+            padding: 1.5rem;
+            overflow-x: auto;
+            margin: 1.5rem 0;
+        }
+
+        .commentary-main pre code {
+            background: none;
+            padding: 0;
+            font-size: 0.85rem;
+            line-height: 1.6;
+        }
+
+        .commentary-main img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 6px;
+            margin: 1.5rem 0;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+        }
+
+        .commentary-main blockquote {
+            border-left: 4px solid #ddd;
+            margin: 1.5rem 0;
+            padding: 0.5rem 1.5rem;
+            color: #555;
+            font-style: italic;
+        }
+
+        blockquote.commentary {
+            border-left: 4px solid var(--commentary-border);
+            background: var(--commentary-bg);
+            padding: 1rem 1.5rem;
+            border-radius: 0 6px 6px 0;
+            margin: 1.5rem 0;
+            font-style: normal;
+            position: relative;
+        }
+
+        blockquote.commentary::before {
+            content: "\201C";
+            font-size: 3rem;
+            color: var(--commentary-border);
+            position: absolute;
+            top: -0.5rem;
+            left: 0.5rem;
+            opacity: 0.3;
+            font-family: Georgia, serif;
+        }
+
+        blockquote.commentary p {
+            color: var(--commentary-text);
+            font-style: normal;
+            margin-bottom: 0.5rem;
+        }
+
+        blockquote.commentary .commentary-label {
+            display: inline-block;
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: var(--commentary-border);
+            margin-bottom: 0.5rem;
+        }
+
+        blockquote.deep-dive {
+            border-left: 4px solid #6c5ce7;
+            background: #f8f7ff;
+            padding: 1rem 1.5rem;
+            border-radius: 0 6px 6px 0;
+            margin: 1.5rem 0;
+        }
+
+        blockquote.deep-dive .commentary-label {
+            color: #6c5ce7;
+        }
+
+        blockquote.deep-dive p {
+            color: #333;
+        }
+
+        .commentary-sidebar {
+            position: sticky;
+            top: 6rem;
+            align-self: start;
+            max-height: calc(100vh - 8rem);
+            overflow-y: auto;
+        }
+
+        .commentary-sidebar .toc-title {
+            font-size: 0.8rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: #999;
+            margin-bottom: 1rem;
+        }
+
+        .commentary-sidebar nav {
+            border-left: 2px solid #eee;
+            padding-left: 1rem;
+        }
+
+        .commentary-sidebar nav a {
+            display: block;
+            font-size: 0.85rem;
+            color: #666;
+            padding: 0.3rem 0;
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+
+        .commentary-sidebar nav a:hover,
+        .commentary-sidebar nav a.active {
+            color: var(--commentary-border);
+        }
+
+        .commentary-sidebar nav a.h3-link {
+            padding-left: 1rem;
+            font-size: 0.8rem;
+        }
+
+        .commentary-meta {
+            margin-bottom: 2rem;
+            font-size: 0.9rem;
+            color: #888;
+        }
+
+        .commentary-meta span {
+            margin-right: 1rem;
+        }
+
+        #progress-bar {
+            position: fixed;
+            top: 0; left: 0; height: 3px;
+            background: var(--primary-color);
+            width: 0%; z-index: 1000;
+        }
+
+        @media (max-width: 1024px) {
+            .commentary-layout {
+                grid-template-columns: 1fr;
+            }
+            .commentary-sidebar {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div id="progress-bar"></div>
+    {% include 'sections/gdpr.html' %}
+
+    <nav class="navbar is-white" role="navigation" aria-label="main navigation">
+        <div class="container">
+            <div class="navbar-brand">
+                <a class="navbar-item" href="{{ path }}">
+                    <img src="{{ path }}assets/COMP_ALC.png" alt="Compiler Alchemy" style="height: 40px;">
+                </a>
+                <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navMenu">
+                    <span aria-hidden="true"></span>
+                    <span aria-hidden="true"></span>
+                    <span aria-hidden="true"></span>
+                    <span aria-hidden="true"></span>
+                </a>
+            </div>
+            <div id="navMenu" class="navbar-menu">
+                <div class="navbar-end">
+                    <a class="navbar-item" href="{{ path }}blog/">Blog</a>
+                    <a class="navbar-item" href="{{ path }}articles/">Articles</a>
+                    <a class="navbar-item" href="{{ path }}books/sqlite-internals/">Book</a>
+                    <a class="navbar-item" href="{{ path }}talks/">Talks</a>
+                    <a class="navbar-item" href="{{ path }}journey/">Journey</a>
+                    <a class="navbar-item" href="{{ path }}annotated-transformer-commentary/" style="font-weight: 700; color: var(--primary-color);">Transformer</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const burger = document.querySelector('.navbar-burger');
+            const menu = document.querySelector('#navMenu');
+            if (burger && menu) {
+                burger.addEventListener('click', () => {
+                    burger.classList.toggle('is-active');
+                    menu.classList.toggle('is-active');
+                });
+            }
+        });
+    </script>
+
+    <div class="commentary-layout">
+        <main class="commentary-main">
+            <header style="margin-bottom: 2rem;">
+                <h1>{{ title }}</h1>
+                <div class="commentary-meta">
+                    <span>by Abdur-Rahmaan Janhangeer</span>
+                    <span>|</span>
+                    <span id="reading-time">...</span>
+                </div>
+            </header>
+            {{ content | safe }}
+        </main>
+
+        <aside class="commentary-sidebar" id="sidebar">
+            <div class="toc-title">Table of Contents</div>
+            <nav id="toc"></nav>
+        </aside>
+    </div>
+
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/highlight.min.js"></script>
+    <script>
+        window.addEventListener('DOMContentLoaded', () => {
+            hljs.highlightAll();
+
+            const main = document.querySelector('.commentary-main');
+            const text = main.innerText;
+            const time = Math.ceil(text.trim().split(/\s+/).length / 225);
+            document.getElementById('reading-time').innerText = `${time} min read`;
+
+            window.addEventListener('scroll', () => {
+                const scrolled = (window.scrollY / (document.documentElement.scrollHeight - window.innerHeight)) * 100;
+                const pb = document.getElementById("progress-bar");
+                if(pb) pb.style.width = scrolled + "%";
+            });
+
+            const toc = document.getElementById('toc');
+            const headings = main.querySelectorAll('h1, h2, h3');
+            headings.forEach(h => {
+                if (h.closest('blockquote')) return;
+                const id = h.textContent.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
+                h.id = id;
+                const a = document.createElement('a');
+                a.href = '#' + id;
+                a.textContent = h.textContent;
+                if (h.tagName === 'H3') a.className = 'h3-link';
+                if (h.tagName === 'H1') a.style.fontWeight = '700';
+                toc.appendChild(a);
+            });
+
+            const activeObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        document.querySelectorAll('.commentary-sidebar nav a').forEach(l => l.classList.remove('active'));
+                        const link = document.querySelector(`.commentary-sidebar nav a[href="#${entry.target.id}"]`);
+                        if (link) link.classList.add('active');
+                    }
+                });
+            }, { rootMargin: "-10% 0px -70% 0px" });
+            headings.forEach(h => activeObserver.observe(h));
+        });
+    </script>
+
+    {% include 'sections/footer.html' %}
+</body>
+</html>
