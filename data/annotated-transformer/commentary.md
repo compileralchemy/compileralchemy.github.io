@@ -15,6 +15,12 @@
    [Sasha Rush](http://rush-nlp.com/).*
 
 
+> **Commentary:**
+> My commentary appears in this format. Code and blockquotes are the 
+> work of the Harvard NLP group. The aim of this commentary is to help
+> complete beginners understand the paper. 
+
+
 The Transformer has been on a lot of
 people's minds over the last <s>year</s> five years.
 This post presents an annotated version of the paper in the
@@ -75,6 +81,17 @@ Components: BPE, Search, Averaging</a></li>
 
 # Prelims
 
+> **Commentary:**
+> The Prelims section sets up the environment. Here's how we import the core libraries:
+>
+>     import torch
+>     import torch.nn as nn
+>     import math
+>     import copy
+
+# Background
+
+
 <a href="#background">Skip</a>
 
 ```python
@@ -124,6 +141,14 @@ RUN_EXAMPLES = True
 
 ```
 
+> **Commentary:**
+>    # Standard library imports
+>    import os                          # Operating system utilities (files, paths, environment variables)
+>    from os.path import exists         # Shortcut function to check if a file/folder exists
+>    import math                        # Mathematical functions (sqrt, sin, log, etc.)
+>    import copy                        # Deep/shallow copying of Python objects
+
+
 ```python
 # Some convenience helper functions used throughout the notebook
 
@@ -163,15 +188,6 @@ class DummyScheduler:
 
 > My comments are blockquoted. The main text is all from the paper itself.
 
-# Background
-> **Commentary:**
-> The key insight here is that before the Transformer, 
-> sequence-to-sequence models were either RNN-based (processing tokens sequentially, 
-> which is slow) or CNN-based (processing in parallel but struggling with long-range 
-> dependencies). The Transformer's radical idea: use only attention mechanisms, 
-> no recurrence, no convolution. This cuts the path length between any two positions 
-> to a constant O(1) -- a huge theoretical advantage.
-
 
 The goal of reducing sequential computation also forms the
 foundation of the Extended Neural GPU, ByteNet and ConvS2S, all of
@@ -204,12 +220,6 @@ aligned RNNs or convolution.
 # Part 1: Model Architecture
 
 # Model Architecture
-> **Commentary:**
-> The encoder-decoder architecture was the dominant paradigm for sequence transduction 
-> at the time. The encoder reads the input sequence and produces a continuous 
-> representation, which the decoder then consumes to generate output. The key 
-> innovation in the Transformer is how both encoder and decoder are built entirely 
-> from attention mechanisms.
 
 
 Most competitive neural sequence transduction models have an
@@ -494,11 +504,6 @@ show_example(example_mask)
 ```
 
 ### Attention
-> **Commentary:**
-> Attention is the core mechanism. The formula $\text{Attention}(Q, K, V) = \text{softmax}(QK^T / \sqrt{d_k})V$ 
-> is worth understanding deeply. Queries, Keys, Values come from the same source in self-attention. 
-> The dot product $QK^T$ measures similarity between each query and all keys. Scaling by $\sqrt{d_k}$ 
-> prevents the softmax from saturating (having extremely small gradients) when dimensions are large.
 
 An attention function can be described as mapping a query and a set
 of key-value pairs to an output, where the query, keys, values, and
@@ -676,11 +681,6 @@ by masking out (setting to $-\infty$) all values in the input of the
 softmax which correspond to illegal connections.
 
 ## Position-wise Feed-Forward Networks
-> **Commentary:**
-> While attention handles interaction between positions, the FFN processes each position 
-> independently. The two linear layers with ReLU in between add non-linearity and 
-> transform the representation. The inner dimension $d_{ff} = 2048$ is 4x the model dimension, 
-> giving the network more capacity.
 
 In addition to attention sub-layers, each of the layers in our
 encoder and decoder contains a fully connected feed-forward network,
@@ -739,12 +739,6 @@ class Embeddings(nn.Module):
 ```
 
 ## Positional Encoding
-> **Commentary:**
-> Since the Transformer has no recurrence or convolution, it has no inherent notion 
-> of position. Positional encodings inject this information. The choice of sinusoids 
-> is deliberate: for any fixed offset $k$, $PE_{pos+k}$ can be expressed as a linear function 
-> of $PE_{pos}$, which makes it easy for the model to learn relative positions. 
-> The frequencies form a geometric progression, giving a unique encoding for each position.
 
 Since our model contains no recurrence and no convolution, in order
 for the model to make use of the order of the sequence, we must
@@ -1060,11 +1054,6 @@ models, step time was 1.0 seconds.  The big models were trained for
 300,000 steps (3.5 days).
 
 ## Optimizer
-> **Commentary:**
-> The learning rate schedule is critical. It increases linearly for $\text{warmup}_{\text{steps}} = 4000$, 
-> then decreases proportionally to the inverse square root of the step number. This 
-> warmup phase is essential for stable training of Transformers -- without it, the 
-> large initial gradients can cause the model to diverge.
 
 We used the Adam optimizer [(cite)](https://arxiv.org/abs/1412.6980)
 with $\beta_1=0.9$, $\beta_2=0.98$ and $\epsilon=10^{-9}$.  We
@@ -1170,11 +1159,6 @@ example_learning_schedule()
 ## Regularization
 
 ### Label Smoothing
-> **Commentary:**
-> Label smoothing replaces hard 0/1 targets with soft targets (e.g., 0.9 for correct class, 
-> $0.1/|V|$ for others). This prevents the model from becoming over-confident and improves 
-> generalization. The KL divergence loss is used instead of cross-entropy. While it hurts 
-> perplexity (the model is less "certain"), it consistently improves BLEU score.
 
 During training, we employed label smoothing of value
 $\epsilon_{ls}=0.1$ [(cite)](https://arxiv.org/abs/1512.00567).
@@ -1427,17 +1411,6 @@ def example_simple_model():
 ```
 
 # Part 3: A Real World Example
-> **Commentary:**
-> This section shows the full pipeline: loading real data (Multi30k German-English), 
-> building vocabularies, creating efficient batch iterators, and training with 
-> multi-GPU support. The batching strategy is important -- uneven padding wastes 
-> computation, so they search over enough sentences to find tight batches.
-
-> Now we consider a real-world example using the Multi30k
-> German-English Translation task. This task is much smaller than
-> the WMT task considered in the paper, but it illustrates the whole
-> system. We also show how to use multi-gpu processing to make it
-> really fast.
 
 ## Data Loading
 
