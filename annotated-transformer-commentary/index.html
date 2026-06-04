@@ -638,7 +638,7 @@ from torch.optim.lr_scheduler import LambdaLR
 </code></pre>
 <p>It&rsquo;s to have a mental model of how PyTorch trains a model.
 <code>LambdaLR</code> allows you to specify how the learning rate evolves with each training step.
-Here is an example where we set the initial learning rate to be <code>0.05</code> then it is modified based on epoch <code>1.0 / (1.0 + 0.01 * epoch</code>: </p>
+Here is an example where we set the initial learning rate to be <code>0.05</code> then it is modified based on epoch <code>1.0 / (1.0 + 0.01 * epoch)</code>: </p>
 <pre><code>import torch
 import torch.nn as nn
 import torch.optim as optim
@@ -814,7 +814,7 @@ output positions. &hellip;</p>
 </tr>
 </tbody>
 </table>
-<p>Convolutional filters, also called <a href="https://medium.com/advanced-deep-learning/cnn-operation-with-2-kernels-resulting-in-2-feature-mapsunderstanding-the-convolutional-filter-c4aad26cf32">kernels are designed to detect specific patterns or features in the input data</a>. It may sound surprising but CNN can also be used for text. Just like in images they are used to detect edges or objects, in text they are <a href="https://medium.com/@aliraza.abro.prog/convolutional-neural-networks-cnns-for-text-classification-bd473c7285a4">used to find key phrases for example</a>. A convolution is a small window (called a filter or kernel) that scans over input data and computes a weighted sum at each position. A weighted sum is just a normal sum where each number is multiplied by a weight (importance factor) before adding. $w_1 \cdot 1 + w_2 \cdot 2 + w_3 \cdot 3$. Masking with respect to CNN means zeroing some weights of the convolution kernel or doing some computations so that future positions are not connected to influence training.</p>
+<p>Convolutional filters, also called <a href="https://medium.com/advanced-deep-learning/cnn-operation-with-2-kernels-resulting-in-2-feature-mapsunderstanding-the-convolutional-filter-c4aad26cf32">kernels are designed to detect specific patterns or features in the input data</a>. It may sound surprising but CNN can also be used for text. Just like in images they are used to detect edges or objects, in text they are <a href="https://medium.com/@aliraza.abro.prog/convolutional-neural-networks-cnns-for-text-classification-bd473c7285a4">used to find key phrases for example</a>. A convolution is a small window (called a filter or kernel) that scans over input data and computes a weighted sum at each position. A weighted sum is just a normal sum where each number is multiplied by a weight (importance factor) before adding. $w_1 \cdot 1 + w_2 \cdot 2 + w_3 \cdot 3$. Masking with respect to CNN means zeroing some weights of the convolution kernel or doing some computations so that future positions are not connected to influence training. Dilation is a technique to see more data in few steps by skipping items in between the ones it looks at.</p>
 <p><strong>Extended Neural GPU</strong>: The <a href="https://arxiv.org/abs/1511.08228">Neural GPUs Learn Algorithms</a> is co-authored by Ilya Sutskever. Neural Turing Machines (NTMs) were used to learn from examples but, due to them not being parallel, they are hard to train. It is based on a type of convolutional gated recurrent unit.</p>
 <p><strong>Extensions and Limitations of the Neural GPU</strong>: Mentionned in the text, <a href="https://arxiv.org/abs/1611.00736">this technique</a> based on the Extended Neural GPU improves binary addition and binary multiplication in a way that generalizes to inputs of arbitrary length. It also fails on some instances.</p>
 <p><strong>Recurrent Neural Network</strong>: An RNN (Recurrent Neural Network) is a type of neural network designed for sequential data like text, time series, or speech. It processes input one step at a time, keeping a &ldquo;memory&rdquo; (hidden state) of what it has seen before.
@@ -850,7 +850,8 @@ At each step $t$, it reads input $x_t$. It updates a hidden memory state $h_t$. 
 </tbody>
 </table>
 <p>Sine the current $h$ depends on the previous, we cannot compute it in parallel. So, RNN has hidden representations but they are not parallel.</p>
-<p><strong>ByteNext</strong>: The <a href="https://arxiv.org/abs/1610.10099">ByteNet</a> is a one-dimensional convolutional neural network that is composed of two parts, one to encode the source sequence and the other to decode the target sequence. It is a character-level Neural Machine Translation (NMT) approach, which means that it performs translation character by character.</p>
+<p><strong>Add section about LSTM</strong>: TODO</p>
+<p><strong>ByteNet</strong>: The <a href="https://arxiv.org/abs/1610.10099">ByteNet</a> is a one-dimensional convolutional neural network that is composed of two parts, one to encode the source sequence and the other to decode the target sequence. It is a character-level Neural Machine Translation (NMT) approach, which means that it performs translation character by character.</p>
 <p><strong>ConvS2S</strong>: ConvS2S (<a href="https://arxiv.org/abs/1705.03122">Convolutional Sequence-to-Sequence Learning</a>) is a neural network architecture for tasks like machine translation, text summarization, and speech processing, where both input and output are sequences. Contrasting with LSTM which uses RNN, this one uses CNN for the encoder and decoder. RNN processes tokens one by one, this one processes tokens in parallel. It also has <a href="https://sh-tsang.medium.com/review-convolutional-sequence-to-sequence-learning-convs2s-510a9eddce05">an attention step</a>. Notice that it already has multi-attention step, which shows that attention is something that existed well before transformers. We&rsquo;ll cover a brief history of attention later on!
 </p>
 </blockquote>
@@ -858,16 +859,134 @@ At each step $t$, it reads input $x_t$. It updates a hidden memory state $h_t$. 
 to relate signals from two arbitrary input or output positions grows
 in the distance between positions, linearly for ConvS2S and
 logarithmically for ByteNet. This makes it more difficult to learn
-dependencies between distant positions. In the Transformer this is
-reduced to a constant number of operations, albeit at the cost of
+dependencies between distant positions. &hellip;</p>
+<blockquote class="commentary"><p><span class="commentary-label">Commentary</span></p>
+<p>Though the cited architectures compute their hidden states in parallel, if ever we need to relate let&rsquo;s say tokens not near to each other, we need to increase the number of computation steps. For ConvS2S the relationship between distance and computation steps is linear. For ByteNet it is logarithmic. This means that long input sequences need more calculations.</p>
+</blockquote>
+<p>&hellip; In the Transformer this is
+reduced to a constant number of operations, &hellip;</p>
+<blockquote class="commentary"><p><span class="commentary-label">Commentary</span></p>
+<p>For the transformer, no matter how far apart they are, tokens can relate to other tokens in 1 step. </p>
+</blockquote>
+<p>&hellip; albeit at the cost of
 reduced effective resolution due to averaging attention-weighted
-positions, an effect we counteract with Multi-Head Attention.</p>
+positions, &hellip;</p>
+<blockquote class="commentary"><p><span class="commentary-label">Commentary</span></p>
+<p>But, this has a downside. Less detail is preserved (reduced effective resolution) because of the method transformers use i.e. averaging the score / the weight from attention.
+Position is the position of the token but, here it means vector. Attention weight is the amount of attention being paid to this token at this position. 
+If the word &ldquo;jot&rdquo; has vector [1, 2] and the attention / weight for &ldquo;jot&rdquo; is 0.6, 0.6 * [1, 2] is an attention-weighted position i.e attention-weighted vector. </p>
+<p>(<em>If you are wondering why &ldquo;jot&rdquo; is represented as a vector, then know that passing let&rsquo;s say &ldquo;jot&rdquo; to an embedding function produces something like [1, 3, 4, ..] i.e embedding_function(&ldquo;jot&rdquo;)  returns [1, 3, 4, ..]</em>)</p>
+<p>So, each token, we compute a vector representing it that is the sum of (weight * vector of token). For each token we compute a representation vector $\text{repVector} = \sum_{i=1}^{n} \alpha_i \mathbf{v}_i$
+where $\alpha_i$ is the importance score / attention weight and $\mathbf{v}_i$ is the vector representation.</p>
+<p>Let&rsquo;s say we have a phrase <code>word1 word2 word3</code>. Notice how the score changes when computing for each token.</p>
+<p>When at word 1</p>
+<table>
+<thead>
+<tr>
+<th>word</th>
+<th>vector</th>
+<th>score</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>word1</td>
+<td>[1, 2]</td>
+<td>0.2</td>
+</tr>
+<tr>
+<td>word2</td>
+<td>[3, 2]</td>
+<td>0.3</td>
+</tr>
+<tr>
+<td>word3</td>
+<td>[1, 5]</td>
+<td>0.5</td>
+</tr>
+</tbody>
+</table>
+<p>The output vector would be 0.2[1,2] + 0.3[3,2] + 0.5[1,5] = [1.6, 3.5]</p>
+<p>When at word 2</p>
+<table>
+<thead>
+<tr>
+<th>word</th>
+<th>vector</th>
+<th>score</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>word1</td>
+<td>[1, 2]</td>
+<td>0.1</td>
+</tr>
+<tr>
+<td>word2</td>
+<td>[3, 2]</td>
+<td>0.6</td>
+</tr>
+<tr>
+<td>word3</td>
+<td>[1, 5]</td>
+<td>0.3</td>
+</tr>
+</tbody>
+</table>
+<p>The output vector would be 0.1[1,2] + 0.6[3,2] + 0.3[1,5] = [2.2, 2.9]</p>
+<p>When at word 3</p>
+<table>
+<thead>
+<tr>
+<th>word</th>
+<th>vector</th>
+<th>score</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>word1</td>
+<td>[1, 2]</td>
+<td>0.4</td>
+</tr>
+<tr>
+<td>word2</td>
+<td>[3, 2]</td>
+<td>0.4</td>
+</tr>
+<tr>
+<td>word3</td>
+<td>[1, 5]</td>
+<td>0.2</td>
+</tr>
+</tbody>
+</table>
+<p>The output vector would be 0.4[1,2] + 0.4[3,2] + 0.2[1,5] = [1.8, 2.6]</p>
+<p>So, the output vector for this phrase will be [[1.6, 3.5], [2.2, 2.9], [1.8, 2.6]]
+which is passed to the next layer.</p>
+<p>Even if we have weights, the representation output calculated by &lsquo;average&rsquo; (in the author&rsquo;s word or more precisely compressing into one vector) for a word is one vector mixed with information from other vector. It retains less information / details / resolution as opposed to let&rsquo;s say ConvS2S if no other techniques are used.</p>
+<p>How the score is calculated exactly will be covered later.</p>
+</blockquote>
+<p>&hellip; an effect we counteract with Multi-Head Attention.</p>
+<blockquote class="commentary"><p><span class="commentary-label">Commentary</span></p>
+<p>What we described above is one attention head. For the same sentence, multiple attention heads are computed in parallel and mixed together.</p>
+</blockquote>
 <p>Self-attention, sometimes called intra-attention is an attention
 mechanism relating different positions of a single sequence in order
-to compute a representation of the sequence. Self-attention has been
+to compute a representation of the sequence. &hellip;</p>
+<blockquote class="commentary"><p><span class="commentary-label">Commentary</span></p>
+<p>To understand fully the part about self, let&rsquo;s see how the score / attention is calculated.
+</p>
+</blockquote>
+<p>&hellip; Self-attention has been
 used successfully in a variety of tasks including reading
 comprehension, abstractive summarization, textual entailment and
-learning task-independent sentence representations. End-to-end
+learning task-independent sentence representations. &hellip;</p>
+<blockquote class="commentary"><p><span class="commentary-label">Commentary</span></p>
+<p>TODO: History of attention</p>
+</blockquote>
+<p>&hellip; End-to-end
 memory networks are based on a recurrent attention mechanism instead
 of sequencealigned recurrence and have been shown to perform well on
 simple-language question answering and language modeling tasks.</p>
