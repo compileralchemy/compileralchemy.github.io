@@ -610,7 +610,7 @@ to compute a representation of the sequence. ...
 > \end{bmatrix}
 > $$
 >
-> As a bonus, here is the PyTorch code
+> As a bonus, here is the PyTorch code. Reached here. TODO: state the meaning of this output.
 >
 >     import torch
 >     import math
