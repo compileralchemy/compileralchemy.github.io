@@ -16,6 +16,7 @@
 
 
 > **Commentary:**
+>
 > My commentary appears in this format. Code and blockquotes are the 
 > work of the Harvard NLP group. The aim of this commentary is to help
 > complete beginners understand the paper. 
@@ -134,6 +135,7 @@ RUN_EXAMPLES = True
 ```
 
 > **Commentary:**
+>
 > These are some relevant code that needs an explanation.
 >
 >     # From code
@@ -430,8 +432,220 @@ to compute a representation of the sequence. ...
 
 > **Commentary:**
 >
-> To understand fully the part about self, let's see how the score / attention is calculated.
+> Since we covered the representation part but did not explain exactly how the attention score is calculated, let's do so now.
+> For this example we are using the phrase "I visited Mauritius" with vectors `[1,2] [1, 3] [1, 4]`
 > 
+> This is how score is calculated.
+> $$\mathrm{Attention}(Q, K, V) = \mathrm{softmax}\left(\frac{QK^{T}}{\sqrt{d_k}}\right)V$$
+> Let's break it down.
+> 
+> First let's define Q, K and V. 
+>
+> $Q = XW_Q$
+>
+> $K = XW_K$
+>
+> $V = XW_V$
+> 
+> Where $X$ is let's say [1,2]. $W_Q$, $W_K$ and $W_V$ are weight vectors learnt during training.
+> For this explanation we'll assume the weights are equal to 
+> $
+> \begin{bmatrix}
+> 1 & 0 \\\\
+> 0 & 1
+> \end{bmatrix}
+> $
+> which is an identity matrix (if you multiply [1, 2], the result is [1, 2] so that this explanation becomes easier to follow). The Q for "i" will be $X$ * $W_Q$. which is [1,2] * [[1,0], [0,1]] -> [1, 2]. For this example we have a table of Q, K and V for the tokens.
+>
+> We have 
+>
+> | Token     | Q     | K     | V     |
+> | --------- | ----- | ----- | ----- |
+> | i         | [1,2] | [1,2] | [1,2] |
+> | visited   | [1,3] | [1,3] | [1,3] |
+> | Mauritius | [1,4] | [1,4] | [1,4] |
+
+
+> $K^{T}$: It means the transpose of $K$. 
+>
+> $K =
+> \begin{bmatrix}
+> 1 & 2 \\\\
+> 1 & 3 \\\\
+> 1 & 4
+> \end{bmatrix}$
+>
+> $K^T =
+> \begin{bmatrix}
+> 1 & 1 & 1 \\\\
+> 2 & 3 & 4
+> \end{bmatrix}$
+>
+> $Q =
+> \begin{bmatrix}
+> 1 & 2 \\\\
+> 1 & 3 \\\\
+> 1 & 4
+> \end{bmatrix}$
+>
+> $QK^{T}$ is the dot product of Q and Kt.
+> $$QK^{T} =
+> \begin{bmatrix}
+> 5 & 7 & 9 \\\\
+> 7 & 10 & 13 \\\\
+> 9 & 13 & 17
+> \end{bmatrix}$$
+>
+> Now $ d_k $ is the number of components in our vector. We used [1, 2], so we have 2 components. $ d_k $ is 2.
+>
+> $\frac{QK^{T}}{\sqrt{d_k}}$ means dividing each number in the matrix by $\sqrt{d_k}$.
+>
+> $$
+> \frac{QK^{T}}{\sqrt{2}} =
+> \begin{bmatrix}
+> \frac{5}{\sqrt{2}} & \frac{7}{\sqrt{2}} & \frac{9}{\sqrt{2}} \\\\
+> \frac{7}{\sqrt{2}} & \frac{10}{\sqrt{2}} & \frac{13}{\sqrt{2}} \\\\
+> \frac{9}{\sqrt{2}} & \frac{13}{\sqrt{2}} & \frac{17}{\sqrt{2}}
+> \end{bmatrix}
+> $$
+> 
+> We have
+>
+> $$
+> \frac{QK^{T}}{\sqrt{2}} =
+> \begin{bmatrix}
+> 3.5355 & 4.9497 & 6.3640 \\\\
+> 4.9497 & 7.0711 & 9.1924 \\\\
+> 6.3640 & 9.1924 & 12.0208
+> \end{bmatrix}
+> $$
+>
+> Now we have to apply softmax to this matrix.
+> $$
+> \text{softmax}
+> \left(
+> \begin{bmatrix}
+> 5 & 7 & 9 \\\\
+> 7 & 10 & 13 \\\\
+> 9 & 13 & 17
+> \end{bmatrix}
+> \right)
+> =
+> \begin{bmatrix}
+> \text{softmax}([5,7,9]) \\\\
+> \text{softmax}([7,10,13]) \\\\
+> \text{softmax}([9,13,17])
+> \end{bmatrix}
+> $$
+> 
+> Expanding each row:
+> 
+> $$
+> \begin{bmatrix}
+> \left[
+> \frac{e^5}{e^5+e^7+e^9},
+> \frac{e^7}{e^5+e^7+e^9},
+> \frac{e^9}{e^5+e^7+e^9}
+> \right] \\\\
+> \left[
+> \frac{e^7}{e^7+e^{10}+e^{13}},
+> \frac{e^{10}}{e^7+e^{10}+e^{13}},
+> \frac{e^{13}}{e^7+e^{10}+e^{13}}
+> \right] \\\\
+> \left[
+> \frac{e^9}{e^9+e^{13}+e^{17}},
+> \frac{e^{13}}{e^9+e^{13}+e^{17}},
+> \frac{e^{17}}{e^9+e^{13}+e^{17}}
+> \right]
+> \end{bmatrix}
+> $$
+>
+> In the end we have 
+>
+> $$ 
+> \text{softmax}\left(\frac{QK^T}{\sqrt{d_k}}\right)
+> =
+> \begin{bmatrix}
+> 0.0454 & 0.1867 & 0.7679 \\\\
+> 0.0127 & 0.1057 & 0.8816 \\\\
+> 0.0033 & 0.0556 & 0.9411
+> \end{bmatrix}
+> $$
+>
+> Now we need to multiply it by V (from the formula above softmax * V). We have V from the table above.
+>
+> $$
+> V =
+> \begin{bmatrix}
+> 1 & 2 \\\\
+> 1 & 3 \\\\
+> 1 & 4
+> \end{bmatrix}
+> $$
+> 
+> Multiplying both gives
+>
+> $$
+> softmax.V =
+> \begin{bmatrix}
+> 0.0454 & 0.1867 & 0.7679 \\\\
+> 0.0127 & 0.1057 & 0.8816 \\\\
+> 0.0033 & 0.0556 & 0.9411
+> \end{bmatrix}
+> \begin{bmatrix}
+> 1 & 2 \\\\
+> 1 & 3 \\\\
+> 1 & 4
+> \end{bmatrix}
+> $$
+>
+> Finally
+>
+> $$
+> softmax.V =
+> \begin{bmatrix}
+> 1 & 3.7225 \\\\
+> 1 & 3.8689 \\\\
+> 1 & 3.9378
+> \end{bmatrix}
+> $$
+>
+> As a bonus, here is the PyTorch code
+>
+>     import torch
+>     import math
+>     K = torch.tensor([
+>         [1., 2.],
+>         [1., 3.],
+>         [1., 4.]
+>     ])
+>     Q = torch.tensor([
+>         [1., 2.],
+>         [1., 3.],
+>         [1., 4.]
+>     ])
+>     V = torch.tensor([
+>         [1., 2.],
+>         [1., 3.],
+>         [1., 4.]
+>     ])
+>     # K transpose
+>     K_T = K.T
+>     # Q . K transpose
+>     QK_T = torch.matmul(Q, K_T)
+>     print("K^T:\n", K_T)
+>     print("QK^T:\n", QK_T)
+>     d_k = Q.shape[-1]
+>     print(d_k)
+>     scaled = QK_T / math.sqrt(d_k)
+>     print("Scaled QK^T:\n", scaled)
+>     softmax = torch.softmax(scaled, dim=-1)
+>     print("Softmax(QK^T / sqrt(d_k)):\n", softmax)
+>     # Attention output
+>     output = torch.matmul(softmax, V)
+>     print("Attention output (softmax * V):\n", output)
+
+
 
 ... Self-attention has been
 used successfully in a variety of tasks including reading
