@@ -491,8 +491,8 @@ gtag('config', 'UA-161612035-1');
 <li><em><a href="https://nlp.seas.harvard.edu/2018/04/03/attention.html">Original</a>:
    <a href="http://rush-nlp.com/">Sasha Rush</a>.</em></li>
 </ul>
-<blockquote class="commentary"><p><span class="commentary-label">Commentary</span>
-My commentary appears in this format. Code and blockquotes are the 
+<blockquote class="commentary"><p><span class="commentary-label">Commentary</span></p>
+<p>My commentary appears in this format. Code and blockquotes are the 
 work of the Harvard NLP group. The aim of this commentary is to help
 complete beginners understand the paper. </p>
 </blockquote>
@@ -594,8 +594,8 @@ RUN_EXAMPLES = True
 
 
 </code></pre>
-<blockquote class="commentary"><p><span class="commentary-label">Commentary</span>
-These are some relevant code that needs an explanation.</p>
+<blockquote class="commentary"><p><span class="commentary-label">Commentary</span></p>
+<p>These are some relevant code that needs an explanation.</p>
 <pre><code># From code
 import torch          # Main PyTorch library for tensors and deep learning
 import torch.nn as nn # Neural network layers and model building tools
@@ -976,8 +976,212 @@ which is passed to the next layer.</p>
 mechanism relating different positions of a single sequence in order
 to compute a representation of the sequence. &hellip;</p>
 <blockquote class="commentary"><p><span class="commentary-label">Commentary</span></p>
-<p>To understand fully the part about self, let&rsquo;s see how the score / attention is calculated.
-</p>
+<p>Since we covered the representation part but did not explain exactly how the attention score is calculated, let&rsquo;s do so now.
+For this example we are using the phrase &ldquo;I visited Mauritius&rdquo; with vectors <code>[1,2] [1, 3] [1, 4]</code></p>
+<p>This is how score is calculated.
+$$\mathrm{Attention}(Q, K, V) = \mathrm{softmax}\left(\frac{QK^{T}}{\sqrt{d_k}}\right)V$$
+Let&rsquo;s break it down.</p>
+<p>First let&rsquo;s define Q, K and V. </p>
+<p>$Q = XW_Q$</p>
+<p>$K = XW_K$</p>
+<p>$V = XW_V$</p>
+<p>Where $X$ is let&rsquo;s say [1,2]. $W_Q$, $W_K$ and $W_V$ are weight vectors learnt during training.
+For this explanation we&rsquo;ll assume the weights are equal to 
+$
+\begin{bmatrix}
+1 &amp; 0 \\
+0 &amp; 1
+\end{bmatrix}
+$
+which is an identity matrix (if you multiply [1, 2], the result is [1, 2] so that this explanation becomes easier to follow). The Q for &ldquo;i&rdquo; will be $X$ * $W_Q$. which is [1,2] * [[1,0], [0,1]] -&gt; [1, 2]. For this example we have a table of Q, K and V for the tokens.</p>
+<p>We have </p>
+<table>
+<thead>
+<tr>
+<th>Token</th>
+<th>Q</th>
+<th>K</th>
+<th>V</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>i</td>
+<td>[1,2]</td>
+<td>[1,2]</td>
+<td>[1,2]</td>
+</tr>
+<tr>
+<td>visited</td>
+<td>[1,3]</td>
+<td>[1,3]</td>
+<td>[1,3]</td>
+</tr>
+<tr>
+<td>Mauritius</td>
+<td>[1,4]</td>
+<td>[1,4]</td>
+<td>[1,4]</td>
+</tr>
+</tbody>
+</table>
+<p>$K^{T}$: It means the transpose of $K$. </p>
+<p>$K =
+\begin{bmatrix}
+1 &amp; 2 \\
+1 &amp; 3 \\
+1 &amp; 4
+\end{bmatrix}$</p>
+<p>$K^T =
+\begin{bmatrix}
+1 &amp; 1 &amp; 1 \\
+2 &amp; 3 &amp; 4
+\end{bmatrix}$</p>
+<p>$Q =
+\begin{bmatrix}
+1 &amp; 2 \\
+1 &amp; 3 \\
+1 &amp; 4
+\end{bmatrix}$</p>
+<p>$QK^{T}$ is the dot product of Q and Kt.
+$$QK^{T} =
+\begin{bmatrix}
+5 &amp; 7 &amp; 9 \\
+7 &amp; 10 &amp; 13 \\
+9 &amp; 13 &amp; 17
+\end{bmatrix}$$</p>
+<p>Now $ d_k $ is the number of components in our vector. We used [1, 2], so we have 2 components. $ d_k $ is 2.</p>
+<p>$\frac{QK^{T}}{\sqrt{d_k}}$ means dividing each number in the matrix by $\sqrt{d_k}$.</p>
+<p>$$
+\frac{QK^{T}}{\sqrt{2}} =
+\begin{bmatrix}
+\frac{5}{\sqrt{2}} &amp; \frac{7}{\sqrt{2}} &amp; \frac{9}{\sqrt{2}} \\
+\frac{7}{\sqrt{2}} &amp; \frac{10}{\sqrt{2}} &amp; \frac{13}{\sqrt{2}} \\
+\frac{9}{\sqrt{2}} &amp; \frac{13}{\sqrt{2}} &amp; \frac{17}{\sqrt{2}}
+\end{bmatrix}
+$$</p>
+<p>We have</p>
+<p>$$
+\frac{QK^{T}}{\sqrt{2}} =
+\begin{bmatrix}
+3.5355 &amp; 4.9497 &amp; 6.3640 \\
+4.9497 &amp; 7.0711 &amp; 9.1924 \\
+6.3640 &amp; 9.1924 &amp; 12.0208
+\end{bmatrix}
+$$</p>
+<p>Now we have to apply softmax to this matrix.
+$$
+\text{softmax}
+\left(
+\begin{bmatrix}
+5 &amp; 7 &amp; 9 \\
+7 &amp; 10 &amp; 13 \\
+9 &amp; 13 &amp; 17
+\end{bmatrix}
+\right)
+=
+\begin{bmatrix}
+\text{softmax}([5,7,9]) \\
+\text{softmax}([7,10,13]) \\
+\text{softmax}([9,13,17])
+\end{bmatrix}
+$$</p>
+<p>Expanding each row:</p>
+<p>$$
+\begin{bmatrix}
+\left[
+\frac{e^5}{e^5+e^7+e^9},
+\frac{e^7}{e^5+e^7+e^9},
+\frac{e^9}{e^5+e^7+e^9}
+\right] \\
+\left[
+\frac{e^7}{e^7+e^{10}+e^{13}},
+\frac{e^{10}}{e^7+e^{10}+e^{13}},
+\frac{e^{13}}{e^7+e^{10}+e^{13}}
+\right] \\
+\left[
+\frac{e^9}{e^9+e^{13}+e^{17}},
+\frac{e^{13}}{e^9+e^{13}+e^{17}},
+\frac{e^{17}}{e^9+e^{13}+e^{17}}
+\right]
+\end{bmatrix}
+$$</p>
+<p>In the end we have </p>
+<p>$$ 
+\text{softmax}\left(\frac{QK^T}{\sqrt{d_k}}\right)
+=
+\begin{bmatrix}
+0.0454 &amp; 0.1867 &amp; 0.7679 \\
+0.0127 &amp; 0.1057 &amp; 0.8816 \\
+0.0033 &amp; 0.0556 &amp; 0.9411
+\end{bmatrix}
+$$</p>
+<p>Now we need to multiply it by V (from the formula above softmax * V). We have V from the table above.</p>
+<p>$$
+V =
+\begin{bmatrix}
+1 &amp; 2 \\
+1 &amp; 3 \\
+1 &amp; 4
+\end{bmatrix}
+$$</p>
+<p>Multiplying both gives</p>
+<p>$$
+softmax.V =
+\begin{bmatrix}
+0.0454 &amp; 0.1867 &amp; 0.7679 \\
+0.0127 &amp; 0.1057 &amp; 0.8816 \\
+0.0033 &amp; 0.0556 &amp; 0.9411
+\end{bmatrix}
+\begin{bmatrix}
+1 &amp; 2 \\
+1 &amp; 3 \\
+1 &amp; 4
+\end{bmatrix}
+$$</p>
+<p>Finally</p>
+<p>$$
+softmax.V =
+\begin{bmatrix}
+1 &amp; 3.7225 \\
+1 &amp; 3.8689 \\
+1 &amp; 3.9378
+\end{bmatrix}
+$$</p>
+<p>As a bonus, here is the PyTorch code</p>
+<pre><code>import torch
+import math
+K = torch.tensor([
+    [1., 2.],
+    [1., 3.],
+    [1., 4.]
+])
+Q = torch.tensor([
+    [1., 2.],
+    [1., 3.],
+    [1., 4.]
+])
+V = torch.tensor([
+    [1., 2.],
+    [1., 3.],
+    [1., 4.]
+])
+# K transpose
+K_T = K.T
+# Q . K transpose
+QK_T = torch.matmul(Q, K_T)
+print("K^T:\n", K_T)
+print("QK^T:\n", QK_T)
+d_k = Q.shape[-1]
+print(d_k)
+scaled = QK_T / math.sqrt(d_k)
+print("Scaled QK^T:\n", scaled)
+softmax = torch.softmax(scaled, dim=-1)
+print("Softmax(QK^T / sqrt(d_k)):\n", softmax)
+# Attention output
+output = torch.matmul(softmax, V)
+print("Attention output (softmax * V):\n", output)
+</code></pre>
 </blockquote>
 <p>&hellip; Self-attention has been
 used successfully in a variety of tasks including reading
