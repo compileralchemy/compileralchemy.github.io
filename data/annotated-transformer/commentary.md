@@ -16,9 +16,14 @@
 
 
 > **Commentary:**
+>
 > My commentary appears in this format. Code and blockquotes are the 
 > work of the Harvard NLP group. The aim of this commentary is to help
 > complete beginners understand the paper. 
+>
+> This is an Open Source document and can be contributed to [from here](https://github.com/compileralchemy/compileralchemy.github.io/blob/source/data/annotated-transformer/commentary.md). Obvious contribution opportunities are labelled with TODO. But, you can contribute with clearer wordings and more details.
+>
+> Contributors: Abdur-Rahmaan Janhangeer, 
 
 
 The Transformer has been on a lot of
@@ -134,6 +139,7 @@ RUN_EXAMPLES = True
 ```
 
 > **Commentary:**
+>
 > These are some relevant code that needs an explanation.
 >
 >     # From code
@@ -180,7 +186,7 @@ RUN_EXAMPLES = True
 >     from torch.optim.lr_scheduler import LambdaLR
 > It's to have a mental model of how PyTorch trains a model.
 > `LambdaLR` allows you to specify how the learning rate evolves with each training step.
-> Here is an example where we set the initial learning rate to be `0.05` then it is modified based on epoch `1.0 / (1.0 + 0.01 * epoch`: 
+> Here is an example where we set the initial learning rate to be `0.05` then it is modified based on epoch `1.0 / (1.0 + 0.01 * epoch)`: 
 >
 >     import torch
 >     import torch.nn as nn
@@ -321,7 +327,7 @@ output positions. ...
 > | Sequential computation                       | Doing operations step-by-step in order (one after another), instead of all at once                                      |
 > | Convolutional neural networks (CNNs)         | Neural networks that process data using filters; often used in images but also in sequences here                        |
 > 
-> Convolutional filters, also called [kernels are designed to detect specific patterns or features in the input data](https://medium.com/advanced-deep-learning/cnn-operation-with-2-kernels-resulting-in-2-feature-mapsunderstanding-the-convolutional-filter-c4aad26cf32). It may sound surprising but CNN can also be used for text. Just like in images they are used to detect edges or objects, in text they are [used to find key phrases for example](https://medium.com/@aliraza.abro.prog/convolutional-neural-networks-cnns-for-text-classification-bd473c7285a4). A convolution is a small window (called a filter or kernel) that scans over input data and computes a weighted sum at each position. A weighted sum is just a normal sum where each number is multiplied by a weight (importance factor) before adding. $w_1 \cdot 1 + w_2 \cdot 2 + w_3 \cdot 3$. Masking with respect to CNN means zeroing some weights of the convolution kernel or doing some computations so that future positions are not connected to influence training.
+> Convolutional filters, also called [kernels are designed to detect specific patterns or features in the input data](https://medium.com/advanced-deep-learning/cnn-operation-with-2-kernels-resulting-in-2-feature-mapsunderstanding-the-convolutional-filter-c4aad26cf32). It may sound surprising but CNN can also be used for text. Just like in images they are used to detect edges or objects, in text they are [used to find key phrases for example](https://medium.com/@aliraza.abro.prog/convolutional-neural-networks-cnns-for-text-classification-bd473c7285a4). A convolution is a small window (called a filter or kernel) that scans over input data and computes a weighted sum at each position. A weighted sum is just a normal sum where each number is multiplied by a weight (importance factor) before adding. $w_1 \cdot 1 + w_2 \cdot 2 + w_3 \cdot 3$. Masking with respect to CNN means zeroing some weights of the convolution kernel or doing some computations so that future positions are not connected to influence training. Dilation is a technique to see more data in few steps by skipping items in between the ones it looks at.
 >
 > **Extended Neural GPU**: The [Neural GPUs Learn Algorithms](https://arxiv.org/abs/1511.08228) is co-authored by Ilya Sutskever. Neural Turing Machines (NTMs) were used to learn from examples but, due to them not being parallel, they are hard to train. It is based on a type of convolutional gated recurrent unit.
 >
@@ -340,7 +346,9 @@ output positions. ...
 >
 > Sine the current $h$ depends on the previous, we cannot compute it in parallel. So, RNN has hidden representations but they are not parallel.
 >
-> **ByteNext**: The [ByteNet](https://arxiv.org/abs/1610.10099) is a one-dimensional convolutional neural network that is composed of two parts, one to encode the source sequence and the other to decode the target sequence. It is a character-level Neural Machine Translation (NMT) approach, which means that it performs translation character by character.
+> **Add section about LSTM**: TODO
+>
+> **ByteNet**: The [ByteNet](https://arxiv.org/abs/1610.10099) is a one-dimensional convolutional neural network that is composed of two parts, one to encode the source sequence and the other to decode the target sequence. It is a character-level Neural Machine Translation (NMT) approach, which means that it performs translation character by character.
 >
 > **ConvS2S**: ConvS2S ([Convolutional Sequence-to-Sequence Learning](https://arxiv.org/abs/1705.03122)) is a neural network architecture for tasks like machine translation, text summarization, and speech processing, where both input and output are sequences. Contrasting with LSTM which uses RNN, this one uses CNN for the encoder and decoder. RNN processes tokens one by one, this one processes tokens in parallel. It also has [an attention step](https://sh-tsang.medium.com/review-convolutional-sequence-to-sequence-learning-convs2s-510a9eddce05). Notice that it already has multi-attention step, which shows that attention is something that existed well before transformers. We'll cover a brief history of attention later on!
 > 
@@ -349,25 +357,337 @@ output positions. ...
 to relate signals from two arbitrary input or output positions grows
 in the distance between positions, linearly for ConvS2S and
 logarithmically for ByteNet. This makes it more difficult to learn
-dependencies between distant positions. In the Transformer this is
-reduced to a constant number of operations, albeit at the cost of
+dependencies between distant positions. ...
+
+> **Commentary:**
+>
+> Though the cited architectures compute their hidden states in parallel, if ever we need to relate let's say tokens not near to each other, we need to increase the number of computation steps. For ConvS2S the relationship between distance and computation steps is linear. For ByteNet it is logarithmic. This means that long input sequences need more calculations.
+
+... In the Transformer this is
+reduced to a constant number of operations, ...
+
+> **Commentary:**
+>
+> For the transformer, no matter how far apart they are, tokens can relate to other tokens in 1 step. 
+
+... albeit at the cost of
 reduced effective resolution due to averaging attention-weighted
-positions, an effect we counteract with Multi-Head Attention.
+positions, ...
+
+> **Commentary:**
+>
+> But, this has a downside. Less detail is preserved (reduced effective resolution) because of the method transformers use i.e. averaging the score / the weight from attention.
+> Position is the position of the token but, here it means vector. Attention weight is the amount of attention being paid to this token at this position. 
+> If the word "jot" has vector [1, 2] and the attention / weight for "jot" is 0.6, 0.6 * [1, 2] is an attention-weighted position i.e attention-weighted vector. 
+>
+> (_If you are wondering why "jot" is represented as a vector, then know that passing let's say "jot" to an embedding function produces something like [1, 3, 4, ..] i.e embedding_function("jot")  returns [1, 3, 4, ..]_)
+>
+> So, each token, we compute a vector representing it that is the sum of (weight * vector of token). For each token we compute a representation vector $\text{repVector} = \sum_{i=1}^{n} \alpha_i \mathbf{v}_i$
+> where $\alpha_i$ is the importance score / attention weight and $\mathbf{v}_i$ is the vector representation.
+>
+> Let's say we have a phrase `word1 word2 word3`. Notice how the score changes when computing for each token.
+>
+> When at word 1
+>
+> | word | vector | score |
+> |--|--|--|
+> | word1 | [1, 2] | 0.2 |
+> | word2 | [3, 2] | 0.3 |
+> | word3 | [1, 5] | 0.5 |
+> 
+> The output vector would be 0.2[1,2] + 0.3[3,2] + 0.5[1,5] = [1.6, 3.5]
+>
+> When at word 2
+>
+> | word | vector | score |
+> |--|--|--|
+> | word1 | [1, 2] | 0.1 |
+> | word2 | [3, 2] | 0.6 |
+> | word3 | [1, 5] | 0.3 |
+> 
+> The output vector would be 0.1[1,2] + 0.6[3,2] + 0.3[1,5] = [2.2, 2.9]
+>
+> When at word 3
+>
+> | word | vector | score |
+> |--|--|--|
+> | word1 | [1, 2] | 0.4 |
+> | word2 | [3, 2] | 0.4 |
+> | word3 | [1, 5] | 0.2 |
+> 
+> The output vector would be 0.4[1,2] + 0.4[3,2] + 0.2[1,5] = [1.8, 2.6]
+>
+> So, the output vector for this phrase will be [[1.6, 3.5], [2.2, 2.9], [1.8, 2.6]]
+> which is passed to the next layer.
+> 
+> Even if we have weights, the representation output calculated by 'average' (in the author's word or more precisely compressing into one vector) for a word is one vector mixed with information from other vector. It retains less information / details / resolution as opposed to let's say ConvS2S if no other techniques are used.
+> 
+> How the score is calculated exactly will be covered later.
+
+... an effect we counteract with Multi-Head Attention.
+
+> **Commentary:**
+>
+> What we described above is one attention head. For the same sentence, multiple attention heads are computed in parallel and mixed together.
 
 Self-attention, sometimes called intra-attention is an attention
 mechanism relating different positions of a single sequence in order
-to compute a representation of the sequence. Self-attention has been
+to compute a representation of the sequence. ...
+
+> **Commentary:**
+>
+> Since we covered the representation part but did not explain exactly how the attention score is calculated, let's do so now.
+> For this example we are using the phrase "I visited Mauritius" with vectors `[1,2] [1, 3] [1, 4]`
+> 
+> This is how score is calculated.
+> $$\mathrm{Attention}(Q, K, V) = \mathrm{softmax}\left(\frac{QK^{T}}{\sqrt{d_k}}\right)V$$
+> Let's break it down.
+> 
+> First let's define Q, K and V. 
+>
+> $Q = XW_Q$
+>
+> $K = XW_K$
+>
+> $V = XW_V$
+> 
+> Where $X$ is let's say [1,2]. $W_Q$, $W_K$ and $W_V$ are weight vectors learnt during training.
+> For this explanation we'll assume the weights are equal to 
+> $
+> \begin{bmatrix}
+> 1 & 0 \\\\
+> 0 & 1
+> \end{bmatrix}
+> $
+> which is an identity matrix (if you multiply [1, 2], the result is [1, 2] so that this explanation becomes easier to follow). The Q for "i" will be $X$ * $W_Q$. which is [1,2] * [[1,0], [0,1]] -> [1, 2]. For this example we have a table of Q, K and V for the tokens.
+>
+> We have 
+>
+> | Token     | Q     | K     | V     |
+> | --------- | ----- | ----- | ----- |
+> | i         | [1,2] | [1,2] | [1,2] |
+> | visited   | [1,3] | [1,3] | [1,3] |
+> | Mauritius | [1,4] | [1,4] | [1,4] |
+
+
+> $K^{T}$: It means the transpose of $K$. 
+>
+> $K =
+> \begin{bmatrix}
+> 1 & 2 \\\\
+> 1 & 3 \\\\
+> 1 & 4
+> \end{bmatrix}$
+>
+> $K^T =
+> \begin{bmatrix}
+> 1 & 1 & 1 \\\\
+> 2 & 3 & 4
+> \end{bmatrix}$
+>
+> $Q =
+> \begin{bmatrix}
+> 1 & 2 \\\\
+> 1 & 3 \\\\
+> 1 & 4
+> \end{bmatrix}$
+>
+> $QK^{T}$ is the dot product of Q and Kt.
+> $$QK^{T} =
+> \begin{bmatrix}
+> 5 & 7 & 9 \\\\
+> 7 & 10 & 13 \\\\
+> 9 & 13 & 17
+> \end{bmatrix}$$
+>
+> Now $ d_k $ is the number of components in our vector. We used [1, 2], so we have 2 components. $ d_k $ is 2.
+>
+> $\frac{QK^{T}}{\sqrt{d_k}}$ means dividing each number in the matrix by $\sqrt{d_k}$.
+>
+> $$
+> \frac{QK^{T}}{\sqrt{2}} =
+> \begin{bmatrix}
+> \frac{5}{\sqrt{2}} & \frac{7}{\sqrt{2}} & \frac{9}{\sqrt{2}} \\\\
+> \frac{7}{\sqrt{2}} & \frac{10}{\sqrt{2}} & \frac{13}{\sqrt{2}} \\\\
+> \frac{9}{\sqrt{2}} & \frac{13}{\sqrt{2}} & \frac{17}{\sqrt{2}}
+> \end{bmatrix}
+> $$
+> 
+> We have
+>
+> $$
+> \frac{QK^{T}}{\sqrt{2}} =
+> \begin{bmatrix}
+> 3.5355 & 4.9497 & 6.3640 \\\\
+> 4.9497 & 7.0711 & 9.1924 \\\\
+> 6.3640 & 9.1924 & 12.0208
+> \end{bmatrix}
+> $$
+>
+> Now we have to apply softmax to this matrix.
+> $$
+> \text{softmax}
+> \left(
+> \begin{bmatrix}
+> 5 & 7 & 9 \\\\
+> 7 & 10 & 13 \\\\
+> 9 & 13 & 17
+> \end{bmatrix}
+> \right)
+> =
+> \begin{bmatrix}
+> \text{softmax}([5,7,9]) \\\\
+> \text{softmax}([7,10,13]) \\\\
+> \text{softmax}([9,13,17])
+> \end{bmatrix}
+> $$
+> 
+> Expanding each row:
+> 
+> $$
+> \begin{bmatrix}
+> \left[
+> \frac{e^5}{e^5+e^7+e^9},
+> \frac{e^7}{e^5+e^7+e^9},
+> \frac{e^9}{e^5+e^7+e^9}
+> \right] \\\\
+> \left[
+> \frac{e^7}{e^7+e^{10}+e^{13}},
+> \frac{e^{10}}{e^7+e^{10}+e^{13}},
+> \frac{e^{13}}{e^7+e^{10}+e^{13}}
+> \right] \\\\
+> \left[
+> \frac{e^9}{e^9+e^{13}+e^{17}},
+> \frac{e^{13}}{e^9+e^{13}+e^{17}},
+> \frac{e^{17}}{e^9+e^{13}+e^{17}}
+> \right]
+> \end{bmatrix}
+> $$
+>
+> In the end we have 
+>
+> $$ 
+> \text{softmax}\left(\frac{QK^T}{\sqrt{d_k}}\right)
+> =
+> \begin{bmatrix}
+> 0.0454 & 0.1867 & 0.7679 \\\\
+> 0.0127 & 0.1057 & 0.8816 \\\\
+> 0.0033 & 0.0556 & 0.9411
+> \end{bmatrix}
+> $$
+>
+> Now we need to multiply it by V (from the formula above softmax * V). We have V from the table above.
+>
+> $$
+> V =
+> \begin{bmatrix}
+> 1 & 2 \\\\
+> 1 & 3 \\\\
+> 1 & 4
+> \end{bmatrix}
+> $$
+> 
+> Multiplying both gives
+>
+> $$
+> softmax.V =
+> \begin{bmatrix}
+> 0.0454 & 0.1867 & 0.7679 \\\\
+> 0.0127 & 0.1057 & 0.8816 \\\\
+> 0.0033 & 0.0556 & 0.9411
+> \end{bmatrix}
+> \begin{bmatrix}
+> 1 & 2 \\\\
+> 1 & 3 \\\\
+> 1 & 4
+> \end{bmatrix}
+> $$
+>
+> Finally
+>
+> $$
+> softmax.V =
+> \begin{bmatrix}
+> 1 & 3.7225 \\\\
+> 1 & 3.8689 \\\\
+> 1 & 3.9378
+> \end{bmatrix}
+> $$
+>
+> This output is passed to the next layer.
+>
+> As a bonus, here is the PyTorch code. Reached here. TODO: state the meaning of this output.
+>
+>     import torch
+>     import math
+>     K = torch.tensor([
+>         [1., 2.],
+>         [1., 3.],
+>         [1., 4.]
+>     ])
+>     Q = torch.tensor([
+>         [1., 2.],
+>         [1., 3.],
+>         [1., 4.]
+>     ])
+>     V = torch.tensor([
+>         [1., 2.],
+>         [1., 3.],
+>         [1., 4.]
+>     ])
+>     # K transpose
+>     K_T = K.T
+>     # Q . K transpose
+>     QK_T = torch.matmul(Q, K_T)
+>     print("K^T:\n", K_T)
+>     print("QK^T:\n", QK_T)
+>     d_k = Q.shape[-1]
+>     print(d_k)
+>     scaled = QK_T / math.sqrt(d_k)
+>     print("Scaled QK^T:\n", scaled)
+>     softmax = torch.softmax(scaled, dim=-1)
+>     print("Softmax(QK^T / sqrt(d_k)):\n", softmax)
+>     # Attention output
+>     output = torch.matmul(softmax, V)
+>     print("Attention output (softmax * V):\n", output)
+>
+> The prefix self comes from the fact that the attention is calculated from the sequence itself.
+
+
+... Self-attention has been
 used successfully in a variety of tasks including reading
 comprehension, abstractive summarization, textual entailment and
-learning task-independent sentence representations. End-to-end
+learning task-independent sentence representations. ...
+
+> **Commentary:**
+>
+> TODO: History of attention
+>
+> **Textual entailment**: Also called Natural Language Inference. Whether one sentence implies another.
+>
+> **Learning Task-Independent Sentence Representations**: Representing sentences in a way that captures the meaning. Maybe we are used to vectors represented in such a way that if they are close to each other this means that they are close in meaning too. Before, encoders were fine-tuned to the task at hand.
+
+... End-to-end
 memory networks are based on a recurrent attention mechanism instead
 of sequencealigned recurrence and have been shown to perform well on
 simple-language question answering and language modeling tasks.
 
+> **Commentary:**
+>
+> Before memory networks, the hidden representation in neural networks we used as memory.
+> [Memory Networks (2014)](https://arxiv.org/abs/1410.3916) introduced the concept of explicit memory to NN. But, it needed supervision to know which memory to retrieve.
+> [End to End memory networks](https://proceedings.neurips.cc/paper_files/paper/2015/file/8fb21ee7a2207526da55a679f0332de2-Paper.pdf) removed the need for supervision. It combined an RNN with a memory component. It learnt using attention which memory to select, which one was more important and less important and converted the score into probabilities (similar to the attention formula in transformers). And to search the memory several times to fully understand called multi-hop reasoning.
+
 To the best of our knowledge, however, the Transformer is the first
 transduction model relying entirely on self-attention to compute
 representations of its input and output without using sequence
-aligned RNNs or convolution.
+aligned RNNs or convolution. 
+
+> **Commentary:**
+>
+> ** transduction model**: Models that map input to output sequences
+>
+> RNNs used previous steps and convolution used sliding windows, none of which is used by the transformer.
 
 # Part 1: Model Architecture
 
@@ -380,10 +700,34 @@ encoder-decoder structure
 input sequence of symbol representations $(x_1, ..., x_n)$ to a
 sequence of continuous representations $\mathbf{z} = (z_1, ...,
 z_n)$. Given $\mathbf{z}$, the decoder then generates an output
-sequence $(y_1,...,y_m)$ of symbols one element at a time. At each
+sequence $(y_1,...,y_m)$ of symbols one element at a time. ...
+
+> **Commentary:**
+>
+>     x - input
+>     |
+>     v
+>     z - internal representation
+>     |
+>     v
+>     y - output
+
+... At each
 step the model is auto-regressive
 [(cite)](https://arxiv.org/abs/1308.0850), consuming the previously
 generated symbols as additional input when generating the next.
+
+> **Commentary:**
+>
+> An auto-regressive model predict next tokens based on previous tokens.
+>
+> It generates the first token using the input.
+>
+> Then generates the second token using the input and the first token.
+>
+> Then generates the third token using the input and the first and second token.
+>
+> And so on!
 
 ```python
 class EncoderDecoder(nn.Module):
@@ -435,6 +779,39 @@ respectively.
 
 ![ModalNet-21.png](../assets/annotated-transformer/ModalNet-21.png)
 
+> **Commentary:**
+>
+> Here are some notes on the steps
+>
+>     input
+>     |
+>     v
+>     input embedding  # converted to embeddings
+>     |
+>     V
+>     position embedding -   # position information added
+>         |               |
+>     -----------         |
+>     |    |    |         |
+>     V    v    V         |
+>     head head head      |  # output from attention step (head)
+>     |    |    |         |
+>     -----------         |
+>         |               |
+>         Add & Norm ------  # Add: Original + output from attention result
+>         |                  # Normalization: Stabilize the numbers to that 
+>         |                  #   we can operate on them easily
+>         |
+>         |---------------
+>         |               |
+>         Feed forward    |  # Converts matrix dimension to 2048 from 512 and 
+>                         |  #   to 512
+>         |               |
+>         Add & Norm -----
+>         |
+>
+> The linear layer adds a score to the embeddings and softmax converts the score into
+> probabilities
 
 ## Encoder and Decoder Stacks
 
