@@ -229,13 +229,6 @@ def gen_books():
         "https://www.compileralchemy.com/assets/books/foss_sqlite_internals.pdf",
         "https://github.com/compileralchemy/compileralchemy.github.io/blob/source/data/books/sqlite_internals.md",
     )
-    # gen_book('./data/books/cracking_tough_parts_python.md',
-    #     '../../assets/books/cracking-python/cover.png',
-    #     "Cracking The Tough Parts In Python",
-    #     '0.1.0',
-    #     'cracking-python',
-    #     'https://www.compileralchemy.com/assets/books/cracking_python.pdf',
-    #     'https://github.com/compileralchemy/compileralchemy.github.io/blob/source/data/books/cracking_tough_parts_python.md')
     gen_book(
         "./data/books/freelancing_codex.md",
         "../../assets/books/freelancing-codex/cover.png",
@@ -244,6 +237,19 @@ def gen_books():
         "freelancing-codex",
         "https://www.compileralchemy.com/assets/books/foss_sqlite_internals.pdf",
         "https://github.com/compileralchemy/compileralchemy.github.io/blob/source/data/books/freelancing_codex.md",
+    )
+
+    try:
+        os.mkdir(os.path.join(settings.OUTPUT_FOLDER, "books"))
+    except Exception as e:
+        pass
+
+    book_context = context.copy()
+    book_context.update({"page_path": "books/"})
+    generate(
+        "pages/books.html",
+        join(settings.OUTPUT_FOLDER, "books", "index.html"),
+        **book_context,
     )
 
 
@@ -635,6 +641,7 @@ def gen_seo():
     urls = [
         "/",
         "/alfa-podcast/",
+        "/books/",
         "/blog/",
         "/articles/",
         "/talks/",
