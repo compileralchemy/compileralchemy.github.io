@@ -1785,14 +1785,14 @@ publish = [
     },
     {
         "name":"SQLite Internals: How The World's Most Used Database Works",
-        "link": "https://www.compileralchemy.com/books/sqlite-internals/",
+        "link": "/books/sqlite-internals/",
         "type":"book",
         "embed": """""",
                 "info":"""First free and open book on SQLite internals"""
     },
     {
         "name":"Cracking the tough parts in Python",
-        "link": "https://www.compileralchemy.com/books/sqlite-internals/",
+        "link": "/books/sqlite-internals/",
         "type":"book",
         "embed": """<iframe width='160' height='400' src='https://leanpub.com/cracking-python/embed' frameborder='0' allowtransparency='true'></iframe>
   """,
