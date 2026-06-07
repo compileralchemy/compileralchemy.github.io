@@ -20,6 +20,10 @@
 > My commentary appears in this format. Code and blockquotes are the 
 > work of the Harvard NLP group. The aim of this commentary is to help
 > complete beginners understand the paper. 
+>
+> This is an Open Source document and can be contributed to [from here](https://github.com/compileralchemy/compileralchemy.github.io/blob/source/data/annotated-transformer/commentary.md). Obvious contribution opportunities are labelled with TODO. But, you can contribute with clearer wordings and more details.
+>
+> Contributors: Abdur-Rahmaan Janhangeer, 
 
 
 The Transformer has been on a lot of
@@ -610,6 +614,8 @@ to compute a representation of the sequence. ...
 > \end{bmatrix}
 > $$
 >
+> This output is passed to the next layer.
+>
 > As a bonus, here is the PyTorch code. Reached here. TODO: state the meaning of this output.
 >
 >     import torch
@@ -644,7 +650,8 @@ to compute a representation of the sequence. ...
 >     # Attention output
 >     output = torch.matmul(softmax, V)
 >     print("Attention output (softmax * V):\n", output)
-
+>
+> The prefix self comes from the fact that the attention is calculated from the sequence itself.
 
 
 ... Self-attention has been
@@ -655,16 +662,32 @@ learning task-independent sentence representations. ...
 > **Commentary:**
 >
 > TODO: History of attention
+>
+> **Textual entailment**: Also called Natural Language Inference. Whether one sentence implies another.
+>
+> **Learning Task-Independent Sentence Representations**: Representing sentences in a way that captures the meaning. Maybe we are used to vectors represented in such a way that if they are close to each other this means that they are close in meaning too. Before, encoders were fine-tuned to the task at hand.
 
 ... End-to-end
 memory networks are based on a recurrent attention mechanism instead
 of sequencealigned recurrence and have been shown to perform well on
 simple-language question answering and language modeling tasks.
 
+> **Commentary:**
+>
+> Before memory networks, the hidden representation in neural networks we used as memory.
+> [Memory Networks (2014)](https://arxiv.org/abs/1410.3916) introduced the concept of explicit memory to NN. But, it needed supervision to know which memory to retrieve.
+> [End to End memory networks](https://proceedings.neurips.cc/paper_files/paper/2015/file/8fb21ee7a2207526da55a679f0332de2-Paper.pdf) removed the need for supervision. It combined an RNN with a memory component. It learnt using attention which memory to select, which one was more important and less important and converted the score into probabilities (similar to the attention formula in transformers). And to search the memory several times to fully understand called multi-hop reasoning.
+
 To the best of our knowledge, however, the Transformer is the first
 transduction model relying entirely on self-attention to compute
 representations of its input and output without using sequence
-aligned RNNs or convolution.
+aligned RNNs or convolution. 
+
+> **Commentary:**
+>
+> ** transduction model**: Models that map input to output sequences
+>
+> RNNs used previous steps and convolution used sliding windows, none of which is used by the transformer.
 
 # Part 1: Model Architecture
 
@@ -677,10 +700,34 @@ encoder-decoder structure
 input sequence of symbol representations $(x_1, ..., x_n)$ to a
 sequence of continuous representations $\mathbf{z} = (z_1, ...,
 z_n)$. Given $\mathbf{z}$, the decoder then generates an output
-sequence $(y_1,...,y_m)$ of symbols one element at a time. At each
+sequence $(y_1,...,y_m)$ of symbols one element at a time. ...
+
+> **Commentary:**
+>
+>     x - input
+>     |
+>     v
+>     z - internal representation
+>     |
+>     v
+>     y - output
+
+... At each
 step the model is auto-regressive
 [(cite)](https://arxiv.org/abs/1308.0850), consuming the previously
 generated symbols as additional input when generating the next.
+
+> **Commentary:**
+>
+> An auto-regressive model predict next tokens based on previous tokens.
+>
+> It generates the first token using the input.
+>
+> Then generates the second token using the input and the first token.
+>
+> Then generates the third token using the input and the first and second token.
+>
+> And so on!
 
 ```python
 class EncoderDecoder(nn.Module):
@@ -732,6 +779,39 @@ respectively.
 
 ![ModalNet-21.png](../assets/annotated-transformer/ModalNet-21.png)
 
+> **Commentary:**
+>
+> Here are some notes on the steps
+>
+>     input
+>     |
+>     v
+>     input embedding  # converted to embeddings
+>     |
+>     V
+>     position embedding -   # position information added
+>         |               |
+>     -----------         |
+>     |    |    |         |
+>     V    v    V         |
+>     head head head      |  # output from attention step (head)
+>     |    |    |         |
+>     -----------         |
+>         |               |
+>         Add & Norm ------  # Add: Original + output from attention result
+>         |                  # Normalization: Stabilize the numbers to that 
+>         |                  #   we can operate on them easily
+>         |
+>         |---------------
+>         |               |
+>         Feed forward    |  # Converts matrix dimension to 2048 from 512 and 
+>                         |  #   to 512
+>         |               |
+>         Add & Norm -----
+>         |
+>
+> The linear layer adds a score to the embeddings and softmax converts the score into
+> probabilities
 
 ## Encoder and Decoder Stacks
 
