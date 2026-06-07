@@ -34,7 +34,6 @@
     <link href='https://fonts.googleapis.com/css?family=Raleway:700' rel='stylesheet' type='text/css'>
     <link href='https://fonts.googleapis.com/css?family=Special+Elite' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.0/css/bulma.min.css">
-    <link href="https://emoji-css.afeld.me/emoji.css" rel="stylesheet">
     <script defer src="https://use.fontawesome.com/releases/v5.8.2/js/all.js"></script>
     </script>
     <style type="text/css">
@@ -77,8 +76,9 @@
                     <a class="navbar-item {% if page_path and page_path.startswith('articles/') %}active{% endif %}" href="{{ path }}articles/">Articles</a>
                     <a class="navbar-item {% if page_path and page_path.startswith('books/') %}active{% endif %}" href="{{ path }}books/">Books</a>
                     <a class="navbar-item {% if page_path and page_path.startswith('talks/') %}active{% endif %}" href="{{ path }}talks/">Talks</a>
+                    <a class="navbar-item {% if page_path and page_path.startswith('opensource/') %}active{% endif %}" href="{{ path }}opensource/">OpenSource</a>
                     <a class="navbar-item {% if page_path and page_path.startswith('journey/') %}active{% endif %}" href="{{ path }}journey/">Journey</a>
-                    <a class="navbar-item {% if page_path and page_path.startswith('annotated-transformer-commentary/') %}active{% endif %}" href="{{ path }}annotated-transformer-commentary/">Transformer</a>
+                    <a class="navbar-item {% if page_path and page_path.startswith('papers/') %}active{% endif %}" href="{{ path }}papers/">Papers</a>
                 </div>
             </div>
         </div>
@@ -104,7 +104,7 @@
                     <br>
                     <p class="has-text-centered ">
                         <span class="title has-background-white-ter  has-text-centered" style="width: 50px; height:50px; padding: 15px; border-radius: 50%;">
-                            <i class="em em-coffee" aria-role="presentation" aria-label="HOT BEVERAGE"></i>
+                            ☕
                         </span>
                     </p><br>
                     <p class="title">{{ settings.podcast['title'] }}</p>

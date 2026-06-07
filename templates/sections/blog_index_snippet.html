@@ -1,18 +1,18 @@
-<div class="section" id="blog-section" style="background-color: #f5fdf8;">
+<div class="section" id="blog-section" style="background-color: {{ section_bg('blog_index_snippet') }};">
     <div class="container">
-        <div class="notification" style="background-color: #f5fdf8;">
-            <div class="notification has-text-centered" style="background-color: #f5fdf8;">
+        <div class="notification" style="background-color: {{ section_bg('blog_index_snippet') }};">
+            <div class="notification has-text-centered" style="background-color: {{ section_bg('blog_index_snippet') }};">
                 <br>
                 <p class="has-text-centered">
                     <span class="title has-background-white-ter  has-text-centered" style="width: 50px; height:50px; padding: 20px; border-radius: 50%;">
-                        <i class="em em-pencil2" aria-role="presentation" aria-label="PENCIL"></i>
+                        ✏️
                     </span>
                 </p><br>
                 <p class="title"><a href="#blog" class="no-link-dec">Blog Posts</a></p>
                 <p class="subtitle">Personal Diary & Reflections</p>
             </div>
         </div>
-        <div class="writings notification" style="background-color: #f5fdf8;">
+        <div class="writings notification" style="background-color: {{ section_bg('blog_index_snippet') }};">
             {% for post in blog_posts %}
                 <span class="url p-0">{{ str(post.num).zfill(2) }}. <a href="{{ post.url }}">{{ post.title }}</a></span>
             {% endfor %}

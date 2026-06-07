@@ -1064,7 +1064,8 @@ Phoning home, analytics and leaderboard with 0 server setup. Powered by Turso
         "logo_link": "",
         "links": {
             "github": "https://github.com/Abdur-rahmaanJ/phoning-home",
-            "pypi": "https://pypi.org/project/phoning-home/"
+            "pypi": "https://pypi.org/project/phoning-home/",
+            "pepy": "https://pepy.tech/projects/phoning-home"
         },
         'badges': ['pepy']
     },

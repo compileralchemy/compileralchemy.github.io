@@ -53,6 +53,21 @@ def to_rfc822(t):
     return pub_date
 
 
+COLORS = ['#f0f7ff', '#fff7ec', '#f8f5ff', '#f5fdf8']
+
+SECTION_ORDER = [
+    'talks', 'publish', 'writings', 'papers',
+    'blog_index_snippet', 'tools', 'projects',
+    'facts', 'community', 'privacy',
+]
+
+section_colors = {}
+for i, name in enumerate(SECTION_ORDER):
+    section_colors[name] = COLORS[i % len(COLORS)]
+
+def section_bg(name):
+    return section_colors.get(name, 'transparent')
+
 context = base_context()
 context.update(
     {
@@ -67,6 +82,7 @@ context.update(
         "seo_title": "Abdur-Rahmaan Janhangeer | Python Software Engineer & Author",
         "seo_description": "Software Engineer, Author of SQLite Internals, and Python freelancer specializing in backend systems and open source.",
         "page_path": "",
+        "section_bg": section_bg,
     }
 )
 
@@ -479,8 +495,8 @@ def gen_writings():
     context.update(
         {
             "path": "../",
-            "seo_title": "Technical Writings | Abdur-Rahmaan Janhangeer",
-            "seo_description": "A collection of deep-dive articles on Python, SQLite internals, and system design by Abdur-Rahmaan Janhangeer.",
+            "seo_title": "Luminotes | Technical Deep Dives by Abdur-Rahmaan Janhangeer",
+            "seo_description": "Luminotes — a technical newsletter read by engineers at Google, Amazon, Apple, IBM, and Facebook. Deep dives into Python, databases, systems internals, and AI.",
             "page_path": "articles/",
             "og_type": "website",
         }
@@ -514,6 +530,50 @@ def gen_talks():
         "pages/talks.html",
         join(settings.OUTPUT_FOLDER, "talks", "index.html"),
         **context,
+    )
+
+
+def gen_opensource():
+    opensource_context = context.copy()
+    opensource_context.update(
+        {
+            "path": "../",
+            "seo_title": "OpenSource Projects | Abdur-Rahmaan Janhangeer",
+            "seo_description": "Open source projects by Abdur-Rahmaan Janhangeer.",
+            "page_path": "opensource/",
+            "og_type": "website",
+        }
+    )
+    try:
+        os.mkdir(os.path.join(settings.OUTPUT_FOLDER, "opensource"))
+    except Exception as e:
+        pass
+    generate(
+        "pages/opensource.html",
+        join(settings.OUTPUT_FOLDER, "opensource", "index.html"),
+        **opensource_context,
+    )
+
+
+def gen_papers():
+    papers_context = context.copy()
+    papers_context.update(
+        {
+            "path": "../",
+            "seo_title": "Papers | Abdur-Rahmaan Janhangeer",
+            "seo_description": "Paper walkthroughs and commentary by Abdur-Rahmaan Janhangeer.",
+            "page_path": "papers/",
+            "og_type": "website",
+        }
+    )
+    try:
+        os.mkdir(os.path.join(settings.OUTPUT_FOLDER, "papers"))
+    except Exception as e:
+        pass
+    generate(
+        "pages/papers.html",
+        join(settings.OUTPUT_FOLDER, "papers", "index.html"),
+        **papers_context,
     )
 
 
@@ -648,6 +708,8 @@ def gen_seo():
         "/journey/",
         "/face-blur/",
         "/islamic-months-mauritius/",
+        "/opensource/",
+        "/papers/",
         "/annotated-transformer-commentary/",
     ]
 
@@ -896,6 +958,8 @@ def main(args):
         )
         gen_faceblur()
         gen_islamic_months()
+        gen_opensource()
+        gen_papers()
         gen_annotated_commentary()
         gen_seo()
 
