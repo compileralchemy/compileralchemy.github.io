@@ -495,6 +495,8 @@ gtag('config', 'UA-161612035-1');
 <p>My commentary appears in this format. Code and blockquotes are the 
 work of the Harvard NLP group. The aim of this commentary is to help
 complete beginners understand the paper. </p>
+<p>This is an Open Source document and can be contributed to <a href="https://github.com/compileralchemy/compileralchemy.github.io/blob/source/data/annotated-transformer/commentary.md">from here</a>. Obvious contribution opportunities are labelled with TODO. But, you can contribute with clearer wordings and more details.</p>
+<p>Contributors: Abdur-Rahmaan Janhangeer, </p>
 </blockquote>
 <p>The Transformer has been on a lot of
 people&rsquo;s minds over the last <s>year</s> five years.
@@ -1148,6 +1150,7 @@ softmax.V =
 1 &amp; 3.9378
 \end{bmatrix}
 $$</p>
+<p>This output is passed to the next layer.</p>
 <p>As a bonus, here is the PyTorch code. Reached here. TODO: state the meaning of this output.</p>
 <pre><code>import torch
 import math
@@ -1182,6 +1185,7 @@ print("Softmax(QK^T / sqrt(d_k)):\n", softmax)
 output = torch.matmul(softmax, V)
 print("Attention output (softmax * V):\n", output)
 </code></pre>
+<p>The prefix self comes from the fact that the attention is calculated from the sequence itself.</p>
 </blockquote>
 <p>&hellip; Self-attention has been
 used successfully in a variety of tasks including reading
@@ -1189,15 +1193,26 @@ comprehension, abstractive summarization, textual entailment and
 learning task-independent sentence representations. &hellip;</p>
 <blockquote class="commentary"><p><span class="commentary-label">Commentary</span></p>
 <p>TODO: History of attention</p>
+<p><strong>Textual entailment</strong>: Also called Natural Language Inference. Whether one sentence implies another.</p>
+<p><strong>Learning Task-Independent Sentence Representations</strong>: Representing sentences in a way that captures the meaning. Maybe we are used to vectors represented in such a way that if they are close to each other this means that they are close in meaning too. Before, encoders were fine-tuned to the task at hand.</p>
 </blockquote>
 <p>&hellip; End-to-end
 memory networks are based on a recurrent attention mechanism instead
 of sequencealigned recurrence and have been shown to perform well on
 simple-language question answering and language modeling tasks.</p>
+<blockquote class="commentary"><p><span class="commentary-label">Commentary</span></p>
+<p>Before memory networks, the hidden representation in neural networks we used as memory.
+<a href="https://arxiv.org/abs/1410.3916">Memory Networks (2014)</a> introduced the concept of explicit memory to NN. But, it needed supervision to know which memory to retrieve.
+<a href="https://proceedings.neurips.cc/paper_files/paper/2015/file/8fb21ee7a2207526da55a679f0332de2-Paper.pdf">End to End memory networks</a> removed the need for supervision. It combined an RNN with a memory component. It learnt using attention which memory to select, which one was more important and less important and converted the score into probabilities (similar to the attention formula in transformers). And to search the memory several times to fully understand called multi-hop reasoning.</p>
+</blockquote>
 <p>To the best of our knowledge, however, the Transformer is the first
 transduction model relying entirely on self-attention to compute
 representations of its input and output without using sequence
-aligned RNNs or convolution.</p>
+aligned RNNs or convolution. </p>
+<blockquote class="commentary"><p><span class="commentary-label">Commentary</span></p>
+<p><strong> transduction model</strong>: Models that map input to output sequences</p>
+<p>RNNs used previous steps and convolution used sliding windows, none of which is used by the transformer.</p>
+</blockquote>
 <h1>Part 1: Model Architecture</h1>
 <h1>Model Architecture</h1>
 <p>Most competitive neural sequence transduction models have an
@@ -1206,10 +1221,28 @@ encoder-decoder structure
 input sequence of symbol representations $(x_1, &hellip;, x_n)$ to a
 sequence of continuous representations $\mathbf{z} = (z_1, &hellip;,
 z_n)$. Given $\mathbf{z}$, the decoder then generates an output
-sequence $(y_1,&hellip;,y_m)$ of symbols one element at a time. At each
+sequence $(y_1,&hellip;,y_m)$ of symbols one element at a time. &hellip;</p>
+<blockquote class="commentary"><p><span class="commentary-label">Commentary</span></p>
+<pre><code>x - input
+|
+v
+z - internal representation
+|
+v
+y - output
+</code></pre>
+</blockquote>
+<p>&hellip; At each
 step the model is auto-regressive
 <a href="https://arxiv.org/abs/1308.0850">(cite)</a>, consuming the previously
 generated symbols as additional input when generating the next.</p>
+<blockquote class="commentary"><p><span class="commentary-label">Commentary</span></p>
+<p>An auto-regressive model predict next tokens based on previous tokens.</p>
+<p>It generates the first token using the input.</p>
+<p>Then generates the second token using the input and the first token.</p>
+<p>Then generates the third token using the input and the first and second token.</p>
+<p>And so on!</p>
+</blockquote>
 <pre><code class="language-python">class EncoderDecoder(nn.Module):
     &quot;&quot;&quot;
     A standard Encoder-Decoder architecture. Base for this and many
@@ -1253,6 +1286,38 @@ self-attention and point-wise, fully connected layers for both the
 encoder and decoder, shown in the left and right halves of Figure 1,
 respectively.</p>
 <p><img alt="ModalNet-21.png" src="../assets/annotated-transformer/ModalNet-21.png" /></p>
+<blockquote class="commentary"><p><span class="commentary-label">Commentary</span></p>
+<p>Here are some notes on the steps</p>
+<pre><code>input
+|
+v
+input embedding  # converted to embeddings
+|
+V
+position embedding -   # position information added
+    |               |
+-----------         |
+|    |    |         |
+V    v    V         |
+head head head      |  # output from attention step (head)
+|    |    |         |
+-----------         |
+    |               |
+    Add &amp; Norm ------  # Add: Original + output from attention result
+    |                  # Normalization: Stabilize the numbers to that 
+    |                  #   we can operate on them easily
+    |
+    |---------------
+    |               |
+    Feed forward    |  # Converts matrix dimension to 2048 from 512 and 
+                    |  #   to 512
+    |               |
+    Add &amp; Norm -----
+    |
+</code></pre>
+<p>The linear layer adds a score to the embeddings and softmax converts the score into
+probabilities</p>
+</blockquote>
 <h2>Encoder and Decoder Stacks</h2>
 <h3>Encoder</h3>
 <p>The encoder is composed of a stack of $N=6$ identical layers.</p>
