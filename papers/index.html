@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-161612035-1"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+
+function gtag() { dataLayer.push(arguments); }
+gtag('js', new Date());
+gtag('config', 'UA-161612035-1');
+</script>
+
+
+
+
+
+<title>Papers | Abdur-Rahmaan Janhangeer</title>
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="utf-8">
+<meta name="description" content="Paper walkthroughs and commentary by Abdur-Rahmaan Janhangeer.">
+<meta name="author" content="Abdur-Rahmaan Janhangeer">
+<link rel="canonical" href="https://www.compileralchemy.com/papers/">
+
+<!-- Open Graph / Facebook -->
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://www.compileralchemy.com/papers/">
+<meta property="og:title" content="Papers | Abdur-Rahmaan Janhangeer">
+<meta property="og:description" content="Paper walkthroughs and commentary by Abdur-Rahmaan Janhangeer.">
+<meta property="og:image" content="https://www.compileralchemy.com/assets/COMP_ALC.png">
+
+<!-- Twitter -->
+<meta property="twitter:card" content="summary_large_image">
+<meta property="twitter:url" content="https://www.compileralchemy.com/papers/">
+<meta property="twitter:title" content="Papers | Abdur-Rahmaan Janhangeer">
+<meta property="twitter:description" content="Paper walkthroughs and commentary by Abdur-Rahmaan Janhangeer.">
+<meta property="twitter:image" content="https://www.compileralchemy.com/assets/COMP_ALC.png">
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "name": "Papers | Abdur-Rahmaan Janhangeer",
+  "description": "Paper walkthroughs and commentary by Abdur-Rahmaan Janhangeer.",
+  "url": "https://www.compileralchemy.com/papers/",
+  "author": {
+    "@type": "Person",
+    "name": "Abdur-Rahmaan Janhangeer"
+  }
+}
+</script>
+<!-- Global Premium Editorial Styles -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@400;500;700&family=Raleway:wght@700;800&family=Special+Elite&display=swap" rel="stylesheet">
+
+<style type="text/css">
+    :root {
+        --primary-color: #ffb74d;
+        --active-color: #e65100;
+        --text-main: #1a1a1a;
+        --text-muted: #666;
+        --font-main: 'Comfortaa', cursive;
+        --font-title: 'Raleway', sans-serif;
+        --container-width: 1000px;
+        --reading-width: 740px;
+    }
+
+    /* Global Typography */
+    body {
+        font-family: var(--font-main);
+        color: var(--text-main);
+        line-height: 1.85;
+        -webkit-font-smoothing: antialiased;
+        background-color: #fff;
+    }
+
+    h1, h2, h3, .title {
+        font-family: var(--font-title);
+        font-weight: 800;
+        letter-spacing: -0.02em;
+        color: #000;
+    }
+
+    .subtitle {
+        font-family: var(--font-main);
+        font-weight: 500;
+        color: var(--text-muted);
+    }
+
+    /* Animated Underline Links - Disabled globally */
+    a:not(.button):not(.tag) {
+        color: inherit;
+        text-decoration: none;
+    }
+
+    /* Section Spacing */
+    .section {
+        padding: 4rem 1.5rem;
+    }
+</style>
+
+<script>
+    // Universal Scroll Reveal - Disabled globally to prevent 'slop' feel on functional pages
+</script>
+
+<meta name="theme-color" content="#ffb74d" />
+<link rel="icon" href="../assets/COMP_ALC.png">
+
+<!-- Performance Optimized Asset Loading -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preconnect" href="https://cdnjs.cloudflare.com">
+<link href="https://fonts.googleapis.com/css2?family=Comfortaa&family=Raleway:wght@700&family=Special+Elite&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.0/css/bulma.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+<link rel="stylesheet" type="text/css" href="../style.css">
+<link rel="stylesheet" type="text/css" href="../bulma-timeline.min.css">
+
+<script defer src="https://use.fontawesome.com/releases/v5.8.2/js/all.js"></script>
+
+
+    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.css" />
+    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
+    <link rel="stylesheet" href="https://unpkg.com/swiper@6/swiper-bundle.min.css" />
+    <script src="https://unpkg.com/swiper@6/swiper-bundle.min.js"></script>
+    <style type="text/css">
+    .swiper-container {
+        width: 100%;
+        height: 100%;
+    }
+
+    .swiper-slide {
+        text-align: center;
+        font-size: 18px;
+        background: #fff;
+        /* Center slide text vertically */
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: -webkit-flex;
+        display: flex;
+        -webkit-box-pack: center;
+        -ms-flex-pack: center;
+        -webkit-justify-content: center;
+        justify-content: center;
+        -webkit-box-align: center;
+        -ms-flex-align: center;
+        -webkit-align-items: center;
+        align-items: center;
+    }
+    </style>
+    <script type="text/javascript">
+    (function(c, l, a, r, i, t, y) {
+        c[a] = c[a] || function() {
+            (c[a].q = c[a].q || []).push(arguments) };
+        t = l.createElement(r);
+        t.async = 1;
+        t.src = "https://www.clarity.ms/tag/" + i;
+        y = l.getElementsByTagName(r)[0];
+        y.parentNode.insertBefore(t, y);
+    })(window, document, "clarity", "script", "b2ltvgn5pp");
+    </script>
+
+<style type="text/css">
+    .hide_scroll::-webkit-scrollbar { display: none; }
+    .hide_scroll { -ms-overflow-style: none; scrollbar-width: none; }
+</style>
+
+<link href="https://assets.calendly.com/assets/external/widget.css" rel="stylesheet">
+<script src="https://assets.calendly.com/assets/external/widget.js" type="text/javascript" async></script>
+    
+</head>
+
+<body class="">
+
+    <nav class="navbar is-white" role="navigation" aria-label="main navigation">
+        <div class="container">
+            <div class="navbar-brand">
+                <a class="navbar-item" href="../">
+                    <img src="../assets/COMP_ALC.png" alt="Compiler Alchemy" style="height: 40px;">
+                </a>
+                <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navMenu">
+                    <span aria-hidden="true"></span>
+                    <span aria-hidden="true"></span>
+                    <span aria-hidden="true"></span>
+                    <span aria-hidden="true"></span>
+                </a>
+            </div>
+            <div id="navMenu" class="navbar-menu">
+                <div class="navbar-end">
+                    <a class="navbar-item " href="../blog/">Blog</a>
+                    <a class="navbar-item " href="../articles/">Luminotes</a>
+                    <a class="navbar-item " href="../books/">Books</a>
+                    <a class="navbar-item " href="../talks/">Talks</a>
+                    <a class="navbar-item " href="../opensource/">OpenSource</a>
+                    <a class="navbar-item " href="../journey/">Journey</a>
+                    <a class="navbar-item active" href="../papers/">Papers</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const burger = document.querySelector('.navbar-burger');
+            const menu = document.querySelector('#navMenu');
+            if (burger && menu) {
+                burger.addEventListener('click', () => {
+                    burger.classList.toggle('is-active');
+                    menu.classList.toggle('is-active');
+                });
+            }
+        });
+    </script>
+
+    
+<div class="section" id="papers" style="background-color: #e6f3f5;">
+    <div class="container">
+        <div class="notification" style="background-color: #e6f3f5;">
+            <div class="notification has-text-centered" style="background-color: #e6f3f5;">
+                <br>
+                <p class="has-text-centered ">
+                    <span class="title has-text-centered" style="width: 50px; height:50px; padding: 15px; border-radius: 50%;">
+                        📜
+                    </span>
+                </p><br>
+                <p class="title" id="papers"><a href="#papers" class="no-link-dec">Papers</a></p>
+                <p class="subtitle">Paper walkthroughs & commentary</p>
+            </div>
+        </div>
+        <div class="writings is-white">
+            <p class="is-size-4"><a href="../annotated-transformer-commentary/">The Annotated Transformer with Commentary</a></p>
+            <p>A line-by-line walkthrough of the Transformer architecture from "Attention is All You Need", with added explanations and commentary.</p>
+            <hr>
+        </div>
+    </div>
+</div>
+
+<footer class="footer has-background-white-ter">
+    <div class="content has-text-centered ">
+        <p>
+            Built using <a href="https://pypi.org/project/jamstack">the jamstack package on pypi</a>
+            <hr>
+            <a href="../">Home</a>; 
+            <a href="/blog">Personal Blog</a>; 
+            <a href="/articles">Luminotes</a>;
+            <a href="/diaries">Diaries</a>;
+        </p>
+    </div>
+    <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+</footer>
+
+</body>
+
+</html>

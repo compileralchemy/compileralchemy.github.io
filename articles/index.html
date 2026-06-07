@@ -16,26 +16,26 @@ gtag('config', 'UA-161612035-1');
 
 
 
-<title>Technical Writings | Abdur-Rahmaan Janhangeer</title>
+<title>Luminotes | Technical Deep Dives by Abdur-Rahmaan Janhangeer</title>
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta charset="utf-8">
-<meta name="description" content="A collection of deep-dive articles on Python, SQLite internals, and system design by Abdur-Rahmaan Janhangeer.">
+<meta name="description" content="Luminotes — a technical newsletter read by engineers at Google, Amazon, Apple, IBM, and Facebook. Deep dives into Python, databases, systems internals, and AI.">
 <meta name="author" content="Abdur-Rahmaan Janhangeer">
 <link rel="canonical" href="https://www.compileralchemy.com/articles/">
 
 <!-- Open Graph / Facebook -->
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://www.compileralchemy.com/articles/">
-<meta property="og:title" content="Technical Writings | Abdur-Rahmaan Janhangeer">
-<meta property="og:description" content="A collection of deep-dive articles on Python, SQLite internals, and system design by Abdur-Rahmaan Janhangeer.">
+<meta property="og:title" content="Luminotes | Technical Deep Dives by Abdur-Rahmaan Janhangeer">
+<meta property="og:description" content="Luminotes — a technical newsletter read by engineers at Google, Amazon, Apple, IBM, and Facebook. Deep dives into Python, databases, systems internals, and AI.">
 <meta property="og:image" content="https://www.compileralchemy.com/assets/COMP_ALC.png">
 
 <!-- Twitter -->
 <meta property="twitter:card" content="summary_large_image">
 <meta property="twitter:url" content="https://www.compileralchemy.com/articles/">
-<meta property="twitter:title" content="Technical Writings | Abdur-Rahmaan Janhangeer">
-<meta property="twitter:description" content="A collection of deep-dive articles on Python, SQLite internals, and system design by Abdur-Rahmaan Janhangeer.">
+<meta property="twitter:title" content="Luminotes | Technical Deep Dives by Abdur-Rahmaan Janhangeer">
+<meta property="twitter:description" content="Luminotes — a technical newsletter read by engineers at Google, Amazon, Apple, IBM, and Facebook. Deep dives into Python, databases, systems internals, and AI.">
 <meta property="twitter:image" content="https://www.compileralchemy.com/assets/COMP_ALC.png">
 
 
@@ -43,14 +43,68 @@ gtag('config', 'UA-161612035-1');
 {
   "@context": "https://schema.org",
   "@type": "Person",
-  "name": "Technical Writings | Abdur-Rahmaan Janhangeer",
-  "description": "A collection of deep-dive articles on Python, SQLite internals, and system design by Abdur-Rahmaan Janhangeer.",
+  "name": "Luminotes | Technical Deep Dives by Abdur-Rahmaan Janhangeer",
+  "description": "Luminotes — a technical newsletter read by engineers at Google, Amazon, Apple, IBM, and Facebook. Deep dives into Python, databases, systems internals, and AI.",
   "url": "https://www.compileralchemy.com/articles/",
   "author": {
     "@type": "Person",
     "name": "Abdur-Rahmaan Janhangeer"
   }
 }
+</script>
+<!-- Global Premium Editorial Styles -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@400;500;700&family=Raleway:wght@700;800&family=Special+Elite&display=swap" rel="stylesheet">
+
+<style type="text/css">
+    :root {
+        --primary-color: #ffb74d;
+        --active-color: #e65100;
+        --text-main: #1a1a1a;
+        --text-muted: #666;
+        --font-main: 'Comfortaa', cursive;
+        --font-title: 'Raleway', sans-serif;
+        --container-width: 1000px;
+        --reading-width: 740px;
+    }
+
+    /* Global Typography */
+    body {
+        font-family: var(--font-main);
+        color: var(--text-main);
+        line-height: 1.85;
+        -webkit-font-smoothing: antialiased;
+        background-color: #fff;
+    }
+
+    h1, h2, h3, .title {
+        font-family: var(--font-title);
+        font-weight: 800;
+        letter-spacing: -0.02em;
+        color: #000;
+    }
+
+    .subtitle {
+        font-family: var(--font-main);
+        font-weight: 500;
+        color: var(--text-muted);
+    }
+
+    /* Animated Underline Links - Disabled globally */
+    a:not(.button):not(.tag) {
+        color: inherit;
+        text-decoration: none;
+    }
+
+    /* Section Spacing */
+    .section {
+        padding: 4rem 1.5rem;
+    }
+</style>
+
+<script>
+    // Universal Scroll Reveal - Disabled globally to prevent 'slop' feel on functional pages
 </script>
 
 <meta name="theme-color" content="#ffb74d" />
@@ -60,18 +114,15 @@ gtag('config', 'UA-161612035-1');
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="preconnect" href="https://cdnjs.cloudflare.com">
-<link rel="preconnect" href="https://emoji-css.afeld.me">
-
 <link href="https://fonts.googleapis.com/css2?family=Comfortaa&family=Raleway:wght@700&family=Special+Elite&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.0/css/bulma.min.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-<link href="https://emoji-css.afeld.me/emoji.css" rel="stylesheet">
 
 <link rel="stylesheet" type="text/css" href="../style.css">
 <link rel="stylesheet" type="text/css" href="../bulma-timeline.min.css">
 
 <script defer src="https://use.fontawesome.com/releases/v5.8.2/js/all.js"></script>
-<script type="text/javascript" src="../js/jquery.js"></script>
+
 
     <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.css" />
     <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
@@ -126,263 +177,369 @@ gtag('config', 'UA-161612035-1');
 
 <body class="">
 
-    
-<div class="section is-white" id="writings">
-    <div class="container">
-        <div class="notification is-white">
-            <div class="notification is-white has-text-centered">
-                <br>
-                <p class="has-text-centered ">
-                    <span class="title has-background-white-ter  has-text-centered" style="width: 50px; height:50px; padding: 15px; border-radius: 50%;">
-                        <i class="em em-books" aria-role="presentation" aria-label="BOOKS"></i>
-                    </span>
-                </p><br>
-                <p class="title" ><a href="#writings" class="no-link-dec">Writings</a></p>
-                <p class="subtitle">Articles & More</p>
+    <nav class="navbar is-white" role="navigation" aria-label="main navigation">
+        <div class="container">
+            <div class="navbar-brand">
+                <a class="navbar-item" href="../">
+                    <img src="../assets/COMP_ALC.png" alt="Compiler Alchemy" style="height: 40px;">
+                </a>
+                <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navMenu">
+                    <span aria-hidden="true"></span>
+                    <span aria-hidden="true"></span>
+                    <span aria-hidden="true"></span>
+                    <span aria-hidden="true"></span>
+                </a>
+            </div>
+            <div id="navMenu" class="navbar-menu">
+                <div class="navbar-end">
+                    <a class="navbar-item " href="../blog/">Blog</a>
+                    <a class="navbar-item active" href="../articles/">Luminotes</a>
+                    <a class="navbar-item " href="../books/">Books</a>
+                    <a class="navbar-item " href="../talks/">Talks</a>
+                    <a class="navbar-item " href="../opensource/">OpenSource</a>
+                    <a class="navbar-item " href="../journey/">Journey</a>
+                    <a class="navbar-item " href="../papers/">Papers</a>
+                </div>
             </div>
         </div>
-        <div class="writings notification is-white">
-            <p class="has-text-centered">
-                <iframe src="https://compileralchemy.substack.com/embed"  
-    style="border:1px solid #EEE; background:white;" frameborder="0" scrolling="no"></iframe>
-            </p>
-            <br>
-                    Writings selected in PyCoders Weekly, Awesome Python, Python Byte Podcast, DevOps Weekly, Gitops Weekly, SQLite news. Hackernews front page hits: 2.
-            <br><br>
-            
+    </nav>
 
-                <span class="url p-0">01. <a href="https://compileralchemy.substack.com/p/libsql-diving-into-a-database-engineering">Libsql: Diving Into A Database Engineering Epic</a></span>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const burger = document.querySelector('.navbar-burger');
+            const menu = document.querySelector('#navMenu');
+            if (burger && menu) {
+                burger.addEventListener('click', () => {
+                    burger.classList.toggle('is-active');
+                    menu.classList.toggle('is-active');
+                });
+            }
+        });
+    </script>
+
+    
+<div class="section" id="writings" style="background-color: #f8f5ff;">
+    <div class="container">
+        <div class="notification" style="background-color: #f8f5ff;">
+            <div class="notification has-text-centered" style="background-color: #f8f5ff;">
                 <br>
-            
-
-                <span class="url p-0">02. <a href="https://compileralchemy.substack.com/p/a-turing-machine-expressed-as-a-states">A Turing Machine Expressed As A State Machine</a></span>
-                <br>
-            
-
-                <span class="url p-0">03. <a href="https://compileralchemy.substack.com/p/merge-sort-and-its-early-history">Merge Sort And It's Early History</a></span>
-                <br>
-            
-
-                <span class="url p-0">04. <a href="https://compileralchemy.substack.com/p/kubernetes-internals-inside-the-mind">Kubernetes Internals: Inside The Mind Of A Monster</a></span>
-                <br>
-            
-
-                <span class="url p-0">05. <a href="https://compileralchemy.substack.com/p/ruff-internals-of-a-rust-backed-python">Ruff: Internals Of A Rust-Backed Python Linter-Formatter - Part 1</a></span>
-                <br>
-            
-
-                <span class="url p-0">06. <a href="https://compileralchemy.substack.com/p/step-by-step-parsing-of-mathematical">Step By Step Parsing Of Mathematical Expressions From Scratch</a></span>
-                <br>
-            
-
-                <span class="url p-0">07. <a href="https://compileralchemy.substack.com/p/scuba-diving-into-the-extraordinary">Scuba: Diving Into The Extraordinary System Facebook Uses To Analyse Millions Of Events Per Second</a></span>
-                <br>
-            
-
-                <span class="url p-0">08. <a href="https://compileralchemy.substack.com/p/apriltags-why-robotics-invented-its">Apriltags: Why Robotics Invented Its Own Qr Code</a></span>
-                <br>
-            
-
-                <span class="url p-0">09. <a href="https://compileralchemy.substack.com/p/gatewayd-internals-dissecting-a-potent">Gatewayd Internals: Dissecting A Potent Opensource Database Gateway</a></span>
-                <br>
-            
-
-                <span class="url p-0">10. <a href="https://compileralchemy.substack.com/p/the-world-of-helm">The World Of Helm</a></span>
-                <br>
-            
-
-                <span class="url p-0">11. <a href="https://www.pythonkitchen.com/python-engineering-articles/">Python Engineering Articles</a></span>
-                <br>
-            
-
-                <span class="url p-0">12. <a href="https://dev.to/abdurrahmaanj/the-zen-of-python-is-a-joke-and-here-is-why-you-should-not-take-it-too-seriously-508d">The Zen Of Python Is A Joke And Here Is Why</a></span>
-                <br>
-            
-
-                <span class="url p-0">13. <a href="https://www.pythonkitchen.com/zen-of-python-in-depth/">The Zen Of Python: The Most In-Depth Article Ever Written</a></span>
-                <br>
-            
-
-                <span class="url p-0">14. <a href="https://dev.to/abdurrahmaanj/using-python-functions-as-classes-10j0">Using Python Functions As Classes</a></span>
-                <br>
-            
-
-                <span class="url p-0">15. <a href="https://www.pythonkitchen.com/python-generators-in-depth/">Python Generators: The In-Depth Article You Always Wanted</a></span>
-                <br>
-            
-
-                <span class="url p-0">16. <a href="https://www.pythonkitchen.com/legally-free-python-books-list/">The Most Complete List Of Legally Free Python Books On The Internet</a></span>
-                <br>
-            
-
-                <span class="url p-0">17. <a href="https://www.pythonkitchen.com/python-running-makefile-on-windows/">Python: Running Makefile On Windows Using Git Mingw Bash</a></span>
-                <br>
-            
-
-                <span class="url p-0">18. <a href="https://dev.to/abdurrahmaanj/how-to-change-your-github-contribution-graph-colour-to-something-cool-34gg">How To Change Your Github Contribution Graph Colour To Something Cool</a></span>
-                <br>
-            
-
-                <span class="url p-0">19. <a href="https://www.geeksforgeeks.org/creating-custom-widgets-in-pyqt5/">Creating Custom Widgets In Pyqt5</a></span>
-                <br>
-            
-
-                <span class="url p-0">20. <a href="https://www.geeksforgeeks.org/migrate-pyqt5-app-to-pyside2/">Migrate Pyqt5 App To Pyside2</a></span>
-                <br>
-            
-
-                <span class="url p-0">21. <a href="https://dev.to/abdurrahmaanj/using-anaconda-on-sublime-text-39le">Using Anaconda On Sublime Text (Without Installing Any Package)</a></span>
-                <br>
-            
-
-                <span class="url p-0">22. <a href="https://dmerej.info/blog/post/requests-what-you-need-to-build-useful-apps/">Requests: What You Need To Build Useful Apps</a></span>
-                <br>
-            
-
-                <span class="url p-0">23. <a href="https://dev.to/abdurrahmaanj/add-superpowers-to-your-python-lists-using-this-feature-24nf">A Treatment Of Deque In Python</a></span>
-                <br>
-            
-
-                <span class="url p-0">24. <a href="https://dev.to/abdurrahmaanj/flask-delicious-tutorial-building-a-library-management-system-part-1-planning-5h4k">Flask 1 - Planning</a></span>
-                <br>
-            
-
-                <span class="url p-0">25. <a href="https://dev.to/abdurrahmaanj/flask-delicious-tutorial-building-a-library-management-system-part-2-start-with-a-loaded-skeleton-3j96">Flask 2 - Start With A Loaded Skeleton</a></span>
-                <br>
-            
-
-                <span class="url p-0">26. <a href="https://dev.to/abdurrahmaanj/flask-delicious-tutorial-building-a-library-management-system-part-3-routes-d68">Flask 3 - Routes</a></span>
-                <br>
-            
-
-                <span class="url p-0">27. <a href="https://dev.to/abdurrahmaanj/flask-delicious-tutorial-building-a-library-management-system-part-4-focus-on-responses-4j18">Flask 4 - Focus On Responses</a></span>
-                <br>
-            
-
-                <span class="url p-0">28. <a href="https://dev.to/abdurrahmaanj/flask-delicious-tutorial-building-a-library-management-system-part-5-a-dip-into-templates-logic-gpl">Flask 5 - A Dip Into Templates Logic</a></span>
-                <br>
-            
-
-                <span class="url p-0">29. <a href="https://dev.to/abdurrahmaanj/metabob-a-github-tool-for-your-python-repos-pi1">Metabob, A Github Tool For Your Python Repos</a></span>
-                <br>
-            
-
-                <span class="url p-0">30. <a href="https://www.pythonkitchen.com/run-flask-linux-only-windows-afpy/">How To Run A Flask Linux-Only App On Windows</a></span>
-                <br>
-            
-
-                <span class="url p-0">31. <a href="https://dev.to/abdurrahmaanj/building-a-color-picker-in-pygame-using-hooman-307m">Building A Color Picker In Pygame Using Hooman</a></span>
-                <br>
-            
-
-                <span class="url p-0">32. <a href="https://dev.to/abdurrahmaanj/how-to-build-a-css-pre-processor-like-sass-from-scratch-33mc">How To Build A Css Pre-Processor (Like Sass) From Scratch</a></span>
-                <br>
-            
-
-                <span class="url p-0">33. <a href="https://www.pythonkitchen.com/shopyo-understand-advanced-flask-app/">An Advanced Flask App: Shopyo</a></span>
-                <br>
-            
-
-                <span class="url p-0">34. <a href="https://www.pythonkitchen.com/packaging-an-sqlite-db-included-crud-pyqt5-app-using-pyinstaller/">Packaging An Sqlite Db-Included Crud Pyqt5 App Using Pyinstaller</a></span>
-                <br>
-            
-
-                <span class="url p-0">35. <a href="https://www.pythonkitchen.com/get-pythons-help-function-stored-as-string-just-like-console/">Get Python’S Help() Function Stored As String Just Like Console</a></span>
-                <br>
-            
-
-                <span class="url p-0">36. <a href="https://www.pythonkitchen.com/plotting-hotspots-in-mauritius-with-python-and-folium/">Plotting Hotspots In Mauritius With Python And Folium</a></span>
-                <br>
-            
-
-                <span class="url p-0">37. <a href="https://www.pythonkitchen.com/machine-learning-part-1-introduction/">Machine Learning Crash Course 1: Introduction</a></span>
-                <br>
-            
-
-                <span class="url p-0">38. <a href="https://www.pythonkitchen.com/432/">Machine Learning Crash Course 2: Supervised Learning</a></span>
-                <br>
-            
-
-                <span class="url p-0">39. <a href="https://www.pythonkitchen.com/machine-learning-part-3-regression/">Machine Learning Crash Course 3: Regression</a></span>
-                <br>
-            
-
-                <span class="url p-0">40. <a href="https://www.pythonkitchen.com/machine-learning-part-4-gradient-descent-and-cost-function/">Machine Learning Crash Course 4: Gradient Descent And Cost Function</a></span>
-                <br>
-            
-
-                <span class="url p-0">41. <a href="https://www.pythonkitchen.com/machine-learning-part-5-mixed-methods/">Machine Learning Crash Course 5: Mixed Method</a></span>
-                <br>
-            
-
-                <span class="url p-0">42. <a href="https://www.pythonkitchen.com/machine-learning-part-6-enthropy-and-gain/">Machine Learning Crash Course 6: Enthropy And Gain</a></span>
-                <br>
-            
-
-                <span class="url p-0">43. <a href="https://www.pythonkitchen.com/machine-learning-part-7-random-forests-explained/">Machine Learning Crash Course 7: Random Forests</a></span>
-                <br>
-            
-
-                <span class="url p-0">44. <a href="https://www.pythonkitchen.com/machine-learning-part-8-support-vector-machines/">Machine Learning Crash Course 8: Support Vector Machines</a></span>
-                <br>
-            
-
-                <span class="url p-0">45. <a href="https://www.pythonkitchen.com/machine-learning-part-9-neural-networks/">Machine Learning Crash Course 9: Neural Networks</a></span>
-                <br>
-            
-
-                <span class="url p-0">46. <a href="https://www.pythonkitchen.com/machine-learning-part-10-naive-bayes/">Machine Learning Crash Course 10: Naive Bayes</a></span>
-                <br>
-            
-
-                <span class="url p-0">47. <a href="https://www.pythonkitchen.com/machine-learning-part-11-unpervised-learning/">Machine Learning Crash Course 11: Unsupervised Learning</a></span>
-                <br>
-            
-
-                <span class="url p-0">48. <a href="https://www.pythonkitchen.com/machine-learning-part-12-association-analysis/">Machine Learning Crash Course 12: Association Analysis</a></span>
-                <br>
-            
-
-                <span class="url p-0">49. <a href="https://www.pythonkitchen.com/reviving-bertrand-russell-through-python/">Reviving Bertrand Russell Through Python</a></span>
-                <br>
-            
-
-                <span class="url p-0">50. <a href="https://www.pythonkitchen.com/building-a-lexer-in-python-tutorial/">How To Build A Lexer In Python</a></span>
-                <br>
-            
-
-                <span class="url p-0">51. <a href="https://www.pythonkitchen.com/building-a-lexer-in-python-tutorial/">How To Build An Indentation Lexer In Python</a></span>
-                <br>
-            
-
-                <span class="url p-0">52. <a href="https://www.pythonkitchen.com/how-to-correctly-use-the-next-parameter-in-login-and-logout-in-flask/">How To Correctly Use The Next Parameter In Login And Logout In Flask</a></span>
-                <br>
-            
-
-                <span class="url p-0">53. <a href="https://www.pythonkitchen.com/how-to-use-flask-admin-with-flask-login/">How To Use Flask-Admin With Flask-Login</a></span>
-                <br>
-            
-
-                <span class="url p-0">54. <a href="https://www.pythonkitchen.com/how-to-disable-csrf-protection-in-flask-wtf-for-particular-routes/">How To Disable Csrf Protection For Particular Routes In Flask-Wtf</a></span>
-                <br>
-            
-
-                <span class="url p-0">55. <a href="https://www.pythonkitchen.com/how-to-define-global-template-variables-in-flask/">How To Define Global Template Variables In Flask</a></span>
-                <br>
-            
-
-                <span class="url p-0">56. <a href="https://www.pythonkitchen.com/how-prevent-open-redirect-vulnerab-flask/">How To Prevent The Open Redirect Vulnerability With The Next Parameter In Flask</a></span>
-                <br>
-            
-
-                <span class="url p-0">57. <a href="https://www.pythonkitchen.com/how-implement-beautiful-notifications-flask/">How To Implement Beautiful Notifications In Flask</a></span>
-                <br>
-            
-            <br>
-
+                <p class="has-text-centered">
+                    <span class="title has-background-white-ter has-text-centered" style="width: 50px; height:50px; padding: 20px; border-radius: 50%;">
+                        📚
+                    </span>
+                </p><br>
+                <p class="title"><a href="#writings" class="no-link-dec">Luminotes</a></p>
+                <p class="subtitle">Deep dives into systems, Python, and more</p>
+            </div>
+        </div>
+        <div class="columns is-centered" style="background-color: #f8f5ff;">
+            <div class="column is-5">
+                <div class="writings notification" style="background-color: #f8f5ff;">
+                    <p style="font-size: 0.95rem; color: #555; margin-bottom: 1rem;">
+                        A technical newsletter read by engineers at
+                    </p>
+                    <p style="font-size: 0.85rem; font-weight: 700; color: #444; margin-bottom: 1rem;">
+                        Google · Amazon · Apple · IBM · VMWare · Facebook · Dell
+                    </p>
+                    <p style="font-size: 0.9rem; color: #666; margin-bottom: 1.5rem;">
+                        Selected in PyCoders Weekly, Awesome Python, Python Byte Podcast, DevOps Weekly, Gitops Weekly, SQLite news. Hackernews front page hits: 2.
+                    </p>
+                    
+                        <p style="margin-bottom: 0.5rem;">
+                            <span style="color: #888;">01.</span>
+                            <a href="https://compileralchemy.substack.com/p/libsql-diving-into-a-database-engineering" style="text-decoration: none;">Libsql: Diving Into A Database Engineering Epic</a>
+                        </p>
+                    
+                        <p style="margin-bottom: 0.5rem;">
+                            <span style="color: #888;">02.</span>
+                            <a href="https://compileralchemy.substack.com/p/a-turing-machine-expressed-as-a-states" style="text-decoration: none;">A Turing Machine Expressed As A State Machine</a>
+                        </p>
+                    
+                        <p style="margin-bottom: 0.5rem;">
+                            <span style="color: #888;">03.</span>
+                            <a href="https://compileralchemy.substack.com/p/merge-sort-and-its-early-history" style="text-decoration: none;">Merge Sort And It's Early History</a>
+                        </p>
+                    
+                        <p style="margin-bottom: 0.5rem;">
+                            <span style="color: #888;">04.</span>
+                            <a href="https://compileralchemy.substack.com/p/kubernetes-internals-inside-the-mind" style="text-decoration: none;">Kubernetes Internals: Inside The Mind Of A Monster</a>
+                        </p>
+                    
+                        <p style="margin-bottom: 0.5rem;">
+                            <span style="color: #888;">05.</span>
+                            <a href="https://compileralchemy.substack.com/p/ruff-internals-of-a-rust-backed-python" style="text-decoration: none;">Ruff: Internals Of A Rust-Backed Python Linter-Formatter - Part 1</a>
+                        </p>
+                    
+                        <p style="margin-bottom: 0.5rem;">
+                            <span style="color: #888;">06.</span>
+                            <a href="https://compileralchemy.substack.com/p/step-by-step-parsing-of-mathematical" style="text-decoration: none;">Step By Step Parsing Of Mathematical Expressions From Scratch</a>
+                        </p>
+                    
+                        <p style="margin-bottom: 0.5rem;">
+                            <span style="color: #888;">07.</span>
+                            <a href="https://compileralchemy.substack.com/p/scuba-diving-into-the-extraordinary" style="text-decoration: none;">Scuba: Diving Into The Extraordinary System Facebook Uses To Analyse Millions Of Events Per Second</a>
+                        </p>
+                    
+                        <p style="margin-bottom: 0.5rem;">
+                            <span style="color: #888;">08.</span>
+                            <a href="https://compileralchemy.substack.com/p/apriltags-why-robotics-invented-its" style="text-decoration: none;">Apriltags: Why Robotics Invented Its Own Qr Code</a>
+                        </p>
+                    
+                        <p style="margin-bottom: 0.5rem;">
+                            <span style="color: #888;">09.</span>
+                            <a href="https://compileralchemy.substack.com/p/gatewayd-internals-dissecting-a-potent" style="text-decoration: none;">Gatewayd Internals: Dissecting A Potent Opensource Database Gateway</a>
+                        </p>
+                    
+                        <p style="margin-bottom: 0.5rem;">
+                            <span style="color: #888;">10.</span>
+                            <a href="https://compileralchemy.substack.com/p/the-world-of-helm" style="text-decoration: none;">The World Of Helm</a>
+                        </p>
+                    
+                        <p style="margin-bottom: 0.5rem;">
+                            <span style="color: #888;">11.</span>
+                            <a href="https://www.pythonkitchen.com/python-engineering-articles/" style="text-decoration: none;">Python Engineering Articles</a>
+                        </p>
+                    
+                        <p style="margin-bottom: 0.5rem;">
+                            <span style="color: #888;">12.</span>
+                            <a href="https://dev.to/abdurrahmaanj/the-zen-of-python-is-a-joke-and-here-is-why-you-should-not-take-it-too-seriously-508d" style="text-decoration: none;">The Zen Of Python Is A Joke And Here Is Why</a>
+                        </p>
+                    
+                        <p style="margin-bottom: 0.5rem;">
+                            <span style="color: #888;">13.</span>
+                            <a href="https://www.pythonkitchen.com/zen-of-python-in-depth/" style="text-decoration: none;">The Zen Of Python: The Most In-Depth Article Ever Written</a>
+                        </p>
+                    
+                        <p style="margin-bottom: 0.5rem;">
+                            <span style="color: #888;">14.</span>
+                            <a href="https://dev.to/abdurrahmaanj/using-python-functions-as-classes-10j0" style="text-decoration: none;">Using Python Functions As Classes</a>
+                        </p>
+                    
+                        <p style="margin-bottom: 0.5rem;">
+                            <span style="color: #888;">15.</span>
+                            <a href="https://www.pythonkitchen.com/python-generators-in-depth/" style="text-decoration: none;">Python Generators: The In-Depth Article You Always Wanted</a>
+                        </p>
+                    
+                        <p style="margin-bottom: 0.5rem;">
+                            <span style="color: #888;">16.</span>
+                            <a href="https://www.pythonkitchen.com/legally-free-python-books-list/" style="text-decoration: none;">The Most Complete List Of Legally Free Python Books On The Internet</a>
+                        </p>
+                    
+                        <p style="margin-bottom: 0.5rem;">
+                            <span style="color: #888;">17.</span>
+                            <a href="https://www.pythonkitchen.com/python-running-makefile-on-windows/" style="text-decoration: none;">Python: Running Makefile On Windows Using Git Mingw Bash</a>
+                        </p>
+                    
+                        <p style="margin-bottom: 0.5rem;">
+                            <span style="color: #888;">18.</span>
+                            <a href="https://dev.to/abdurrahmaanj/how-to-change-your-github-contribution-graph-colour-to-something-cool-34gg" style="text-decoration: none;">How To Change Your Github Contribution Graph Colour To Something Cool</a>
+                        </p>
+                    
+                        <p style="margin-bottom: 0.5rem;">
+                            <span style="color: #888;">19.</span>
+                            <a href="https://www.geeksforgeeks.org/creating-custom-widgets-in-pyqt5/" style="text-decoration: none;">Creating Custom Widgets In Pyqt5</a>
+                        </p>
+                    
+                        <p style="margin-bottom: 0.5rem;">
+                            <span style="color: #888;">20.</span>
+                            <a href="https://www.geeksforgeeks.org/migrate-pyqt5-app-to-pyside2/" style="text-decoration: none;">Migrate Pyqt5 App To Pyside2</a>
+                        </p>
+                    
+                        <p style="margin-bottom: 0.5rem;">
+                            <span style="color: #888;">21.</span>
+                            <a href="https://dev.to/abdurrahmaanj/using-anaconda-on-sublime-text-39le" style="text-decoration: none;">Using Anaconda On Sublime Text (Without Installing Any Package)</a>
+                        </p>
+                    
+                        <p style="margin-bottom: 0.5rem;">
+                            <span style="color: #888;">22.</span>
+                            <a href="https://dmerej.info/blog/post/requests-what-you-need-to-build-useful-apps/" style="text-decoration: none;">Requests: What You Need To Build Useful Apps</a>
+                        </p>
+                    
+                        <p style="margin-bottom: 0.5rem;">
+                            <span style="color: #888;">23.</span>
+                            <a href="https://dev.to/abdurrahmaanj/add-superpowers-to-your-python-lists-using-this-feature-24nf" style="text-decoration: none;">A Treatment Of Deque In Python</a>
+                        </p>
+                    
+                        <p style="margin-bottom: 0.5rem;">
+                            <span style="color: #888;">24.</span>
+                            <a href="https://dev.to/abdurrahmaanj/flask-delicious-tutorial-building-a-library-management-system-part-1-planning-5h4k" style="text-decoration: none;">Flask 1 - Planning</a>
+                        </p>
+                    
+                        <p style="margin-bottom: 0.5rem;">
+                            <span style="color: #888;">25.</span>
+                            <a href="https://dev.to/abdurrahmaanj/flask-delicious-tutorial-building-a-library-management-system-part-2-start-with-a-loaded-skeleton-3j96" style="text-decoration: none;">Flask 2 - Start With A Loaded Skeleton</a>
+                        </p>
+                    
+                        <p style="margin-bottom: 0.5rem;">
+                            <span style="color: #888;">26.</span>
+                            <a href="https://dev.to/abdurrahmaanj/flask-delicious-tutorial-building-a-library-management-system-part-3-routes-d68" style="text-decoration: none;">Flask 3 - Routes</a>
+                        </p>
+                    
+                        <p style="margin-bottom: 0.5rem;">
+                            <span style="color: #888;">27.</span>
+                            <a href="https://dev.to/abdurrahmaanj/flask-delicious-tutorial-building-a-library-management-system-part-4-focus-on-responses-4j18" style="text-decoration: none;">Flask 4 - Focus On Responses</a>
+                        </p>
+                    
+                        <p style="margin-bottom: 0.5rem;">
+                            <span style="color: #888;">28.</span>
+                            <a href="https://dev.to/abdurrahmaanj/flask-delicious-tutorial-building-a-library-management-system-part-5-a-dip-into-templates-logic-gpl" style="text-decoration: none;">Flask 5 - A Dip Into Templates Logic</a>
+                        </p>
+                    
+                        <p style="margin-bottom: 0.5rem;">
+                            <span style="color: #888;">29.</span>
+                            <a href="https://dev.to/abdurrahmaanj/metabob-a-github-tool-for-your-python-repos-pi1" style="text-decoration: none;">Metabob, A Github Tool For Your Python Repos</a>
+                        </p>
+                    
+                        <p style="margin-bottom: 0.5rem;">
+                            <span style="color: #888;">30.</span>
+                            <a href="https://www.pythonkitchen.com/run-flask-linux-only-windows-afpy/" style="text-decoration: none;">How To Run A Flask Linux-Only App On Windows</a>
+                        </p>
+                    
+                        <p style="margin-bottom: 0.5rem;">
+                            <span style="color: #888;">31.</span>
+                            <a href="https://dev.to/abdurrahmaanj/building-a-color-picker-in-pygame-using-hooman-307m" style="text-decoration: none;">Building A Color Picker In Pygame Using Hooman</a>
+                        </p>
+                    
+                        <p style="margin-bottom: 0.5rem;">
+                            <span style="color: #888;">32.</span>
+                            <a href="https://dev.to/abdurrahmaanj/how-to-build-a-css-pre-processor-like-sass-from-scratch-33mc" style="text-decoration: none;">How To Build A Css Pre-Processor (Like Sass) From Scratch</a>
+                        </p>
+                    
+                        <p style="margin-bottom: 0.5rem;">
+                            <span style="color: #888;">33.</span>
+                            <a href="https://www.pythonkitchen.com/shopyo-understand-advanced-flask-app/" style="text-decoration: none;">An Advanced Flask App: Shopyo</a>
+                        </p>
+                    
+                        <p style="margin-bottom: 0.5rem;">
+                            <span style="color: #888;">34.</span>
+                            <a href="https://www.pythonkitchen.com/packaging-an-sqlite-db-included-crud-pyqt5-app-using-pyinstaller/" style="text-decoration: none;">Packaging An Sqlite Db-Included Crud Pyqt5 App Using Pyinstaller</a>
+                        </p>
+                    
+                        <p style="margin-bottom: 0.5rem;">
+                            <span style="color: #888;">35.</span>
+                            <a href="https://www.pythonkitchen.com/get-pythons-help-function-stored-as-string-just-like-console/" style="text-decoration: none;">Get Python’S Help() Function Stored As String Just Like Console</a>
+                        </p>
+                    
+                        <p style="margin-bottom: 0.5rem;">
+                            <span style="color: #888;">36.</span>
+                            <a href="https://www.pythonkitchen.com/plotting-hotspots-in-mauritius-with-python-and-folium/" style="text-decoration: none;">Plotting Hotspots In Mauritius With Python And Folium</a>
+                        </p>
+                    
+                        <p style="margin-bottom: 0.5rem;">
+                            <span style="color: #888;">37.</span>
+                            <a href="https://www.pythonkitchen.com/machine-learning-part-1-introduction/" style="text-decoration: none;">Machine Learning Crash Course 1: Introduction</a>
+                        </p>
+                    
+                        <p style="margin-bottom: 0.5rem;">
+                            <span style="color: #888;">38.</span>
+                            <a href="https://www.pythonkitchen.com/432/" style="text-decoration: none;">Machine Learning Crash Course 2: Supervised Learning</a>
+                        </p>
+                    
+                        <p style="margin-bottom: 0.5rem;">
+                            <span style="color: #888;">39.</span>
+                            <a href="https://www.pythonkitchen.com/machine-learning-part-3-regression/" style="text-decoration: none;">Machine Learning Crash Course 3: Regression</a>
+                        </p>
+                    
+                        <p style="margin-bottom: 0.5rem;">
+                            <span style="color: #888;">40.</span>
+                            <a href="https://www.pythonkitchen.com/machine-learning-part-4-gradient-descent-and-cost-function/" style="text-decoration: none;">Machine Learning Crash Course 4: Gradient Descent And Cost Function</a>
+                        </p>
+                    
+                        <p style="margin-bottom: 0.5rem;">
+                            <span style="color: #888;">41.</span>
+                            <a href="https://www.pythonkitchen.com/machine-learning-part-5-mixed-methods/" style="text-decoration: none;">Machine Learning Crash Course 5: Mixed Method</a>
+                        </p>
+                    
+                        <p style="margin-bottom: 0.5rem;">
+                            <span style="color: #888;">42.</span>
+                            <a href="https://www.pythonkitchen.com/machine-learning-part-6-enthropy-and-gain/" style="text-decoration: none;">Machine Learning Crash Course 6: Enthropy And Gain</a>
+                        </p>
+                    
+                        <p style="margin-bottom: 0.5rem;">
+                            <span style="color: #888;">43.</span>
+                            <a href="https://www.pythonkitchen.com/machine-learning-part-7-random-forests-explained/" style="text-decoration: none;">Machine Learning Crash Course 7: Random Forests</a>
+                        </p>
+                    
+                        <p style="margin-bottom: 0.5rem;">
+                            <span style="color: #888;">44.</span>
+                            <a href="https://www.pythonkitchen.com/machine-learning-part-8-support-vector-machines/" style="text-decoration: none;">Machine Learning Crash Course 8: Support Vector Machines</a>
+                        </p>
+                    
+                        <p style="margin-bottom: 0.5rem;">
+                            <span style="color: #888;">45.</span>
+                            <a href="https://www.pythonkitchen.com/machine-learning-part-9-neural-networks/" style="text-decoration: none;">Machine Learning Crash Course 9: Neural Networks</a>
+                        </p>
+                    
+                        <p style="margin-bottom: 0.5rem;">
+                            <span style="color: #888;">46.</span>
+                            <a href="https://www.pythonkitchen.com/machine-learning-part-10-naive-bayes/" style="text-decoration: none;">Machine Learning Crash Course 10: Naive Bayes</a>
+                        </p>
+                    
+                        <p style="margin-bottom: 0.5rem;">
+                            <span style="color: #888;">47.</span>
+                            <a href="https://www.pythonkitchen.com/machine-learning-part-11-unpervised-learning/" style="text-decoration: none;">Machine Learning Crash Course 11: Unsupervised Learning</a>
+                        </p>
+                    
+                        <p style="margin-bottom: 0.5rem;">
+                            <span style="color: #888;">48.</span>
+                            <a href="https://www.pythonkitchen.com/machine-learning-part-12-association-analysis/" style="text-decoration: none;">Machine Learning Crash Course 12: Association Analysis</a>
+                        </p>
+                    
+                        <p style="margin-bottom: 0.5rem;">
+                            <span style="color: #888;">49.</span>
+                            <a href="https://www.pythonkitchen.com/reviving-bertrand-russell-through-python/" style="text-decoration: none;">Reviving Bertrand Russell Through Python</a>
+                        </p>
+                    
+                        <p style="margin-bottom: 0.5rem;">
+                            <span style="color: #888;">50.</span>
+                            <a href="https://www.pythonkitchen.com/building-a-lexer-in-python-tutorial/" style="text-decoration: none;">How To Build A Lexer In Python</a>
+                        </p>
+                    
+                        <p style="margin-bottom: 0.5rem;">
+                            <span style="color: #888;">51.</span>
+                            <a href="https://www.pythonkitchen.com/building-a-lexer-in-python-tutorial/" style="text-decoration: none;">How To Build An Indentation Lexer In Python</a>
+                        </p>
+                    
+                        <p style="margin-bottom: 0.5rem;">
+                            <span style="color: #888;">52.</span>
+                            <a href="https://www.pythonkitchen.com/how-to-correctly-use-the-next-parameter-in-login-and-logout-in-flask/" style="text-decoration: none;">How To Correctly Use The Next Parameter In Login And Logout In Flask</a>
+                        </p>
+                    
+                        <p style="margin-bottom: 0.5rem;">
+                            <span style="color: #888;">53.</span>
+                            <a href="https://www.pythonkitchen.com/how-to-use-flask-admin-with-flask-login/" style="text-decoration: none;">How To Use Flask-Admin With Flask-Login</a>
+                        </p>
+                    
+                        <p style="margin-bottom: 0.5rem;">
+                            <span style="color: #888;">54.</span>
+                            <a href="https://www.pythonkitchen.com/how-to-disable-csrf-protection-in-flask-wtf-for-particular-routes/" style="text-decoration: none;">How To Disable Csrf Protection For Particular Routes In Flask-Wtf</a>
+                        </p>
+                    
+                        <p style="margin-bottom: 0.5rem;">
+                            <span style="color: #888;">55.</span>
+                            <a href="https://www.pythonkitchen.com/how-to-define-global-template-variables-in-flask/" style="text-decoration: none;">How To Define Global Template Variables In Flask</a>
+                        </p>
+                    
+                        <p style="margin-bottom: 0.5rem;">
+                            <span style="color: #888;">56.</span>
+                            <a href="https://www.pythonkitchen.com/how-prevent-open-redirect-vulnerab-flask/" style="text-decoration: none;">How To Prevent The Open Redirect Vulnerability With The Next Parameter In Flask</a>
+                        </p>
+                    
+                        <p style="margin-bottom: 0.5rem;">
+                            <span style="color: #888;">57.</span>
+                            <a href="https://www.pythonkitchen.com/how-implement-beautiful-notifications-flask/" style="text-decoration: none;">How To Implement Beautiful Notifications In Flask</a>
+                        </p>
+                    
+                </div>
+            </div>
+            <div class="column is-5">
+                <div class="notification" style="background-color: #f8f5ff; padding: 0;">
+                    <iframe src="https://compileralchemy.substack.com/embed"  
+                        style="border:1px solid #EEE; background:white; width: 100%; min-height: 320px;" frameborder="0" scrolling="no"></iframe>
+                </div>
+            </div>
         </div>
     </div>
-    
 </div>
 
 <footer class="footer has-background-white-ter">
@@ -392,7 +549,7 @@ gtag('config', 'UA-161612035-1');
             <hr>
             <a href="../">Home</a>; 
             <a href="/blog">Personal Blog</a>; 
-            <a href="/articles">Technical Blog</a>;
+            <a href="/articles">Luminotes</a>;
             <a href="/diaries">Diaries</a>;
         </p>
     </div>

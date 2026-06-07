@@ -52,6 +52,60 @@ gtag('config', 'UA-161612035-1');
   }
 }
 </script>
+<!-- Global Premium Editorial Styles -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@400;500;700&family=Raleway:wght@700;800&family=Special+Elite&display=swap" rel="stylesheet">
+
+<style type="text/css">
+    :root {
+        --primary-color: #ffb74d;
+        --active-color: #e65100;
+        --text-main: #1a1a1a;
+        --text-muted: #666;
+        --font-main: 'Comfortaa', cursive;
+        --font-title: 'Raleway', sans-serif;
+        --container-width: 1000px;
+        --reading-width: 740px;
+    }
+
+    /* Global Typography */
+    body {
+        font-family: var(--font-main);
+        color: var(--text-main);
+        line-height: 1.85;
+        -webkit-font-smoothing: antialiased;
+        background-color: #fff;
+    }
+
+    h1, h2, h3, .title {
+        font-family: var(--font-title);
+        font-weight: 800;
+        letter-spacing: -0.02em;
+        color: #000;
+    }
+
+    .subtitle {
+        font-family: var(--font-main);
+        font-weight: 500;
+        color: var(--text-muted);
+    }
+
+    /* Animated Underline Links - Disabled globally */
+    a:not(.button):not(.tag) {
+        color: inherit;
+        text-decoration: none;
+    }
+
+    /* Section Spacing */
+    .section {
+        padding: 4rem 1.5rem;
+    }
+</style>
+
+<script>
+    // Universal Scroll Reveal - Disabled globally to prevent 'slop' feel on functional pages
+</script>
 
 <meta name="theme-color" content="#ffb74d" />
 <link rel="icon" href="assets/COMP_ALC.png">
@@ -60,18 +114,15 @@ gtag('config', 'UA-161612035-1');
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="preconnect" href="https://cdnjs.cloudflare.com">
-<link rel="preconnect" href="https://emoji-css.afeld.me">
-
 <link href="https://fonts.googleapis.com/css2?family=Comfortaa&family=Raleway:wght@700&family=Special+Elite&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.0/css/bulma.min.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-<link href="https://emoji-css.afeld.me/emoji.css" rel="stylesheet">
 
 <link rel="stylesheet" type="text/css" href="style.css">
 <link rel="stylesheet" type="text/css" href="bulma-timeline.min.css">
 
 <script defer src="https://use.fontawesome.com/releases/v5.8.2/js/all.js"></script>
-<script type="text/javascript" src="js/jquery.js"></script>
+
 
     <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.css" />
     <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
@@ -128,105 +179,68 @@ gtag('config', 'UA-161612035-1');
 
 <body class="">
 
+    <nav class="navbar is-white" role="navigation" aria-label="main navigation">
+        <div class="container">
+            <div class="navbar-brand">
+                <a class="navbar-item" href="">
+                    <img src="assets/COMP_ALC.png" alt="Compiler Alchemy" style="height: 40px;">
+                </a>
+                <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navMenu">
+                    <span aria-hidden="true"></span>
+                    <span aria-hidden="true"></span>
+                    <span aria-hidden="true"></span>
+                    <span aria-hidden="true"></span>
+                </a>
+            </div>
+            <div id="navMenu" class="navbar-menu">
+                <div class="navbar-end">
+                    <a class="navbar-item " href="blog/">Blog</a>
+                    <a class="navbar-item " href="articles/">Luminotes</a>
+                    <a class="navbar-item " href="books/">Books</a>
+                    <a class="navbar-item " href="talks/">Talks</a>
+                    <a class="navbar-item " href="opensource/">OpenSource</a>
+                    <a class="navbar-item " href="journey/">Journey</a>
+                    <a class="navbar-item " href="papers/">Papers</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const burger = document.querySelector('.navbar-burger');
+            const menu = document.querySelector('#navMenu');
+            if (burger && menu) {
+                burger.addEventListener('click', () => {
+                    burger.classList.toggle('is-active');
+                    menu.classList.toggle('is-active');
+                });
+            }
+        });
+    </script>
+
     
-    <div class="section has-background-info">
+    <section class="section" style="padding: 5rem 1.5rem 3rem;">
     <div class="container">
-        <div class="tile is-ancestor">
-            <div class="tile is-vertical is-8">
-                <div class="tile">
-                    <div class="tile is-parent is-vertical">
-                        <div class="tile is-child notification card round-5">
-                            <div class="card-content">
-                                <!-- <div class="notification is-white">
-                                    <p class="has-text-centered ">
-                                        <span class="title has-background-white-ter  has-text-centered" style="width: 50px; height:50px; padding: 20px; border-radius: 50%;">
-                                            <i class="em em-handshake" aria-role="presentation" aria-label="HANDSHAKE"></i>
-                                        </span>
-                                    </p><br>
-                                    <p class="title">Shining Lamp Club</p>
-                                </div>
-                                <div class="content has-text-centered">
-                                    A café for developers about freelance and Python 'career' growth<br> <br>
-                                    <div>
-                                        <button class="button is-link" disabled>Enter</button>
-                                    </div>
-                                </div> -->
-                                <ul>
-                                    <li><a href="#testimonials">Testimonials</a></li>
-                                    <li><a href="/blog">Personal Blog</a></li>
-                                    <li><a href="#writings">Technical Articles</a></li>
-                                    <li><a href="#publish">Books & Courses</a></li>
-                                    <li><a href="#talks">Talks</a></li>
-                                    <li><a href="#open-source">OpenSource</a></li>
-                                    <li><a href="#journey">Journey</a></li>
-                                    <li><a href="#community">Community</a></li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="tile is-child notification card round-5">
-                            <div class="card-content">
-                                <div class="notification is-white">
-                                    <p class="has-text-centered ">
-                                        <span class="title has-background-white-ter  has-text-centered"
-                                            style="width: 50px; height:50px; padding: 20px; border-radius: 50%;">
-                                            <i class="em em-coffee" aria-role="presentation"
-                                                aria-label="HOT BEVERAGE"></i>
-                                        </span>
-                                    </p><br>
-                                    <p class="title">The Alfa Coding Podcast</p>
-                                </div>
-                                <div class="content has-text-centered">
-                                    Devs from Amazon, Pypy, CPython, bright topics and popular figures<br> <br>
-                                    <div>
-                                        <div>
-                                            <a href="https://podcasts.google.com/feed/aHR0cHM6Ly93d3cuY29tcGlsZXJhbGNoZW15LmNvbS9hbGZhLXBvZGNhc3QvcG9kY2FzdC5yc3M">
-    <img src="https://www.gstatic.com/podcasts_console/promote/English_EN/EN_Google_Podcasts_Badge.svg"
-        width="150" height="38" alt="Listen on Google Podcasts" loading="lazy" decoding="async">
-</a><br>
-                                            <a class="button is-link" href="/alfa-podcast">
-                                                Listen on site
-                                            </a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="tile is-parent">
-                        <div class="tile is-child notification card round-5">
-                            <div class="card-content">
-                                <div class="notification is-white">
-                                    <p class="has-text-centered ">
-                                        <span class="title has-background-white-ter  has-text-centered"
-                                            style="width: 50px; height:50px; padding: 20px; border-radius: 50%;">
-                                            <i class="em em-rocket" aria-role="presentation" aria-label="ROCKET"></i>
-                                        </span>
-                                    </p><br>
-                                    <p class="title">About</p>
-                                    <p class="subtitle">What do i do?</p>
-                                </div>
-                                <div class="content">
-                                    I am an independent software developer in Mauritius (GMT+4). I work for my own
-                                    account. I like to help people solve their challenges using softwares ^^. I am also
-                                    an organising member of the <a href="https://pymug.com">Python Usergroup of
-                                        Mauritius (PyMUG)</a><br><br>
-                                    My primary language is ... Python<br><br>
-                                    Besides English, i speak
-                                    <ul>
-                                        <li>
-                                            <i class="em em-fr" aria-role="presentation" aria-label="France Flag"></i>
-                                            French
-                                        </li>
-                                        <li>
-                                            <i class="em em-flag-sa" aria-role="presentation"
-                                                aria-label="Saudi Arabia Flag"></i> Arabic
-                                        </li>
-                                    </ul>
-                                    <br>
-                                    I have experience in remote/long-distance work. <br><br>
-                                    <script type='text/javascript' src='https://storage.ko-fi.com/cdn/widget/Widget_2.js'></script><script type='text/javascript'>kofiwidget2.init('Support Me on Ko-fi', '#29abe0', 'S6S2GDNC7');kofiwidget2.draw();</script> 
-                                    <br><br>
-                                    <!-- Calendly link widget begin -->
+        <div class="has-text-centered" style="max-width: 720px; margin: 0 auto;">
+            <h1 class="title" style="font-size: 2.75rem; margin-bottom: 0.5rem;">Abdur-Rahmaan Janhangeer</h1>
+            <p style="font-size: 1.1rem; color: #444; line-height: 1.6; margin-bottom: 2rem; max-width: 600px; margin-left: auto; margin-right: auto;">
+                I help engineering teams build production Python systems
+                that don't fall apart under load.
+            </p>
+            <div style="margin-bottom: 2rem; padding: 1.25rem; border-left: 3px solid #ffb74d; max-width: 550px; margin-left: auto; margin-right: auto;">
+                <p style="font-style: italic; color: #555; font-size: 0.95rem; margin-bottom: 0.35rem;">
+                    &ldquo;Thanks for your interest in history&hellip; Best wishes, Don Knuth&rdquo;
+                </p>
+                <p style="font-size: 0.85rem; color: #888;">
+                    Donald Knuth, in personal correspondence
+                </p>
+            </div>
+            <p class="subtitle" style="font-size: 1.05rem; color: var(--text-muted); margin-bottom: 2rem;">
+                Python backends - DB internals - OpenSource - Agentic Memory - ML papers commentary
+            </p>
+            <div style="display: flex; flex-wrap: wrap; gap: 0.75rem; justify-content: center; margin-bottom: 2.5rem;">
+                <!-- Calendly link widget begin -->
 
 <a id="book-time"
 href="" 
@@ -235,245 +249,37 @@ onclick="Calendly.initPopupWidget({url: 'https://calendly.com/abdur-rahmaanj'});
 Calendly
 </a>
 <!-- Calendly link widget end -->
-
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="tile is-parent">
-                    <article class="tile is-child notification is-white">
-                        <div class="columns">
-                            <div class="column has-text-centered">
-                                <br>
-                                <div class="notification is-white">
-                                    <p class="has-text-centered ">
-                                        <span class="title has-background-white-ter  has-text-centered"
-                                            style="width: 50px; height:50px; padding: 20px; border-radius: 50%;">
-                                            <i class="em em-abacus" aria-role="presentation" aria-label="ABACUS"></i>
-                                        </span>
-                                    </p><br>
-                                    <p class="title">Our Mission</p>
-                                    <p class="subtitle">Along with you ~</p>
-                                </div>
-                            </div>
-                            <div class="column">
-                                I make it a point to develop easy to use products. Softwares can save you a lot of pain,
-                                yes mail me: <b>arj.python at gmail.com</b> to have a chat! We also invest heavily in
-                                programming education, hoping for a brighter future.
-                                <br><br>
-                                <a href="https://www.codementor.io/@abdurrahmaanj?refer=badge" target="_blank"><img
-                                        src="https://www.codementor.io/m-badges/abdurrahmaanj/get-help.svg"
-                                        alt="Codementor badge" loading="lazy" decoding="async"></a>
-                                <a href="https://www.linkedin.com/in/appinv"><i
-                                        class="fab fa-linkedin heartbeat smediaicon" style="color: green;"></i></a>
-                                <a href="https://twitter.com/osdotsystem"><i class="fab fa-twitter heartbeat smediaicon"
-                                        style="color: green;"></i></a>
-                                <a rel="me" href="https://fosstodon.org/@osdotsystem"><i
-                                        class="fab fa-mastodon heartbeat smediaicon" style="color: green;"></i></a>
-                                <a href="https://github.com/Abdur-RahmaanJ"><i
-                                        class="fab fa-github heartbeat smediaicon" style="color: green;"></i></a>
-                                <i class=""></i>
-                            </div>
-                        </div>
-                    </article>
-                </div>
-            </div>
-            <div class="tile is-parent">
-                <article class="tile is-child notification is-white">
-                    <div class="notification is-white">
-                        <br>
-                        <p class="has-text-centered ">
-                            <span class="title has-background-white-ter  has-text-centered"
-                                style="width: 50px; height:50px; padding: 15px; border-radius: 50%;"><i
-                                    class="em em-fire" aria-role="presentation" aria-label="FIRE"></i></span>
-                        </p><br>
-                        <p class="title">In The News</p>
-                        <p class="subtitle">Notes about <a href="https://www.twitter.com/osdotsystem">@osdotsystem</a>
-                        </p>
-                    </div>
-                    <div class="content" id="news-section">
-                        <div class="content tweetcontain">
-                            <!-- Content -->
-                            <blockquote class="twitter-tweet" data-dnt="true"><p lang="en" dir="ltr">My book on SQLite internals, the first free and open book on the subject now comes up first on Google.<a href="https://t.co/S8bxVyy7mF">https://t.co/S8bxVyy7mF</a> <a href="https://t.co/vYtdtey5ZX">pic.twitter.com/vYtdtey5ZX</a></p>&mdash; Abdur-RahmaanJ | DM always open! (@osdotsystem) <a href="https://twitter.com/osdotsystem/status/1804168433766142014?ref_src=twsrc%5Etfw">June 21, 2024</a></blockquote>
-                            <blockquote class="twitter-tweet"><p lang="en" dir="ltr">Ruff: Internals of a Rust-Backed Python Linter-Formatter <a href="https://t.co/dQTD5Bwsgj">https://t.co/dQTD5Bwsgj</a></p>&mdash; PyCoder’s Weekly (@pycoders) <a href="https://twitter.com/pycoders/status/1802675562344833176?ref_src=twsrc%5Etfw">June 17, 2024</a></blockquote>
-                            <blockquote class="twitter-tweet">
-                                <p lang="en" dir="ltr">Flask Masterclass <a
-                                        href="https://t.co/s6y2fdx0Yb">https://t.co/s6y2fdx0Yb</a> by Abdur-Rahmaan
-                                    Janhangeer is the featured course on the Leanpub homepage! <a
-                                        href="https://t.co/7B8N80eFd1">https://t.co/7B8N80eFd1</a> <a
-                                        href="https://twitter.com/hashtag/courses?src=hash&amp;ref_src=twsrc%5Etfw">#courses</a>
-                                    <a
-                                        href="https://twitter.com/hashtag/Python?src=hash&amp;ref_src=twsrc%5Etfw">#Python</a>
-                                    <a
-                                        href="https://twitter.com/hashtag/pythonprogramming?src=hash&amp;ref_src=twsrc%5Etfw">#pythonprogramming</a>
-                                </p>&mdash; Leanpub (@leanpub) <a
-                                    href="https://twitter.com/leanpub/status/1632708857146523649?ref_src=twsrc%5Etfw">March
-                                    6, 2023</a>
-                            </blockquote>
-                            <iframe style="border-radius: 10px; border: 1px solid rgb(201, 201, 201)" src="https://www.linkedin.com/embed/feed/update/urn:li:share:7132308611199840256" height="1080" width="100%"  allowfullscreen="" title="Embedded post"></iframe>
-                            <blockquote class="twitter-tweet"><p lang="en" dir="ltr"><a href="https://twitter.com/hashtag/Flask?src=hash&amp;ref_src=twsrc%5Etfw">#Flask</a> is still alive and kicking. Last/current week best seller on <a href="https://twitter.com/leanpub?ref_src=twsrc%5Etfw">@leanpub</a> is a Flask course. <a href="https://t.co/fcHt9YgKVm">pic.twitter.com/fcHt9YgKVm</a></p>&mdash; Abdur-RahmaanJ | DM is open! (@osdotsystem) <a href="https://twitter.com/osdotsystem/status/1630266829229654021?ref_src=twsrc%5Etfw">February 27, 2023</a></blockquote> 
-                            <blockquote class="twitter-tweet">
-                                <p lang="en" dir="ltr">Gitops: Diving Into Some More Madness<a
-                                        href="https://t.co/kuEPiT5I9H">https://t.co/kuEPiT5I9H</a><br><br>by <a
-                                        href="https://twitter.com/osdotsystem?ref_src=twsrc%5Etfw">@osdotsystem</a></p>
-                                &mdash; GitOps Weekly (@gitopsweekly) <a
-                                    href="https://twitter.com/gitopsweekly/status/1643302092558282752?ref_src=twsrc%5Etfw">April
-                                    4, 2023</a>
-                            </blockquote>
-                            <blockquote class="twitter-tweet" data-dnt="true">
-                                <p lang="en" dir="ltr"><a
-                                        href="https://twitter.com/osdotsystem?ref_src=twsrc%5Etfw">@osdotsystem</a> from
-                                    Mauritius will be giving a talk about <br>Shopyo: Your Mega Flask Machine<br><br>Get
-                                    your tickets now at <a
-                                        href="https://t.co/NsWMvcyj4U">https://t.co/NsWMvcyj4U</a><br><br>PyCon APAC
-                                    2021 Our Python. Our Future<a
-                                        href="https://twitter.com/hashtag/pyconapac2021?src=hash&amp;ref_src=twsrc%5Etfw">#pyconapac2021</a>
-                                    <a
-                                        href="https://twitter.com/hashtag/pyconth?src=hash&amp;ref_src=twsrc%5Etfw">#pyconth</a>
-                                    <a href="https://t.co/56Fct3diU1">pic.twitter.com/56Fct3diU1</a>
-                                </p>&mdash; PyCon
-                                Thailand (@pyconthailand) <a
-                                    href="https://twitter.com/pyconthailand/status/1459332722124595205?ref_src=twsrc%5Etfw">November
-                                    13, 2021</a>
-                            </blockquote>
-                           
-                            <blockquote class="twitter-tweet">
-                                <p lang="en" dir="ltr">🟢 ❝Shopyo: Your Mega Flask Machine❞ <br><br> 🐼 🐍 Register: <a
-                                        href="https://t.co/dzmHoEL3to">https://t.co/dzmHoEL3to</a><br>by <a
-                                        href="https://twitter.com/osdotsystem?ref_src=twsrc%5Etfw">@osdotsystem</a>,
-                                    Founder Compiler Alchemy<a
-                                        href="https://twitter.com/hashtag/Conf42?src=hash&amp;ref_src=twsrc%5Etfw">#Conf42</a>
-                                    <a
-                                        href="https://twitter.com/hashtag/Python?src=hash&amp;ref_src=twsrc%5Etfw">#Python</a>
-                                    2021 <a href="https://t.co/2Xo6YTyBme">pic.twitter.com/2Xo6YTyBme</a>
-                                </p>&mdash;
-                                Conf42 (@conf42com) <a
-                                    href="https://twitter.com/conf42com/status/1390565038998622210?ref_src=twsrc%5Etfw">May
-                                    7, 2021</a>
-                            </blockquote>
-                            <blockquote class="twitter-tweet" data-dnt="true">
-                                <p lang="en" dir="ltr">Speaker Name: Abdur-Rahmaan Janhangeer<br>Speaker Title:
-                                    Independent Software Developer (Python)<br>He&#39;s also a PyMUG organizing member
-                                    (Python Mauritius)<br><br>Event Title: &quot;Why opensource and why we should
-                                    care?&quot;<br>Date: 26 Aug 2021<br>Time: 18:30 Mauritius Time <a
-                                        href="https://t.co/bwKdrF7xrW">https://t.co/bwKdrF7xrW</a></p>&mdash; OSCA
-                                Mauritius (@OSCAMauritius) <a
-                                    href="https://twitter.com/OSCAMauritius/status/1429631332339134469?ref_src=twsrc%5Etfw">August
-                                    23, 2021</a>
-                            </blockquote>
-                           
-                            <blockquote class="twitter-tweet">
-                                <p lang="en" dir="ltr">We&#39;re excited for you to and cannot wait to see how
-                                    you&#39;ll grow as a mentor and developer!</p>&mdash; Codementor (@CodementorIO) <a
-                                    href="https://twitter.com/CodementorIO/status/1374561517417361408?ref_src=twsrc%5Etfw">March
-                                    24, 2021</a>
-                            </blockquote>
-                            <blockquote class="twitter-tweet">
-                                <p lang="en" dir="ltr">The Zen Of Python: A Most In Depth Article <a
-                                        href="https://t.co/fVsG9pUjqG">https://t.co/fVsG9pUjqG</a></p>&mdash; PyCoder’s
-                                Weekly (@pycoders) <a
-                                    href="https://twitter.com/pycoders/status/1343668800554729473?ref_src=twsrc%5Etfw">December
-                                    28, 2020</a>
-                            </blockquote>
-                            <blockquote class="twitter-tweet">
-                                <p lang="en" dir="ltr">&quot;The Zen of Python: As Related by Masters&quot; by <a
-                                        href="https://twitter.com/osdotsystem?ref_src=twsrc%5Etfw">@osdotsystem</a> <a
-                                        href="https://t.co/fIuqSrlDtK">https://t.co/fIuqSrlDtK</a> <a
-                                        href="https://twitter.com/hashtag/zen?src=hash&amp;ref_src=twsrc%5Etfw">#zen</a>
-                                    <a
-                                        href="https://twitter.com/hashtag/python?src=hash&amp;ref_src=twsrc%5Etfw">#python</a>
-                                </p>&mdash; HackerNoon (@hackernoon) <a
-                                    href="https://twitter.com/hackernoon/status/1313363388953657346?ref_src=twsrc%5Etfw">October
-                                    6, 2020</a>
-                            </blockquote>
-                            <blockquote class="twitter-tweet">
-                                <p lang="en" dir="ltr">It&#39;s really cool that <a
-                                        href="https://twitter.com/europython?ref_src=twsrc%5Etfw">@europython</a>
-                                    highlighted my talk on <a
-                                        href="https://twitter.com/ThePracticalDev?ref_src=twsrc%5Etfw">@ThePracticalDev</a>
-                                    <br><br>🍃❤💯👍🎉<a href="https://t.co/O8HvlKQMvu">https://t.co/O8HvlKQMvu</a>
-                                </p>
-                                &mdash; Abdur-Rahmaan 🇲🇺 Janhangeer (@osdotsystem) <a
-                                    href="https://twitter.com/osdotsystem/status/1313489262969585665?ref_src=twsrc%5Etfw">October
-                                    6, 2020</a>
-                            </blockquote>
-                           
-                            <blockquote class="twitter-tweet">
-                                <p lang="en" dir="ltr">Python developer <a
-                                        href="https://twitter.com/osdotsystem?ref_src=twsrc%5Etfw">@osdotsystem</a> will
-                                    be presenting at the Developers Conference 2020! Come join him! To learn more about
-                                    the sessions: <a href="https://t.co/86TpjPIMS1">https://t.co/86TpjPIMS1</a><a
-                                        href="https://twitter.com/hashtag/devconmu?src=hash&<p></p>amp;ref_src=twsrc%5Etfw">#devconmu</a>
-                                    <a
-                                        href="https://twitter.com/hashtag/developers?src=hash&amp;ref_src=twsrc%5Etfw">#developers</a>
-                                    <a
-                                        href="https://twitter.com/hashtag/conference?src=hash&amp;ref_src=twsrc%5Etfw">#conference</a>
-                                    <a
-                                        href="https://twitter.com/hashtag/mauritius?src=hash&amp;ref_src=twsrc%5Etfw">#mauritius</a>
-                                    <a href="https://t.co/hw3rxaPlpW">pic.twitter.com/hw3rxaPlpW</a>
-                                </p>&mdash; MSCC
-                                (@MSCraftsman) <a
-                                    href="https://twitter.com/MSCraftsman/status/1237377669324591104?ref_src=twsrc%5Etfw">March
-                                    10, 2020</a>
-                            </blockquote>
-                            <blockquote class="twitter-tweet" data-dnt="true">
-                                <p lang="en" dir="ltr">Legally Free Python Books List is a great collection of books
-                                    that you can get your hands on no payment required. But note that these books are
-                                    available at the moment, so you might want to hurry! <a
-                                        href="https://t.co/J247bljJuX">https://t.co/J247bljJuX</a></p>&mdash; CheckiO
-                                (@PlayCheckiO) <a
-                                    href="https://twitter.com/PlayCheckiO/status/1222928686686638081?ref_src=twsrc%5Etfw">January
-                                    30, 2020</a>
-                            </blockquote>
-                            <blockquote class="twitter-tweet">
-                                <p lang="en" dir="ltr"><a
-                                        href="https://twitter.com/hashtag/showdevHow?src=hash&amp;ref_src=twsrc%5Etfw">#showdevHow</a>
-                                    to build a CSS pre-processor (like SASS) from scratch <a
-                                        href="https://t.co/2xbliza19V">https://t.co/2xbliza19V</a> by <a
-                                        href="https://twitter.com/osdotsystem?ref_src=twsrc%5Etfw">@osdotsystem</a></p>
-                                &mdash; Python LibHunt (@PythonLibHunt) <a
-                                    href="https://twitter.com/PythonLibHunt/status/1152550513033936898?ref_src=twsrc%5Etfw">July
-                                    20, 2019</a>
-                            </blockquote>
-                            <blockquote class="twitter-tweet">
-                                <p lang="en" dir="ltr">Awesome <a
-                                        href="https://twitter.com/hashtag/Python?src=hash&amp;ref_src=twsrc%5Etfw">#Python</a>
-                                    Weekly #165 is out <a
-                                        href="https://t.co/dx2oMpPstx">https://t.co/dx2oMpPstx</a><br>Featuring <a
-                                        href="https://twitter.com/javinpaul?ref_src=twsrc%5Etfw">@javinpaul</a> <a
-                                        href="https://twitter.com/osdotsystem?ref_src=twsrc%5Etfw">@osdotsystem</a> <a
-                                        href="https://twitter.com/Cassieview?ref_src=twsrc%5Etfw">@Cassieview</a> <a
-                                        href="https://twitter.com/sol_prog?ref_src=twsrc%5Etfw">@sol_prog</a> <a
-                                        href="https://twitter.com/b33ts?ref_src=twsrc%5Etfw">@b33ts</a></p>&mdash;
-                                Python LibHunt (@PythonLibHunt) <a
-                                    href="https://twitter.com/PythonLibHunt/status/1154559572327092225?ref_src=twsrc%5Etfw">July
-                                    26, 2019</a>
-                            </blockquote>
-                            <blockquote class="twitter-tweet">
-                                <p lang="en" dir="ltr">This week I chatted with Abdur-Rahmaan Janhangeer as our PyDev of
-                                    the Week, translator of the French version of Think Python - <a
-                                        href="https://t.co/MKgLovGSVr">https://t.co/MKgLovGSVr</a> <a
-                                        href="https://twitter.com/hashtag/Python?src=hash&amp;ref_src=twsrc%5Etfw">#Python</a>
-                                </p>&mdash; Mike Driscoll (@driscollis) <a
-                                    href="https://twitter.com/driscollis/status/1115241860329607168?ref_src=twsrc%5Etfw">April
-                                    8, 2019</a>
-                            </blockquote>
-                           
-                        </div>
-                    </div>
-
-                </article>
             </div>
         </div>
+
+        <div style="display: flex; flex-wrap: wrap; gap: 0.5rem 1.5rem; justify-content: center; align-items: center; padding: 1rem 0; border-top: 1px solid #eee; border-bottom: 1px solid #eee;">
+            <span style="color: #888; font-size: 0.85rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em;">Luminotes read by engineers at</span>
+            <img src="assets/logos/google.svg" alt="Google" style="height: 20px;">
+            <img src="assets/logos/amazon.svg" alt="Amazon" style="height: 20px;">
+            <img src="assets/logos/apple.svg" alt="Apple" style="height: 20px;">
+            <img src="assets/logos/ibm.svg" alt="IBM" style="height: 20px;">
+            <img src="assets/logos/vmware.svg" alt="VMWare" style="height: 20px;">
+            <img src="assets/logos/facebook.svg" alt="Facebook" style="height: 20px;">
+            <img src="assets/logos/dell.svg" alt="Dell" style="height: 20px;">
+        </div>
+
+        <div style="display: flex; flex-wrap: wrap; gap: 0.75rem 1.5rem; justify-content: center; align-items: center; padding-top: 1.5rem;">
+            <span style="color: #555;">📍 Mauritius (GMT+4)</span>
+            <span style="color: #555;">🗣️ English &middot; Français &middot; العربية</span>
+            <a href="https://github.com/Abdur-RahmaanJ" style="color: #555; font-size: 1.25rem;" aria-label="GitHub"><i class="fab fa-github"></i></a>
+            <a href="https://www.linkedin.com/in/appinv" style="color: #555; font-size: 1.25rem;" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+            <a href="https://twitter.com/osdotsystem" style="color: #555; font-size: 1.25rem;" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+            <a rel="me" href="https://fosstodon.org/@osdotsystem" style="color: #555; font-size: 1.25rem;" aria-label="Mastodon"><i class="fab fa-mastodon"></i></a>
+        </div>
     </div>
-</div>
-    <div class="section" id="testimonials">
+</section>
+
+    <div class="section" id="testimonials" style="background-color: #fff;">
   <div class="content">
     <div class="has-text-centered">
       <p class="has-text-centered ">
         <span class="title has-background-white-ter  has-text-centered" style="width: 50px; height:50px; padding: 20px; border-radius: 50%;">
-          <i class="em em-speech_balloon" aria-role="presentation" aria-label="SPEECH BALLOON"></i>
+          💬
         </span>
       </p><br>
       <p class="title" id="testimonials"><a href="#testimonials" class="no-link-dec">Testimonials</a></p>
@@ -482,6 +288,87 @@ Calendly
     <!-- Swiper -->
     <div class="swiper-container" style="padding: 10%; padding-top: 15px;">
       <div class="swiper-wrapper">
+        
+        <div class="swiper-slide">
+          <!-- <div class="card  is-shadowless">
+            <div class="card-content">
+              <div class="content">
+                <i class="notes__image fa fa fa-bookmark"></i>
+                <h2 class="notes__caption">Donald Knuth
+                <br><i class="notes__utitle">Programming Legend</i>
+                
+                </h2>
+                <p class="notes__txt" style="padding: 30px">
+                  <i class="fa fa-quote-left"></i><br>
+                  
+Dear Abdur-Rahmaan,
+<br><br>
+Please excuse the fact that I haven't had time to look at your email
+message from April until today.
+<br><br>
+In that program, MOVEIN is not an instruction; it is a symbolic name
+for the address where a dynamically changing instruction will be
+stored. (His computer was a LOT different from what we have now!)
+<br><br>
+Line 41 of the program says that we should reserve one "storage tank"
+(RST 1) to be called MOVEIN. Line 46 puts a PIK instruction into
+that storage tank. Eventually, control is transferred so that
+the machine executes that PIK instruction (which moves a block
+of words into a sequence of short tanks called BUFFER).
+<br><br>
+<b>Thanks for your interest in history,</b> and for your patience.
+<br><br>
+Best wishes, Don Knuth 
+<a href="https://www.linkedin.com/posts/appinv_asm-computerscience-activity-7134615165097922562-Mb7q?utm_source=share&utm_medium=member_desktop">
+    (source)
+</a>
+
+                  <br>
+                  <i class="fa fa-quote-right"></i>
+                </p>
+              </div>
+            </div>
+          </div> -->
+
+          <div class="card">
+            <div class="card-content">
+              <div class="content">
+                <p class="" style="padding: 10px">
+                  <span style="" class="is-size-3">
+                    Donald Knuth
+                  </span><br>
+                  <span class="is-size-5" style="">
+                    Programming Legend
+                  </span><br>
+                  <p style="padding: 10%; padding-top: 5px; padding-bottom: 5px;" class="has-text-justified">“ 
+Dear Abdur-Rahmaan,
+<br><br>
+Please excuse the fact that I haven't had time to look at your email
+message from April until today.
+<br><br>
+In that program, MOVEIN is not an instruction; it is a symbolic name
+for the address where a dynamically changing instruction will be
+stored. (His computer was a LOT different from what we have now!)
+<br><br>
+Line 41 of the program says that we should reserve one "storage tank"
+(RST 1) to be called MOVEIN. Line 46 puts a PIK instruction into
+that storage tank. Eventually, control is transferred so that
+the machine executes that PIK instruction (which moves a block
+of words into a sequence of short tanks called BUFFER).
+<br><br>
+<b>Thanks for your interest in history,</b> and for your patience.
+<br><br>
+Best wishes, Don Knuth 
+<a href="https://www.linkedin.com/posts/appinv_asm-computerscience-activity-7134615165097922562-Mb7q?utm_source=share&utm_medium=member_desktop">
+    (source)
+</a>
+  ”</p>
+                  
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
         
         <div class="swiper-slide">
           <!-- <div class="card  is-shadowless">
@@ -568,87 +455,6 @@ with the ability to make software not only functional but also marketable with d
 skills that he pursues as a hobby.<br><br>
 
 His work in both professional and open source setting speaks itself but this recommendation is just a token of appreciation on behalf of countless engineers whom he has helped improve and break into the open source community. I wish him the best in his future endeavors and I am excited to see where his work takes him.  ”</p>
-                  
-                </p>
-              </div>
-            </div>
-          </div>
-        </div>
-        
-        <div class="swiper-slide">
-          <!-- <div class="card  is-shadowless">
-            <div class="card-content">
-              <div class="content">
-                <i class="notes__image fa fa fa-bookmark"></i>
-                <h2 class="notes__caption">Donald Knuth
-                <br><i class="notes__utitle">Programming Legend</i>
-                
-                </h2>
-                <p class="notes__txt" style="padding: 30px">
-                  <i class="fa fa-quote-left"></i><br>
-                  
-Dear Abdur-Rahmaan,
-<br><br>
-Please excuse the fact that I haven't had time to look at your email
-message from April until today.
-<br><br>
-In that program, MOVEIN is not an instruction; it is a symbolic name
-for the address where a dynamically changing instruction will be
-stored. (His computer was a LOT different from what we have now!)
-<br><br>
-Line 41 of the program says that we should reserve one "storage tank"
-(RST 1) to be called MOVEIN. Line 46 puts a PIK instruction into
-that storage tank. Eventually, control is transferred so that
-the machine executes that PIK instruction (which moves a block
-of words into a sequence of short tanks called BUFFER).
-<br><br>
-<b>Thanks for your interest in history,</b> and for your patience.
-<br><br>
-Best wishes, Don Knuth 
-<a href="https://www.linkedin.com/posts/appinv_asm-computerscience-activity-7134615165097922562-Mb7q?utm_source=share&utm_medium=member_desktop">
-    (source)
-</a>
-
-                  <br>
-                  <i class="fa fa-quote-right"></i>
-                </p>
-              </div>
-            </div>
-          </div> -->
-
-          <div class="card">
-            <div class="card-content">
-              <div class="content">
-                <p class="" style="padding: 10px">
-                  <span style="" class="is-size-3">
-                    Donald Knuth
-                  </span><br>
-                  <span class="is-size-5" style="">
-                    Programming Legend
-                  </span><br>
-                  <p style="padding: 10%; padding-top: 5px; padding-bottom: 5px;" class="has-text-justified">“ 
-Dear Abdur-Rahmaan,
-<br><br>
-Please excuse the fact that I haven't had time to look at your email
-message from April until today.
-<br><br>
-In that program, MOVEIN is not an instruction; it is a symbolic name
-for the address where a dynamically changing instruction will be
-stored. (His computer was a LOT different from what we have now!)
-<br><br>
-Line 41 of the program says that we should reserve one "storage tank"
-(RST 1) to be called MOVEIN. Line 46 puts a PIK instruction into
-that storage tank. Eventually, control is transferred so that
-the machine executes that PIK instruction (which moves a block
-of words into a sequence of short tanks called BUFFER).
-<br><br>
-<b>Thanks for your interest in history,</b> and for your patience.
-<br><br>
-Best wishes, Don Knuth 
-<a href="https://www.linkedin.com/posts/appinv_asm-computerscience-activity-7134615165097922562-Mb7q?utm_source=share&utm_medium=member_desktop">
-    (source)
-</a>
-  ”</p>
                   
                 </p>
               </div>
@@ -1220,18 +1026,18 @@ Scholar of Arabic, as well as well versed in English. Good teacher of Python, an
     </script>
   </div>
 </div>
-    <div class="section" id="talks" style="background-color: #fffff5;">
+    <div class="section" id="talks" style="background-color: #f0f7ff;">
     <div class="container">
-        <div class="notification" style="background-color: #fffff5;">
-            <div class="notification has-text-centered"  style="background-color: #fffff5;">
+        <div class="notification" style="background-color: #f0f7ff;">
+            <div class="notification has-text-centered"  style="background-color: #f0f7ff;">
                 <br>
                 <p class="has-text-centered ">
-                    <span class="title  has-text-centered" style="width: 50px; height:50px; padding: 15px; border-radius: 50%;">
-                        <i class="em em-spiral_note_pad" aria-role="presentation" aria-label=""></i>
+                    <span class="title has-background-white-ter  has-text-centered" style="width: 50px; height:50px; padding: 20px; border-radius: 50%;">
+                        📝
                     </span>
                 </p><br>
-                <p class="title" id="talks"><a href="#talks" class="no-link-dec">Talks</a></p>
-                <p class="subtitle">Meetups & Confs</p>
+                <p class="title" id="talks"><a href="#talks" class="no-link-dec">Speaking</a></p>
+                <p class="subtitle">Conference talks & meetups</p>
             </div>
         </div>
         <div class="writings is-white">
@@ -1385,12 +1191,12 @@ Scholar of Arabic, as well as well versed in English. Good teacher of Python, an
   <div class="container"><br><br>
     <div class="has-text-centered" style="background-color: #fff7ec">
       <p class="has-text-centered">
-        <span class="title has-text-centered" style="width: 50px; height:50px; padding: 20px; border-radius: 50%;">
-          <i class="em em-lower_left_ballpoint_pen" aria-role="presentation" aria-label=""></i>
+        <span class="title has-background-white-ter  has-text-centered" style="width: 50px; height:50px; padding: 20px; border-radius: 50%;">
+          ✍️
         </span>
       </p><br>
       <p class="title" ><a href="#publish" class="no-link-dec">Books & Courses</a></p>
-      <p class="subtitle">Writing, for the love of it!</p>
+      <p class="subtitle">Writing and teaching</p>
     </div>
     <div class="" style="background-color: #fff7ec">
       <div class="container notification" style="background-color: #fff7ec">
@@ -1423,168 +1229,219 @@ Scholar of Arabic, as well as well versed in English. Good teacher of Python, an
             <div class="notification has-text-centered" style="background-color: #f8f5ff;">
                 <br>
                 <p class="has-text-centered " >
-                    <span class="title   has-text-centered" style="width: 50px; height:50px; padding: 15px; border-radius: 50%;">
-                        <i class="em em-books" aria-role="presentation" aria-label="BOOKS"></i>
+                    <span class="title has-background-white-ter  has-text-centered" style="width: 50px; height:50px; padding: 20px; border-radius: 50%;">
+                        📚
                     </span>
                 </p><br>
-                <p class="title" ><a href="#writings" class="no-link-dec">Writings</a></p>
-                <p class="subtitle">Articles & More</p>
+                <p class="title" ><a href="#writings" class="no-link-dec">Luminotes</a></p>
+                <p class="subtitle">Deep dives into systems, Python, and more</p>
             </div>
         </div>
-        <div class="writings notification " style="background-color: #f8f5ff;">
-            <p class="has-text-centered">
-                <iframe src="https://compileralchemy.substack.com/embed"  
-    style="border:1px solid #EEE; background:white;" frameborder="0" scrolling="no"></iframe>
-            </p>
-            <br>
-                    Writings selected in PyCoders Weekly, Awesome Python, Python Byte Podcast, DevOps Weekly, Gitops Weekly, SQLite news. Hackernews front page hits: 2.
-            <br><br>
-            
-                
-                <span class="url p-0">01. <a href="https://compileralchemy.substack.com/p/libsql-diving-into-a-database-engineering">Libsql: Diving Into A Database Engineering Epic</a></span>
-                
-            
-                
-                <span class="url p-0">02. <a href="https://compileralchemy.substack.com/p/a-turing-machine-expressed-as-a-states">A Turing Machine Expressed As A State Machine</a></span>
-                
-            
-                
-                <span class="url p-0">03. <a href="https://compileralchemy.substack.com/p/merge-sort-and-its-early-history">Merge Sort And It's Early History</a></span>
-                
-            
-                
-                <span class="url p-0">04. <a href="https://compileralchemy.substack.com/p/kubernetes-internals-inside-the-mind">Kubernetes Internals: Inside The Mind Of A Monster</a></span>
-                
-            
-                
-                <span class="url p-0">05. <a href="https://compileralchemy.substack.com/p/ruff-internals-of-a-rust-backed-python">Ruff: Internals Of A Rust-Backed Python Linter-Formatter - Part 1</a></span>
-                
-            
-                
-            
-                
-            
-                
-            
-                
-            
-                
-            
-                
-            
-                
-            
-                
-            
-                
-            
-                
-            
-                
-            
-                
-            
-                
-            
-                
-            
-                
-            
-                
-            
-                
-            
-                
-            
-                
-            
-                
-            
-                
-            
-                
-            
-                
-            
-                
-            
-                
-            
-                
-            
-                
-            
-                
-            
-                
-            
-                
-            
-                
-            
-                
-            
-                
-            
-                
-            
-                
-            
-                
-            
-                
-            
-                
-            
-                
-            
-                
-            
-                
-            
-                
-            
-                
-            
-                
-            
-                
-            
-                
-            
-                
-            
-                
-            
-                
-            
-                
-            
-                
-            
-                
-            
-            <br>
-            <button class="button is-link"><a target="_blank" href="articles">Read more</a></button>
+        <div class="columns is-centered" style="background-color: #f8f5ff;">
+            <div class="column is-5">
+                <div class="writings notification" style="background-color: #f8f5ff;">
+                    <p style="font-size: 0.95rem; color: #555; margin-bottom: 1rem;">
+                        A technical newsletter read by engineers at
+                    </p>
+                    <p style="font-size: 0.85rem; font-weight: 700; color: #444; margin-bottom: 1rem;">
+                        Google · Amazon · Apple · IBM · VMWare · Facebook · Dell
+                    </p>
+                    <p style="font-size: 0.9rem; color: #666; margin-bottom: 1.5rem;">
+                        Selected in PyCoders Weekly, Awesome Python, Python Byte Podcast, DevOps Weekly, Gitops Weekly, SQLite news. Hackernews front page hits: 2.
+                    </p>
+                    
+                        
+                        <p style="margin-bottom: 0.5rem;">
+                            <span style="color: #888;">01.</span>
+                            <a href="https://compileralchemy.substack.com/p/libsql-diving-into-a-database-engineering" style="text-decoration: none;">Libsql: Diving Into A Database Engineering Epic</a>
+                        </p>
+                        
+                    
+                        
+                        <p style="margin-bottom: 0.5rem;">
+                            <span style="color: #888;">02.</span>
+                            <a href="https://compileralchemy.substack.com/p/a-turing-machine-expressed-as-a-states" style="text-decoration: none;">A Turing Machine Expressed As A State Machine</a>
+                        </p>
+                        
+                    
+                        
+                        <p style="margin-bottom: 0.5rem;">
+                            <span style="color: #888;">03.</span>
+                            <a href="https://compileralchemy.substack.com/p/merge-sort-and-its-early-history" style="text-decoration: none;">Merge Sort And It's Early History</a>
+                        </p>
+                        
+                    
+                        
+                        <p style="margin-bottom: 0.5rem;">
+                            <span style="color: #888;">04.</span>
+                            <a href="https://compileralchemy.substack.com/p/kubernetes-internals-inside-the-mind" style="text-decoration: none;">Kubernetes Internals: Inside The Mind Of A Monster</a>
+                        </p>
+                        
+                    
+                        
+                        <p style="margin-bottom: 0.5rem;">
+                            <span style="color: #888;">05.</span>
+                            <a href="https://compileralchemy.substack.com/p/ruff-internals-of-a-rust-backed-python" style="text-decoration: none;">Ruff: Internals Of A Rust-Backed Python Linter-Formatter - Part 1</a>
+                        </p>
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                    <br>
+                    <a target="_blank" href="articles" class="button is-link" style="text-decoration: none;">Read more articles</a>
+                </div>
+            </div>
+            <div class="column is-5">
+                <div class="notification" style="background-color: #f8f5ff; padding: 0;">
+                    <iframe src="https://compileralchemy.substack.com/embed"  
+                        style="border:1px solid #EEE; background:white; width: 100%; min-height: 320px;" frameborder="0" scrolling="no"></iframe>
+                </div>
+            </div>
         </div>
     </div>
     
 </div>
-    <div class="section" id="blog-section" style="background-color: #f5fdf8;">
+    <div class="section" id="papers" style="background-color: #f5fdf8;">
     <div class="container">
         <div class="notification" style="background-color: #f5fdf8;">
             <div class="notification has-text-centered" style="background-color: #f5fdf8;">
                 <br>
                 <p class="has-text-centered">
-                    <span class="title has-text-centered" style="width: 50px; height:50px; padding: 15px; border-radius: 50%;">
-                        <i class="em em-pencil2" aria-role="presentation" aria-label="PENCIL"></i>
+                    <span class="title has-background-white-ter has-text-centered" style="width: 50px; height:50px; padding: 20px; border-radius: 50%;">
+                        📜
+                    </span>
+                </p><br>
+                <p class="title"><a href="#papers" class="no-link-dec">Papers</a></p>
+                <p class="subtitle">Paper walkthroughs & commentary</p>
+            </div>
+        </div>
+        <div class="content" style="background-color: #f5fdf8;">
+            <p class="is-size-5" style="margin-bottom: 0.5rem;">
+                <a href="papers/" style="text-decoration: underline;">The Annotated Transformer with Commentary</a>
+            </p>
+            <p style="color: #666;">
+                A line-by-line walkthrough of the Transformer architecture from "Attention is All You Need", with added explanations and commentary.
+            </p>
+        </div>
+    </div>
+</div>
+    <div class="section" id="blog-section" style="background-color: #f0f7ff;">
+    <div class="container">
+        <div class="notification" style="background-color: #f0f7ff;">
+            <div class="notification has-text-centered" style="background-color: #f0f7ff;">
+                <br>
+                <p class="has-text-centered">
+                    <span class="title has-background-white-ter  has-text-centered" style="width: 50px; height:50px; padding: 20px; border-radius: 50%;">
+                        ✏️
                     </span>
                 </p><br>
                 <p class="title"><a href="#blog" class="no-link-dec">Blog Posts</a></p>
                 <p class="subtitle">Personal Diary & Reflections</p>
             </div>
         </div>
-        <div class="writings notification" style="background-color: #f5fdf8;">
+        <div class="writings notification" style="background-color: #f0f7ff;">
             
                 <span class="url p-0">168. <a href="blog/mauritian-incubators/">Mauritian incubators</a></span>
             
@@ -1597,26 +1454,192 @@ Scholar of Arabic, as well as well versed in English. Good teacher of Python, an
                 <span class="url p-0">164. <a href="blog/achitecting-ai-software-systems-book-review/">Achitecting AI Software systems book review</a></span>
             
             <br>
-            <button class="button is-success"><a style="color: white;" href="blog">Read more posts</a></button>
+            <a href="blog" class="button is-success" style="color: white; text-decoration: none;">Read more posts</a>
         </div>
     </div>
 </div>
-    <div class="section" id="open-source" style="background-color: #fff5f5;">
+    <div class="section" id="podcast" style="background-color: #fff;">
+    <div class="container">
+        <div class="has-text-centered" style="margin-bottom: 2rem;">
+            <br>
+            <p class="has-text-centered">
+                <span class="title has-background-white-ter has-text-centered" style="width: 50px; height:50px; padding: 20px; border-radius: 50%;">
+                    ☕
+                </span>
+            </p><br>
+            <p class="title"><a href="#podcast" class="no-link-dec">The Alfa Coding Podcast</a></p>
+            <p class="subtitle">Devs from Amazon, Pypy, CPython, bright topics and popular figures</p>
+        </div>
+        <div class="columns is-centered">
+            
+            <div class="column is-4">
+                <div class="card" style="border-radius: 12px; border: 1px solid #e2e8f0; height: 100%;">
+                    <div class="card-content" style="padding: 1.5rem;">
+                        <p style="font-size: 0.8rem; color: #999; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 0.5rem;">
+                            Episode 5 &middot; 46:34
+                        </p>
+                        <p class="title is-5" style="margin-bottom: 0.75rem;">Business, The Serious Side of Python</p>
+                        <p style="color: #666; font-size: 0.9rem; line-height: 1.6; margin-bottom: 1rem;">
+                            
+                            Learn about running an MLops business with Bojan Miletic!
+                        </p>
+                        <p style="font-size: 0.85rem; color: #888;">
+                            
+                                
+                                    Guest: 
+                                    Bojan Miletic (MLops consultant)
+                                
+                            
+                                
+                                    Co-host: 
+                                    Mostafa Moradian (Senior software engineer at k6.io and Grafana, specialised in load testing)
+                                
+                            
+                                
+                            
+                        </p>
+                        <div style="margin-top: 1rem;">
+                            <audio controls preload="none" style="width: 100%; height: 36px;">
+                                <source src="https://archive.org/download/alfa-podcast/5.m4a" type="audio/mpeg">
+                            </audio>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="column is-4">
+                <div class="card" style="border-radius: 12px; border: 1px solid #e2e8f0; height: 100%;">
+                    <div class="card-content" style="padding: 1.5rem;">
+                        <p style="font-size: 0.8rem; color: #999; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 0.5rem;">
+                            Episode 4 &middot; 49:02
+                        </p>
+                        <p class="title is-5" style="margin-bottom: 0.75rem;">The Passion For Python</p>
+                        <p style="color: #666; font-size: 0.9rem; line-height: 1.6; margin-bottom: 1rem;">
+                            
+                            Michael Driscoll has been a Python fan since the days PyPI did not yet exist. He is an author,
+blogger and tinkerer. He runs PyDev of The Week. He needs no introduction. This episode
+interviews Python&hellip;
+                        </p>
+                        <p style="font-size: 0.85rem; color: #888;">
+                            
+                                
+                                    Guest: 
+                                    Michael Driscoll (Celebrated figure in the Python community)
+                                
+                            
+                                
+                            
+                        </p>
+                        <div style="margin-top: 1rem;">
+                            <audio controls preload="none" style="width: 100%; height: 36px;">
+                                <source src="https://archive.org/download/alfa-podcast/4.m4a" type="audio/mpeg">
+                            </audio>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="column is-4">
+                <div class="card" style="border-radius: 12px; border: 1px solid #e2e8f0; height: 100%;">
+                    <div class="card-content" style="padding: 1.5rem;">
+                        <p style="font-size: 0.8rem; color: #999; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 0.5rem;">
+                            Episode 3 &middot; 43:30
+                        </p>
+                        <p class="title is-5" style="margin-bottom: 0.75rem;">14 Years Old And Teaching Typing To The World</p>
+                        <p style="color: #666; font-size: 0.9rem; line-height: 1.6; margin-bottom: 1rem;">
+                            
+                            A casual chat with the maintainer of the pypi commandline package and typesplainer.
+A dive into his journey into tech and how he tackles projects. We talk along the way
+of a discord.py/nextcord visual&hellip;
+                        </p>
+                        <p style="font-size: 0.85rem; color: #888;">
+                            
+                                
+                                    Guest: 
+                                    Arian Mollick Wasi / WasiMaster (Pypi cmd and Typesplainer maintainer)
+                                
+                            
+                                
+                            
+                        </p>
+                        <div style="margin-top: 1rem;">
+                            <audio controls preload="none" style="width: 100%; height: 36px;">
+                                <source src="https://archive.org/download/alfa-podcast/3.m4a" type="audio/mpeg">
+                            </audio>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+        </div>
+        <div class="has-text-centered" style="margin-top: 2rem;">
+            <a href="/alfa-podcast" class="button is-link is-medium" style="text-decoration: none;">See all episodes</a>
+            <a href="https://podcasts.google.com/feed/aHR0cHM6Ly93d3cuY29tcGlsZXJhbGNoZW15LmNvbS9hbGZhLXBvZGNhc3QvcG9kY2FzdC5yc3M?sa=X&ved=0CBoQ27cFahcKEwj4q5XXl872AhUAAAAAHQAAAAAQTQ" class="button is-light is-medium" style="text-decoration: none; margin-left: 0.5rem;">
+                <img src="https://www.gstatic.com/podcasts_console/promote/English_EN/EN_Google_Podcasts_Badge.svg" width="120" height="30" alt="Listen on Google Podcasts" loading="lazy" decoding="async">
+            </a>
+        </div>
+    </div>
+</div>
+    <div class="section" id="tools" style="background-color: #fff7ec;">
+    <div class="container">
+        <div class="notification" style="background-color: #fff7ec;">
+            <div class="notification has-text-centered" style="background-color: #fff7ec;">
+                <br>
+                <p class="has-text-centered ">
+                    <span class="title has-background-white-ter has-text-centered" style="width: 50px; height:50px; padding: 20px; border-radius: 50%;">
+                        🧰
+                    </span>
+                </p><br>
+                <p class="title"><a href="#tools" class="no-link-dec">Tools</a></p>
+                <p class="subtitle">Handy utilities</p>
+            </div>
+        </div>
+        <div class="columns is-centered" style="background-color: #fff7ec;">
+            <div class="column is-4" style="background-color: #fff7ec;">
+                <div class="box" style="border-radius: 12px; transition: transform 0.2s, box-shadow 0.2s; background: white; border: 1px solid #e2e8f0; padding: 1.25rem;" onmouseover="this.style.transform='translateY(-3px)';this.style.boxShadow='0 8px 24px rgba(0,0,0,0.1)'" onmouseout="this.style.transform='';this.style.boxShadow=''">
+                    <a href="face-blur/" style="text-decoration: none; display: block;">
+                        <p class="has-text-centered">
+                            <span style="font-size: 1.75rem; display: block; margin-bottom: 0.25rem;">🎥</span>
+                            <span style="font-size: 1rem; font-weight: 700; color: #1a1a1a;">FaceBlur</span>
+                        </p>
+                        <p class="has-text-centered" style="color: #666; margin-top: 0.35rem; font-size: 0.85rem;">
+                            Blur faces in video in real-time using on-device AI.
+                        </p>
+                    </a>
+                </div>
+            </div>
+            <div class="column is-4" style="background-color: #fff7ec;">
+                <div class="box" style="border-radius: 12px; transition: transform 0.2s, box-shadow 0.2s; background: white; border: 1px solid #e2e8f0; padding: 1.25rem;" onmouseover="this.style.transform='translateY(-3px)';this.style.boxShadow='0 8px 24px rgba(0,0,0,0.1)'" onmouseout="this.style.transform='';this.style.boxShadow=''">
+                    <a href="islamic-months-mauritius/" style="text-decoration: none; display: block;">
+                        <p class="has-text-centered">
+                            <span style="font-size: 1.75rem; display: block; margin-bottom: 0.25rem;">📅</span>
+                            <span style="font-size: 1rem; font-weight: 700; color: #1a1a1a;">Islamic Months Mauritius</span>
+                        </p>
+                        <p class="has-text-centered" style="color: #666; margin-top: 0.35rem; font-size: 0.85rem;">
+                            Look up Hijri dates for Mauritius for any year.
+                        </p>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+    <div class="section" id="open-source" style="background-color: #f8f5ff;">
   <div class="container">
-    <div class="notification " style="background-color: #fff5f5;">
-      <div class="notification has-text-centered" style="background-color: #fff5f5;">
+    <div class="notification " style="background-color: #f8f5ff;">
+      <div class="notification has-text-centered" style="background-color: #f8f5ff;">
         <br>
         <p class="has-text-centered ">
-          <span class="title  has-text-centered" style="width: 50px; height:50px; padding: 15px; border-radius: 50%;">
-            <i class="em em-building_construction" aria-role="presentation" aria-label=""></i>
+          <span class="title has-background-white-ter  has-text-centered" style="width: 50px; height:50px; padding: 20px; border-radius: 50%;">
+            🏗️
           </span>
         </p><br>
-        <p class="title"><a href="#open-source" class="no-link-dec">OpenSource Projects</a></p>
-        <p class="subtitle">Some fun, some serious</p>
+        <p class="title"><a href="#open-source" class="no-link-dec">Open Source Projects</a></p>
+        <p class="subtitle">Tools, libraries, and frameworks</p>
       </div>
     </div>
-    <div class="" style="background-color: #fff5f5;">
-      <table class="table" style="background-color: #fff5f5;">
+    <div class="" style="background-color: #f8f5ff;">
+      <table class="table" style="background-color: #f8f5ff;">
   <thead>
     <tr>
       <th><abbr title="Projects">Projects</abbr> <div class="control">
@@ -2236,6 +2259,11 @@ among others.</p>
                     [<a href="https://pypi.org/project/phoning-home/" target="_blank">Pypi</a>] 
 
               
+                
+
+                    [<a href="https://pepy.tech/projects/phoning-home" target="_blank">Pepy</a>] 
+
+              
             </span>
               
                 <a target="_blank" href="https://pepy.tech/project/phoning-home"><img src="https://static.pepy.tech/personalized-badge/phoning-home?period=total&units=international_system&left_color=black&right_color=green&left_text=Downloads">
@@ -2757,7 +2785,7 @@ among others.</p>
                 <br>
                 <p class="has-text-centered ">
                     <span class="title has-background-white-ter  has-text-centered" style="width: 50px; height:50px; padding: 15px; border-radius: 50%;">
-                        <i class="em em-pancakes" aria-role="presentation" aria-label="PANCAKES"></i>
+                        🥞
                     </span>
                 </p><br>
                 <p class="title">Services</p>
@@ -2851,14 +2879,13 @@ among others.</p>
 </div>-->
     
     
-    <div id="facts" class="section" style="background-color: #f5fff5;">
+    <div id="facts" class="section" style="background-color: #f5fdf8;">
 
     <div class="container"><br><br>
-        <div class="has-text-centered" style="background-color: #f5fff5;">
+        <div class="has-text-centered" style="background-color: #f5fdf8;">
             <p class="has-text-centered">
-                <span class="title   has-text-centered"
-                    style="width: 50px; height:50px; padding: 20px; border-radius: 50%;">
-                    <i class="em em-tada" aria-role="presentation" aria-label="PARTY POPPER"></i>
+                <span class="title has-background-white-ter  has-text-centered" style="width: 50px; height:50px; padding: 20px; border-radius: 50%;">
+                    🎉
                 </span>
             </p><br>
             <p class="title"><a href="#journey" class="no-link-dec">Dev Journey</a></p>
@@ -2866,7 +2893,7 @@ among others.</p>
                 </a>. </p>
         </div>
         <div class="">
-            <div class="container notification " style="background-color: #f5fff5;">
+            <div class="container notification " style="background-color: #f5fdf8;">
                 <hr>
                 <div class="field is-grouped is-grouped-multiline">
                     <div class="control">
@@ -3001,23 +3028,23 @@ among others.</p>
     </div>
 </div>
 </div>
-    <div id="community" class="section">
+    <div id="community" class="section" style="background-color: #f0f7ff;">
     <div class="container">
-        <div class="notification is-white ">
-            <div class="notification is-white has-text-centered">
+        <div class="notification" style="background-color: transparent;">
+            <div class="notification has-text-centered" style="background-color: transparent;">
                 <br>
                 <p class="has-text-centered ">
                     <span class="title has-background-white-ter  has-text-centered" style="width: 50px; height:50px; padding: 15px; border-radius: 50%;">
-                        <i class="em em-raised_hands" aria-role="presentation" aria-label="PERSON RAISING BOTH HANDS IN CELEBRATION"></i>
+                        🙌
                     </span> 
                 </p><br>
                 <p class="title" ><a href="#community" class="no-link-dec">Community Engagement</a></p>
                 <p class="subtitle">For the love of it</p>
             </div>
-            <div class="is-white p-6">
+            <div class="p-6">
                 
                 <p class="is-size-3">Python Mauritius Usergroup</p>
-                <table class="table">
+                <table class="table" style="background-color: transparent;">
                     <tbody>
                         <tr>
                             <td></td>
@@ -3045,7 +3072,7 @@ on different topics during lockdown 2020. We had web dev, ai and more.</li>
                 </table>
                 
                 <p class="is-size-3">FlaskCon</p>
-                <table class="table">
+                <table class="table" style="background-color: transparent;">
                     <tbody>
                         <tr>
                             <td></td>
@@ -3067,7 +3094,7 @@ federal gov</li>
                 </table>
                 
                 <p class="is-size-3">Flask Community Workgroup</p>
-                <table class="table">
+                <table class="table" style="background-color: transparent;">
                     <tbody>
                         <tr>
                             <td></td>
@@ -3085,7 +3112,7 @@ logical conclusion of FlaskCon.</p>
                 </table>
                 
                 <p class="is-size-3">Arabic Coordinator for The Python Docs</p>
-                <table class="table">
+                <table class="table" style="background-color: transparent;">
                     <tbody>
                         <tr>
                             <td></td>
@@ -3100,7 +3127,7 @@ logical conclusion of FlaskCon.</p>
                 </table>
                 
                 <p class="is-size-3">Python-efl revival</p>
-                <table class="table">
+                <table class="table" style="background-color: transparent;">
                     <tbody>
                         <tr>
                             <td></td>
@@ -3119,7 +3146,7 @@ community</li>
                 </table>
                 
                 <p class="is-size-3">PyHerald</p>
-                <table class="table">
+                <table class="table" style="background-color: transparent;">
                     <tbody>
                         <tr>
                             <td></td>
@@ -3135,7 +3162,7 @@ community</li>
                 </table>
                 
                 <p class="is-size-3">General</p>
-                <table class="table">
+                <table class="table" style="background-color: transparent;">
                     <tbody>
                         <tr>
                             <td></td>
@@ -3156,19 +3183,19 @@ so that Python teams can skill up members faster.</li>
     </div>
 </div>
 
-    <div id="privacy-policy" class="section">
+    <div id="privacy-policy" class="section" style="background-color: #fff7ec;">
   <div class="container"><br><br>
     <div class="has-text-centered">
       <p class="has-text-centered">
         <span class="title has-background-white-ter  has-text-centered" style="width: 50px; height:50px; padding: 20px; border-radius: 50%;">
-          <i class="em em-broom" aria-role="presentation" aria-label="BROOM"></i>
+          🧹
         </span>
       </p><br>
       <p class="title" ><a href="#privacy-policy" class="no-link-dec">Privacy Policy</a></p>
       <p class="subtitle">What we do </p>
     </div>
     <div class="">
-      <div class="container notification is-white">
+      <div class="container notification" style="background-color: transparent;">
         
 We use Google analytics, MS clarity, embed Tweets. By using this
             website you aree to all nasty prying eyes that it may enytail.
@@ -3186,7 +3213,7 @@ We use Google analytics, MS clarity, embed Tweets. By using this
             <hr>
             <a href="">Home</a>; 
             <a href="/blog">Personal Blog</a>; 
-            <a href="/articles">Technical Blog</a>;
+            <a href="/articles">Luminotes</a>;
             <a href="/diaries">Diaries</a>;
         </p>
     </div>

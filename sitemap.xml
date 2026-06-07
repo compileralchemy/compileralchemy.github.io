@@ -7,6 +7,9 @@
     <loc>https://www.compileralchemy.com/alfa-podcast/</loc>
   </url>
   <url>
+    <loc>https://www.compileralchemy.com/books/</loc>
+  </url>
+  <url>
     <loc>https://www.compileralchemy.com/blog/</loc>
   </url>
   <url>
@@ -25,34 +28,10 @@
     <loc>https://www.compileralchemy.com/islamic-months-mauritius/</loc>
   </url>
   <url>
-    <loc>https://www.compileralchemy.com/books/sqlite-internals/</loc>
+    <loc>https://www.compileralchemy.com/opensource/</loc>
   </url>
   <url>
-    <loc>https://www.compileralchemy.com/books/freelancing-codex/</loc>
-  </url>
-  <url>
-    <loc>https://www.compileralchemy.com/diaries/2019/</loc>
-  </url>
-  <url>
-    <loc>https://www.compileralchemy.com/diaries/2020/</loc>
-  </url>
-  <url>
-    <loc>https://www.compileralchemy.com/diaries/2021/</loc>
-  </url>
-  <url>
-    <loc>https://www.compileralchemy.com/diaries/2022/</loc>
-  </url>
-  <url>
-    <loc>https://www.compileralchemy.com/diaries/2023/</loc>
-  </url>
-  <url>
-    <loc>https://www.compileralchemy.com/diaries/2024/</loc>
-  </url>
-  <url>
-    <loc>https://www.compileralchemy.com/diaries/2025/</loc>
-  </url>
-  <url>
-    <loc>https://www.compileralchemy.com/diaries/silicon-valley/</loc>
+    <loc>https://www.compileralchemy.com/papers/</loc>
   </url>
   <url>
     <loc>https://www.compileralchemy.com/annotated-transformer-commentary/</loc>
