@@ -1,16 +1,16 @@
-<div id="privacy-policy" class="section" style="background-color: #fff7ec">
+<div id="privacy-policy" class="section" style="background-color: {{ section_bg('publish') }}">
   <div class="container"><br><br>
-    <div class="has-text-centered" style="background-color: #fff7ec">
+    <div class="has-text-centered" style="background-color: {{ section_bg('publish') }}">
       <p class="has-text-centered">
-        <span class="title has-text-centered" style="width: 50px; height:50px; padding: 20px; border-radius: 50%;">
-          <i class="em em-lower_left_ballpoint_pen" aria-role="presentation" aria-label=""></i>
+        <span class="title has-background-white-ter  has-text-centered" style="width: 50px; height:50px; padding: 20px; border-radius: 50%;">
+          ✍️
         </span>
       </p><br>
       <p class="title" ><a href="#publish" class="no-link-dec">Books & Courses</a></p>
-      <p class="subtitle">Writing, for the love of it!</p>
+      <p class="subtitle">Writing and teaching</p>
     </div>
-    <div class="" style="background-color: #fff7ec">
-      <div class="container notification" style="background-color: #fff7ec">
+    <div class="" style="background-color: {{ section_bg('publish') }}">
+      <div class="container notification" style="background-color: {{ section_bg('publish') }}">
 
       {% for pub in settings["publish"]%}
       <a href='{{pub["link"]}}'><h3 class="is-size-3">{{pub["name"]}}</h3></a>

@@ -8,6 +8,46 @@
 
 <body class="">
 
+    <nav class="navbar is-white" role="navigation" aria-label="main navigation">
+        <div class="container">
+            <div class="navbar-brand">
+                <a class="navbar-item" href="{{ path }}">
+                    <img src="{{ path }}assets/COMP_ALC.png" alt="Compiler Alchemy" style="height: 40px;">
+                </a>
+                <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navMenu">
+                    <span aria-hidden="true"></span>
+                    <span aria-hidden="true"></span>
+                    <span aria-hidden="true"></span>
+                    <span aria-hidden="true"></span>
+                </a>
+            </div>
+            <div id="navMenu" class="navbar-menu">
+                <div class="navbar-end">
+                    <a class="navbar-item {% if page_path and page_path.startswith('blog/') %}active{% endif %}" href="{{ path }}blog/">Blog</a>
+                    <a class="navbar-item {% if page_path and page_path.startswith('articles/') %}active{% endif %}" href="{{ path }}articles/">Luminotes</a>
+                    <a class="navbar-item {% if page_path and page_path.startswith('books/') %}active{% endif %}" href="{{ path }}books/">Books</a>
+                    <a class="navbar-item {% if page_path and page_path.startswith('talks/') %}active{% endif %}" href="{{ path }}talks/">Talks</a>
+                    <a class="navbar-item {% if page_path and page_path.startswith('opensource/') %}active{% endif %}" href="{{ path }}opensource/">OpenSource</a>
+                    <a class="navbar-item {% if page_path and page_path.startswith('journey/') %}active{% endif %}" href="{{ path }}journey/">Journey</a>
+                    <a class="navbar-item {% if page_path and page_path.startswith('papers/') %}active{% endif %}" href="{{ path }}papers/">Papers</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const burger = document.querySelector('.navbar-burger');
+            const menu = document.querySelector('#navMenu');
+            if (burger && menu) {
+                burger.addEventListener('click', () => {
+                    burger.classList.toggle('is-active');
+                    menu.classList.toggle('is-active');
+                });
+            }
+        });
+    </script>
+
     {%block body%}{%endblock%}
 </body>
 

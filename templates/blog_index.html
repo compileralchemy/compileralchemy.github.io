@@ -11,7 +11,7 @@
                 <br>
                 <p class="has-text-centered ">
                     <span class="title has-background-white-ter  has-text-centered" style="width: 50px; height:50px; padding: 15px; border-radius: 50%;">
-                        <i class="em em-books" aria-role="presentation" aria-label="BOOKS"></i>
+                        📚
                     </span>
                 </p><br>
                 <p class="title" ><a href="#" class="no-link-dec">Personal Blog</a></p>
@@ -26,7 +26,7 @@
             {%for data in title_slug%}
 
                 <span class="url p-0">{{str(data.num).zfill(3)}}.
-                     <a href="/diaries/{{ data.year }}/#{{ data.title.replace(' ', '-') }}">{{ data.title }}</a></span>
+                     <a href="/blog/{{ data.slug }}/">{{ data.title }}</a></span>
 
             {%endfor%}
             <br>
