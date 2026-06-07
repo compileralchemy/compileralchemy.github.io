@@ -197,6 +197,53 @@
   font-size: 40px;
 }
 
+/* Navbar Styles */
+.navbar {
+  box-shadow: 0 2px 4px rgba(0,0,0,0.08);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.navbar-item {
+  font-weight: 500;
+  transition: color 0.2s ease;
+}
+
+.navbar-item:hover {
+  background-color: transparent !important;
+  color: #e65100 !important;
+}
+
+.navbar-burger {
+  color: #4a4a4a;
+}
+
+.navbar-burger span {
+  background-color: currentColor;
+  height: 2px;
+}
+
+@media screen and (max-width: 1023px) {
+  .navbar-menu {
+    background-color: white;
+    box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+    padding: 0.5rem 0;
+  }
+  
+  .navbar-menu.is-active {
+    display: block;
+  }
+  
+  .navbar-end {
+    padding: 0.5rem 0;
+  }
+  
+  .navbar-item {
+    padding: 0.5rem 1rem;
+  }
+}
+
 
 .no-link-dec{
   text-decoration: none !important;
