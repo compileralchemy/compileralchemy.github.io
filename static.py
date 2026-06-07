@@ -641,6 +641,7 @@ def gen_seo():
         "/journey/",
         "/face-blur/",
         "/islamic-months-mauritius/",
+        "/annotated-transformer-commentary/",
     ]
 
     # Dynamically discover books
