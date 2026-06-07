@@ -208,6 +208,11 @@
   color: #e65100 !important;
 }
 
+.navbar-item.active {
+  color: #e65100 !important;
+  font-weight: 700 !important;
+}
+
 .navbar-burger {
   color: #4a4a4a;
 }

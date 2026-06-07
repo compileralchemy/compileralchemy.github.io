@@ -71,7 +71,7 @@ context.update(
 )
 
 podcontext = base_context()
-podcontext.update({"settings": settings, "md_to_html": md_to_html, "path": "../"})
+podcontext.update({"settings": settings, "md_to_html": md_to_html, "path": "../", "page_path": "alfa-podcast/"})
 
 
 def gen_podcast_rss():
@@ -458,6 +458,7 @@ def gen_blog():
             "settings": settings,
             "path": "../",
             "title_slug": title_slug,
+            "page_path": "blog/",
         }
     )
     generate(
