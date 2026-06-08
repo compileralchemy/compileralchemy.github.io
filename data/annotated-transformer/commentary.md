@@ -869,7 +869,14 @@ sub-layers, followed by layer normalization
 
 > **Commentary:**
 >
-> 
+> Let's say this is the output of a layer
+> $$
+> \text{output} = x + F(x)
+> $$
+>
+> x, the input is called the **residual connection**. The output is not only a transformation of the input, but, also includes the input. 
+> This is the idea behind the add & norm layer.
+
 
 ```python
 class LayerNorm(nn.Module):
@@ -896,6 +903,36 @@ implemented by the sub-layer itself.  We apply dropout
 [(cite)](http://jmlr.org/papers/v15/srivastava14a.html) to the
 output of each sub-layer, before it is added to the sub-layer input
 and normalized.
+
+> **Commentary:**
+>
+> During training, a neural network can become too dependent on specific neurons (like "memorizing" patterns instead of learning general rules). **Dropout** prevents this by randomly turning off neurons during training.
+>
+> Before we continue, let's see what this point in circle symbol means.
+>
+> $( a \odot b )$ means element-wise multiplication. $
+[2,3] \odot [10,100] = [2 \times 10,, 3 \times 100] = [20,300]
+$
+>
+> Dropout has this formula $h' = m \odot h$ where $m$ is a mask. A mask works like this. If you have [5, 10] and apply a mask of [1, 0]  you have [5, 0]. 
+>
+> $$
+> m \odot h = [1 \cdot 5,; 0 \cdot 10] = [5, 0]
+> $$
+>
+> This is great if we want to drop neurons but, the values tend to become smaller, something we fix by scaling.
+>
+> $$
+> \tilde{h} = \frac{m \odot h}{1 - p}
+> $$
+>
+> p is the probability of dropping a neuron and 1 - p is the probability or not dropping a neuron i.e. the probability that the neuron stays on.
+> If we have a 50% chance of dropping a neuron, and we have [5, 0]. Scaling will give [5, 0] / 0.5 -> [10, 0].
+>
+> $$
+> \tilde{h} = \frac{[5, 0]}{0.5} = [10, 0]
+> $$
+
 
 To facilitate these residual connections, all sub-layers in the
 model, as well as the embedding layers, produce outputs of dimension
