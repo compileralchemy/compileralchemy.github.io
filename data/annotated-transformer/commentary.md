@@ -434,6 +434,8 @@ Self-attention, sometimes called intra-attention is an attention
 mechanism relating different positions of a single sequence in order
 to compute a representation of the sequence. ...
 
+<span id="attention-explanation"></span>
+
 > **Commentary:**
 >
 > Since we covered the representation part but did not explain exactly how the attention score is calculated, let's do so now.
@@ -1039,6 +1041,14 @@ masking, combined with fact that the output embeddings are offset by
 one position, ensures that the predictions for position $i$ can
 depend only on the known outputs at positions less than $i$.
 
+> **Commentary:**
+>
+>     token  token  token token  token  token  token
+>     1      2      3     i      i+1    i+2    i+3
+>     [   past tokens   ] [ now] [  masked tokens  ]
+>
+> Tokens are masked in decoder training to prevent 'cheating'
+
 ```python
 def subsequent_mask(size):
     "Mask out subsequent positions."
@@ -1090,6 +1100,10 @@ show_example(example_mask)
 ```
 
 ### Attention
+
+> **Commentary:**
+>
+> To view the explanation about attention, please see [above](#attention-explanation).
 
 An attention function can be described as mapping a query and a set
 of key-value pairs to an output, where the query, keys, values, and
@@ -1179,7 +1193,7 @@ positions. With a single attention head, averaging inhibits this.
 
 $$
 \mathrm{MultiHead}(Q, K, V) =
-    \mathrm{Concat}(\mathrm{head_1}, ..., \mathrm{head_h})W^O \\
+    \mathrm{Concat}(\mathrm{head_1}, ..., \mathrm{head_h})W^O \\\\
     \text{where}~\mathrm{head_i} = \mathrm{Attention}(QW^Q_i, KW^K_i, VW^V_i)
 $$
 
@@ -1194,6 +1208,10 @@ heads. For each of these we use $d_k=d_v=d_{\text{model}}/h=64$. Due
 to the reduced dimension of each head, the total computational cost
 is similar to that of single-head attention with full
 dimensionality.
+
+> **Commentary:**
+>
+> 
 
 ```python
 class MultiHeadedAttention(nn.Module):
