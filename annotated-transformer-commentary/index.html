@@ -269,6 +269,20 @@ gtag('config', 'UA-161612035-1');
             line-height: 1.6;
         }
 
+        .commentary-main a {
+            color: #0066cc;
+            background-color: #e8f0fe;
+            padding: 0.1em 0.3em;
+            border-radius: 3px;
+            text-decoration: none;
+            transition: background-color 0.2s, color 0.2s;
+        }
+
+        .commentary-main a:hover {
+            background-color: #d0e0ff;
+            color: #004499;
+        }
+
         .commentary-main img {
             max-width: 100%;
             height: auto;
@@ -1343,32 +1357,37 @@ respectively.</p>
 <pre><code>input
 |
 v
-input embedding  # converted to embeddings
+input embedding  # converted each token into a vector of numbers
 |
 V
 position embedding -   # position information added
+    |               |  #   1st word, 2nd word etc
     |               |
 -----------         |
 |    |    |         |
 V    v    V         |
-head head head      |  # output from attention step (head)
-|    |    |         |
+head head head      |  # each attention head looks at relationships
+|    |    |         |  #   between tokens for a different feature
 -----------         |
     |               |
-    Add &amp; Norm ------  # Add: Original + output from attention result
+    Add &amp; Norm ------  # Add: Input to attention block + output
+    |                  #   from attention result
     |                  # Normalization: Stabilize the numbers to that 
     |                  #   we can operate on them easily
     |
     |---------------
     |               |
     Feed forward    |  # Converts matrix dimension to 2048 from 512 and 
-                    |  #   to 512
+    |               |  #   to 512
+    |               |  #   This lets the model transform and enrich
+    |               |  #   the information learned by attention.
     |               |
     Add &amp; Norm -----
     |
 </code></pre>
 <p>The linear layer adds a score to the embeddings and softmax converts the score into
-probabilities</p>
+probabilities. The left side is the encoder and the right side the decoder. 
+We can see that the decoder, as described previously takes the inputs and current outputs and inputs.</p>
 </blockquote>
 <h2>Encoder and Decoder Stacks</h2>
 <h3>Encoder</h3>
@@ -1379,6 +1398,12 @@ probabilities</p>
 
 
 </code></pre>
+<blockquote class="commentary"><p><span class="commentary-label">Commentary</span></p>
+<p><strong>nn.ModuleList</strong>: Adding layers so that PyTorch can track it.</p>
+<p>Since we need to have 6 identical layers, they named the function clones. If you are
+not famililar with Python, deepcopy creates a new object. Only copying an object can
+leave you with unintended effects like updating one object updates another.</p>
+</blockquote>
 <pre><code class="language-python">class Encoder(nn.Module):
     &quot;Core encoder is a stack of N layers&quot;
 
@@ -1395,10 +1420,15 @@ probabilities</p>
 
 
 </code></pre>
+<blockquote class="commentary"><p><span class="commentary-label">Commentary</span></p>
+<p><strong><a href="https://docs.pytorch.org/docs/2.12/generated/torch.nn.LayerNorm.html">LayerNorm</a></strong>: Applies Layer Normalization over a mini-batch of inputs.</p>
+</blockquote>
 <p>We employ a residual connection
 <a href="https://arxiv.org/abs/1512.03385">(cite)</a> around each of the two
 sub-layers, followed by layer normalization
 <a href="https://arxiv.org/abs/1607.06450">(cite)</a>.</p>
+<blockquote class="commentary"><p><span class="commentary-label">Commentary</span></p>
+</blockquote>
 <pre><code class="language-python">class LayerNorm(nn.Module):
     &quot;Construct a layernorm module (See citation for details).&quot;
 
