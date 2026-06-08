@@ -618,7 +618,7 @@ to compute a representation of the sequence. ...
 >
 > This output is passed to the next layer.
 >
-> As a bonus, here is the PyTorch code. Reached here. TODO: state the meaning of this output.
+> As a bonus, here is the PyTorch code. TODO: state the meaning of this output.
 >
 >     import torch
 >     import math
@@ -1197,21 +1197,53 @@ $$
     \text{where}~\mathrm{head_i} = \mathrm{Attention}(QW^Q_i, KW^K_i, VW^V_i)
 $$
 
+> **Commentary:**
+>
+> It means we concatenate the result of different heads and matrix multiply by Wo.
+>
+> Let's say we had head1 = [1, 2], head2 = [3, 4].
+>
+> We concatenate them. concat = [1, 2, 3, 4]
+> 
+> Just like Wq etc in the attention formula, Wo is a weight matrix learnt during training.
+>
+> Let's pretend it's [[3], [3], [3], [3]]  here.
+>
+> So we do  [1, 2, 3, 4] @ [[3], [3], [3], [3]] = [30]
+
 Where the projections are parameter matrices $W^Q_i \in
 \mathbb{R}^{d_{\text{model}} \times d_k}$, $W^K_i \in
 \mathbb{R}^{d_{\text{model}} \times d_k}$, $W^V_i \in
 \mathbb{R}^{d_{\text{model}} \times d_v}$ and $W^O \in
 \mathbb{R}^{hd_v \times d_{\text{model}}}$.
 
+
+
+> **Commentary:**
+>
+> $W^O \in \mathbb{R}^{h d_v \times d_{model}}$
+>
+> $h$ - Number of attention heads
+>
+> $d_v$ - Dimension of each head’s value vector
+>
+> $d_{model}$ - Dimension of the model's embedding size
+
 In this work we employ $h=8$ parallel attention layers, or
-heads. For each of these we use $d_k=d_v=d_{\text{model}}/h=64$. Due
+heads. For each of these we use $d_k=d_v=d_{\text{model}}/h=64$. ...
+
+> **Commentary:**
+>
+> $d_{model}$ is 512 above. 
+
+... Due
 to the reduced dimension of each head, the total computational cost
 is similar to that of single-head attention with full
 dimensionality.
 
 > **Commentary:**
 >
-> 
+> Meaning the computation for a vector of dimension 512 on a single head is the same for 8 heads if we reduce the dimension of each head to 64. TODO: Explain the attention formulation why this holds true.
 
 ```python
 class MultiHeadedAttention(nn.Module):
