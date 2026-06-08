@@ -1218,7 +1218,7 @@ softmax.V =
 \end{bmatrix}
 $$</p>
 <p>This output is passed to the next layer.</p>
-<p>As a bonus, here is the PyTorch code. Reached here. TODO: state the meaning of this output.</p>
+<p>As a bonus, here is the PyTorch code. TODO: state the meaning of this output.</p>
 <pre><code>import torch
 import math
 K = torch.tensor([
@@ -1692,17 +1692,36 @@ positions. With a single attention head, averaging inhibits this.</p>
     \mathrm{Concat}(\mathrm{head_1}, &hellip;, \mathrm{head_h})W^O \\
     \text{where}~\mathrm{head_i} = \mathrm{Attention}(QW^Q_i, KW^K_i, VW^V_i)
 $$</p>
+<blockquote class="commentary"><p><span class="commentary-label">Commentary</span></p>
+<p>It means we concatenate the result of different heads and matrix multiply by Wo.</p>
+<p>Let&rsquo;s say we had head1 = [1, 2], head2 = [3, 4].</p>
+<p>We concatenate them. concat = [1, 2, 3, 4]</p>
+<p>Just like Wq etc in the attention formula, Wo is a weight matrix learnt during training.</p>
+<p>Let&rsquo;s pretend it&rsquo;s [[3], [3], [3], [3]]  here.</p>
+<p>So we do  [1, 2, 3, 4] @ [[3], [3], [3], [3]] = [30]</p>
+</blockquote>
 <p>Where the projections are parameter matrices $W^Q_i \in
 \mathbb{R}^{d_{\text{model}} \times d_k}$, $W^K_i \in
 \mathbb{R}^{d_{\text{model}} \times d_k}$, $W^V_i \in
 \mathbb{R}^{d_{\text{model}} \times d_v}$ and $W^O \in
 \mathbb{R}^{hd_v \times d_{\text{model}}}$.</p>
+<blockquote class="commentary"><p><span class="commentary-label">Commentary</span></p>
+<p>$W^O \in \mathbb{R}^{h d_v \times d_{model}}$</p>
+<p>$h$ - Number of attention heads</p>
+<p>$d_v$ - Dimension of each head’s value vector</p>
+<p>$d_{model}$ - Dimension of the model&rsquo;s embedding size</p>
+</blockquote>
 <p>In this work we employ $h=8$ parallel attention layers, or
-heads. For each of these we use $d_k=d_v=d_{\text{model}}/h=64$. Due
+heads. For each of these we use $d_k=d_v=d_{\text{model}}/h=64$. &hellip;</p>
+<blockquote class="commentary"><p><span class="commentary-label">Commentary</span></p>
+<p>$d_{model}$ is 512 above. </p>
+</blockquote>
+<p>&hellip; Due
 to the reduced dimension of each head, the total computational cost
 is similar to that of single-head attention with full
 dimensionality.</p>
 <blockquote class="commentary"><p><span class="commentary-label">Commentary</span></p>
+<p>Meaning the computation for a vector of dimension 512 on a single head is the same for 8 heads if we reduce the dimension of each head to 64. TODO: Explain the attention formulation why this holds true.</p>
 </blockquote>
 <pre><code class="language-python">class MultiHeadedAttention(nn.Module):
     def __init__(self, h, d_model, dropout=0.1):
