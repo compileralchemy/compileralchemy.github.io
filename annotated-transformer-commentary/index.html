@@ -1043,6 +1043,7 @@ which is passed to the next layer.</p>
 <p>Self-attention, sometimes called intra-attention is an attention
 mechanism relating different positions of a single sequence in order
 to compute a representation of the sequence. &hellip;</p>
+<p><span id="attention-explanation"></span></p>
 <blockquote class="commentary"><p><span class="commentary-label">Commentary</span></p>
 <p>Since we covered the representation part but did not explain exactly how the attention score is calculated, let&rsquo;s do so now.
 For this example we are using the phrase &ldquo;I visited Mauritius&rdquo; with vectors <code>[1,2] [1, 3] [1, 4]</code></p>
@@ -1564,6 +1565,13 @@ prevent positions from attending to subsequent positions.  This
 masking, combined with fact that the output embeddings are offset by
 one position, ensures that the predictions for position $i$ can
 depend only on the known outputs at positions less than $i$.</p>
+<blockquote class="commentary"><p><span class="commentary-label">Commentary</span></p>
+<pre><code>token  token  token token  token  token  token
+1      2      3     i      i+1    i+2    i+3
+[   past tokens   ] [ now] [  masked tokens  ]
+</code></pre>
+<p>Tokens are masked in decoder training to prevent &lsquo;cheating&rsquo;</p>
+</blockquote>
 <pre><code class="language-python">def subsequent_mask(size):
     &quot;Mask out subsequent positions.&quot;
     attn_shape = (1, size, size)
@@ -1611,6 +1619,9 @@ show_example(example_mask)
 
 </code></pre>
 <h3>Attention</h3>
+<blockquote class="commentary"><p><span class="commentary-label">Commentary</span></p>
+<p>To view the explanation about attention, please see <a href="#attention-explanation">above</a>.</p>
+</blockquote>
 <p>An attention function can be described as mapping a query and a set
 of key-value pairs to an output, where the query, keys, values, and
 output are all vectors.  The output is computed as a weighted sum of
@@ -1678,7 +1689,7 @@ positions. With a single attention head, averaging inhibits this.</p>
 </blockquote>
 <p>$$
 \mathrm{MultiHead}(Q, K, V) =
-    \mathrm{Concat}(\mathrm{head_1}, &hellip;, \mathrm{head_h})W^O \
+    \mathrm{Concat}(\mathrm{head_1}, &hellip;, \mathrm{head_h})W^O \\
     \text{where}~\mathrm{head_i} = \mathrm{Attention}(QW^Q_i, KW^K_i, VW^V_i)
 $$</p>
 <p>Where the projections are parameter matrices $W^Q_i \in
@@ -1691,6 +1702,8 @@ heads. For each of these we use $d_k=d_v=d_{\text{model}}/h=64$. Due
 to the reduced dimension of each head, the total computational cost
 is similar to that of single-head attention with full
 dimensionality.</p>
+<blockquote class="commentary"><p><span class="commentary-label">Commentary</span></p>
+</blockquote>
 <pre><code class="language-python">class MultiHeadedAttention(nn.Module):
     def __init__(self, h, d_model, dropout=0.1):
         &quot;Take in model size and number of heads.&quot;
