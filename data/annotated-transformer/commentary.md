@@ -786,32 +786,37 @@ respectively.
 >     input
 >     |
 >     v
->     input embedding  # converted to embeddings
+>     input embedding  # converted each token into a vector of numbers
 >     |
 >     V
 >     position embedding -   # position information added
+>         |               |  #   1st word, 2nd word etc
 >         |               |
 >     -----------         |
 >     |    |    |         |
 >     V    v    V         |
->     head head head      |  # output from attention step (head)
->     |    |    |         |
+>     head head head      |  # each attention head looks at relationships
+>     |    |    |         |  #   between tokens for a different feature
 >     -----------         |
 >         |               |
->         Add & Norm ------  # Add: Original + output from attention result
+>         Add & Norm ------  # Add: Input to attention block + output
+>         |                  #   from attention result
 >         |                  # Normalization: Stabilize the numbers to that 
 >         |                  #   we can operate on them easily
 >         |
 >         |---------------
 >         |               |
 >         Feed forward    |  # Converts matrix dimension to 2048 from 512 and 
->                         |  #   to 512
+>         |               |  #   to 512
+>         |               |  #   This lets the model transform and enrich
+>         |               |  #   the information learned by attention.
 >         |               |
 >         Add & Norm -----
 >         |
 >
 > The linear layer adds a score to the embeddings and softmax converts the score into
-> probabilities
+> probabilities. The left side is the encoder and the right side the decoder. 
+> We can see that the decoder, as described previously takes the inputs and current outputs and inputs.
 
 ## Encoder and Decoder Stacks
 
@@ -826,6 +831,14 @@ def clones(module, N):
 
 
 ```
+
+> **Commentary:**
+>
+> **nn.ModuleList**: Adding layers so that PyTorch can track it.
+>
+> Since we need to have 6 identical layers, they named the function clones. If you are
+> not famililar with Python, deepcopy creates a new object. Only copying an object can
+> leave you with unintended effects like updating one object updates another.
 
 ```python
 class Encoder(nn.Module):
@@ -845,11 +858,25 @@ class Encoder(nn.Module):
 
 ```
 
+> **Commentary:**
+>
+> **[LayerNorm](https://docs.pytorch.org/docs/2.12/generated/torch.nn.LayerNorm.html)**: Applies Layer Normalization over a mini-batch of inputs.
 
 We employ a residual connection
 [(cite)](https://arxiv.org/abs/1512.03385) around each of the two
 sub-layers, followed by layer normalization
 [(cite)](https://arxiv.org/abs/1607.06450).
+
+> **Commentary:**
+>
+> Let's say this is the output of a layer
+> $$
+> \text{output} = x + F(x)
+> $$
+>
+> x, the input is called the **residual connection**. The output is not only a transformation of the input, but, also includes the input. 
+> This is the idea behind the add & norm layer.
+
 
 ```python
 class LayerNorm(nn.Module):
@@ -876,6 +903,36 @@ implemented by the sub-layer itself.  We apply dropout
 [(cite)](http://jmlr.org/papers/v15/srivastava14a.html) to the
 output of each sub-layer, before it is added to the sub-layer input
 and normalized.
+
+> **Commentary:**
+>
+> During training, a neural network can become too dependent on specific neurons (like "memorizing" patterns instead of learning general rules). **Dropout** prevents this by randomly turning off neurons during training.
+>
+> Before we continue, let's see what this point in circle symbol means.
+>
+> $( a \odot b )$ means element-wise multiplication. $
+[2,3] \odot [10,100] = [2 \times 10,, 3 \times 100] = [20,300]
+$
+>
+> Dropout has this formula $h' = m \odot h$ where $m$ is a mask. A mask works like this. If you have [5, 10] and apply a mask of [1, 0]  you have [5, 0]. 
+>
+> $$
+> m \odot h = [1 \cdot 5,; 0 \cdot 10] = [5, 0]
+> $$
+>
+> This is great if we want to drop neurons but, the values tend to become smaller, something we fix by scaling.
+>
+> $$
+> \tilde{h} = \frac{m \odot h}{1 - p}
+> $$
+>
+> p is the probability of dropping a neuron and 1 - p is the probability or not dropping a neuron i.e. the probability that the neuron stays on.
+> If we have a 50% chance of dropping a neuron, and we have [5, 0]. Scaling will give [5, 0] / 0.5 -> [10, 0].
+>
+> $$
+> \tilde{h} = \frac{[5, 0]}{0.5} = [10, 0]
+> $$
+
 
 To facilitate these residual connections, all sub-layers in the
 model, as well as the embedding layers, produce outputs of dimension
