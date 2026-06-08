@@ -1428,6 +1428,12 @@ leave you with unintended effects like updating one object updates another.</p>
 sub-layers, followed by layer normalization
 <a href="https://arxiv.org/abs/1607.06450">(cite)</a>.</p>
 <blockquote class="commentary"><p><span class="commentary-label">Commentary</span></p>
+<p>Let&rsquo;s say this is the output of a layer
+$$
+\text{output} = x + F(x)
+$$</p>
+<p>x, the input is called the <strong>residual connection</strong>. The output is not only a transformation of the input, but, also includes the input. 
+This is the idea behind the add &amp; norm layer.</p>
 </blockquote>
 <pre><code class="language-python">class LayerNorm(nn.Module):
     &quot;Construct a layernorm module (See citation for details).&quot;
@@ -1451,6 +1457,26 @@ implemented by the sub-layer itself.  We apply dropout
 <a href="http://jmlr.org/papers/v15/srivastava14a.html">(cite)</a> to the
 output of each sub-layer, before it is added to the sub-layer input
 and normalized.</p>
+<blockquote class="commentary"><p><span class="commentary-label">Commentary</span></p>
+<p>During training, a neural network can become too dependent on specific neurons (like &ldquo;memorizing&rdquo; patterns instead of learning general rules). <strong>Dropout</strong> prevents this by randomly turning off neurons during training.</p>
+<p>Before we continue, let&rsquo;s see what this point in circle symbol means.</p>
+<p>$( a \odot b )$ means element-wise multiplication. $
+[2,3] \odot [10,100] = [2 \times 10,, 3 \times 100] = [20,300]
+$</p>
+<p>Dropout has this formula $h&rsquo; = m \odot h$ where $m$ is a mask. A mask works like this. If you have [5, 10] and apply a mask of [1, 0]  you have [5, 0]. </p>
+<p>$$
+m \odot h = [1 \cdot 5,; 0 \cdot 10] = [5, 0]
+$$</p>
+<p>This is great if we want to drop neurons but, the values tend to become smaller, something we fix by scaling.</p>
+<p>$$
+\tilde{h} = \frac{m \odot h}{1 - p}
+$$</p>
+<p>p is the probability of dropping a neuron and 1 - p is the probability or not dropping a neuron i.e. the probability that the neuron stays on.
+If we have a 50% chance of dropping a neuron, and we have [5, 0]. Scaling will give [5, 0] / 0.5 -&gt; [10, 0].</p>
+<p>$$
+\tilde{h} = \frac{[5, 0]}{0.5} = [10, 0]
+$$</p>
+</blockquote>
 <p>To facilitate these residual connections, all sub-layers in the
 model, as well as the embedding layers, produce outputs of dimension
 $d_{\text{model}}=512$.</p>
