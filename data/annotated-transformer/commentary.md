@@ -786,32 +786,37 @@ respectively.
 >     input
 >     |
 >     v
->     input embedding  # converted to embeddings
+>     input embedding  # converted each token into a vector of numbers
 >     |
 >     V
 >     position embedding -   # position information added
+>         |               |  #   1st word, 2nd word etc
 >         |               |
 >     -----------         |
 >     |    |    |         |
 >     V    v    V         |
->     head head head      |  # output from attention step (head)
->     |    |    |         |
+>     head head head      |  # each attention head looks at relationships
+>     |    |    |         |  #   between tokens for a different feature
 >     -----------         |
 >         |               |
->         Add & Norm ------  # Add: Original + output from attention result
+>         Add & Norm ------  # Add: Input to attention block + output
+>         |                  #   from attention result
 >         |                  # Normalization: Stabilize the numbers to that 
 >         |                  #   we can operate on them easily
 >         |
 >         |---------------
 >         |               |
 >         Feed forward    |  # Converts matrix dimension to 2048 from 512 and 
->                         |  #   to 512
+>         |               |  #   to 512
+>         |               |  #   This lets the model transform and enrich
+>         |               |  #   the information learned by attention.
 >         |               |
 >         Add & Norm -----
 >         |
 >
 > The linear layer adds a score to the embeddings and softmax converts the score into
-> probabilities
+> probabilities. The left side is the encoder and the right side the decoder. 
+> We can see that the decoder, as described previously takes the inputs and current outputs and inputs.
 
 ## Encoder and Decoder Stacks
 
@@ -826,6 +831,14 @@ def clones(module, N):
 
 
 ```
+
+> **Commentary:**
+>
+> **nn.ModuleList**: Adding layers so that PyTorch can track it.
+>
+> Since we need to have 6 identical layers, they named the function clones. If you are
+> not famililar with Python, deepcopy creates a new object. Only copying an object can
+> leave you with unintended effects like updating one object updates another.
 
 ```python
 class Encoder(nn.Module):
@@ -845,11 +858,18 @@ class Encoder(nn.Module):
 
 ```
 
+> **Commentary:**
+>
+> **[LayerNorm](https://docs.pytorch.org/docs/2.12/generated/torch.nn.LayerNorm.html)**: Applies Layer Normalization over a mini-batch of inputs.
 
 We employ a residual connection
 [(cite)](https://arxiv.org/abs/1512.03385) around each of the two
 sub-layers, followed by layer normalization
 [(cite)](https://arxiv.org/abs/1607.06450).
+
+> **Commentary:**
+>
+> 
 
 ```python
 class LayerNorm(nn.Module):
