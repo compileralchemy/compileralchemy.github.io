@@ -178,44 +178,44 @@ gtag('config', 'UA-161612035-1');
 <body class="">
 
     <nav class="navbar is-white" role="navigation" aria-label="main navigation">
-        <div class="container">
-            <div class="navbar-brand">
-                <a class="navbar-item" href="../">
-                    <img src="../assets/COMP_ALC.png" alt="Compiler Alchemy" style="height: 40px;">
-                </a>
-                <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navMenu">
-                    <span aria-hidden="true"></span>
-                    <span aria-hidden="true"></span>
-                    <span aria-hidden="true"></span>
-                    <span aria-hidden="true"></span>
-                </a>
-            </div>
-            <div id="navMenu" class="navbar-menu">
-                <div class="navbar-end">
-                    <a class="navbar-item " href="../blog/">Blog</a>
-                    <a class="navbar-item " href="../articles/">Luminotes</a>
-                    <a class="navbar-item " href="../books/">Books</a>
-                    <a class="navbar-item " href="../talks/">Talks</a>
-                    <a class="navbar-item " href="../opensource/">OpenSource</a>
-                    <a class="navbar-item active" href="../journey/">Journey</a>
-                    <a class="navbar-item " href="../papers/">Papers</a>
-                </div>
+    <div class="container">
+        <div class="navbar-brand">
+            <a class="navbar-item" href="../">
+                <img src="../assets/COMP_ALC.png" alt="Compiler Alchemy" style="height: 40px;">
+            </a>
+            <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navMenu">
+                <span aria-hidden="true"></span>
+                <span aria-hidden="true"></span>
+                <span aria-hidden="true"></span>
+                <span aria-hidden="true"></span>
+            </a>
+        </div>
+        <div id="navMenu" class="navbar-menu">
+            <div class="navbar-end">
+                <a class="navbar-item " href="../blog/">Blog</a>
+                <a class="navbar-item " href="../articles/">Luminotes</a>
+                <a class="navbar-item " href="../books/">Books</a>
+                <a class="navbar-item " href="../talks/">Talks</a>
+                <a class="navbar-item " href="../opensource/">OpenSource</a>
+                <a class="navbar-item active" href="../journey/">Journey</a>
+                <a class="navbar-item " href="../papers/">Papers</a>
             </div>
         </div>
-    </nav>
+    </div>
+</nav>
 
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            const burger = document.querySelector('.navbar-burger');
-            const menu = document.querySelector('#navMenu');
-            if (burger && menu) {
-                burger.addEventListener('click', () => {
-                    burger.classList.toggle('is-active');
-                    menu.classList.toggle('is-active');
-                });
-            }
-        });
-    </script>
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const burger = document.querySelector('.navbar-burger');
+        const menu = document.querySelector('#navMenu');
+        if (burger && menu) {
+            burger.addEventListener('click', () => {
+                burger.classList.toggle('is-active');
+                menu.classList.toggle('is-active');
+            });
+        }
+    });
+</script>
 
     
 
