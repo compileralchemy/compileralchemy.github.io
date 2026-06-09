@@ -1,0 +1,7 @@
+title: Ai is just adaptively automating automation
+---
+Ai is just adaptively automating automation. It's the meta-automation of tasks. At its core, it's just dealing with patterns and their recognition which is another word for learning.
+
+Since any form of input, text or image, is stored as data, a program trains until it has a general idea of what it is looking for. Any new input is checked against a general pattern. The original input can also be pairs of different types of data. As the training goes on, the program can isolate what part/s of each type of input data correspond. It can be used to check if a new pair of data is valid or, given one pair of data, it can find the other pair. It's how DALL-E works (text and image pairs). And DALL-E's algorithm can also be used for more types of pair inputs. 
+
+It is a shame that the Ai field's aim is to imitate the human brain. It's just some copy-pasta. McCulloch-Pitts neurons are the result of a neurophysiologist and logician working together to develop a mathematical model based on the workings of the brain. Later literature had to weed out and sand off a lot of biological references and elements to get workable, software-friendly models. If the aim is to develop context-aware, resilient, autonomous, and wishes-complying software, there can be more ways to do that. But, if the aim is to have human-like workers which can work 24/7, then we are heading towards a profit-first and interest-centered dreamland.

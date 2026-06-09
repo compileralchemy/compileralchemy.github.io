@@ -1,0 +1,11 @@
+title: Freelancing Principles
+---
+Freelancing is different from office work. It needs rigor and professionalism. It might be the same work you do at work but more is expected from you as you don't have the company or co-workers to cover for you. Here are some basics for office workers.
+
+The first thing is to give updates. It is crucial for people involved to know where you reached, they don't wait until deadline day to discover that you did not do anything. Even if you delay due to legitimate reasons, it's a bad surprise. Giving continuous updates also helps tune expectations. It also builds a case for paying you more and give them an idea of what the work is really about. It reduces a lot of anxiety when people know a project is alive. Would people want to deal with someone again if the person has been giving them weeks of anxiety?
+
+The second thing is 1. to deliver and as a bonus 2. deliver well. If you don't depend on freelancing for a living, you'll consider 1. only. That's because your reputation and kitchen do not depend on the work done. Freelancing requires you to be conscious of people after you. It might be a random someone from a different part of the world. So, ensure the docs are great and standards adopted are sensible. It also means going above what they asked if you see they missed something interesting that might help them. You need to give them the sweetness of doing business with you once again. If you depend on office work and this is a side gig, you probably won't see the logic of it as you cannot do that in office work, you'll burn out as office work is continuous work. Freelancing is often a one-time affair.
+
+The third thing is to please the client. If they insist on something or a convention or a way of doing it or some diligence, please do it. You can suggest alternatives, but, if they decline, please comply. Freelancers are oftentimes a piece of puzzle, if the piece does not fit, well this is frustrating. The client carries the burden of the app before and after you. They sometimes craft a setting that allows them to deal with the app. They won't change their setting with each new freelancer.
+
+The fourth thing is speed. Ponder if you can do it. While the industry is still doing agile and planning and pokering around, pro teams of freelancers take down projects in swift moves.

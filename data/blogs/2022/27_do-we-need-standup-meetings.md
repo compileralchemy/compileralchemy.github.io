@@ -1,0 +1,9 @@
+title: Do we need standup meetings?
+---
+As long as i take projects from non-IT people, there are no stand-up meetings. But, when you are in relationship with IT companies, code more specifically, you have to attend stand-up meets. There are times when i worked remotely for some companies where we needed absolutely no meet for some 3 weeks. That was because i knew the area they took me in for as good as the folks over there and also because the tasks were pretty well defined.
+
+Then there were companies who did meets which went for over an hour. It was really killing since i knew we did not really need those. I finally managed to get rid of those. The way it works is that when you know you are going to meet, you work in a kind of irresponsible way, knowing that you will meet to clear things up. I have always contributed to OpenSource and i can say that the discipline and standard it has coupled with normal text-only communications ensures that meets are not necessary, save to discuss ideas and direction. The only difference is that OpenSource does not have a deadline normally but even then i managed to apply the principles of OS contributions to projects with deadlines.
+
+I was pleasantly surprised when i read Muhammad Hasan Khan (a current Google engineer) 's post on meets. He termed them as distractions when there are too much and that a 1-1 meet once a week with the manager is enough and that working remotely cut off the physical meet ceremonies. Like sometimes you don't need to be a X master to be able to have an eye for pragmatism.
+
+I can only say that dear X masters, in addition with your Y certifications, please contribute to OpenSource. I don't say it's a magic pill but it does help a lot to understand how collaboration between people who don't know each other, working in different timezones helps produce the world's best softwares.

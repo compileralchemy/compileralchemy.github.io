@@ -355,86 +355,79 @@ def gen_diaries():
     )
 
 
+def parse_blog_md(filepath):
+    """Parse a blog markdown file: title: <title>\n---\n<body>"""
+    with open(filepath, encoding="utf-8") as f:
+        text = f.read()
+    parts = text.split("---", 1)
+    if len(parts) != 2:
+        return None, None
+    header = parts[0].strip()
+    body = parts[1].strip()
+    if header.startswith("title:"):
+        title = header[6:].strip()
+    else:
+        return None, None
+    return title, body
+
+
 def gen_blog():
-    data = [
-        "./data/diaries/2025.toml",
-        "./data/diaries/2024.toml",
-        "./data/diaries/2023.toml",
-        "./data/diaries/2022.toml",
-        "./data/diaries/2021.toml",
-        "./data/diaries/2020.toml",
-        "./data/diaries/2019.toml",
-    ]
+    blogs_dir = "./data/blogs/"
     try:
         os.mkdir(os.path.join(settings.OUTPUT_FOLDER, "blog"))
     except Exception as e:
         pass
-    # Calculate total posts first for absolute numbering
-    total_posts = 0
-    for source in data:
-        if os.path.exists(source):
-            toml_data = toml.load(source)
-            total_posts += len(toml_data["elements"])
 
+    # Discover all blog posts from data/blogs/<year>/<seq>_<slug>.md
+    all_posts = []
+    if os.path.exists(blogs_dir):
+        for year_str in sorted(os.listdir(blogs_dir), reverse=True):
+            year_dir = os.path.join(blogs_dir, year_str)
+            if not os.path.isdir(year_dir):
+                continue
+            try:
+                year = int(year_str)
+            except ValueError:
+                continue
+            year_posts = []
+            for fn in os.listdir(year_dir):
+                if not fn.endswith(".md"):
+                    continue
+                name = fn[:-3]
+                parts = name.split("_", 1)
+                if len(parts) != 2:
+                    continue
+                seq_str, slug = parts
+                try:
+                    seq = int(seq_str)
+                except ValueError:
+                    continue
+                filepath = os.path.join(year_dir, fn)
+                title, body = parse_blog_md(filepath)
+                if title is None:
+                    continue
+                year_posts.append((seq, slug, title, body))
+            year_posts.sort(key=lambda x: x[0], reverse=True)
+            for seq, slug, title, body in year_posts:
+                all_posts.append((year, slug, title, body))
+
+    # all_posts: newest year first, oldest-first within each year
+    total_posts = len(all_posts)
     title_slug = []
     current_post_num = total_posts
-    for source in data:
-        if not os.path.exists(source):
-            continue
-        toml_data = toml.load(source)
-        current_year = extract_year(source)
+    for year, slug, title, body in all_posts:
+        title_slug.append(
+            {
+                "title": title,
+                "slug": slug,
+                "year": year,
+                "num": current_post_num,
+            }
+        )
+        current_post_num -= 1
 
-        # Process elements in reverse (newest in file first)
-        # since files are already ordered 2025 -> 2019
-        for i, elem in enumerate(toml_data["elements"][::-1]):
-            title = elem["title"]
-            slug = (
-                title.casefold()
-                .replace(" ", "-")
-                .replace("/", "")
-                .replace("'", "")
-                .replace("?", "")
-                .replace("---", "-")
-                .replace(":", "")
-                .replace(",", "")
-                .replace("\u200b", "")
-                .replace("\u200c", "")
-            )
-            content_string = elem["body"]
-            content = md_to_html(elem["body"])
-
-            # Store the absolute article number
-            title_slug.append(
-                {
-                    "title": title,
-                    "slug": slug,
-                    "year": current_year,
-                    "num": current_post_num,
-                }
-            )
-            current_post_num -= 1
-
-    # Second pass: generate posts with prev/next links
-    # Pre-load all post bodies for efficiency
-    post_bodies = {}
-    for source in data:
-        if os.path.exists(source):
-            toml_data = toml.load(source)
-            for elem in toml_data["elements"]:
-                slug = (
-                    elem["title"]
-                    .casefold()
-                    .replace(" ", "-")
-                    .replace("/", "")
-                    .replace("'", "")
-                    .replace("?", "")
-                    .replace("---", "-")
-                    .replace(":", "")
-                    .replace(",", "")
-                    .replace("\u200b", "")
-                    .replace("\u200c", "")
-                )
-                post_bodies[slug] = elem["body"]
+    # Pre-load post bodies
+    post_bodies = {slug: body for _, slug, _, body in all_posts}
 
     for idx, post in enumerate(title_slug):
         slug = post["slug"]
@@ -732,32 +725,20 @@ def gen_seo():
             urls.append("/diaries/silicon-valley/")
 
     # Blog posts
-    blog_data = [
-        "./data/diaries/2025.toml",
-        "./data/diaries/2024.toml",
-        "./data/diaries/2023.toml",
-        "./data/diaries/2022.toml",
-        "./data/diaries/2021.toml",
-        "./data/diaries/2020.toml",
-        "./data/diaries/2019.toml",
-    ]
-    for source in blog_data:
-        if os.path.exists(source):
-            toml_data = toml.load(source)
-            for elem in toml_data["elements"]:
-                title = elem["title"]
-                slug = (
-                    title.casefold()
-                    .replace(" ", "-")
-                    .replace("/", "")
-                    .replace("'", "")
-                    .replace("?", "")
-                    .replace("---", "-")
-                    .replace(":", "")
-                    .replace(",", "")
-                    .replace("\u200b", "")
-                    .replace("\u200c", "")
-                )
+    blogs_dir = "./data/blogs/"
+    if os.path.exists(blogs_dir):
+        for year_str in os.listdir(blogs_dir):
+            year_dir = os.path.join(blogs_dir, year_str)
+            if not os.path.isdir(year_dir):
+                continue
+            for fn in os.listdir(year_dir):
+                if not fn.endswith(".md"):
+                    continue
+                name = fn[:-3]
+                parts = name.split("_", 1)
+                if len(parts) != 2:
+                    continue
+                slug = parts[1]
                 urls.append(f"/blog/{slug}/")
 
     # robots.txt

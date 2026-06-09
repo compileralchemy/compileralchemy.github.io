@@ -1,0 +1,15 @@
+title: Elements of a good educational system
+---
+\"I feel that there's a subtle question that is not answered though - what are the characteristics of a good educational system and why?\" Well, do we need education or do we need an educational system? When there is mass production, a natural occurrence is rejects. Now, when mass-producing animate products, the trauma is upon life.
+
+Since education is done through a system that everyone has to pass through, and that too for a decade, it ensures that everybody has the same treatment for a long time. This contrasts with the diversity of human profiles. Unfortunately, people can't be molded into perfect, finished robots as they won't give up part of their profile to fit the system's vision. Many people just switch off their receiving end and cruise through the system without absorbing anything.
+
+With the system in place, it has become like a robust funnel. Whatever ill there is in the society, it ends up through school friends in a person's life. There is no need to wait for people selling hazardous products on the streets to initiate students. Friends and regrettably now, teachers sell health-damaging products on school premises. Even if a student only goes to school and back home, with no additional trips, it is sufficient to lead a broken life. It is happening around us. This is why today it's a shivering statement to put the educational system as one of society's worst ills. We hope it's not the worst evil as it's mandatory, compound, and severely damaging.
+
+Is it good to keep dogs in cages with some food during the day and release them at night? I don't know about dogs but surely I think that keeping human beings in cages from 08:00 to 14:30 with some food and then back into the cages again until dusk is bound to routinely erupt. Maybe some people like it but not all. Man is a social, physical creature that ensures its survival by moving around. The system of forcing everyone to sit on a chair for hours on end is bound to generate hate and dissidence.
+
+Educational systems view books as a fundamental teaching tool. It has to be the focal laughingstock of contemporary pedagogy to feed books to children as early as 6 years of age. Man is intelligent, curious, and understands quickly. But, forcing pages down the throats of youngsters shows the superimposition of an adult mind on the workings of a nascent organism.
+
+An educational system, if there is one, should serve the needs of society. With the current one, society bends to the whims of the system. Responsible parties plan their daily schedule and yearly plans according to an inherited system that obliterates the individual and was not conceived to help society achieve its goals.
+
+We need education, but not an indiscriminate educational system. There is a mandatory part of education that should be imparted. Education should also be centered around man, not the movement of matter. Home is the first school. We should cater according to desire. And we surely don't need an overdose of education.

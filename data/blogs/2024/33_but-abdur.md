@@ -1,0 +1,15 @@
+title: But Abdur
+---
+\"But Abdur, the French educational system is a great one.\" Yes, indeed, it's a great one. For whom? For France, of course. At the end of the cycle, it seems, and I hope I am wrong, that students in colonies and former colonies end up like guided minions, aligning their dishes with Paris, ready to receive, with eagerness, whatever their overlords over there will beam.
+
+Make no mistakes dear friends, I eat tartine in the morning: sliced baguette, with butter, jam, and even marmelade. I enjoy all sorts of coffee and even special cheese at the end of meals. I speak French, needless to say. But, this does not mean that I have an internalized over-glorification of France in my mind. I don't see la métropole as the epitome of perfection at each turn of the conversation.
+
+My French friends even refer to the French educational system as \"éducation nationale pourrie\". But, people from outside France see it as the world's beacon. Injected with France's gloriole and dependent on a specific setting, they cannot fathom further studies away from the hive. 
+
+Oftentimes I see our neighbors in Reunion comment on the uncultured Mauritians on the net. As the French system teaches art and biased, polarised philosophy, brainwashed products look down upon other people. People can study silly topics for long enough, develop respect for people producing silliness, and listen to people certifying silliness as grand, it is their wish. As for people who don't worship crap, they congratulate themselves on the lack of it in their lives.
+
+As a way to dissolve surrounding societal structures, students of the system are taught l'analyse critique, to rethink, and question assumptions. A critical and inquisitive mind should also be used on France, its beloved educational system, how it maintains itself as one of the world's top weapon exporters, how it still derives its power and influence, and the horrifying, despicable, shamelessly bloody, forever stained history behind gifting this educational system to various parts of the world.
+
+Once I proposed to include the French flag in the French README of the Python docs. The main maintainer did not want to. He said that French is the language of people speaking French, around the globe and not the exclusivity of France. It's good to see people maintaining an inclusive spirit and putting everyone on the same pedestal. People in the French system outside of France in contrast see it as their duty-bound mission to roll out their tongues as the red carpet on which French icons tread as haughty aristocrats.
+
+I sincerely hope that regular trips and activities and rigourous standards are not treated as grounds to preach with pride. Educational systems around the world are wrecking humanity, the French one included. They are failing in the self-assigned role of upbringing. They are at best, very dutiful in producing moulded workers. They don't care about the collateral damage to the human psyche or desirable human qualities.
