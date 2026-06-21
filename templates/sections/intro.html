@@ -1,47 +1,149 @@
-<section class="hero-section">
-    <div class="container container--narrow has-text-centered">
-        <h1 class="hero-name">Abdur-Rahmaan Janhangeer</h1>
-        <p class="hero-tagline">
-            I help engineering teams build production Python systems
-            that don't fall apart under load.
-        </p>
-        <div class="hero-quote">
-            <p class="hero-quote__text">
-                &ldquo;Thanks for your interest in history&hellip; Best wishes, Don Knuth&rdquo;
+<section class="hero">
+    <div class="hero__grid">
+
+        <div class="hcard hcard--name">
+            <h1 class="hcard__name">Abdur-Rahmaan<br>Janhangeer</h1>
+            <p class="hcard__tagline">
+                I help engineering teams build production Python systems
+                that don't fall apart under load.
             </p>
-            <p class="hero-quote__attr">Donald Knuth</p>
-        </div>
-        <p class="hero-interests">
-            <span>Python backends</span>
-            <span>DB internals</span>
-            <span>OpenSource</span>
-            <span>Agentic Memory</span>
-            <span>ML papers commentary</span>
-        </p>
-        <div style="margin-bottom: 2rem;">
-            {% include "snippets/calendly.html" %}
-        </div>
-    </div>
-
-    <div class="container">
-        <div class="logo-strip">
-            <span class="logo-strip__label">Luminotes read by engineers at</span>
-            <img src="{{ path }}assets/logos/google.svg" alt="Google">
-            <img src="{{ path }}assets/logos/amazon.svg" alt="Amazon">
-            <img src="{{ path }}assets/logos/apple.svg" alt="Apple">
-            <img src="{{ path }}assets/logos/ibm.svg" alt="IBM">
-            <img src="{{ path }}assets/logos/vmware.svg" alt="VMWare">
-            <img src="{{ path }}assets/logos/facebook.svg" alt="Facebook">
-            <img src="{{ path }}assets/logos/dell.svg" alt="Dell">
         </div>
 
-        <div class="hero-meta">
-            <span class="hero-meta-item"><i class="fas fa-map-marker-alt"></i>Mauritius (GMT+4)</span>
-            <span class="hero-meta-item">English &middot; Français &middot; العربية</span>
-            <a href="https://github.com/Abdur-RahmaanJ" aria-label="GitHub"><i class="fab fa-github"></i></a>
-            <a href="https://www.linkedin.com/in/appinv" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
-            <a href="https://twitter.com/osdotsystem" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
-            <a rel="me" href="https://fosstodon.org/@osdotsystem" aria-label="Mastodon"><i class="fab fa-mastodon"></i></a>
+        <div class="hcard hcard--quote">
+            <div>
+                <p class="hcard__quote-label">A note from</p>
+                <p class="hcard__quote-text">
+                    Thanks for your interest in history&hellip; Best wishes, Don Knuth
+                </p>
+            </div>
+            <p class="hcard__quote-attr">
+                <strong>Donald Knuth</strong>
+                author of The Art of Computer Programming
+            </p>
         </div>
+
+        <div class="hcard hcard--focus">
+            <p class="hcard__focus-label">Focus</p>
+            <div class="hcard__aquarium">
+                <div class="hcard__focus-item"><span class="hcard__focus-num">01</span>Python backends</div>
+                <div class="hcard__focus-item"><span class="hcard__focus-num">02</span>DB internals</div>
+                <div class="hcard__focus-item"><span class="hcard__focus-num">03</span>OpenSource</div>
+                <div class="hcard__focus-item"><span class="hcard__focus-num">04</span>Agentic Memory</div>
+                <div class="hcard__focus-item"><span class="hcard__focus-num">05</span>ML papers commentary</div>
+            </div>
+        </div>
+
+        <a class="hcard hcard--cta"
+           href=""
+           onclick="Calendly.initPopupWidget({url: 'https://calendly.com/abdur-rahmaanj'});return false;">
+            <div class="hcard__cta-top">
+                <div class="hcard__cta-cal">
+                    <div class="hcard__cta-cal-top" id="cta-cal-month">JAN</div>
+                    <div class="hcard__cta-cal-num" id="cta-cal-num">1<span id="cta-cal-day">MON</span></div>
+                </div>
+                <div class="hcard__cta-titlewrap">
+                    <p class="hcard__cta-title">Book a call</p>
+                    <p class="hcard__cta-sub">30 min &middot; Google Meet</p>
+                </div>
+            </div>
+            <div class="hcard__cta-bottom">
+                <span class="hcard__cta-avail">
+                    Available this week
+                </span>
+                <span class="hcard__cta-arrow">&rarr;</span>
+            </div>
+        </a>
+        <script>
+        (function() {
+            var months = ['JAN','FEB','MAR','APR','MAY','JUN','JUL','AUG','SEP','OCT','NOV','DEC'];
+            var days = ['SUN','MON','TUE','WED','THU','FRI','SAT'];
+            var now = new Date();
+            var m = document.getElementById('cta-cal-month');
+            var d = document.getElementById('cta-cal-day');
+            var n = document.getElementById('cta-cal-num');
+            if (m) m.textContent = months[now.getMonth()];
+            if (d) d.textContent = days[now.getDay()];
+            if (n) n.firstChild.textContent = now.getDate();
+        })();
+        </script>
+
+        <div class="hcard hcard--logos">
+            <span class="hcard__logos-label"><a href="https://compileralchemy.substack.com">Luminotes</a> read by engineers at</span>
+            <div class="hcard__logos-row">
+                <img src="{{ path }}assets/logos/google.svg" alt="Google">
+                <img src="{{ path }}assets/logos/amazon.svg" alt="Amazon">
+                <img src="{{ path }}assets/logos/apple.svg" alt="Apple">
+                <img src="{{ path }}assets/logos/ibm.svg" alt="IBM">
+                <img src="{{ path }}assets/logos/vmware.svg" alt="VMWare">
+                <img src="{{ path }}assets/logos/facebook.svg" alt="Facebook">
+                <img src="{{ path }}assets/logos/dell.svg" alt="Dell">
+            </div>
+        </div>
+
+        <div class="hcard hcard--foot">
+            <div class="hcard__foot-left">
+                <span class="hcard__clock-wrap">
+                    <svg class="hcard__clock-svg" viewBox="0 0 38 38" aria-label="Mauritius local time">
+                        <circle class="hcard__clock-face" cx="19" cy="19" r="17"></circle>
+                        <line class="hcard__clock-tick hcard__clock-tick--major" x1="19" y1="4" x2="19" y2="7"></line>
+                        <line class="hcard__clock-tick hcard__clock-tick--major" x1="19" y1="31" x2="19" y2="34"></line>
+                        <line class="hcard__clock-tick hcard__clock-tick--major" x1="4" y1="19" x2="7" y2="19"></line>
+                        <line class="hcard__clock-tick hcard__clock-tick--major" x1="31" y1="19" x2="34" y2="19"></line>
+                        <line class="hcard__clock-tick" x1="19" y1="5.5" x2="19" y2="7" transform="rotate(30 19 19)"></line>
+                        <line class="hcard__clock-tick" x1="19" y1="5.5" x2="19" y2="7" transform="rotate(60 19 19)"></line>
+                        <line class="hcard__clock-tick" x1="19" y1="5.5" x2="19" y2="7" transform="rotate(120 19 19)"></line>
+                        <line class="hcard__clock-tick" x1="19" y1="5.5" x2="19" y2="7" transform="rotate(150 19 19)"></line>
+                        <line class="hcard__clock-tick" x1="19" y1="5.5" x2="19" y2="7" transform="rotate(210 19 19)"></line>
+                        <line class="hcard__clock-tick" x1="19" y1="5.5" x2="19" y2="7" transform="rotate(240 19 19)"></line>
+                        <line class="hcard__clock-tick" x1="19" y1="5.5" x2="19" y2="7" transform="rotate(300 19 19)"></line>
+                        <line class="hcard__clock-tick" x1="19" y1="5.5" x2="19" y2="7" transform="rotate(330 19 19)"></line>
+                        <line class="hcard__clock-hour" id="clk-hour" x1="19" y1="19" x2="19" y2="10"></line>
+                        <line class="hcard__clock-minute" id="clk-min" x1="19" y1="19" x2="19" y2="7.5"></line>
+                        <line class="hcard__clock-second" id="clk-sec" x1="19" y1="21" x2="19" y2="6"></line>
+                        <circle class="hcard__clock-center" cx="19" cy="19" r="1.5"></circle>
+                    </svg>
+                    <span class="hcard__clock-label">
+                        <strong>Mauritius</strong>
+                        GMT+4
+                    </span>
+                </span>
+                <span class="hcard__langs" title="English · Français · العربية">
+                    <span class="hcard__lang">🇬🇧</span>
+                    <span class="hcard__lang">🇫🇷</span>
+                    <span class="hcard__lang">🇲🇺</span>
+                    <span class="hcard__lang">🇸🇦</span>
+                </span>
+            </div>
+            <div class="hcard__foot-right">
+                <a href="https://github.com/Abdur-RahmaanJ" aria-label="GitHub"><i class="fab fa-github"></i></a>
+                <a href="https://www.linkedin.com/in/appinv" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+                <a href="https://twitter.com/osdotsystem" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                <a rel="me" href="https://fosstodon.org/@osdotsystem" aria-label="Mastodon"><i class="fab fa-mastodon"></i></a>
+            </div>
+        </div>
+        <script>
+        (function() {
+            var hour = document.getElementById('clk-hour');
+            var min  = document.getElementById('clk-min');
+            var sec  = document.getElementById('clk-sec');
+            function tick() {
+                var now = new Date();
+                var utc = now.getTime() + (now.getTimezoneOffset() * 60000);
+                var mu = new Date(utc + (4 * 3600000));
+                var h = mu.getHours() % 12;
+                var m = mu.getMinutes();
+                var s = mu.getSeconds();
+                var ha = (h * 30) + (m * 0.5);
+                var ma = (m * 6) + (s * 0.1);
+                var sa = s * 6;
+                hour.setAttribute('transform', 'rotate(' + ha + ' 19 19)');
+                min.setAttribute('transform',  'rotate(' + ma + ' 19 19)');
+                sec.setAttribute('transform',  'rotate(' + sa + ' 19 19)');
+            }
+            tick();
+            setInterval(tick, 1000);
+        })();
+        </script>
+
     </div>
 </section>

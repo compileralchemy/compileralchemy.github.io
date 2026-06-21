@@ -19,10 +19,17 @@
                     </div>
                     {%endfor%}
                 </div>
-                <div class="swiper-pagination"></div>
-                <div class="swiper-button-next"></div>
-                <div class="swiper-button-prev"></div>
             </div>
+
+            <div class="testimonials-nav">
+                <button class="tnav-btn tnav-prev" aria-label="Previous testimonial"><i class="fas fa-arrow-left"></i></button>
+                <button class="tnav-btn tnav-next" aria-label="Next testimonial"><i class="fas fa-arrow-right"></i></button>
+            </div>
+
+            <div class="testimonials-pagination">
+                <div class="swiper-pagination"></div>
+            </div>
+        </div>
         </div>
 
         <script>
@@ -30,8 +37,17 @@
             autoHeight: true,
             spaceBetween: 30,
             hashNavigation: { watchState: true },
-            pagination: { el: '.swiper-pagination', clickable: true },
-            navigation: { nextEl: '.swiper-button-next', prevEl: '.swiper-button-prev' },
+            pagination: {
+                el: '.swiper-pagination',
+                clickable: true,
+                renderBullet: function(index, className) {
+                    return '<span class="' + className + '"></span>';
+                },
+            },
+            navigation: {
+                nextEl: '.tnav-next',
+                prevEl: '.tnav-prev',
+            },
         });
         </script>
     </div>
