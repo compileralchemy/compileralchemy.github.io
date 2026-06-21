@@ -313,6 +313,11 @@ class DummyScheduler:
 
 > My comments are blockquoted. The main text is all from the paper itself.
 
+> **Commentary:**
+>
+> The above is an example of how the Harvard NLP comment is, and this is how my (Abdur-Rahmaan)
+> comment looks like.
+
 
 The goal of reducing sequential computation also forms the
 foundation of the Extended Neural GPU, ByteNet and ConvS2S, all of

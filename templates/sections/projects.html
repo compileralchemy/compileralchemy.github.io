@@ -1,69 +1,43 @@
-<div class="section" id="open-source" style="background-color: {{ section_bg('projects') }};">
-  <div class="container">
-    <div class="notification " style="background-color: {{ section_bg('projects') }};">
-      <div class="notification has-text-centered" style="background-color: {{ section_bg('projects') }};">
-        <br>
-        <p class="has-text-centered ">
-          <span class="title has-background-white-ter  has-text-centered" style="width: 50px; height:50px; padding: 20px; border-radius: 50%;">
-            🏗️
-          </span>
-        </p><br>
-        <p class="title"><a href="#open-source" class="no-link-dec">Open Source Projects</a></p>
-        <p class="subtitle">Tools, libraries, and frameworks</p>
-      </div>
-    </div>
-    <div class="" style="background-color: {{ section_bg('projects') }};">
-      <table class="table" style="background-color: {{ section_bg('projects') }};">
-  <thead>
-    <tr>
-      <th><abbr title="Projects">Projects</abbr> <div class="control">
-                        <div class="tags has-addons">
-                            <span class="tag is-dark">Pypi downloads</span>
-                            <span class="tag is-info">328k - 332k py</span>
+<div class="section" id="open-source">
+    <div class="container">
+        <header class="sec-head sec-head--center">
+            <span class="sec-kicker">Open Source</span>
+            <h2 class="sec-title">Tools, libraries, and frameworks</h2>
+        </header>
+
+        <table class="projects-table">
+            <thead>
+                <tr>
+                    <th>Project</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for project in settings.github_projects %}
+                <tr>
+                    <td>
+                        <span class="project-name"><a href="{{ project['main_link'] }}">{{ project['name'] }}</a></span>
+                        <span class="project-links">
+                            {% for key in project['links'] %}
+                                {% set link = project['links'][key] %}
+                                [<a href="{{ link }}" target="_blank">{{ key.capitalize() }}</a>]
+                            {% endfor %}
+                        </span>
+                        {%if 'pepy' in project['badges']%}
+                            <a target="_blank" href="https://pepy.tech/project/{{project['name'].lower()}}">
+                                <img src="https://static.pepy.tech/personalized-badge/{{project['name'].lower()}}?period=total&units=international_system&left_color=black&right_color=green&left_text=Downloads" alt="PyPI downloads">
+                            </a>
+                        {%elif 'cratesio' in project['badges']%}
+                            <a target="_blank" href="https://crates.io/crates/{{project['name'].lower()}}">
+                                <img alt="Crates.io" src="https://img.shields.io/crates/d/{{project['name'].lower()}}">
+                            </a>
+                        {%endif%}
+                        <div class="project-info">
+                            {{ md_to_html(project['info']) | safe }}
                         </div>
-                    </div></th>
-
-    </tr>
-  </thead>
-  <tfoot>
-    {% for project in settings.github_projects %}
-    <tr>
-      <td>
-
-            <a href="{{ project['main_link'] }}">{{ project['name'] }}</a>
-<span style="overflow-wrap: break-word;">
-              {% for key in project['links'] %}
-                {% set link = project['links'][key] %}
-
-                    [<a href="{{ link }}" target="_blank">{{ key.capitalize() }}</a>] 
-
-              {% endfor %}
-            </span>
-              {%if 'pepy' in project['badges']%}
-                <a target="_blank" href="https://pepy.tech/project/{{project['name'].lower()}}"><img src="https://static.pepy.tech/personalized-badge/{{project['name'].lower()}}?period=total&units=international_system&left_color=black&right_color=green&left_text=Downloads">
-                </a>
-              {%elif 'cratesio' in project['badges']%}
-                <a target="_blank" href="https://crates.io/crates/{{project['name'].lower()}}"><img alt="Crates.io" src="https://img.shields.io/crates/d/{{project['name'].lower()}}">
-
-                </a>
-              {%endif%}
-
-            {{ md_to_html(project['info']) | safe }}
-
-              
-
-      </td>
-    </tr>
-          
-          
-
-
-        {% endfor %}
-
-  </tfoot>
-</table>
-      
-      
-  </div>
-</div>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
 </div>

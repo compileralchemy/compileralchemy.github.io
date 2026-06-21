@@ -53,7 +53,7 @@ def to_rfc822(t):
     return pub_date
 
 
-COLORS = ['#f0f7ff', '#fff7ec', '#f8f5ff', '#f5fdf8']
+COLORS = ['#ffffff', '#faf9f7']
 
 SECTION_ORDER = [
     'talks', 'publish', 'writings', 'papers',
@@ -66,7 +66,7 @@ for i, name in enumerate(SECTION_ORDER):
     section_colors[name] = COLORS[i % len(COLORS)]
 
 def section_bg(name):
-    return section_colors.get(name, 'transparent')
+    return section_colors.get(name, '#ffffff')
 
 context = base_context()
 context.update(

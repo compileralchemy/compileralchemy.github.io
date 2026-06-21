@@ -1,44 +1,21 @@
-<div class="section" id="tools" style="background-color: {{ section_bg('tools') }};">
+<div class="section section--alt" id="tools">
     <div class="container">
-        <div class="notification" style="background-color: {{ section_bg('tools') }};">
-            <div class="notification has-text-centered" style="background-color: {{ section_bg('tools') }};">
-                <br>
-                <p class="has-text-centered ">
-                    <span class="title has-background-white-ter has-text-centered" style="width: 50px; height:50px; padding: 20px; border-radius: 50%;">
-                        🧰
-                    </span>
-                </p><br>
-                <p class="title"><a href="#tools" class="no-link-dec">Tools</a></p>
-                <p class="subtitle">Handy utilities</p>
-            </div>
-        </div>
-        <div class="columns is-centered" style="background-color: {{ section_bg('tools') }};">
-            <div class="column is-4" style="background-color: {{ section_bg('tools') }};">
-                <div class="box" style="border-radius: 12px; transition: transform 0.2s, box-shadow 0.2s; background: white; border: 1px solid #e2e8f0; padding: 1.25rem;" onmouseover="this.style.transform='translateY(-3px)';this.style.boxShadow='0 8px 24px rgba(0,0,0,0.1)'" onmouseout="this.style.transform='';this.style.boxShadow=''">
-                    <a href="{{ path }}face-blur/" style="text-decoration: none; display: block;">
-                        <p class="has-text-centered">
-                            <span style="font-size: 1.75rem; display: block; margin-bottom: 0.25rem;">🎥</span>
-                            <span style="font-size: 1rem; font-weight: 700; color: #1a1a1a;">FaceBlur</span>
-                        </p>
-                        <p class="has-text-centered" style="color: #666; margin-top: 0.35rem; font-size: 0.85rem;">
-                            Blur faces in video in real-time using on-device AI.
-                        </p>
-                    </a>
-                </div>
-            </div>
-            <div class="column is-4" style="background-color: {{ section_bg('tools') }};">
-                <div class="box" style="border-radius: 12px; transition: transform 0.2s, box-shadow 0.2s; background: white; border: 1px solid #e2e8f0; padding: 1.25rem;" onmouseover="this.style.transform='translateY(-3px)';this.style.boxShadow='0 8px 24px rgba(0,0,0,0.1)'" onmouseout="this.style.transform='';this.style.boxShadow=''">
-                    <a href="{{ path }}islamic-months-mauritius/" style="text-decoration: none; display: block;">
-                        <p class="has-text-centered">
-                            <span style="font-size: 1.75rem; display: block; margin-bottom: 0.25rem;">📅</span>
-                            <span style="font-size: 1rem; font-weight: 700; color: #1a1a1a;">Islamic Months Mauritius</span>
-                        </p>
-                        <p class="has-text-centered" style="color: #666; margin-top: 0.35rem; font-size: 0.85rem;">
-                            Look up Hijri dates for Mauritius for any year.
-                        </p>
-                    </a>
-                </div>
-            </div>
+        <header class="sec-head sec-head--center">
+            <span class="sec-kicker">Tools</span>
+            <h2 class="sec-title">Handy utilities</h2>
+        </header>
+
+        <div class="tools-grid">
+            <a class="tool-card" href="{{ path }}face-blur/">
+                <div class="tool-card__icon">🎥</div>
+                <div class="tool-card__name">FaceBlur</div>
+                <div class="tool-card__desc">Blur faces in video in real-time using on-device AI.</div>
+            </a>
+            <a class="tool-card" href="{{ path }}islamic-months-mauritius/">
+                <div class="tool-card__icon">📅</div>
+                <div class="tool-card__name">Islamic Months Mauritius</div>
+                <div class="tool-card__desc">Look up Hijri dates for Mauritius for any year.</div>
+            </a>
         </div>
     </div>
 </div>
