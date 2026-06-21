@@ -1,41 +1,36 @@
-<div class="section" id="talks" style="background-color: {{ section_bg('talks') }};">
+<div class="section section--alt" id="talks">
     <div class="container">
-        <div class="notification" style="background-color: {{ section_bg('talks') }};">
-            <div class="notification has-text-centered"  style="background-color: {{ section_bg('talks') }};">
-                <br>
-                <p class="has-text-centered ">
-                    <span class="title has-background-white-ter  has-text-centered" style="width: 50px; height:50px; padding: 20px; border-radius: 50%;">
-                        📝
-                    </span>
-                </p><br>
-                <p class="title" id="talks"><a href="#talks" class="no-link-dec">Speaking</a></p>
-                <p class="subtitle">Conference talks & meetups</p>
-            </div>
-        </div>
-        <div class="writings is-white">
-            <div>Spoken at EuroPython, PyCon Sweden, PyCon ZA, PyCon Thailand, FlaskCon, MSCC DevCon, Google DevFest, 
-                Python Mauritius Usergroup, Association Francophone de Python, New Zealand Python User Group, San Francisco Python Meetup</div>
-            <br>
+        <header class="sec-head sec-head--center">
+            <span class="sec-kicker">Speaking</span>
+            <h2 class="sec-title">Conference talks & meetups</h2>
+        </header>
+
+        <div class="talk-list">
+            <p class="talk-list__intro">
+                Spoken at EuroPython, PyCon Sweden, PyCon ZA, PyCon Thailand, FlaskCon,
+                MSCC DevCon, Google DevFest, Python Mauritius Usergroup, Association
+                Francophone de Python, New Zealand Python User Group, San Francisco
+                Python Meetup.
+            </p>
             {%for talk in talks%}
             {%if loop.index <= 5%}
-            <p class="is-size-4">{{ talk['title'] }}
-                {%for res in talk['res']%}
-                {% if res['type'] == 'video' %}
-                    [<a href="{{res['url']}}">video</a>]
-                    {% elif res['type'] == 'slides' %}
-                    [<a href="{{res['url']}}">slides</a>]
-                    {% elif res['type'] == 'repo' %}
-                    [<a href="{{res['url']}}">repo</a>]
-                {% endif %}
-                {%endfor%}
-            </p>
-            <i>{{ talk['event'] }}</i><br>
-            {{talk['description']}}
-            <hr>
+            <div class="talk-item">
+                <p class="talk-item__title">
+                    {{ talk['title'] }}
+                    <span class="talk-item__res">
+                        {%for res in talk['res']%}
+                        {% if res['type'] == 'video' %}[<a href="{{res['url']}}">video</a>]{% elif res['type'] == 'slides' %}[<a href="{{res['url']}}">slides</a>]{% elif res['type'] == 'repo' %}[<a href="{{res['url']}}">repo</a>]{% endif %}
+                        {%endfor%}
+                    </span>
+                </p>
+                <p class="talk-item__event">{{ talk['event'] }}</p>
+                <p class="talk-item__desc">{{talk['description']}}</p>
+            </div>
             {%endif%}
             {%endfor%}
-            <br>
-            <button class="button is-link "><a class="has-text-white" target="_blank" href="{{path}}talks">Older talks</a></button>
+            <div style="margin-top: 1.5rem;">
+                <a class="btn btn--ghost btn--sm" href="{{path}}talks">Older talks &rarr;</a>
+            </div>
         </div>
     </div>
 </div>

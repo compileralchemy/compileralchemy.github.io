@@ -1,51 +1,39 @@
-<div class="section" id="podcast" style="background-color: #fff;">
+<div class="section" id="podcast">
     <div class="container">
-        <div class="has-text-centered" style="margin-bottom: 2rem;">
-            <br>
-            <p class="has-text-centered">
-                <span class="title has-background-white-ter has-text-centered" style="width: 50px; height:50px; padding: 20px; border-radius: 50%;">
-                    ☕
-                </span>
-            </p><br>
-            <p class="title"><a href="#podcast" class="no-link-dec">The Alfa Coding Podcast</a></p>
-            <p class="subtitle">{{ settings.podcast['tagline'] }}</p>
-        </div>
-        <div class="columns is-centered">
+        <header class="sec-head sec-head--center">
+            <span class="sec-kicker">Podcast</span>
+            <h2 class="sec-title">The Alfa Coding Podcast</h2>
+            <p class="sec-sub">{{ settings.podcast['tagline'] }}</p>
+        </header>
+
+        <div class="podcast-grid">
             {% for ep in settings.podcasts[:3] %}
-            <div class="column is-4">
-                <div class="card" style="border-radius: 12px; border: 1px solid #e2e8f0; height: 100%;">
-                    <div class="card-content" style="padding: 1.5rem;">
-                        <p style="font-size: 0.8rem; color: #999; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 0.5rem;">
-                            Episode {{ ep['episode'] }} &middot; {{ ep['duration'] }}
-                        </p>
-                        <p class="title is-5" style="margin-bottom: 0.75rem;">{{ ep['title'] }}</p>
-                        <p style="color: #666; font-size: 0.9rem; line-height: 1.6; margin-bottom: 1rem;">
-                            {% set desc = ep['description'] | trim %}
-                            {{ desc[:200] }}{% if desc|length > 200 %}&hellip;{% endif %}
-                        </p>
-                        <p style="font-size: 0.85rem; color: #888;">
-                            {% for person in ep['people'] %}
-                                {% if person['status'] != 'host' %}
-                                    {% if person['status'] == 'guest' %}Guest: {% elif person['status'] == 'co-host' %}Co-host: {% endif %}
-                                    {{ person['name'] }}{% if person['info'] %} ({{ person['info'] }}){% endif %}
-                                {% endif %}
-                            {% endfor %}
-                        </p>
-                        <div style="margin-top: 1rem;">
-                            <audio controls preload="none" style="width: 100%; height: 36px;">
-                                <source src="{{ ep['link'] }}" type="audio/mpeg">
-                            </audio>
-                        </div>
-                    </div>
-                </div>
+            <div class="podcast-card">
+                <p class="podcast-card__meta">
+                    Episode {{ ep['episode'] }} &middot; {{ ep['duration'] }}
+                </p>
+                <p class="podcast-card__title">{{ ep['title'] }}</p>
+                <p class="podcast-card__desc">
+                    {% set desc = ep['description'] | trim %}
+                    {{ desc[:200] }}{% if desc|length > 200 %}&hellip;{% endif %}
+                </p>
+                <p class="podcast-card__guest">
+                    {% for person in ep['people'] %}
+                        {% if person['status'] != 'host' %}
+                            {% if person['status'] == 'guest' %}Guest: {% elif person['status'] == 'co-host' %}Co-host: {% endif %}
+                            {{ person['name'] }}{% if person['info'] %} ({{ person['info'] }}){% endif %}
+                        {% endif %}
+                    {% endfor %}
+                </p>
+                <audio controls preload="none">
+                    <source src="{{ ep['link'] }}" type="audio/mpeg">
+                </audio>
             </div>
             {% endfor %}
         </div>
+
         <div class="has-text-centered" style="margin-top: 2rem;">
-            <a href="/alfa-podcast" class="button is-link is-medium" style="text-decoration: none;">See all episodes</a>
-            <a href="{{ settings.podcast['google_podcast'] }}" class="button is-light is-medium" style="text-decoration: none; margin-left: 0.5rem;">
-                <img src="https://www.gstatic.com/podcasts_console/promote/English_EN/EN_Google_Podcasts_Badge.svg" width="120" height="30" alt="Listen on Google Podcasts" loading="lazy" decoding="async">
-            </a>
+            <a href="/alfa-podcast" class="btn">See all episodes</a>
         </div>
     </div>
 </div>

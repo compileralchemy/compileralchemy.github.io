@@ -1,24 +1,20 @@
-<div class="section" id="papers" style="background-color: {{ section_bg('papers') }};">
+<div class="section" id="papers">
     <div class="container">
-        <div class="notification" style="background-color: {{ section_bg('papers') }};">
-            <div class="notification has-text-centered" style="background-color: {{ section_bg('papers') }};">
-                <br>
-                <p class="has-text-centered">
-                    <span class="title has-background-white-ter has-text-centered" style="width: 50px; height:50px; padding: 20px; border-radius: 50%;">
-                        📜
-                    </span>
-                </p><br>
-                <p class="title"><a href="#papers" class="no-link-dec">Papers</a></p>
-                <p class="subtitle">Paper walkthroughs & commentary</p>
+        <header class="sec-head sec-head--center">
+            <span class="sec-kicker">Papers</span>
+            <h2 class="sec-title">Paper walkthroughs &amp; commentary</h2>
+        </header>
+
+        <div class="container--narrow" style="margin: 0 auto;">
+            <div class="paper-item">
+                <p class="paper-item__title">
+                    <a href="{{ path }}papers/">The Annotated Transformer with Commentary</a>
+                </p>
+                <p class="paper-item__desc">
+                    A line-by-line walkthrough of the Transformer architecture from
+                    "Attention is All You Need", with added explanations and commentary.
+                </p>
             </div>
-        </div>
-        <div class="content" style="background-color: {{ section_bg('papers') }};">
-            <p class="is-size-5" style="margin-bottom: 0.5rem;">
-                <a href="{{ path }}papers/" style="text-decoration: underline;">The Annotated Transformer with Commentary</a>
-            </p>
-            <p style="color: #666;">
-                A line-by-line walkthrough of the Transformer architecture from "Attention is All You Need", with added explanations and commentary.
-            </p>
         </div>
     </div>
 </div>
