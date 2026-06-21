@@ -51,60 +51,28 @@ gtag('config', 'UA-161612035-1');
   }
 }
 </script>
-<!-- Global Premium Editorial Styles -->
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@400;500;700&family=Raleway:wght@700;800&family=Special+Elite&display=swap" rel="stylesheet">
-
+<!-- Global Editorial Styles -->
 <style type="text/css">
     :root {
-        --primary-color: #ffb74d;
-        --active-color: #e65100;
-        --text-main: #1a1a1a;
-        --text-muted: #666;
-        --font-main: 'Comfortaa', cursive;
-        --font-title: 'Raleway', sans-serif;
-        --container-width: 1000px;
-        --reading-width: 740px;
-    }
-
-    /* Global Typography */
-    body {
-        font-family: var(--font-main);
-        color: var(--text-main);
-        line-height: 1.85;
-        -webkit-font-smoothing: antialiased;
-        background-color: #fff;
-    }
-
-    h1, h2, h3, .title {
-        font-family: var(--font-title);
-        font-weight: 800;
-        letter-spacing: -0.02em;
-        color: #000;
-    }
-
-    .subtitle {
-        font-family: var(--font-main);
-        font-weight: 500;
-        color: var(--text-muted);
-    }
-
-    /* Animated Underline Links - Disabled globally */
-    a:not(.button):not(.tag) {
-        color: inherit;
-        text-decoration: none;
-    }
-
-    /* Section Spacing */
-    .section {
-        padding: 4rem 1.5rem;
+        --accent: #c2410c;
+        --accent-soft: #fff7ed;
+        --accent-hover: #9a3412;
+        --ink: #1c1917;
+        --ink-2: #44403c;
+        --ink-muted: #78716c;
+        --line: #e7e5e4;
+        --line-soft: #f5f5f4;
+        --surface: #ffffff;
+        --surface-alt: #faf9f7;
+        /* Backward-compatible aliases for older templates */
+        --primary-color: var(--accent);
+        --active-color: var(--accent-hover);
+        --text-main: var(--ink);
+        --text-muted: var(--ink-muted);
+        --reading-width: 680px;
+        --container-width: 920px;
     }
 </style>
-
-<script>
-    // Universal Scroll Reveal - Disabled globally to prevent 'slop' feel on functional pages
-</script>
 
 <meta name="theme-color" content="#ffb74d" />
 <link rel="icon" href="../../assets/COMP_ALC.png">
@@ -420,16 +388,15 @@ of words into a sequence of short tanks called BUFFER).</p>
         });
     </script>
 
-    <footer class="footer has-background-white-ter">
-    <div class="content has-text-centered ">
-        <p>
-            Built using <a href="https://pypi.org/project/jamstack">the jamstack package on pypi</a>
-            <hr>
-            <a href="../../">Home</a>; 
-            <a href="/blog">Personal Blog</a>; 
-            <a href="/articles">Luminotes</a>;
-            <a href="/diaries">Diaries</a>;
-        </p>
+    <footer class="site-footer">
+    <div class="container">
+        <p>Built using <a href="https://pypi.org/project/jamstack">the jamstack package on PyPI</a></p>
+        <div class="site-footer__links">
+            <a href="../../">Home</a>
+            <a href="/blog">Blog</a>
+            <a href="/articles">Luminotes</a>
+            <a href="/diaries">Diaries</a>
+        </div>
     </div>
     <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 </footer>

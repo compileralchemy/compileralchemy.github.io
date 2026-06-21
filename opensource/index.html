@@ -52,60 +52,28 @@ gtag('config', 'UA-161612035-1');
   }
 }
 </script>
-<!-- Global Premium Editorial Styles -->
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@400;500;700&family=Raleway:wght@700;800&family=Special+Elite&display=swap" rel="stylesheet">
-
+<!-- Global Editorial Styles -->
 <style type="text/css">
     :root {
-        --primary-color: #ffb74d;
-        --active-color: #e65100;
-        --text-main: #1a1a1a;
-        --text-muted: #666;
-        --font-main: 'Comfortaa', cursive;
-        --font-title: 'Raleway', sans-serif;
-        --container-width: 1000px;
-        --reading-width: 740px;
-    }
-
-    /* Global Typography */
-    body {
-        font-family: var(--font-main);
-        color: var(--text-main);
-        line-height: 1.85;
-        -webkit-font-smoothing: antialiased;
-        background-color: #fff;
-    }
-
-    h1, h2, h3, .title {
-        font-family: var(--font-title);
-        font-weight: 800;
-        letter-spacing: -0.02em;
-        color: #000;
-    }
-
-    .subtitle {
-        font-family: var(--font-main);
-        font-weight: 500;
-        color: var(--text-muted);
-    }
-
-    /* Animated Underline Links - Disabled globally */
-    a:not(.button):not(.tag) {
-        color: inherit;
-        text-decoration: none;
-    }
-
-    /* Section Spacing */
-    .section {
-        padding: 4rem 1.5rem;
+        --accent: #c2410c;
+        --accent-soft: #fff7ed;
+        --accent-hover: #9a3412;
+        --ink: #1c1917;
+        --ink-2: #44403c;
+        --ink-muted: #78716c;
+        --line: #e7e5e4;
+        --line-soft: #f5f5f4;
+        --surface: #ffffff;
+        --surface-alt: #faf9f7;
+        /* Backward-compatible aliases for older templates */
+        --primary-color: var(--accent);
+        --active-color: var(--accent-hover);
+        --text-main: var(--ink);
+        --text-muted: var(--ink-muted);
+        --reading-width: 680px;
+        --container-width: 920px;
     }
 </style>
-
-<script>
-    // Universal Scroll Reveal - Disabled globally to prevent 'slop' feel on functional pages
-</script>
 
 <meta name="theme-color" content="#ffb74d" />
 <link rel="icon" href="../assets/COMP_ALC.png">
@@ -218,1171 +186,884 @@ gtag('config', 'UA-161612035-1');
 </script>
 
     
-<div class="section" id="open-source" style="background-color: #f8f5ff;">
-  <div class="container">
-    <div class="notification " style="background-color: #f8f5ff;">
-      <div class="notification has-text-centered" style="background-color: #f8f5ff;">
-        <br>
-        <p class="has-text-centered ">
-          <span class="title has-background-white-ter  has-text-centered" style="width: 50px; height:50px; padding: 20px; border-radius: 50%;">
-            🏗️
-          </span>
-        </p><br>
-        <p class="title"><a href="#open-source" class="no-link-dec">Open Source Projects</a></p>
-        <p class="subtitle">Tools, libraries, and frameworks</p>
-      </div>
-    </div>
-    <div class="" style="background-color: #f8f5ff;">
-      <table class="table" style="background-color: #f8f5ff;">
-  <thead>
-    <tr>
-      <th><abbr title="Projects">Projects</abbr> <div class="control">
-                        <div class="tags has-addons">
-                            <span class="tag is-dark">Pypi downloads</span>
-                            <span class="tag is-info">328k - 332k py</span>
-                        </div>
-                    </div></th>
+<div class="section" id="open-source">
+    <div class="container">
+        <header class="sec-head sec-head--center">
+            <span class="sec-kicker">Open Source</span>
+            <h2 class="sec-title">Tools, libraries, and frameworks</h2>
+        </header>
 
-    </tr>
-  </thead>
-  <tfoot>
-    
-    <tr>
-      <td>
-
-            <a href="https://github.com/shopyo/shopyo">Shopyo</a>
-<span style="overflow-wrap: break-word;">
-              
+        <table class="projects-table">
+            <thead>
+                <tr>
+                    <th>Project</th>
+                </tr>
+            </thead>
+            <tbody>
                 
-
-                    [<a href="https://pypi.org/project/shopyo/" target="_blank">Pypi</a>] 
-
-              
-                
-
-                    [<a href="https://github.com/shopyo/shopyo" target="_blank">Github</a>] 
-
-              
-                
-
-                    [<a href="https://discord.gg/k37Ef6w" target="_blank">Chat</a>] 
-
-              
-                
-
-                    [<a href="https://twitter.com/shopyoproject" target="_blank">Twitter</a>] 
-
-              
-                
-
-                    [<a href="https://shopyo.readthedocs.io/en/latest/" target="_blank">Docs</a>] 
-
-              
-            </span>
-              
-                <a target="_blank" href="https://pepy.tech/project/shopyo"><img src="https://static.pepy.tech/personalized-badge/shopyo?period=total&units=international_system&left_color=black&right_color=green&left_text=Downloads">
-                </a>
-              
-
-            <p>Built on top of Flask, Shopyo gives superpowers in terms of self-contained modules and supports Django
+                <tr>
+                    <td>
+                        <span class="project-name"><a href="https://github.com/shopyo/shopyo">Shopyo</a></span>
+                        <span class="project-links">
+                            
+                                
+                                [<a href="https://pypi.org/project/shopyo/" target="_blank">Pypi</a>]
+                            
+                                
+                                [<a href="https://github.com/shopyo/shopyo" target="_blank">Github</a>]
+                            
+                                
+                                [<a href="https://discord.gg/k37Ef6w" target="_blank">Chat</a>]
+                            
+                                
+                                [<a href="https://twitter.com/shopyoproject" target="_blank">Twitter</a>]
+                            
+                                
+                                [<a href="https://shopyo.readthedocs.io/en/latest/" target="_blank">Docs</a>]
+                            
+                        </span>
+                        
+                            <a target="_blank" href="https://pepy.tech/project/shopyo">
+                                <img src="https://static.pepy.tech/personalized-badge/shopyo?period=total&units=international_system&left_color=black&right_color=green&left_text=Downloads" alt="PyPI downloads">
+                            </a>
+                        
+                        <div class="project-info">
+                            <p>Built on top of Flask, Shopyo gives superpowers in terms of self-contained modules and supports Django
 commands like collecstatic and startapp.</p>
-
-              
-
-      </td>
-    </tr>
-          
-          
-
-
-        
-    <tr>
-      <td>
-
-            <a href="https://github.com/abdur-rahmaanj/angel-claw">angel-claw</a>
-<span style="overflow-wrap: break-word;">
-              
+                        </div>
+                    </td>
+                </tr>
                 
-
-                    [<a href="https://github.com/abdur-rahmaanj/angel-claw" target="_blank">Github</a>] 
-
-              
+                <tr>
+                    <td>
+                        <span class="project-name"><a href="https://github.com/abdur-rahmaanj/angel-claw">angel-claw</a></span>
+                        <span class="project-links">
+                            
+                                
+                                [<a href="https://github.com/abdur-rahmaanj/angel-claw" target="_blank">Github</a>]
+                            
+                                
+                                [<a href="https://pypi.org/project/angel-claw/" target="_blank">Pypi</a>]
+                            
+                        </span>
+                        
+                            <a target="_blank" href="https://pepy.tech/project/angel-claw">
+                                <img src="https://static.pepy.tech/personalized-badge/angel-claw?period=total&units=international_system&left_color=black&right_color=green&left_text=Downloads" alt="PyPI downloads">
+                            </a>
+                        
+                        <div class="project-info">
+                            <p>Lean, based openclaw alternative in Python</p>
+                        </div>
+                    </td>
+                </tr>
                 
-
-                    [<a href="https://pypi.org/project/angel-claw/" target="_blank">Pypi</a>] 
-
-              
-            </span>
-              
-                <a target="_blank" href="https://pepy.tech/project/angel-claw"><img src="https://static.pepy.tech/personalized-badge/angel-claw?period=total&units=international_system&left_color=black&right_color=green&left_text=Downloads">
-                </a>
-              
-
-            <p>Lean, based openclaw alternative in Python</p>
-
-              
-
-      </td>
-    </tr>
-          
-          
-
-
-        
-    <tr>
-      <td>
-
-            <a href="https://github.com/abdur-rahmaanj/angel-recall">angel-recall</a>
-<span style="overflow-wrap: break-word;">
-              
+                <tr>
+                    <td>
+                        <span class="project-name"><a href="https://github.com/abdur-rahmaanj/angel-recall">angel-recall</a></span>
+                        <span class="project-links">
+                            
+                                
+                                [<a href="https://github.com/abdur-rahmaanj/angel-recall" target="_blank">Github</a>]
+                            
+                                
+                                [<a href="https://pypi.org/project/angel-recall/" target="_blank">Pypi</a>]
+                            
+                        </span>
+                        
+                            <a target="_blank" href="https://pepy.tech/project/angel-recall">
+                                <img src="https://static.pepy.tech/personalized-badge/angel-recall?period=total&units=international_system&left_color=black&right_color=green&left_text=Downloads" alt="PyPI downloads">
+                            </a>
+                        
+                        <div class="project-info">
+                            <p>Memory OS paper implementation for agents.</p>
+                        </div>
+                    </td>
+                </tr>
                 
-
-                    [<a href="https://github.com/abdur-rahmaanj/angel-recall" target="_blank">Github</a>] 
-
-              
+                <tr>
+                    <td>
+                        <span class="project-name"><a href="https://github.com/abdur-rahmaanj/pageindex-open">pageindex-open</a></span>
+                        <span class="project-links">
+                            
+                                
+                                [<a href="https://github.com/abdur-rahmaanj/pageindex-open" target="_blank">Github</a>]
+                            
+                                
+                                [<a href="https://pypi.org/project/pageindex-open" target="_blank">Pypi</a>]
+                            
+                        </span>
+                        
+                            <a target="_blank" href="https://pepy.tech/project/pageindex-open">
+                                <img src="https://static.pepy.tech/personalized-badge/pageindex-open?period=total&units=international_system&left_color=black&right_color=green&left_text=Downloads" alt="PyPI downloads">
+                            </a>
+                        
+                        <div class="project-info">
+                            <p>Memory OS paper implementation for agents.</p>
+                        </div>
+                    </td>
+                </tr>
                 
-
-                    [<a href="https://pypi.org/project/angel-recall/" target="_blank">Pypi</a>] 
-
-              
-            </span>
-              
-                <a target="_blank" href="https://pepy.tech/project/angel-recall"><img src="https://static.pepy.tech/personalized-badge/angel-recall?period=total&units=international_system&left_color=black&right_color=green&left_text=Downloads">
-                </a>
-              
-
-            <p>Memory OS paper implementation for agents.</p>
-
-              
-
-      </td>
-    </tr>
-          
-          
-
-
-        
-    <tr>
-      <td>
-
-            <a href="https://github.com/abdur-rahmaanj/pageindex-open">pageindex-open</a>
-<span style="overflow-wrap: break-word;">
-              
+                <tr>
+                    <td>
+                        <span class="project-name"><a href="https://github.com/shopyo/shopyo/tree/dev/default_packages/shopyo_auth">shopyo-auth</a></span>
+                        <span class="project-links">
+                            
+                                
+                                [<a href="https://github.com/shopyo/shopyo/tree/dev/default_packages/shopyo_auth" target="_blank">Github</a>]
+                            
+                                
+                                [<a href="https://pypi.org/project/shopyo-auth/" target="_blank">Pypi</a>]
+                            
+                        </span>
+                        
+                            <a target="_blank" href="https://pepy.tech/project/shopyo-auth">
+                                <img src="https://static.pepy.tech/personalized-badge/shopyo-auth?period=total&units=international_system&left_color=black&right_color=green&left_text=Downloads" alt="PyPI downloads">
+                            </a>
+                        
+                        <div class="project-info">
+                            <p>Auth module for Shopyo</p>
+                        </div>
+                    </td>
+                </tr>
                 
-
-                    [<a href="https://github.com/abdur-rahmaanj/pageindex-open" target="_blank">Github</a>] 
-
-              
+                <tr>
+                    <td>
+                        <span class="project-name"><a href="https://github.com/shopyo/shopyo/tree/dev/default_packages/shopyo_appadmin">shopyo-appadmin</a></span>
+                        <span class="project-links">
+                            
+                                
+                                [<a href="https://github.com/shopyo/shopyo/tree/dev/default_packages/shopyo_appadmin" target="_blank">Github</a>]
+                            
+                                
+                                [<a href="https://pypi.org/project/shopyo-appadmin/" target="_blank">Pypi</a>]
+                            
+                        </span>
+                        
+                            <a target="_blank" href="https://pepy.tech/project/shopyo-appadmin">
+                                <img src="https://static.pepy.tech/personalized-badge/shopyo-appadmin?period=total&units=international_system&left_color=black&right_color=green&left_text=Downloads" alt="PyPI downloads">
+                            </a>
+                        
+                        <div class="project-info">
+                            <p>Admin panel for Shopyo</p>
+                        </div>
+                    </td>
+                </tr>
                 
-
-                    [<a href="https://pypi.org/project/pageindex-open" target="_blank">Pypi</a>] 
-
-              
-            </span>
-              
-                <a target="_blank" href="https://pepy.tech/project/pageindex-open"><img src="https://static.pepy.tech/personalized-badge/pageindex-open?period=total&units=international_system&left_color=black&right_color=green&left_text=Downloads">
-                </a>
-              
-
-            <p>Memory OS paper implementation for agents.</p>
-
-              
-
-      </td>
-    </tr>
-          
-          
-
-
-        
-    <tr>
-      <td>
-
-            <a href="https://github.com/shopyo/shopyo/tree/dev/default_packages/shopyo_auth">shopyo-auth</a>
-<span style="overflow-wrap: break-word;">
-              
+                <tr>
+                    <td>
+                        <span class="project-name"><a href="https://github.com/shopyo/shopyo/tree/dev/default_packages/shopyo_base">shopyo-base</a></span>
+                        <span class="project-links">
+                            
+                                
+                                [<a href="https://github.com/shopyo/shopyo/tree/dev/default_packages/shopyo_base" target="_blank">Github</a>]
+                            
+                                
+                                [<a href="https://pypi.org/project/shopyo-base/" target="_blank">Pypi</a>]
+                            
+                        </span>
+                        
+                            <a target="_blank" href="https://pepy.tech/project/shopyo-base">
+                                <img src="https://static.pepy.tech/personalized-badge/shopyo-base?period=total&units=international_system&left_color=black&right_color=green&left_text=Downloads" alt="PyPI downloads">
+                            </a>
+                        
+                        <div class="project-info">
+                            <p>Base utils for Shopyo</p>
+                        </div>
+                    </td>
+                </tr>
                 
-
-                    [<a href="https://github.com/shopyo/shopyo/tree/dev/default_packages/shopyo_auth" target="_blank">Github</a>] 
-
-              
+                <tr>
+                    <td>
+                        <span class="project-name"><a href="https://github.com/shopyo/shopyo/tree/dev/default_packages/shopyo_dashboard">shopyo-dashboard</a></span>
+                        <span class="project-links">
+                            
+                                
+                                [<a href="https://github.com/shopyo/shopyo/tree/dev/default_packages/shopyo_dashboard" target="_blank">Github</a>]
+                            
+                                
+                                [<a href="https://pypi.org/project/shopyo-dashboard/" target="_blank">Pypi</a>]
+                            
+                        </span>
+                        
+                            <a target="_blank" href="https://pepy.tech/project/shopyo-dashboard">
+                                <img src="https://static.pepy.tech/personalized-badge/shopyo-dashboard?period=total&units=international_system&left_color=black&right_color=green&left_text=Downloads" alt="PyPI downloads">
+                            </a>
+                        
+                        <div class="project-info">
+                            <p>Dashboard for Shopyo</p>
+                        </div>
+                    </td>
+                </tr>
                 
-
-                    [<a href="https://pypi.org/project/shopyo-auth/" target="_blank">Pypi</a>] 
-
-              
-            </span>
-              
-                <a target="_blank" href="https://pepy.tech/project/shopyo-auth"><img src="https://static.pepy.tech/personalized-badge/shopyo-auth?period=total&units=international_system&left_color=black&right_color=green&left_text=Downloads">
-                </a>
-              
-
-            <p>Auth module for Shopyo</p>
-
-              
-
-      </td>
-    </tr>
-          
-          
-
-
-        
-    <tr>
-      <td>
-
-            <a href="https://github.com/shopyo/shopyo/tree/dev/default_packages/shopyo_appadmin">shopyo-appadmin</a>
-<span style="overflow-wrap: break-word;">
-              
+                <tr>
+                    <td>
+                        <span class="project-name"><a href="https://github.com/shopyo/shopyo/tree/dev/default_packages/shopyo_i18n">shopyo-i18n</a></span>
+                        <span class="project-links">
+                            
+                                
+                                [<a href="https://github.com/shopyo/shopyo/tree/dev/default_packages/shopyo_i18n" target="_blank">Github</a>]
+                            
+                                
+                                [<a href="https://pypi.org/project/shopyo-i18n/" target="_blank">Pypi</a>]
+                            
+                        </span>
+                        
+                            <a target="_blank" href="https://pepy.tech/project/shopyo-i18n">
+                                <img src="https://static.pepy.tech/personalized-badge/shopyo-i18n?period=total&units=international_system&left_color=black&right_color=green&left_text=Downloads" alt="PyPI downloads">
+                            </a>
+                        
+                        <div class="project-info">
+                            <p>i18n for Shopyo</p>
+                        </div>
+                    </td>
+                </tr>
                 
-
-                    [<a href="https://github.com/shopyo/shopyo/tree/dev/default_packages/shopyo_appadmin" target="_blank">Github</a>] 
-
-              
+                <tr>
+                    <td>
+                        <span class="project-name"><a href="https://github.com/shopyo/shopyo/tree/dev/default_packages/shopyo_page">shopyo-base</a></span>
+                        <span class="project-links">
+                            
+                                
+                                [<a href="https://github.com/shopyo/shopyo/tree/dev/default_packages/shopyo_page" target="_blank">Github</a>]
+                            
+                                
+                                [<a href="https://pypi.org/project/shopyo-page/" target="_blank">Pypi</a>]
+                            
+                        </span>
+                        
+                            <a target="_blank" href="https://pepy.tech/project/shopyo-base">
+                                <img src="https://static.pepy.tech/personalized-badge/shopyo-base?period=total&units=international_system&left_color=black&right_color=green&left_text=Downloads" alt="PyPI downloads">
+                            </a>
+                        
+                        <div class="project-info">
+                            <p>Page module for Shopyo</p>
+                        </div>
+                    </td>
+                </tr>
                 
-
-                    [<a href="https://pypi.org/project/shopyo-appadmin/" target="_blank">Pypi</a>] 
-
-              
-            </span>
-              
-                <a target="_blank" href="https://pepy.tech/project/shopyo-appadmin"><img src="https://static.pepy.tech/personalized-badge/shopyo-appadmin?period=total&units=international_system&left_color=black&right_color=green&left_text=Downloads">
-                </a>
-              
-
-            <p>Admin panel for Shopyo</p>
-
-              
-
-      </td>
-    </tr>
-          
-          
-
-
-        
-    <tr>
-      <td>
-
-            <a href="https://github.com/shopyo/shopyo/tree/dev/default_packages/shopyo_base">shopyo-base</a>
-<span style="overflow-wrap: break-word;">
-              
+                <tr>
+                    <td>
+                        <span class="project-name"><a href="https://github.com/shopyo/shopyo/tree/dev/default_packages/shopyo_settings">shopyo-settings</a></span>
+                        <span class="project-links">
+                            
+                                
+                                [<a href="https://github.com/shopyo/shopyo/tree/dev/default_packages/shopyo_settings" target="_blank">Github</a>]
+                            
+                                
+                                [<a href="https://pypi.org/project/shopyo-settings/" target="_blank">Pypi</a>]
+                            
+                        </span>
+                        
+                            <a target="_blank" href="https://pepy.tech/project/shopyo-settings">
+                                <img src="https://static.pepy.tech/personalized-badge/shopyo-settings?period=total&units=international_system&left_color=black&right_color=green&left_text=Downloads" alt="PyPI downloads">
+                            </a>
+                        
+                        <div class="project-info">
+                            <p>Settings for Shopyo</p>
+                        </div>
+                    </td>
+                </tr>
                 
-
-                    [<a href="https://github.com/shopyo/shopyo/tree/dev/default_packages/shopyo_base" target="_blank">Github</a>] 
-
-              
+                <tr>
+                    <td>
+                        <span class="project-name"><a href="https://github.com/shopyo/shopyo/tree/dev/default_packages/shopyo_theme">shopyo-theme</a></span>
+                        <span class="project-links">
+                            
+                                
+                                [<a href="https://github.com/shopyo/shopyo/tree/dev/default_packages/shopyo_theme" target="_blank">Github</a>]
+                            
+                                
+                                [<a href="https://pypi.org/project/shopyo-theme/" target="_blank">Pypi</a>]
+                            
+                        </span>
+                        
+                            <a target="_blank" href="https://pepy.tech/project/shopyo-theme">
+                                <img src="https://static.pepy.tech/personalized-badge/shopyo-theme?period=total&units=international_system&left_color=black&right_color=green&left_text=Downloads" alt="PyPI downloads">
+                            </a>
+                        
+                        <div class="project-info">
+                            <p>Theme for Shopyo</p>
+                        </div>
+                    </td>
+                </tr>
                 
-
-                    [<a href="https://pypi.org/project/shopyo-base/" target="_blank">Pypi</a>] 
-
-              
-            </span>
-              
-                <a target="_blank" href="https://pepy.tech/project/shopyo-base"><img src="https://static.pepy.tech/personalized-badge/shopyo-base?period=total&units=international_system&left_color=black&right_color=green&left_text=Downloads">
-                </a>
-              
-
-            <p>Base utils for Shopyo</p>
-
-              
-
-      </td>
-    </tr>
-          
-          
-
-
-        
-    <tr>
-      <td>
-
-            <a href="https://github.com/shopyo/shopyo/tree/dev/default_packages/shopyo_dashboard">shopyo-dashboard</a>
-<span style="overflow-wrap: break-word;">
-              
+                <tr>
+                    <td>
+                        <span class="project-name"><a href="https://github.com/abdur-rahmaanj/hooman">Hooman</a></span>
+                        <span class="project-links">
+                            
+                                
+                                [<a href="https://github.com/abdur-rahmaanj/hooman" target="_blank">Github</a>]
+                            
+                                
+                                [<a href="https://pypi.org/project/hooman/" target="_blank">Pypi</a>]
+                            
+                                
+                                [<a href="https://discord.gg/Q23ATve" target="_blank">Chat</a>]
+                            
+                        </span>
+                        
+                            <a target="_blank" href="https://pepy.tech/project/hooman">
+                                <img src="https://static.pepy.tech/personalized-badge/hooman?period=total&units=international_system&left_color=black&right_color=green&left_text=Downloads" alt="PyPI downloads">
+                            </a>
+                        
+                        <div class="project-info">
+                            <p>A wrapper around PyGame for clean codebases.</p>
+                        </div>
+                    </td>
+                </tr>
                 
-
-                    [<a href="https://github.com/shopyo/shopyo/tree/dev/default_packages/shopyo_dashboard" target="_blank">Github</a>] 
-
-              
-                
-
-                    [<a href="https://pypi.org/project/shopyo-dashboard/" target="_blank">Pypi</a>] 
-
-              
-            </span>
-              
-                <a target="_blank" href="https://pepy.tech/project/shopyo-dashboard"><img src="https://static.pepy.tech/personalized-badge/shopyo-dashboard?period=total&units=international_system&left_color=black&right_color=green&left_text=Downloads">
-                </a>
-              
-
-            <p>Dashboard for Shopyo</p>
-
-              
-
-      </td>
-    </tr>
-          
-          
-
-
-        
-    <tr>
-      <td>
-
-            <a href="https://github.com/shopyo/shopyo/tree/dev/default_packages/shopyo_i18n">shopyo-i18n</a>
-<span style="overflow-wrap: break-word;">
-              
-                
-
-                    [<a href="https://github.com/shopyo/shopyo/tree/dev/default_packages/shopyo_i18n" target="_blank">Github</a>] 
-
-              
-                
-
-                    [<a href="https://pypi.org/project/shopyo-i18n/" target="_blank">Pypi</a>] 
-
-              
-            </span>
-              
-                <a target="_blank" href="https://pepy.tech/project/shopyo-i18n"><img src="https://static.pepy.tech/personalized-badge/shopyo-i18n?period=total&units=international_system&left_color=black&right_color=green&left_text=Downloads">
-                </a>
-              
-
-            <p>i18n for Shopyo</p>
-
-              
-
-      </td>
-    </tr>
-          
-          
-
-
-        
-    <tr>
-      <td>
-
-            <a href="https://github.com/shopyo/shopyo/tree/dev/default_packages/shopyo_page">shopyo-base</a>
-<span style="overflow-wrap: break-word;">
-              
-                
-
-                    [<a href="https://github.com/shopyo/shopyo/tree/dev/default_packages/shopyo_page" target="_blank">Github</a>] 
-
-              
-                
-
-                    [<a href="https://pypi.org/project/shopyo-page/" target="_blank">Pypi</a>] 
-
-              
-            </span>
-              
-                <a target="_blank" href="https://pepy.tech/project/shopyo-base"><img src="https://static.pepy.tech/personalized-badge/shopyo-base?period=total&units=international_system&left_color=black&right_color=green&left_text=Downloads">
-                </a>
-              
-
-            <p>Page module for Shopyo</p>
-
-              
-
-      </td>
-    </tr>
-          
-          
-
-
-        
-    <tr>
-      <td>
-
-            <a href="https://github.com/shopyo/shopyo/tree/dev/default_packages/shopyo_settings">shopyo-settings</a>
-<span style="overflow-wrap: break-word;">
-              
-                
-
-                    [<a href="https://github.com/shopyo/shopyo/tree/dev/default_packages/shopyo_settings" target="_blank">Github</a>] 
-
-              
-                
-
-                    [<a href="https://pypi.org/project/shopyo-settings/" target="_blank">Pypi</a>] 
-
-              
-            </span>
-              
-                <a target="_blank" href="https://pepy.tech/project/shopyo-settings"><img src="https://static.pepy.tech/personalized-badge/shopyo-settings?period=total&units=international_system&left_color=black&right_color=green&left_text=Downloads">
-                </a>
-              
-
-            <p>Settings for Shopyo</p>
-
-              
-
-      </td>
-    </tr>
-          
-          
-
-
-        
-    <tr>
-      <td>
-
-            <a href="https://github.com/shopyo/shopyo/tree/dev/default_packages/shopyo_theme">shopyo-theme</a>
-<span style="overflow-wrap: break-word;">
-              
-                
-
-                    [<a href="https://github.com/shopyo/shopyo/tree/dev/default_packages/shopyo_theme" target="_blank">Github</a>] 
-
-              
-                
-
-                    [<a href="https://pypi.org/project/shopyo-theme/" target="_blank">Pypi</a>] 
-
-              
-            </span>
-              
-                <a target="_blank" href="https://pepy.tech/project/shopyo-theme"><img src="https://static.pepy.tech/personalized-badge/shopyo-theme?period=total&units=international_system&left_color=black&right_color=green&left_text=Downloads">
-                </a>
-              
-
-            <p>Theme for Shopyo</p>
-
-              
-
-      </td>
-    </tr>
-          
-          
-
-
-        
-    <tr>
-      <td>
-
-            <a href="https://github.com/abdur-rahmaanj/hooman">Hooman</a>
-<span style="overflow-wrap: break-word;">
-              
-                
-
-                    [<a href="https://github.com/abdur-rahmaanj/hooman" target="_blank">Github</a>] 
-
-              
-                
-
-                    [<a href="https://pypi.org/project/hooman/" target="_blank">Pypi</a>] 
-
-              
-                
-
-                    [<a href="https://discord.gg/Q23ATve" target="_blank">Chat</a>] 
-
-              
-            </span>
-              
-                <a target="_blank" href="https://pepy.tech/project/hooman"><img src="https://static.pepy.tech/personalized-badge/hooman?period=total&units=international_system&left_color=black&right_color=green&left_text=Downloads">
-                </a>
-              
-
-            <p>A wrapper around PyGame for clean codebases.</p>
-
-              
-
-      </td>
-    </tr>
-          
-          
-
-
-        
-    <tr>
-      <td>
-
-            <a href="https://github.com/abdur-rahmaanj/kapsula">Kapsula</a>
-<span style="overflow-wrap: break-word;">
-              
-                
-
-                    [<a href="https://github.com/abdur-rahmaanj/kapsula" target="_blank">Github</a>] 
-
-              
-                
-
-                    [<a href="https://pypi.org/project/kapsula/" target="_blank">Pypi</a>] 
-
-              
-                
-
-                    [<a href="https://discord.gg/Q23ATve" target="_blank">Chat</a>] 
-
-              
-            </span>
-              
-                <a target="_blank" href="https://pepy.tech/project/kapsula"><img src="https://static.pepy.tech/personalized-badge/kapsula?period=total&units=international_system&left_color=black&right_color=green&left_text=Downloads">
-                </a>
-              
-
-            <p>Dead simple docs generator.
+                <tr>
+                    <td>
+                        <span class="project-name"><a href="https://github.com/abdur-rahmaanj/kapsula">Kapsula</a></span>
+                        <span class="project-links">
+                            
+                                
+                                [<a href="https://github.com/abdur-rahmaanj/kapsula" target="_blank">Github</a>]
+                            
+                                
+                                [<a href="https://pypi.org/project/kapsula/" target="_blank">Pypi</a>]
+                            
+                                
+                                [<a href="https://discord.gg/Q23ATve" target="_blank">Chat</a>]
+                            
+                        </span>
+                        
+                            <a target="_blank" href="https://pepy.tech/project/kapsula">
+                                <img src="https://static.pepy.tech/personalized-badge/kapsula?period=total&units=international_system&left_color=black&right_color=green&left_text=Downloads" alt="PyPI downloads">
+                            </a>
+                        
+                        <div class="project-info">
+                            <p>Dead simple docs generator.
 Have a clear view of the codebase without knowing any tooling</p>
-
-              
-
-      </td>
-    </tr>
-          
-          
-
-
-        
-    <tr>
-      <td>
-
-            <a href="https://github.com/shopyo/shopyo">Jamstack</a>
-<span style="overflow-wrap: break-word;">
-              
+                        </div>
+                    </td>
+                </tr>
                 
-
-                    [<a href="https://pypi.org/project/jamstack/" target="_blank">Pypi</a>] 
-
-              
-                
-
-                    [<a href="https://github.com/abdur-rahmaanj/jamstack" target="_blank">Github</a>] 
-
-              
-            </span>
-              
-                <a target="_blank" href="https://pepy.tech/project/jamstack"><img src="https://static.pepy.tech/personalized-badge/jamstack?period=total&units=international_system&left_color=black&right_color=green&left_text=Downloads">
-                </a>
-              
-
-            <p>Lets you build static sites with Jinja, as simple or as complex as you like. It powers among others the site you 
+                <tr>
+                    <td>
+                        <span class="project-name"><a href="https://github.com/shopyo/shopyo">Jamstack</a></span>
+                        <span class="project-links">
+                            
+                                
+                                [<a href="https://pypi.org/project/jamstack/" target="_blank">Pypi</a>]
+                            
+                                
+                                [<a href="https://github.com/abdur-rahmaanj/jamstack" target="_blank">Github</a>]
+                            
+                        </span>
+                        
+                            <a target="_blank" href="https://pepy.tech/project/jamstack">
+                                <img src="https://static.pepy.tech/personalized-badge/jamstack?period=total&units=international_system&left_color=black&right_color=green&left_text=Downloads" alt="PyPI downloads">
+                            </a>
+                        
+                        <div class="project-info">
+                            <p>Lets you build static sites with Jinja, as simple or as complex as you like. It powers among others the site you 
 are looking at as well as <a href="https://flaskcwg.github.io/">the FlaskCWG site</a> which features a blog with tagging capabilities
 among others.</p>
-
-              
-
-      </td>
-    </tr>
-          
-          
-
-
-        
-    <tr>
-      <td>
-
-            <a href="https://github.com/Abdur-rahmaanJ/meteomoris">meteomoris</a>
-<span style="overflow-wrap: break-word;">
-              
+                        </div>
+                    </td>
+                </tr>
                 
-
-                    [<a href="https://github.com/Abdur-rahmaanJ/meteomoris" target="_blank">Github</a>] 
-
-              
+                <tr>
+                    <td>
+                        <span class="project-name"><a href="https://github.com/Abdur-rahmaanJ/meteomoris">meteomoris</a></span>
+                        <span class="project-links">
+                            
+                                
+                                [<a href="https://github.com/Abdur-rahmaanJ/meteomoris" target="_blank">Github</a>]
+                            
+                                
+                                [<a href="https://pypi.org/project/meteomoris/" target="_blank">Pypi</a>]
+                            
+                        </span>
+                        
+                            <a target="_blank" href="https://pepy.tech/project/meteomoris">
+                                <img src="https://static.pepy.tech/personalized-badge/meteomoris?period=total&units=international_system&left_color=black&right_color=green&left_text=Downloads" alt="PyPI downloads">
+                            </a>
+                        
+                        <div class="project-info">
+                            <p>A package to get weather info about Mauritius taken from the country&rsquo;s weather station</p>
+                        </div>
+                    </td>
+                </tr>
                 
-
-                    [<a href="https://pypi.org/project/meteomoris/" target="_blank">Pypi</a>] 
-
-              
-            </span>
-              
-                <a target="_blank" href="https://pepy.tech/project/meteomoris"><img src="https://static.pepy.tech/personalized-badge/meteomoris?period=total&units=international_system&left_color=black&right_color=green&left_text=Downloads">
-                </a>
-              
-
-            <p>A package to get weather info about Mauritius taken from the country&rsquo;s weather station</p>
-
-              
-
-      </td>
-    </tr>
-          
-          
-
-
-        
-    <tr>
-      <td>
-
-            <a href="https://github.com/Abdur-rahmaanJ/fastoo">fastoo</a>
-<span style="overflow-wrap: break-word;">
-              
+                <tr>
+                    <td>
+                        <span class="project-name"><a href="https://github.com/Abdur-rahmaanJ/fastoo">fastoo</a></span>
+                        <span class="project-links">
+                            
+                                
+                                [<a href="https://github.com/Abdur-rahmaanJ/fastoo" target="_blank">Github</a>]
+                            
+                                
+                                [<a href="https://pypi.org/project/fastoo/" target="_blank">Pypi</a>]
+                            
+                        </span>
+                        
+                            <a target="_blank" href="https://pepy.tech/project/fastoo">
+                                <img src="https://static.pepy.tech/personalized-badge/fastoo?period=total&units=international_system&left_color=black&right_color=green&left_text=Downloads" alt="PyPI downloads">
+                            </a>
+                        
+                        <div class="project-info">
+                            <p>Super-charged frameworks for building big fastapi apps</p>
+                        </div>
+                    </td>
+                </tr>
                 
-
-                    [<a href="https://github.com/Abdur-rahmaanJ/fastoo" target="_blank">Github</a>] 
-
-              
+                <tr>
+                    <td>
+                        <span class="project-name"><a href="https://github.com/Abdur-rahmaanJ/phoning-home">phoning-home</a></span>
+                        <span class="project-links">
+                            
+                                
+                                [<a href="https://github.com/Abdur-rahmaanJ/phoning-home" target="_blank">Github</a>]
+                            
+                                
+                                [<a href="https://pypi.org/project/phoning-home/" target="_blank">Pypi</a>]
+                            
+                                
+                                [<a href="https://pepy.tech/projects/phoning-home" target="_blank">Pepy</a>]
+                            
+                        </span>
+                        
+                            <a target="_blank" href="https://pepy.tech/project/phoning-home">
+                                <img src="https://static.pepy.tech/personalized-badge/phoning-home?period=total&units=international_system&left_color=black&right_color=green&left_text=Downloads" alt="PyPI downloads">
+                            </a>
+                        
+                        <div class="project-info">
+                            <p>Phoning home, analytics and leaderboard with 0 server setup. Powered by Turso</p>
+                        </div>
+                    </td>
+                </tr>
                 
-
-                    [<a href="https://pypi.org/project/fastoo/" target="_blank">Pypi</a>] 
-
-              
-            </span>
-              
-                <a target="_blank" href="https://pepy.tech/project/fastoo"><img src="https://static.pepy.tech/personalized-badge/fastoo?period=total&units=international_system&left_color=black&right_color=green&left_text=Downloads">
-                </a>
-              
-
-            <p>Super-charged frameworks for building big fastapi apps</p>
-
-              
-
-      </td>
-    </tr>
-          
-          
-
-
-        
-    <tr>
-      <td>
-
-            <a href="https://github.com/Abdur-rahmaanJ/phoning-home">phoning-home</a>
-<span style="overflow-wrap: break-word;">
-              
+                <tr>
+                    <td>
+                        <span class="project-name"><a href="https://github.com/Abdur-rahmaanJ/download-stats">Download-stats</a></span>
+                        <span class="project-links">
+                            
+                                
+                                [<a href="https://github.com/Abdur-rahmaanJ/download-stats" target="_blank">Pypi</a>]
+                            
+                                
+                                [<a href="https://github.com/Abdur-rahmaanJ/download-stats" target="_blank">Github</a>]
+                            
+                        </span>
+                        
+                            <a target="_blank" href="https://pepy.tech/project/download-stats">
+                                <img src="https://static.pepy.tech/personalized-badge/download-stats?period=total&units=international_system&left_color=black&right_color=green&left_text=Downloads" alt="PyPI downloads">
+                            </a>
+                        
+                        <div class="project-info">
+                            <p>Download stats from pypi</p>
+                        </div>
+                    </td>
+                </tr>
                 
-
-                    [<a href="https://github.com/Abdur-rahmaanJ/phoning-home" target="_blank">Github</a>] 
-
-              
+                <tr>
+                    <td>
+                        <span class="project-name"><a href="https://github.com/Abdur-rahmaanJ/richterm">richterm</a></span>
+                        <span class="project-links">
+                            
+                                
+                                [<a href="https://crates.io/crates/richterm" target="_blank">Cratesio</a>]
+                            
+                                
+                                [<a href="https://github.com/Abdur-rahmaanJ/richterm" target="_blank">Github</a>]
+                            
+                        </span>
+                        
+                            <a target="_blank" href="https://crates.io/crates/richterm">
+                                <img alt="Crates.io" src="https://img.shields.io/crates/d/richterm">
+                            </a>
+                        
+                        <div class="project-info">
+                            <p>Rich terminals in rust. Follows Python&rsquo;s rich</p>
+                        </div>
+                    </td>
+                </tr>
                 
-
-                    [<a href="https://pypi.org/project/phoning-home/" target="_blank">Pypi</a>] 
-
-              
+                <tr>
+                    <td>
+                        <span class="project-name"><a href="https://github.com/pyhoneybot/honeybot">Honeybot</a></span>
+                        <span class="project-links">
+                            
+                                
+                                [<a href="https://github.com/pyhoneybot/honeybot" target="_blank">Github</a>]
+                            
+                                
+                                [<a href="https://discord.com/invite/E6zD4XT" target="_blank">Chat</a>]
+                            
+                        </span>
+                        
+                            <a target="_blank" href="https://pepy.tech/project/honeybot">
+                                <img src="https://static.pepy.tech/personalized-badge/honeybot?period=total&units=international_system&left_color=black&right_color=green&left_text=Downloads" alt="PyPI downloads">
+                            </a>
+                        
+                        <div class="project-info">
+                            <p>An IRC bot built from scratch with an awesome collection of Plugins. It even has a contributed Monopoly plugin!</p>
+                        </div>
+                    </td>
+                </tr>
                 
-
-                    [<a href="https://pepy.tech/projects/phoning-home" target="_blank">Pepy</a>] 
-
-              
-            </span>
-              
-                <a target="_blank" href="https://pepy.tech/project/phoning-home"><img src="https://static.pepy.tech/personalized-badge/phoning-home?period=total&units=international_system&left_color=black&right_color=green&left_text=Downloads">
-                </a>
-              
-
-            <p>Phoning home, analytics and leaderboard with 0 server setup. Powered by Turso</p>
-
-              
-
-      </td>
-    </tr>
-          
-          
-
-
-        
-    <tr>
-      <td>
-
-            <a href="https://github.com/Abdur-rahmaanJ/download-stats">Download-stats</a>
-<span style="overflow-wrap: break-word;">
-              
+                <tr>
+                    <td>
+                        <span class="project-name"><a href="https://github.com/Abdur-rahmaanJ/finance-mauritius">finance-mauritius</a></span>
+                        <span class="project-links">
+                            
+                                
+                                [<a href="https://github.com/Abdur-rahmaanJ/finance-mauritius" target="_blank">Github</a>]
+                            
+                                
+                                [<a href="https://pypi.org/project/finance-mauritius/" target="_blank">Pypi</a>]
+                            
+                        </span>
+                        
+                            <a target="_blank" href="https://pepy.tech/project/finance-mauritius">
+                                <img src="https://static.pepy.tech/personalized-badge/finance-mauritius?period=total&units=international_system&left_color=black&right_color=green&left_text=Downloads" alt="PyPI downloads">
+                            </a>
+                        
+                        <div class="project-info">
+                            <p>Useful functions for Mauritius banks and financials institutions like MRA (Mauritius Revenue Authority)</p>
+                        </div>
+                    </td>
+                </tr>
                 
-
-                    [<a href="https://github.com/Abdur-rahmaanJ/download-stats" target="_blank">Pypi</a>] 
-
-              
+                <tr>
+                    <td>
+                        <span class="project-name"><a href="https://github.com/Abdur-rahmaanJ/oreiller">oreiller</a></span>
+                        <span class="project-links">
+                            
+                                
+                                [<a href="https://github.com/Abdur-rahmaanJ/oreiller" target="_blank">Github</a>]
+                            
+                                
+                                [<a href="https://pypi.org/project/oreiller/" target="_blank">Pypi</a>]
+                            
+                        </span>
+                        
+                            <a target="_blank" href="https://pepy.tech/project/oreiller">
+                                <img src="https://static.pepy.tech/personalized-badge/oreiller?period=total&units=international_system&left_color=black&right_color=green&left_text=Downloads" alt="PyPI downloads">
+                            </a>
+                        
+                        <div class="project-info">
+                            <p>The package for easy image manipulation backed by pillow power.</p>
+                        </div>
+                    </td>
+                </tr>
                 
-
-                    [<a href="https://github.com/Abdur-rahmaanJ/download-stats" target="_blank">Github</a>] 
-
-              
-            </span>
-              
-                <a target="_blank" href="https://pepy.tech/project/download-stats"><img src="https://static.pepy.tech/personalized-badge/download-stats?period=total&units=international_system&left_color=black&right_color=green&left_text=Downloads">
-                </a>
-              
-
-            <p>Download stats from pypi</p>
-
-              
-
-      </td>
-    </tr>
-          
-          
-
-
-        
-    <tr>
-      <td>
-
-            <a href="https://github.com/Abdur-rahmaanJ/richterm">richterm</a>
-<span style="overflow-wrap: break-word;">
-              
-                
-
-                    [<a href="https://crates.io/crates/richterm" target="_blank">Cratesio</a>] 
-
-              
-                
-
-                    [<a href="https://github.com/Abdur-rahmaanJ/richterm" target="_blank">Github</a>] 
-
-              
-            </span>
-              
-                <a target="_blank" href="https://crates.io/crates/richterm"><img alt="Crates.io" src="https://img.shields.io/crates/d/richterm">
-
-                </a>
-              
-
-            <p>Rich terminals in rust. Follows Python&rsquo;s rich</p>
-
-              
-
-      </td>
-    </tr>
-          
-          
-
-
-        
-    <tr>
-      <td>
-
-            <a href="https://github.com/pyhoneybot/honeybot">Honeybot</a>
-<span style="overflow-wrap: break-word;">
-              
-                
-
-                    [<a href="https://github.com/pyhoneybot/honeybot" target="_blank">Github</a>] 
-
-              
-                
-
-                    [<a href="https://discord.com/invite/E6zD4XT" target="_blank">Chat</a>] 
-
-              
-            </span>
-              
-                <a target="_blank" href="https://pepy.tech/project/honeybot"><img src="https://static.pepy.tech/personalized-badge/honeybot?period=total&units=international_system&left_color=black&right_color=green&left_text=Downloads">
-                </a>
-              
-
-            <p>An IRC bot built from scratch with an awesome collection of Plugins. It even has a contributed Monopoly plugin!</p>
-
-              
-
-      </td>
-    </tr>
-          
-          
-
-
-        
-    <tr>
-      <td>
-
-            <a href="https://github.com/Abdur-rahmaanJ/finance-mauritius">finance-mauritius</a>
-<span style="overflow-wrap: break-word;">
-              
-                
-
-                    [<a href="https://github.com/Abdur-rahmaanJ/finance-mauritius" target="_blank">Github</a>] 
-
-              
-                
-
-                    [<a href="https://pypi.org/project/finance-mauritius/" target="_blank">Pypi</a>] 
-
-              
-            </span>
-              
-                <a target="_blank" href="https://pepy.tech/project/finance-mauritius"><img src="https://static.pepy.tech/personalized-badge/finance-mauritius?period=total&units=international_system&left_color=black&right_color=green&left_text=Downloads">
-                </a>
-              
-
-            <p>Useful functions for Mauritius banks and financials institutions like MRA (Mauritius Revenue Authority)</p>
-
-              
-
-      </td>
-    </tr>
-          
-          
-
-
-        
-    <tr>
-      <td>
-
-            <a href="https://github.com/Abdur-rahmaanJ/oreiller">oreiller</a>
-<span style="overflow-wrap: break-word;">
-              
-                
-
-                    [<a href="https://github.com/Abdur-rahmaanJ/oreiller" target="_blank">Github</a>] 
-
-              
-                
-
-                    [<a href="https://pypi.org/project/oreiller/" target="_blank">Pypi</a>] 
-
-              
-            </span>
-              
-                <a target="_blank" href="https://pepy.tech/project/oreiller"><img src="https://static.pepy.tech/personalized-badge/oreiller?period=total&units=international_system&left_color=black&right_color=green&left_text=Downloads">
-                </a>
-              
-
-            <p>The package for easy image manipulation backed by pillow power.</p>
-
-              
-
-      </td>
-    </tr>
-          
-          
-
-
-        
-    <tr>
-      <td>
-
-            <a href="https://github.com/shopyo/shopcube">ShopCube</a>
-<span style="overflow-wrap: break-word;">
-              
-                
-
-                    [<a href="https://github.com/shopyo/shopcube" target="_blank">Github</a>] 
-
-              
-            </span>
-              
-                <a target="_blank" href="https://pepy.tech/project/shopcube"><img src="https://static.pepy.tech/personalized-badge/shopcube?period=total&units=international_system&left_color=black&right_color=green&left_text=Downloads">
-                </a>
-              
-
-            <p>An ecommerce project in Flask which has among others: cart editing
+                <tr>
+                    <td>
+                        <span class="project-name"><a href="https://github.com/shopyo/shopcube">ShopCube</a></span>
+                        <span class="project-links">
+                            
+                                
+                                [<a href="https://github.com/shopyo/shopcube" target="_blank">Github</a>]
+                            
+                        </span>
+                        
+                            <a target="_blank" href="https://pepy.tech/project/shopcube">
+                                <img src="https://static.pepy.tech/personalized-badge/shopcube?period=total&units=international_system&left_color=black&right_color=green&left_text=Downloads" alt="PyPI downloads">
+                            </a>
+                        
+                        <div class="project-info">
+                            <p>An ecommerce project in Flask which has among others: cart editing
 , multi-picture product zooming
 , checkout
 , orders
 , themes</p>
-
-              
-
-      </td>
-    </tr>
-          
-          
-
-
-        
-    <tr>
-      <td>
-
-            <a href="https://github.com/Abdur-rahmaanJ/newsmoris">newsmoris</a>
-<span style="overflow-wrap: break-word;">
-              
+                        </div>
+                    </td>
+                </tr>
                 
-
-                    [<a href="https://github.com/Abdur-rahmaanJ/newsmoris" target="_blank">Github</a>] 
-
-              
+                <tr>
+                    <td>
+                        <span class="project-name"><a href="https://github.com/Abdur-rahmaanJ/newsmoris">newsmoris</a></span>
+                        <span class="project-links">
+                            
+                                
+                                [<a href="https://github.com/Abdur-rahmaanJ/newsmoris" target="_blank">Github</a>]
+                            
+                                
+                                [<a href="https://pypi.org/project/newsmoris/" target="_blank">Pypi</a>]
+                            
+                        </span>
+                        
+                            <a target="_blank" href="https://pepy.tech/project/newsmoris">
+                                <img src="https://static.pepy.tech/personalized-badge/newsmoris?period=total&units=international_system&left_color=black&right_color=green&left_text=Downloads" alt="PyPI downloads">
+                            </a>
+                        
+                        <div class="project-info">
+                            <p>A package to get news about Mauritius grouped by topnews as well as by category and article reading.</p>
+                        </div>
+                    </td>
+                </tr>
                 
-
-                    [<a href="https://pypi.org/project/newsmoris/" target="_blank">Pypi</a>] 
-
-              
-            </span>
-              
-                <a target="_blank" href="https://pepy.tech/project/newsmoris"><img src="https://static.pepy.tech/personalized-badge/newsmoris?period=total&units=international_system&left_color=black&right_color=green&left_text=Downloads">
-                </a>
-              
-
-            <p>A package to get news about Mauritius grouped by topnews as well as by category and article reading.</p>
-
-              
-
-      </td>
-    </tr>
-          
-          
-
-
-        
-    <tr>
-      <td>
-
-            <a href="https://github.com/abdur-rahmaanj/termcharts">termcharts</a>
-<span style="overflow-wrap: break-word;">
-              
+                <tr>
+                    <td>
+                        <span class="project-name"><a href="https://github.com/abdur-rahmaanj/termcharts">termcharts</a></span>
+                        <span class="project-links">
+                            
+                                
+                                [<a href="https://github.com/abdur-rahmaanj/termcharts" target="_blank">Github</a>]
+                            
+                                
+                                [<a href="https://pypi.org/project/termcharts/" target="_blank">Pypi</a>]
+                            
+                        </span>
+                        
+                            <a target="_blank" href="https://pepy.tech/project/termcharts">
+                                <img src="https://static.pepy.tech/personalized-badge/termcharts?period=total&units=international_system&left_color=black&right_color=green&left_text=Downloads" alt="PyPI downloads">
+                            </a>
+                        
+                        <div class="project-info">
+                            <p>Rich-compatible terminal charts</p>
+                        </div>
+                    </td>
+                </tr>
                 
-
-                    [<a href="https://github.com/abdur-rahmaanj/termcharts" target="_blank">Github</a>] 
-
-              
+                <tr>
+                    <td>
+                        <span class="project-name"><a href="https://github.com/shopyo/pythoncms/">pythoncms</a></span>
+                        <span class="project-links">
+                            
+                                
+                                [<a href="https://github.com/shopyo/pythoncms/" target="_blank">Github</a>]
+                            
+                                
+                                [<a href="https://pypi.org/project/pythoncms/" target="_blank">Pypi</a>]
+                            
+                        </span>
+                        
+                            <a target="_blank" href="https://pepy.tech/project/pythoncms">
+                                <img src="https://static.pepy.tech/personalized-badge/pythoncms?period=total&units=international_system&left_color=black&right_color=green&left_text=Downloads" alt="PyPI downloads">
+                            </a>
+                        
+                        <div class="project-info">
+                            <p>A CMS that you understand.</p>
+                        </div>
+                    </td>
+                </tr>
                 
-
-                    [<a href="https://pypi.org/project/termcharts/" target="_blank">Pypi</a>] 
-
-              
-            </span>
-              
-                <a target="_blank" href="https://pepy.tech/project/termcharts"><img src="https://static.pepy.tech/personalized-badge/termcharts?period=total&units=international_system&left_color=black&right_color=green&left_text=Downloads">
-                </a>
-              
-
-            <p>Rich-compatible terminal charts</p>
-
-              
-
-      </td>
-    </tr>
-          
-          
-
-
-        
-    <tr>
-      <td>
-
-            <a href="https://github.com/shopyo/pythoncms/">pythoncms</a>
-<span style="overflow-wrap: break-word;">
-              
-                
-
-                    [<a href="https://github.com/shopyo/pythoncms/" target="_blank">Github</a>] 
-
-              
-                
-
-                    [<a href="https://pypi.org/project/pythoncms/" target="_blank">Pypi</a>] 
-
-              
-            </span>
-              
-                <a target="_blank" href="https://pepy.tech/project/pythoncms"><img src="https://static.pepy.tech/personalized-badge/pythoncms?period=total&units=international_system&left_color=black&right_color=green&left_text=Downloads">
-                </a>
-              
-
-            <p>A CMS that you understand.</p>
-
-              
-
-      </td>
-    </tr>
-          
-          
-
-
-        
-    <tr>
-      <td>
-
-            <a href="https://github.com/shopyo/marketflow">MarketFlow</a>
-<span style="overflow-wrap: break-word;">
-              
-                
-
-                    [<a href="https://github.com/shopyo/marketflow" target="_blank">Github</a>] 
-
-              
-            </span>
-              
-
-            <p>A marketplace in Flask which has among others: vendor registration
+                <tr>
+                    <td>
+                        <span class="project-name"><a href="https://github.com/shopyo/marketflow">MarketFlow</a></span>
+                        <span class="project-links">
+                            
+                                
+                                [<a href="https://github.com/shopyo/marketflow" target="_blank">Github</a>]
+                            
+                        </span>
+                        
+                        <div class="project-info">
+                            <p>A marketplace in Flask which has among others: vendor registration
 , vendor isolation
 , cart
 , multi-picture product zooming
 , checkout
 , orders
 , themes</p>
-
-              
-
-      </td>
-    </tr>
-          
-          
-
-
-        
-    <tr>
-      <td>
-
-            <a href="https://github.com/Abdur-rahmaanJ/greenBerry">GreenBerry</a>
-<span style="overflow-wrap: break-word;">
-              
+                        </div>
+                    </td>
+                </tr>
                 
-
-                    [<a href="https://github.com/Abdur-rahmaanJ/greenBerry" target="_blank">Github</a>] 
-
-              
+                <tr>
+                    <td>
+                        <span class="project-name"><a href="https://github.com/Abdur-rahmaanJ/greenBerry">GreenBerry</a></span>
+                        <span class="project-links">
+                            
+                                
+                                [<a href="https://github.com/Abdur-rahmaanJ/greenBerry" target="_blank">Github</a>]
+                            
+                                
+                                [<a href="https://abdur-rahmaanj.github.io/greenBerry/" target="_blank">Docs</a>]
+                            
+                        </span>
+                        
+                            <a target="_blank" href="https://pepy.tech/project/greenberry">
+                                <img src="https://static.pepy.tech/personalized-badge/greenberry?period=total&units=international_system&left_color=black&right_color=green&left_text=Downloads" alt="PyPI downloads">
+                            </a>
+                        
+                        <div class="project-info">
+                            <p>A one line statement language with IDE,</p>
+                        </div>
+                    </td>
+                </tr>
                 
-
-                    [<a href="https://abdur-rahmaanj.github.io/greenBerry/" target="_blank">Docs</a>] 
-
-              
-            </span>
-              
-                <a target="_blank" href="https://pepy.tech/project/greenberry"><img src="https://static.pepy.tech/personalized-badge/greenberry?period=total&units=international_system&left_color=black&right_color=green&left_text=Downloads">
-                </a>
-              
-
-            <p>A one line statement language with IDE,</p>
-
-              
-
-      </td>
-    </tr>
-          
-          
-
-
-        
-    <tr>
-      <td>
-
-            <a href="https://github.com/Abdur-rahmaanJ/ppython">PPython</a>
-<span style="overflow-wrap: break-word;">
-              
+                <tr>
+                    <td>
+                        <span class="project-name"><a href="https://github.com/Abdur-rahmaanJ/ppython">PPython</a></span>
+                        <span class="project-links">
+                            
+                                
+                                [<a href="https://github.com/Abdur-rahmaanJ/ppython" target="_blank">Github</a>]
+                            
+                        </span>
+                        
+                        <div class="project-info">
+                            <p>Implementing <a href="https://www.processing.org">processing.org</a>&lsquo;s lib in pure Python with absolutely no dependencies</p>
+                        </div>
+                    </td>
+                </tr>
                 
-
-                    [<a href="https://github.com/Abdur-rahmaanJ/ppython" target="_blank">Github</a>] 
-
-              
-            </span>
-              
-
-            <p>Implementing <a href="https://www.processing.org">processing.org</a>&lsquo;s lib in pure Python with absolutely no dependencies</p>
-
-              
-
-      </td>
-    </tr>
-          
-          
-
-
-        
-    <tr>
-      <td>
-
-            <a href="https://github.com/Abdur-rahmaanJ/RedittyWalls">Reditty-Walls</a>
-<span style="overflow-wrap: break-word;">
-              
+                <tr>
+                    <td>
+                        <span class="project-name"><a href="https://github.com/Abdur-rahmaanJ/RedittyWalls">Reditty-Walls</a></span>
+                        <span class="project-links">
+                            
+                                
+                                [<a href="https://github.com/Abdur-rahmaanJ/RedittyWalls" target="_blank">Github</a>]
+                            
+                        </span>
+                        
+                        <div class="project-info">
+                            <p>Wallpaper changer soft with walls pulled from Reddit</p>
+                        </div>
+                    </td>
+                </tr>
                 
-
-                    [<a href="https://github.com/Abdur-rahmaanJ/RedittyWalls" target="_blank">Github</a>] 
-
-              
-            </span>
-              
-
-            <p>Wallpaper changer soft with walls pulled from Reddit</p>
-
-              
-
-      </td>
-    </tr>
-          
-          
-
-
-        
-    <tr>
-      <td>
-
-            <a href="https://github.com/Abdur-rahmaanJ/pyMsPaint">pyMsPaint</a>
-<span style="overflow-wrap: break-word;">
-              
+                <tr>
+                    <td>
+                        <span class="project-name"><a href="https://github.com/Abdur-rahmaanJ/pyMsPaint">pyMsPaint</a></span>
+                        <span class="project-links">
+                            
+                                
+                                [<a href="https://github.com/Abdur-rahmaanJ/pyMsPaint" target="_blank">Github</a>]
+                            
+                        </span>
+                        
+                        <div class="project-info">
+                            <p>Program MsPaint using python. As accurate as your canvas</p>
+                        </div>
+                    </td>
+                </tr>
                 
-
-                    [<a href="https://github.com/Abdur-rahmaanJ/pyMsPaint" target="_blank">Github</a>] 
-
-              
-            </span>
-              
-
-            <p>Program MsPaint using python. As accurate as your canvas</p>
-
-              
-
-      </td>
-    </tr>
-          
-          
-
-
-        
-    <tr>
-      <td>
-
-            <a href="https://github.com/Abdur-rahmaanJ/InternalO">InternalO</a>
-<span style="overflow-wrap: break-word;">
-              
+                <tr>
+                    <td>
+                        <span class="project-name"><a href="https://github.com/Abdur-rahmaanJ/InternalO">InternalO</a></span>
+                        <span class="project-links">
+                            
+                                
+                                [<a href="https://github.com/Abdur-rahmaanJ/InternalO" target="_blank">Github</a>]
+                            
+                        </span>
+                        
+                        <div class="project-info">
+                            <p>An employee roster system with in-mail written in PHP</p>
+                        </div>
+                    </td>
+                </tr>
                 
-
-                    [<a href="https://github.com/Abdur-rahmaanJ/InternalO" target="_blank">Github</a>] 
-
-              
-            </span>
-              
-
-            <p>An employee roster system with in-mail written in PHP</p>
-
-              
-
-      </td>
-    </tr>
-          
-          
-
-
-        
-    <tr>
-      <td>
-
-            <a href="https://github.com/Abdur-rahmaanJ/aidre">Aidre</a>
-<span style="overflow-wrap: break-word;">
-              
+                <tr>
+                    <td>
+                        <span class="project-name"><a href="https://github.com/Abdur-rahmaanJ/aidre">Aidre</a></span>
+                        <span class="project-links">
+                            
+                                
+                                [<a href="https://github.com/Abdur-rahmaanJ/aidre" target="_blank">Github</a>]
+                            
+                        </span>
+                        
+                        <div class="project-info">
+                            <p>An editor for .po translations</p>
+                        </div>
+                    </td>
+                </tr>
                 
-
-                    [<a href="https://github.com/Abdur-rahmaanJ/aidre" target="_blank">Github</a>] 
-
-              
-            </span>
-              
-
-            <p>An editor for .po translations</p>
-
-              
-
-      </td>
-    </tr>
-          
-          
-
-
-        
-
-  </tfoot>
-</table>
-      
-      
-  </div>
+            </tbody>
+        </table>
+    </div>
 </div>
-</div>
-<footer class="footer has-background-white-ter">
-    <div class="content has-text-centered ">
-        <p>
-            Built using <a href="https://pypi.org/project/jamstack">the jamstack package on pypi</a>
-            <hr>
-            <a href="../">Home</a>; 
-            <a href="/blog">Personal Blog</a>; 
-            <a href="/articles">Luminotes</a>;
-            <a href="/diaries">Diaries</a>;
-        </p>
+<footer class="site-footer">
+    <div class="container">
+        <p>Built using <a href="https://pypi.org/project/jamstack">the jamstack package on PyPI</a></p>
+        <div class="site-footer__links">
+            <a href="../">Home</a>
+            <a href="/blog">Blog</a>
+            <a href="/articles">Luminotes</a>
+            <a href="/diaries">Diaries</a>
+        </div>
     </div>
     <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 </footer>
 
+
+    <div class="crank" id="crank" aria-hidden="true">
+        <svg class="crank__svg" viewBox="0 0 56 56">
+            <!-- Base plate -->
+            <rect class="crank__base" x="6" y="6" width="44" height="44" rx="4"></rect>
+            <circle class="crank__bolt" cx="10" cy="10" r="1.2"></circle>
+            <circle class="crank__bolt" cx="46" cy="10" r="1.2"></circle>
+            <circle class="crank__bolt" cx="10" cy="46" r="1.2"></circle>
+            <circle class="crank__bolt" cx="46" cy="46" r="1.2"></circle>
+
+            <!-- Bushing (static) -->
+            <circle class="crank__bushing" cx="28" cy="28" r="4"></circle>
+            <circle class="crank__bushing-inner" cx="28" cy="28" r="2"></circle>
+
+            <!-- Rotor: gear + arm + handle (rotates as one unit) -->
+            <g class="crank__rotor" id="crank-rotor">
+                <!-- Gear: circle with dasharray teeth + inner detail -->
+                <circle class="crank__gear-fill" cx="28" cy="28" r="9"></circle>
+                <circle class="crank__gear" cx="28" cy="28" r="10" stroke-dasharray="1.8 1.5"></circle>
+                <circle class="crank__gear-line" cx="28" cy="28" r="6"></circle>
+                <line class="crank__gear-line" x1="28" y1="22" x2="28" y2="34"></line>
+                <line class="crank__gear-line" x1="22" y1="28" x2="34" y2="28"></line>
+
+                <!-- Crank arm extending from center -->
+                <line class="crank__arm" x1="28" y1="28" x2="28" y2="12"></line>
+                <!-- Handle ball at the end -->
+                <circle class="crank__handle-ring" cx="28" cy="10" r="4"></circle>
+                <circle class="crank__handle" cx="28" cy="10" r="2.5"></circle>
+            </g>
+        </svg>
+    </div>
+
+    <script>
+    (function() {
+        if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+        var rotor = document.getElementById('crank-rotor');
+        if (!rotor) return;
+
+        var angle = 0;          /* current rotation in degrees */
+        var velocity = 0;       /* angular velocity (deg/frame) */
+        var lastY = window.scrollY;
+        var lastTime = 0;
+
+        window.addEventListener('scroll', function() {
+            var y = window.scrollY;
+            var delta = y - lastY;
+            /* Scroll down → crank spins CCW (negative). Scroll up → CW (positive). */
+            velocity -= delta * 0.1;
+            lastY = y;
+        }, { passive: true });
+
+        function loop(now) {
+            if (!lastTime) lastTime = now;
+            /* dt normalized to ~60fps frame (1.0 = one frame at 60fps) */
+            var dt = Math.min((now - lastTime) / 16.667, 3);
+            lastTime = now;
+
+            /* Clamp velocity so a single big scroll burst doesn't fling it absurdly */
+            if (velocity > 40) velocity = 40;
+            if (velocity < -40) velocity = -40;
+
+            /* Apply velocity to angle, scaled by dt for frame-rate independence */
+            angle += velocity * dt;
+
+            /* Friction: velocity decays exponentially. 0.94/frame at 60fps
+               gives a smooth ~2s wind-down after a hard scroll. */
+            velocity *= Math.pow(0.94, dt);
+
+            /* Snap to rest when velocity is negligible */
+            if (Math.abs(velocity) < 0.01) velocity = 0;
+
+            rotor.setAttribute('transform', 'rotate(' + angle.toFixed(2) + ' 28 28)');
+            requestAnimationFrame(loop);
+        }
+        requestAnimationFrame(loop);
+    })();
+    </script>
 </body>
 
 </html>
