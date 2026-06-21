@@ -52,6 +52,18 @@ gtag('config', 'UA-161612035-1');
   }
 }
 </script>
+
+<meta name="theme-color" content="#ffb74d" />
+<link rel="icon" href="../assets/COMP_ALC.png">
+
+<!-- Performance Optimized Asset Loading -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preconnect" href="https://cdnjs.cloudflare.com">
+<link href="https://fonts.googleapis.com/css2?family=Comfortaa&family=Raleway:wght@700&family=Special+Elite&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.0/css/bulma.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
 <!-- Global Editorial Styles -->
 <style type="text/css">
     :root {
@@ -65,6 +77,8 @@ gtag('config', 'UA-161612035-1');
         --line-soft: #f5f5f4;
         --surface: #ffffff;
         --surface-alt: #faf9f7;
+        --font-main: 'Comfortaa', cursive;
+        --font-title: 'Raleway', sans-serif;
         /* Backward-compatible aliases for older templates */
         --primary-color: var(--accent);
         --active-color: var(--accent-hover);
@@ -73,18 +87,20 @@ gtag('config', 'UA-161612035-1');
         --reading-width: 680px;
         --container-width: 920px;
     }
+
+    body {
+        font-family: var(--font-main);
+        color: var(--ink);
+        line-height: 1.85;
+        -webkit-font-smoothing: antialiased;
+    }
+
+    h1, h2, h3, .title {
+        font-family: var(--font-title);
+        font-weight: 800;
+        letter-spacing: -0.02em;
+    }
 </style>
-
-<meta name="theme-color" content="#ffb74d" />
-<link rel="icon" href="../assets/COMP_ALC.png">
-
-<!-- Performance Optimized Asset Loading -->
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="preconnect" href="https://cdnjs.cloudflare.com">
-<link href="https://fonts.googleapis.com/css2?family=Comfortaa&family=Raleway:wght@700&family=Special+Elite&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.0/css/bulma.min.css">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
 <link rel="stylesheet" type="text/css" href="../style.css">
 <link rel="stylesheet" type="text/css" href="../bulma-timeline.min.css">
@@ -187,298 +203,395 @@ gtag('config', 'UA-161612035-1');
 
     
 
-<div id="facts" class="section">
-
+<div id="facts" class="section section--alt">
     <div class="container"><br><br>
-        <div class="has-text-centered">
-            <p class="has-text-centered">
-                <span class="title has-background-white-ter  has-text-centered"
-                    style="width: 50px; height:50px; padding: 20px; border-radius: 50%;">
-                    🎉
+        <header class="sec-head sec-head--center">
+            <span class="sec-kicker">Dev Journey</span>
+            <h2 class="sec-title">Milestones</h2>
+        </header>
+
+        <div class="container--narrow" style="margin: 0 auto;">
+            <div class="stat-row">
+                <span class="stat-tag">
+                    <span class="stat-tag__label">Dev.to article views</span>
+                    <span class="stat-tag__value">58k</span>
                 </span>
-            </p><br>
-            <p class="title"><a href="#facts" class="no-link-dec">Dev Journey</a></p>
-            <p class="subtitle">Milestones
-                </a>. </p>
-        </div>
-        <div class="">
-            <div class="container notification is-white">
-                <hr>
-                <div class="field is-grouped is-grouped-multiline">
-                    <div class="control">
-                        <div class="tags has-addons">
-                            <span class="tag is-dark">Dev.to article views</span>
-                            <span class="tag is-info">58k</span>
-                        </div>
-                    </div>
-                    <div class="control">
-                        <div class="tags has-addons">
-                            <span class="tag is-dark">Codementor.io article views</span>
-                            <span class="tag is-info">46k</span>
-                        </div>
-                    </div>
-                    <div class="control">
-                        <div class="tags has-addons">
-                            <span class="tag is-dark">Pypi downloads</span>
-                            <span class="tag is-info">125k</span>
-                        </div>
-                    </div>
-                </div>
-                <div style="">
-                    <div class="timeline">
-                        <header class="timeline-header">
-                          <span class="tag is-medium is-primary">End</span>
-                        </header>
-
-                        
-                        <div class="timeline-item">
-                          <div class="timeline-marker"></div>
-                          <div class="timeline-content">
-                            <p class="heading">[April 2021] <a href="https://github.com/Abdur-RahmaanJ">Github Badge Awarded for the Ingenuity Mars Helicopter Mission</a></p>
-                            <p>Appended to Github profile.</p>
-                          </div>
-                        </div>
-                        
-                        <div class="timeline-item">
-                          <div class="timeline-marker"></div>
-                          <div class="timeline-content">
-                            <p class="heading">[Mar 2021] <a href="https://www.linkedin.com/posts/appinv_opensource-mauritius-activity-6774529671146037248-bKLA">We helped 100+ people get into OpenSource</a></p>
-                            <p>Counted from my Github projects!</p>
-                          </div>
-                        </div>
-                        
-                        <div class="timeline-item">
-                          <div class="timeline-marker"></div>
-                          <div class="timeline-content">
-                            <p class="heading">[Mar 2021] <a href="https://pepy.tech/project/hooman">Hooman gets 18k downloads</a></p>
-                            <p>The PyGame library seems to get adopted on PyPi</p>
-                          </div>
-                        </div>
-                        
-                        <div class="timeline-item">
-                          <div class="timeline-marker"></div>
-                          <div class="timeline-content">
-                            <p class="heading">[Dec 2020] <a href="https://news.ycombinator.com/item?id=25427504">Article Makes it to the HackerNews front page</a></p>
-                            <p><a href="https://www.pythonkitchen.com/legally-free-python-books-list/">The Most Complete List of Legally Free Python Books</a> makes it, reteeted and reshared a lot here and there</p>
-                          </div>
-                        </div>
-                        
-                        <div class="timeline-item">
-                          <div class="timeline-marker"></div>
-                          <div class="timeline-content">
-                            <p class="heading">[Dec 2020] <a href="https://pycoders.com/issues/453">RealPython's Newsletter selected article in issue #453</a></p>
-                            <p>The article <a href="https://www.pythonkitchen.com/zen-of-python-in-depth/">"The Zen Of Python: A Most In Depth Article"</a> got selected in PyCoders weekly. I could not find a more thourough article on the Zen written before. Hence the claim: "The most in-depth article about the Zen ever written in history"</p>
-                          </div>
-                        </div>
-                        
-                        <div class="timeline-item">
-                          <div class="timeline-marker"></div>
-                          <div class="timeline-content">
-                            <p class="heading">[Nov 2020] <a href="https://porter.io/digest/20201125/e9df7d222ec311eb87d9361b9c01e521/">Porter.io adds article in recommended news!</a></p>
-                            <p>The article "Python: Running Makefiles on Windows" got recommended.</p>
-                          </div>
-                        </div>
-                        
-                        <div class="timeline-item">
-                          <div class="timeline-marker"></div>
-                          <div class="timeline-content">
-                            <p class="heading">[Sep 2020] <a href="https://twitter.com/CodementorIO/status/1306295790441246725?s=20">Codementor.io included article in #100DaysOfCode</a></p>
-                            <p>Hooman is a library i maintain.</p>
-                          </div>
-                        </div>
-                        
-                        <div class="timeline-item">
-                          <div class="timeline-marker"></div>
-                          <div class="timeline-content">
-                            <p class="heading">[Sep 2020] <a href="https://hackernoon.com/the-zen-of-python-as-related-by-masters-n32h3tu3">Hackernoon.com published article</a></p>
-                            <p>My article "The Zen of Python: As related by Master" got published on hackernoon.</p>
-                          </div>
-                        </div>
-                        
-                        <div class="timeline-item">
-                          <div class="timeline-marker"></div>
-                          <div class="timeline-content">
-                            <p class="heading">[Jul 2020] <a href="https://www.youtube.com/watch?v=rkzXQOC1T0Q&list=PL8uoeex94UhHgMD9GOCbEHWku7pEPx9fW&index=34">Euro Python Talk</a></p>
-                            <p>My talk "Django Clone From Scratch" got delivered at EuroPython</p>
-                          </div>
-                        </div>
-                        
-                        <div class="timeline-item">
-                          <div class="timeline-marker"></div>
-                          <div class="timeline-content">
-                            <p class="heading">[Jun 2020] <a href="https://flaskcon.com">FlaskCon close up</a></p>
-                            <p>After months of preparation, the event is finally over with <a href="https://www.youtube.com/channel/UC3QC5pASs8v5YVxKwJDtZeQ">lots of good talks! </a>Lots of awesome speakers and fantastic response from the community outlets like RealPython, PythonWeekly etc</p>
-                          </div>
-                        </div>
-                        
-                        <div class="timeline-item">
-                          <div class="timeline-marker"></div>
-                          <div class="timeline-content">
-                            <p class="heading">[May 2020] <a href="https://www.geeksforgeeks.org/creating-custom-widgets-in-pyqt5/">Article published on Geeksforgeeks.org</a></p>
-                            <p>"Creating Custom Widgets in PyQt5" is published</p>
-                          </div>
-                        </div>
-                        
-                        <div class="timeline-item">
-                          <div class="timeline-marker"></div>
-                          <div class="timeline-content">
-                            <p class="heading">[Apr 2020] <a href="">Authored the FlaskCon initiative</a></p>
-                            <p>FlaskCon becomes an approved PSF trademark</p>
-                          </div>
-                        </div>
-                        
-                        <div class="timeline-item">
-                          <div class="timeline-marker"></div>
-                          <div class="timeline-content">
-                            <p class="heading">[Mar 2020] <a href="https://www.linkedin.com/posts/appinv_the-key-to-django-and-flask-activity-6642695171144318976-QEpN">Post Got Trending Status For #python On LinkedIn</a></p>
-                            <p>Post on "Grasping Both Flask And Django In One Session" got trending status on LinkedIn!</p>
-                          </div>
-                        </div>
-                        
-                        <div class="timeline-item">
-                          <div class="timeline-marker"></div>
-                          <div class="timeline-content">
-                            <p class="heading">[Mar 2020] <a href="">Article Featured In Weekly Digest On Codementor.io</a></p>
-                            <p>Article gets 2nd top post of the wee</p>
-                          </div>
-                        </div>
-                        
-                        <div class="timeline-item">
-                          <div class="timeline-marker"></div>
-                          <div class="timeline-content">
-                            <p class="heading">[Mar 2020] <a href="http://www.tuxmachines.org/node/134966?quicktabs_authors=2">Tuxmachines.org Featured 1 Article</a></p>
-                            <p></p>
-                          </div>
-                        </div>
-                        
-                        <div class="timeline-item">
-                          <div class="timeline-marker"></div>
-                          <div class="timeline-content">
-                            <p class="heading">[Mar 2020] <a href="http://www.tuxmachines.org/node/134905">Tuxmachines.org Featured 2 Articles</a></p>
-                            <p></p>
-                          </div>
-                        </div>
-                        
-                        <div class="timeline-item">
-                          <div class="timeline-marker"></div>
-                          <div class="timeline-content">
-                            <p class="heading">[Feb 2020] <a href="https://www.geeksforgeeks.org/migrate-pyqt5-app-to-pyside2/">Article published on Geeksforgeeks.org</a></p>
-                            <p>"Migrate PyQt5 app to PySide2" is published</p>
-                          </div>
-                        </div>
-                        
-                        <div class="timeline-item">
-                          <div class="timeline-marker"></div>
-                          <div class="timeline-content">
-                            <p class="heading">[Feb 2020] <a href="https://pythonbytes.fm/episodes/show/170/visualize-this-visualizing-python-s-visualization-ecosystem">Podcast Calls Article A Must Read</a></p>
-                            <p>PythonBytes (same folks as talkpython.fm) tells: "Abdur-Rahmaan Janhangeer: The Zen Of Python Is A Joke And Here Is Why is a must read."</p>
-                          </div>
-                        </div>
-                        
-                        <div class="timeline-item">
-                          <div class="timeline-marker"></div>
-                          <div class="timeline-content">
-                            <p class="heading">[Feb 2020] <a href="https://github.com/Pilifer/awesome-zen-of-python/">Article Added In Awesome Zen Repo</a></p>
-                            <p>"The Zen Of Python Is A Joke And Here Is Why" added as a resource for understanding the Zen of Python</p>
-                          </div>
-                        </div>
-                        
-                        <div class="timeline-item">
-                          <div class="timeline-marker"></div>
-                          <div class="timeline-content">
-                            <p class="heading">[Feb 2020] <a href="https://python.libhunt.com/newsletter/192">Open Source Project Featured In Python Weekly</a></p>
-                            <p><a href="https://www.github.com/Abdur-rahmaanJ/Shopyo">github.com/shopyo/Shopyo</a> got featured in Python Weekly newsletter issue 436</p>
-                          </div>
-                        </div>
-                        
-                        <div class="timeline-item">
-                          <div class="timeline-marker"></div>
-                          <div class="timeline-content">
-                            <p class="heading">[Jan 2020] <a href="https://python.libhunt.com/newsletter/192">Article Featured In Awesome Python</a></p>
-                            <p>"Legally Free Python Books" got featured in Awesome Python newsletter issue 192</p>
-                          </div>
-                        </div>
-                        
-                        <div class="timeline-item">
-                          <div class="timeline-marker"></div>
-                          <div class="timeline-content">
-                            <p class="heading">[Jan 2020] <a href="https://py.checkio.org/blog/missions-of-the-week-unruly-etc/">Checkio.org Shared Blog Post</a></p>
-                            <p>Checkio.org shared blog post about "Legally Free Python Books"</p>
-                          </div>
-                        </div>
-                        
-                        <div class="timeline-item">
-                          <div class="timeline-marker"></div>
-                          <div class="timeline-content">
-                            <p class="heading">[Jan 2020] <a href="https://scikit-learn.org/stable/_downloads/scikit-learn-docs.pdf">ScikitLearn</a></p>
-                            <p>Thanks under "Code and Documentation Contributors" in User Guide.</p>
-                          </div>
-                        </div>
-                        
-                        <div class="timeline-item">
-                          <div class="timeline-marker"></div>
-                          <div class="timeline-content">
-                            <p class="heading">[Dec 2019] <a href="https://www.pyladies.com/blog/PyLadies-Global-Council-Selection-Process-Voting-Now-Open/pyladies-global-council-process-vote/">PyLadies</a></p>
-                            <p>PyLadies thanking for Arabic translations.</p>
-                          </div>
-                        </div>
-                        
-                        <div class="timeline-item">
-                          <div class="timeline-marker"></div>
-                          <div class="timeline-content">
-                            <p class="heading">[Sept 2019] <a href="https://www.linkedin.com/posts/appinv_python-processing-mauritius-activity-6569293875998003202-EStJ">Post Got Trending Status For #python On LinkedIn</a></p>
-                            <p>Post on ppython got trending status on LinkedIn!</p>
-                          </div>
-                        </div>
-                        
-                        <div class="timeline-item">
-                          <div class="timeline-marker"></div>
-                          <div class="timeline-content">
-                            <p class="heading">[Aug 2019] <a href="https://pythonawesome.com/implementation-of-processing-orgs-processing-in-pure-python/">Project Listed On pythonawesome.com</a></p>
-                            <p>Pure Python implementation of processing.org's processing (github.com/Abdur-rahmaanJ/ppython) got listed on pythonawesome.com</p>
-                          </div>
-                        </div>
-                        
-                        <div class="timeline-item">
-                          <div class="timeline-marker"></div>
-                          <div class="timeline-content">
-                            <p class="heading">[July 2019] <a href="https://python.libhunt.com/newsletter/165">Article Featured In Awesome Python</a></p>
-                            <p>"How To Build A CSS Pre-processor From Scratch" got featured in Awesome Python newsletter issue 165</p>
-                          </div>
-                        </div>
-                        
-                        <div class="timeline-item">
-                          <div class="timeline-marker"></div>
-                          <div class="timeline-content">
-                            <p class="heading">[July 2019] <a href="https://twitter.com/TechRunEn/status/1153457206928347136?s=20">Article Featured On Dev.to!</a></p>
-                            <p>How To Build A CSS Pre-processor From Scratch" got featured on dev.to</p>
-                          </div>
-                        </div>
-                        
-                        <div class="timeline-item">
-                          <div class="timeline-marker"></div>
-                          <div class="timeline-content">
-                            <p class="heading">[July 2019] <a href="https://lwn.net/Articles/794273/">LWN.net</a></p>
-                            <p>Discussion on the idea i proposed</p>
-                          </div>
-                        </div>
-                        
-                        <div class="timeline-item">
-                          <div class="timeline-marker"></div>
-                          <div class="timeline-content">
-                            <p class="heading">[April 19] <a href="https://www.blog.pythonlibrary.org/2019/04/08/pydev-of-the-week-abdur-rahmaan-janhangeer/">PyDev Of The Week</a></p>
-                            <p></p>
-                          </div>
-                        </div>
-                        
-                        <div class="timeline-header">
-                          <span class="tag is-medium is-primary">Start</span>
-                        </div>
-                      </div>
-
-                </div>
-                <!--Holder end-->
+                <span class="stat-tag">
+                    <span class="stat-tag__label">Codementor.io views</span>
+                    <span class="stat-tag__value">46k</span>
+                </span>
+                <span class="stat-tag">
+                    <span class="stat-tag__label">PyPI downloads</span>
+                    <span class="stat-tag__value">166k</span>
+                </span>
             </div>
+
+            <ul class="ms-list">
+                
+                
+
+                
+                <li class="ms-item">
+                    <div class="ms-badge">
+                        <svg viewBox="0 0 52 60" class="ms-badge__svg"><defs><linearGradient id="g1" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#fde68a"/><stop offset="1" stop-color="#d97706"/></linearGradient></defs><path d="M26 1 L51 15.5 L51 44.5 L26 59 L1 44.5 L1 15.5 Z" fill="url(#g1)" stroke="#92400e" stroke-width="1"/><path d="M26 5 L47 17.25 L47 42.75 L26 55 L5 42.75 L5 17.25 Z" fill="none" stroke="rgba(255,255,255,.35)" stroke-width=".6"/><path d="M18 30 L24 36 L35 23" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                        <span class="ms-badge__tier">Gold</span>
+                    </div>
+                    <div class="ms-card">
+                        <span class="ms-date">April 2021</span>
+                        <a class="ms-title" href="https://github.com/Abdur-RahmaanJ">Github Badge Awarded for the Ingenuity Mars Helicopter Mission</a>
+                        <p class="ms-notes">Appended to Github profile.</p>
+                    </div>
+                </li>
+                
+                <li class="ms-item">
+                    <div class="ms-badge">
+                        <svg viewBox="0 0 52 60" class="ms-badge__svg"><defs><linearGradient id="g2" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#93c5fd"/><stop offset="1" stop-color="#1d4ed8"/></linearGradient></defs><path d="M26 1 L51 15.5 L51 44.5 L26 59 L1 44.5 L1 15.5 Z" fill="url(#g2)" stroke="#1e3a8a" stroke-width="1"/><path d="M26 5 L47 17.25 L47 42.75 L26 55 L5 42.75 L5 17.25 Z" fill="none" stroke="rgba(255,255,255,.35)" stroke-width=".6"/><path d="M26 14 L29.5 22.5 L38.5 23 L31.5 29 L34 38 L26 33 L18 38 L20.5 29 L13.5 23 L22.5 22.5 Z" fill="#fff"/></svg>
+                        <span class="ms-badge__tier">Platinum</span>
+                    </div>
+                    <div class="ms-card">
+                        <span class="ms-date">Mar 2021</span>
+                        <a class="ms-title" href="https://www.linkedin.com/posts/appinv_opensource-mauritius-activity-6774529671146037248-bKLA">We helped 100+ people get into OpenSource</a>
+                        <p class="ms-notes">Counted from my Github projects!</p>
+                    </div>
+                </li>
+                
+                <li class="ms-item">
+                    <div class="ms-badge">
+                        <svg viewBox="0 0 52 60" class="ms-badge__svg"><defs><linearGradient id="g3" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#d8b4fe"/><stop offset="1" stop-color="#7e22ce"/></linearGradient></defs><path d="M26 1 L51 15.5 L51 44.5 L26 59 L1 44.5 L1 15.5 Z" fill="url(#g3)" stroke="#581c87" stroke-width="1"/><path d="M26 5 L47 17.25 L47 42.75 L26 55 L5 42.75 L5 17.25 Z" fill="none" stroke="rgba(255,255,255,.35)" stroke-width=".6"/><path d="M28 14 L18 32 L25 32 L22 46 L34 28 L27 28 Z" fill="#fff"/></svg>
+                        <span class="ms-badge__tier">Diamond</span>
+                    </div>
+                    <div class="ms-card">
+                        <span class="ms-date">Mar 2021</span>
+                        <a class="ms-title" href="https://pepy.tech/project/hooman">Hooman gets 18k downloads</a>
+                        <p class="ms-notes">The PyGame library seems to get adopted on PyPi</p>
+                    </div>
+                </li>
+                
+                <li class="ms-item">
+                    <div class="ms-badge">
+                        <svg viewBox="0 0 52 60" class="ms-badge__svg"><defs><linearGradient id="g4" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#f3f4f6"/><stop offset="1" stop-color="#6b7280"/></linearGradient></defs><path d="M26 1 L51 15.5 L51 44.5 L26 59 L1 44.5 L1 15.5 Z" fill="url(#g4)" stroke="#374151" stroke-width="1"/><path d="M26 5 L47 17.25 L47 42.75 L26 55 L5 42.75 L5 17.25 Z" fill="none" stroke="rgba(255,255,255,.35)" stroke-width=".6"/><circle cx="26" cy="30" r="11" fill="none" stroke="#fff" stroke-width="2.5"/><circle cx="26" cy="30" r="5" fill="none" stroke="#fff" stroke-width="2.5"/><circle cx="26" cy="30" r="1.5" fill="#fff"/></svg>
+                        <span class="ms-badge__tier">Silver</span>
+                    </div>
+                    <div class="ms-card">
+                        <span class="ms-date">Dec 2020</span>
+                        <a class="ms-title" href="https://news.ycombinator.com/item?id=25427504">Article Makes it to the HackerNews front page</a>
+                        <p class="ms-notes"><a href="https://www.pythonkitchen.com/legally-free-python-books-list/">The Most Complete List of Legally Free Python Books</a> makes it, reteeted and reshared a lot here and there</p>
+                    </div>
+                </li>
+                
+                <li class="ms-item">
+                    <div class="ms-badge">
+                        <svg viewBox="0 0 52 60" class="ms-badge__svg"><defs><linearGradient id="g5" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#fdba74"/><stop offset="1" stop-color="#c2410c"/></linearGradient></defs><path d="M26 1 L51 15.5 L51 44.5 L26 59 L1 44.5 L1 15.5 Z" fill="url(#g5)" stroke="#7c2d12" stroke-width="1"/><path d="M26 5 L47 17.25 L47 42.75 L26 55 L5 42.75 L5 17.25 Z" fill="none" stroke="rgba(255,255,255,.35)" stroke-width=".6"/><path d="M20 40 L20 32 C16 30 16 24 20 22 C20 18 24 16 26 18 C28 16 32 18 32 22 C36 24 36 30 32 32 L32 40 Z" fill="#fff"/><rect x="22" y="40" width="8" height="3" rx="1" fill="#fff"/></svg>
+                        <span class="ms-badge__tier">Bronze</span>
+                    </div>
+                    <div class="ms-card">
+                        <span class="ms-date">Dec 2020</span>
+                        <a class="ms-title" href="https://pycoders.com/issues/453">RealPython's Newsletter selected article in issue #453</a>
+                        <p class="ms-notes">The article <a href="https://www.pythonkitchen.com/zen-of-python-in-depth/">"The Zen Of Python: A Most In Depth Article"</a> got selected in PyCoders weekly. I could not find a more thourough article on the Zen written before. Hence the claim: "The most in-depth article about the Zen ever written in history"</p>
+                    </div>
+                </li>
+                
+                <li class="ms-item">
+                    <div class="ms-badge">
+                        <svg viewBox="0 0 52 60" class="ms-badge__svg"><defs><linearGradient id="g1" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#fde68a"/><stop offset="1" stop-color="#d97706"/></linearGradient></defs><path d="M26 1 L51 15.5 L51 44.5 L26 59 L1 44.5 L1 15.5 Z" fill="url(#g1)" stroke="#92400e" stroke-width="1"/><path d="M26 5 L47 17.25 L47 42.75 L26 55 L5 42.75 L5 17.25 Z" fill="none" stroke="rgba(255,255,255,.35)" stroke-width=".6"/><path d="M18 30 L24 36 L35 23" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                        <span class="ms-badge__tier">Gold</span>
+                    </div>
+                    <div class="ms-card">
+                        <span class="ms-date">Nov 2020</span>
+                        <a class="ms-title" href="https://porter.io/digest/20201125/e9df7d222ec311eb87d9361b9c01e521/">Porter.io adds article in recommended news!</a>
+                        <p class="ms-notes">The article "Python: Running Makefiles on Windows" got recommended.</p>
+                    </div>
+                </li>
+                
+                <li class="ms-item">
+                    <div class="ms-badge">
+                        <svg viewBox="0 0 52 60" class="ms-badge__svg"><defs><linearGradient id="g2" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#93c5fd"/><stop offset="1" stop-color="#1d4ed8"/></linearGradient></defs><path d="M26 1 L51 15.5 L51 44.5 L26 59 L1 44.5 L1 15.5 Z" fill="url(#g2)" stroke="#1e3a8a" stroke-width="1"/><path d="M26 5 L47 17.25 L47 42.75 L26 55 L5 42.75 L5 17.25 Z" fill="none" stroke="rgba(255,255,255,.35)" stroke-width=".6"/><path d="M26 14 L29.5 22.5 L38.5 23 L31.5 29 L34 38 L26 33 L18 38 L20.5 29 L13.5 23 L22.5 22.5 Z" fill="#fff"/></svg>
+                        <span class="ms-badge__tier">Platinum</span>
+                    </div>
+                    <div class="ms-card">
+                        <span class="ms-date">Sep 2020</span>
+                        <a class="ms-title" href="https://twitter.com/CodementorIO/status/1306295790441246725?s=20">Codementor.io included article in #100DaysOfCode</a>
+                        <p class="ms-notes">Hooman is a library i maintain.</p>
+                    </div>
+                </li>
+                
+                <li class="ms-item">
+                    <div class="ms-badge">
+                        <svg viewBox="0 0 52 60" class="ms-badge__svg"><defs><linearGradient id="g3" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#d8b4fe"/><stop offset="1" stop-color="#7e22ce"/></linearGradient></defs><path d="M26 1 L51 15.5 L51 44.5 L26 59 L1 44.5 L1 15.5 Z" fill="url(#g3)" stroke="#581c87" stroke-width="1"/><path d="M26 5 L47 17.25 L47 42.75 L26 55 L5 42.75 L5 17.25 Z" fill="none" stroke="rgba(255,255,255,.35)" stroke-width=".6"/><path d="M28 14 L18 32 L25 32 L22 46 L34 28 L27 28 Z" fill="#fff"/></svg>
+                        <span class="ms-badge__tier">Diamond</span>
+                    </div>
+                    <div class="ms-card">
+                        <span class="ms-date">Sep 2020</span>
+                        <a class="ms-title" href="https://hackernoon.com/the-zen-of-python-as-related-by-masters-n32h3tu3">Hackernoon.com published article</a>
+                        <p class="ms-notes">My article "The Zen of Python: As related by Master" got published on hackernoon.</p>
+                    </div>
+                </li>
+                
+                <li class="ms-item">
+                    <div class="ms-badge">
+                        <svg viewBox="0 0 52 60" class="ms-badge__svg"><defs><linearGradient id="g4" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#f3f4f6"/><stop offset="1" stop-color="#6b7280"/></linearGradient></defs><path d="M26 1 L51 15.5 L51 44.5 L26 59 L1 44.5 L1 15.5 Z" fill="url(#g4)" stroke="#374151" stroke-width="1"/><path d="M26 5 L47 17.25 L47 42.75 L26 55 L5 42.75 L5 17.25 Z" fill="none" stroke="rgba(255,255,255,.35)" stroke-width=".6"/><circle cx="26" cy="30" r="11" fill="none" stroke="#fff" stroke-width="2.5"/><circle cx="26" cy="30" r="5" fill="none" stroke="#fff" stroke-width="2.5"/><circle cx="26" cy="30" r="1.5" fill="#fff"/></svg>
+                        <span class="ms-badge__tier">Silver</span>
+                    </div>
+                    <div class="ms-card">
+                        <span class="ms-date">Jul 2020</span>
+                        <a class="ms-title" href="https://www.youtube.com/watch?v=rkzXQOC1T0Q&list=PL8uoeex94UhHgMD9GOCbEHWku7pEPx9fW&index=34">Euro Python Talk</a>
+                        <p class="ms-notes">My talk "Django Clone From Scratch" got delivered at EuroPython</p>
+                    </div>
+                </li>
+                
+                <li class="ms-item">
+                    <div class="ms-badge">
+                        <svg viewBox="0 0 52 60" class="ms-badge__svg"><defs><linearGradient id="g5" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#fdba74"/><stop offset="1" stop-color="#c2410c"/></linearGradient></defs><path d="M26 1 L51 15.5 L51 44.5 L26 59 L1 44.5 L1 15.5 Z" fill="url(#g5)" stroke="#7c2d12" stroke-width="1"/><path d="M26 5 L47 17.25 L47 42.75 L26 55 L5 42.75 L5 17.25 Z" fill="none" stroke="rgba(255,255,255,.35)" stroke-width=".6"/><path d="M20 40 L20 32 C16 30 16 24 20 22 C20 18 24 16 26 18 C28 16 32 18 32 22 C36 24 36 30 32 32 L32 40 Z" fill="#fff"/><rect x="22" y="40" width="8" height="3" rx="1" fill="#fff"/></svg>
+                        <span class="ms-badge__tier">Bronze</span>
+                    </div>
+                    <div class="ms-card">
+                        <span class="ms-date">Jun 2020</span>
+                        <a class="ms-title" href="https://flaskcon.com">FlaskCon close up</a>
+                        <p class="ms-notes">After months of preparation, the event is finally over with <a href="https://www.youtube.com/channel/UC3QC5pASs8v5YVxKwJDtZeQ">lots of good talks! </a>Lots of awesome speakers and fantastic response from the community outlets like RealPython, PythonWeekly etc</p>
+                    </div>
+                </li>
+                
+                <li class="ms-item">
+                    <div class="ms-badge">
+                        <svg viewBox="0 0 52 60" class="ms-badge__svg"><defs><linearGradient id="g1" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#fde68a"/><stop offset="1" stop-color="#d97706"/></linearGradient></defs><path d="M26 1 L51 15.5 L51 44.5 L26 59 L1 44.5 L1 15.5 Z" fill="url(#g1)" stroke="#92400e" stroke-width="1"/><path d="M26 5 L47 17.25 L47 42.75 L26 55 L5 42.75 L5 17.25 Z" fill="none" stroke="rgba(255,255,255,.35)" stroke-width=".6"/><path d="M18 30 L24 36 L35 23" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                        <span class="ms-badge__tier">Gold</span>
+                    </div>
+                    <div class="ms-card">
+                        <span class="ms-date">May 2020</span>
+                        <a class="ms-title" href="https://www.geeksforgeeks.org/creating-custom-widgets-in-pyqt5/">Article published on Geeksforgeeks.org</a>
+                        <p class="ms-notes">"Creating Custom Widgets in PyQt5" is published</p>
+                    </div>
+                </li>
+                
+                <li class="ms-item">
+                    <div class="ms-badge">
+                        <svg viewBox="0 0 52 60" class="ms-badge__svg"><defs><linearGradient id="g2" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#93c5fd"/><stop offset="1" stop-color="#1d4ed8"/></linearGradient></defs><path d="M26 1 L51 15.5 L51 44.5 L26 59 L1 44.5 L1 15.5 Z" fill="url(#g2)" stroke="#1e3a8a" stroke-width="1"/><path d="M26 5 L47 17.25 L47 42.75 L26 55 L5 42.75 L5 17.25 Z" fill="none" stroke="rgba(255,255,255,.35)" stroke-width=".6"/><path d="M26 14 L29.5 22.5 L38.5 23 L31.5 29 L34 38 L26 33 L18 38 L20.5 29 L13.5 23 L22.5 22.5 Z" fill="#fff"/></svg>
+                        <span class="ms-badge__tier">Platinum</span>
+                    </div>
+                    <div class="ms-card">
+                        <span class="ms-date">Apr 2020</span>
+                        <a class="ms-title" href="">Authored the FlaskCon initiative</a>
+                        <p class="ms-notes">FlaskCon becomes an approved PSF trademark</p>
+                    </div>
+                </li>
+                
+                <li class="ms-item">
+                    <div class="ms-badge">
+                        <svg viewBox="0 0 52 60" class="ms-badge__svg"><defs><linearGradient id="g3" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#d8b4fe"/><stop offset="1" stop-color="#7e22ce"/></linearGradient></defs><path d="M26 1 L51 15.5 L51 44.5 L26 59 L1 44.5 L1 15.5 Z" fill="url(#g3)" stroke="#581c87" stroke-width="1"/><path d="M26 5 L47 17.25 L47 42.75 L26 55 L5 42.75 L5 17.25 Z" fill="none" stroke="rgba(255,255,255,.35)" stroke-width=".6"/><path d="M28 14 L18 32 L25 32 L22 46 L34 28 L27 28 Z" fill="#fff"/></svg>
+                        <span class="ms-badge__tier">Diamond</span>
+                    </div>
+                    <div class="ms-card">
+                        <span class="ms-date">Mar 2020</span>
+                        <a class="ms-title" href="https://www.linkedin.com/posts/appinv_the-key-to-django-and-flask-activity-6642695171144318976-QEpN">Post Got Trending Status For #python On LinkedIn</a>
+                        <p class="ms-notes">Post on "Grasping Both Flask And Django In One Session" got trending status on LinkedIn!</p>
+                    </div>
+                </li>
+                
+                <li class="ms-item">
+                    <div class="ms-badge">
+                        <svg viewBox="0 0 52 60" class="ms-badge__svg"><defs><linearGradient id="g4" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#f3f4f6"/><stop offset="1" stop-color="#6b7280"/></linearGradient></defs><path d="M26 1 L51 15.5 L51 44.5 L26 59 L1 44.5 L1 15.5 Z" fill="url(#g4)" stroke="#374151" stroke-width="1"/><path d="M26 5 L47 17.25 L47 42.75 L26 55 L5 42.75 L5 17.25 Z" fill="none" stroke="rgba(255,255,255,.35)" stroke-width=".6"/><circle cx="26" cy="30" r="11" fill="none" stroke="#fff" stroke-width="2.5"/><circle cx="26" cy="30" r="5" fill="none" stroke="#fff" stroke-width="2.5"/><circle cx="26" cy="30" r="1.5" fill="#fff"/></svg>
+                        <span class="ms-badge__tier">Silver</span>
+                    </div>
+                    <div class="ms-card">
+                        <span class="ms-date">Mar 2020</span>
+                        <a class="ms-title" href="">Article Featured In Weekly Digest On Codementor.io</a>
+                        <p class="ms-notes">Article gets 2nd top post of the wee</p>
+                    </div>
+                </li>
+                
+                <li class="ms-item">
+                    <div class="ms-badge">
+                        <svg viewBox="0 0 52 60" class="ms-badge__svg"><defs><linearGradient id="g5" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#fdba74"/><stop offset="1" stop-color="#c2410c"/></linearGradient></defs><path d="M26 1 L51 15.5 L51 44.5 L26 59 L1 44.5 L1 15.5 Z" fill="url(#g5)" stroke="#7c2d12" stroke-width="1"/><path d="M26 5 L47 17.25 L47 42.75 L26 55 L5 42.75 L5 17.25 Z" fill="none" stroke="rgba(255,255,255,.35)" stroke-width=".6"/><path d="M20 40 L20 32 C16 30 16 24 20 22 C20 18 24 16 26 18 C28 16 32 18 32 22 C36 24 36 30 32 32 L32 40 Z" fill="#fff"/><rect x="22" y="40" width="8" height="3" rx="1" fill="#fff"/></svg>
+                        <span class="ms-badge__tier">Bronze</span>
+                    </div>
+                    <div class="ms-card">
+                        <span class="ms-date">Mar 2020</span>
+                        <a class="ms-title" href="http://www.tuxmachines.org/node/134966?quicktabs_authors=2">Tuxmachines.org Featured 1 Article</a>
+                        
+                    </div>
+                </li>
+                
+                <li class="ms-item">
+                    <div class="ms-badge">
+                        <svg viewBox="0 0 52 60" class="ms-badge__svg"><defs><linearGradient id="g1" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#fde68a"/><stop offset="1" stop-color="#d97706"/></linearGradient></defs><path d="M26 1 L51 15.5 L51 44.5 L26 59 L1 44.5 L1 15.5 Z" fill="url(#g1)" stroke="#92400e" stroke-width="1"/><path d="M26 5 L47 17.25 L47 42.75 L26 55 L5 42.75 L5 17.25 Z" fill="none" stroke="rgba(255,255,255,.35)" stroke-width=".6"/><path d="M18 30 L24 36 L35 23" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                        <span class="ms-badge__tier">Gold</span>
+                    </div>
+                    <div class="ms-card">
+                        <span class="ms-date">Mar 2020</span>
+                        <a class="ms-title" href="http://www.tuxmachines.org/node/134905">Tuxmachines.org Featured 2 Articles</a>
+                        
+                    </div>
+                </li>
+                
+                <li class="ms-item">
+                    <div class="ms-badge">
+                        <svg viewBox="0 0 52 60" class="ms-badge__svg"><defs><linearGradient id="g2" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#93c5fd"/><stop offset="1" stop-color="#1d4ed8"/></linearGradient></defs><path d="M26 1 L51 15.5 L51 44.5 L26 59 L1 44.5 L1 15.5 Z" fill="url(#g2)" stroke="#1e3a8a" stroke-width="1"/><path d="M26 5 L47 17.25 L47 42.75 L26 55 L5 42.75 L5 17.25 Z" fill="none" stroke="rgba(255,255,255,.35)" stroke-width=".6"/><path d="M26 14 L29.5 22.5 L38.5 23 L31.5 29 L34 38 L26 33 L18 38 L20.5 29 L13.5 23 L22.5 22.5 Z" fill="#fff"/></svg>
+                        <span class="ms-badge__tier">Platinum</span>
+                    </div>
+                    <div class="ms-card">
+                        <span class="ms-date">Feb 2020</span>
+                        <a class="ms-title" href="https://www.geeksforgeeks.org/migrate-pyqt5-app-to-pyside2/">Article published on Geeksforgeeks.org</a>
+                        <p class="ms-notes">"Migrate PyQt5 app to PySide2" is published</p>
+                    </div>
+                </li>
+                
+                <li class="ms-item">
+                    <div class="ms-badge">
+                        <svg viewBox="0 0 52 60" class="ms-badge__svg"><defs><linearGradient id="g3" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#d8b4fe"/><stop offset="1" stop-color="#7e22ce"/></linearGradient></defs><path d="M26 1 L51 15.5 L51 44.5 L26 59 L1 44.5 L1 15.5 Z" fill="url(#g3)" stroke="#581c87" stroke-width="1"/><path d="M26 5 L47 17.25 L47 42.75 L26 55 L5 42.75 L5 17.25 Z" fill="none" stroke="rgba(255,255,255,.35)" stroke-width=".6"/><path d="M28 14 L18 32 L25 32 L22 46 L34 28 L27 28 Z" fill="#fff"/></svg>
+                        <span class="ms-badge__tier">Diamond</span>
+                    </div>
+                    <div class="ms-card">
+                        <span class="ms-date">Feb 2020</span>
+                        <a class="ms-title" href="https://pythonbytes.fm/episodes/show/170/visualize-this-visualizing-python-s-visualization-ecosystem">Podcast Calls Article A Must Read</a>
+                        <p class="ms-notes">PythonBytes (same folks as talkpython.fm) tells: "Abdur-Rahmaan Janhangeer: The Zen Of Python Is A Joke And Here Is Why is a must read."</p>
+                    </div>
+                </li>
+                
+                <li class="ms-item">
+                    <div class="ms-badge">
+                        <svg viewBox="0 0 52 60" class="ms-badge__svg"><defs><linearGradient id="g4" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#f3f4f6"/><stop offset="1" stop-color="#6b7280"/></linearGradient></defs><path d="M26 1 L51 15.5 L51 44.5 L26 59 L1 44.5 L1 15.5 Z" fill="url(#g4)" stroke="#374151" stroke-width="1"/><path d="M26 5 L47 17.25 L47 42.75 L26 55 L5 42.75 L5 17.25 Z" fill="none" stroke="rgba(255,255,255,.35)" stroke-width=".6"/><circle cx="26" cy="30" r="11" fill="none" stroke="#fff" stroke-width="2.5"/><circle cx="26" cy="30" r="5" fill="none" stroke="#fff" stroke-width="2.5"/><circle cx="26" cy="30" r="1.5" fill="#fff"/></svg>
+                        <span class="ms-badge__tier">Silver</span>
+                    </div>
+                    <div class="ms-card">
+                        <span class="ms-date">Feb 2020</span>
+                        <a class="ms-title" href="https://github.com/Pilifer/awesome-zen-of-python/">Article Added In Awesome Zen Repo</a>
+                        <p class="ms-notes">"The Zen Of Python Is A Joke And Here Is Why" added as a resource for understanding the Zen of Python</p>
+                    </div>
+                </li>
+                
+                <li class="ms-item">
+                    <div class="ms-badge">
+                        <svg viewBox="0 0 52 60" class="ms-badge__svg"><defs><linearGradient id="g5" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#fdba74"/><stop offset="1" stop-color="#c2410c"/></linearGradient></defs><path d="M26 1 L51 15.5 L51 44.5 L26 59 L1 44.5 L1 15.5 Z" fill="url(#g5)" stroke="#7c2d12" stroke-width="1"/><path d="M26 5 L47 17.25 L47 42.75 L26 55 L5 42.75 L5 17.25 Z" fill="none" stroke="rgba(255,255,255,.35)" stroke-width=".6"/><path d="M20 40 L20 32 C16 30 16 24 20 22 C20 18 24 16 26 18 C28 16 32 18 32 22 C36 24 36 30 32 32 L32 40 Z" fill="#fff"/><rect x="22" y="40" width="8" height="3" rx="1" fill="#fff"/></svg>
+                        <span class="ms-badge__tier">Bronze</span>
+                    </div>
+                    <div class="ms-card">
+                        <span class="ms-date">Feb 2020</span>
+                        <a class="ms-title" href="https://python.libhunt.com/newsletter/192">Open Source Project Featured In Python Weekly</a>
+                        <p class="ms-notes"><a href="https://www.github.com/Abdur-rahmaanJ/Shopyo">github.com/shopyo/Shopyo</a> got featured in Python Weekly newsletter issue 436</p>
+                    </div>
+                </li>
+                
+                <li class="ms-item">
+                    <div class="ms-badge">
+                        <svg viewBox="0 0 52 60" class="ms-badge__svg"><defs><linearGradient id="g1" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#fde68a"/><stop offset="1" stop-color="#d97706"/></linearGradient></defs><path d="M26 1 L51 15.5 L51 44.5 L26 59 L1 44.5 L1 15.5 Z" fill="url(#g1)" stroke="#92400e" stroke-width="1"/><path d="M26 5 L47 17.25 L47 42.75 L26 55 L5 42.75 L5 17.25 Z" fill="none" stroke="rgba(255,255,255,.35)" stroke-width=".6"/><path d="M18 30 L24 36 L35 23" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                        <span class="ms-badge__tier">Gold</span>
+                    </div>
+                    <div class="ms-card">
+                        <span class="ms-date">Jan 2020</span>
+                        <a class="ms-title" href="https://python.libhunt.com/newsletter/192">Article Featured In Awesome Python</a>
+                        <p class="ms-notes">"Legally Free Python Books" got featured in Awesome Python newsletter issue 192</p>
+                    </div>
+                </li>
+                
+                <li class="ms-item">
+                    <div class="ms-badge">
+                        <svg viewBox="0 0 52 60" class="ms-badge__svg"><defs><linearGradient id="g2" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#93c5fd"/><stop offset="1" stop-color="#1d4ed8"/></linearGradient></defs><path d="M26 1 L51 15.5 L51 44.5 L26 59 L1 44.5 L1 15.5 Z" fill="url(#g2)" stroke="#1e3a8a" stroke-width="1"/><path d="M26 5 L47 17.25 L47 42.75 L26 55 L5 42.75 L5 17.25 Z" fill="none" stroke="rgba(255,255,255,.35)" stroke-width=".6"/><path d="M26 14 L29.5 22.5 L38.5 23 L31.5 29 L34 38 L26 33 L18 38 L20.5 29 L13.5 23 L22.5 22.5 Z" fill="#fff"/></svg>
+                        <span class="ms-badge__tier">Platinum</span>
+                    </div>
+                    <div class="ms-card">
+                        <span class="ms-date">Jan 2020</span>
+                        <a class="ms-title" href="https://py.checkio.org/blog/missions-of-the-week-unruly-etc/">Checkio.org Shared Blog Post</a>
+                        <p class="ms-notes">Checkio.org shared blog post about "Legally Free Python Books"</p>
+                    </div>
+                </li>
+                
+                <li class="ms-item">
+                    <div class="ms-badge">
+                        <svg viewBox="0 0 52 60" class="ms-badge__svg"><defs><linearGradient id="g3" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#d8b4fe"/><stop offset="1" stop-color="#7e22ce"/></linearGradient></defs><path d="M26 1 L51 15.5 L51 44.5 L26 59 L1 44.5 L1 15.5 Z" fill="url(#g3)" stroke="#581c87" stroke-width="1"/><path d="M26 5 L47 17.25 L47 42.75 L26 55 L5 42.75 L5 17.25 Z" fill="none" stroke="rgba(255,255,255,.35)" stroke-width=".6"/><path d="M28 14 L18 32 L25 32 L22 46 L34 28 L27 28 Z" fill="#fff"/></svg>
+                        <span class="ms-badge__tier">Diamond</span>
+                    </div>
+                    <div class="ms-card">
+                        <span class="ms-date">Jan 2020</span>
+                        <a class="ms-title" href="https://scikit-learn.org/stable/_downloads/scikit-learn-docs.pdf">ScikitLearn</a>
+                        <p class="ms-notes">Thanks under "Code and Documentation Contributors" in User Guide.</p>
+                    </div>
+                </li>
+                
+                <li class="ms-item">
+                    <div class="ms-badge">
+                        <svg viewBox="0 0 52 60" class="ms-badge__svg"><defs><linearGradient id="g4" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#f3f4f6"/><stop offset="1" stop-color="#6b7280"/></linearGradient></defs><path d="M26 1 L51 15.5 L51 44.5 L26 59 L1 44.5 L1 15.5 Z" fill="url(#g4)" stroke="#374151" stroke-width="1"/><path d="M26 5 L47 17.25 L47 42.75 L26 55 L5 42.75 L5 17.25 Z" fill="none" stroke="rgba(255,255,255,.35)" stroke-width=".6"/><circle cx="26" cy="30" r="11" fill="none" stroke="#fff" stroke-width="2.5"/><circle cx="26" cy="30" r="5" fill="none" stroke="#fff" stroke-width="2.5"/><circle cx="26" cy="30" r="1.5" fill="#fff"/></svg>
+                        <span class="ms-badge__tier">Silver</span>
+                    </div>
+                    <div class="ms-card">
+                        <span class="ms-date">Dec 2019</span>
+                        <a class="ms-title" href="https://www.pyladies.com/blog/PyLadies-Global-Council-Selection-Process-Voting-Now-Open/pyladies-global-council-process-vote/">PyLadies</a>
+                        <p class="ms-notes">PyLadies thanking for Arabic translations.</p>
+                    </div>
+                </li>
+                
+                <li class="ms-item">
+                    <div class="ms-badge">
+                        <svg viewBox="0 0 52 60" class="ms-badge__svg"><defs><linearGradient id="g5" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#fdba74"/><stop offset="1" stop-color="#c2410c"/></linearGradient></defs><path d="M26 1 L51 15.5 L51 44.5 L26 59 L1 44.5 L1 15.5 Z" fill="url(#g5)" stroke="#7c2d12" stroke-width="1"/><path d="M26 5 L47 17.25 L47 42.75 L26 55 L5 42.75 L5 17.25 Z" fill="none" stroke="rgba(255,255,255,.35)" stroke-width=".6"/><path d="M20 40 L20 32 C16 30 16 24 20 22 C20 18 24 16 26 18 C28 16 32 18 32 22 C36 24 36 30 32 32 L32 40 Z" fill="#fff"/><rect x="22" y="40" width="8" height="3" rx="1" fill="#fff"/></svg>
+                        <span class="ms-badge__tier">Bronze</span>
+                    </div>
+                    <div class="ms-card">
+                        <span class="ms-date">Sept 2019</span>
+                        <a class="ms-title" href="https://www.linkedin.com/posts/appinv_python-processing-mauritius-activity-6569293875998003202-EStJ">Post Got Trending Status For #python On LinkedIn</a>
+                        <p class="ms-notes">Post on ppython got trending status on LinkedIn!</p>
+                    </div>
+                </li>
+                
+                <li class="ms-item">
+                    <div class="ms-badge">
+                        <svg viewBox="0 0 52 60" class="ms-badge__svg"><defs><linearGradient id="g1" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#fde68a"/><stop offset="1" stop-color="#d97706"/></linearGradient></defs><path d="M26 1 L51 15.5 L51 44.5 L26 59 L1 44.5 L1 15.5 Z" fill="url(#g1)" stroke="#92400e" stroke-width="1"/><path d="M26 5 L47 17.25 L47 42.75 L26 55 L5 42.75 L5 17.25 Z" fill="none" stroke="rgba(255,255,255,.35)" stroke-width=".6"/><path d="M18 30 L24 36 L35 23" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                        <span class="ms-badge__tier">Gold</span>
+                    </div>
+                    <div class="ms-card">
+                        <span class="ms-date">Aug 2019</span>
+                        <a class="ms-title" href="https://pythonawesome.com/implementation-of-processing-orgs-processing-in-pure-python/">Project Listed On pythonawesome.com</a>
+                        <p class="ms-notes">Pure Python implementation of processing.org's processing (github.com/Abdur-rahmaanJ/ppython) got listed on pythonawesome.com</p>
+                    </div>
+                </li>
+                
+                <li class="ms-item">
+                    <div class="ms-badge">
+                        <svg viewBox="0 0 52 60" class="ms-badge__svg"><defs><linearGradient id="g2" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#93c5fd"/><stop offset="1" stop-color="#1d4ed8"/></linearGradient></defs><path d="M26 1 L51 15.5 L51 44.5 L26 59 L1 44.5 L1 15.5 Z" fill="url(#g2)" stroke="#1e3a8a" stroke-width="1"/><path d="M26 5 L47 17.25 L47 42.75 L26 55 L5 42.75 L5 17.25 Z" fill="none" stroke="rgba(255,255,255,.35)" stroke-width=".6"/><path d="M26 14 L29.5 22.5 L38.5 23 L31.5 29 L34 38 L26 33 L18 38 L20.5 29 L13.5 23 L22.5 22.5 Z" fill="#fff"/></svg>
+                        <span class="ms-badge__tier">Platinum</span>
+                    </div>
+                    <div class="ms-card">
+                        <span class="ms-date">July 2019</span>
+                        <a class="ms-title" href="https://python.libhunt.com/newsletter/165">Article Featured In Awesome Python</a>
+                        <p class="ms-notes">"How To Build A CSS Pre-processor From Scratch" got featured in Awesome Python newsletter issue 165</p>
+                    </div>
+                </li>
+                
+                <li class="ms-item">
+                    <div class="ms-badge">
+                        <svg viewBox="0 0 52 60" class="ms-badge__svg"><defs><linearGradient id="g3" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#d8b4fe"/><stop offset="1" stop-color="#7e22ce"/></linearGradient></defs><path d="M26 1 L51 15.5 L51 44.5 L26 59 L1 44.5 L1 15.5 Z" fill="url(#g3)" stroke="#581c87" stroke-width="1"/><path d="M26 5 L47 17.25 L47 42.75 L26 55 L5 42.75 L5 17.25 Z" fill="none" stroke="rgba(255,255,255,.35)" stroke-width=".6"/><path d="M28 14 L18 32 L25 32 L22 46 L34 28 L27 28 Z" fill="#fff"/></svg>
+                        <span class="ms-badge__tier">Diamond</span>
+                    </div>
+                    <div class="ms-card">
+                        <span class="ms-date">July 2019</span>
+                        <a class="ms-title" href="https://twitter.com/TechRunEn/status/1153457206928347136?s=20">Article Featured On Dev.to!</a>
+                        <p class="ms-notes">How To Build A CSS Pre-processor From Scratch" got featured on dev.to</p>
+                    </div>
+                </li>
+                
+                <li class="ms-item">
+                    <div class="ms-badge">
+                        <svg viewBox="0 0 52 60" class="ms-badge__svg"><defs><linearGradient id="g4" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#f3f4f6"/><stop offset="1" stop-color="#6b7280"/></linearGradient></defs><path d="M26 1 L51 15.5 L51 44.5 L26 59 L1 44.5 L1 15.5 Z" fill="url(#g4)" stroke="#374151" stroke-width="1"/><path d="M26 5 L47 17.25 L47 42.75 L26 55 L5 42.75 L5 17.25 Z" fill="none" stroke="rgba(255,255,255,.35)" stroke-width=".6"/><circle cx="26" cy="30" r="11" fill="none" stroke="#fff" stroke-width="2.5"/><circle cx="26" cy="30" r="5" fill="none" stroke="#fff" stroke-width="2.5"/><circle cx="26" cy="30" r="1.5" fill="#fff"/></svg>
+                        <span class="ms-badge__tier">Silver</span>
+                    </div>
+                    <div class="ms-card">
+                        <span class="ms-date">July 2019</span>
+                        <a class="ms-title" href="https://lwn.net/Articles/794273/">LWN.net</a>
+                        <p class="ms-notes">Discussion on the idea i proposed</p>
+                    </div>
+                </li>
+                
+                <li class="ms-item">
+                    <div class="ms-badge">
+                        <svg viewBox="0 0 52 60" class="ms-badge__svg"><defs><linearGradient id="g5" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#fdba74"/><stop offset="1" stop-color="#c2410c"/></linearGradient></defs><path d="M26 1 L51 15.5 L51 44.5 L26 59 L1 44.5 L1 15.5 Z" fill="url(#g5)" stroke="#7c2d12" stroke-width="1"/><path d="M26 5 L47 17.25 L47 42.75 L26 55 L5 42.75 L5 17.25 Z" fill="none" stroke="rgba(255,255,255,.35)" stroke-width=".6"/><path d="M20 40 L20 32 C16 30 16 24 20 22 C20 18 24 16 26 18 C28 16 32 18 32 22 C36 24 36 30 32 32 L32 40 Z" fill="#fff"/><rect x="22" y="40" width="8" height="3" rx="1" fill="#fff"/></svg>
+                        <span class="ms-badge__tier">Bronze</span>
+                    </div>
+                    <div class="ms-card">
+                        <span class="ms-date">April 19</span>
+                        <a class="ms-title" href="https://www.blog.pythonlibrary.org/2019/04/08/pydev-of-the-week-abdur-rahmaan-janhangeer/">PyDev Of The Week</a>
+                        
+                    </div>
+                </li>
+                
+            </ul>
         </div>
     </div>
 </div>
@@ -494,6 +607,105 @@ gtag('config', 'UA-161612035-1');
     </div>
     <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 </footer>
+
+<style>
+.ms-list {
+    list-style: none;
+    padding: 0;
+    margin: 2rem 0 0;
+    position: relative;
+}
+.ms-list::before {
+    content: '';
+    position: absolute;
+    left: 25px;
+    top: 0;
+    bottom: 0;
+    width: 2px;
+    background: linear-gradient(to bottom, var(--line), transparent);
+}
+.ms-item {
+    display: flex;
+    gap: 1.25rem;
+    align-items: flex-start;
+    position: relative;
+    padding-bottom: 1.75rem;
+}
+.ms-item:last-child { padding-bottom: 0; }
+.ms-badge {
+    flex-shrink: 0;
+    width: 52px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.25rem;
+    position: relative;
+    z-index: 2;
+}
+.ms-badge__svg {
+    width: 52px;
+    height: 60px;
+    display: block;
+    filter: drop-shadow(0 2px 4px rgba(0,0,0,.12));
+}
+.ms-badge__tier {
+    font-size: 0.5rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--ink-muted);
+    font-weight: 600;
+}
+.ms-card {
+    flex: 1;
+    background: var(--surface, #fff);
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    padding: 0.75rem 1rem;
+    margin-top: 0.5rem;
+    transition: box-shadow .2s ease, transform .2s ease;
+}
+.ms-card:hover {
+    box-shadow: 0 4px 16px rgba(0,0,0,.08);
+    transform: translateY(-1px);
+}
+.ms-date {
+    font-size: 0.6rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--ink-muted);
+    font-weight: 600;
+    display: block;
+    margin-bottom: 0.2rem;
+}
+.ms-title {
+    font-family: var(--font-title);
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: var(--ink);
+    text-decoration: none;
+    line-height: 1.3;
+    display: block;
+}
+.ms-title:hover { color: var(--accent, #dc2626); }
+.ms-notes {
+    font-size: 0.78rem;
+    color: var(--ink-muted);
+    line-height: 1.5;
+    margin: 0.35rem 0 0;
+}
+.ms-notes a { color: var(--accent, #dc2626); }
+
+@media (max-width: 640px) {
+    .ms-item { gap: 0.75rem; }
+    .ms-list::before { left: 17px; }
+    .ms-badge { width: 36px; }
+    .ms-badge__svg { width: 36px; height: 42px; }
+    .ms-badge__tier { font-size: 0.42rem; }
+    .ms-card { padding: 0.6rem 0.75rem; }
+    .ms-title { font-size: 0.85rem; }
+    .ms-notes { font-size: 0.72rem; }
+}
+</style>
 
 
     <div class="crank" id="crank" aria-hidden="true">

@@ -52,6 +52,18 @@ gtag('config', 'UA-161612035-1');
   }
 }
 </script>
+
+<meta name="theme-color" content="#ffb74d" />
+<link rel="icon" href="../assets/COMP_ALC.png">
+
+<!-- Performance Optimized Asset Loading -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preconnect" href="https://cdnjs.cloudflare.com">
+<link href="https://fonts.googleapis.com/css2?family=Comfortaa&family=Raleway:wght@700&family=Special+Elite&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.0/css/bulma.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
 <!-- Global Editorial Styles -->
 <style type="text/css">
     :root {
@@ -65,6 +77,8 @@ gtag('config', 'UA-161612035-1');
         --line-soft: #f5f5f4;
         --surface: #ffffff;
         --surface-alt: #faf9f7;
+        --font-main: 'Comfortaa', cursive;
+        --font-title: 'Raleway', sans-serif;
         /* Backward-compatible aliases for older templates */
         --primary-color: var(--accent);
         --active-color: var(--accent-hover);
@@ -73,18 +87,20 @@ gtag('config', 'UA-161612035-1');
         --reading-width: 680px;
         --container-width: 920px;
     }
+
+    body {
+        font-family: var(--font-main);
+        color: var(--ink);
+        line-height: 1.85;
+        -webkit-font-smoothing: antialiased;
+    }
+
+    h1, h2, h3, .title {
+        font-family: var(--font-title);
+        font-weight: 800;
+        letter-spacing: -0.02em;
+    }
 </style>
-
-<meta name="theme-color" content="#ffb74d" />
-<link rel="icon" href="../assets/COMP_ALC.png">
-
-<!-- Performance Optimized Asset Loading -->
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="preconnect" href="https://cdnjs.cloudflare.com">
-<link href="https://fonts.googleapis.com/css2?family=Comfortaa&family=Raleway:wght@700&family=Special+Elite&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.0/css/bulma.min.css">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
 <link rel="stylesheet" type="text/css" href="../style.css">
 <link rel="stylesheet" type="text/css" href="../bulma-timeline.min.css">
@@ -141,7 +157,7 @@ gtag('config', 'UA-161612035-1');
 <link href="https://assets.calendly.com/assets/external/widget.css" rel="stylesheet">
 <script src="https://assets.calendly.com/assets/external/widget.js" type="text/javascript" async></script>
     
-    <title>Abdur-Rahmaan's Blog: Software engineering, OpenSource, System design, Internals & Spicy takes</title>
+<title>Abdur-Rahmaan's Blog: Software engineering, OpenSource, System design, Internals & Spicy takes</title>
 
 </head>
 
@@ -188,737 +204,1153 @@ gtag('config', 'UA-161612035-1');
 </script>
 
     
-<div class="section is-white" id="writings">
+<div class="section section--alt" id="blog-section">
     <div class="container">
-        <div class="notification is-white">
-            <div class="notification is-white has-text-centered">
-                <br>
-                <p class="has-text-centered ">
-                    <span class="title has-background-white-ter  has-text-centered" style="width: 50px; height:50px; padding: 15px; border-radius: 50%;">
-                        📚
-                    </span>
-                </p><br>
-                <p class="title" ><a href="#" class="no-link-dec">Personal Blog</a></p>
-                <p class="subtitle">Musings</p>
-            </div>
-        </div>
-        <div class="writings notification is-white">
-            <p class="has-text-centered">
+        <header class="sec-head sec-head--center">
+            <span class="sec-kicker">Blog</span>
+            <h2 class="sec-title">Personal diary &amp; reflections</h2>
+            <p class="sec-sub">Musings on software, life, and everything in between</p>
+        </header>
+
+        <div class="container--narrow" style="margin: 0 auto;">
+            <p class="has-text-centered" style="margin-bottom: 1.5rem;">
                 <iframe src="https://compileralchemy.substack.com/embed"  
     style="border:1px solid #EEE; background:white;" frameborder="0" scrolling="no"></iframe>
             </p>
-            <br><br>
-            
 
-                <span class="url p-0">141.
-                     <a href="/blog/a-full-commentary-of-the-transformer-paper/">A Full Commentary Of The Transformer Paper</a></span>
-
-            
-
-                <span class="url p-0">140.
-                     <a href="/blog/contributing-to-opensource-is-a-great-way-to-become-based/">Contributing To Opensource Is A Great Way To Become Based</a></span>
-
-            
-
-                <span class="url p-0">139.
-                     <a href="/blog/pycon-us-is-goated/">Pycon Us Is Goated</a></span>
-
-            
-
-                <span class="url p-0">138.
-                     <a href="/blog/laith-native-android-apps-in-pure-python/">Laith: Native Android Apps In Pure Python</a></span>
-
-            
-
-                <span class="url p-0">137.
-                     <a href="/blog/react-native-is-one-hell-of-an-idea/">React Native Is One Hell Of An Idea</a></span>
-
-            
-
-                <span class="url p-0">136.
-                     <a href="/blog/disposable-software-and-security/">Disposable Software And Security</a></span>
-
-            
-
-                <span class="url p-0">135.
-                     <a href="/blog/running-a-company-requires-a-shift-in-thinking/">Running A Company Requires A Shift In Thinking</a></span>
-
-            
-
-                <span class="url p-0">134.
-                     <a href="/blog/memory-os/">Memory Os</a></span>
-
-            
-
-                <span class="url p-0">133.
-                     <a href="/blog/pageinde-open/">Pageinde-Open</a></span>
-
-            
-
-                <span class="url p-0">132.
-                     <a href="/blog/tldraw-closes-repo-to-outside-contributors/">Tldraw Closes Repo To Outside Contributors</a></span>
-
-            
-
-                <span class="url p-0">131.
-                     <a href="/blog/when-the-readme-is-no-longer-for-humans/">When The Readme Is No Longer For Humans</a></span>
-
-            
-
-                <span class="url p-0">130.
-                     <a href="/blog/the-internet-lives-inside-a-former-church-in-san-francisco/">The Internet Lives Inside A Former Church In San Francisco</a></span>
-
-            
-
-                <span class="url p-0">129.
-                     <a href="/blog/you-paint-these-companies-in-black-but-then-open-your-claude-code-to-shoot-a-good-app-to-accelerate-your-works/">You Paint These Companies In Black But Then Open Your Claude Code To Shoot A Good App To Accelerate Your Works.</a></span>
-
-            
-
-                <span class="url p-0">128.
-                     <a href="/blog/slapping-logins-everywhere-will-get-louder/">Slapping Logins Everywhere Will Get Louder</a></span>
-
-            
-
-                <span class="url p-0">127.
-                     <a href="/blog/fusing-database-programming-with-agent-systems-design/">Fusing Database Programming With Agent Systems Design</a></span>
-
-            
-
-                <span class="url p-0">126.
-                     <a href="/blog/linus-torvalds-uses-anti-gravity/">Linus Torvalds Uses Anti Gravity</a></span>
-
-            
-
-                <span class="url p-0">125.
-                     <a href="/blog/mastering-your-domain-is-no-longer-optional/">Mastering Your Domain Is No Longer Optional</a></span>
-
-            
-
-                <span class="url p-0">124.
-                     <a href="/blog/ai-tailwind-and-traffic/">Ai, Tailwind And Traffic</a></span>
-
-            
-
-                <span class="url p-0">123.
-                     <a href="/blog/agents-help-for-opensource-maintainance/">Agents Help For Opensource Maintainance</a></span>
-
-            
-
-                <span class="url p-0">122.
-                     <a href="/blog/learn-python-programming-book-review/">Learn Python Programming Book Review</a></span>
-
-            
-
-                <span class="url p-0">121.
-                     <a href="/blog/what-happens-when-your-ads-data-gets-leaked/">What happens when your ads data gets leaked</a></span>
-
-            
-
-                <span class="url p-0">120.
-                     <a href="/blog/battling-reddit-toxicity-and-winning-big/">Battling Reddit Toxicity and Winning Big</a></span>
-
-            
-
-                <span class="url p-0">119.
-                     <a href="/blog/making-articles-go-viral/">Making articles go viral</a></span>
-
-            
-
-                <span class="url p-0">118.
-                     <a href="/blog/openai-is-a-felon-company/">OpenAi is a felon company</a></span>
-
-            
-
-                <span class="url p-0">117.
-                     <a href="/blog/is-it-still-worth-it-to-write-blog-posts/">Is it still worth it to write blog posts?</a></span>
-
-            
-
-                <span class="url p-0">116.
-                     <a href="/blog/llm-caught-not-being-able-to-count-letters-in-a-word/">LLM caught not being able to count letters in a word</a></span>
-
-            
-
-                <span class="url p-0">115.
-                     <a href="/blog/327k-pypi-downloads/">327K pypi downloads</a></span>
-
-            
-
-                <span class="url p-0">114.
-                     <a href="/blog/calling-yourself-an-engineer/">Calling yourself an engineer</a></span>
-
-            
-
-                <span class="url p-0">113.
-                     <a href="/blog/glauber-costa-a-legend!/">Glauber Costa: A legend!</a></span>
-
-            
-
-                <span class="url p-0">112.
-                     <a href="/blog/the-most-future-proof-career-move-right-now-be-human/">The most future-proof career move right now: be human</a></span>
-
-            
-
-                <span class="url p-0">111.
-                     <a href="/blog/mistral-european-ingenuity/">Mistral: European Ingenuity?</a></span>
-
-            
-
-                <span class="url p-0">110.
-                     <a href="/blog/contributing-to-open-source-puts-you-miles-ahead-of-the-average-developer/">Contributing to open source puts you miles ahead of the average developer</a></span>
-
-            
-
-                <span class="url p-0">109.
-                     <a href="/blog/the-dodo-coming-back-dire-bollocks/">The Dodo coming back? Dire bollocks</a></span>
-
-            
-
-                <span class="url p-0">108.
-                     <a href="/blog/thanks-to-llm-we-must-now-slap-a-login-page-everywhere/">Thanks to LLM, we must now slap a login page everywhere</a></span>
-
-            
-
-                <span class="url p-0">107.
-                     <a href="/blog/vibecoding-is-killing-software-engineering/">Vibecoding is killing software engineering</a></span>
-
-            
-
-                <span class="url p-0">106.
-                     <a href="/blog/454k-of-debt-on-mauritians-heads/">454K of debt on Mauritians' heads</a></span>
-
-            
-
-                <span class="url p-0">105.
-                     <a href="/blog/one-of-the-biggest-hits-weve-taken-in-the-ai-era-is-in-terms-of-privacy/">One of the biggest hits we've taken in the AI era is in terms of privacy</a></span>
-
-            
-
-                <span class="url p-0">104.
-                     <a href="/blog/review-of-retrieval-augmented-generation-for-knowledge-intensive-nlp-tasks/">Review of retrieval-augmented generation for knowledge-intensive NLP tasks</a></span>
-
-            
-
-                <span class="url p-0">103.
-                     <a href="/blog/rag-paper-review-realm-retrieval-augmented-language-model-pre-training-(250)/">RAG paper review: REALM: Retrieval-Augmented Language Model Pre-Training (2/50)</a></span>
-
-            
-
-                <span class="url p-0">102.
-                     <a href="/blog/rag-paper-review-dense-passage-retrieval-for-open-domain-question-answering-(350)/">RAG paper review: Dense Passage Retrieval for Open-Domain Question Answering (3/50)</a></span>
-
-            
-
-                <span class="url p-0">101.
-                     <a href="/blog/achitecting-ai-software-systems-book-review/">Achitecting AI Software systems book review</a></span>
-
-            
-
-                <span class="url p-0">100.
-                     <a href="/blog/vibecoding-is-not-erasing-open-source-at-all/">Vibecoding is not erasing open source, at all</a></span>
-
-            
-
-                <span class="url p-0">099.
-                     <a href="/blog/privacy-france-shoots-itself-in-the-foot!/">Privacy: France shoots itself in the foot!</a></span>
-
-            
-
-                <span class="url p-0">098.
-                     <a href="/blog/my-first-nuitka-pr/">My first Nuitka PR</a></span>
-
-            
-
-                <span class="url p-0">097.
-                     <a href="/blog/mauritian-incubators/">Mauritian incubators</a></span>
-
-            
-
-                <span class="url p-0">096.
-                     <a href="/blog/original-memory/">Original Memory</a></span>
-
-            
-
-                <span class="url p-0">095.
-                     <a href="/blog/documention-is-also-about-documenting-internals/">Documention is also about documenting internals</a></span>
-
-            
-
-                <span class="url p-0">094.
-                     <a href="/blog/tech-bros-opacity-&-marriage/">Tech bro's opacity & marriage</a></span>
-
-            
-
-                <span class="url p-0">093.
-                     <a href="/blog/kvm-&-redhat/">KVM & RedHat</a></span>
-
-            
-
-                <span class="url p-0">092.
-                     <a href="/blog/the-google-developer-experts-is-a-thoroughly-useless-program/">The ​Google Developer Experts​ is a thoroughly useless program</a></span>
-
-            
-
-                <span class="url p-0">091.
-                     <a href="/blog/googles-nose-dive-further-accentuates/">Google's nose dive further accentuates</a></span>
-
-            
-
-                <span class="url p-0">090.
-                     <a href="/blog/google-killed-by-google/">Google Killed By Google?</a></span>
-
-            
-
-                <span class="url p-0">089.
-                     <a href="/blog/google-customers-fund-squarespace/">Google customers fund SquareSpace</a></span>
-
-            
-
-                <span class="url p-0">088.
-                     <a href="/blog/saas-ideas-are-easier-to-find/">Saas ideas are easier to find</a></span>
-
-            
-
-                <span class="url p-0">087.
-                     <a href="/blog/luminotes-read-by-engineers-at-google-amazon-apple-ibm-.../">Luminotes: Read by engineers at Google, Amazon, Apple, IBM, ...</a></span>
-
-            
-
-                <span class="url p-0">086.
-                     <a href="/blog/ai-rocks-the-product-landscape/">Ai rocks the product landscape</a></span>
-
-            
-
-                <span class="url p-0">085.
-                     <a href="/blog/opensource-authors-vision-vs-products-vision/">Opensource: Author's vision v/s Product's vision</a></span>
-
-            
-
-                <span class="url p-0">084.
-                     <a href="/blog/google-officially-joins-the-stodgy-club/">Google officially joins the stodgy club</a></span>
-
-            
-
-                <span class="url p-0">083.
-                     <a href="/blog/an-engineering-company-deriving-value-through-corporate-tactics/">An engineering company deriving value through corporate tactics</a></span>
-
-            
-
-                <span class="url p-0">082.
-                     <a href="/blog/the-current-education-system-is-an-insult-to-intelligence/">The current education system is an insult to intelligence</a></span>
-
-            
-
-                <span class="url p-0">081.
-                     <a href="/blog/but-abdur/">But Abdur</a></span>
-
-            
-
-                <span class="url p-0">080.
-                     <a href="/blog/elements-of-a-good-educational-system/">Elements of a good educational system</a></span>
-
-            
-
-                <span class="url p-0">079.
-                     <a href="/blog/educational-excellence-for-teens/">Educational excellence for teens</a></span>
-
-            
-
-                <span class="url p-0">078.
-                     <a href="/blog/raising-vipers/">Raising vipers</a></span>
-
-            
-
-                <span class="url p-0">077.
-                     <a href="/blog/education-and-role-models/">Education and role models</a></span>
-
-            
-
-                <span class="url p-0">076.
-                     <a href="/blog/education-and-humanity/">Education and humanity</a></span>
-
-            
-
-                <span class="url p-0">075.
-                     <a href="/blog/killedbygoogle-a-signature-move/">Killedbygoogle: A signature move</a></span>
-
-            
-
-                <span class="url p-0">074.
-                     <a href="/blog/how-marketing-shapes-rust-development/">How marketing shapes Rust development</a></span>
-
-            
-
-                <span class="url p-0">073.
-                     <a href="/blog/modular-monolith/">Modular monolith</a></span>
-
-            
-
-                <span class="url p-0">072.
-                     <a href="/blog/cell-based-architecture/">Cell-based architecture</a></span>
-
-            
-
-                <span class="url p-0">071.
-                     <a href="/blog/my-first-course-on-enterprise-python/">My first course on Enterprise Python</a></span>
-
-            
-
-                <span class="url p-0">070.
-                     <a href="/blog/cinammon-ubers-load-shedder/">Cinammon - Uber's load shedder</a></span>
-
-            
-
-                <span class="url p-0">069.
-                     <a href="/blog/multi-layer-cache-at-doordash/">Multi-layer cache at DoorDash</a></span>
-
-            
-
-                <span class="url p-0">068.
-                     <a href="/blog/most-poignant-darts-for-engineering-success/">Most poignant darts for engineering success</a></span>
-
-            
-
-                <span class="url p-0">067.
-                     <a href="/blog/jaeger-a-classic-for-distriuted-tracing/">Jaeger, a classic for distriuted tracing</a></span>
-
-            
-
-                <span class="url p-0">066.
-                     <a href="/blog/the-guardians-improvements-to-its-breaking-news-notification-service/">The Guardian's improvements to it's breaking news notification service</a></span>
-
-            
-
-                <span class="url p-0">065.
-                     <a href="/blog/freelancing-principles/">Freelancing Principles</a></span>
-
-            
-
-                <span class="url p-0">064.
-                     <a href="/blog/pycon-us-diary-planning-a-us-trip/">PyCon US diary - Planning a US trip</a></span>
-
-            
-
-                <span class="url p-0">063.
-                     <a href="/blog/mauritians-garnering-a-dubious-freelancing-reputation/">Mauritians garnering a dubious freelancing reputation</a></span>
-
-            
-
-                <span class="url p-0">062.
-                     <a href="/blog/dr-murat-dogruels-better-than-april-tag-fiducial-system/">Dr Murat Dogruel's Better Than April Tag Fiducial System</a></span>
-
-            
-
-                <span class="url p-0">061.
-                     <a href="/blog/how-to-evaluate-freelancers/">How to evaluate freelancers</a></span>
-
-            
-
-                <span class="url p-0">060.
-                     <a href="/blog/pycon-us-diary-applying-for-a-us-visa/">PyCon US diary - Applying for a US visa</a></span>
-
-            
-
-                <span class="url p-0">059.
-                     <a href="/blog/why-i-wont-buy-tesla-cars-if-they-come-to-mauritius/">Why I won't buy Tesla cars if they come to Mauritius</a></span>
-
-            
-
-                <span class="url p-0">058.
-                     <a href="/blog/pycon-us-diary-consulate-interview-experience/">PyCon US diary - Consulate interview experience</a></span>
-
-            
-
-                <span class="url p-0">057.
-                     <a href="/blog/owning-your-data/">Owning your data</a></span>
-
-            
-
-                <span class="url p-0">056.
-                     <a href="/blog/tesla-red-love-blinds/">Tesla - red love blinds</a></span>
-
-            
-
-                <span class="url p-0">055.
-                     <a href="/blog/mkbhd-explains-the-tesla-phenomenon/">MKBHD explains the Tesla phenomenon</a></span>
-
-            
-
-                <span class="url p-0">054.
-                     <a href="/blog/pycon-us-diary-dealing-with-flights/">Pycon US diary - Dealing with flights</a></span>
-
-            
-
-                <span class="url p-0">053.
-                     <a href="/blog/pycon-us-diary-accommodations/">PyCon US diary - Accommodations</a></span>
-
-            
-
-                <span class="url p-0">052.
-                     <a href="/blog/pycon-us-diary-accommodation-experience/">PyCon US diary - Accommodation experience</a></span>
-
-            
-
-                <span class="url p-0">051.
-                     <a href="/blog/pycon-us-diary-payments/">PyCon US diary - Payments</a></span>
-
-            
-
-                <span class="url p-0">050.
-                     <a href="/blog/i-recommend-these-candidates-for-the-psf-election/">I recommend these candidates for the PSF election</a></span>
-
-            
-
-                <span class="url p-0">049.
-                     <a href="/blog/ai-money-and-truth/">AI, money and truth</a></span>
-
-            
-
-                <span class="url p-0">048.
-                     <a href="/blog/donald-knuth-clarifies/">Donald Knuth Clarifies</a></span>
-
-            
-
-                <span class="url p-0">047.
-                     <a href="/blog/opensource-yet-another-way-to-learn-rust/">OpenSource: Yet another way to learn Rust</a></span>
-
-            
-
-                <span class="url p-0">046.
-                     <a href="/blog/we-helped-100+-people-get-into-opensource/">We helped 100+ people get into OpenSource</a></span>
-
-            
-
-                <span class="url p-0">045.
-                     <a href="/blog/linkedin-in-one-word-junk/">LinkedIn in one word: Junk</a></span>
-
-            
-
-                <span class="url p-0">044.
-                     <a href="/blog/receiving-githubs-nasa-badge-for-python-contributions/">Receiving Github's NASA badge for Python contributions</a></span>
-
-            
-
-                <span class="url p-0">043.
-                     <a href="/blog/python-at-spacex/">Python at SpaceX</a></span>
-
-            
-
-                <span class="url p-0">042.
-                     <a href="/blog/hiring-rounds-or-hiring-the-right-person/">Hiring rounds or hiring the right person?</a></span>
-
-            
-
-                <span class="url p-0">041.
-                     <a href="/blog/do-we-need-standup-meetings/">Do we need standup meetings?</a></span>
-
-            
-
-                <span class="url p-0">040.
-                     <a href="/blog/communities-partnering-up-with-big-companies/">Communities partnering up with big companies</a></span>
-
-            
-
-                <span class="url p-0">039.
-                     <a href="/blog/are-big-companies-involvement-in-opensource-a-scam/">Are big companies involvement in OpenSource a scam?</a></span>
-
-            
-
-                <span class="url p-0">038.
-                     <a href="/blog/f*-it-ship-it/">F* it, ship it</a></span>
-
-            
-
-                <span class="url p-0">037.
-                     <a href="/blog/the-maze-is-in-the-mouse/">The maze is in the mouse</a></span>
-
-            
-
-                <span class="url p-0">036.
-                     <a href="/blog/clever-hans-is-the-example-with-ai/">Clever hans is THE example with Ai</a></span>
-
-            
-
-                <span class="url p-0">035.
-                     <a href="/blog/dont-make-your-apis-simple/">Don't make your APIs simple</a></span>
-
-            
-
-                <span class="url p-0">034.
-                     <a href="/blog/i-dont-trust-codingame/">I don't trust codingame</a></span>
-
-            
-
-                <span class="url p-0">033.
-                     <a href="/blog/i-am-an-official-rustlang-contributor/">I am an official Rustlang contributor?</a></span>
-
-            
-
-                <span class="url p-0">032.
-                     <a href="/blog/pouring-$10b-in-chatgpt-is-a-losing-game/">Pouring $10B in chatGPT is a losing game</a></span>
-
-            
-
-                <span class="url p-0">031.
-                     <a href="/blog/i-like-python-because-of-maths-puns/">I like Python because of maths puns</a></span>
-
-            
-
-                <span class="url p-0">030.
-                     <a href="/blog/hire-to-fire/">Hire to fire</a></span>
-
-            
-
-                <span class="url p-0">029.
-                     <a href="/blog/the-material-is-grounded-in-tactile-reality-and-open-to-magic/">The material is grounded in tactile reality and open to magic</a></span>
-
-            
-
-                <span class="url p-0">028.
-                     <a href="/blog/part-of-stupidity-is-to-follow-every-piece-of-valid-information/">Part of stupidity is to follow every piece of valid information</a></span>
-
-            
-
-                <span class="url p-0">027.
-                     <a href="/blog/every-post-on-linkedin-is-not-for-you/">Every post on LinkedIn is not for you</a></span>
-
-            
-
-                <span class="url p-0">026.
-                     <a href="/blog/likes-are-not-a-usefulness-metric/">Likes are not a usefulness metric</a></span>
-
-            
-
-                <span class="url p-0">025.
-                     <a href="/blog/i-dont-trust-mycrowsoft-with-opensource/">I don't trust Mycrowsoft with OpenSource</a></span>
-
-            
-
-                <span class="url p-0">024.
-                     <a href="/blog/how-to-build-a-good-showcase/">How to build a good showcase</a></span>
-
-            
-
-                <span class="url p-0">023.
-                     <a href="/blog/how-to-get-first-clients/">How to get first clients</a></span>
-
-            
-
-                <span class="url p-0">022.
-                     <a href="/blog/the-silicon-valley-is-plunging-the-world-into-techno-religiousness/">The Silicon Valley is plunging the world into techno-religiousness</a></span>
-
-            
-
-                <span class="url p-0">021.
-                     <a href="/blog/opensource-is-an-incredible-career-asset/">OpenSource is an incredible career asset</a></span>
-
-            
-
-                <span class="url p-0">020.
-                     <a href="/blog/ai-is-just-adaptively-automating-automation/">Ai is just adaptively automating automation</a></span>
-
-            
-
-                <span class="url p-0">019.
-                     <a href="/blog/vcs-dont-save-the-financially-unwise/">VCs don't save the financially unwise</a></span>
-
-            
-
-                <span class="url p-0">018.
-                     <a href="/blog/university-competitions-serve-corporates-not-students/">University competitions serve corporates, not students</a></span>
-
-            
-
-                <span class="url p-0">017.
-                     <a href="/blog/for-community-events-prefer-the-community-not-big-corp-x/">For community events prefer the community, not big corp x</a></span>
-
-            
-
-                <span class="url p-0">016.
-                     <a href="/blog/the-smiling-emoji-does-not-represent-happiness-always/">The smiling emoji does not represent happiness always</a></span>
-
-            
-
-                <span class="url p-0">015.
-                     <a href="/blog/why-i-invest-so-much-in-python/">Why i invest so much in Python</a></span>
-
-            
-
-                <span class="url p-0">014.
-                     <a href="/blog/pdm-an-option-that-wriggles-in-between-existing-options/">PDM: An Option That Wriggles In-Between Existing Options</a></span>
-
-            
-
-                <span class="url p-0">013.
-                     <a href="/blog/mauritius-the-place-to-grow-&-water-workers/">Mauritius: The Place To Grow & Water Workers</a></span>
-
-            
-
-                <span class="url p-0">012.
-                     <a href="/blog/becoming-an-airflow-contributor-by-accident/">Becoming an Airflow contributor by accident</a></span>
-
-            
-
-                <span class="url p-0">011.
-                     <a href="/blog/welcome-to-the-age-of-the-barter-system/">Welcome To The Age of The Barter System</a></span>
-
-            
-
-                <span class="url p-0">010.
-                     <a href="/blog/the-sense-of-capitalization-of-letters-in-opensource/">The sense of capitalization of letters in OpenSource</a></span>
-
-            
-
-                <span class="url p-0">009.
-                     <a href="/blog/why-python-needs-python-specific-tests/">Why Python Needs Python-Specific Tests?</a></span>
-
-            
-
-                <span class="url p-0">008.
-                     <a href="/blog/why-python-programmers-need-c/">Why Python Programmers Need C?</a></span>
-
-            
-
-                <span class="url p-0">007.
-                     <a href="/blog/the-two-parts-of-python-learning/">The Two Parts of Python Learning</a></span>
-
-            
-
-                <span class="url p-0">006.
-                     <a href="/blog/how-to-evaluate-any-course!/">How To Evaluate Any Course!</a></span>
-
-            
-
-                <span class="url p-0">005.
-                     <a href="/blog/the-four-purposes-of-exercises/">The four purposes of exercises</a></span>
-
-            
-
-                <span class="url p-0">004.
-                     <a href="/blog/toptal-is-not-interested-about-python-even-less-about-mauritius/">Toptal Is NOT Interested About Python, Even Less About Mauritius</a></span>
-
-            
-
-                <span class="url p-0">003.
-                     <a href="/blog/specialising-in-python-pays/">Specialising In Python Pays</a></span>
-
-            
-
-                <span class="url p-0">002.
-                     <a href="/blog/linkedin-is-just-another-social-media/">Linkedin is just another social media</a></span>
-
-            
-
-                <span class="url p-0">001.
-                     <a href="/blog/if-you-are-considering-a-change-in-career/">If You Are Considering A Change in Career</a></span>
-
-            
-            <br>
-
+            <ul class="bl-grid">
+                
+                <li class="bl-item">
+                    <a href="/blog/a-full-commentary-of-the-transformer-paper/" class="bl-link">
+                        <span class="bl-num">141</span>
+                        <span class="bl-title">A Full Commentary Of The Transformer Paper</span>
+                        <span class="bl-arrow">&rarr;</span>
+                    </a>
+                </li>
+                
+                <li class="bl-item">
+                    <a href="/blog/contributing-to-opensource-is-a-great-way-to-become-based/" class="bl-link">
+                        <span class="bl-num">140</span>
+                        <span class="bl-title">Contributing To Opensource Is A Great Way To Become Based</span>
+                        <span class="bl-arrow">&rarr;</span>
+                    </a>
+                </li>
+                
+                <li class="bl-item">
+                    <a href="/blog/pycon-us-is-goated/" class="bl-link">
+                        <span class="bl-num">139</span>
+                        <span class="bl-title">Pycon Us Is Goated</span>
+                        <span class="bl-arrow">&rarr;</span>
+                    </a>
+                </li>
+                
+                <li class="bl-item">
+                    <a href="/blog/laith-native-android-apps-in-pure-python/" class="bl-link">
+                        <span class="bl-num">138</span>
+                        <span class="bl-title">Laith: Native Android Apps In Pure Python</span>
+                        <span class="bl-arrow">&rarr;</span>
+                    </a>
+                </li>
+                
+                <li class="bl-item">
+                    <a href="/blog/react-native-is-one-hell-of-an-idea/" class="bl-link">
+                        <span class="bl-num">137</span>
+                        <span class="bl-title">React Native Is One Hell Of An Idea</span>
+                        <span class="bl-arrow">&rarr;</span>
+                    </a>
+                </li>
+                
+                <li class="bl-item">
+                    <a href="/blog/disposable-software-and-security/" class="bl-link">
+                        <span class="bl-num">136</span>
+                        <span class="bl-title">Disposable Software And Security</span>
+                        <span class="bl-arrow">&rarr;</span>
+                    </a>
+                </li>
+                
+                <li class="bl-item">
+                    <a href="/blog/running-a-company-requires-a-shift-in-thinking/" class="bl-link">
+                        <span class="bl-num">135</span>
+                        <span class="bl-title">Running A Company Requires A Shift In Thinking</span>
+                        <span class="bl-arrow">&rarr;</span>
+                    </a>
+                </li>
+                
+                <li class="bl-item">
+                    <a href="/blog/memory-os/" class="bl-link">
+                        <span class="bl-num">134</span>
+                        <span class="bl-title">Memory Os</span>
+                        <span class="bl-arrow">&rarr;</span>
+                    </a>
+                </li>
+                
+                <li class="bl-item">
+                    <a href="/blog/pageinde-open/" class="bl-link">
+                        <span class="bl-num">133</span>
+                        <span class="bl-title">Pageinde-Open</span>
+                        <span class="bl-arrow">&rarr;</span>
+                    </a>
+                </li>
+                
+                <li class="bl-item">
+                    <a href="/blog/tldraw-closes-repo-to-outside-contributors/" class="bl-link">
+                        <span class="bl-num">132</span>
+                        <span class="bl-title">Tldraw Closes Repo To Outside Contributors</span>
+                        <span class="bl-arrow">&rarr;</span>
+                    </a>
+                </li>
+                
+                <li class="bl-item">
+                    <a href="/blog/when-the-readme-is-no-longer-for-humans/" class="bl-link">
+                        <span class="bl-num">131</span>
+                        <span class="bl-title">When The Readme Is No Longer For Humans</span>
+                        <span class="bl-arrow">&rarr;</span>
+                    </a>
+                </li>
+                
+                <li class="bl-item">
+                    <a href="/blog/the-internet-lives-inside-a-former-church-in-san-francisco/" class="bl-link">
+                        <span class="bl-num">130</span>
+                        <span class="bl-title">The Internet Lives Inside A Former Church In San Francisco</span>
+                        <span class="bl-arrow">&rarr;</span>
+                    </a>
+                </li>
+                
+                <li class="bl-item">
+                    <a href="/blog/you-paint-these-companies-in-black-but-then-open-your-claude-code-to-shoot-a-good-app-to-accelerate-your-works/" class="bl-link">
+                        <span class="bl-num">129</span>
+                        <span class="bl-title">You Paint These Companies In Black But Then Open Your Claude Code To Shoot A Good App To Accelerate Your Works.</span>
+                        <span class="bl-arrow">&rarr;</span>
+                    </a>
+                </li>
+                
+                <li class="bl-item">
+                    <a href="/blog/slapping-logins-everywhere-will-get-louder/" class="bl-link">
+                        <span class="bl-num">128</span>
+                        <span class="bl-title">Slapping Logins Everywhere Will Get Louder</span>
+                        <span class="bl-arrow">&rarr;</span>
+                    </a>
+                </li>
+                
+                <li class="bl-item">
+                    <a href="/blog/fusing-database-programming-with-agent-systems-design/" class="bl-link">
+                        <span class="bl-num">127</span>
+                        <span class="bl-title">Fusing Database Programming With Agent Systems Design</span>
+                        <span class="bl-arrow">&rarr;</span>
+                    </a>
+                </li>
+                
+                <li class="bl-item">
+                    <a href="/blog/linus-torvalds-uses-anti-gravity/" class="bl-link">
+                        <span class="bl-num">126</span>
+                        <span class="bl-title">Linus Torvalds Uses Anti Gravity</span>
+                        <span class="bl-arrow">&rarr;</span>
+                    </a>
+                </li>
+                
+                <li class="bl-item">
+                    <a href="/blog/mastering-your-domain-is-no-longer-optional/" class="bl-link">
+                        <span class="bl-num">125</span>
+                        <span class="bl-title">Mastering Your Domain Is No Longer Optional</span>
+                        <span class="bl-arrow">&rarr;</span>
+                    </a>
+                </li>
+                
+                <li class="bl-item">
+                    <a href="/blog/ai-tailwind-and-traffic/" class="bl-link">
+                        <span class="bl-num">124</span>
+                        <span class="bl-title">Ai, Tailwind And Traffic</span>
+                        <span class="bl-arrow">&rarr;</span>
+                    </a>
+                </li>
+                
+                <li class="bl-item">
+                    <a href="/blog/agents-help-for-opensource-maintainance/" class="bl-link">
+                        <span class="bl-num">123</span>
+                        <span class="bl-title">Agents Help For Opensource Maintainance</span>
+                        <span class="bl-arrow">&rarr;</span>
+                    </a>
+                </li>
+                
+                <li class="bl-item">
+                    <a href="/blog/learn-python-programming-book-review/" class="bl-link">
+                        <span class="bl-num">122</span>
+                        <span class="bl-title">Learn Python Programming Book Review</span>
+                        <span class="bl-arrow">&rarr;</span>
+                    </a>
+                </li>
+                
+                <li class="bl-item">
+                    <a href="/blog/what-happens-when-your-ads-data-gets-leaked/" class="bl-link">
+                        <span class="bl-num">121</span>
+                        <span class="bl-title">What happens when your ads data gets leaked</span>
+                        <span class="bl-arrow">&rarr;</span>
+                    </a>
+                </li>
+                
+                <li class="bl-item">
+                    <a href="/blog/battling-reddit-toxicity-and-winning-big/" class="bl-link">
+                        <span class="bl-num">120</span>
+                        <span class="bl-title">Battling Reddit Toxicity and Winning Big</span>
+                        <span class="bl-arrow">&rarr;</span>
+                    </a>
+                </li>
+                
+                <li class="bl-item">
+                    <a href="/blog/making-articles-go-viral/" class="bl-link">
+                        <span class="bl-num">119</span>
+                        <span class="bl-title">Making articles go viral</span>
+                        <span class="bl-arrow">&rarr;</span>
+                    </a>
+                </li>
+                
+                <li class="bl-item">
+                    <a href="/blog/openai-is-a-felon-company/" class="bl-link">
+                        <span class="bl-num">118</span>
+                        <span class="bl-title">OpenAi is a felon company</span>
+                        <span class="bl-arrow">&rarr;</span>
+                    </a>
+                </li>
+                
+                <li class="bl-item">
+                    <a href="/blog/is-it-still-worth-it-to-write-blog-posts/" class="bl-link">
+                        <span class="bl-num">117</span>
+                        <span class="bl-title">Is it still worth it to write blog posts?</span>
+                        <span class="bl-arrow">&rarr;</span>
+                    </a>
+                </li>
+                
+                <li class="bl-item">
+                    <a href="/blog/llm-caught-not-being-able-to-count-letters-in-a-word/" class="bl-link">
+                        <span class="bl-num">116</span>
+                        <span class="bl-title">LLM caught not being able to count letters in a word</span>
+                        <span class="bl-arrow">&rarr;</span>
+                    </a>
+                </li>
+                
+                <li class="bl-item">
+                    <a href="/blog/327k-pypi-downloads/" class="bl-link">
+                        <span class="bl-num">115</span>
+                        <span class="bl-title">327K pypi downloads</span>
+                        <span class="bl-arrow">&rarr;</span>
+                    </a>
+                </li>
+                
+                <li class="bl-item">
+                    <a href="/blog/calling-yourself-an-engineer/" class="bl-link">
+                        <span class="bl-num">114</span>
+                        <span class="bl-title">Calling yourself an engineer</span>
+                        <span class="bl-arrow">&rarr;</span>
+                    </a>
+                </li>
+                
+                <li class="bl-item">
+                    <a href="/blog/glauber-costa-a-legend!/" class="bl-link">
+                        <span class="bl-num">113</span>
+                        <span class="bl-title">Glauber Costa: A legend!</span>
+                        <span class="bl-arrow">&rarr;</span>
+                    </a>
+                </li>
+                
+                <li class="bl-item">
+                    <a href="/blog/the-most-future-proof-career-move-right-now-be-human/" class="bl-link">
+                        <span class="bl-num">112</span>
+                        <span class="bl-title">The most future-proof career move right now: be human</span>
+                        <span class="bl-arrow">&rarr;</span>
+                    </a>
+                </li>
+                
+                <li class="bl-item">
+                    <a href="/blog/mistral-european-ingenuity/" class="bl-link">
+                        <span class="bl-num">111</span>
+                        <span class="bl-title">Mistral: European Ingenuity?</span>
+                        <span class="bl-arrow">&rarr;</span>
+                    </a>
+                </li>
+                
+                <li class="bl-item">
+                    <a href="/blog/contributing-to-open-source-puts-you-miles-ahead-of-the-average-developer/" class="bl-link">
+                        <span class="bl-num">110</span>
+                        <span class="bl-title">Contributing to open source puts you miles ahead of the average developer</span>
+                        <span class="bl-arrow">&rarr;</span>
+                    </a>
+                </li>
+                
+                <li class="bl-item">
+                    <a href="/blog/the-dodo-coming-back-dire-bollocks/" class="bl-link">
+                        <span class="bl-num">109</span>
+                        <span class="bl-title">The Dodo coming back? Dire bollocks</span>
+                        <span class="bl-arrow">&rarr;</span>
+                    </a>
+                </li>
+                
+                <li class="bl-item">
+                    <a href="/blog/thanks-to-llm-we-must-now-slap-a-login-page-everywhere/" class="bl-link">
+                        <span class="bl-num">108</span>
+                        <span class="bl-title">Thanks to LLM, we must now slap a login page everywhere</span>
+                        <span class="bl-arrow">&rarr;</span>
+                    </a>
+                </li>
+                
+                <li class="bl-item">
+                    <a href="/blog/vibecoding-is-killing-software-engineering/" class="bl-link">
+                        <span class="bl-num">107</span>
+                        <span class="bl-title">Vibecoding is killing software engineering</span>
+                        <span class="bl-arrow">&rarr;</span>
+                    </a>
+                </li>
+                
+                <li class="bl-item">
+                    <a href="/blog/454k-of-debt-on-mauritians-heads/" class="bl-link">
+                        <span class="bl-num">106</span>
+                        <span class="bl-title">454K of debt on Mauritians' heads</span>
+                        <span class="bl-arrow">&rarr;</span>
+                    </a>
+                </li>
+                
+                <li class="bl-item">
+                    <a href="/blog/one-of-the-biggest-hits-weve-taken-in-the-ai-era-is-in-terms-of-privacy/" class="bl-link">
+                        <span class="bl-num">105</span>
+                        <span class="bl-title">One of the biggest hits we've taken in the AI era is in terms of privacy</span>
+                        <span class="bl-arrow">&rarr;</span>
+                    </a>
+                </li>
+                
+                <li class="bl-item">
+                    <a href="/blog/review-of-retrieval-augmented-generation-for-knowledge-intensive-nlp-tasks/" class="bl-link">
+                        <span class="bl-num">104</span>
+                        <span class="bl-title">Review of retrieval-augmented generation for knowledge-intensive NLP tasks</span>
+                        <span class="bl-arrow">&rarr;</span>
+                    </a>
+                </li>
+                
+                <li class="bl-item">
+                    <a href="/blog/rag-paper-review-realm-retrieval-augmented-language-model-pre-training-(250)/" class="bl-link">
+                        <span class="bl-num">103</span>
+                        <span class="bl-title">RAG paper review: REALM: Retrieval-Augmented Language Model Pre-Training (2/50)</span>
+                        <span class="bl-arrow">&rarr;</span>
+                    </a>
+                </li>
+                
+                <li class="bl-item">
+                    <a href="/blog/rag-paper-review-dense-passage-retrieval-for-open-domain-question-answering-(350)/" class="bl-link">
+                        <span class="bl-num">102</span>
+                        <span class="bl-title">RAG paper review: Dense Passage Retrieval for Open-Domain Question Answering (3/50)</span>
+                        <span class="bl-arrow">&rarr;</span>
+                    </a>
+                </li>
+                
+                <li class="bl-item">
+                    <a href="/blog/achitecting-ai-software-systems-book-review/" class="bl-link">
+                        <span class="bl-num">101</span>
+                        <span class="bl-title">Achitecting AI Software systems book review</span>
+                        <span class="bl-arrow">&rarr;</span>
+                    </a>
+                </li>
+                
+                <li class="bl-item">
+                    <a href="/blog/vibecoding-is-not-erasing-open-source-at-all/" class="bl-link">
+                        <span class="bl-num">100</span>
+                        <span class="bl-title">Vibecoding is not erasing open source, at all</span>
+                        <span class="bl-arrow">&rarr;</span>
+                    </a>
+                </li>
+                
+                <li class="bl-item">
+                    <a href="/blog/privacy-france-shoots-itself-in-the-foot!/" class="bl-link">
+                        <span class="bl-num">099</span>
+                        <span class="bl-title">Privacy: France shoots itself in the foot!</span>
+                        <span class="bl-arrow">&rarr;</span>
+                    </a>
+                </li>
+                
+                <li class="bl-item">
+                    <a href="/blog/my-first-nuitka-pr/" class="bl-link">
+                        <span class="bl-num">098</span>
+                        <span class="bl-title">My first Nuitka PR</span>
+                        <span class="bl-arrow">&rarr;</span>
+                    </a>
+                </li>
+                
+                <li class="bl-item">
+                    <a href="/blog/mauritian-incubators/" class="bl-link">
+                        <span class="bl-num">097</span>
+                        <span class="bl-title">Mauritian incubators</span>
+                        <span class="bl-arrow">&rarr;</span>
+                    </a>
+                </li>
+                
+                <li class="bl-item">
+                    <a href="/blog/original-memory/" class="bl-link">
+                        <span class="bl-num">096</span>
+                        <span class="bl-title">Original Memory</span>
+                        <span class="bl-arrow">&rarr;</span>
+                    </a>
+                </li>
+                
+                <li class="bl-item">
+                    <a href="/blog/documention-is-also-about-documenting-internals/" class="bl-link">
+                        <span class="bl-num">095</span>
+                        <span class="bl-title">Documention is also about documenting internals</span>
+                        <span class="bl-arrow">&rarr;</span>
+                    </a>
+                </li>
+                
+                <li class="bl-item">
+                    <a href="/blog/tech-bros-opacity-&-marriage/" class="bl-link">
+                        <span class="bl-num">094</span>
+                        <span class="bl-title">Tech bro's opacity & marriage</span>
+                        <span class="bl-arrow">&rarr;</span>
+                    </a>
+                </li>
+                
+                <li class="bl-item">
+                    <a href="/blog/kvm-&-redhat/" class="bl-link">
+                        <span class="bl-num">093</span>
+                        <span class="bl-title">KVM & RedHat</span>
+                        <span class="bl-arrow">&rarr;</span>
+                    </a>
+                </li>
+                
+                <li class="bl-item">
+                    <a href="/blog/the-google-developer-experts-is-a-thoroughly-useless-program/" class="bl-link">
+                        <span class="bl-num">092</span>
+                        <span class="bl-title">The ​Google Developer Experts​ is a thoroughly useless program</span>
+                        <span class="bl-arrow">&rarr;</span>
+                    </a>
+                </li>
+                
+                <li class="bl-item">
+                    <a href="/blog/googles-nose-dive-further-accentuates/" class="bl-link">
+                        <span class="bl-num">091</span>
+                        <span class="bl-title">Google's nose dive further accentuates</span>
+                        <span class="bl-arrow">&rarr;</span>
+                    </a>
+                </li>
+                
+                <li class="bl-item">
+                    <a href="/blog/google-killed-by-google/" class="bl-link">
+                        <span class="bl-num">090</span>
+                        <span class="bl-title">Google Killed By Google?</span>
+                        <span class="bl-arrow">&rarr;</span>
+                    </a>
+                </li>
+                
+                <li class="bl-item">
+                    <a href="/blog/google-customers-fund-squarespace/" class="bl-link">
+                        <span class="bl-num">089</span>
+                        <span class="bl-title">Google customers fund SquareSpace</span>
+                        <span class="bl-arrow">&rarr;</span>
+                    </a>
+                </li>
+                
+                <li class="bl-item">
+                    <a href="/blog/saas-ideas-are-easier-to-find/" class="bl-link">
+                        <span class="bl-num">088</span>
+                        <span class="bl-title">Saas ideas are easier to find</span>
+                        <span class="bl-arrow">&rarr;</span>
+                    </a>
+                </li>
+                
+                <li class="bl-item">
+                    <a href="/blog/luminotes-read-by-engineers-at-google-amazon-apple-ibm-.../" class="bl-link">
+                        <span class="bl-num">087</span>
+                        <span class="bl-title">Luminotes: Read by engineers at Google, Amazon, Apple, IBM, ...</span>
+                        <span class="bl-arrow">&rarr;</span>
+                    </a>
+                </li>
+                
+                <li class="bl-item">
+                    <a href="/blog/ai-rocks-the-product-landscape/" class="bl-link">
+                        <span class="bl-num">086</span>
+                        <span class="bl-title">Ai rocks the product landscape</span>
+                        <span class="bl-arrow">&rarr;</span>
+                    </a>
+                </li>
+                
+                <li class="bl-item">
+                    <a href="/blog/opensource-authors-vision-vs-products-vision/" class="bl-link">
+                        <span class="bl-num">085</span>
+                        <span class="bl-title">Opensource: Author's vision v/s Product's vision</span>
+                        <span class="bl-arrow">&rarr;</span>
+                    </a>
+                </li>
+                
+                <li class="bl-item">
+                    <a href="/blog/google-officially-joins-the-stodgy-club/" class="bl-link">
+                        <span class="bl-num">084</span>
+                        <span class="bl-title">Google officially joins the stodgy club</span>
+                        <span class="bl-arrow">&rarr;</span>
+                    </a>
+                </li>
+                
+                <li class="bl-item">
+                    <a href="/blog/an-engineering-company-deriving-value-through-corporate-tactics/" class="bl-link">
+                        <span class="bl-num">083</span>
+                        <span class="bl-title">An engineering company deriving value through corporate tactics</span>
+                        <span class="bl-arrow">&rarr;</span>
+                    </a>
+                </li>
+                
+                <li class="bl-item">
+                    <a href="/blog/the-current-education-system-is-an-insult-to-intelligence/" class="bl-link">
+                        <span class="bl-num">082</span>
+                        <span class="bl-title">The current education system is an insult to intelligence</span>
+                        <span class="bl-arrow">&rarr;</span>
+                    </a>
+                </li>
+                
+                <li class="bl-item">
+                    <a href="/blog/but-abdur/" class="bl-link">
+                        <span class="bl-num">081</span>
+                        <span class="bl-title">But Abdur</span>
+                        <span class="bl-arrow">&rarr;</span>
+                    </a>
+                </li>
+                
+                <li class="bl-item">
+                    <a href="/blog/elements-of-a-good-educational-system/" class="bl-link">
+                        <span class="bl-num">080</span>
+                        <span class="bl-title">Elements of a good educational system</span>
+                        <span class="bl-arrow">&rarr;</span>
+                    </a>
+                </li>
+                
+                <li class="bl-item">
+                    <a href="/blog/educational-excellence-for-teens/" class="bl-link">
+                        <span class="bl-num">079</span>
+                        <span class="bl-title">Educational excellence for teens</span>
+                        <span class="bl-arrow">&rarr;</span>
+                    </a>
+                </li>
+                
+                <li class="bl-item">
+                    <a href="/blog/raising-vipers/" class="bl-link">
+                        <span class="bl-num">078</span>
+                        <span class="bl-title">Raising vipers</span>
+                        <span class="bl-arrow">&rarr;</span>
+                    </a>
+                </li>
+                
+                <li class="bl-item">
+                    <a href="/blog/education-and-role-models/" class="bl-link">
+                        <span class="bl-num">077</span>
+                        <span class="bl-title">Education and role models</span>
+                        <span class="bl-arrow">&rarr;</span>
+                    </a>
+                </li>
+                
+                <li class="bl-item">
+                    <a href="/blog/education-and-humanity/" class="bl-link">
+                        <span class="bl-num">076</span>
+                        <span class="bl-title">Education and humanity</span>
+                        <span class="bl-arrow">&rarr;</span>
+                    </a>
+                </li>
+                
+                <li class="bl-item">
+                    <a href="/blog/killedbygoogle-a-signature-move/" class="bl-link">
+                        <span class="bl-num">075</span>
+                        <span class="bl-title">Killedbygoogle: A signature move</span>
+                        <span class="bl-arrow">&rarr;</span>
+                    </a>
+                </li>
+                
+                <li class="bl-item">
+                    <a href="/blog/how-marketing-shapes-rust-development/" class="bl-link">
+                        <span class="bl-num">074</span>
+                        <span class="bl-title">How marketing shapes Rust development</span>
+                        <span class="bl-arrow">&rarr;</span>
+                    </a>
+                </li>
+                
+                <li class="bl-item">
+                    <a href="/blog/modular-monolith/" class="bl-link">
+                        <span class="bl-num">073</span>
+                        <span class="bl-title">Modular monolith</span>
+                        <span class="bl-arrow">&rarr;</span>
+                    </a>
+                </li>
+                
+                <li class="bl-item">
+                    <a href="/blog/cell-based-architecture/" class="bl-link">
+                        <span class="bl-num">072</span>
+                        <span class="bl-title">Cell-based architecture</span>
+                        <span class="bl-arrow">&rarr;</span>
+                    </a>
+                </li>
+                
+                <li class="bl-item">
+                    <a href="/blog/my-first-course-on-enterprise-python/" class="bl-link">
+                        <span class="bl-num">071</span>
+                        <span class="bl-title">My first course on Enterprise Python</span>
+                        <span class="bl-arrow">&rarr;</span>
+                    </a>
+                </li>
+                
+                <li class="bl-item">
+                    <a href="/blog/cinammon-ubers-load-shedder/" class="bl-link">
+                        <span class="bl-num">070</span>
+                        <span class="bl-title">Cinammon - Uber's load shedder</span>
+                        <span class="bl-arrow">&rarr;</span>
+                    </a>
+                </li>
+                
+                <li class="bl-item">
+                    <a href="/blog/multi-layer-cache-at-doordash/" class="bl-link">
+                        <span class="bl-num">069</span>
+                        <span class="bl-title">Multi-layer cache at DoorDash</span>
+                        <span class="bl-arrow">&rarr;</span>
+                    </a>
+                </li>
+                
+                <li class="bl-item">
+                    <a href="/blog/most-poignant-darts-for-engineering-success/" class="bl-link">
+                        <span class="bl-num">068</span>
+                        <span class="bl-title">Most poignant darts for engineering success</span>
+                        <span class="bl-arrow">&rarr;</span>
+                    </a>
+                </li>
+                
+                <li class="bl-item">
+                    <a href="/blog/jaeger-a-classic-for-distriuted-tracing/" class="bl-link">
+                        <span class="bl-num">067</span>
+                        <span class="bl-title">Jaeger, a classic for distriuted tracing</span>
+                        <span class="bl-arrow">&rarr;</span>
+                    </a>
+                </li>
+                
+                <li class="bl-item">
+                    <a href="/blog/the-guardians-improvements-to-its-breaking-news-notification-service/" class="bl-link">
+                        <span class="bl-num">066</span>
+                        <span class="bl-title">The Guardian's improvements to it's breaking news notification service</span>
+                        <span class="bl-arrow">&rarr;</span>
+                    </a>
+                </li>
+                
+                <li class="bl-item">
+                    <a href="/blog/freelancing-principles/" class="bl-link">
+                        <span class="bl-num">065</span>
+                        <span class="bl-title">Freelancing Principles</span>
+                        <span class="bl-arrow">&rarr;</span>
+                    </a>
+                </li>
+                
+                <li class="bl-item">
+                    <a href="/blog/pycon-us-diary-planning-a-us-trip/" class="bl-link">
+                        <span class="bl-num">064</span>
+                        <span class="bl-title">PyCon US diary - Planning a US trip</span>
+                        <span class="bl-arrow">&rarr;</span>
+                    </a>
+                </li>
+                
+                <li class="bl-item">
+                    <a href="/blog/mauritians-garnering-a-dubious-freelancing-reputation/" class="bl-link">
+                        <span class="bl-num">063</span>
+                        <span class="bl-title">Mauritians garnering a dubious freelancing reputation</span>
+                        <span class="bl-arrow">&rarr;</span>
+                    </a>
+                </li>
+                
+                <li class="bl-item">
+                    <a href="/blog/dr-murat-dogruels-better-than-april-tag-fiducial-system/" class="bl-link">
+                        <span class="bl-num">062</span>
+                        <span class="bl-title">Dr Murat Dogruel's Better Than April Tag Fiducial System</span>
+                        <span class="bl-arrow">&rarr;</span>
+                    </a>
+                </li>
+                
+                <li class="bl-item">
+                    <a href="/blog/how-to-evaluate-freelancers/" class="bl-link">
+                        <span class="bl-num">061</span>
+                        <span class="bl-title">How to evaluate freelancers</span>
+                        <span class="bl-arrow">&rarr;</span>
+                    </a>
+                </li>
+                
+                <li class="bl-item">
+                    <a href="/blog/pycon-us-diary-applying-for-a-us-visa/" class="bl-link">
+                        <span class="bl-num">060</span>
+                        <span class="bl-title">PyCon US diary - Applying for a US visa</span>
+                        <span class="bl-arrow">&rarr;</span>
+                    </a>
+                </li>
+                
+                <li class="bl-item">
+                    <a href="/blog/why-i-wont-buy-tesla-cars-if-they-come-to-mauritius/" class="bl-link">
+                        <span class="bl-num">059</span>
+                        <span class="bl-title">Why I won't buy Tesla cars if they come to Mauritius</span>
+                        <span class="bl-arrow">&rarr;</span>
+                    </a>
+                </li>
+                
+                <li class="bl-item">
+                    <a href="/blog/pycon-us-diary-consulate-interview-experience/" class="bl-link">
+                        <span class="bl-num">058</span>
+                        <span class="bl-title">PyCon US diary - Consulate interview experience</span>
+                        <span class="bl-arrow">&rarr;</span>
+                    </a>
+                </li>
+                
+                <li class="bl-item">
+                    <a href="/blog/owning-your-data/" class="bl-link">
+                        <span class="bl-num">057</span>
+                        <span class="bl-title">Owning your data</span>
+                        <span class="bl-arrow">&rarr;</span>
+                    </a>
+                </li>
+                
+                <li class="bl-item">
+                    <a href="/blog/tesla-red-love-blinds/" class="bl-link">
+                        <span class="bl-num">056</span>
+                        <span class="bl-title">Tesla - red love blinds</span>
+                        <span class="bl-arrow">&rarr;</span>
+                    </a>
+                </li>
+                
+                <li class="bl-item">
+                    <a href="/blog/mkbhd-explains-the-tesla-phenomenon/" class="bl-link">
+                        <span class="bl-num">055</span>
+                        <span class="bl-title">MKBHD explains the Tesla phenomenon</span>
+                        <span class="bl-arrow">&rarr;</span>
+                    </a>
+                </li>
+                
+                <li class="bl-item">
+                    <a href="/blog/pycon-us-diary-dealing-with-flights/" class="bl-link">
+                        <span class="bl-num">054</span>
+                        <span class="bl-title">Pycon US diary - Dealing with flights</span>
+                        <span class="bl-arrow">&rarr;</span>
+                    </a>
+                </li>
+                
+                <li class="bl-item">
+                    <a href="/blog/pycon-us-diary-accommodations/" class="bl-link">
+                        <span class="bl-num">053</span>
+                        <span class="bl-title">PyCon US diary - Accommodations</span>
+                        <span class="bl-arrow">&rarr;</span>
+                    </a>
+                </li>
+                
+                <li class="bl-item">
+                    <a href="/blog/pycon-us-diary-accommodation-experience/" class="bl-link">
+                        <span class="bl-num">052</span>
+                        <span class="bl-title">PyCon US diary - Accommodation experience</span>
+                        <span class="bl-arrow">&rarr;</span>
+                    </a>
+                </li>
+                
+                <li class="bl-item">
+                    <a href="/blog/pycon-us-diary-payments/" class="bl-link">
+                        <span class="bl-num">051</span>
+                        <span class="bl-title">PyCon US diary - Payments</span>
+                        <span class="bl-arrow">&rarr;</span>
+                    </a>
+                </li>
+                
+                <li class="bl-item">
+                    <a href="/blog/i-recommend-these-candidates-for-the-psf-election/" class="bl-link">
+                        <span class="bl-num">050</span>
+                        <span class="bl-title">I recommend these candidates for the PSF election</span>
+                        <span class="bl-arrow">&rarr;</span>
+                    </a>
+                </li>
+                
+                <li class="bl-item">
+                    <a href="/blog/ai-money-and-truth/" class="bl-link">
+                        <span class="bl-num">049</span>
+                        <span class="bl-title">AI, money and truth</span>
+                        <span class="bl-arrow">&rarr;</span>
+                    </a>
+                </li>
+                
+                <li class="bl-item">
+                    <a href="/blog/donald-knuth-clarifies/" class="bl-link">
+                        <span class="bl-num">048</span>
+                        <span class="bl-title">Donald Knuth Clarifies</span>
+                        <span class="bl-arrow">&rarr;</span>
+                    </a>
+                </li>
+                
+                <li class="bl-item">
+                    <a href="/blog/opensource-yet-another-way-to-learn-rust/" class="bl-link">
+                        <span class="bl-num">047</span>
+                        <span class="bl-title">OpenSource: Yet another way to learn Rust</span>
+                        <span class="bl-arrow">&rarr;</span>
+                    </a>
+                </li>
+                
+                <li class="bl-item">
+                    <a href="/blog/we-helped-100+-people-get-into-opensource/" class="bl-link">
+                        <span class="bl-num">046</span>
+                        <span class="bl-title">We helped 100+ people get into OpenSource</span>
+                        <span class="bl-arrow">&rarr;</span>
+                    </a>
+                </li>
+                
+                <li class="bl-item">
+                    <a href="/blog/linkedin-in-one-word-junk/" class="bl-link">
+                        <span class="bl-num">045</span>
+                        <span class="bl-title">LinkedIn in one word: Junk</span>
+                        <span class="bl-arrow">&rarr;</span>
+                    </a>
+                </li>
+                
+                <li class="bl-item">
+                    <a href="/blog/receiving-githubs-nasa-badge-for-python-contributions/" class="bl-link">
+                        <span class="bl-num">044</span>
+                        <span class="bl-title">Receiving Github's NASA badge for Python contributions</span>
+                        <span class="bl-arrow">&rarr;</span>
+                    </a>
+                </li>
+                
+                <li class="bl-item">
+                    <a href="/blog/python-at-spacex/" class="bl-link">
+                        <span class="bl-num">043</span>
+                        <span class="bl-title">Python at SpaceX</span>
+                        <span class="bl-arrow">&rarr;</span>
+                    </a>
+                </li>
+                
+                <li class="bl-item">
+                    <a href="/blog/hiring-rounds-or-hiring-the-right-person/" class="bl-link">
+                        <span class="bl-num">042</span>
+                        <span class="bl-title">Hiring rounds or hiring the right person?</span>
+                        <span class="bl-arrow">&rarr;</span>
+                    </a>
+                </li>
+                
+                <li class="bl-item">
+                    <a href="/blog/do-we-need-standup-meetings/" class="bl-link">
+                        <span class="bl-num">041</span>
+                        <span class="bl-title">Do we need standup meetings?</span>
+                        <span class="bl-arrow">&rarr;</span>
+                    </a>
+                </li>
+                
+                <li class="bl-item">
+                    <a href="/blog/communities-partnering-up-with-big-companies/" class="bl-link">
+                        <span class="bl-num">040</span>
+                        <span class="bl-title">Communities partnering up with big companies</span>
+                        <span class="bl-arrow">&rarr;</span>
+                    </a>
+                </li>
+                
+                <li class="bl-item">
+                    <a href="/blog/are-big-companies-involvement-in-opensource-a-scam/" class="bl-link">
+                        <span class="bl-num">039</span>
+                        <span class="bl-title">Are big companies involvement in OpenSource a scam?</span>
+                        <span class="bl-arrow">&rarr;</span>
+                    </a>
+                </li>
+                
+                <li class="bl-item">
+                    <a href="/blog/f*-it-ship-it/" class="bl-link">
+                        <span class="bl-num">038</span>
+                        <span class="bl-title">F* it, ship it</span>
+                        <span class="bl-arrow">&rarr;</span>
+                    </a>
+                </li>
+                
+                <li class="bl-item">
+                    <a href="/blog/the-maze-is-in-the-mouse/" class="bl-link">
+                        <span class="bl-num">037</span>
+                        <span class="bl-title">The maze is in the mouse</span>
+                        <span class="bl-arrow">&rarr;</span>
+                    </a>
+                </li>
+                
+                <li class="bl-item">
+                    <a href="/blog/clever-hans-is-the-example-with-ai/" class="bl-link">
+                        <span class="bl-num">036</span>
+                        <span class="bl-title">Clever hans is THE example with Ai</span>
+                        <span class="bl-arrow">&rarr;</span>
+                    </a>
+                </li>
+                
+                <li class="bl-item">
+                    <a href="/blog/dont-make-your-apis-simple/" class="bl-link">
+                        <span class="bl-num">035</span>
+                        <span class="bl-title">Don't make your APIs simple</span>
+                        <span class="bl-arrow">&rarr;</span>
+                    </a>
+                </li>
+                
+                <li class="bl-item">
+                    <a href="/blog/i-dont-trust-codingame/" class="bl-link">
+                        <span class="bl-num">034</span>
+                        <span class="bl-title">I don't trust codingame</span>
+                        <span class="bl-arrow">&rarr;</span>
+                    </a>
+                </li>
+                
+                <li class="bl-item">
+                    <a href="/blog/i-am-an-official-rustlang-contributor/" class="bl-link">
+                        <span class="bl-num">033</span>
+                        <span class="bl-title">I am an official Rustlang contributor?</span>
+                        <span class="bl-arrow">&rarr;</span>
+                    </a>
+                </li>
+                
+                <li class="bl-item">
+                    <a href="/blog/pouring-$10b-in-chatgpt-is-a-losing-game/" class="bl-link">
+                        <span class="bl-num">032</span>
+                        <span class="bl-title">Pouring $10B in chatGPT is a losing game</span>
+                        <span class="bl-arrow">&rarr;</span>
+                    </a>
+                </li>
+                
+                <li class="bl-item">
+                    <a href="/blog/i-like-python-because-of-maths-puns/" class="bl-link">
+                        <span class="bl-num">031</span>
+                        <span class="bl-title">I like Python because of maths puns</span>
+                        <span class="bl-arrow">&rarr;</span>
+                    </a>
+                </li>
+                
+                <li class="bl-item">
+                    <a href="/blog/hire-to-fire/" class="bl-link">
+                        <span class="bl-num">030</span>
+                        <span class="bl-title">Hire to fire</span>
+                        <span class="bl-arrow">&rarr;</span>
+                    </a>
+                </li>
+                
+                <li class="bl-item">
+                    <a href="/blog/the-material-is-grounded-in-tactile-reality-and-open-to-magic/" class="bl-link">
+                        <span class="bl-num">029</span>
+                        <span class="bl-title">The material is grounded in tactile reality and open to magic</span>
+                        <span class="bl-arrow">&rarr;</span>
+                    </a>
+                </li>
+                
+                <li class="bl-item">
+                    <a href="/blog/part-of-stupidity-is-to-follow-every-piece-of-valid-information/" class="bl-link">
+                        <span class="bl-num">028</span>
+                        <span class="bl-title">Part of stupidity is to follow every piece of valid information</span>
+                        <span class="bl-arrow">&rarr;</span>
+                    </a>
+                </li>
+                
+                <li class="bl-item">
+                    <a href="/blog/every-post-on-linkedin-is-not-for-you/" class="bl-link">
+                        <span class="bl-num">027</span>
+                        <span class="bl-title">Every post on LinkedIn is not for you</span>
+                        <span class="bl-arrow">&rarr;</span>
+                    </a>
+                </li>
+                
+                <li class="bl-item">
+                    <a href="/blog/likes-are-not-a-usefulness-metric/" class="bl-link">
+                        <span class="bl-num">026</span>
+                        <span class="bl-title">Likes are not a usefulness metric</span>
+                        <span class="bl-arrow">&rarr;</span>
+                    </a>
+                </li>
+                
+                <li class="bl-item">
+                    <a href="/blog/i-dont-trust-mycrowsoft-with-opensource/" class="bl-link">
+                        <span class="bl-num">025</span>
+                        <span class="bl-title">I don't trust Mycrowsoft with OpenSource</span>
+                        <span class="bl-arrow">&rarr;</span>
+                    </a>
+                </li>
+                
+                <li class="bl-item">
+                    <a href="/blog/how-to-build-a-good-showcase/" class="bl-link">
+                        <span class="bl-num">024</span>
+                        <span class="bl-title">How to build a good showcase</span>
+                        <span class="bl-arrow">&rarr;</span>
+                    </a>
+                </li>
+                
+                <li class="bl-item">
+                    <a href="/blog/how-to-get-first-clients/" class="bl-link">
+                        <span class="bl-num">023</span>
+                        <span class="bl-title">How to get first clients</span>
+                        <span class="bl-arrow">&rarr;</span>
+                    </a>
+                </li>
+                
+                <li class="bl-item">
+                    <a href="/blog/the-silicon-valley-is-plunging-the-world-into-techno-religiousness/" class="bl-link">
+                        <span class="bl-num">022</span>
+                        <span class="bl-title">The Silicon Valley is plunging the world into techno-religiousness</span>
+                        <span class="bl-arrow">&rarr;</span>
+                    </a>
+                </li>
+                
+                <li class="bl-item">
+                    <a href="/blog/opensource-is-an-incredible-career-asset/" class="bl-link">
+                        <span class="bl-num">021</span>
+                        <span class="bl-title">OpenSource is an incredible career asset</span>
+                        <span class="bl-arrow">&rarr;</span>
+                    </a>
+                </li>
+                
+                <li class="bl-item">
+                    <a href="/blog/ai-is-just-adaptively-automating-automation/" class="bl-link">
+                        <span class="bl-num">020</span>
+                        <span class="bl-title">Ai is just adaptively automating automation</span>
+                        <span class="bl-arrow">&rarr;</span>
+                    </a>
+                </li>
+                
+                <li class="bl-item">
+                    <a href="/blog/vcs-dont-save-the-financially-unwise/" class="bl-link">
+                        <span class="bl-num">019</span>
+                        <span class="bl-title">VCs don't save the financially unwise</span>
+                        <span class="bl-arrow">&rarr;</span>
+                    </a>
+                </li>
+                
+                <li class="bl-item">
+                    <a href="/blog/university-competitions-serve-corporates-not-students/" class="bl-link">
+                        <span class="bl-num">018</span>
+                        <span class="bl-title">University competitions serve corporates, not students</span>
+                        <span class="bl-arrow">&rarr;</span>
+                    </a>
+                </li>
+                
+                <li class="bl-item">
+                    <a href="/blog/for-community-events-prefer-the-community-not-big-corp-x/" class="bl-link">
+                        <span class="bl-num">017</span>
+                        <span class="bl-title">For community events prefer the community, not big corp x</span>
+                        <span class="bl-arrow">&rarr;</span>
+                    </a>
+                </li>
+                
+                <li class="bl-item">
+                    <a href="/blog/the-smiling-emoji-does-not-represent-happiness-always/" class="bl-link">
+                        <span class="bl-num">016</span>
+                        <span class="bl-title">The smiling emoji does not represent happiness always</span>
+                        <span class="bl-arrow">&rarr;</span>
+                    </a>
+                </li>
+                
+                <li class="bl-item">
+                    <a href="/blog/why-i-invest-so-much-in-python/" class="bl-link">
+                        <span class="bl-num">015</span>
+                        <span class="bl-title">Why i invest so much in Python</span>
+                        <span class="bl-arrow">&rarr;</span>
+                    </a>
+                </li>
+                
+                <li class="bl-item">
+                    <a href="/blog/pdm-an-option-that-wriggles-in-between-existing-options/" class="bl-link">
+                        <span class="bl-num">014</span>
+                        <span class="bl-title">PDM: An Option That Wriggles In-Between Existing Options</span>
+                        <span class="bl-arrow">&rarr;</span>
+                    </a>
+                </li>
+                
+                <li class="bl-item">
+                    <a href="/blog/mauritius-the-place-to-grow-&-water-workers/" class="bl-link">
+                        <span class="bl-num">013</span>
+                        <span class="bl-title">Mauritius: The Place To Grow & Water Workers</span>
+                        <span class="bl-arrow">&rarr;</span>
+                    </a>
+                </li>
+                
+                <li class="bl-item">
+                    <a href="/blog/becoming-an-airflow-contributor-by-accident/" class="bl-link">
+                        <span class="bl-num">012</span>
+                        <span class="bl-title">Becoming an Airflow contributor by accident</span>
+                        <span class="bl-arrow">&rarr;</span>
+                    </a>
+                </li>
+                
+                <li class="bl-item">
+                    <a href="/blog/welcome-to-the-age-of-the-barter-system/" class="bl-link">
+                        <span class="bl-num">011</span>
+                        <span class="bl-title">Welcome To The Age of The Barter System</span>
+                        <span class="bl-arrow">&rarr;</span>
+                    </a>
+                </li>
+                
+                <li class="bl-item">
+                    <a href="/blog/the-sense-of-capitalization-of-letters-in-opensource/" class="bl-link">
+                        <span class="bl-num">010</span>
+                        <span class="bl-title">The sense of capitalization of letters in OpenSource</span>
+                        <span class="bl-arrow">&rarr;</span>
+                    </a>
+                </li>
+                
+                <li class="bl-item">
+                    <a href="/blog/why-python-needs-python-specific-tests/" class="bl-link">
+                        <span class="bl-num">009</span>
+                        <span class="bl-title">Why Python Needs Python-Specific Tests?</span>
+                        <span class="bl-arrow">&rarr;</span>
+                    </a>
+                </li>
+                
+                <li class="bl-item">
+                    <a href="/blog/why-python-programmers-need-c/" class="bl-link">
+                        <span class="bl-num">008</span>
+                        <span class="bl-title">Why Python Programmers Need C?</span>
+                        <span class="bl-arrow">&rarr;</span>
+                    </a>
+                </li>
+                
+                <li class="bl-item">
+                    <a href="/blog/the-two-parts-of-python-learning/" class="bl-link">
+                        <span class="bl-num">007</span>
+                        <span class="bl-title">The Two Parts of Python Learning</span>
+                        <span class="bl-arrow">&rarr;</span>
+                    </a>
+                </li>
+                
+                <li class="bl-item">
+                    <a href="/blog/how-to-evaluate-any-course!/" class="bl-link">
+                        <span class="bl-num">006</span>
+                        <span class="bl-title">How To Evaluate Any Course!</span>
+                        <span class="bl-arrow">&rarr;</span>
+                    </a>
+                </li>
+                
+                <li class="bl-item">
+                    <a href="/blog/the-four-purposes-of-exercises/" class="bl-link">
+                        <span class="bl-num">005</span>
+                        <span class="bl-title">The four purposes of exercises</span>
+                        <span class="bl-arrow">&rarr;</span>
+                    </a>
+                </li>
+                
+                <li class="bl-item">
+                    <a href="/blog/toptal-is-not-interested-about-python-even-less-about-mauritius/" class="bl-link">
+                        <span class="bl-num">004</span>
+                        <span class="bl-title">Toptal Is NOT Interested About Python, Even Less About Mauritius</span>
+                        <span class="bl-arrow">&rarr;</span>
+                    </a>
+                </li>
+                
+                <li class="bl-item">
+                    <a href="/blog/specialising-in-python-pays/" class="bl-link">
+                        <span class="bl-num">003</span>
+                        <span class="bl-title">Specialising In Python Pays</span>
+                        <span class="bl-arrow">&rarr;</span>
+                    </a>
+                </li>
+                
+                <li class="bl-item">
+                    <a href="/blog/linkedin-is-just-another-social-media/" class="bl-link">
+                        <span class="bl-num">002</span>
+                        <span class="bl-title">Linkedin is just another social media</span>
+                        <span class="bl-arrow">&rarr;</span>
+                    </a>
+                </li>
+                
+                <li class="bl-item">
+                    <a href="/blog/if-you-are-considering-a-change-in-career/" class="bl-link">
+                        <span class="bl-num">001</span>
+                        <span class="bl-title">If You Are Considering A Change in Career</span>
+                        <span class="bl-arrow">&rarr;</span>
+                    </a>
+                </li>
+                
+            </ul>
         </div>
     </div>
-    
 </div>
 
 <footer class="site-footer">
@@ -933,6 +1365,65 @@ gtag('config', 'UA-161612035-1');
     </div>
     <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 </footer>
+
+<style>
+.bl-grid {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: grid;
+    gap: 0.5rem;
+}
+.bl-item {
+    background: var(--surface, #fff);
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    overflow: hidden;
+    transition: box-shadow .2s ease, transform .2s ease;
+}
+.bl-item:hover {
+    box-shadow: 0 4px 16px rgba(0,0,0,.08);
+    transform: translateY(-1px);
+}
+.bl-link {
+    display: flex;
+    align-items: center;
+    gap: 0.85rem;
+    padding: 0.75rem 1rem;
+    text-decoration: none;
+    color: var(--ink);
+}
+.bl-num {
+    flex-shrink: 0;
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    color: var(--ink-muted);
+    background: var(--surface-alt, #f5f5f5);
+    padding: 0.2rem 0.5rem;
+    border-radius: 6px;
+    min-width: 2.6rem;
+    text-align: center;
+}
+.bl-title {
+    flex: 1;
+    font-size: 0.92rem;
+    font-weight: 500;
+    line-height: 1.4;
+}
+.bl-arrow {
+    flex-shrink: 0;
+    color: var(--ink-muted);
+    font-size: 0.9rem;
+    transition: transform .2s ease, color .2s ease;
+}
+.bl-item:hover .bl-arrow {
+    transform: translateX(4px);
+    color: var(--accent, #dc2626);
+}
+@media (max-width: 480px) {
+    .bl-title { font-size: 0.85rem; }
+}
+</style>
 
 
     <div class="crank" id="crank" aria-hidden="true">

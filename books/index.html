@@ -52,6 +52,18 @@ gtag('config', 'UA-161612035-1');
   }
 }
 </script>
+
+<meta name="theme-color" content="#ffb74d" />
+<link rel="icon" href="/assets/COMP_ALC.png">
+
+<!-- Performance Optimized Asset Loading -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preconnect" href="https://cdnjs.cloudflare.com">
+<link href="https://fonts.googleapis.com/css2?family=Comfortaa&family=Raleway:wght@700&family=Special+Elite&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.0/css/bulma.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
 <!-- Global Editorial Styles -->
 <style type="text/css">
     :root {
@@ -65,6 +77,8 @@ gtag('config', 'UA-161612035-1');
         --line-soft: #f5f5f4;
         --surface: #ffffff;
         --surface-alt: #faf9f7;
+        --font-main: 'Comfortaa', cursive;
+        --font-title: 'Raleway', sans-serif;
         /* Backward-compatible aliases for older templates */
         --primary-color: var(--accent);
         --active-color: var(--accent-hover);
@@ -73,18 +87,20 @@ gtag('config', 'UA-161612035-1');
         --reading-width: 680px;
         --container-width: 920px;
     }
+
+    body {
+        font-family: var(--font-main);
+        color: var(--ink);
+        line-height: 1.85;
+        -webkit-font-smoothing: antialiased;
+    }
+
+    h1, h2, h3, .title {
+        font-family: var(--font-title);
+        font-weight: 800;
+        letter-spacing: -0.02em;
+    }
 </style>
-
-<meta name="theme-color" content="#ffb74d" />
-<link rel="icon" href="/assets/COMP_ALC.png">
-
-<!-- Performance Optimized Asset Loading -->
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="preconnect" href="https://cdnjs.cloudflare.com">
-<link href="https://fonts.googleapis.com/css2?family=Comfortaa&family=Raleway:wght@700&family=Special+Elite&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.0/css/bulma.min.css">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
 <link rel="stylesheet" type="text/css" href="/style.css">
 <link rel="stylesheet" type="text/css" href="/bulma-timeline.min.css">

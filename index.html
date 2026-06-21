@@ -52,6 +52,18 @@ gtag('config', 'UA-161612035-1');
   }
 }
 </script>
+
+<meta name="theme-color" content="#ffb74d" />
+<link rel="icon" href="assets/COMP_ALC.png">
+
+<!-- Performance Optimized Asset Loading -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preconnect" href="https://cdnjs.cloudflare.com">
+<link href="https://fonts.googleapis.com/css2?family=Comfortaa&family=Raleway:wght@700&family=Special+Elite&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.0/css/bulma.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
 <!-- Global Editorial Styles -->
 <style type="text/css">
     :root {
@@ -65,6 +77,8 @@ gtag('config', 'UA-161612035-1');
         --line-soft: #f5f5f4;
         --surface: #ffffff;
         --surface-alt: #faf9f7;
+        --font-main: 'Comfortaa', cursive;
+        --font-title: 'Raleway', sans-serif;
         /* Backward-compatible aliases for older templates */
         --primary-color: var(--accent);
         --active-color: var(--accent-hover);
@@ -73,18 +87,20 @@ gtag('config', 'UA-161612035-1');
         --reading-width: 680px;
         --container-width: 920px;
     }
+
+    body {
+        font-family: var(--font-main);
+        color: var(--ink);
+        line-height: 1.85;
+        -webkit-font-smoothing: antialiased;
+    }
+
+    h1, h2, h3, .title {
+        font-family: var(--font-title);
+        font-weight: 800;
+        letter-spacing: -0.02em;
+    }
 </style>
-
-<meta name="theme-color" content="#ffb74d" />
-<link rel="icon" href="assets/COMP_ALC.png">
-
-<!-- Performance Optimized Asset Loading -->
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="preconnect" href="https://cdnjs.cloudflare.com">
-<link href="https://fonts.googleapis.com/css2?family=Comfortaa&family=Raleway:wght@700&family=Special+Elite&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.0/css/bulma.min.css">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
 <link rel="stylesheet" type="text/css" href="style.css">
 <link rel="stylesheet" type="text/css" href="bulma-timeline.min.css">
@@ -554,6 +570,7 @@ Scholar of Arabic, as well as well versed in English. Good teacher of Python, an
         var swiper = new Swiper('.swiper-container', {
             autoHeight: true,
             spaceBetween: 30,
+            speed: 700,
             hashNavigation: { watchState: true },
             pagination: {
                 el: '.swiper-pagination',
@@ -566,6 +583,19 @@ Scholar of Arabic, as well as well versed in English. Good teacher of Python, an
                 nextEl: '.tnav-next',
                 prevEl: '.tnav-prev',
             },
+            on: {
+                slideChangeTransitionStart: function() {
+                    if (this.activeIndex > this.previousIndex) {
+                        var prev = this.slides[this.previousIndex];
+                        if (prev) prev.classList.add('rip-slide');
+                    }
+                },
+                slideChangeTransitionEnd: function() {
+                    this.slides.forEach(function(slide) {
+                        slide.classList.remove('rip-slide');
+                    });
+                }
+            }
         });
         </script>
     </div>
@@ -577,167 +607,507 @@ Scholar of Arabic, as well as well versed in English. Good teacher of Python, an
             <h2 class="sec-title">Conference talks & meetups</h2>
         </header>
 
-        <div class="talk-list">
-            <p class="talk-list__intro">
-                Spoken at EuroPython, PyCon Sweden, PyCon ZA, PyCon Thailand, FlaskCon,
-                MSCC DevCon, Google DevFest, Python Mauritius Usergroup, Association
-                Francophone de Python, New Zealand Python User Group, San Francisco
-                Python Meetup.
-            </p>
-            
-            
-            <div class="talk-item">
-                <p class="talk-item__title">
-                    Building Ai agents using Langgraph: From Zero to Hero
-                    <span class="talk-item__res">
-                        
-                        [<a href="https://docs.google.com/presentation/d/10eWFRRtppzKi-h_RC4Tv3dZ_XoKS9T-4gBr_m4Fvzqg/edit?usp=sharing">slides</a>]
-                        
-                    </span>
-                </p>
-                <p class="talk-item__event">Pymug April 25 Meetup</p>
-                <p class="talk-item__desc"></p>
-            </div>
-            
-            
-            
-            <div class="talk-item">
-                <p class="talk-item__title">
-                    Building Ai agents in Python: A Deep Dive
-                    <span class="talk-item__res">
-                        
-                        [<a href="https://docs.google.com/presentation/d/14LkLRBVZc4idFmgQ0S9UmYrA5GxMeecQa5XRZGzhmpc/edit?usp=sharing">slides</a>]
-                        
-                    </span>
-                </p>
-                <p class="talk-item__event">Pymug March 25 Meetup</p>
-                <p class="talk-item__desc"></p>
-            </div>
-            
-            
-            
-            <div class="talk-item">
-                <p class="talk-item__title">
-                    UV: A tool worth knowing about
-                    <span class="talk-item__res">
-                        
-                        [<a href="https://docs.google.com/presentation/d/1gP-zQuTKziwcZ7bNtH-HT824kvuHRBZHritti2FDC6M/edit?usp=sharing">slides</a>]
-                        
-                    </span>
-                </p>
-                <p class="talk-item__event">Pymug February 25 Meetup</p>
-                <p class="talk-item__desc"></p>
-            </div>
-            
-            
-            
-            <div class="talk-item">
-                <p class="talk-item__title">
-                    Pallets Sprint @ SF Python
-                    <span class="talk-item__res">
-                        
-                        [<a href="https://docs.google.com/presentation/d/1co1JC2riB7rPA8nkjn3kJ3JXfq8kT7GVZiGk4zsYaw0/edit?usp=sharing">slides</a>]
-                        
-                    </span>
-                </p>
-                <p class="talk-item__event">San Francisco Python Pallets Sprint</p>
-                <p class="talk-item__desc"></p>
-            </div>
-            
-            
-            
-            <div class="talk-item">
-                <p class="talk-item__title">
-                    Extending Flask using the Flask Plugins API
-                    <span class="talk-item__res">
-                        
-                        [<a href="https://speakerdeck.com/osdotsystem/extending-flask-using-the-flask-plugins-api">slides</a>]
-                        
-                    </span>
-                </p>
-                <p class="talk-item__event">FlaskCon 2024 @ PyConUS</p>
-                <p class="talk-item__desc"></p>
-            </div>
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            <div style="margin-top: 1.5rem;">
-                <a class="btn btn--ghost btn--sm" href="talks">Older talks &rarr;</a>
-            </div>
+        <p class="talk-list__intro">
+            Spoken at EuroPython, PyCon Sweden, PyCon ZA, PyCon Thailand, FlaskCon,
+            MSCC DevCon, Google DevFest, Python Mauritius Usergroup, Association
+            Francophone de Python, New Zealand Python User Group, San Francisco
+            Python Meetup.
+        </p>
+
+        <div id="talks-map-container" style="margin:1.5rem 0;width:100%;height:320px;border-radius:8px;border:1px solid var(--line);box-shadow:0 4px 16px rgba(0,0,0,.06);overflow:hidden;background:var(--surface-alt);">
+            <div id="talks-map" style="width:100%;height:100%;"></div>
         </div>
+
+        <a class="btn btn--ghost btn--sm" href="talks">View detailed view &rarr;</a>
     </div>
 </div>
+
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script>
+(function() {
+    var container = document.getElementById('talks-map');
+    if (!container) return;
+
+    var talks = [
+        
+        
+        {
+            lat: -20.3484,
+            lng: 57.5522,
+            title: "Building Ai agents using Langgraph: From Zero to Hero",
+            event: "Pymug April 25 Meetup",
+        },
+        
+        
+        
+        {
+            lat: -20.3484,
+            lng: 57.5522,
+            title: "Building Ai agents in Python: A Deep Dive",
+            event: "Pymug March 25 Meetup",
+        },
+        
+        
+        
+        {
+            lat: -20.3484,
+            lng: 57.5522,
+            title: "UV: A tool worth knowing about",
+            event: "Pymug February 25 Meetup",
+        },
+        
+        
+        
+        {
+            lat: 37.7749,
+            lng: -122.4194,
+            title: "Pallets Sprint @ SF Python",
+            event: "San Francisco Python Pallets Sprint",
+        },
+        
+        
+        
+        {
+            lat: 40.4406,
+            lng: -79.9959,
+            title: "Extending Flask using the Flask Plugins API",
+            event: "FlaskCon 2024 @ PyConUS",
+        },
+        
+        
+        
+        {
+            lat: -20.3484,
+            lng: 57.5522,
+            title: "PEPs that hit the front page",
+            event: "Pymug Meetup Feb 2024",
+        },
+        
+        
+        
+        {
+            lat: -20.3484,
+            lng: 57.5522,
+            title: "The state of NLP in production",
+            event: "Pymug August 2023",
+        },
+        
+        
+        
+        {
+            lat: -20.3484,
+            lng: 57.5522,
+            title: "libSQL: Taking SQLite to the moon",
+            event: "MSCC DevCon 2023",
+        },
+        
+        
+        
+        {
+            lat: -20.3484,
+            lng: 57.5522,
+            title: "Boosting Python with Rust!",
+            event: "MSCC DevCon 2023",
+        },
+        
+        
+        
+        {
+            lat: -20.3484,
+            lng: 57.5522,
+            title: "Flet: Flutter in Python",
+            event: "PyMug Meetup April 2023",
+        },
+        
+        
+        
+        {
+            lat: -20.3484,
+            lng: 57.5522,
+            title: "SQLite Internals: How The World\u0027s Most Used Database Works",
+            event: "Google DevFest 2022",
+        },
+        
+        
+        
+        {
+            lat: -20.3484,
+            lng: 57.5522,
+            title: "How To OpenSource",
+            event: "DevCon MU 2022",
+        },
+        
+        
+        
+        {
+            lat: -20.3484,
+            lng: 57.5522,
+            title: "Python Bytecode or How Python Operates",
+            event: "DevCon MU 2022",
+        },
+        
+        
+        
+        {
+            lat: -20.3484,
+            lng: 57.5522,
+            title: "Fast Flask Dev For Big Codebases",
+            event: "DevCon MU 2022",
+        },
+        
+        
+        
+        {
+            lat: -20.3484,
+            lng: 57.5522,
+            title: "Python\u0027s Bytecode",
+            event: "Pymug Oct Meetup 2022",
+        },
+        
+        
+        
+        {
+            lat: -41.2865,
+            lng: 174.7762,
+            title: "Creative Coding with Python",
+            event: "Python New Zealand Oct 2022",
+        },
+        
+        
+        
+        {
+            lat: -20.3484,
+            lng: 57.5522,
+            title: "Regex In Depth",
+            event: "Pymug Sept Meetup 2022",
+        },
+        
+        
+        
+        {
+            lat: 59.3293,
+            lng: 18.0686,
+            title: "Advanced Flask: Recipes For An All-weather Craft",
+            event: "PyCon Sweden 2021",
+        },
+        
+        
+        
+        {
+            lat: -26.2041,
+            lng: 28.0473,
+            title: "Shopyo: Your Mega Machine For Flask",
+            event: "PyCon South Africa 2021",
+        },
+        
+        
+        
+        
+        
+        {
+            lat: -20.3484,
+            lng: 57.5522,
+            title: "OpenSource: The What N Why",
+            event: "OSCA Mauritius Meetup Aug 2021",
+        },
+        
+        
+        
+        {
+            lat: -20.3484,
+            lng: 57.5522,
+            title: "Spoonfeeding Sockets",
+            event: "Pymug Meetup April 2021",
+        },
+        
+        
+        
+        {
+            lat: 48.1351,
+            lng: 11.582,
+            title: "Django Clone From Scratch With Flask",
+            event: "EuroPython 2020",
+        },
+        
+        
+        
+        {
+            lat: -20.3484,
+            lng: 57.5522,
+            title: "Python - The Joyful Parts",
+            event: "Pymug Meetup",
+        },
+        
+        
+        
+        {
+            lat: -20.3484,
+            lng: 57.5522,
+            title: "Iter Boosts From The Std Lib",
+            event: "Pymug Meetup",
+        },
+        
+        
+        
+        {
+            lat: -20.3484,
+            lng: 57.5522,
+            title: "Decorating Your Code",
+            event: "Pymug Meetup",
+        },
+        
+        
+        
+        {
+            lat: -20.2408,
+            lng: 57.4979,
+            title: "Where is Python used?",
+            event: "Python Sprint, UoM",
+        },
+        
+        
+        
+        {
+            lat: -20.3484,
+            lng: 57.5522,
+            title: "Honeybot - Diving Into An IRC Bot",
+            event: "Pymug Meetup",
+        },
+        
+        
+        
+        {
+            lat: -20.3484,
+            lng: 57.5522,
+            title: "Become A True Faker",
+            event: "Pymug Meetup",
+        },
+        
+        
+        
+        {
+            lat: -20.3484,
+            lng: 57.5522,
+            title: "Deriving Async Io",
+            event: "Pymug Meetup",
+        },
+        
+        
+        
+        {
+            lat: -20.3484,
+            lng: 57.5522,
+            title: "Weekly Workshop - Python From Scratch",
+            event: "Pymug Workshop",
+        },
+        
+        
+        
+        {
+            lat: -20.3484,
+            lng: 57.5522,
+            title: "Standard Library Essentials",
+            event: "Pymug Meetup",
+        },
+        
+        
+        
+        {
+            lat: -20.3484,
+            lng: 57.5522,
+            title: "Scrapy Code Base Reflections",
+            event: "Pymug Meetup",
+        },
+        
+        
+        
+        {
+            lat: 48.8566,
+            lng: 2.3522,
+            title: "Shopyo: Flasquer Flask",
+            event: "France: AFPy monthly conf",
+        },
+        
+        
+        
+        {
+            lat: -20.3484,
+            lng: 57.5522,
+            title: "Canvas Theory With PyGame",
+            event: "Pymug Meetup",
+        },
+        
+        
+        
+        {
+            lat: -20.3484,
+            lng: 57.5522,
+            title: "Workshop: Flask Round The World",
+            event: "Pymug Meetup",
+        },
+        
+        
+        
+        {
+            lat: -20.3484,
+            lng: 57.5522,
+            title: "Key To Django And Flask",
+            event: "Pymug Meetup",
+        },
+        
+        
+        
+        {
+            lat: -20.3484,
+            lng: 57.5522,
+            title: "The CPython Translation Protocol",
+            event: "Pymug Meetup",
+        },
+        
+        
+        
+        {
+            lat: -20.3484,
+            lng: 57.5522,
+            title: "Workshop: Requests",
+            event: "Pymug Meetup",
+        },
+        
+        
+        
+        {
+            lat: -20.2408,
+            lng: 57.4979,
+            title: "Machine Learning Overview",
+            event: "University of Mauritius - Ai Workshop 2019",
+        },
+        
+        
+        
+        {
+            lat: -20.2408,
+            lng: 57.4979,
+            title: "Workshop: Numpy Pandas",
+            event: "University of Mauritius - Ai Workshop 2019",
+        },
+        
+        
+    ];
+
+    if (talks.length === 0) {
+        document.getElementById('talks-map-container').style.display = 'none';
+        return;
+    }
+
+    var map = L.map('talks-map', {
+        center: [15, 0],
+        zoom: 1,
+        scrollWheelZoom: false,
+        zoomControl: false,
+        attributionControl: false,
+    });
+
+    L.control.zoom({
+        position: 'bottomright',
+    }).addTo(map);
+
+    L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
+        maxZoom: 19,
+    }).addTo(map);
+
+    talks.forEach(function(t) {
+        var marker = L.circleMarker([t.lat, t.lng], {
+            radius: 3,
+            fillColor: '#dc2626',
+            color: '#dc2626',
+            weight: 1,
+            opacity: 0.8,
+            fillOpacity: 0.8,
+        }).addTo(map);
+
+        marker.bindPopup(
+            '<div class="map-popup">' +
+                '<strong>' + t.title + '</strong><br>' +
+                '<span class="map-popup__event">' + t.event + '</span>' +
+            '</div>',
+            { closeButton: false, className: 'talks-map-popup' }
+        );
+    });
+})();
+</script>
+
+<style>
+.leaflet-control-zoom {
+    border: none !important;
+    border-radius: 6px !important;
+    box-shadow: 0 2px 12px rgba(0,0,0,.09), 0 1px 4px rgba(0,0,0,.06) !important;
+    overflow: hidden !important;
+}
+
+.leaflet-control-zoom a {
+    width: 34px !important;
+    height: 34px !important;
+    line-height: 34px !important;
+    font-size: 1rem !important;
+    font-weight: 600 !important;
+    color: var(--ink) !important;
+    background: #fff !important;
+    border-bottom: 1px solid #eee !important;
+    transition: background .15s, color .15s !important;
+}
+
+.leaflet-control-zoom a:hover {
+    background: #f5f5f4 !important;
+    color: var(--accent) !important;
+}
+
+.leaflet-control-zoom a:active {
+    background: #e7e5e4 !important;
+}
+
+.leaflet-control-zoom a.leaflet-disabled {
+    color: #d6d3d1 !important;
+    cursor: default !important;
+}
+
+.leaflet-control-zoom a:last-child {
+    border-bottom: none !important;
+}
+
+.map-popup strong {
+    font-family: var(--font-title);
+    font-size: 0.85rem;
+    color: var(--ink);
+    display: block;
+    margin-bottom: 0.15rem;
+}
+
+.map-popup__event {
+    font-size: 0.8rem;
+    color: var(--ink-muted);
+    font-style: italic;
+}
+
+.leaflet-popup-content-wrapper {
+    border-radius: 6px !important;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.12) !important;
+    padding: 0.25rem 0 !important;
+}
+
+.leaflet-popup-content {
+    margin: 10px 14px !important;
+    font-family: var(--font-main);
+    font-size: 0.8rem;
+    line-height: 1.5;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    #talks-map .leaflet-fade-anim .leaflet-popup {
+        transition: none !important;
+    }
+}
+</style>
     <div class="section" id="publish">
     <div class="container">
         <header class="sec-head sec-head--center">
@@ -793,40 +1163,55 @@ Scholar of Arabic, as well as well versed in English. Good teacher of Python, an
                     <p>A technical newsletter read by engineers at <strong>Google, Amazon, Apple, IBM, VMWare, Facebook, Dell</strong>.</p>
                     <p>Selected in PyCoders Weekly, Awesome Python, Python Byte Podcast, DevOps Weekly, GitOps Weekly, SQLite news. HackerNews front page: 2.</p>
                 </div>
-                <ul class="writing-list">
+                <ul class="wl-grid">
                     
                     
-                    <li>
-                        <span class="num">01</span>
-                        <a href="https://compileralchemy.substack.com/p/libsql-diving-into-a-database-engineering">Libsql: Diving Into A Database Engineering Epic</a>
+                    <li class="wl-item">
+                        <a href="https://compileralchemy.substack.com/p/libsql-diving-into-a-database-engineering" class="wl-link">
+                            <span class="wl-num">01</span>
+                            <span class="wl-title">Libsql: Diving Into A Database Engineering Epic</span>
+                            <span class="wl-arrow">&nearr;</span>
+                        </a>
                     </li>
                     
                     
                     
-                    <li>
-                        <span class="num">02</span>
-                        <a href="https://compileralchemy.substack.com/p/a-turing-machine-expressed-as-a-states">A Turing Machine Expressed As A State Machine</a>
+                    <li class="wl-item">
+                        <a href="https://compileralchemy.substack.com/p/a-turing-machine-expressed-as-a-states" class="wl-link">
+                            <span class="wl-num">02</span>
+                            <span class="wl-title">A Turing Machine Expressed As A State Machine</span>
+                            <span class="wl-arrow">&nearr;</span>
+                        </a>
                     </li>
                     
                     
                     
-                    <li>
-                        <span class="num">03</span>
-                        <a href="https://compileralchemy.substack.com/p/merge-sort-and-its-early-history">Merge Sort And It's Early History</a>
+                    <li class="wl-item">
+                        <a href="https://compileralchemy.substack.com/p/merge-sort-and-its-early-history" class="wl-link">
+                            <span class="wl-num">03</span>
+                            <span class="wl-title">Merge Sort And It's Early History</span>
+                            <span class="wl-arrow">&nearr;</span>
+                        </a>
                     </li>
                     
                     
                     
-                    <li>
-                        <span class="num">04</span>
-                        <a href="https://compileralchemy.substack.com/p/kubernetes-internals-inside-the-mind">Kubernetes Internals: Inside The Mind Of A Monster</a>
+                    <li class="wl-item">
+                        <a href="https://compileralchemy.substack.com/p/kubernetes-internals-inside-the-mind" class="wl-link">
+                            <span class="wl-num">04</span>
+                            <span class="wl-title">Kubernetes Internals: Inside The Mind Of A Monster</span>
+                            <span class="wl-arrow">&nearr;</span>
+                        </a>
                     </li>
                     
                     
                     
-                    <li>
-                        <span class="num">05</span>
-                        <a href="https://compileralchemy.substack.com/p/ruff-internals-of-a-rust-backed-python">Ruff: Internals Of A Rust-Backed Python Linter-Formatter - Part 1</a>
+                    <li class="wl-item">
+                        <a href="https://compileralchemy.substack.com/p/ruff-internals-of-a-rust-backed-python" class="wl-link">
+                            <span class="wl-num">05</span>
+                            <span class="wl-title">Ruff: Internals Of A Rust-Backed Python Linter-Formatter - Part 1</span>
+                            <span class="wl-arrow">&nearr;</span>
+                        </a>
                     </li>
                     
                     
@@ -944,26 +1329,204 @@ Scholar of Arabic, as well as well versed in English. Good teacher of Python, an
         </div>
     </div>
 </div>
-    <div class="section" id="papers">
+
+<style>
+.wl-grid {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 1.25rem;
+    display: grid;
+    gap: 0.5rem;
+}
+.wl-item {
+    background: var(--surface, #fff);
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    overflow: hidden;
+    transition: box-shadow .2s ease, transform .2s ease;
+}
+.wl-item:hover {
+    box-shadow: 0 4px 16px rgba(0,0,0,.08);
+    transform: translateY(-1px);
+}
+.wl-link {
+    display: flex;
+    align-items: center;
+    gap: 0.85rem;
+    padding: 0.75rem 1rem;
+    text-decoration: none;
+    color: var(--ink);
+}
+.wl-num {
+    flex-shrink: 0;
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    color: var(--ink-muted);
+    background: var(--surface-alt, #f5f5f5);
+    padding: 0.2rem 0.5rem;
+    border-radius: 6px;
+    min-width: 2.2rem;
+    text-align: center;
+}
+.wl-title {
+    flex: 1;
+    font-size: 0.88rem;
+    font-weight: 500;
+    line-height: 1.4;
+    word-wrap: break-word;
+}
+.wl-arrow {
+    flex-shrink: 0;
+    color: var(--ink-muted);
+    font-size: 0.9rem;
+    transition: transform .2s ease, color .2s ease;
+}
+.wl-item:hover .wl-arrow {
+    transform: translate(2px, -2px);
+    color: var(--accent, #dc2626);
+}
+@media (max-width: 480px) {
+    .wl-title { font-size: 0.82rem; }
+}
+</style>
+    <div class="section section--alt" id="papers">
     <div class="container">
         <header class="sec-head sec-head--center">
             <span class="sec-kicker">Papers</span>
             <h2 class="sec-title">Paper walkthroughs &amp; commentary</h2>
+            <p class="sec-sub">In-depth line-by-line analysis of influential CS papers</p>
         </header>
 
         <div class="container--narrow" style="margin: 0 auto;">
-            <div class="paper-item">
-                <p class="paper-item__title">
-                    <a href="papers/">The Annotated Transformer with Commentary</a>
-                </p>
-                <p class="paper-item__desc">
-                    A line-by-line walkthrough of the Transformer architecture from
-                    "Attention is All You Need", with added explanations and commentary.
-                </p>
+            <div class="papers-list">
+                <article class="pp-card">
+                    <div class="pp-card__side">
+                        <svg viewBox="0 0 52 60" class="pp-card__badge">
+                            <defs>
+                                <linearGradient id="ppg1" x1="0" y1="0" x2="0" y2="1">
+                                    <stop offset="0" stop-color="#a5b4fc"/>
+                                    <stop offset="1" stop-color="#4338ca"/>
+                                </linearGradient>
+                            </defs>
+                            <path d="M26 1 L51 15.5 L51 44.5 L26 59 L1 44.5 L1 15.5 Z" fill="url(#ppg1)" stroke="#312e81" stroke-width="1"/>
+                            <path d="M26 5 L47 17.25 L47 42.75 L26 55 L5 42.75 L5 17.25 Z" fill="none" stroke="rgba(255,255,255,.35)" stroke-width=".6"/>
+                            <path d="M18 22 L34 22 M18 27 L34 27 M18 32 L28 32" stroke="#fff" stroke-width="2" stroke-linecap="round"/>
+                        </svg>
+                    </div>
+                    <div class="pp-card__body">
+                        <span class="pp-card__tag">Commentary</span>
+                        <h3 class="pp-card__title">
+                            <a href="annotated-transformer-commentary/">The Annotated Transformer with Commentary</a>
+                        </h3>
+                        <p class="pp-card__desc">
+                            A line-by-line walkthrough of the Transformer architecture from
+                            "Attention is All You Need", with added explanations and commentary.
+                        </p>
+                        <a class="pp-card__link" href="annotated-transformer-commentary/">
+                            Read the commentary &rarr;
+                        </a>
+                    </div>
+                </article>
+
+                <div class="pp-empty">
+                    <p class="pp-empty__text">More paper walkthroughs in progress ~ watch this space</p>
+                </div>
             </div>
         </div>
     </div>
 </div>
+
+<style>
+.pp-card {
+    display: flex;
+    gap: 1.25rem;
+    background: var(--surface, #fff);
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    padding: 1.25rem;
+    margin-bottom: 1rem;
+    transition: box-shadow .2s ease, transform .2s ease;
+}
+.pp-card:hover {
+    box-shadow: 0 6px 20px rgba(0,0,0,.08);
+    transform: translateY(-2px);
+}
+.pp-card__side {
+    flex-shrink: 0;
+}
+.pp-card__badge {
+    width: 52px;
+    height: 60px;
+    display: block;
+    filter: drop-shadow(0 2px 4px rgba(0,0,0,.12));
+}
+.pp-card__body {
+    flex: 1;
+    min-width: 0;
+}
+.pp-card__tag {
+    display: inline-block;
+    font-size: 0.6rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    font-weight: 700;
+    color: #4338ca;
+    background: rgba(67,56,202,.08);
+    padding: 0.2rem 0.6rem;
+    border-radius: 10px;
+    margin-bottom: 0.5rem;
+}
+.pp-card__title {
+    font-family: var(--font-title);
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--ink);
+    line-height: 1.3;
+    margin: 0 0 0.5rem;
+}
+.pp-card__title a {
+    color: inherit;
+    text-decoration: none;
+}
+.pp-card__title a:hover {
+    color: var(--accent, #dc2626);
+}
+.pp-card__desc {
+    font-size: 0.88rem;
+    color: var(--ink-2);
+    line-height: 1.6;
+    margin: 0 0 0.75rem;
+}
+.pp-card__link {
+    font-size: 0.82rem;
+    font-weight: 600;
+    color: var(--accent, #dc2626);
+    text-decoration: none;
+    transition: transform .2s ease;
+    display: inline-block;
+}
+.pp-card__link:hover {
+    transform: translateX(4px);
+}
+.pp-empty {
+    text-align: center;
+    padding: 2rem 1rem;
+    border: 1px dashed var(--line);
+    border-radius: 12px;
+    color: var(--ink-muted);
+}
+.pp-empty__text {
+    font-size: 0.85rem;
+    font-style: italic;
+    margin: 0;
+}
+
+@media (max-width: 640px) {
+    .pp-card { gap: 0.75rem; padding: 1rem; }
+    .pp-card__badge { width: 40px; height: 46px; }
+    .pp-card__title { font-size: 0.98rem; }
+}
+</style>
     <div class="section section--alt" id="blog-section">
     <div class="container">
         <header class="sec-head sec-head--center">
@@ -972,31 +1535,46 @@ Scholar of Arabic, as well as well versed in English. Good teacher of Python, an
         </header>
 
         <div class="container--narrow" style="margin: 0 auto;">
-            <ul class="blog-list">
+            <ul class="bl-grid">
                 
-                <li>
-                    <span class="num">141</span>
-                    <a href="blog/a-full-commentary-of-the-transformer-paper/">A Full Commentary Of The Transformer Paper</a>
+                <li class="bl-item">
+                    <a href="blog/a-full-commentary-of-the-transformer-paper/" class="bl-link">
+                        <span class="bl-num">141</span>
+                        <span class="bl-title">A Full Commentary Of The Transformer Paper</span>
+                        <span class="bl-arrow">&rarr;</span>
+                    </a>
                 </li>
                 
-                <li>
-                    <span class="num">140</span>
-                    <a href="blog/contributing-to-opensource-is-a-great-way-to-become-based/">Contributing To Opensource Is A Great Way To Become Based</a>
+                <li class="bl-item">
+                    <a href="blog/contributing-to-opensource-is-a-great-way-to-become-based/" class="bl-link">
+                        <span class="bl-num">140</span>
+                        <span class="bl-title">Contributing To Opensource Is A Great Way To Become Based</span>
+                        <span class="bl-arrow">&rarr;</span>
+                    </a>
                 </li>
                 
-                <li>
-                    <span class="num">139</span>
-                    <a href="blog/pycon-us-is-goated/">Pycon Us Is Goated</a>
+                <li class="bl-item">
+                    <a href="blog/pycon-us-is-goated/" class="bl-link">
+                        <span class="bl-num">139</span>
+                        <span class="bl-title">Pycon Us Is Goated</span>
+                        <span class="bl-arrow">&rarr;</span>
+                    </a>
                 </li>
                 
-                <li>
-                    <span class="num">138</span>
-                    <a href="blog/laith-native-android-apps-in-pure-python/">Laith: Native Android Apps In Pure Python</a>
+                <li class="bl-item">
+                    <a href="blog/laith-native-android-apps-in-pure-python/" class="bl-link">
+                        <span class="bl-num">138</span>
+                        <span class="bl-title">Laith: Native Android Apps In Pure Python</span>
+                        <span class="bl-arrow">&rarr;</span>
+                    </a>
                 </li>
                 
-                <li>
-                    <span class="num">137</span>
-                    <a href="blog/react-native-is-one-hell-of-an-idea/">React Native Is One Hell Of An Idea</a>
+                <li class="bl-item">
+                    <a href="blog/react-native-is-one-hell-of-an-idea/" class="bl-link">
+                        <span class="bl-num">137</span>
+                        <span class="bl-title">React Native Is One Hell Of An Idea</span>
+                        <span class="bl-arrow">&rarr;</span>
+                    </a>
                 </li>
                 
             </ul>
@@ -1004,6 +1582,65 @@ Scholar of Arabic, as well as well versed in English. Good teacher of Python, an
         </div>
     </div>
 </div>
+
+<style>
+.bl-grid {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 1.25rem;
+    display: grid;
+    gap: 0.5rem;
+}
+.bl-item {
+    background: var(--surface, #fff);
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    overflow: hidden;
+    transition: box-shadow .2s ease, transform .2s ease;
+}
+.bl-item:hover {
+    box-shadow: 0 4px 16px rgba(0,0,0,.08);
+    transform: translateY(-1px);
+}
+.bl-link {
+    display: flex;
+    align-items: center;
+    gap: 0.85rem;
+    padding: 0.75rem 1rem;
+    text-decoration: none;
+    color: var(--ink);
+}
+.bl-num {
+    flex-shrink: 0;
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    color: var(--ink-muted);
+    background: var(--surface-alt, #f5f5f5);
+    padding: 0.2rem 0.5rem;
+    border-radius: 6px;
+    min-width: 2.2rem;
+    text-align: center;
+}
+.bl-title {
+    flex: 1;
+    font-size: 0.92rem;
+    font-weight: 500;
+    line-height: 1.4;
+}
+.bl-arrow {
+    flex-shrink: 0;
+    color: var(--ink-muted);
+    font-size: 0.9rem;
+    transition: transform .2s ease, color .2s ease;
+}
+.bl-item:hover .bl-arrow {
+    transform: translateX(4px);
+    color: var(--accent, #dc2626);
+}
+@media (max-width: 480px) {
+    .bl-title { font-size: 0.85rem; }
+}
+</style>
     <div class="section" id="podcast">
     <div class="container">
         <header class="sec-head sec-head--center">
@@ -1012,88 +1649,143 @@ Scholar of Arabic, as well as well versed in English. Good teacher of Python, an
             <p class="sec-sub">Devs from Amazon, Pypy, CPython, bright topics and popular figures</p>
         </header>
 
-        <div class="podcast-grid">
+        <div class="pc-grid">
             
-            <div class="podcast-card">
-                <p class="podcast-card__meta">
-                    Episode 5 &middot; 46:34
-                </p>
-                <p class="podcast-card__title">Business, The Serious Side of Python</p>
-                <p class="podcast-card__desc">
-                    
-                    Learn about running an MLops business with Bojan Miletic!
-                </p>
-                <p class="podcast-card__guest">
-                    
-                        
-                            Guest: 
-                            Bojan Miletic (MLops consultant)
-                        
-                    
-                        
-                            Co-host: 
-                            Mostafa Moradian (Senior software engineer at k6.io and Grafana, specialised in load testing)
-                        
-                    
-                        
-                    
-                </p>
-                <audio controls preload="none">
-                    <source src="https://archive.org/download/alfa-podcast/5.m4a" type="audio/mpeg">
-                </audio>
-            </div>
+
             
-            <div class="podcast-card">
-                <p class="podcast-card__meta">
-                    Episode 4 &middot; 49:02
-                </p>
-                <p class="podcast-card__title">The Passion For Python</p>
-                <p class="podcast-card__desc">
-                    
-                    Michael Driscoll has been a Python fan since the days PyPI did not yet exist. He is an author,
-blogger and tinkerer. He runs PyDev of The Week. He needs no introduction. This episode
-interviews Python&hellip;
-                </p>
-                <p class="podcast-card__guest">
-                    
-                        
-                            Guest: 
-                            Michael Driscoll (Celebrated figure in the Python community)
-                        
-                    
-                        
-                    
-                </p>
-                <audio controls preload="none">
-                    <source src="https://archive.org/download/alfa-podcast/4.m4a" type="audio/mpeg">
-                </audio>
-            </div>
             
-            <div class="podcast-card">
-                <p class="podcast-card__meta">
-                    Episode 3 &middot; 43:30
-                </p>
-                <p class="podcast-card__title">14 Years Old And Teaching Typing To The World</p>
-                <p class="podcast-card__desc">
-                    
-                    A casual chat with the maintainer of the pypi commandline package and typesplainer.
-A dive into his journey into tech and how he tackles projects. We talk along the way
-of a discord.py/nextcord visual&hellip;
-                </p>
-                <p class="podcast-card__guest">
-                    
+            
+            <article class="pc-card" style="--c1: #d97706; --c2: #fde68a">
+                <div class="pc-card__cover">
+                    <span class="pc-card__num">05</span>
+                    <svg class="pc-card__wave" viewBox="0 0 120 40" preserveAspectRatio="none">
+                        <path d="M0 20 Q10 5 20 20 T40 20 T60 20 T80 20 T100 20 T120 20" fill="none" stroke="rgba(255,255,255,.3)" stroke-width="2"/>
+                        <path d="M0 20 Q10 12 20 20 T40 20 T60 20 T80 20 T100 20 T120 20" fill="none" stroke="rgba(255,255,255,.5)" stroke-width="2"/>
+                    </svg>
+                </div>
+                <div class="pc-card__body">
+                    <div class="pc-card__meta">
+                        <span class="pc-card__ep">EP 5</span>
+                        <span class="pc-card__dur">46:34</span>
+                    </div>
+                    <h3 class="pc-card__title">Business, The Serious Side of Python</h3>
+                    <p class="pc-card__desc">
                         
-                            Guest: 
-                            Arian Mollick Wasi / WasiMaster (Pypi cmd and Typesplainer maintainer)
+                        Learn about running an MLops business with Bojan Miletic!
+                    </p>
+                    <div class="pc-card__guests">
                         
-                    
+                            
+                            <span class="pc-chip pc-chip--guest">
+                                Bojan Miletic
+                            </span>
+                            
                         
-                    
-                </p>
-                <audio controls preload="none">
-                    <source src="https://archive.org/download/alfa-podcast/3.m4a" type="audio/mpeg">
-                </audio>
-            </div>
+                            
+                            <span class="pc-chip pc-chip--co-host">
+                                Mostafa Moradian
+                            </span>
+                            
+                        
+                            
+                        
+                    </div>
+                    <div class="pc-card__player">
+                        <button class="pc-play" data-src="https://archive.org/download/alfa-podcast/5.m4a" aria-label="Play episode 5">
+                            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+                        </button>
+                        <audio controls preload="none" class="pc-audio">
+                            <source src="https://archive.org/download/alfa-podcast/5.m4a" type="audio/mpeg">
+                        </audio>
+                    </div>
+                </div>
+            </article>
+            
+            
+            
+            <article class="pc-card" style="--c1: #dc2626; --c2: #fca5a5">
+                <div class="pc-card__cover">
+                    <span class="pc-card__num">04</span>
+                    <svg class="pc-card__wave" viewBox="0 0 120 40" preserveAspectRatio="none">
+                        <path d="M0 20 Q10 5 20 20 T40 20 T60 20 T80 20 T100 20 T120 20" fill="none" stroke="rgba(255,255,255,.3)" stroke-width="2"/>
+                        <path d="M0 20 Q10 12 20 20 T40 20 T60 20 T80 20 T100 20 T120 20" fill="none" stroke="rgba(255,255,255,.5)" stroke-width="2"/>
+                    </svg>
+                </div>
+                <div class="pc-card__body">
+                    <div class="pc-card__meta">
+                        <span class="pc-card__ep">EP 4</span>
+                        <span class="pc-card__dur">49:02</span>
+                    </div>
+                    <h3 class="pc-card__title">The Passion For Python</h3>
+                    <p class="pc-card__desc">
+                        
+                        Michael Driscoll has been a Python fan since the days PyPI did not yet exist. He is an author,
+blogger and tinkerer. He runs PyDev of The Week. He needs no intr&hellip;
+                    </p>
+                    <div class="pc-card__guests">
+                        
+                            
+                            <span class="pc-chip pc-chip--guest">
+                                Michael Driscoll
+                            </span>
+                            
+                        
+                            
+                        
+                    </div>
+                    <div class="pc-card__player">
+                        <button class="pc-play" data-src="https://archive.org/download/alfa-podcast/4.m4a" aria-label="Play episode 4">
+                            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+                        </button>
+                        <audio controls preload="none" class="pc-audio">
+                            <source src="https://archive.org/download/alfa-podcast/4.m4a" type="audio/mpeg">
+                        </audio>
+                    </div>
+                </div>
+            </article>
+            
+            
+            
+            <article class="pc-card" style="--c1: #7c3aed; --c2: #c4b5fd">
+                <div class="pc-card__cover">
+                    <span class="pc-card__num">03</span>
+                    <svg class="pc-card__wave" viewBox="0 0 120 40" preserveAspectRatio="none">
+                        <path d="M0 20 Q10 5 20 20 T40 20 T60 20 T80 20 T100 20 T120 20" fill="none" stroke="rgba(255,255,255,.3)" stroke-width="2"/>
+                        <path d="M0 20 Q10 12 20 20 T40 20 T60 20 T80 20 T100 20 T120 20" fill="none" stroke="rgba(255,255,255,.5)" stroke-width="2"/>
+                    </svg>
+                </div>
+                <div class="pc-card__body">
+                    <div class="pc-card__meta">
+                        <span class="pc-card__ep">EP 3</span>
+                        <span class="pc-card__dur">43:30</span>
+                    </div>
+                    <h3 class="pc-card__title">14 Years Old And Teaching Typing To The World</h3>
+                    <p class="pc-card__desc">
+                        
+                        A casual chat with the maintainer of the pypi commandline package and typesplainer.
+A dive into his journey into tech and how he tackles projects. We talk along&hellip;
+                    </p>
+                    <div class="pc-card__guests">
+                        
+                            
+                            <span class="pc-chip pc-chip--guest">
+                                Arian Mollick Wasi / WasiMaster
+                            </span>
+                            
+                        
+                            
+                        
+                    </div>
+                    <div class="pc-card__player">
+                        <button class="pc-play" data-src="https://archive.org/download/alfa-podcast/3.m4a" aria-label="Play episode 3">
+                            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+                        </button>
+                        <audio controls preload="none" class="pc-audio">
+                            <source src="https://archive.org/download/alfa-podcast/3.m4a" type="audio/mpeg">
+                        </audio>
+                    </div>
+                </div>
+            </article>
             
         </div>
 
@@ -1102,6 +1794,166 @@ of a discord.py/nextcord visual&hellip;
         </div>
     </div>
 </div>
+
+<style>
+.pc-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+}
+.pc-card {
+    background: var(--surface, #fff);
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    transition: box-shadow .2s ease, transform .2s ease;
+}
+.pc-card:hover {
+    box-shadow: 0 8px 24px rgba(0,0,0,.1);
+    transform: translateY(-3px);
+}
+.pc-card__cover {
+    background: linear-gradient(135deg, var(--c1), var(--c2));
+    padding: 1.25rem 1.25rem 0.75rem;
+    position: relative;
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    min-height: 90px;
+}
+.pc-card__num {
+    font-family: var(--font-title);
+    font-size: 2.2rem;
+    font-weight: 800;
+    color: rgba(255,255,255,.85);
+    line-height: 1;
+    letter-spacing: -0.02em;
+}
+.pc-card__wave {
+    width: 80px;
+    height: 30px;
+    opacity: 0.7;
+}
+.pc-card__body {
+    padding: 1.1rem 1.25rem 1.25rem;
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+}
+.pc-card__meta {
+    display: flex;
+    gap: 0.75rem;
+    margin-bottom: 0.5rem;
+}
+.pc-card__ep, .pc-card__dur {
+    font-size: 0.62rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    font-weight: 600;
+    color: var(--ink-muted);
+}
+.pc-card__ep {
+    background: var(--surface-alt, #f5f5f5);
+    padding: 0.15rem 0.5rem;
+    border-radius: 10px;
+}
+.pc-card__title {
+    font-family: var(--font-title);
+    font-size: 1.02rem;
+    font-weight: 700;
+    color: var(--ink);
+    line-height: 1.3;
+    margin: 0 0 0.5rem;
+}
+.pc-card__desc {
+    font-size: 0.82rem;
+    color: var(--ink-2);
+    line-height: 1.6;
+    flex-grow: 1;
+    margin: 0 0 0.75rem;
+}
+.pc-card__guests {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.35rem;
+    margin-bottom: 0.75rem;
+}
+.pc-chip {
+    font-size: 0.68rem;
+    padding: 0.2rem 0.55rem;
+    border-radius: 12px;
+    font-weight: 600;
+    border: 1px solid var(--line);
+    color: var(--ink-2);
+}
+.pc-chip--guest {
+    background: rgba(217,119,6,.08);
+    border-color: rgba(217,119,6,.25);
+    color: #b45309;
+}
+.pc-chip--co-host {
+    background: rgba(29,78,216,.08);
+    border-color: rgba(29,78,216,.25);
+    color: #1e40af;
+}
+.pc-card__player {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+.pc-play {
+    flex-shrink: 0;
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    border: none;
+    background: var(--c1);
+    color: #fff;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform .15s ease, box-shadow .15s ease;
+}
+.pc-play:hover {
+    transform: scale(1.08);
+    box-shadow: 0 2px 8px rgba(0,0,0,.2);
+}
+.pc-play svg {
+    width: 16px;
+    height: 16px;
+}
+.pc-audio {
+    flex: 1;
+    height: 34px;
+}
+
+@media (max-width: 768px) {
+    .pc-grid { grid-template-columns: 1fr; }
+}
+@media (max-width: 480px) {
+    .pc-card__num { font-size: 1.8rem; }
+    .pc-card__title { font-size: 0.95rem; }
+}
+</style>
+
+<script>
+document.querySelectorAll('.pc-play').forEach(function(btn) {
+    btn.addEventListener('click', function() {
+        var audio = this.parentElement.querySelector('.pc-audio');
+        var svg = this.querySelector('svg path');
+        if (audio.paused) {
+            audio.play();
+            svg.setAttribute('d', 'M6 4h4v16H6zM14 4h4v16h-4z');
+        } else {
+            audio.pause();
+            svg.setAttribute('d', 'M8 5v14l11-7z');
+        }
+    });
+});
+</script>
     <div class="section section--alt" id="tools">
     <div class="container">
         <header class="sec-head sec-head--center">
@@ -1123,794 +1975,1332 @@ of a discord.py/nextcord visual&hellip;
         </div>
     </div>
 </div>
-    <div class="section" id="open-source">
+    <div class="section section--alt" id="open-source">
     <div class="container">
         <header class="sec-head sec-head--center">
             <span class="sec-kicker">Open Source</span>
             <h2 class="sec-title">Tools, libraries, and frameworks</h2>
         </header>
 
-        <table class="projects-table">
-            <thead>
-                <tr>
-                    <th>Project</th>
-                </tr>
-            </thead>
-            <tbody>
-                
-                <tr>
-                    <td>
-                        <span class="project-name"><a href="https://github.com/shopyo/shopyo">Shopyo</a></span>
-                        <span class="project-links">
-                            
-                                
-                                [<a href="https://pypi.org/project/shopyo/" target="_blank">Pypi</a>]
-                            
-                                
-                                [<a href="https://github.com/shopyo/shopyo" target="_blank">Github</a>]
-                            
-                                
-                                [<a href="https://discord.gg/k37Ef6w" target="_blank">Chat</a>]
-                            
-                                
-                                [<a href="https://twitter.com/shopyoproject" target="_blank">Twitter</a>]
-                            
-                                
-                                [<a href="https://shopyo.readthedocs.io/en/latest/" target="_blank">Docs</a>]
-                            
-                        </span>
+        
+
+        
+
+        <div class="ptable">
+            
+            
+            
+            
+            <div class="pelem pelem--ecosystem pelem--feat"
+                 title="Built on top of Flask, Shopyo gives superpowers in terms of self-contained modules and supports Django commands like...">
+                <div class="pelem__head">
+                    <span class="pelem__num">ECOSYSTEM</span>
+                    <div class="pelem__sym">SH</div>
+                </div>
+                <div class="pelem__name">Shopyo</div>
+                <div class="pelem__dl">
+                    
+                    <a href="https://pepy.tech/projects/shopyo" target="_blank" rel="noopener">
+                        <img src="https://static.pepy.tech/personalized-badge/shopyo?period=total&units=INTERNATIONAL_SYSTEM&left_color=BLACK&right_color=GREEN&left_text=downloads" alt="downloads" loading="lazy">
+                    </a>
+                    
+                </div>
+                <div class="pelem__links">
+                    
+                    <a class="pelem__link" href="https://pypi.org/project/shopyo/" target="_blank" rel="noopener" title="pypi">
                         
-                            <a target="_blank" href="https://pepy.tech/project/shopyo">
-                                <img src="https://static.pepy.tech/personalized-badge/shopyo?period=total&units=international_system&left_color=black&right_color=green&left_text=Downloads" alt="PyPI downloads">
-                            </a>
+            <i class="fas fa-box"></i>
+            
+        
+                    </a>
+                    
+                    <a class="pelem__link" href="https://github.com/shopyo/shopyo" target="_blank" rel="noopener" title="github">
                         
-                        <div class="project-info">
-                            <p>Built on top of Flask, Shopyo gives superpowers in terms of self-contained modules and supports Django
-commands like collecstatic and startapp.</p>
-                        </div>
-                    </td>
-                </tr>
-                
-                <tr>
-                    <td>
-                        <span class="project-name"><a href="https://github.com/abdur-rahmaanj/angel-claw">angel-claw</a></span>
-                        <span class="project-links">
-                            
-                                
-                                [<a href="https://github.com/abdur-rahmaanj/angel-claw" target="_blank">Github</a>]
-                            
-                                
-                                [<a href="https://pypi.org/project/angel-claw/" target="_blank">Pypi</a>]
-                            
-                        </span>
+            <i class="fab fa-github"></i>
+            
+        
+                    </a>
+                    
+                    <a class="pelem__link" href="https://discord.gg/k37Ef6w" target="_blank" rel="noopener" title="chat">
                         
-                            <a target="_blank" href="https://pepy.tech/project/angel-claw">
-                                <img src="https://static.pepy.tech/personalized-badge/angel-claw?period=total&units=international_system&left_color=black&right_color=green&left_text=Downloads" alt="PyPI downloads">
-                            </a>
+            <i class="fas fa-comment"></i>
+            
+        
+                    </a>
+                    
+                    <a class="pelem__link" href="https://twitter.com/shopyoproject" target="_blank" rel="noopener" title="twitter">
                         
-                        <div class="project-info">
-                            <p>Lean, based openclaw alternative in Python</p>
-                        </div>
-                    </td>
-                </tr>
-                
-                <tr>
-                    <td>
-                        <span class="project-name"><a href="https://github.com/abdur-rahmaanj/angel-recall">angel-recall</a></span>
-                        <span class="project-links">
-                            
-                                
-                                [<a href="https://github.com/abdur-rahmaanj/angel-recall" target="_blank">Github</a>]
-                            
-                                
-                                [<a href="https://pypi.org/project/angel-recall/" target="_blank">Pypi</a>]
-                            
-                        </span>
+            <i class="fab fa-twitter"></i>
+            
+        
+                    </a>
+                    
+                    <a class="pelem__link" href="https://shopyo.readthedocs.io/en/latest/" target="_blank" rel="noopener" title="docs">
                         
-                            <a target="_blank" href="https://pepy.tech/project/angel-recall">
-                                <img src="https://static.pepy.tech/personalized-badge/angel-recall?period=total&units=international_system&left_color=black&right_color=green&left_text=Downloads" alt="PyPI downloads">
-                            </a>
+            <i class="fas fa-book"></i>
+            
+        
+                    </a>
+                    
+                </div>
+            </div>
+            
+            
+            
+            
+            <div class="pelem pelem--ai"
+                 title="Lean, based openclaw alternative in Python">
+                <div class="pelem__head">
+                    <span class="pelem__num">AI</span>
+                    <div class="pelem__sym">AN</div>
+                </div>
+                <div class="pelem__name">angel-claw</div>
+                <div class="pelem__dl">
+                    
+                    <a href="https://pepy.tech/projects/angel-claw" target="_blank" rel="noopener">
+                        <img src="https://static.pepy.tech/personalized-badge/angel-claw?period=total&units=INTERNATIONAL_SYSTEM&left_color=BLACK&right_color=GREEN&left_text=downloads" alt="downloads" loading="lazy">
+                    </a>
+                    
+                </div>
+                <div class="pelem__links">
+                    
+                    <a class="pelem__link" href="https://github.com/abdur-rahmaanj/angel-claw" target="_blank" rel="noopener" title="github">
                         
-                        <div class="project-info">
-                            <p>Memory OS paper implementation for agents.</p>
-                        </div>
-                    </td>
-                </tr>
-                
-                <tr>
-                    <td>
-                        <span class="project-name"><a href="https://github.com/abdur-rahmaanj/pageindex-open">pageindex-open</a></span>
-                        <span class="project-links">
-                            
-                                
-                                [<a href="https://github.com/abdur-rahmaanj/pageindex-open" target="_blank">Github</a>]
-                            
-                                
-                                [<a href="https://pypi.org/project/pageindex-open" target="_blank">Pypi</a>]
-                            
-                        </span>
+            <i class="fab fa-github"></i>
+            
+        
+                    </a>
+                    
+                    <a class="pelem__link" href="https://pypi.org/project/angel-claw/" target="_blank" rel="noopener" title="pypi">
                         
-                            <a target="_blank" href="https://pepy.tech/project/pageindex-open">
-                                <img src="https://static.pepy.tech/personalized-badge/pageindex-open?period=total&units=international_system&left_color=black&right_color=green&left_text=Downloads" alt="PyPI downloads">
-                            </a>
+            <i class="fas fa-box"></i>
+            
+        
+                    </a>
+                    
+                </div>
+            </div>
+            
+            
+            
+            
+            <div class="pelem pelem--ai"
+                 title="Memory OS paper implementation for agents.">
+                <div class="pelem__head">
+                    <span class="pelem__num">AI</span>
+                    <div class="pelem__sym">AN</div>
+                </div>
+                <div class="pelem__name">angel-recall</div>
+                <div class="pelem__dl">
+                    
+                    <a href="https://pepy.tech/projects/angel-recall" target="_blank" rel="noopener">
+                        <img src="https://static.pepy.tech/personalized-badge/angel-recall?period=total&units=INTERNATIONAL_SYSTEM&left_color=BLACK&right_color=GREEN&left_text=downloads" alt="downloads" loading="lazy">
+                    </a>
+                    
+                </div>
+                <div class="pelem__links">
+                    
+                    <a class="pelem__link" href="https://github.com/abdur-rahmaanj/angel-recall" target="_blank" rel="noopener" title="github">
                         
-                        <div class="project-info">
-                            <p>Memory OS paper implementation for agents.</p>
-                        </div>
-                    </td>
-                </tr>
-                
-                <tr>
-                    <td>
-                        <span class="project-name"><a href="https://github.com/shopyo/shopyo/tree/dev/default_packages/shopyo_auth">shopyo-auth</a></span>
-                        <span class="project-links">
-                            
-                                
-                                [<a href="https://github.com/shopyo/shopyo/tree/dev/default_packages/shopyo_auth" target="_blank">Github</a>]
-                            
-                                
-                                [<a href="https://pypi.org/project/shopyo-auth/" target="_blank">Pypi</a>]
-                            
-                        </span>
+            <i class="fab fa-github"></i>
+            
+        
+                    </a>
+                    
+                    <a class="pelem__link" href="https://pypi.org/project/angel-recall/" target="_blank" rel="noopener" title="pypi">
                         
-                            <a target="_blank" href="https://pepy.tech/project/shopyo-auth">
-                                <img src="https://static.pepy.tech/personalized-badge/shopyo-auth?period=total&units=international_system&left_color=black&right_color=green&left_text=Downloads" alt="PyPI downloads">
-                            </a>
+            <i class="fas fa-box"></i>
+            
+        
+                    </a>
+                    
+                </div>
+            </div>
+            
+            
+            
+            
+            <div class="pelem pelem--ai"
+                 title="Memory OS paper implementation for agents.">
+                <div class="pelem__head">
+                    <span class="pelem__num">AI</span>
+                    <div class="pelem__sym">PA</div>
+                </div>
+                <div class="pelem__name">pageindex-open</div>
+                <div class="pelem__dl">
+                    
+                    <a href="https://pepy.tech/projects/pageindex-open" target="_blank" rel="noopener">
+                        <img src="https://static.pepy.tech/personalized-badge/pageindex-open?period=total&units=INTERNATIONAL_SYSTEM&left_color=BLACK&right_color=GREEN&left_text=downloads" alt="downloads" loading="lazy">
+                    </a>
+                    
+                </div>
+                <div class="pelem__links">
+                    
+                    <a class="pelem__link" href="https://github.com/abdur-rahmaanj/pageindex-open" target="_blank" rel="noopener" title="github">
                         
-                        <div class="project-info">
-                            <p>Auth module for Shopyo</p>
-                        </div>
-                    </td>
-                </tr>
-                
-                <tr>
-                    <td>
-                        <span class="project-name"><a href="https://github.com/shopyo/shopyo/tree/dev/default_packages/shopyo_appadmin">shopyo-appadmin</a></span>
-                        <span class="project-links">
-                            
-                                
-                                [<a href="https://github.com/shopyo/shopyo/tree/dev/default_packages/shopyo_appadmin" target="_blank">Github</a>]
-                            
-                                
-                                [<a href="https://pypi.org/project/shopyo-appadmin/" target="_blank">Pypi</a>]
-                            
-                        </span>
+            <i class="fab fa-github"></i>
+            
+        
+                    </a>
+                    
+                    <a class="pelem__link" href="https://pypi.org/project/pageindex-open" target="_blank" rel="noopener" title="pypi">
                         
-                            <a target="_blank" href="https://pepy.tech/project/shopyo-appadmin">
-                                <img src="https://static.pepy.tech/personalized-badge/shopyo-appadmin?period=total&units=international_system&left_color=black&right_color=green&left_text=Downloads" alt="PyPI downloads">
-                            </a>
+            <i class="fas fa-box"></i>
+            
+        
+                    </a>
+                    
+                </div>
+            </div>
+            
+            
+            
+            
+            <div class="pelem pelem--ecosystem"
+                 title="Auth module for Shopyo">
+                <div class="pelem__head">
+                    <span class="pelem__num">ECOSYSTEM</span>
+                    <div class="pelem__sym">SH</div>
+                </div>
+                <div class="pelem__name">shopyo-auth</div>
+                <div class="pelem__dl">
+                    
+                    <a href="https://pepy.tech/projects/shopyo-auth" target="_blank" rel="noopener">
+                        <img src="https://static.pepy.tech/personalized-badge/shopyo-auth?period=total&units=INTERNATIONAL_SYSTEM&left_color=BLACK&right_color=GREEN&left_text=downloads" alt="downloads" loading="lazy">
+                    </a>
+                    
+                </div>
+                <div class="pelem__links">
+                    
+                    <a class="pelem__link" href="https://github.com/shopyo/shopyo/tree/dev/default_packages/shopyo_auth" target="_blank" rel="noopener" title="github">
                         
-                        <div class="project-info">
-                            <p>Admin panel for Shopyo</p>
-                        </div>
-                    </td>
-                </tr>
-                
-                <tr>
-                    <td>
-                        <span class="project-name"><a href="https://github.com/shopyo/shopyo/tree/dev/default_packages/shopyo_base">shopyo-base</a></span>
-                        <span class="project-links">
-                            
-                                
-                                [<a href="https://github.com/shopyo/shopyo/tree/dev/default_packages/shopyo_base" target="_blank">Github</a>]
-                            
-                                
-                                [<a href="https://pypi.org/project/shopyo-base/" target="_blank">Pypi</a>]
-                            
-                        </span>
+            <i class="fab fa-github"></i>
+            
+        
+                    </a>
+                    
+                    <a class="pelem__link" href="https://pypi.org/project/shopyo-auth/" target="_blank" rel="noopener" title="pypi">
                         
-                            <a target="_blank" href="https://pepy.tech/project/shopyo-base">
-                                <img src="https://static.pepy.tech/personalized-badge/shopyo-base?period=total&units=international_system&left_color=black&right_color=green&left_text=Downloads" alt="PyPI downloads">
-                            </a>
+            <i class="fas fa-box"></i>
+            
+        
+                    </a>
+                    
+                </div>
+            </div>
+            
+            
+            
+            
+            <div class="pelem pelem--ecosystem"
+                 title="Admin panel for Shopyo">
+                <div class="pelem__head">
+                    <span class="pelem__num">ECOSYSTEM</span>
+                    <div class="pelem__sym">SH</div>
+                </div>
+                <div class="pelem__name">shopyo-appadmin</div>
+                <div class="pelem__dl">
+                    
+                    <a href="https://pepy.tech/projects/shopyo-appadmin" target="_blank" rel="noopener">
+                        <img src="https://static.pepy.tech/personalized-badge/shopyo-appadmin?period=total&units=INTERNATIONAL_SYSTEM&left_color=BLACK&right_color=GREEN&left_text=downloads" alt="downloads" loading="lazy">
+                    </a>
+                    
+                </div>
+                <div class="pelem__links">
+                    
+                    <a class="pelem__link" href="https://github.com/shopyo/shopyo/tree/dev/default_packages/shopyo_appadmin" target="_blank" rel="noopener" title="github">
                         
-                        <div class="project-info">
-                            <p>Base utils for Shopyo</p>
-                        </div>
-                    </td>
-                </tr>
-                
-                <tr>
-                    <td>
-                        <span class="project-name"><a href="https://github.com/shopyo/shopyo/tree/dev/default_packages/shopyo_dashboard">shopyo-dashboard</a></span>
-                        <span class="project-links">
-                            
-                                
-                                [<a href="https://github.com/shopyo/shopyo/tree/dev/default_packages/shopyo_dashboard" target="_blank">Github</a>]
-                            
-                                
-                                [<a href="https://pypi.org/project/shopyo-dashboard/" target="_blank">Pypi</a>]
-                            
-                        </span>
+            <i class="fab fa-github"></i>
+            
+        
+                    </a>
+                    
+                    <a class="pelem__link" href="https://pypi.org/project/shopyo-appadmin/" target="_blank" rel="noopener" title="pypi">
                         
-                            <a target="_blank" href="https://pepy.tech/project/shopyo-dashboard">
-                                <img src="https://static.pepy.tech/personalized-badge/shopyo-dashboard?period=total&units=international_system&left_color=black&right_color=green&left_text=Downloads" alt="PyPI downloads">
-                            </a>
+            <i class="fas fa-box"></i>
+            
+        
+                    </a>
+                    
+                </div>
+            </div>
+            
+            
+            
+            
+            <div class="pelem pelem--ecosystem"
+                 title="Base utils for Shopyo">
+                <div class="pelem__head">
+                    <span class="pelem__num">ECOSYSTEM</span>
+                    <div class="pelem__sym">SH</div>
+                </div>
+                <div class="pelem__name">shopyo-base</div>
+                <div class="pelem__dl">
+                    
+                    <a href="https://pepy.tech/projects/shopyo-base" target="_blank" rel="noopener">
+                        <img src="https://static.pepy.tech/personalized-badge/shopyo-base?period=total&units=INTERNATIONAL_SYSTEM&left_color=BLACK&right_color=GREEN&left_text=downloads" alt="downloads" loading="lazy">
+                    </a>
+                    
+                </div>
+                <div class="pelem__links">
+                    
+                    <a class="pelem__link" href="https://github.com/shopyo/shopyo/tree/dev/default_packages/shopyo_base" target="_blank" rel="noopener" title="github">
                         
-                        <div class="project-info">
-                            <p>Dashboard for Shopyo</p>
-                        </div>
-                    </td>
-                </tr>
-                
-                <tr>
-                    <td>
-                        <span class="project-name"><a href="https://github.com/shopyo/shopyo/tree/dev/default_packages/shopyo_i18n">shopyo-i18n</a></span>
-                        <span class="project-links">
-                            
-                                
-                                [<a href="https://github.com/shopyo/shopyo/tree/dev/default_packages/shopyo_i18n" target="_blank">Github</a>]
-                            
-                                
-                                [<a href="https://pypi.org/project/shopyo-i18n/" target="_blank">Pypi</a>]
-                            
-                        </span>
+            <i class="fab fa-github"></i>
+            
+        
+                    </a>
+                    
+                    <a class="pelem__link" href="https://pypi.org/project/shopyo-base/" target="_blank" rel="noopener" title="pypi">
                         
-                            <a target="_blank" href="https://pepy.tech/project/shopyo-i18n">
-                                <img src="https://static.pepy.tech/personalized-badge/shopyo-i18n?period=total&units=international_system&left_color=black&right_color=green&left_text=Downloads" alt="PyPI downloads">
-                            </a>
+            <i class="fas fa-box"></i>
+            
+        
+                    </a>
+                    
+                </div>
+            </div>
+            
+            
+            
+            
+            <div class="pelem pelem--ecosystem"
+                 title="Dashboard for Shopyo">
+                <div class="pelem__head">
+                    <span class="pelem__num">ECOSYSTEM</span>
+                    <div class="pelem__sym">SH</div>
+                </div>
+                <div class="pelem__name">shopyo-dashboard</div>
+                <div class="pelem__dl">
+                    
+                    <a href="https://pepy.tech/projects/shopyo-dashboard" target="_blank" rel="noopener">
+                        <img src="https://static.pepy.tech/personalized-badge/shopyo-dashboard?period=total&units=INTERNATIONAL_SYSTEM&left_color=BLACK&right_color=GREEN&left_text=downloads" alt="downloads" loading="lazy">
+                    </a>
+                    
+                </div>
+                <div class="pelem__links">
+                    
+                    <a class="pelem__link" href="https://github.com/shopyo/shopyo/tree/dev/default_packages/shopyo_dashboard" target="_blank" rel="noopener" title="github">
                         
-                        <div class="project-info">
-                            <p>i18n for Shopyo</p>
-                        </div>
-                    </td>
-                </tr>
-                
-                <tr>
-                    <td>
-                        <span class="project-name"><a href="https://github.com/shopyo/shopyo/tree/dev/default_packages/shopyo_page">shopyo-base</a></span>
-                        <span class="project-links">
-                            
-                                
-                                [<a href="https://github.com/shopyo/shopyo/tree/dev/default_packages/shopyo_page" target="_blank">Github</a>]
-                            
-                                
-                                [<a href="https://pypi.org/project/shopyo-page/" target="_blank">Pypi</a>]
-                            
-                        </span>
+            <i class="fab fa-github"></i>
+            
+        
+                    </a>
+                    
+                    <a class="pelem__link" href="https://pypi.org/project/shopyo-dashboard/" target="_blank" rel="noopener" title="pypi">
                         
-                            <a target="_blank" href="https://pepy.tech/project/shopyo-base">
-                                <img src="https://static.pepy.tech/personalized-badge/shopyo-base?period=total&units=international_system&left_color=black&right_color=green&left_text=Downloads" alt="PyPI downloads">
-                            </a>
+            <i class="fas fa-box"></i>
+            
+        
+                    </a>
+                    
+                </div>
+            </div>
+            
+            
+            
+            
+            <div class="pelem pelem--ecosystem"
+                 title="i18n for Shopyo">
+                <div class="pelem__head">
+                    <span class="pelem__num">ECOSYSTEM</span>
+                    <div class="pelem__sym">SH</div>
+                </div>
+                <div class="pelem__name">shopyo-i18n</div>
+                <div class="pelem__dl">
+                    
+                    <a href="https://pepy.tech/projects/shopyo-i18n" target="_blank" rel="noopener">
+                        <img src="https://static.pepy.tech/personalized-badge/shopyo-i18n?period=total&units=INTERNATIONAL_SYSTEM&left_color=BLACK&right_color=GREEN&left_text=downloads" alt="downloads" loading="lazy">
+                    </a>
+                    
+                </div>
+                <div class="pelem__links">
+                    
+                    <a class="pelem__link" href="https://github.com/shopyo/shopyo/tree/dev/default_packages/shopyo_i18n" target="_blank" rel="noopener" title="github">
                         
-                        <div class="project-info">
-                            <p>Page module for Shopyo</p>
-                        </div>
-                    </td>
-                </tr>
-                
-                <tr>
-                    <td>
-                        <span class="project-name"><a href="https://github.com/shopyo/shopyo/tree/dev/default_packages/shopyo_settings">shopyo-settings</a></span>
-                        <span class="project-links">
-                            
-                                
-                                [<a href="https://github.com/shopyo/shopyo/tree/dev/default_packages/shopyo_settings" target="_blank">Github</a>]
-                            
-                                
-                                [<a href="https://pypi.org/project/shopyo-settings/" target="_blank">Pypi</a>]
-                            
-                        </span>
+            <i class="fab fa-github"></i>
+            
+        
+                    </a>
+                    
+                    <a class="pelem__link" href="https://pypi.org/project/shopyo-i18n/" target="_blank" rel="noopener" title="pypi">
                         
-                            <a target="_blank" href="https://pepy.tech/project/shopyo-settings">
-                                <img src="https://static.pepy.tech/personalized-badge/shopyo-settings?period=total&units=international_system&left_color=black&right_color=green&left_text=Downloads" alt="PyPI downloads">
-                            </a>
+            <i class="fas fa-box"></i>
+            
+        
+                    </a>
+                    
+                </div>
+            </div>
+            
+            
+            
+            
+            <div class="pelem pelem--ecosystem"
+                 title="Page module for Shopyo">
+                <div class="pelem__head">
+                    <span class="pelem__num">ECOSYSTEM</span>
+                    <div class="pelem__sym">SH</div>
+                </div>
+                <div class="pelem__name">shopyo-base</div>
+                <div class="pelem__dl">
+                    
+                    <a href="https://pepy.tech/projects/shopyo-base" target="_blank" rel="noopener">
+                        <img src="https://static.pepy.tech/personalized-badge/shopyo-base?period=total&units=INTERNATIONAL_SYSTEM&left_color=BLACK&right_color=GREEN&left_text=downloads" alt="downloads" loading="lazy">
+                    </a>
+                    
+                </div>
+                <div class="pelem__links">
+                    
+                    <a class="pelem__link" href="https://github.com/shopyo/shopyo/tree/dev/default_packages/shopyo_page" target="_blank" rel="noopener" title="github">
                         
-                        <div class="project-info">
-                            <p>Settings for Shopyo</p>
-                        </div>
-                    </td>
-                </tr>
-                
-                <tr>
-                    <td>
-                        <span class="project-name"><a href="https://github.com/shopyo/shopyo/tree/dev/default_packages/shopyo_theme">shopyo-theme</a></span>
-                        <span class="project-links">
-                            
-                                
-                                [<a href="https://github.com/shopyo/shopyo/tree/dev/default_packages/shopyo_theme" target="_blank">Github</a>]
-                            
-                                
-                                [<a href="https://pypi.org/project/shopyo-theme/" target="_blank">Pypi</a>]
-                            
-                        </span>
+            <i class="fab fa-github"></i>
+            
+        
+                    </a>
+                    
+                    <a class="pelem__link" href="https://pypi.org/project/shopyo-page/" target="_blank" rel="noopener" title="pypi">
                         
-                            <a target="_blank" href="https://pepy.tech/project/shopyo-theme">
-                                <img src="https://static.pepy.tech/personalized-badge/shopyo-theme?period=total&units=international_system&left_color=black&right_color=green&left_text=Downloads" alt="PyPI downloads">
-                            </a>
+            <i class="fas fa-box"></i>
+            
+        
+                    </a>
+                    
+                </div>
+            </div>
+            
+            
+            
+            
+            <div class="pelem pelem--ecosystem"
+                 title="Settings for Shopyo">
+                <div class="pelem__head">
+                    <span class="pelem__num">ECOSYSTEM</span>
+                    <div class="pelem__sym">SH</div>
+                </div>
+                <div class="pelem__name">shopyo-settings</div>
+                <div class="pelem__dl">
+                    
+                    <a href="https://pepy.tech/projects/shopyo-settings" target="_blank" rel="noopener">
+                        <img src="https://static.pepy.tech/personalized-badge/shopyo-settings?period=total&units=INTERNATIONAL_SYSTEM&left_color=BLACK&right_color=GREEN&left_text=downloads" alt="downloads" loading="lazy">
+                    </a>
+                    
+                </div>
+                <div class="pelem__links">
+                    
+                    <a class="pelem__link" href="https://github.com/shopyo/shopyo/tree/dev/default_packages/shopyo_settings" target="_blank" rel="noopener" title="github">
                         
-                        <div class="project-info">
-                            <p>Theme for Shopyo</p>
-                        </div>
-                    </td>
-                </tr>
-                
-                <tr>
-                    <td>
-                        <span class="project-name"><a href="https://github.com/abdur-rahmaanj/hooman">Hooman</a></span>
-                        <span class="project-links">
-                            
-                                
-                                [<a href="https://github.com/abdur-rahmaanj/hooman" target="_blank">Github</a>]
-                            
-                                
-                                [<a href="https://pypi.org/project/hooman/" target="_blank">Pypi</a>]
-                            
-                                
-                                [<a href="https://discord.gg/Q23ATve" target="_blank">Chat</a>]
-                            
-                        </span>
+            <i class="fab fa-github"></i>
+            
+        
+                    </a>
+                    
+                    <a class="pelem__link" href="https://pypi.org/project/shopyo-settings/" target="_blank" rel="noopener" title="pypi">
                         
-                            <a target="_blank" href="https://pepy.tech/project/hooman">
-                                <img src="https://static.pepy.tech/personalized-badge/hooman?period=total&units=international_system&left_color=black&right_color=green&left_text=Downloads" alt="PyPI downloads">
-                            </a>
+            <i class="fas fa-box"></i>
+            
+        
+                    </a>
+                    
+                </div>
+            </div>
+            
+            
+            
+            
+            <div class="pelem pelem--ecosystem"
+                 title="Theme for Shopyo">
+                <div class="pelem__head">
+                    <span class="pelem__num">ECOSYSTEM</span>
+                    <div class="pelem__sym">SH</div>
+                </div>
+                <div class="pelem__name">shopyo-theme</div>
+                <div class="pelem__dl">
+                    
+                    <a href="https://pepy.tech/projects/shopyo-theme" target="_blank" rel="noopener">
+                        <img src="https://static.pepy.tech/personalized-badge/shopyo-theme?period=total&units=INTERNATIONAL_SYSTEM&left_color=BLACK&right_color=GREEN&left_text=downloads" alt="downloads" loading="lazy">
+                    </a>
+                    
+                </div>
+                <div class="pelem__links">
+                    
+                    <a class="pelem__link" href="https://github.com/shopyo/shopyo/tree/dev/default_packages/shopyo_theme" target="_blank" rel="noopener" title="github">
                         
-                        <div class="project-info">
-                            <p>A wrapper around PyGame for clean codebases.</p>
-                        </div>
-                    </td>
-                </tr>
-                
-                <tr>
-                    <td>
-                        <span class="project-name"><a href="https://github.com/abdur-rahmaanj/kapsula">Kapsula</a></span>
-                        <span class="project-links">
-                            
-                                
-                                [<a href="https://github.com/abdur-rahmaanj/kapsula" target="_blank">Github</a>]
-                            
-                                
-                                [<a href="https://pypi.org/project/kapsula/" target="_blank">Pypi</a>]
-                            
-                                
-                                [<a href="https://discord.gg/Q23ATve" target="_blank">Chat</a>]
-                            
-                        </span>
+            <i class="fab fa-github"></i>
+            
+        
+                    </a>
+                    
+                    <a class="pelem__link" href="https://pypi.org/project/shopyo-theme/" target="_blank" rel="noopener" title="pypi">
                         
-                            <a target="_blank" href="https://pepy.tech/project/kapsula">
-                                <img src="https://static.pepy.tech/personalized-badge/kapsula?period=total&units=international_system&left_color=black&right_color=green&left_text=Downloads" alt="PyPI downloads">
-                            </a>
+            <i class="fas fa-box"></i>
+            
+        
+                    </a>
+                    
+                </div>
+            </div>
+            
+            
+            
+            
+            <div class="pelem pelem--game"
+                 title="A wrapper around PyGame for clean codebases.">
+                <div class="pelem__head">
+                    <span class="pelem__num">GAME</span>
+                    <div class="pelem__sym">HO</div>
+                </div>
+                <div class="pelem__name">Hooman</div>
+                <div class="pelem__dl">
+                    
+                    <a href="https://pepy.tech/projects/hooman" target="_blank" rel="noopener">
+                        <img src="https://static.pepy.tech/personalized-badge/hooman?period=total&units=INTERNATIONAL_SYSTEM&left_color=BLACK&right_color=GREEN&left_text=downloads" alt="downloads" loading="lazy">
+                    </a>
+                    
+                </div>
+                <div class="pelem__links">
+                    
+                    <a class="pelem__link" href="https://github.com/abdur-rahmaanj/hooman" target="_blank" rel="noopener" title="github">
                         
-                        <div class="project-info">
-                            <p>Dead simple docs generator.
-Have a clear view of the codebase without knowing any tooling</p>
-                        </div>
-                    </td>
-                </tr>
-                
-                <tr>
-                    <td>
-                        <span class="project-name"><a href="https://github.com/shopyo/shopyo">Jamstack</a></span>
-                        <span class="project-links">
-                            
-                                
-                                [<a href="https://pypi.org/project/jamstack/" target="_blank">Pypi</a>]
-                            
-                                
-                                [<a href="https://github.com/abdur-rahmaanj/jamstack" target="_blank">Github</a>]
-                            
-                        </span>
+            <i class="fab fa-github"></i>
+            
+        
+                    </a>
+                    
+                    <a class="pelem__link" href="https://pypi.org/project/hooman/" target="_blank" rel="noopener" title="pypi">
                         
-                            <a target="_blank" href="https://pepy.tech/project/jamstack">
-                                <img src="https://static.pepy.tech/personalized-badge/jamstack?period=total&units=international_system&left_color=black&right_color=green&left_text=Downloads" alt="PyPI downloads">
-                            </a>
+            <i class="fas fa-box"></i>
+            
+        
+                    </a>
+                    
+                    <a class="pelem__link" href="https://discord.gg/Q23ATve" target="_blank" rel="noopener" title="chat">
                         
-                        <div class="project-info">
-                            <p>Lets you build static sites with Jinja, as simple or as complex as you like. It powers among others the site you 
-are looking at as well as <a href="https://flaskcwg.github.io/">the FlaskCWG site</a> which features a blog with tagging capabilities
-among others.</p>
-                        </div>
-                    </td>
-                </tr>
-                
-                <tr>
-                    <td>
-                        <span class="project-name"><a href="https://github.com/Abdur-rahmaanJ/meteomoris">meteomoris</a></span>
-                        <span class="project-links">
-                            
-                                
-                                [<a href="https://github.com/Abdur-rahmaanJ/meteomoris" target="_blank">Github</a>]
-                            
-                                
-                                [<a href="https://pypi.org/project/meteomoris/" target="_blank">Pypi</a>]
-                            
-                        </span>
+            <i class="fas fa-comment"></i>
+            
+        
+                    </a>
+                    
+                </div>
+            </div>
+            
+            
+            
+            
+            <div class="pelem pelem--tool"
+                 title="Dead simple docs generator. Have a clear view of the codebase without knowing any tooling">
+                <div class="pelem__head">
+                    <span class="pelem__num">TOOL</span>
+                    <div class="pelem__sym">KA</div>
+                </div>
+                <div class="pelem__name">Kapsula</div>
+                <div class="pelem__dl">
+                    
+                    <a href="https://pepy.tech/projects/kapsula" target="_blank" rel="noopener">
+                        <img src="https://static.pepy.tech/personalized-badge/kapsula?period=total&units=INTERNATIONAL_SYSTEM&left_color=BLACK&right_color=GREEN&left_text=downloads" alt="downloads" loading="lazy">
+                    </a>
+                    
+                </div>
+                <div class="pelem__links">
+                    
+                    <a class="pelem__link" href="https://github.com/abdur-rahmaanj/kapsula" target="_blank" rel="noopener" title="github">
                         
-                            <a target="_blank" href="https://pepy.tech/project/meteomoris">
-                                <img src="https://static.pepy.tech/personalized-badge/meteomoris?period=total&units=international_system&left_color=black&right_color=green&left_text=Downloads" alt="PyPI downloads">
-                            </a>
+            <i class="fab fa-github"></i>
+            
+        
+                    </a>
+                    
+                    <a class="pelem__link" href="https://pypi.org/project/kapsula/" target="_blank" rel="noopener" title="pypi">
                         
-                        <div class="project-info">
-                            <p>A package to get weather info about Mauritius taken from the country&rsquo;s weather station</p>
-                        </div>
-                    </td>
-                </tr>
-                
-                <tr>
-                    <td>
-                        <span class="project-name"><a href="https://github.com/Abdur-rahmaanJ/fastoo">fastoo</a></span>
-                        <span class="project-links">
-                            
-                                
-                                [<a href="https://github.com/Abdur-rahmaanJ/fastoo" target="_blank">Github</a>]
-                            
-                                
-                                [<a href="https://pypi.org/project/fastoo/" target="_blank">Pypi</a>]
-                            
-                        </span>
+            <i class="fas fa-box"></i>
+            
+        
+                    </a>
+                    
+                    <a class="pelem__link" href="https://discord.gg/Q23ATve" target="_blank" rel="noopener" title="chat">
                         
-                            <a target="_blank" href="https://pepy.tech/project/fastoo">
-                                <img src="https://static.pepy.tech/personalized-badge/fastoo?period=total&units=international_system&left_color=black&right_color=green&left_text=Downloads" alt="PyPI downloads">
-                            </a>
+            <i class="fas fa-comment"></i>
+            
+        
+                    </a>
+                    
+                </div>
+            </div>
+            
+            
+            
+            
+            <div class="pelem pelem--tool"
+                 title="Lets you build static sites with Jinja, as simple or as complex as you like. It powers among others the site you are...">
+                <div class="pelem__head">
+                    <span class="pelem__num">TOOL</span>
+                    <div class="pelem__sym">JA</div>
+                </div>
+                <div class="pelem__name">Jamstack</div>
+                <div class="pelem__dl">
+                    
+                    <a href="https://pepy.tech/projects/jamstack" target="_blank" rel="noopener">
+                        <img src="https://static.pepy.tech/personalized-badge/jamstack?period=total&units=INTERNATIONAL_SYSTEM&left_color=BLACK&right_color=GREEN&left_text=downloads" alt="downloads" loading="lazy">
+                    </a>
+                    
+                </div>
+                <div class="pelem__links">
+                    
+                    <a class="pelem__link" href="https://pypi.org/project/jamstack/" target="_blank" rel="noopener" title="pypi">
                         
-                        <div class="project-info">
-                            <p>Super-charged frameworks for building big fastapi apps</p>
-                        </div>
-                    </td>
-                </tr>
-                
-                <tr>
-                    <td>
-                        <span class="project-name"><a href="https://github.com/Abdur-rahmaanJ/phoning-home">phoning-home</a></span>
-                        <span class="project-links">
-                            
-                                
-                                [<a href="https://github.com/Abdur-rahmaanJ/phoning-home" target="_blank">Github</a>]
-                            
-                                
-                                [<a href="https://pypi.org/project/phoning-home/" target="_blank">Pypi</a>]
-                            
-                                
-                                [<a href="https://pepy.tech/projects/phoning-home" target="_blank">Pepy</a>]
-                            
-                        </span>
+            <i class="fas fa-box"></i>
+            
+        
+                    </a>
+                    
+                    <a class="pelem__link" href="https://github.com/abdur-rahmaanj/jamstack" target="_blank" rel="noopener" title="github">
                         
-                            <a target="_blank" href="https://pepy.tech/project/phoning-home">
-                                <img src="https://static.pepy.tech/personalized-badge/phoning-home?period=total&units=international_system&left_color=black&right_color=green&left_text=Downloads" alt="PyPI downloads">
-                            </a>
+            <i class="fab fa-github"></i>
+            
+        
+                    </a>
+                    
+                </div>
+            </div>
+            
+            
+            
+            
+            <div class="pelem pelem--data"
+                 title="A package to get weather info about Mauritius taken from the country's weather station">
+                <div class="pelem__head">
+                    <span class="pelem__num">DATA</span>
+                    <div class="pelem__sym">ME</div>
+                </div>
+                <div class="pelem__name">meteomoris</div>
+                <div class="pelem__dl">
+                    
+                    <a href="https://pepy.tech/projects/meteomoris" target="_blank" rel="noopener">
+                        <img src="https://static.pepy.tech/personalized-badge/meteomoris?period=total&units=INTERNATIONAL_SYSTEM&left_color=BLACK&right_color=GREEN&left_text=downloads" alt="downloads" loading="lazy">
+                    </a>
+                    
+                </div>
+                <div class="pelem__links">
+                    
+                    <a class="pelem__link" href="https://github.com/Abdur-rahmaanJ/meteomoris" target="_blank" rel="noopener" title="github">
                         
-                        <div class="project-info">
-                            <p>Phoning home, analytics and leaderboard with 0 server setup. Powered by Turso</p>
-                        </div>
-                    </td>
-                </tr>
-                
-                <tr>
-                    <td>
-                        <span class="project-name"><a href="https://github.com/Abdur-rahmaanJ/download-stats">Download-stats</a></span>
-                        <span class="project-links">
-                            
-                                
-                                [<a href="https://github.com/Abdur-rahmaanJ/download-stats" target="_blank">Pypi</a>]
-                            
-                                
-                                [<a href="https://github.com/Abdur-rahmaanJ/download-stats" target="_blank">Github</a>]
-                            
-                        </span>
+            <i class="fab fa-github"></i>
+            
+        
+                    </a>
+                    
+                    <a class="pelem__link" href="https://pypi.org/project/meteomoris/" target="_blank" rel="noopener" title="pypi">
                         
-                            <a target="_blank" href="https://pepy.tech/project/download-stats">
-                                <img src="https://static.pepy.tech/personalized-badge/download-stats?period=total&units=international_system&left_color=black&right_color=green&left_text=Downloads" alt="PyPI downloads">
-                            </a>
+            <i class="fas fa-box"></i>
+            
+        
+                    </a>
+                    
+                </div>
+            </div>
+            
+            
+            
+            
+            <div class="pelem pelem--tool"
+                 title="Super-charged frameworks for building big fastapi apps">
+                <div class="pelem__head">
+                    <span class="pelem__num">TOOL</span>
+                    <div class="pelem__sym">FA</div>
+                </div>
+                <div class="pelem__name">fastoo</div>
+                <div class="pelem__dl">
+                    
+                    <a href="https://pepy.tech/projects/fastoo" target="_blank" rel="noopener">
+                        <img src="https://static.pepy.tech/personalized-badge/fastoo?period=total&units=INTERNATIONAL_SYSTEM&left_color=BLACK&right_color=GREEN&left_text=downloads" alt="downloads" loading="lazy">
+                    </a>
+                    
+                </div>
+                <div class="pelem__links">
+                    
+                    <a class="pelem__link" href="https://github.com/Abdur-rahmaanJ/fastoo" target="_blank" rel="noopener" title="github">
                         
-                        <div class="project-info">
-                            <p>Download stats from pypi</p>
-                        </div>
-                    </td>
-                </tr>
-                
-                <tr>
-                    <td>
-                        <span class="project-name"><a href="https://github.com/Abdur-rahmaanJ/richterm">richterm</a></span>
-                        <span class="project-links">
-                            
-                                
-                                [<a href="https://crates.io/crates/richterm" target="_blank">Cratesio</a>]
-                            
-                                
-                                [<a href="https://github.com/Abdur-rahmaanJ/richterm" target="_blank">Github</a>]
-                            
-                        </span>
+            <i class="fab fa-github"></i>
+            
+        
+                    </a>
+                    
+                    <a class="pelem__link" href="https://pypi.org/project/fastoo/" target="_blank" rel="noopener" title="pypi">
                         
-                            <a target="_blank" href="https://crates.io/crates/richterm">
-                                <img alt="Crates.io" src="https://img.shields.io/crates/d/richterm">
-                            </a>
+            <i class="fas fa-box"></i>
+            
+        
+                    </a>
+                    
+                </div>
+            </div>
+            
+            
+            
+            
+            <div class="pelem pelem--data"
+                 title="Phoning home, analytics and leaderboard with 0 server setup. Powered by Turso">
+                <div class="pelem__head">
+                    <span class="pelem__num">DATA</span>
+                    <div class="pelem__sym">PH</div>
+                </div>
+                <div class="pelem__name">phoning-home</div>
+                <div class="pelem__dl">
+                    
+                    <a href="https://pepy.tech/projects/phoning-home" target="_blank" rel="noopener">
+                        <img src="https://static.pepy.tech/personalized-badge/phoning-home?period=total&units=INTERNATIONAL_SYSTEM&left_color=BLACK&right_color=GREEN&left_text=downloads" alt="downloads" loading="lazy">
+                    </a>
+                    
+                </div>
+                <div class="pelem__links">
+                    
+                    <a class="pelem__link" href="https://github.com/Abdur-rahmaanJ/phoning-home" target="_blank" rel="noopener" title="github">
                         
-                        <div class="project-info">
-                            <p>Rich terminals in rust. Follows Python&rsquo;s rich</p>
-                        </div>
-                    </td>
-                </tr>
-                
-                <tr>
-                    <td>
-                        <span class="project-name"><a href="https://github.com/pyhoneybot/honeybot">Honeybot</a></span>
-                        <span class="project-links">
-                            
-                                
-                                [<a href="https://github.com/pyhoneybot/honeybot" target="_blank">Github</a>]
-                            
-                                
-                                [<a href="https://discord.com/invite/E6zD4XT" target="_blank">Chat</a>]
-                            
-                        </span>
+            <i class="fab fa-github"></i>
+            
+        
+                    </a>
+                    
+                    <a class="pelem__link" href="https://pypi.org/project/phoning-home/" target="_blank" rel="noopener" title="pypi">
                         
-                            <a target="_blank" href="https://pepy.tech/project/honeybot">
-                                <img src="https://static.pepy.tech/personalized-badge/honeybot?period=total&units=international_system&left_color=black&right_color=green&left_text=Downloads" alt="PyPI downloads">
-                            </a>
+            <i class="fas fa-box"></i>
+            
+        
+                    </a>
+                    
+                    <a class="pelem__link" href="https://pepy.tech/projects/phoning-home" target="_blank" rel="noopener" title="pepy">
                         
-                        <div class="project-info">
-                            <p>An IRC bot built from scratch with an awesome collection of Plugins. It even has a contributed Monopoly plugin!</p>
-                        </div>
-                    </td>
-                </tr>
-                
-                <tr>
-                    <td>
-                        <span class="project-name"><a href="https://github.com/Abdur-rahmaanJ/finance-mauritius">finance-mauritius</a></span>
-                        <span class="project-links">
-                            
-                                
-                                [<a href="https://github.com/Abdur-rahmaanJ/finance-mauritius" target="_blank">Github</a>]
-                            
-                                
-                                [<a href="https://pypi.org/project/finance-mauritius/" target="_blank">Pypi</a>]
-                            
-                        </span>
+            <i class="fas fa-link"></i>
+        
+                    </a>
+                    
+                </div>
+            </div>
+            
+            
+            
+            
+            <div class="pelem pelem--data"
+                 title="Download stats from pypi">
+                <div class="pelem__head">
+                    <span class="pelem__num">DATA</span>
+                    <div class="pelem__sym">DO</div>
+                </div>
+                <div class="pelem__name">Download-stats</div>
+                <div class="pelem__dl">
+                    
+                    <a href="https://pepy.tech/projects/download-stats" target="_blank" rel="noopener">
+                        <img src="https://static.pepy.tech/personalized-badge/download-stats?period=total&units=INTERNATIONAL_SYSTEM&left_color=BLACK&right_color=GREEN&left_text=downloads" alt="downloads" loading="lazy">
+                    </a>
+                    
+                </div>
+                <div class="pelem__links">
+                    
+                    <a class="pelem__link" href="https://github.com/Abdur-rahmaanJ/download-stats" target="_blank" rel="noopener" title="pypi">
                         
-                            <a target="_blank" href="https://pepy.tech/project/finance-mauritius">
-                                <img src="https://static.pepy.tech/personalized-badge/finance-mauritius?period=total&units=international_system&left_color=black&right_color=green&left_text=Downloads" alt="PyPI downloads">
-                            </a>
+            <i class="fas fa-box"></i>
+            
+        
+                    </a>
+                    
+                    <a class="pelem__link" href="https://github.com/Abdur-rahmaanJ/download-stats" target="_blank" rel="noopener" title="github">
                         
-                        <div class="project-info">
-                            <p>Useful functions for Mauritius banks and financials institutions like MRA (Mauritius Revenue Authority)</p>
-                        </div>
-                    </td>
-                </tr>
-                
-                <tr>
-                    <td>
-                        <span class="project-name"><a href="https://github.com/Abdur-rahmaanJ/oreiller">oreiller</a></span>
-                        <span class="project-links">
-                            
-                                
-                                [<a href="https://github.com/Abdur-rahmaanJ/oreiller" target="_blank">Github</a>]
-                            
-                                
-                                [<a href="https://pypi.org/project/oreiller/" target="_blank">Pypi</a>]
-                            
-                        </span>
+            <i class="fab fa-github"></i>
+            
+        
+                    </a>
+                    
+                </div>
+            </div>
+            
+            
+            
+            
+            <div class="pelem pelem--terminal"
+                 title="Rich terminals in rust. Follows Python's rich">
+                <div class="pelem__head">
+                    <span class="pelem__num">TERMINAL</span>
+                    <div class="pelem__sym">RI</div>
+                </div>
+                <div class="pelem__name">richterm</div>
+                <div class="pelem__dl">
+                    
+                    <a href="https://crates.io/crates/richterm" target="_blank" rel="noopener">
+                        <img src="https://img.shields.io/crates/d/richterm?color=c2410c" alt="downloads" loading="lazy">
+                    </a>
+                    
+                </div>
+                <div class="pelem__links">
+                    
+                    <a class="pelem__link" href="https://crates.io/crates/richterm" target="_blank" rel="noopener" title="cratesio">
                         
-                            <a target="_blank" href="https://pepy.tech/project/oreiller">
-                                <img src="https://static.pepy.tech/personalized-badge/oreiller?period=total&units=international_system&left_color=black&right_color=green&left_text=Downloads" alt="PyPI downloads">
-                            </a>
+            <i class="fas fa-cube"></i>
+            
+        
+                    </a>
+                    
+                    <a class="pelem__link" href="https://github.com/Abdur-rahmaanJ/richterm" target="_blank" rel="noopener" title="github">
                         
-                        <div class="project-info">
-                            <p>The package for easy image manipulation backed by pillow power.</p>
-                        </div>
-                    </td>
-                </tr>
-                
-                <tr>
-                    <td>
-                        <span class="project-name"><a href="https://github.com/shopyo/shopcube">ShopCube</a></span>
-                        <span class="project-links">
-                            
-                                
-                                [<a href="https://github.com/shopyo/shopcube" target="_blank">Github</a>]
-                            
-                        </span>
+            <i class="fab fa-github"></i>
+            
+        
+                    </a>
+                    
+                </div>
+            </div>
+            
+            
+            
+            
+            <div class="pelem pelem--game pelem--feat"
+                 title="An IRC bot built from scratch with an awesome collection of Plugins. It even has a contributed Monopoly plugin!">
+                <div class="pelem__head">
+                    <span class="pelem__num">GAME</span>
+                    <div class="pelem__sym">HO</div>
+                </div>
+                <div class="pelem__name">Honeybot</div>
+                <div class="pelem__dl">
+                    
+                    <a href="https://pepy.tech/projects/honeybot" target="_blank" rel="noopener">
+                        <img src="https://static.pepy.tech/personalized-badge/honeybot?period=total&units=INTERNATIONAL_SYSTEM&left_color=BLACK&right_color=GREEN&left_text=downloads" alt="downloads" loading="lazy">
+                    </a>
+                    
+                </div>
+                <div class="pelem__links">
+                    
+                    <a class="pelem__link" href="https://github.com/pyhoneybot/honeybot" target="_blank" rel="noopener" title="github">
                         
-                            <a target="_blank" href="https://pepy.tech/project/shopcube">
-                                <img src="https://static.pepy.tech/personalized-badge/shopcube?period=total&units=international_system&left_color=black&right_color=green&left_text=Downloads" alt="PyPI downloads">
-                            </a>
+            <i class="fab fa-github"></i>
+            
+        
+                    </a>
+                    
+                    <a class="pelem__link" href="https://discord.com/invite/E6zD4XT" target="_blank" rel="noopener" title="chat">
                         
-                        <div class="project-info">
-                            <p>An ecommerce project in Flask which has among others: cart editing
-, multi-picture product zooming
-, checkout
-, orders
-, themes</p>
-                        </div>
-                    </td>
-                </tr>
-                
-                <tr>
-                    <td>
-                        <span class="project-name"><a href="https://github.com/Abdur-rahmaanJ/newsmoris">newsmoris</a></span>
-                        <span class="project-links">
-                            
-                                
-                                [<a href="https://github.com/Abdur-rahmaanJ/newsmoris" target="_blank">Github</a>]
-                            
-                                
-                                [<a href="https://pypi.org/project/newsmoris/" target="_blank">Pypi</a>]
-                            
-                        </span>
+            <i class="fas fa-comment"></i>
+            
+        
+                    </a>
+                    
+                </div>
+            </div>
+            
+            
+            
+            
+            <div class="pelem pelem--data"
+                 title="Useful functions for Mauritius banks and financials institutions like MRA (Mauritius Revenue Authority)">
+                <div class="pelem__head">
+                    <span class="pelem__num">DATA</span>
+                    <div class="pelem__sym">FI</div>
+                </div>
+                <div class="pelem__name">finance-mauritius</div>
+                <div class="pelem__dl">
+                    
+                    <a href="https://pepy.tech/projects/finance-mauritius" target="_blank" rel="noopener">
+                        <img src="https://static.pepy.tech/personalized-badge/finance-mauritius?period=total&units=INTERNATIONAL_SYSTEM&left_color=BLACK&right_color=GREEN&left_text=downloads" alt="downloads" loading="lazy">
+                    </a>
+                    
+                </div>
+                <div class="pelem__links">
+                    
+                    <a class="pelem__link" href="https://github.com/Abdur-rahmaanJ/finance-mauritius" target="_blank" rel="noopener" title="github">
                         
-                            <a target="_blank" href="https://pepy.tech/project/newsmoris">
-                                <img src="https://static.pepy.tech/personalized-badge/newsmoris?period=total&units=international_system&left_color=black&right_color=green&left_text=Downloads" alt="PyPI downloads">
-                            </a>
+            <i class="fab fa-github"></i>
+            
+        
+                    </a>
+                    
+                    <a class="pelem__link" href="https://pypi.org/project/finance-mauritius/" target="_blank" rel="noopener" title="pypi">
                         
-                        <div class="project-info">
-                            <p>A package to get news about Mauritius grouped by topnews as well as by category and article reading.</p>
-                        </div>
-                    </td>
-                </tr>
-                
-                <tr>
-                    <td>
-                        <span class="project-name"><a href="https://github.com/abdur-rahmaanj/termcharts">termcharts</a></span>
-                        <span class="project-links">
-                            
-                                
-                                [<a href="https://github.com/abdur-rahmaanj/termcharts" target="_blank">Github</a>]
-                            
-                                
-                                [<a href="https://pypi.org/project/termcharts/" target="_blank">Pypi</a>]
-                            
-                        </span>
+            <i class="fas fa-box"></i>
+            
+        
+                    </a>
+                    
+                </div>
+            </div>
+            
+            
+            
+            
+            <div class="pelem pelem--image"
+                 title="The package for easy image manipulation backed by pillow power.">
+                <div class="pelem__head">
+                    <span class="pelem__num">IMAGE</span>
+                    <div class="pelem__sym">OR</div>
+                </div>
+                <div class="pelem__name">oreiller</div>
+                <div class="pelem__dl">
+                    
+                    <a href="https://pepy.tech/projects/oreiller" target="_blank" rel="noopener">
+                        <img src="https://static.pepy.tech/personalized-badge/oreiller?period=total&units=INTERNATIONAL_SYSTEM&left_color=BLACK&right_color=GREEN&left_text=downloads" alt="downloads" loading="lazy">
+                    </a>
+                    
+                </div>
+                <div class="pelem__links">
+                    
+                    <a class="pelem__link" href="https://github.com/Abdur-rahmaanJ/oreiller" target="_blank" rel="noopener" title="github">
                         
-                            <a target="_blank" href="https://pepy.tech/project/termcharts">
-                                <img src="https://static.pepy.tech/personalized-badge/termcharts?period=total&units=international_system&left_color=black&right_color=green&left_text=Downloads" alt="PyPI downloads">
-                            </a>
+            <i class="fab fa-github"></i>
+            
+        
+                    </a>
+                    
+                    <a class="pelem__link" href="https://pypi.org/project/oreiller/" target="_blank" rel="noopener" title="pypi">
                         
-                        <div class="project-info">
-                            <p>Rich-compatible terminal charts</p>
-                        </div>
-                    </td>
-                </tr>
-                
-                <tr>
-                    <td>
-                        <span class="project-name"><a href="https://github.com/shopyo/pythoncms/">pythoncms</a></span>
-                        <span class="project-links">
-                            
-                                
-                                [<a href="https://github.com/shopyo/pythoncms/" target="_blank">Github</a>]
-                            
-                                
-                                [<a href="https://pypi.org/project/pythoncms/" target="_blank">Pypi</a>]
-                            
-                        </span>
+            <i class="fas fa-box"></i>
+            
+        
+                    </a>
+                    
+                </div>
+            </div>
+            
+            
+            
+            
+            <div class="pelem pelem--ecosystem pelem--feat"
+                 title="An ecommerce project in Flask which has among others: cart editing , multi-picture product zooming , checkout ,...">
+                <div class="pelem__head">
+                    <span class="pelem__num">ECOSYSTEM</span>
+                    <div class="pelem__sym">SH</div>
+                </div>
+                <div class="pelem__name">ShopCube</div>
+                <div class="pelem__dl">
+                    
+                    <a href="https://pepy.tech/projects/shopcube" target="_blank" rel="noopener">
+                        <img src="https://static.pepy.tech/personalized-badge/shopcube?period=total&units=INTERNATIONAL_SYSTEM&left_color=BLACK&right_color=GREEN&left_text=downloads" alt="downloads" loading="lazy">
+                    </a>
+                    
+                </div>
+                <div class="pelem__links">
+                    
+                    <a class="pelem__link" href="https://github.com/shopyo/shopcube" target="_blank" rel="noopener" title="github">
                         
-                            <a target="_blank" href="https://pepy.tech/project/pythoncms">
-                                <img src="https://static.pepy.tech/personalized-badge/pythoncms?period=total&units=international_system&left_color=black&right_color=green&left_text=Downloads" alt="PyPI downloads">
-                            </a>
+            <i class="fab fa-github"></i>
+            
+        
+                    </a>
+                    
+                </div>
+            </div>
+            
+            
+            
+            
+            <div class="pelem pelem--data"
+                 title="A package to get news about Mauritius grouped by topnews as well as by category and article reading.">
+                <div class="pelem__head">
+                    <span class="pelem__num">DATA</span>
+                    <div class="pelem__sym">NE</div>
+                </div>
+                <div class="pelem__name">newsmoris</div>
+                <div class="pelem__dl">
+                    
+                    <a href="https://pepy.tech/projects/newsmoris" target="_blank" rel="noopener">
+                        <img src="https://static.pepy.tech/personalized-badge/newsmoris?period=total&units=INTERNATIONAL_SYSTEM&left_color=BLACK&right_color=GREEN&left_text=downloads" alt="downloads" loading="lazy">
+                    </a>
+                    
+                </div>
+                <div class="pelem__links">
+                    
+                    <a class="pelem__link" href="https://github.com/Abdur-rahmaanJ/newsmoris" target="_blank" rel="noopener" title="github">
                         
-                        <div class="project-info">
-                            <p>A CMS that you understand.</p>
-                        </div>
-                    </td>
-                </tr>
-                
-                <tr>
-                    <td>
-                        <span class="project-name"><a href="https://github.com/shopyo/marketflow">MarketFlow</a></span>
-                        <span class="project-links">
-                            
-                                
-                                [<a href="https://github.com/shopyo/marketflow" target="_blank">Github</a>]
-                            
-                        </span>
+            <i class="fab fa-github"></i>
+            
+        
+                    </a>
+                    
+                    <a class="pelem__link" href="https://pypi.org/project/newsmoris/" target="_blank" rel="noopener" title="pypi">
                         
-                        <div class="project-info">
-                            <p>A marketplace in Flask which has among others: vendor registration
-, vendor isolation
-, cart
-, multi-picture product zooming
-, checkout
-, orders
-, themes</p>
-                        </div>
-                    </td>
-                </tr>
-                
-                <tr>
-                    <td>
-                        <span class="project-name"><a href="https://github.com/Abdur-rahmaanJ/greenBerry">GreenBerry</a></span>
-                        <span class="project-links">
-                            
-                                
-                                [<a href="https://github.com/Abdur-rahmaanJ/greenBerry" target="_blank">Github</a>]
-                            
-                                
-                                [<a href="https://abdur-rahmaanj.github.io/greenBerry/" target="_blank">Docs</a>]
-                            
-                        </span>
+            <i class="fas fa-box"></i>
+            
+        
+                    </a>
+                    
+                </div>
+            </div>
+            
+            
+            
+            
+            <div class="pelem pelem--terminal"
+                 title="Rich-compatible terminal charts">
+                <div class="pelem__head">
+                    <span class="pelem__num">TERMINAL</span>
+                    <div class="pelem__sym">TE</div>
+                </div>
+                <div class="pelem__name">termcharts</div>
+                <div class="pelem__dl">
+                    
+                    <a href="https://pepy.tech/projects/termcharts" target="_blank" rel="noopener">
+                        <img src="https://static.pepy.tech/personalized-badge/termcharts?period=total&units=INTERNATIONAL_SYSTEM&left_color=BLACK&right_color=GREEN&left_text=downloads" alt="downloads" loading="lazy">
+                    </a>
+                    
+                </div>
+                <div class="pelem__links">
+                    
+                    <a class="pelem__link" href="https://github.com/abdur-rahmaanj/termcharts" target="_blank" rel="noopener" title="github">
                         
-                            <a target="_blank" href="https://pepy.tech/project/greenberry">
-                                <img src="https://static.pepy.tech/personalized-badge/greenberry?period=total&units=international_system&left_color=black&right_color=green&left_text=Downloads" alt="PyPI downloads">
-                            </a>
+            <i class="fab fa-github"></i>
+            
+        
+                    </a>
+                    
+                    <a class="pelem__link" href="https://pypi.org/project/termcharts/" target="_blank" rel="noopener" title="pypi">
                         
-                        <div class="project-info">
-                            <p>A one line statement language with IDE,</p>
-                        </div>
-                    </td>
-                </tr>
-                
-                <tr>
-                    <td>
-                        <span class="project-name"><a href="https://github.com/Abdur-rahmaanJ/ppython">PPython</a></span>
-                        <span class="project-links">
-                            
-                                
-                                [<a href="https://github.com/Abdur-rahmaanJ/ppython" target="_blank">Github</a>]
-                            
-                        </span>
+            <i class="fas fa-box"></i>
+            
+        
+                    </a>
+                    
+                </div>
+            </div>
+            
+            
+            
+            
+            <div class="pelem pelem--ecosystem"
+                 title="A CMS that you understand.">
+                <div class="pelem__head">
+                    <span class="pelem__num">ECOSYSTEM</span>
+                    <div class="pelem__sym">PY</div>
+                </div>
+                <div class="pelem__name">pythoncms</div>
+                <div class="pelem__dl">
+                    
+                    <a href="https://pepy.tech/projects/pythoncms" target="_blank" rel="noopener">
+                        <img src="https://static.pepy.tech/personalized-badge/pythoncms?period=total&units=INTERNATIONAL_SYSTEM&left_color=BLACK&right_color=GREEN&left_text=downloads" alt="downloads" loading="lazy">
+                    </a>
+                    
+                </div>
+                <div class="pelem__links">
+                    
+                    <a class="pelem__link" href="https://github.com/shopyo/pythoncms/" target="_blank" rel="noopener" title="github">
                         
-                        <div class="project-info">
-                            <p>Implementing <a href="https://www.processing.org">processing.org</a>&lsquo;s lib in pure Python with absolutely no dependencies</p>
-                        </div>
-                    </td>
-                </tr>
-                
-                <tr>
-                    <td>
-                        <span class="project-name"><a href="https://github.com/Abdur-rahmaanJ/RedittyWalls">Reditty-Walls</a></span>
-                        <span class="project-links">
-                            
-                                
-                                [<a href="https://github.com/Abdur-rahmaanJ/RedittyWalls" target="_blank">Github</a>]
-                            
-                        </span>
+            <i class="fab fa-github"></i>
+            
+        
+                    </a>
+                    
+                    <a class="pelem__link" href="https://pypi.org/project/pythoncms/" target="_blank" rel="noopener" title="pypi">
                         
-                        <div class="project-info">
-                            <p>Wallpaper changer soft with walls pulled from Reddit</p>
-                        </div>
-                    </td>
-                </tr>
-                
-                <tr>
-                    <td>
-                        <span class="project-name"><a href="https://github.com/Abdur-rahmaanJ/pyMsPaint">pyMsPaint</a></span>
-                        <span class="project-links">
-                            
-                                
-                                [<a href="https://github.com/Abdur-rahmaanJ/pyMsPaint" target="_blank">Github</a>]
-                            
-                        </span>
+            <i class="fas fa-box"></i>
+            
+        
+                    </a>
+                    
+                </div>
+            </div>
+            
+            
+            
+            
+            <div class="pelem pelem--ecosystem pelem--feat"
+                 title="A marketplace in Flask which has among others: vendor registration , vendor isolation , cart , multi-picture product...">
+                <div class="pelem__head">
+                    <span class="pelem__num">ECOSYSTEM</span>
+                    <div class="pelem__sym">MA</div>
+                </div>
+                <div class="pelem__name">MarketFlow</div>
+                <div class="pelem__dl">
+                    
+                </div>
+                <div class="pelem__links">
+                    
+                    <a class="pelem__link" href="https://github.com/shopyo/marketflow" target="_blank" rel="noopener" title="github">
                         
-                        <div class="project-info">
-                            <p>Program MsPaint using python. As accurate as your canvas</p>
-                        </div>
-                    </td>
-                </tr>
-                
-                <tr>
-                    <td>
-                        <span class="project-name"><a href="https://github.com/Abdur-rahmaanJ/InternalO">InternalO</a></span>
-                        <span class="project-links">
-                            
-                                
-                                [<a href="https://github.com/Abdur-rahmaanJ/InternalO" target="_blank">Github</a>]
-                            
-                        </span>
+            <i class="fab fa-github"></i>
+            
+        
+                    </a>
+                    
+                </div>
+            </div>
+            
+            
+            
+            
+            <div class="pelem pelem--web"
+                 title="A one line statement language with IDE,">
+                <div class="pelem__head">
+                    <span class="pelem__num">WEB</span>
+                    <div class="pelem__sym">GR</div>
+                </div>
+                <div class="pelem__name">GreenBerry</div>
+                <div class="pelem__dl">
+                    
+                    <a href="https://pepy.tech/projects/greenberry" target="_blank" rel="noopener">
+                        <img src="https://static.pepy.tech/personalized-badge/greenberry?period=total&units=INTERNATIONAL_SYSTEM&left_color=BLACK&right_color=GREEN&left_text=downloads" alt="downloads" loading="lazy">
+                    </a>
+                    
+                </div>
+                <div class="pelem__links">
+                    
+                    <a class="pelem__link" href="https://github.com/Abdur-rahmaanJ/greenBerry" target="_blank" rel="noopener" title="github">
                         
-                        <div class="project-info">
-                            <p>An employee roster system with in-mail written in PHP</p>
-                        </div>
-                    </td>
-                </tr>
-                
-                <tr>
-                    <td>
-                        <span class="project-name"><a href="https://github.com/Abdur-rahmaanJ/aidre">Aidre</a></span>
-                        <span class="project-links">
-                            
-                                
-                                [<a href="https://github.com/Abdur-rahmaanJ/aidre" target="_blank">Github</a>]
-                            
-                        </span>
+            <i class="fab fa-github"></i>
+            
+        
+                    </a>
+                    
+                    <a class="pelem__link" href="https://abdur-rahmaanj.github.io/greenBerry/" target="_blank" rel="noopener" title="docs">
                         
-                        <div class="project-info">
-                            <p>An editor for .po translations</p>
-                        </div>
-                    </td>
-                </tr>
-                
-            </tbody>
-        </table>
+            <i class="fas fa-book"></i>
+            
+        
+                    </a>
+                    
+                </div>
+            </div>
+            
+            
+            
+            
+            <div class="pelem pelem--web"
+                 title="Implementing [processing.org](https://www.processing.org)'s lib in pure Python with absolutely no dependencies">
+                <div class="pelem__head">
+                    <span class="pelem__num">WEB</span>
+                    <div class="pelem__sym">PP</div>
+                </div>
+                <div class="pelem__name">PPython</div>
+                <div class="pelem__dl">
+                    
+                </div>
+                <div class="pelem__links">
+                    
+                    <a class="pelem__link" href="https://github.com/Abdur-rahmaanJ/ppython" target="_blank" rel="noopener" title="github">
+                        
+            <i class="fab fa-github"></i>
+            
+        
+                    </a>
+                    
+                </div>
+            </div>
+            
+            
+            
+            
+            <div class="pelem pelem--web"
+                 title="Wallpaper changer soft with walls pulled from Reddit">
+                <div class="pelem__head">
+                    <span class="pelem__num">WEB</span>
+                    <div class="pelem__sym">RE</div>
+                </div>
+                <div class="pelem__name">Reditty-Walls</div>
+                <div class="pelem__dl">
+                    
+                </div>
+                <div class="pelem__links">
+                    
+                    <a class="pelem__link" href="https://github.com/Abdur-rahmaanJ/RedittyWalls" target="_blank" rel="noopener" title="github">
+                        
+            <i class="fab fa-github"></i>
+            
+        
+                    </a>
+                    
+                </div>
+            </div>
+            
+            
+            
+            
+            <div class="pelem pelem--web"
+                 title="Program MsPaint using python. As accurate as your canvas">
+                <div class="pelem__head">
+                    <span class="pelem__num">WEB</span>
+                    <div class="pelem__sym">PY</div>
+                </div>
+                <div class="pelem__name">pyMsPaint</div>
+                <div class="pelem__dl">
+                    
+                </div>
+                <div class="pelem__links">
+                    
+                    <a class="pelem__link" href="https://github.com/Abdur-rahmaanJ/pyMsPaint" target="_blank" rel="noopener" title="github">
+                        
+            <i class="fab fa-github"></i>
+            
+        
+                    </a>
+                    
+                </div>
+            </div>
+            
+            
+            
+            
+            <div class="pelem pelem--web"
+                 title="An employee roster system with in-mail written in PHP">
+                <div class="pelem__head">
+                    <span class="pelem__num">WEB</span>
+                    <div class="pelem__sym">IN</div>
+                </div>
+                <div class="pelem__name">InternalO</div>
+                <div class="pelem__dl">
+                    
+                </div>
+                <div class="pelem__links">
+                    
+                    <a class="pelem__link" href="https://github.com/Abdur-rahmaanJ/InternalO" target="_blank" rel="noopener" title="github">
+                        
+            <i class="fab fa-github"></i>
+            
+        
+                    </a>
+                    
+                </div>
+            </div>
+            
+            
+            
+            
+            <div class="pelem pelem--web"
+                 title="An editor for .po translations">
+                <div class="pelem__head">
+                    <span class="pelem__num">WEB</span>
+                    <div class="pelem__sym">AI</div>
+                </div>
+                <div class="pelem__name">Aidre</div>
+                <div class="pelem__dl">
+                    
+                </div>
+                <div class="pelem__links">
+                    
+                    <a class="pelem__link" href="https://github.com/Abdur-rahmaanJ/aidre" target="_blank" rel="noopener" title="github">
+                        
+            <i class="fab fa-github"></i>
+            
+        
+                    </a>
+                    
+                </div>
+            </div>
+            
+        </div>
+
     </div>
 </div>
+
+<style>
+.ptable {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    justify-content: center;
+    margin: 2.5rem 0;
+}
+
+.pelem {
+    width: 120px;
+    padding: 0.7rem 0.5rem 0.5rem;
+    border-radius: 6px;
+    background: var(--surface);
+    border: 1px solid var(--line);
+    text-align: center;
+    cursor: default;
+    transition: transform .12s, box-shadow .12s;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.pelem:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 20px rgba(0,0,0,.07);
+}
+
+.pelem--feat {
+    border-color: var(--accent);
+    border-width: 2px;
+}
+
+.pelem__head {
+    position: relative;
+    width: 100%;
+    margin-bottom: 0.2rem;
+}
+
+.pelem__num {
+    position: absolute;
+    top: -2px;
+    right: 0;
+    font-size: 0.5rem;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    opacity: 0.7;
+}
+
+.pelem__sym {
+    font-family: var(--font-title);
+    font-size: 1.6rem;
+    font-weight: 700;
+    line-height: 1.3;
+    color: var(--ink);
+}
+
+.pelem__name {
+    font-family: var(--font-main);
+    font-size: 0.64rem;
+    line-height: 1.3;
+    color: var(--ink);
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    max-width: 100%;
+    margin-bottom: 0.25rem;
+}
+
+.pelem__dl {
+    line-height: 0;
+    margin-bottom: 0.35rem;
+}
+
+.pelem__dl img {
+    height: 14px;
+    vertical-align: middle;
+    border-radius: 2px;
+}
+
+.pelem__links {
+    display: flex;
+    gap: 0.4rem;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.pelem__link {
+    color: var(--ink-muted);
+    font-size: 0.7rem;
+    transition: color .12s;
+    line-height: 1;
+}
+
+.pelem__link:hover {
+    color: var(--accent);
+}
+
+/* category accent colours */
+.pelem--web      .pelem__num { color: #3b82f6; }
+.pelem--ecosystem .pelem__num { color: #ec4899; }
+.pelem--ai       .pelem__num { color: #8b5cf6; }
+.pelem--game     .pelem__num { color: #f59e0b; }
+.pelem--data     .pelem__num { color: #10b981; }
+.pelem--tool     .pelem__num { color: #6366f1; }
+.pelem--terminal .pelem__num { color: #6b7280; }
+.pelem--image    .pelem__num { color: #f43f5e; }
+
+@media (max-width: 640px) {
+    .pelem { width: 100px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .pelem { transition: none; }
+}
+</style>
     
     
 
@@ -2038,70 +3428,79 @@ among others.</p>
                 </span>
             </div>
 
-            <div class="timeline">
-                <header class="timeline-header">
-                    <span class="tag is-medium is-primary">End</span>
-                </header>
+            <ul class="ms-list">
+                
+                
 
                 
                 
-                <div class="timeline-item">
-                    <div class="timeline-marker"></div>
-                    <div class="timeline-content">
-                        <p class="heading">
-                            [April 2021] <a href="https://github.com/Abdur-RahmaanJ">Github Badge Awarded for the Ingenuity Mars Helicopter Mission</a>
-                        </p>
-                        <p>Appended to Github profile.</p>
+                <li class="ms-item">
+                    <div class="ms-badge">
+                        <svg viewBox="0 0 52 60" class="ms-badge__svg"><defs><linearGradient id="g1" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#fde68a"/><stop offset="1" stop-color="#d97706"/></linearGradient></defs><path d="M26 1 L51 15.5 L51 44.5 L26 59 L1 44.5 L1 15.5 Z" fill="url(#g1)" stroke="#92400e" stroke-width="1"/><path d="M26 5 L47 17.25 L47 42.75 L26 55 L5 42.75 L5 17.25 Z" fill="none" stroke="rgba(255,255,255,.35)" stroke-width=".6"/><path d="M18 30 L24 36 L35 23" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                        <span class="ms-badge__tier">Gold</span>
                     </div>
-                </div>
-                
-                
-                
-                <div class="timeline-item">
-                    <div class="timeline-marker"></div>
-                    <div class="timeline-content">
-                        <p class="heading">
-                            [Mar 2021] <a href="https://www.linkedin.com/posts/appinv_opensource-mauritius-activity-6774529671146037248-bKLA">We helped 100+ people get into OpenSource</a>
-                        </p>
-                        <p>Counted from my Github projects!</p>
+                    <div class="ms-card">
+                        <span class="ms-date">April 2021</span>
+                        <a class="ms-title" href="https://github.com/Abdur-RahmaanJ">Github Badge Awarded for the Ingenuity Mars Helicopter Mission</a>
+                        <p class="ms-notes">Appended to Github profile.</p>
                     </div>
-                </div>
+                </li>
                 
                 
                 
-                <div class="timeline-item">
-                    <div class="timeline-marker"></div>
-                    <div class="timeline-content">
-                        <p class="heading">
-                            [Mar 2021] <a href="https://pepy.tech/project/hooman">Hooman gets 18k downloads</a>
-                        </p>
-                        <p>The PyGame library seems to get adopted on PyPi</p>
+                <li class="ms-item">
+                    <div class="ms-badge">
+                        <svg viewBox="0 0 52 60" class="ms-badge__svg"><defs><linearGradient id="g2" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#93c5fd"/><stop offset="1" stop-color="#1d4ed8"/></linearGradient></defs><path d="M26 1 L51 15.5 L51 44.5 L26 59 L1 44.5 L1 15.5 Z" fill="url(#g2)" stroke="#1e3a8a" stroke-width="1"/><path d="M26 5 L47 17.25 L47 42.75 L26 55 L5 42.75 L5 17.25 Z" fill="none" stroke="rgba(255,255,255,.35)" stroke-width=".6"/><path d="M26 14 L29.5 22.5 L38.5 23 L31.5 29 L34 38 L26 33 L18 38 L20.5 29 L13.5 23 L22.5 22.5 Z" fill="#fff"/></svg>
+                        <span class="ms-badge__tier">Platinum</span>
                     </div>
-                </div>
-                
-                
-                
-                <div class="timeline-item">
-                    <div class="timeline-marker"></div>
-                    <div class="timeline-content">
-                        <p class="heading">
-                            [Dec 2020] <a href="https://news.ycombinator.com/item?id=25427504">Article Makes it to the HackerNews front page</a>
-                        </p>
-                        <p><a href="https://www.pythonkitchen.com/legally-free-python-books-list/">The Most Complete List of Legally Free Python Books</a> makes it, reteeted and reshared a lot here and there</p>
+                    <div class="ms-card">
+                        <span class="ms-date">Mar 2021</span>
+                        <a class="ms-title" href="https://www.linkedin.com/posts/appinv_opensource-mauritius-activity-6774529671146037248-bKLA">We helped 100+ people get into OpenSource</a>
+                        <p class="ms-notes">Counted from my Github projects!</p>
                     </div>
-                </div>
+                </li>
                 
                 
                 
-                <div class="timeline-item">
-                    <div class="timeline-marker"></div>
-                    <div class="timeline-content">
-                        <p class="heading">
-                            [Dec 2020] <a href="https://pycoders.com/issues/453">RealPython's Newsletter selected article in issue #453</a>
-                        </p>
-                        <p>The article <a href="https://www.pythonkitchen.com/zen-of-python-in-depth/">"The Zen Of Python: A Most In Depth Article"</a> got selected in PyCoders weekly. I could not find a more thourough article on the Zen written before. Hence the claim: "The most in-depth article about the Zen ever written in history"</p>
+                <li class="ms-item">
+                    <div class="ms-badge">
+                        <svg viewBox="0 0 52 60" class="ms-badge__svg"><defs><linearGradient id="g3" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#d8b4fe"/><stop offset="1" stop-color="#7e22ce"/></linearGradient></defs><path d="M26 1 L51 15.5 L51 44.5 L26 59 L1 44.5 L1 15.5 Z" fill="url(#g3)" stroke="#581c87" stroke-width="1"/><path d="M26 5 L47 17.25 L47 42.75 L26 55 L5 42.75 L5 17.25 Z" fill="none" stroke="rgba(255,255,255,.35)" stroke-width=".6"/><path d="M28 14 L18 32 L25 32 L22 46 L34 28 L27 28 Z" fill="#fff"/></svg>
+                        <span class="ms-badge__tier">Diamond</span>
                     </div>
-                </div>
+                    <div class="ms-card">
+                        <span class="ms-date">Mar 2021</span>
+                        <a class="ms-title" href="https://pepy.tech/project/hooman">Hooman gets 18k downloads</a>
+                        <p class="ms-notes">The PyGame library seems to get adopted on PyPi</p>
+                    </div>
+                </li>
+                
+                
+                
+                <li class="ms-item">
+                    <div class="ms-badge">
+                        <svg viewBox="0 0 52 60" class="ms-badge__svg"><defs><linearGradient id="g4" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#f3f4f6"/><stop offset="1" stop-color="#6b7280"/></linearGradient></defs><path d="M26 1 L51 15.5 L51 44.5 L26 59 L1 44.5 L1 15.5 Z" fill="url(#g4)" stroke="#374151" stroke-width="1"/><path d="M26 5 L47 17.25 L47 42.75 L26 55 L5 42.75 L5 17.25 Z" fill="none" stroke="rgba(255,255,255,.35)" stroke-width=".6"/><circle cx="26" cy="30" r="11" fill="none" stroke="#fff" stroke-width="2.5"/><circle cx="26" cy="30" r="5" fill="none" stroke="#fff" stroke-width="2.5"/><circle cx="26" cy="30" r="1.5" fill="#fff"/></svg>
+                        <span class="ms-badge__tier">Silver</span>
+                    </div>
+                    <div class="ms-card">
+                        <span class="ms-date">Dec 2020</span>
+                        <a class="ms-title" href="https://news.ycombinator.com/item?id=25427504">Article Makes it to the HackerNews front page</a>
+                        <p class="ms-notes"><a href="https://www.pythonkitchen.com/legally-free-python-books-list/">The Most Complete List of Legally Free Python Books</a> makes it, reteeted and reshared a lot here and there</p>
+                    </div>
+                </li>
+                
+                
+                
+                <li class="ms-item">
+                    <div class="ms-badge">
+                        <svg viewBox="0 0 52 60" class="ms-badge__svg"><defs><linearGradient id="g5" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#fdba74"/><stop offset="1" stop-color="#c2410c"/></linearGradient></defs><path d="M26 1 L51 15.5 L51 44.5 L26 59 L1 44.5 L1 15.5 Z" fill="url(#g5)" stroke="#7c2d12" stroke-width="1"/><path d="M26 5 L47 17.25 L47 42.75 L26 55 L5 42.75 L5 17.25 Z" fill="none" stroke="rgba(255,255,255,.35)" stroke-width=".6"/><path d="M20 40 L20 32 C16 30 16 24 20 22 C20 18 24 16 26 18 C28 16 32 18 32 22 C36 24 36 30 32 32 L32 40 Z" fill="#fff"/><rect x="22" y="40" width="8" height="3" rx="1" fill="#fff"/></svg>
+                        <span class="ms-badge__tier">Bronze</span>
+                    </div>
+                    <div class="ms-card">
+                        <span class="ms-date">Dec 2020</span>
+                        <a class="ms-title" href="https://pycoders.com/issues/453">RealPython's Newsletter selected article in issue #453</a>
+                        <p class="ms-notes">The article <a href="https://www.pythonkitchen.com/zen-of-python-in-depth/">"The Zen Of Python: A Most In Depth Article"</a> got selected in PyCoders weekly. I could not find a more thourough article on the Zen written before. Hence the claim: "The most in-depth article about the Zen ever written in history"</p>
+                    </div>
+                </li>
                 
                 
                 
@@ -2154,7 +3553,7 @@ among others.</p>
                 
                 
                 
-            </div>
+            </ul>
 
             <div style="margin-top: 1.5rem;">
                 <a class="btn btn--ghost btn--sm" target="_blank" href="journey">View dev journey &rarr;</a>
@@ -2162,6 +3561,105 @@ among others.</p>
         </div>
     </div>
 </div>
+
+<style>
+.ms-list {
+    list-style: none;
+    padding: 0;
+    margin: 2rem 0 0;
+    position: relative;
+}
+.ms-list::before {
+    content: '';
+    position: absolute;
+    left: 25px;
+    top: 0;
+    bottom: 0;
+    width: 2px;
+    background: linear-gradient(to bottom, var(--line), transparent);
+}
+.ms-item {
+    display: flex;
+    gap: 1.25rem;
+    align-items: flex-start;
+    position: relative;
+    padding-bottom: 1.75rem;
+}
+.ms-item:last-child { padding-bottom: 0; }
+.ms-badge {
+    flex-shrink: 0;
+    width: 52px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.25rem;
+    position: relative;
+    z-index: 2;
+}
+.ms-badge__svg {
+    width: 52px;
+    height: 60px;
+    display: block;
+    filter: drop-shadow(0 2px 4px rgba(0,0,0,.12));
+}
+.ms-badge__tier {
+    font-size: 0.5rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--ink-muted);
+    font-weight: 600;
+}
+.ms-card {
+    flex: 1;
+    background: var(--surface, #fff);
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    padding: 0.75rem 1rem;
+    margin-top: 0.5rem;
+    transition: box-shadow .2s ease, transform .2s ease;
+}
+.ms-card:hover {
+    box-shadow: 0 4px 16px rgba(0,0,0,.08);
+    transform: translateY(-1px);
+}
+.ms-date {
+    font-size: 0.6rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--ink-muted);
+    font-weight: 600;
+    display: block;
+    margin-bottom: 0.2rem;
+}
+.ms-title {
+    font-family: var(--font-title);
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: var(--ink);
+    text-decoration: none;
+    line-height: 1.3;
+    display: block;
+}
+.ms-title:hover { color: var(--accent, #dc2626); }
+.ms-notes {
+    font-size: 0.78rem;
+    color: var(--ink-muted);
+    line-height: 1.5;
+    margin: 0.35rem 0 0;
+}
+.ms-notes a { color: var(--accent, #dc2626); }
+
+@media (max-width: 640px) {
+    .ms-item { gap: 0.75rem; }
+    .ms-list::before { left: 17px; }
+    .ms-badge { width: 36px; }
+    .ms-badge__svg { width: 36px; height: 42px; }
+    .ms-badge__tier { font-size: 0.42rem; }
+    .ms-card { padding: 0.6rem 0.75rem; }
+    .ms-title { font-size: 0.85rem; }
+    .ms-notes { font-size: 0.72rem; }
+}
+</style>
     <div class="section" id="community">
     <div class="container">
         <header class="sec-head sec-head--center">
@@ -2172,10 +3670,14 @@ among others.</p>
 
         <div class="container--narrow" style="margin: 0 auto;">
             
-            <div class="community-item">
-                <p class="community-item__name">Python Mauritius Usergroup</p>
-                <div class="community-item__info md-to-html">
-                    <p>Started the usergroup for Mauritius: <a href="https://pymug.com">pymug.com</a></p>
+
+            
+            <article class="ccard">
+                <div class="cbadge"><svg viewBox="0 0 52 60" class="cbadge__svg"><defs><linearGradient id="c1" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#fde68a"/><stop offset="1" stop-color="#d97706"/></linearGradient></defs><path d="M26 1 L51 15.5 L51 44.5 L26 59 L1 44.5 L1 15.5 Z" fill="url(#c1)" stroke="#92400e" stroke-width="1"/><path d="M26 5 L47 17.25 L47 42.75 L26 55 L5 42.75 L5 17.25 Z" fill="none" stroke="rgba(255,255,255,.35)" stroke-width=".6"/><circle cx="20" cy="26" r="3.5" fill="#fff"/><circle cx="32" cy="26" r="3.5" fill="#fff"/><path d="M14 38 C14 33 17 31 20 31 C23 31 26 33 26 38 Z" fill="#fff"/><path d="M26 38 C26 33 29 31 32 31 C35 31 38 33 38 38 Z" fill="#fff"/></svg></div>
+                <div class="ccard__body">
+                    <h3 class="ccard__name">Python Mauritius Usergroup</h3>
+                    <div class="ccard__info md-to-html">
+                        <p>Started the usergroup for Mauritius: <a href="https://pymug.com">pymug.com</a></p>
 <ul>
 <li>Only (maybe) usergroup having end of year reports. See <a href="https://www.pymug.com/assets/pymug_2019_report.pdf">2019</a> 
 and <a href="https://www.pymug.com/assets/pymug_end_of_year_2020_v2.pdf">2020</a></li>
@@ -2192,13 +3694,16 @@ on different topics during lockdown 2020. We had web dev, ai and more.</li>
 <li>Members managed to find more locations to organise meetups</li>
 <li>Managed to maintain regularity even in the pandemic period</li>
 </ul>
+                    </div>
                 </div>
-            </div>
+            </article>
             
-            <div class="community-item">
-                <p class="community-item__name">FlaskCon</p>
-                <div class="community-item__info md-to-html">
-                    <p>Wrote the original draft for FlaskCon: <a href="https://flaskcon.com">flaskcon.com</a></p>
+            <article class="ccard">
+                <div class="cbadge"><svg viewBox="0 0 52 60" class="cbadge__svg"><defs><linearGradient id="c2" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#fca5a5"/><stop offset="1" stop-color="#dc2626"/></linearGradient></defs><path d="M26 1 L51 15.5 L51 44.5 L26 59 L1 44.5 L1 15.5 Z" fill="url(#c2)" stroke="#991b1b" stroke-width="1"/><path d="M26 5 L47 17.25 L47 42.75 L26 55 L5 42.75 L5 17.25 Z" fill="none" stroke="rgba(255,255,255,.35)" stroke-width=".6"/><rect x="21" y="18" width="10" height="18" rx="5" fill="#fff"/><path d="M17 30 C17 36 21 39 26 39 C31 39 35 36 35 30" fill="none" stroke="#fff" stroke-width="2"/><line x1="26" y1="39" x2="26" y2="43" stroke="#fff" stroke-width="2"/><line x1="22" y1="43" x2="30" y2="43" stroke="#fff" stroke-width="2"/></svg></div>
+                <div class="ccard__body">
+                    <h3 class="ccard__name">FlaskCon</h3>
+                    <div class="ccard__info md-to-html">
+                        <p>Wrote the original draft for FlaskCon: <a href="https://flaskcon.com">flaskcon.com</a></p>
 <ul>
 <li>Contacted various entities to support the conf and provide experience and help</li>
 <li>Communicated with Pallets about the terms and direction of the conf</li>
@@ -2209,36 +3714,45 @@ federal gov</li>
 <li>Adopted a community-first approach and sacrifised sponsors to get the conf running</li>
 <li>Second edition ongoing 2021</li>
 </ul>
+                    </div>
                 </div>
-            </div>
+            </article>
             
-            <div class="community-item">
-                <p class="community-item__name">Flask Community Workgroup</p>
-                <div class="community-item__info md-to-html">
-                    <p>Instituted it with the help of Pallets and Flask folks: <a href="https://flaskcwg.github.io/">FlaskCWG</a>. It&rsquo;s the
+            <article class="ccard">
+                <div class="cbadge"><svg viewBox="0 0 52 60" class="cbadge__svg"><defs><linearGradient id="c3" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#a5b4fc"/><stop offset="1" stop-color="#4338ca"/></linearGradient></defs><path d="M26 1 L51 15.5 L51 44.5 L26 59 L1 44.5 L1 15.5 Z" fill="url(#c3)" stroke="#312e81" stroke-width="1"/><path d="M26 5 L47 17.25 L47 42.75 L26 55 L5 42.75 L5 17.25 Z" fill="none" stroke="rgba(255,255,255,.35)" stroke-width=".6"/><path d="M18 30 C18 25 22 22 26 22 C30 22 34 25 34 30" fill="none" stroke="#fff" stroke-width="2.5" stroke-linecap="round"/><circle cx="26" cy="30" r="2.5" fill="#fff"/><path d="M22 36 C22 33 24 31 26 31 C28 31 30 33 30 36" fill="none" stroke="#fff" stroke-width="2"/></svg></div>
+                <div class="ccard__body">
+                    <h3 class="ccard__name">Flask Community Workgroup</h3>
+                    <div class="ccard__info md-to-html">
+                        <p>Instituted it with the help of Pallets and Flask folks: <a href="https://flaskcwg.github.io/">FlaskCWG</a>. It&rsquo;s the
 logical conclusion of FlaskCon.</p>
 <ul>
 <li>Aim to cater for the Flask community including events, abandoned plugins, workshops and translations</li>
 <li>Pallets instituted Pallets-eco to cater for abandoned plugins</li>
 <li>Translations started substantially for chinese, spanish and french with instituted protocols</li>
 </ul>
+                    </div>
                 </div>
-            </div>
+            </article>
             
-            <div class="community-item">
-                <p class="community-item__name">Arabic Coordinator for The Python Docs</p>
-                <div class="community-item__info md-to-html">
-                    <p>Stated the translations with ups and downs</p>
+            <article class="ccard">
+                <div class="cbadge"><svg viewBox="0 0 52 60" class="cbadge__svg"><defs><linearGradient id="c4" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#93c5fd"/><stop offset="1" stop-color="#1d4ed8"/></linearGradient></defs><path d="M26 1 L51 15.5 L51 44.5 L26 59 L1 44.5 L1 15.5 Z" fill="url(#c4)" stroke="#1e3a8a" stroke-width="1"/><path d="M26 5 L47 17.25 L47 42.75 L26 55 L5 42.75 L5 17.25 Z" fill="none" stroke="rgba(255,255,255,.35)" stroke-width=".6"/><path d="M18 20 L26 20 L34 20 L34 40 L26 40 L18 40 Z" fill="none" stroke="#fff" stroke-width="2"/><line x1="22" y1="26" x2="30" y2="26" stroke="#fff" stroke-width="1.5"/><line x1="22" y1="30" x2="30" y2="30" stroke="#fff" stroke-width="1.5"/><line x1="22" y1="34" x2="28" y2="34" stroke="#fff" stroke-width="1.5"/></svg></div>
+                <div class="ccard__body">
+                    <h3 class="ccard__name">Arabic Coordinator for The Python Docs</h3>
+                    <div class="ccard__info md-to-html">
+                        <p>Stated the translations with ups and downs</p>
 <ul>
 <li>Managed to find another coordinator before he got busy. Back to being the coordinator</li>
 </ul>
+                    </div>
                 </div>
-            </div>
+            </article>
             
-            <div class="community-item">
-                <p class="community-item__name">Python-efl revival</p>
-                <div class="community-item__info md-to-html">
-                    <p>Helping make EFL and Python-efl specifically more accessible. EFL is what Samsung&rsquo;s Tizen uses for smartwatches etc. It&rsquo;s
+            <article class="ccard">
+                <div class="cbadge"><svg viewBox="0 0 52 60" class="cbadge__svg"><defs><linearGradient id="c5" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#86efac"/><stop offset="1" stop-color="#15803d"/></linearGradient></defs><path d="M26 1 L51 15.5 L51 44.5 L26 59 L1 44.5 L1 15.5 Z" fill="url(#c5)" stroke="#14532d" stroke-width="1"/><path d="M26 5 L47 17.25 L47 42.75 L26 55 L5 42.75 L5 17.25 Z" fill="none" stroke="rgba(255,255,255,.35)" stroke-width=".6"/><path d="M18 32 L22 36 L34 24" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+                <div class="ccard__body">
+                    <h3 class="ccard__name">Python-efl revival</h3>
+                    <div class="ccard__info md-to-html">
+                        <p>Helping make EFL and Python-efl specifically more accessible. EFL is what Samsung&rsquo;s Tizen uses for smartwatches etc. It&rsquo;s
 one of the aspects which enables Bodhi Linux to fly on low specs while being an everyday OS</p>
 <ul>
 <li>Helping out with dead Bodhi Linux&rsquo;s Python-efl apps</li>
@@ -2246,35 +3760,100 @@ one of the aspects which enables Bodhi Linux to fly on low specs while being an 
 <li>Davide Andreoli agreed to put a <a href="https://github.com/DaveMDS/python-efl">Github mirror</a> for Python-efl to better reach out to the
 community</li>
 </ul>
+                    </div>
                 </div>
-            </div>
+            </article>
             
-            <div class="community-item">
-                <p class="community-item__name">PyHerald</p>
-                <div class="community-item__info md-to-html">
-                    <p>Mailing lists summary and news. <a href="https://pyherald.com">site</a></p>
+            <article class="ccard">
+                <div class="cbadge"><svg viewBox="0 0 52 60" class="cbadge__svg"><defs><linearGradient id="c6" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#c4b5fd"/><stop offset="1" stop-color="#7c3aed"/></linearGradient></defs><path d="M26 1 L51 15.5 L51 44.5 L26 59 L1 44.5 L1 15.5 Z" fill="url(#c6)" stroke="#5b21b6" stroke-width="1"/><path d="M26 5 L47 17.25 L47 42.75 L26 55 L5 42.75 L5 17.25 Z" fill="none" stroke="rgba(255,255,255,.35)" stroke-width=".6"/><rect x="16" y="22" width="20" height="14" rx="2" fill="none" stroke="#fff" stroke-width="2"/><polyline points="16,22 26,31 36,22" fill="none" stroke="#fff" stroke-width="2"/></svg></div>
+                <div class="ccard__body">
+                    <h3 class="ccard__name">PyHerald</h3>
+                    <div class="ccard__info md-to-html">
+                        <p>Mailing lists summary and news. <a href="https://pyherald.com">site</a></p>
 <ul>
 <li>Brings to general readership Python mailing list discussions</li>
 <li>Catches important but easy to miss news</li>
 </ul>
+                    </div>
                 </div>
-            </div>
+            </article>
             
-            <div class="community-item">
-                <p class="community-item__name">General</p>
-                <div class="community-item__info md-to-html">
-                    <p>Many individual enterprises end up being good for the general community. For example:</p>
+            <article class="ccard">
+                <div class="cbadge"><svg viewBox="0 0 52 60" class="cbadge__svg"><defs><linearGradient id="c7" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#f9a8d4"/><stop offset="1" stop-color="#be185d"/></linearGradient></defs><path d="M26 1 L51 15.5 L51 44.5 L26 59 L1 44.5 L1 15.5 Z" fill="url(#c7)" stroke="#831843" stroke-width="1"/><path d="M26 5 L47 17.25 L47 42.75 L26 55 L5 42.75 L5 17.25 Z" fill="none" stroke="rgba(255,255,255,.35)" stroke-width=".6"/><path d="M26 38 C20 33 16 30 16 25 C16 22 18 20 21 20 C23 20 25 21 26 23 C27 21 29 20 31 20 C34 20 36 22 36 25 C36 30 32 33 26 38 Z" fill="#fff"/></svg></div>
+                <div class="ccard__body">
+                    <h3 class="ccard__name">General</h3>
+                    <div class="ccard__info md-to-html">
+                        <p>Many individual enterprises end up being good for the general community. For example:</p>
 <ul>
 <li>Maintaining the page where <a href="https://www.pythonkitchen.com/legally-free-python-books-list/">legally free python books</a> can be found on the internet</li>
 <li>Maintaining a page of awesome <a href="https://www.pythonkitchen.com/python-engineering-articles/">Python engineering articles</a> 
 so that Python teams can skill up members faster.</li>
 </ul>
+                    </div>
                 </div>
-            </div>
+            </article>
             
         </div>
     </div>
 </div>
+
+<style>
+.ccard {
+    display: flex;
+    gap: 1.25rem;
+    align-items: flex-start;
+    background: var(--surface, #fff);
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    padding: 1.25rem;
+    margin-bottom: 1rem;
+    transition: box-shadow .2s ease, transform .2s ease;
+}
+.ccard:hover {
+    box-shadow: 0 6px 20px rgba(0,0,0,.08);
+    transform: translateY(-2px);
+}
+.cbadge {
+    flex-shrink: 0;
+    width: 52px;
+}
+.cbadge__svg {
+    width: 52px;
+    height: 60px;
+    display: block;
+    filter: drop-shadow(0 2px 4px rgba(0,0,0,.12));
+}
+.ccard__body {
+    flex: 1;
+    min-width: 0;
+}
+.ccard__name {
+    font-family: var(--font-title);
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: var(--ink);
+    margin: 0 0 0.5rem;
+    line-height: 1.3;
+}
+.ccard__info {
+    color: var(--ink-2);
+    font-size: 0.88rem;
+    line-height: 1.7;
+}
+.ccard__info p { margin: 0 0 0.5rem; }
+.ccard__info p:last-child { margin-bottom: 0; }
+.ccard__info ul { padding-left: 1.2rem; margin: 0.25rem 0; }
+.ccard__info li { margin-bottom: 0.3rem; }
+.ccard__info a { color: var(--accent, #dc2626); }
+
+@media (max-width: 640px) {
+    .ccard { gap: 0.75rem; padding: 1rem; }
+    .cbadge { width: 36px; }
+    .cbadge__svg { width: 36px; height: 42px; }
+    .ccard__name { font-size: 0.95rem; }
+    .ccard__info { font-size: 0.82rem; }
+}
+</style>
 
     <div class="section section--alt" id="privacy-policy">
     <div class="container">

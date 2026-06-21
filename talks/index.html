@@ -52,6 +52,18 @@ gtag('config', 'UA-161612035-1');
   }
 }
 </script>
+
+<meta name="theme-color" content="#ffb74d" />
+<link rel="icon" href="../assets/COMP_ALC.png">
+
+<!-- Performance Optimized Asset Loading -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preconnect" href="https://cdnjs.cloudflare.com">
+<link href="https://fonts.googleapis.com/css2?family=Comfortaa&family=Raleway:wght@700&family=Special+Elite&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.0/css/bulma.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
 <!-- Global Editorial Styles -->
 <style type="text/css">
     :root {
@@ -65,6 +77,8 @@ gtag('config', 'UA-161612035-1');
         --line-soft: #f5f5f4;
         --surface: #ffffff;
         --surface-alt: #faf9f7;
+        --font-main: 'Comfortaa', cursive;
+        --font-title: 'Raleway', sans-serif;
         /* Backward-compatible aliases for older templates */
         --primary-color: var(--accent);
         --active-color: var(--accent-hover);
@@ -73,18 +87,20 @@ gtag('config', 'UA-161612035-1');
         --reading-width: 680px;
         --container-width: 920px;
     }
+
+    body {
+        font-family: var(--font-main);
+        color: var(--ink);
+        line-height: 1.85;
+        -webkit-font-smoothing: antialiased;
+    }
+
+    h1, h2, h3, .title {
+        font-family: var(--font-title);
+        font-weight: 800;
+        letter-spacing: -0.02em;
+    }
 </style>
-
-<meta name="theme-color" content="#ffb74d" />
-<link rel="icon" href="../assets/COMP_ALC.png">
-
-<!-- Performance Optimized Asset Loading -->
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="preconnect" href="https://cdnjs.cloudflare.com">
-<link href="https://fonts.googleapis.com/css2?family=Comfortaa&family=Raleway:wght@700&family=Special+Elite&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.0/css/bulma.min.css">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
 <link rel="stylesheet" type="text/css" href="../style.css">
 <link rel="stylesheet" type="text/css" href="../bulma-timeline.min.css">
@@ -186,571 +202,1055 @@ gtag('config', 'UA-161612035-1');
 </script>
 
     
-<div class="section" id="talks" style="background-color: #fffff5;">
+<div class="section section--alt" id="talks">
     <div class="container">
-        <div class="notification" style="background-color: #fffff5;">
-            <div class="notification has-text-centered"  style="background-color: #fffff5;">
-                <br>
-                <p class="has-text-centered ">
-                    <span class="title  has-text-centered" style="width: 50px; height:50px; padding: 15px; border-radius: 50%;">
-                        📝
-                    </span>
-                </p><br>
-                <p class="title" id="talks"><a href="#talks" class="no-link-dec">Talks</a></p>
-                <p class="subtitle">Meetups & Confs</p>
-            </div>
+        <header class="sec-head sec-head--center">
+            <span class="sec-kicker">Speaking</span>
+            <h2 class="sec-title">Conference talks & meetups</h2>
+        </header>
+
+        <p class="talk-list__intro">
+            Spoken at EuroPython, PyCon Sweden, PyCon ZA, PyCon Thailand, FlaskCon,
+            MSCC DevCon, Google DevFest, Python Mauritius Usergroup, Association
+            Francophone de Python, New Zealand Python User Group, San Francisco
+            Python Meetup.
+        </p>
+
+        <div id="talks-map-container" style="margin:1.5rem 0;width:100%;height:320px;border-radius:8px;border:1px solid var(--line);box-shadow:0 4px 16px rgba(0,0,0,.06);overflow:hidden;background:var(--surface-alt);">
+            <div id="talks-map" style="width:100%;height:100%;"></div>
         </div>
-        <div class="writings is-white">
-            
-
-            <p class="is-size-4">Building Ai agents using Langgraph: From Zero to Hero
-                
-                
-                    [<a href="https://docs.google.com/presentation/d/10eWFRRtppzKi-h_RC4Tv3dZ_XoKS9T-4gBr_m4Fvzqg/edit?usp=sharing">slides</a>]
-                    
-                
-            </p>
-            <i>Pymug April 25 Meetup</i><br>
-            
-            <hr>
-
-            
-
-            <p class="is-size-4">Building Ai agents in Python: A Deep Dive
-                
-                
-                    [<a href="https://docs.google.com/presentation/d/14LkLRBVZc4idFmgQ0S9UmYrA5GxMeecQa5XRZGzhmpc/edit?usp=sharing">slides</a>]
-                    
-                
-            </p>
-            <i>Pymug March 25 Meetup</i><br>
-            
-            <hr>
-
-            
-
-            <p class="is-size-4">UV: A tool worth knowing about
-                
-                
-                    [<a href="https://docs.google.com/presentation/d/1gP-zQuTKziwcZ7bNtH-HT824kvuHRBZHritti2FDC6M/edit?usp=sharing">slides</a>]
-                    
-                
-            </p>
-            <i>Pymug February 25 Meetup</i><br>
-            
-            <hr>
-
-            
-
-            <p class="is-size-4">Pallets Sprint @ SF Python
-                
-                
-                    [<a href="https://docs.google.com/presentation/d/1co1JC2riB7rPA8nkjn3kJ3JXfq8kT7GVZiGk4zsYaw0/edit?usp=sharing">slides</a>]
-                    
-                
-            </p>
-            <i>San Francisco Python Pallets Sprint</i><br>
-            
-            <hr>
-
-            
-
-            <p class="is-size-4">Extending Flask using the Flask Plugins API
-                
-                
-                    [<a href="https://speakerdeck.com/osdotsystem/extending-flask-using-the-flask-plugins-api">slides</a>]
-                    
-                
-            </p>
-            <i>FlaskCon 2024 @ PyConUS</i><br>
-            
-            <hr>
-
-            
-
-            <p class="is-size-4">PEPs that hit the front page
-                
-                
-                    [<a href="https://speakerdeck.com/osdotsystem/peps-that-hit-the-front-page">slides</a>]
-                    
-                
-            </p>
-            <i>Pymug Meetup Feb 2024</i><br>
-            
-            <hr>
-
-            
-
-            <p class="is-size-4">The state of NLP in production
-                
-                
-                    [<a href="https://speakerdeck.com/osdotsystem/the-state-of-nlp-in-production">slides</a>]
-                    
-                
-            </p>
-            <i>Pymug August 2023</i><br>
-            
-            <hr>
-
-            
-
-            <p class="is-size-4">libSQL: Taking SQLite to the moon
-                
-                
-                    [<a href="https://speakerdeck.com/osdotsystem/libsql-taking-sqlite-to-the-moon">slides</a>]
-                    
-                
-            </p>
-            <i>MSCC DevCon 2023</i><br>
-            
-            <hr>
-
-            
-
-            <p class="is-size-4">Boosting Python with Rust!
-                
-                
-                    [<a href="https://speakerdeck.com/osdotsystem/boosting-python-with-rust">slides</a>]
-                    
-                
-            </p>
-            <i>MSCC DevCon 2023</i><br>
-            
-            <hr>
-
-            
-
-            <p class="is-size-4">Flet: Flutter in Python
-                
-                
-                    [<a href="https://speakerdeck.com/osdotsystem/flet-flutter-in-python">slides</a>]
-                    
-                
-            </p>
-            <i>PyMug Meetup April 2023</i><br>
-            
-            <hr>
-
-            
-
-            <p class="is-size-4">SQLite Internals: How The World's Most Used Database Works
-                
-                
-                    [<a href="https://speakerdeck.com/osdotsystem/sqlite-internals-how-the-worlds-most-used-database-works">slides</a>]
-                    
-                
-            </p>
-            <i>Google DevFest 2022</i><br>
-            
-            <hr>
-
-            
-
-            <p class="is-size-4">How To OpenSource
-                
-                
-                    [<a href="https://speakerdeck.com/osdotsystem/how-to-opensource">slides</a>]
-                    
-                
-            </p>
-            <i>DevCon MU 2022</i><br>
-            
-            <hr>
-
-            
-
-            <p class="is-size-4">Python Bytecode or How Python Operates
-                
-                
-                    [<a href="https://speakerdeck.com/osdotsystem/python-bytecode-or-how-python-operates">slides</a>]
-                    
-                
-            </p>
-            <i>DevCon MU 2022</i><br>
-            
-            <hr>
-
-            
-
-            <p class="is-size-4">Fast Flask Dev For Big Codebases
-                
-                
-                    [<a href="https://speakerdeck.com/osdotsystem/flask-big-codebases">slides</a>]
-                    
-                
-            </p>
-            <i>DevCon MU 2022</i><br>
-            
-            <hr>
-
-            
-
-            <p class="is-size-4">Python's Bytecode
-                
-                
-                    [<a href="https://speakerdeck.com/osdotsystem/python-bytecode">slides</a>]
-                    
-                
-            </p>
-            <i>Pymug Oct Meetup 2022</i><br>
-            
-            <hr>
-
-            
-
-            <p class="is-size-4">Creative Coding with Python
-                
-                
-                    [<a href="https://colab.research.google.com/drive/1hTfrsblYKaaOQXOXzw8eOdxdRYLTvID0?usp=sharing">slides</a>]
-                    
-                
-            </p>
-            <i>Python New Zealand Oct 2022</i><br>
-            
-            <hr>
-
-            
-
-            <p class="is-size-4">Regex In Depth
-                
-                
-                    [<a href="https://speakerdeck.com/osdotsystem/regex-depth">slides</a>]
-                    
-                
-            </p>
-            <i>Pymug Sept Meetup 2022</i><br>
-            
-            <hr>
-
-            
-
-            <p class="is-size-4">Advanced Flask: Recipes For An All-weather Craft
-                
-                
-                    [<a href="https://youtu.be/veMSbl2fbXE">video</a>]
-                    
-                
-                
-                    [<a href="https://speakerdeck.com/osdotsystem/advanced-flask-recipes-for-an-all-weather-craft">slides</a>]
-                    
-                
-            </p>
-            <i>PyCon Sweden 2021</i><br>
-            
-            <hr>
-
-            
-
-            <p class="is-size-4">Shopyo: Your Mega Machine For Flask
-                
-                
-                    [<a href="https://youtu.be/W4Gmc8q42YA">video</a>]
-                    
-                
-            </p>
-            <i>PyCon South Africa 2021</i><br>
-            
-            <hr>
-
-            
-
-            <p class="is-size-4">Shopyo: Your Mega Machine For Flask
-                
-                
-                    [<a href="https://youtu.be/pvwvRi6iMds">video</a>]
-                    
-                
-            </p>
-            <i>Conf 42 Python 2021</i><br>
-            
-            <hr>
-
-            
 
-            <p class="is-size-4">OpenSource: The What N Why
-                
-                
-                    [<a href="https://youtu.be/veMSbl2fbXE">video</a>]
-                    
-                
-                
-                    [<a href="https://speakerdeck.com/osdotsystem/advanced-flask-recipes-for-an-all-weather-craft">slides</a>]
-                    
-                
-            </p>
-            <i>OSCA Mauritius Meetup Aug 2021</i><br>
-            
-            <hr>
-
-            
-
-            <p class="is-size-4">Spoonfeeding Sockets
-                
-                
-                    [<a href="https://www.youtube.com/watch?v=85QxbTuDeMs&t=4900s">video</a>]
-                    
-                
-                
-                    [<a href="https://github.com/pymug/ARJ_SpoonfeedingSockets_APR2021">slides</a>]
-                    
-                
-            </p>
-            <i>Pymug Meetup April 2021</i><br>
-            
-            <hr>
-
-            
-
-            <p class="is-size-4">Django Clone From Scratch With Flask
-                
-                
-                    [<a href="https://www.youtube.com/watch?v=rkzXQOC1T0Q">video</a>]
-                    
-                
-            </p>
-            <i>EuroPython 2020</i><br>
-            
-            <hr>
-
-            
-
-            <p class="is-size-4">Python - The Joyful Parts
-                
-                
-                    [<a href="https://github.com/pymug/Slides/blob/master/ARJ_March19_PythonTheJoyfulParts.pdf">slides</a>]
-                    
-                
-            </p>
-            <i>Pymug Meetup</i><br>
-            
-            <hr>
-
-            
-
-            <p class="is-size-4">Iter Boosts From The Std Lib
-                
-                
-                    [<a href="https://github.com/pymug/Slides/blob/master/ARJ_July19_BoostsFromTheStdLibItertools.pdf">slides</a>]
-                    
-                
-            </p>
-            <i>Pymug Meetup</i><br>
-            
-            <hr>
-
-            
-
-            <p class="is-size-4">Decorating Your Code
-                
-                
-                    [<a href="https://speakerdeck.com/osdotsystem/python-decorating-your-code">slides</a>]
-                    
-                
-            </p>
-            <i>Pymug Meetup</i><br>
-            
-            <hr>
-
-            
-
-            <p class="is-size-4">Where is Python used?
-                
-                
-                    [<a href="https://speakerdeck.com/osdotsystem/where-is-python-used">slides</a>]
-                    
-                
-            </p>
-            <i>Python Sprint, UoM</i><br>
-            
-            <hr>
-
-            
-
-            <p class="is-size-4">Honeybot - Diving Into An IRC Bot
-                
-                
-                    [<a href="https://github.com/pymug/Slides/blob/master/ARJ_honeybot_presentationv2.pdf">slides</a>]
-                    
-                
-            </p>
-            <i>Pymug Meetup</i><br>
-            
-            <hr>
-
-            
-
-            <p class="is-size-4">Become A True Faker
-                
-                
-                    [<a href="https://github.com/pymug/Slides/blob/master/become_a_true_faker.pdf">slides</a>]
-                    
-                
-            </p>
-            <i>Pymug Meetup</i><br>
-            
-            <hr>
-
-            
-
-            <p class="is-size-4">Deriving Async Io
-                
-                
-                    [<a href="https://github.com/pymug/Slides/blob/master/deriving_asyncio.pdf">slides</a>]
-                    
-                
-            </p>
-            <i>Pymug Meetup</i><br>
-            
-            <hr>
-
-            
-
-            <p class="is-size-4">Weekly Workshop - Python From Scratch
-                
-                
-                    [<a href="https://github.com/pymug/Slides/blob/master/pymug_python_from_scratch.pdf">slides</a>]
-                    
-                
-            </p>
-            <i>Pymug Workshop</i><br>
-            
-            <hr>
-
-            
-
-            <p class="is-size-4">Standard Library Essentials
-                
-                
-                    [<a href="https://github.com/pymug/Slides/blob/master/pymug_std_lib_essentials.pdf">slides</a>]
-                    
-                
-            </p>
-            <i>Pymug Meetup</i><br>
-            
-            <hr>
-
-            
-
-            <p class="is-size-4">Scrapy Code Base Reflections
-                
-                
-                    [<a href="scrapy_arj_jan_2020.md">slides</a>]
-                    
-                
-            </p>
-            <i>Pymug Meetup</i><br>
-            
-            <hr>
-
-            
-
-            <p class="is-size-4">Shopyo: Flasquer Flask
-                
-                
-                    [<a href="https://github.com/pymug/Slides/blob/master/shopyo.pdf">slides</a>]
-                    
-                
-            </p>
-            <i>France: AFPy monthly conf</i><br>
-            
-            <hr>
-
-            
-
-            <p class="is-size-4">Canvas Theory With PyGame
-                
-                
-                    [<a href="">slides</a>]
-                    
-                
-            </p>
-            <i>Pymug Meetup</i><br>
-            
-            <hr>
-
-            
-
-            <p class="is-size-4">Workshop: Flask Round The World
-                
-                
-                    [<a href="https://github.com/pymug/ARJ_Flask_March2020">repo</a>]
-                
-                
-            </p>
-            <i>Pymug Meetup</i><br>
-            
-            <hr>
-
-            
-
-            <p class="is-size-4">Key To Django And Flask
-                
-                
-                    [<a href="https://github.com/pymug/ARJ_KeyToDjangoAndFlask_Feb2020">repo</a>]
-                
-                
-            </p>
-            <i>Pymug Meetup</i><br>
-            
-            <hr>
-
-            
-
-            <p class="is-size-4">The CPython Translation Protocol
-                
-                
-                    [<a href="https://github.com/pymug/ARAugust19DocsTranslations">repo</a>]
-                
-                
-            </p>
-            <i>Pymug Meetup</i><br>
-            
-            <hr>
-
-            
-
-            <p class="is-size-4">Workshop: Requests
-                
-                
-                    [<a href="https://github.com/pymug/ARJune19Requests">repo</a>]
-                
-                
-            </p>
-            <i>Pymug Meetup</i><br>
-            
-            <hr>
-
-            
-
-            <p class="is-size-4">Machine Learning Overview
-                
-                
-                    [<a href="https://github.com/pymug/Ai_UoM_2019/blob/master/ARJ_ML_Overview/human_guide_to_ml.pdf">slides</a>]
-                    
-                
-            </p>
-            <i>University of Mauritius - Ai Workshop 2019</i><br>
-            
-            <hr>
-
-            
-
-            <p class="is-size-4">Workshop: Numpy Pandas
-                
-                
-                    [<a href="https://github.com/pymug/Ai_UoM_2019/tree/master/ARJ_Numpy_Pandas">repo</a>]
-                
-                
-            </p>
-            <i>University of Mauritius - Ai Workshop 2019</i><br>
-            
-            <hr>
-
-            
+        <div class="talk-list">
+            
+            <div class="talk-item">
+                <p class="talk-item__title">
+                    Building Ai agents using Langgraph: From Zero to Hero
+                    <span class="talk-item__res">
+                        
+                        [<a href="https://docs.google.com/presentation/d/10eWFRRtppzKi-h_RC4Tv3dZ_XoKS9T-4gBr_m4Fvzqg/edit?usp=sharing">slides</a>]
+                        
+                    </span>
+                </p>
+                <p class="talk-item__event">Pymug April 25 Meetup</p>
+                <p class="talk-item__desc"></p>
+            </div>
+            
+            <div class="talk-item">
+                <p class="talk-item__title">
+                    Building Ai agents in Python: A Deep Dive
+                    <span class="talk-item__res">
+                        
+                        [<a href="https://docs.google.com/presentation/d/14LkLRBVZc4idFmgQ0S9UmYrA5GxMeecQa5XRZGzhmpc/edit?usp=sharing">slides</a>]
+                        
+                    </span>
+                </p>
+                <p class="talk-item__event">Pymug March 25 Meetup</p>
+                <p class="talk-item__desc"></p>
+            </div>
+            
+            <div class="talk-item">
+                <p class="talk-item__title">
+                    UV: A tool worth knowing about
+                    <span class="talk-item__res">
+                        
+                        [<a href="https://docs.google.com/presentation/d/1gP-zQuTKziwcZ7bNtH-HT824kvuHRBZHritti2FDC6M/edit?usp=sharing">slides</a>]
+                        
+                    </span>
+                </p>
+                <p class="talk-item__event">Pymug February 25 Meetup</p>
+                <p class="talk-item__desc"></p>
+            </div>
+            
+            <div class="talk-item">
+                <p class="talk-item__title">
+                    Pallets Sprint @ SF Python
+                    <span class="talk-item__res">
+                        
+                        [<a href="https://docs.google.com/presentation/d/1co1JC2riB7rPA8nkjn3kJ3JXfq8kT7GVZiGk4zsYaw0/edit?usp=sharing">slides</a>]
+                        
+                    </span>
+                </p>
+                <p class="talk-item__event">San Francisco Python Pallets Sprint</p>
+                <p class="talk-item__desc"></p>
+            </div>
+            
+            <div class="talk-item">
+                <p class="talk-item__title">
+                    Extending Flask using the Flask Plugins API
+                    <span class="talk-item__res">
+                        
+                        [<a href="https://speakerdeck.com/osdotsystem/extending-flask-using-the-flask-plugins-api">slides</a>]
+                        
+                    </span>
+                </p>
+                <p class="talk-item__event">FlaskCon 2024 @ PyConUS</p>
+                <p class="talk-item__desc"></p>
+            </div>
+            
+            <div class="talk-item">
+                <p class="talk-item__title">
+                    PEPs that hit the front page
+                    <span class="talk-item__res">
+                        
+                        [<a href="https://speakerdeck.com/osdotsystem/peps-that-hit-the-front-page">slides</a>]
+                        
+                    </span>
+                </p>
+                <p class="talk-item__event">Pymug Meetup Feb 2024</p>
+                <p class="talk-item__desc"></p>
+            </div>
+            
+            <div class="talk-item">
+                <p class="talk-item__title">
+                    The state of NLP in production
+                    <span class="talk-item__res">
+                        
+                        [<a href="https://speakerdeck.com/osdotsystem/the-state-of-nlp-in-production">slides</a>]
+                        
+                    </span>
+                </p>
+                <p class="talk-item__event">Pymug August 2023</p>
+                <p class="talk-item__desc"></p>
+            </div>
+            
+            <div class="talk-item">
+                <p class="talk-item__title">
+                    libSQL: Taking SQLite to the moon
+                    <span class="talk-item__res">
+                        
+                        [<a href="https://speakerdeck.com/osdotsystem/libsql-taking-sqlite-to-the-moon">slides</a>]
+                        
+                    </span>
+                </p>
+                <p class="talk-item__event">MSCC DevCon 2023</p>
+                <p class="talk-item__desc"></p>
+            </div>
+            
+            <div class="talk-item">
+                <p class="talk-item__title">
+                    Boosting Python with Rust!
+                    <span class="talk-item__res">
+                        
+                        [<a href="https://speakerdeck.com/osdotsystem/boosting-python-with-rust">slides</a>]
+                        
+                    </span>
+                </p>
+                <p class="talk-item__event">MSCC DevCon 2023</p>
+                <p class="talk-item__desc"></p>
+            </div>
+            
+            <div class="talk-item">
+                <p class="talk-item__title">
+                    Flet: Flutter in Python
+                    <span class="talk-item__res">
+                        
+                        [<a href="https://speakerdeck.com/osdotsystem/flet-flutter-in-python">slides</a>]
+                        
+                    </span>
+                </p>
+                <p class="talk-item__event">PyMug Meetup April 2023</p>
+                <p class="talk-item__desc"></p>
+            </div>
+            
+            <div class="talk-item">
+                <p class="talk-item__title">
+                    SQLite Internals: How The World's Most Used Database Works
+                    <span class="talk-item__res">
+                        
+                        [<a href="https://speakerdeck.com/osdotsystem/sqlite-internals-how-the-worlds-most-used-database-works">slides</a>]
+                        
+                    </span>
+                </p>
+                <p class="talk-item__event">Google DevFest 2022</p>
+                <p class="talk-item__desc"></p>
+            </div>
+            
+            <div class="talk-item">
+                <p class="talk-item__title">
+                    How To OpenSource
+                    <span class="talk-item__res">
+                        
+                        [<a href="https://speakerdeck.com/osdotsystem/how-to-opensource">slides</a>]
+                        
+                    </span>
+                </p>
+                <p class="talk-item__event">DevCon MU 2022</p>
+                <p class="talk-item__desc"></p>
+            </div>
+            
+            <div class="talk-item">
+                <p class="talk-item__title">
+                    Python Bytecode or How Python Operates
+                    <span class="talk-item__res">
+                        
+                        [<a href="https://speakerdeck.com/osdotsystem/python-bytecode-or-how-python-operates">slides</a>]
+                        
+                    </span>
+                </p>
+                <p class="talk-item__event">DevCon MU 2022</p>
+                <p class="talk-item__desc"></p>
+            </div>
+            
+            <div class="talk-item">
+                <p class="talk-item__title">
+                    Fast Flask Dev For Big Codebases
+                    <span class="talk-item__res">
+                        
+                        [<a href="https://speakerdeck.com/osdotsystem/flask-big-codebases">slides</a>]
+                        
+                    </span>
+                </p>
+                <p class="talk-item__event">DevCon MU 2022</p>
+                <p class="talk-item__desc"></p>
+            </div>
+            
+            <div class="talk-item">
+                <p class="talk-item__title">
+                    Python's Bytecode
+                    <span class="talk-item__res">
+                        
+                        [<a href="https://speakerdeck.com/osdotsystem/python-bytecode">slides</a>]
+                        
+                    </span>
+                </p>
+                <p class="talk-item__event">Pymug Oct Meetup 2022</p>
+                <p class="talk-item__desc"></p>
+            </div>
+            
+            <div class="talk-item">
+                <p class="talk-item__title">
+                    Creative Coding with Python
+                    <span class="talk-item__res">
+                        
+                        [<a href="https://colab.research.google.com/drive/1hTfrsblYKaaOQXOXzw8eOdxdRYLTvID0?usp=sharing">slides</a>]
+                        
+                    </span>
+                </p>
+                <p class="talk-item__event">Python New Zealand Oct 2022</p>
+                <p class="talk-item__desc"></p>
+            </div>
+            
+            <div class="talk-item">
+                <p class="talk-item__title">
+                    Regex In Depth
+                    <span class="talk-item__res">
+                        
+                        [<a href="https://speakerdeck.com/osdotsystem/regex-depth">slides</a>]
+                        
+                    </span>
+                </p>
+                <p class="talk-item__event">Pymug Sept Meetup 2022</p>
+                <p class="talk-item__desc"></p>
+            </div>
+            
+            <div class="talk-item">
+                <p class="talk-item__title">
+                    Advanced Flask: Recipes For An All-weather Craft
+                    <span class="talk-item__res">
+                        
+                        [<a href="https://youtu.be/veMSbl2fbXE">video</a>]
+                        
+                        [<a href="https://speakerdeck.com/osdotsystem/advanced-flask-recipes-for-an-all-weather-craft">slides</a>]
+                        
+                    </span>
+                </p>
+                <p class="talk-item__event">PyCon Sweden 2021</p>
+                <p class="talk-item__desc"></p>
+            </div>
+            
+            <div class="talk-item">
+                <p class="talk-item__title">
+                    Shopyo: Your Mega Machine For Flask
+                    <span class="talk-item__res">
+                        
+                        [<a href="https://youtu.be/W4Gmc8q42YA">video</a>]
+                        
+                    </span>
+                </p>
+                <p class="talk-item__event">PyCon South Africa 2021</p>
+                <p class="talk-item__desc"></p>
+            </div>
+            
+            <div class="talk-item">
+                <p class="talk-item__title">
+                    Shopyo: Your Mega Machine For Flask
+                    <span class="talk-item__res">
+                        
+                        [<a href="https://youtu.be/pvwvRi6iMds">video</a>]
+                        
+                    </span>
+                </p>
+                <p class="talk-item__event">Conf 42 Python 2021</p>
+                <p class="talk-item__desc"></p>
+            </div>
+            
+            <div class="talk-item">
+                <p class="talk-item__title">
+                    OpenSource: The What N Why
+                    <span class="talk-item__res">
+                        
+                        [<a href="https://youtu.be/veMSbl2fbXE">video</a>]
+                        
+                        [<a href="https://speakerdeck.com/osdotsystem/advanced-flask-recipes-for-an-all-weather-craft">slides</a>]
+                        
+                    </span>
+                </p>
+                <p class="talk-item__event">OSCA Mauritius Meetup Aug 2021</p>
+                <p class="talk-item__desc"></p>
+            </div>
+            
+            <div class="talk-item">
+                <p class="talk-item__title">
+                    Spoonfeeding Sockets
+                    <span class="talk-item__res">
+                        
+                        [<a href="https://www.youtube.com/watch?v=85QxbTuDeMs&t=4900s">video</a>]
+                        
+                        [<a href="https://github.com/pymug/ARJ_SpoonfeedingSockets_APR2021">slides</a>]
+                        
+                    </span>
+                </p>
+                <p class="talk-item__event">Pymug Meetup April 2021</p>
+                <p class="talk-item__desc"></p>
+            </div>
+            
+            <div class="talk-item">
+                <p class="talk-item__title">
+                    Django Clone From Scratch With Flask
+                    <span class="talk-item__res">
+                        
+                        [<a href="https://www.youtube.com/watch?v=rkzXQOC1T0Q">video</a>]
+                        
+                    </span>
+                </p>
+                <p class="talk-item__event">EuroPython 2020</p>
+                <p class="talk-item__desc"></p>
+            </div>
+            
+            <div class="talk-item">
+                <p class="talk-item__title">
+                    Python - The Joyful Parts
+                    <span class="talk-item__res">
+                        
+                        [<a href="https://github.com/pymug/Slides/blob/master/ARJ_March19_PythonTheJoyfulParts.pdf">slides</a>]
+                        
+                    </span>
+                </p>
+                <p class="talk-item__event">Pymug Meetup</p>
+                <p class="talk-item__desc"></p>
+            </div>
+            
+            <div class="talk-item">
+                <p class="talk-item__title">
+                    Iter Boosts From The Std Lib
+                    <span class="talk-item__res">
+                        
+                        [<a href="https://github.com/pymug/Slides/blob/master/ARJ_July19_BoostsFromTheStdLibItertools.pdf">slides</a>]
+                        
+                    </span>
+                </p>
+                <p class="talk-item__event">Pymug Meetup</p>
+                <p class="talk-item__desc"></p>
+            </div>
+            
+            <div class="talk-item">
+                <p class="talk-item__title">
+                    Decorating Your Code
+                    <span class="talk-item__res">
+                        
+                        [<a href="https://speakerdeck.com/osdotsystem/python-decorating-your-code">slides</a>]
+                        
+                    </span>
+                </p>
+                <p class="talk-item__event">Pymug Meetup</p>
+                <p class="talk-item__desc"></p>
+            </div>
+            
+            <div class="talk-item">
+                <p class="talk-item__title">
+                    Where is Python used?
+                    <span class="talk-item__res">
+                        
+                        [<a href="https://speakerdeck.com/osdotsystem/where-is-python-used">slides</a>]
+                        
+                    </span>
+                </p>
+                <p class="talk-item__event">Python Sprint, UoM</p>
+                <p class="talk-item__desc"></p>
+            </div>
+            
+            <div class="talk-item">
+                <p class="talk-item__title">
+                    Honeybot - Diving Into An IRC Bot
+                    <span class="talk-item__res">
+                        
+                        [<a href="https://github.com/pymug/Slides/blob/master/ARJ_honeybot_presentationv2.pdf">slides</a>]
+                        
+                    </span>
+                </p>
+                <p class="talk-item__event">Pymug Meetup</p>
+                <p class="talk-item__desc"></p>
+            </div>
+            
+            <div class="talk-item">
+                <p class="talk-item__title">
+                    Become A True Faker
+                    <span class="talk-item__res">
+                        
+                        [<a href="https://github.com/pymug/Slides/blob/master/become_a_true_faker.pdf">slides</a>]
+                        
+                    </span>
+                </p>
+                <p class="talk-item__event">Pymug Meetup</p>
+                <p class="talk-item__desc"></p>
+            </div>
+            
+            <div class="talk-item">
+                <p class="talk-item__title">
+                    Deriving Async Io
+                    <span class="talk-item__res">
+                        
+                        [<a href="https://github.com/pymug/Slides/blob/master/deriving_asyncio.pdf">slides</a>]
+                        
+                    </span>
+                </p>
+                <p class="talk-item__event">Pymug Meetup</p>
+                <p class="talk-item__desc"></p>
+            </div>
+            
+            <div class="talk-item">
+                <p class="talk-item__title">
+                    Weekly Workshop - Python From Scratch
+                    <span class="talk-item__res">
+                        
+                        [<a href="https://github.com/pymug/Slides/blob/master/pymug_python_from_scratch.pdf">slides</a>]
+                        
+                    </span>
+                </p>
+                <p class="talk-item__event">Pymug Workshop</p>
+                <p class="talk-item__desc"></p>
+            </div>
+            
+            <div class="talk-item">
+                <p class="talk-item__title">
+                    Standard Library Essentials
+                    <span class="talk-item__res">
+                        
+                        [<a href="https://github.com/pymug/Slides/blob/master/pymug_std_lib_essentials.pdf">slides</a>]
+                        
+                    </span>
+                </p>
+                <p class="talk-item__event">Pymug Meetup</p>
+                <p class="talk-item__desc"></p>
+            </div>
+            
+            <div class="talk-item">
+                <p class="talk-item__title">
+                    Scrapy Code Base Reflections
+                    <span class="talk-item__res">
+                        
+                        [<a href="scrapy_arj_jan_2020.md">slides</a>]
+                        
+                    </span>
+                </p>
+                <p class="talk-item__event">Pymug Meetup</p>
+                <p class="talk-item__desc"></p>
+            </div>
+            
+            <div class="talk-item">
+                <p class="talk-item__title">
+                    Shopyo: Flasquer Flask
+                    <span class="talk-item__res">
+                        
+                        [<a href="https://github.com/pymug/Slides/blob/master/shopyo.pdf">slides</a>]
+                        
+                    </span>
+                </p>
+                <p class="talk-item__event">France: AFPy monthly conf</p>
+                <p class="talk-item__desc"></p>
+            </div>
+            
+            <div class="talk-item">
+                <p class="talk-item__title">
+                    Canvas Theory With PyGame
+                    <span class="talk-item__res">
+                        
+                        [<a href="">slides</a>]
+                        
+                    </span>
+                </p>
+                <p class="talk-item__event">Pymug Meetup</p>
+                <p class="talk-item__desc"></p>
+            </div>
+            
+            <div class="talk-item">
+                <p class="talk-item__title">
+                    Workshop: Flask Round The World
+                    <span class="talk-item__res">
+                        
+                        [<a href="https://github.com/pymug/ARJ_Flask_March2020">repo</a>]
+                        
+                    </span>
+                </p>
+                <p class="talk-item__event">Pymug Meetup</p>
+                <p class="talk-item__desc"></p>
+            </div>
+            
+            <div class="talk-item">
+                <p class="talk-item__title">
+                    Key To Django And Flask
+                    <span class="talk-item__res">
+                        
+                        [<a href="https://github.com/pymug/ARJ_KeyToDjangoAndFlask_Feb2020">repo</a>]
+                        
+                    </span>
+                </p>
+                <p class="talk-item__event">Pymug Meetup</p>
+                <p class="talk-item__desc"></p>
+            </div>
+            
+            <div class="talk-item">
+                <p class="talk-item__title">
+                    The CPython Translation Protocol
+                    <span class="talk-item__res">
+                        
+                        [<a href="https://github.com/pymug/ARAugust19DocsTranslations">repo</a>]
+                        
+                    </span>
+                </p>
+                <p class="talk-item__event">Pymug Meetup</p>
+                <p class="talk-item__desc"></p>
+            </div>
+            
+            <div class="talk-item">
+                <p class="talk-item__title">
+                    Workshop: Requests
+                    <span class="talk-item__res">
+                        
+                        [<a href="https://github.com/pymug/ARJune19Requests">repo</a>]
+                        
+                    </span>
+                </p>
+                <p class="talk-item__event">Pymug Meetup</p>
+                <p class="talk-item__desc"></p>
+            </div>
+            
+            <div class="talk-item">
+                <p class="talk-item__title">
+                    Machine Learning Overview
+                    <span class="talk-item__res">
+                        
+                        [<a href="https://github.com/pymug/Ai_UoM_2019/blob/master/ARJ_ML_Overview/human_guide_to_ml.pdf">slides</a>]
+                        
+                    </span>
+                </p>
+                <p class="talk-item__event">University of Mauritius - Ai Workshop 2019</p>
+                <p class="talk-item__desc"></p>
+            </div>
+            
+            <div class="talk-item">
+                <p class="talk-item__title">
+                    Workshop: Numpy Pandas
+                    <span class="talk-item__res">
+                        
+                        [<a href="https://github.com/pymug/Ai_UoM_2019/tree/master/ARJ_Numpy_Pandas">repo</a>]
+                        
+                    </span>
+                </p>
+                <p class="talk-item__event">University of Mauritius - Ai Workshop 2019</p>
+                <p class="talk-item__desc"></p>
+            </div>
             
         </div>
     </div>
 </div>
+
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script>
+(function() {
+    var container = document.getElementById('talks-map');
+    if (!container) return;
+
+    var talks = [
+        
+        
+        {
+            lat: -20.3484,
+            lng: 57.5522,
+            title: "Building Ai agents using Langgraph: From Zero to Hero",
+            event: "Pymug April 25 Meetup",
+        },
+        
+        
+        
+        {
+            lat: -20.3484,
+            lng: 57.5522,
+            title: "Building Ai agents in Python: A Deep Dive",
+            event: "Pymug March 25 Meetup",
+        },
+        
+        
+        
+        {
+            lat: -20.3484,
+            lng: 57.5522,
+            title: "UV: A tool worth knowing about",
+            event: "Pymug February 25 Meetup",
+        },
+        
+        
+        
+        {
+            lat: 37.7749,
+            lng: -122.4194,
+            title: "Pallets Sprint @ SF Python",
+            event: "San Francisco Python Pallets Sprint",
+        },
+        
+        
+        
+        {
+            lat: 40.4406,
+            lng: -79.9959,
+            title: "Extending Flask using the Flask Plugins API",
+            event: "FlaskCon 2024 @ PyConUS",
+        },
+        
+        
+        
+        {
+            lat: -20.3484,
+            lng: 57.5522,
+            title: "PEPs that hit the front page",
+            event: "Pymug Meetup Feb 2024",
+        },
+        
+        
+        
+        {
+            lat: -20.3484,
+            lng: 57.5522,
+            title: "The state of NLP in production",
+            event: "Pymug August 2023",
+        },
+        
+        
+        
+        {
+            lat: -20.3484,
+            lng: 57.5522,
+            title: "libSQL: Taking SQLite to the moon",
+            event: "MSCC DevCon 2023",
+        },
+        
+        
+        
+        {
+            lat: -20.3484,
+            lng: 57.5522,
+            title: "Boosting Python with Rust!",
+            event: "MSCC DevCon 2023",
+        },
+        
+        
+        
+        {
+            lat: -20.3484,
+            lng: 57.5522,
+            title: "Flet: Flutter in Python",
+            event: "PyMug Meetup April 2023",
+        },
+        
+        
+        
+        {
+            lat: -20.3484,
+            lng: 57.5522,
+            title: "SQLite Internals: How The World\u0027s Most Used Database Works",
+            event: "Google DevFest 2022",
+        },
+        
+        
+        
+        {
+            lat: -20.3484,
+            lng: 57.5522,
+            title: "How To OpenSource",
+            event: "DevCon MU 2022",
+        },
+        
+        
+        
+        {
+            lat: -20.3484,
+            lng: 57.5522,
+            title: "Python Bytecode or How Python Operates",
+            event: "DevCon MU 2022",
+        },
+        
+        
+        
+        {
+            lat: -20.3484,
+            lng: 57.5522,
+            title: "Fast Flask Dev For Big Codebases",
+            event: "DevCon MU 2022",
+        },
+        
+        
+        
+        {
+            lat: -20.3484,
+            lng: 57.5522,
+            title: "Python\u0027s Bytecode",
+            event: "Pymug Oct Meetup 2022",
+        },
+        
+        
+        
+        {
+            lat: -41.2865,
+            lng: 174.7762,
+            title: "Creative Coding with Python",
+            event: "Python New Zealand Oct 2022",
+        },
+        
+        
+        
+        {
+            lat: -20.3484,
+            lng: 57.5522,
+            title: "Regex In Depth",
+            event: "Pymug Sept Meetup 2022",
+        },
+        
+        
+        
+        {
+            lat: 59.3293,
+            lng: 18.0686,
+            title: "Advanced Flask: Recipes For An All-weather Craft",
+            event: "PyCon Sweden 2021",
+        },
+        
+        
+        
+        {
+            lat: -26.2041,
+            lng: 28.0473,
+            title: "Shopyo: Your Mega Machine For Flask",
+            event: "PyCon South Africa 2021",
+        },
+        
+        
+        
+        
+        
+        {
+            lat: -20.3484,
+            lng: 57.5522,
+            title: "OpenSource: The What N Why",
+            event: "OSCA Mauritius Meetup Aug 2021",
+        },
+        
+        
+        
+        {
+            lat: -20.3484,
+            lng: 57.5522,
+            title: "Spoonfeeding Sockets",
+            event: "Pymug Meetup April 2021",
+        },
+        
+        
+        
+        {
+            lat: 48.1351,
+            lng: 11.582,
+            title: "Django Clone From Scratch With Flask",
+            event: "EuroPython 2020",
+        },
+        
+        
+        
+        {
+            lat: -20.3484,
+            lng: 57.5522,
+            title: "Python - The Joyful Parts",
+            event: "Pymug Meetup",
+        },
+        
+        
+        
+        {
+            lat: -20.3484,
+            lng: 57.5522,
+            title: "Iter Boosts From The Std Lib",
+            event: "Pymug Meetup",
+        },
+        
+        
+        
+        {
+            lat: -20.3484,
+            lng: 57.5522,
+            title: "Decorating Your Code",
+            event: "Pymug Meetup",
+        },
+        
+        
+        
+        {
+            lat: -20.2408,
+            lng: 57.4979,
+            title: "Where is Python used?",
+            event: "Python Sprint, UoM",
+        },
+        
+        
+        
+        {
+            lat: -20.3484,
+            lng: 57.5522,
+            title: "Honeybot - Diving Into An IRC Bot",
+            event: "Pymug Meetup",
+        },
+        
+        
+        
+        {
+            lat: -20.3484,
+            lng: 57.5522,
+            title: "Become A True Faker",
+            event: "Pymug Meetup",
+        },
+        
+        
+        
+        {
+            lat: -20.3484,
+            lng: 57.5522,
+            title: "Deriving Async Io",
+            event: "Pymug Meetup",
+        },
+        
+        
+        
+        {
+            lat: -20.3484,
+            lng: 57.5522,
+            title: "Weekly Workshop - Python From Scratch",
+            event: "Pymug Workshop",
+        },
+        
+        
+        
+        {
+            lat: -20.3484,
+            lng: 57.5522,
+            title: "Standard Library Essentials",
+            event: "Pymug Meetup",
+        },
+        
+        
+        
+        {
+            lat: -20.3484,
+            lng: 57.5522,
+            title: "Scrapy Code Base Reflections",
+            event: "Pymug Meetup",
+        },
+        
+        
+        
+        {
+            lat: 48.8566,
+            lng: 2.3522,
+            title: "Shopyo: Flasquer Flask",
+            event: "France: AFPy monthly conf",
+        },
+        
+        
+        
+        {
+            lat: -20.3484,
+            lng: 57.5522,
+            title: "Canvas Theory With PyGame",
+            event: "Pymug Meetup",
+        },
+        
+        
+        
+        {
+            lat: -20.3484,
+            lng: 57.5522,
+            title: "Workshop: Flask Round The World",
+            event: "Pymug Meetup",
+        },
+        
+        
+        
+        {
+            lat: -20.3484,
+            lng: 57.5522,
+            title: "Key To Django And Flask",
+            event: "Pymug Meetup",
+        },
+        
+        
+        
+        {
+            lat: -20.3484,
+            lng: 57.5522,
+            title: "The CPython Translation Protocol",
+            event: "Pymug Meetup",
+        },
+        
+        
+        
+        {
+            lat: -20.3484,
+            lng: 57.5522,
+            title: "Workshop: Requests",
+            event: "Pymug Meetup",
+        },
+        
+        
+        
+        {
+            lat: -20.2408,
+            lng: 57.4979,
+            title: "Machine Learning Overview",
+            event: "University of Mauritius - Ai Workshop 2019",
+        },
+        
+        
+        
+        {
+            lat: -20.2408,
+            lng: 57.4979,
+            title: "Workshop: Numpy Pandas",
+            event: "University of Mauritius - Ai Workshop 2019",
+        },
+        
+        
+    ];
+
+    if (talks.length === 0) {
+        document.getElementById('talks-map-container').style.display = 'none';
+        return;
+    }
+
+    var map = L.map('talks-map', {
+        center: [15, 0],
+        zoom: 1,
+        scrollWheelZoom: false,
+        zoomControl: false,
+        attributionControl: false,
+    });
+
+    L.control.zoom({
+        position: 'bottomright',
+    }).addTo(map);
+
+    L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
+        maxZoom: 19,
+    }).addTo(map);
+
+    talks.forEach(function(t) {
+        var marker = L.circleMarker([t.lat, t.lng], {
+            radius: 3,
+            fillColor: '#dc2626',
+            color: '#dc2626',
+            weight: 1,
+            opacity: 0.8,
+            fillOpacity: 0.8,
+        }).addTo(map);
+
+        marker.bindPopup(
+            '<div class="map-popup">' +
+                '<strong>' + t.title + '</strong><br>' +
+                '<span class="map-popup__event">' + t.event + '</span>' +
+            '</div>',
+            { closeButton: false, className: 'talks-map-popup' }
+        );
+    });
+})();
+</script>
+
+<style>
+.leaflet-control-zoom {
+    border: none !important;
+    border-radius: 6px !important;
+    box-shadow: 0 2px 12px rgba(0,0,0,.09), 0 1px 4px rgba(0,0,0,.06) !important;
+    overflow: hidden !important;
+}
+
+.leaflet-control-zoom a {
+    width: 34px !important;
+    height: 34px !important;
+    line-height: 34px !important;
+    font-size: 1rem !important;
+    font-weight: 600 !important;
+    color: var(--ink) !important;
+    background: #fff !important;
+    border-bottom: 1px solid #eee !important;
+    transition: background .15s, color .15s !important;
+}
+
+.leaflet-control-zoom a:hover {
+    background: #f5f5f4 !important;
+    color: var(--accent) !important;
+}
+
+.leaflet-control-zoom a:active {
+    background: #e7e5e4 !important;
+}
+
+.leaflet-control-zoom a.leaflet-disabled {
+    color: #d6d3d1 !important;
+    cursor: default !important;
+}
+
+.leaflet-control-zoom a:last-child {
+    border-bottom: none !important;
+}
+
+.map-popup strong {
+    font-family: var(--font-title);
+    font-size: 0.85rem;
+    color: var(--ink);
+    display: block;
+    margin-bottom: 0.15rem;
+}
+
+.map-popup__event {
+    font-size: 0.8rem;
+    color: var(--ink-muted);
+    font-style: italic;
+}
+
+.leaflet-popup-content-wrapper {
+    border-radius: 6px !important;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.12) !important;
+    padding: 0.25rem 0 !important;
+}
+
+.leaflet-popup-content {
+    margin: 10px 14px !important;
+    font-family: var(--font-main);
+    font-size: 0.8rem;
+    line-height: 1.5;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    #talks-map .leaflet-fade-anim .leaflet-popup {
+        transition: none !important;
+    }
+}
+</style>
 
 <footer class="site-footer">
     <div class="container">
