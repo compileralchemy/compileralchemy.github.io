@@ -36,6 +36,7 @@
         var swiper = new Swiper('.swiper-container', {
             autoHeight: true,
             spaceBetween: 30,
+            speed: 700,
             hashNavigation: { watchState: true },
             pagination: {
                 el: '.swiper-pagination',
@@ -48,6 +49,19 @@
                 nextEl: '.tnav-next',
                 prevEl: '.tnav-prev',
             },
+            on: {
+                slideChangeTransitionStart: function() {
+                    if (this.activeIndex > this.previousIndex) {
+                        var prev = this.slides[this.previousIndex];
+                        if (prev) prev.classList.add('rip-slide');
+                    }
+                },
+                slideChangeTransitionEnd: function() {
+                    this.slides.forEach(function(slide) {
+                        slide.classList.remove('rip-slide');
+                    });
+                }
+            }
         });
         </script>
     </div>

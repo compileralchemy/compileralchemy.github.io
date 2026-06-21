@@ -1,49 +1,98 @@
 {%extends "pages/base.html"%}
 
 {%block body%}
-<div class="section" id="writings" style="background-color: {{ section_bg('writings') }};">
+<div class="section section--alt" id="writings">
     <div class="container">
-        <div class="notification" style="background-color: {{ section_bg('writings') }};">
-            <div class="notification has-text-centered" style="background-color: {{ section_bg('writings') }};">
-                <br>
-                <p class="has-text-centered">
-                    <span class="title has-background-white-ter has-text-centered" style="width: 50px; height:50px; padding: 20px; border-radius: 50%;">
-                        📚
-                    </span>
-                </p><br>
-                <p class="title"><a href="#writings" class="no-link-dec">Luminotes</a></p>
-                <p class="subtitle">Deep dives into systems, Python, and more</p>
-            </div>
-        </div>
-        <div class="columns is-centered" style="background-color: {{ section_bg('writings') }};">
-            <div class="column is-5">
-                <div class="writings notification" style="background-color: {{ section_bg('writings') }};">
-                    <p style="font-size: 0.95rem; color: #555; margin-bottom: 1rem;">
-                        A technical newsletter read by engineers at
-                    </p>
-                    <p style="font-size: 0.85rem; font-weight: 700; color: #444; margin-bottom: 1rem;">
-                        Google · Amazon · Apple · IBM · VMWare · Facebook · Dell
-                    </p>
-                    <p style="font-size: 0.9rem; color: #666; margin-bottom: 1.5rem;">
-                        Selected in PyCoders Weekly, Awesome Python, Python Byte Podcast, DevOps Weekly, Gitops Weekly, SQLite news. Hackernews front page hits: 2.
-                    </p>
+        <header class="sec-head sec-head--center">
+            <span class="sec-kicker">Luminotes</span>
+            <h2 class="sec-title">Deep dives into systems, Python, and more</h2>
+        </header>
+
+        <div class="writings-grid">
+            <div class="writings">
+                <div class="writings__intro">
+                    <p>A technical newsletter read by engineers at <strong>Google, Amazon, Apple, IBM, VMWare, Facebook, Dell</strong>.</p>
+                    <p>Selected in PyCoders Weekly, Awesome Python, Python Byte Podcast, DevOps Weekly, GitOps Weekly, SQLite news. HackerNews front page: 2.</p>
+                </div>
+                <ul class="wl-grid">
                     {%for writing in writings%}
-                        <p style="margin-bottom: 0.5rem;">
-                            <span style="color: #888;">{{str(loop.index).zfill(2)}}.</span>
-                            <a href="{{ writing['url'] }}" style="text-decoration: none;">{{ titlecase(writing['title']) }}</a>
-                        </p>
+                    <li class="wl-item">
+                        <a href="{{ writing['url'] }}" class="wl-link">
+                            <span class="wl-num">{{ '%02d' | format(loop.index) }}</span>
+                            <span class="wl-title">{{ titlecase(writing['title']) }}</span>
+                            <span class="wl-arrow">&nearr;</span>
+                        </a>
+                    </li>
                     {%endfor%}
-                </div>
+                </ul>
             </div>
-            <div class="column is-5">
-                <div class="notification" style="background-color: {{ section_bg('writings') }}; padding: 0;">
-                    <iframe src="https://compileralchemy.substack.com/embed"  
-                        style="border:1px solid #EEE; background:white; width: 100%; min-height: 320px;" frameborder="0" scrolling="no"></iframe>
-                </div>
+            <div class="substack-embed">
+                <iframe src="https://compileralchemy.substack.com/embed"
+                    style="background:white; width: 100%; min-height: 320px;" frameborder="0" scrolling="no"></iframe>
             </div>
         </div>
     </div>
 </div>
 
 {% include "sections/footer.html" %}
+
+<style>
+.wl-grid {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: grid;
+    gap: 0.5rem;
+}
+.wl-item {
+    background: var(--surface, #fff);
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    overflow: hidden;
+    transition: box-shadow .2s ease, transform .2s ease;
+}
+.wl-item:hover {
+    box-shadow: 0 4px 16px rgba(0,0,0,.08);
+    transform: translateY(-1px);
+}
+.wl-link {
+    display: flex;
+    align-items: center;
+    gap: 0.85rem;
+    padding: 0.75rem 1rem;
+    text-decoration: none;
+    color: var(--ink);
+}
+.wl-num {
+    flex-shrink: 0;
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    color: var(--ink-muted);
+    background: var(--surface-alt, #f5f5f5);
+    padding: 0.2rem 0.5rem;
+    border-radius: 6px;
+    min-width: 2.2rem;
+    text-align: center;
+}
+.wl-title {
+    flex: 1;
+    font-size: 0.88rem;
+    font-weight: 500;
+    line-height: 1.4;
+    word-wrap: break-word;
+}
+.wl-arrow {
+    flex-shrink: 0;
+    color: var(--ink-muted);
+    font-size: 0.9rem;
+    transition: transform .2s ease, color .2s ease;
+}
+.wl-item:hover .wl-arrow {
+    transform: translate(2px, -2px);
+    color: var(--accent, #dc2626);
+}
+@media (max-width: 480px) {
+    .wl-title { font-size: 0.82rem; }
+}
+</style>
 {%endblock%}

@@ -1,131 +1,308 @@
-<!DOCTYPE html>
-<html lang="en">
+{%extends "pages/base.html"%}
 
-<head>
-    <!-- Global site tag (gtag.js) - Google Analytics -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-161612035-1"></script>
-    <script>
-    window.dataLayer = window.dataLayer || [];
+{%block head%}
+<title>{{ settings.podcast['title'] }} - {{ settings.podcast['tagline'] }}</title>
+<meta name="description" content="{{ settings.podcast['rss_description'] }}">
+<meta name="keywords" content="podcast, python, freelancing, career, opensource, tech">
+<meta property="og:title" content="{{ settings.podcast['title'] }}" />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://www.compileralchemy.com/alfa-podcast/" />
+<meta property="og:description" content="{{ settings.podcast['rss_description'] }}" />
+<link rel="canonical" href="https://www.compileralchemy.com/alfa-podcast/" />
+<link rel="alternate" type="application/rss+xml" href="https://www.compileralchemy.com/alfa-podcast/podcast.rss" title="The Alfa Podcast episodes">
+{%endblock%}
 
-    function gtag() { dataLayer.push(arguments); }
-    gtag('js', new Date());
-    gtag('config', 'UA-161612035-1');
-    </script>
-    <title>{{ settings.podcast['title'] }} - {{ settings.podcast['tagline'] }}</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta charset="utf-8">
-    <meta name="description" content="{{ settings.podcast['rss_description'] }}">
-    <meta name="keywords" content="podcast, python, freelancing, career, opensource, tech">
-    <meta name="author" content="Abdur-Rahmaan Janhangeer">
-    
-    <meta property="og:title" content="{{ settings.podcast['title'] }}" />
-    <meta property="og:type" content="website" />
-    <meta property="og:url" content="https://www.compileralchemy.com/alfa-podcast/" />
-    <meta property="og:description" content="{{ settings.podcast['rss_description'] }}" />
-    
-    <link rel="canonical" href="https://www.compileralchemy.com/alfa-podcast/" />
-    <meta name="theme-color" content="#ffb74d" />
-    <link rel="alternate" type="application/rss+xml" href="https://www.compileralchemy.com/alfa-podcast/podcast.rss" title="The Alfa Podcast episodes">
-    <link rel="icon" href="{{path}}/assets/COMP_ALC.png">
-    <link rel="stylesheet" type="text/css" href="prototyp.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/greghub/green-audio-player/dist/css/green-audio-player.min.css">
-    <link href='https://fonts.googleapis.com/css?family=Comfortaa' rel='stylesheet' type='text/css'>
-    <link href='https://fonts.googleapis.com/css?family=Raleway:700' rel='stylesheet' type='text/css'>
-    <link href='https://fonts.googleapis.com/css?family=Special+Elite' rel='stylesheet' type='text/css'>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.0/css/bulma.min.css">
-    <script defer src="https://use.fontawesome.com/releases/v5.8.2/js/all.js"></script>
-    </script>
-    <style type="text/css">
-    .podcast-section {}
+{%block body%}
 
-    .card {
-        box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.18);
-    }
-    </style>
-    <script type="text/javascript">
-    (function(c, l, a, r, i, t, y) {
-        c[a] = c[a] || function() {
-            (c[a].q = c[a].q || []).push(arguments) };
-        t = l.createElement(r);
-        t.async = 1;
-        t.src = "https://www.clarity.ms/tag/" + i;
-        y = l.getElementsByTagName(r)[0];
-        y.parentNode.insertBefore(t, y);
-    })(window, document, "clarity", "script", "b2ltvgn5pp");
-    </script>
-</head>
+<div class="section section--alt" id="podcast">
+    <div class="container">
+        <header class="sec-head sec-head--center">
+            <span class="sec-kicker">Podcast</span>
+            <h2 class="sec-title">{{ settings.podcast['title'] }}</h2>
+            <p class="sec-sub">{{ settings.podcast['tagline'] }}</p>
+            <p class="sec-sub" style="font-size: 0.85rem; margin-top: 0.25rem;">
+                Hosted by <a href="https://twitter.com/osdotsystem" style="color: var(--accent, #dc2626);">@osdotsystem</a> &middot; {{ settings.podcast['description'] }}
+            </p>
+        </header>
 
-<body class="">
-    {% include 'sections/navbar.html' %}
-
-    <div class="section has-background-white">
-        <div class="container">
-            <div class="notification is-white">
-                <div class="notification is-white has-text-centered">
-                    <br>
-                    <p class="has-text-centered ">
-                        <span class="title has-background-white-ter  has-text-centered" style="width: 50px; height:50px; padding: 15px; border-radius: 50%;">
-                            ☕
-                        </span>
-                    </p><br>
-                    <p class="title">{{ settings.podcast['title'] }}</p>
-                    <p class="subtitle m-0 p-0" style="margin: 0; padding: 0;">{{ settings.podcast['tagline'] }}, hosted by <a href="https://twitter.com/osdotsystem">@osdotsystem</a><br>
-                        <p class="is-size-7 m-0 p-0">{{ settings.podcast['description'] }}</p><br><br>
-                        <button class="button is-small is-link">
-                            <a href="/">back</a>
-                        </button> &nbsp; &nbsp;
-                        
-      <a href="https://podcasts.google.com/feed/aHR0cHM6Ly93d3cuY29tcGlsZXJhbGNoZW15LmNvbS9hbGZhLXBvZGNhc3QvcG9kY2FzdC5yc3M" target="_blank">
-        <img src="https://www.gstatic.com/podcasts_console/promote/English_EN/EN_Google_Podcasts_Badge.svg" width="150" height="38" alt="Listen on Google Podcasts">
-      </a>
-      <a href="https://open.spotify.com/show/1XUj1JqcQsTwoS8EiDKDgf" target="_blank">
-        <img src="{{ path }}assets/spotify_podcast.svg"  alt="Listen on Spotify Podcasts">
-      </a>
-    
-                    </p>
-                </div>
-            </div>
-            <div class="container">
-                <div class="podcast-section " style="">
-                    {% for podcast in settings.podcasts %}
-                    <div class="card" style="padding: 30px; margin-bottom: 30px;" class="mb-3">
-                        <p class="is-size-3">
-                            <a id="{{ podcast['episode'] }}" href="#{{ podcast['episode'] }}">#{{ podcast['episode'] }}.</a> {{ podcast['title'] }}
-                        </p>
-                        <div class="player">
-                            <audio>
-                                <source src="{{ podcast['link'] }}" type="audio/mpeg">
-                            </audio>
-                        </div>
-                        <br>
-                        <!-- <a href="{{ podcast['space_link'] }}">listen</a> | --> {{ podcast['date'] }} | {{ podcast['duration'] }} | <a href="{{ podcast['space'] }}">space</a><br><br>
-                        {% for people in podcast['people'] %}
-                        <div class="mb-3">
-                            <p class="is-size-6">
-                                <b>{{ people['name'] }} (<a href="{{ people['social']['twitter'] }}">twitter</a>) <span class="tag is-success">{{ people['status'] }}</span></b>
-                            </p>
-                            <p>
-                                {{ people['info'] }}
-                            </p>
-                        </div>
-                        {% endfor %}
-                        <hr>
-                        {{ md_to_html(podcast['description']) }}
-                    </div>
-                    {% endfor %}
-                </div>
+        <div class="has-text-centered" style="margin: 1.25rem 0 2rem;">
+            <a href="https://podcasts.google.com/feed/aHR0cHM6Ly93d3cuY29tcGlsZXJhbGNoZW15LmNvbS9hbGZhLXBvZGNhc3QvcG9kY2FzdC5yc3M" target="_blank">
+                <img src="https://www.gstatic.com/podcasts_console/promote/English_EN/EN_Google_Podcasts_Badge.svg" width="150" height="38" alt="Listen on Google Podcasts">
+            </a>
+            <a href="https://open.spotify.com/show/1XUj1JqcQsTwoS8EiDKDgf" target="_blank">
+                <img src="{{ path }}assets/spotify_podcast.svg" alt="Listen on Spotify Podcasts">
+            </a>
+            <div style="margin-top: 0.75rem;">
+                <a href="/" class="btn btn--ghost btn--sm">&larr; Back</a>
             </div>
         </div>
-    </div>
-    {% include 'sections/footer.html' %}
-    <script src="https://cdn.jsdelivr.net/gh/greghub/green-audio-player/dist/js/green-audio-player.min.js"></script>
-    <script type="text/javascript">
-    GreenAudioPlayer.init({
-        selector: '.player', // inits Green Audio Player on each audio container that has class "player"
-        stopOthersOnPlay: true
-    });
-    </script>
-</body>
 
-</html>
+        <div class="container--narrow" style="margin: 0 auto;">
+            {% set covers = [
+            '#d97706,#fde68a',
+            '#dc2626,#fca5a5',
+            '#7c3aed,#c4b5fd',
+            '#1d4ed8,#93c5fd',
+            '#15803d,#86efac'
+            ] %}
+
+            {% for ep in settings.podcasts %}
+            {% set cover = covers[loop.index0 % 5] %}
+            {% set c = cover.split(',') %}
+            <article class="pc-card pc-card--full" style="--c1: {{ c[0] }}; --c2: {{ c[1] }}" id="{{ ep['episode'] }}">
+                <div class="pc-card__cover">
+                    <span class="pc-card__num">{{ '%02d' | format(ep['episode']) }}</span>
+                    <svg class="pc-card__wave" viewBox="0 0 120 40" preserveAspectRatio="none">
+                        <path d="M0 20 Q10 5 20 20 T40 20 T60 20 T80 20 T100 20 T120 20" fill="none" stroke="rgba(255,255,255,.3)" stroke-width="2"/>
+                        <path d="M0 20 Q10 12 20 20 T40 20 T60 20 T80 20 T100 20 T120 20" fill="none" stroke="rgba(255,255,255,.5)" stroke-width="2"/>
+                    </svg>
+                </div>
+                <div class="pc-card__body">
+                    <div class="pc-card__meta">
+                        <span class="pc-card__ep">EP {{ ep['episode'] }}</span>
+                        <span class="pc-card__dur">{{ ep['duration'] }}</span>
+                        <span class="pc-card__date">{{ ep['date'] }}</span>
+                        {% if ep['space'] %}<a class="pc-card__space" href="{{ ep['space'] }}" target="_blank">space &nearr;</a>{% endif %}
+                    </div>
+                    <h3 class="pc-card__title"><a href="#{{ ep['episode'] }}">{{ ep['title'] }}</a></h3>
+                    <div class="pc-card__guests">
+                        {% for person in ep['people'] %}
+                        <div class="pc-person pc-person--{{ person['status'] }}">
+                            <span class="pc-person__role">{{ person['status'] }}</span>
+                            <span class="pc-person__name">{{ person['name'] }}</span>
+                            {% if person['info'] %}<span class="pc-person__info">{{ person['info'] }}</span>{% endif %}
+                            {% for s in person['social'] %}
+                            {% if s is string and s.startswith('http') %}<a class="pc-person__social" href="{{ s }}" target="_blank">twitter</a>{% endif %}
+                            {% endfor %}
+                        </div>
+                        {% endfor %}
+                    </div>
+                    <div class="pc-card__desc-full">
+                        {{ md_to_html(ep['description']) | safe }}
+                    </div>
+                    <div class="pc-card__player">
+                        <button class="pc-play" data-src="{{ ep['link'] }}" aria-label="Play episode {{ ep['episode'] }}">
+                            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+                        </button>
+                        <audio controls preload="none" class="pc-audio">
+                            <source src="{{ ep['link'] }}" type="audio/mpeg">
+                        </audio>
+                    </div>
+                </div>
+            </article>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+{% include "sections/footer.html" %}
+
+<style>
+.pc-card--full { margin-bottom: 1.25rem; }
+.pc-card--full .pc-card__body { padding: 1.25rem 1.5rem 1.5rem; }
+.pc-card__date {
+    font-size: 0.62rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    font-weight: 600;
+    color: var(--ink-muted);
+}
+.pc-card__space {
+    font-size: 0.62rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--accent, #dc2626);
+    text-decoration: none;
+    font-weight: 600;
+    margin-left: auto;
+}
+.pc-card__title a {
+    color: inherit;
+    text-decoration: none;
+}
+.pc-card__guests {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin: 0.5rem 0 1rem;
+}
+.pc-person {
+    display: flex;
+    flex-direction: column;
+    gap: 0.1rem;
+    padding: 0.5rem 0.75rem;
+    border-radius: 8px;
+    border: 1px solid var(--line);
+    background: var(--surface, #fff);
+    font-size: 0.8rem;
+    min-width: 180px;
+    flex: 1;
+}
+.pc-person__role {
+    font-size: 0.55rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    font-weight: 700;
+}
+.pc-person--guest .pc-person__role { color: #b45309; }
+.pc-person--co-host .pc-person__role { color: #1e40af; }
+.pc-person--host .pc-person__role { color: #6b7280; }
+.pc-person__name {
+    font-weight: 700;
+    color: var(--ink);
+}
+.pc-person__info {
+    font-size: 0.72rem;
+    color: var(--ink-muted);
+    line-height: 1.4;
+}
+.pc-person__social {
+    font-size: 0.62rem;
+    color: var(--accent, #dc2626);
+    text-decoration: none;
+    margin-top: 0.15rem;
+}
+.pc-card__desc-full {
+    font-size: 0.88rem;
+    color: var(--ink-2);
+    line-height: 1.7;
+    margin-bottom: 1rem;
+}
+.pc-card__desc-full p { margin: 0 0 0.5rem; }
+.pc-card__desc-full p:last-child { margin-bottom: 0; }
+
+.pc-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+}
+.pc-card {
+    background: var(--surface, #fff);
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    transition: box-shadow .2s ease, transform .2s ease;
+}
+.pc-card:hover {
+    box-shadow: 0 8px 24px rgba(0,0,0,.1);
+    transform: translateY(-3px);
+}
+.pc-card__cover {
+    background: linear-gradient(135deg, var(--c1), var(--c2));
+    padding: 1.25rem 1.25rem 0.75rem;
+    position: relative;
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    min-height: 90px;
+}
+.pc-card__num {
+    font-family: var(--font-title);
+    font-size: 2.2rem;
+    font-weight: 800;
+    color: rgba(255,255,255,.85);
+    line-height: 1;
+    letter-spacing: -0.02em;
+}
+.pc-card__wave {
+    width: 80px;
+    height: 30px;
+    opacity: 0.7;
+}
+.pc-card__body {
+    padding: 1.1rem 1.25rem 1.25rem;
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+}
+.pc-card__meta {
+    display: flex;
+    gap: 0.75rem;
+    align-items: center;
+    margin-bottom: 0.5rem;
+}
+.pc-card__ep, .pc-card__dur {
+    font-size: 0.62rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    font-weight: 600;
+    color: var(--ink-muted);
+}
+.pc-card__ep {
+    background: var(--surface-alt, #f5f5f5);
+    padding: 0.15rem 0.5rem;
+    border-radius: 10px;
+}
+.pc-card__title {
+    font-family: var(--font-title);
+    font-size: 1.02rem;
+    font-weight: 700;
+    color: var(--ink);
+    line-height: 1.3;
+    margin: 0 0 0.5rem;
+}
+.pc-card__player {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+.pc-play {
+    flex-shrink: 0;
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    border: none;
+    background: var(--c1);
+    color: #fff;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform .15s ease, box-shadow .15s ease;
+}
+.pc-play:hover {
+    transform: scale(1.08);
+    box-shadow: 0 2px 8px rgba(0,0,0,.2);
+}
+.pc-play svg {
+    width: 16px;
+    height: 16px;
+}
+.pc-audio {
+    flex: 1;
+    height: 34px;
+}
+
+@media (max-width: 768px) {
+    .pc-grid { grid-template-columns: 1fr; }
+    .pc-person { min-width: 100%; }
+}
+@media (max-width: 480px) {
+    .pc-card__num { font-size: 1.8rem; }
+    .pc-card__title { font-size: 0.95rem; }
+}
+</style>
+
+<script>
+document.querySelectorAll('.pc-play').forEach(function(btn) {
+    btn.addEventListener('click', function() {
+        var audio = this.parentElement.querySelector('.pc-audio');
+        var svg = this.querySelector('svg path');
+        document.querySelectorAll('.pc-audio').forEach(function(a) {
+            if (a !== audio) { a.pause(); }
+        });
+        document.querySelectorAll('.pc-play svg path').forEach(function(p) {
+            if (p !== svg) { p.setAttribute('d', 'M8 5v14l11-7z'); }
+        });
+        if (audio.paused) {
+            audio.play();
+            svg.setAttribute('d', 'M6 4h4v16H6zM14 4h4v16h-4z');
+        } else {
+            audio.pause();
+            svg.setAttribute('d', 'M8 5v14l11-7z');
+        }
+    });
+});
+</script>
+{%endblock%}

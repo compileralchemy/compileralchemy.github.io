@@ -1,20 +1,138 @@
-<div class="section" id="papers">
+<div class="section section--alt" id="papers">
     <div class="container">
         <header class="sec-head sec-head--center">
             <span class="sec-kicker">Papers</span>
             <h2 class="sec-title">Paper walkthroughs &amp; commentary</h2>
+            <p class="sec-sub">In-depth line-by-line analysis of influential CS papers</p>
         </header>
 
         <div class="container--narrow" style="margin: 0 auto;">
-            <div class="paper-item">
-                <p class="paper-item__title">
-                    <a href="{{ path }}papers/">The Annotated Transformer with Commentary</a>
-                </p>
-                <p class="paper-item__desc">
-                    A line-by-line walkthrough of the Transformer architecture from
-                    "Attention is All You Need", with added explanations and commentary.
-                </p>
+            <div class="papers-list">
+                <article class="pp-card">
+                    <div class="pp-card__side">
+                        <svg viewBox="0 0 52 60" class="pp-card__badge">
+                            <defs>
+                                <linearGradient id="ppg1" x1="0" y1="0" x2="0" y2="1">
+                                    <stop offset="0" stop-color="#a5b4fc"/>
+                                    <stop offset="1" stop-color="#4338ca"/>
+                                </linearGradient>
+                            </defs>
+                            <path d="M26 1 L51 15.5 L51 44.5 L26 59 L1 44.5 L1 15.5 Z" fill="url(#ppg1)" stroke="#312e81" stroke-width="1"/>
+                            <path d="M26 5 L47 17.25 L47 42.75 L26 55 L5 42.75 L5 17.25 Z" fill="none" stroke="rgba(255,255,255,.35)" stroke-width=".6"/>
+                            <path d="M18 22 L34 22 M18 27 L34 27 M18 32 L28 32" stroke="#fff" stroke-width="2" stroke-linecap="round"/>
+                        </svg>
+                    </div>
+                    <div class="pp-card__body">
+                        <span class="pp-card__tag">Commentary</span>
+                        <h3 class="pp-card__title">
+                            <a href="{{ path }}annotated-transformer-commentary/">The Annotated Transformer with Commentary</a>
+                        </h3>
+                        <p class="pp-card__desc">
+                            A line-by-line walkthrough of the Transformer architecture from
+                            "Attention is All You Need", with added explanations and commentary.
+                        </p>
+                        <a class="pp-card__link" href="{{ path }}annotated-transformer-commentary/">
+                            Read the commentary &rarr;
+                        </a>
+                    </div>
+                </article>
+
+                <div class="pp-empty">
+                    <p class="pp-empty__text">More paper walkthroughs in progress ~ watch this space</p>
+                </div>
             </div>
         </div>
     </div>
 </div>
+
+<style>
+.pp-card {
+    display: flex;
+    gap: 1.25rem;
+    background: var(--surface, #fff);
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    padding: 1.25rem;
+    margin-bottom: 1rem;
+    transition: box-shadow .2s ease, transform .2s ease;
+}
+.pp-card:hover {
+    box-shadow: 0 6px 20px rgba(0,0,0,.08);
+    transform: translateY(-2px);
+}
+.pp-card__side {
+    flex-shrink: 0;
+}
+.pp-card__badge {
+    width: 52px;
+    height: 60px;
+    display: block;
+    filter: drop-shadow(0 2px 4px rgba(0,0,0,.12));
+}
+.pp-card__body {
+    flex: 1;
+    min-width: 0;
+}
+.pp-card__tag {
+    display: inline-block;
+    font-size: 0.6rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    font-weight: 700;
+    color: #4338ca;
+    background: rgba(67,56,202,.08);
+    padding: 0.2rem 0.6rem;
+    border-radius: 10px;
+    margin-bottom: 0.5rem;
+}
+.pp-card__title {
+    font-family: var(--font-title);
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--ink);
+    line-height: 1.3;
+    margin: 0 0 0.5rem;
+}
+.pp-card__title a {
+    color: inherit;
+    text-decoration: none;
+}
+.pp-card__title a:hover {
+    color: var(--accent, #dc2626);
+}
+.pp-card__desc {
+    font-size: 0.88rem;
+    color: var(--ink-2);
+    line-height: 1.6;
+    margin: 0 0 0.75rem;
+}
+.pp-card__link {
+    font-size: 0.82rem;
+    font-weight: 600;
+    color: var(--accent, #dc2626);
+    text-decoration: none;
+    transition: transform .2s ease;
+    display: inline-block;
+}
+.pp-card__link:hover {
+    transform: translateX(4px);
+}
+.pp-empty {
+    text-align: center;
+    padding: 2rem 1rem;
+    border: 1px dashed var(--line);
+    border-radius: 12px;
+    color: var(--ink-muted);
+}
+.pp-empty__text {
+    font-size: 0.85rem;
+    font-style: italic;
+    margin: 0;
+}
+
+@media (max-width: 640px) {
+    .pp-card { gap: 0.75rem; padding: 1rem; }
+    .pp-card__badge { width: 40px; height: 46px; }
+    .pp-card__title { font-size: 0.98rem; }
+}
+</style>

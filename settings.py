@@ -383,6 +383,8 @@ talks = [
     {
         "title": "Building Ai agents using Langgraph: From Zero to Hero",
         "event": "Pymug April 25 Meetup",
+        "lat": -20.3484,
+        "lng": 57.5522,
         "res": [
             {
                 "type": "slides",
@@ -393,6 +395,8 @@ talks = [
     {
         "title": "Building Ai agents in Python: A Deep Dive",
         "event": "Pymug March 25 Meetup",
+        "lat": -20.3484,
+        "lng": 57.5522,
         "res": [
             {
                 "type": "slides",
@@ -403,6 +407,8 @@ talks = [
     {
         "title": "UV: A tool worth knowing about",
         "event": "Pymug February 25 Meetup",
+        "lat": -20.3484,
+        "lng": 57.5522,
         "res": [
             {
                 "type": "slides",
@@ -413,6 +419,8 @@ talks = [
     {
         "title": "Pallets Sprint @ SF Python",
         "event": "San Francisco Python Pallets Sprint",
+        "lat": 37.7749,
+        "lng": -122.4194,
         "res": [
             {
                 "type": "slides",
@@ -423,6 +431,8 @@ talks = [
     {
         "title": "Extending Flask using the Flask Plugins API",
         "event": "FlaskCon 2024 @ PyConUS",
+        "lat": 40.4406,
+        "lng": -79.9959,
         "res": [
             {
                 "type": "slides",
@@ -433,6 +443,8 @@ talks = [
     {
         "title": "PEPs that hit the front page",
         "event": "Pymug Meetup Feb 2024",
+        "lat": -20.3484,
+        "lng": 57.5522,
         "res": [
             {
                 "type": "slides",
@@ -443,6 +455,8 @@ talks = [
     {
         "title": "The state of NLP in production",
         "event": "Pymug August 2023",
+        "lat": -20.3484,
+        "lng": 57.5522,
         "res": [
             {
                 "type": "slides",
@@ -453,6 +467,8 @@ talks = [
     {
         "title": "libSQL: Taking SQLite to the moon",
         "event": "MSCC DevCon 2023",
+        "lat": -20.3484,
+        "lng": 57.5522,
         "res": [
             {
                 "type": "slides",
@@ -463,6 +479,8 @@ talks = [
     {
         "title": "Boosting Python with Rust!",
         "event": "MSCC DevCon 2023",
+        "lat": -20.3484,
+        "lng": 57.5522,
         "res": [
             {
                 "type": "slides",
@@ -473,6 +491,8 @@ talks = [
     {
         "title": "Flet: Flutter in Python",
         "event": "PyMug Meetup April 2023",
+        "lat": -20.3484,
+        "lng": 57.5522,
         "res": [
             {
                 "type": "slides",
@@ -483,6 +503,8 @@ talks = [
     {
         "title": "SQLite Internals: How The World's Most Used Database Works",
         "event": "Google DevFest 2022",
+        "lat": -20.3484,
+        "lng": 57.5522,
         "res": [
             {
                 "type": "slides",
@@ -493,6 +515,8 @@ talks = [
     {
         "title": "How To OpenSource",
         "event": "DevCon MU 2022",
+        "lat": -20.3484,
+        "lng": 57.5522,
         "res": [
             {
                 "type": "slides",
@@ -503,6 +527,8 @@ talks = [
     {
         "title": "Python Bytecode or How Python Operates",
         "event": "DevCon MU 2022",
+        "lat": -20.3484,
+        "lng": 57.5522,
         "res": [
             {
                 "type": "slides",
@@ -513,6 +539,8 @@ talks = [
     {
         "title": "Fast Flask Dev For Big Codebases",
         "event": "DevCon MU 2022",
+        "lat": -20.3484,
+        "lng": 57.5522,
         "res": [
             {
                 "type": "slides",
@@ -523,6 +551,8 @@ talks = [
     {
         "title": "Python's Bytecode",
         "event": "Pymug Oct Meetup 2022",
+        "lat": -20.3484,
+        "lng": 57.5522,
         "res": [
             {
                 "type": "slides",
@@ -533,6 +563,8 @@ talks = [
     {
         "title": "Creative Coding with Python",
         "event": "Python New Zealand Oct 2022",
+        "lat": -41.2865,
+        "lng": 174.7762,
         "res": [
             {
                 "type": "slides",
@@ -543,6 +575,8 @@ talks = [
     {
         "title": "Regex In Depth",
         "event": "Pymug Sept Meetup 2022",
+        "lat": -20.3484,
+        "lng": 57.5522,
         "res": [
             {
                 "type": "slides",
@@ -553,6 +587,8 @@ talks = [
     {
         "title": "Advanced Flask: Recipes For An All-weather Craft",
         "event": "PyCon Sweden 2021",
+        "lat": 59.3293,
+        "lng": 18.0686,
         "res": [
             {
                 "type": "video",
@@ -567,6 +603,8 @@ talks = [
     {
         "title": "Shopyo: Your Mega Machine For Flask",
         "event": "PyCon South Africa 2021",
+        "lat": -26.2041,
+        "lng": 28.0473,
         "res": [
             {
                 "type": "video",
@@ -587,6 +625,8 @@ talks = [
     {
         "title": "OpenSource: The What N Why",
         "event": "OSCA Mauritius Meetup Aug 2021",
+        "lat": -20.3484,
+        "lng": 57.5522,
         "res": [
             {
                 "type": "video",
@@ -601,6 +641,8 @@ talks = [
     {
         "title": "Spoonfeeding Sockets",
         "event": "Pymug Meetup April 2021",
+        "lat": -20.3484,
+        "lng": 57.5522,
         "res": [
             {
                 "type": "video",
@@ -615,6 +657,8 @@ talks = [
     {
         "title": "Django Clone From Scratch With Flask",
         "event": "EuroPython 2020",
+        "lat": 48.1351,
+        "lng": 11.582,
         "res": [
             {
                 "type": "video",
@@ -625,6 +669,8 @@ talks = [
     {
         "title": "Python - The Joyful Parts",
         "event": "Pymug Meetup",
+        "lat": -20.3484,
+        "lng": 57.5522,
         "res": [
             {
                 "type": "slides",
@@ -635,6 +681,8 @@ talks = [
     {
         "title": "Iter Boosts From The Std Lib",
         "event": "Pymug Meetup",
+        "lat": -20.3484,
+        "lng": 57.5522,
         "res": [
             {
                 "type": "slides",
@@ -645,6 +693,8 @@ talks = [
     {
         "title": "Decorating Your Code",
         "event": "Pymug Meetup",
+        "lat": -20.3484,
+        "lng": 57.5522,
         "res": [
             {
                 "type": "slides",
@@ -655,6 +705,8 @@ talks = [
     {
         "title": "Where is Python used?",
         "event": "Python Sprint, UoM",
+        "lat": -20.2408,
+        "lng": 57.4979,
         "res": [
             {
                 "type": "slides",
@@ -665,6 +717,8 @@ talks = [
     {
         "title": "Honeybot - Diving Into An IRC Bot",
         "event": "Pymug Meetup",
+        "lat": -20.3484,
+        "lng": 57.5522,
         "res": [
             {
                 "type": "slides",
@@ -675,6 +729,8 @@ talks = [
     {
         "title": "Become A True Faker",
         "event": "Pymug Meetup",
+        "lat": -20.3484,
+        "lng": 57.5522,
         "res": [
             {
                 "type": "slides",
@@ -685,6 +741,8 @@ talks = [
     {
         "title": "Deriving Async Io",
         "event": "Pymug Meetup",
+        "lat": -20.3484,
+        "lng": 57.5522,
         "res": [
             {
                 "type": "slides",
@@ -695,6 +753,8 @@ talks = [
     {
         "title": "Weekly Workshop - Python From Scratch",
         "event": "Pymug Workshop",
+        "lat": -20.3484,
+        "lng": 57.5522,
         "res": [
             {
                 "type": "slides",
@@ -705,6 +765,8 @@ talks = [
     {
         "title": "Standard Library Essentials",
         "event": "Pymug Meetup",
+        "lat": -20.3484,
+        "lng": 57.5522,
         "res": [
             {
                 "type": "slides",
@@ -715,6 +777,8 @@ talks = [
     {
         "title": "Scrapy Code Base Reflections",
         "event": "Pymug Meetup",
+        "lat": -20.3484,
+        "lng": 57.5522,
         "res": [
             {
                 "type": "slides",
@@ -725,6 +789,8 @@ talks = [
     {
         "title": "Shopyo: Flasquer Flask",
         "event": "France: AFPy monthly conf",
+        "lat": 48.8566,
+        "lng": 2.3522,
         "res": [
             {
                 "type": "slides",
@@ -735,6 +801,8 @@ talks = [
     {
         "title": "Canvas Theory With PyGame",
         "event": "Pymug Meetup",
+        "lat": -20.3484,
+        "lng": 57.5522,
         "res": [
             {
                 "type": "slides",
@@ -745,6 +813,8 @@ talks = [
     {
         "title": "Workshop: Flask Round The World",
         "event": "Pymug Meetup",
+        "lat": -20.3484,
+        "lng": 57.5522,
         "res": [
             {
                 "type": "repo",
@@ -755,6 +825,8 @@ talks = [
     {
         "title": "Key To Django And Flask",
         "event": "Pymug Meetup",
+        "lat": -20.3484,
+        "lng": 57.5522,
         "res": [
             {
                 "type": "repo",
@@ -765,6 +837,8 @@ talks = [
     {
         "title": "The CPython Translation Protocol",
         "event": "Pymug Meetup",
+        "lat": -20.3484,
+        "lng": 57.5522,
         "res": [
             {
                 "type": "repo",
@@ -775,6 +849,8 @@ talks = [
     {
         "title": "Workshop: Requests",
         "event": "Pymug Meetup",
+        "lat": -20.3484,
+        "lng": 57.5522,
         "res": [
             {
                 "type": "repo",
@@ -785,6 +861,8 @@ talks = [
     {
         "title": "Machine Learning Overview",
         "event": "University of Mauritius - Ai Workshop 2019",
+        "lat": -20.2408,
+        "lng": 57.4979,
         "res": [
             {
                 "type": "slides",
@@ -795,6 +873,8 @@ talks = [
     {
         "title": "Workshop: Numpy Pandas",
         "event": "University of Mauritius - Ai Workshop 2019",
+        "lat": -20.2408,
+        "lng": 57.4979,
         "res": [
             {
                 "type": "repo",

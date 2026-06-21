@@ -6,29 +6,55 @@
             <p class="sec-sub">{{ settings.podcast['tagline'] }}</p>
         </header>
 
-        <div class="podcast-grid">
+        <div class="pc-grid">
+            {% set covers = [
+            '#d97706,#fde68a',
+            '#dc2626,#fca5a5',
+            '#7c3aed,#c4b5fd',
+            '#1d4ed8,#93c5fd',
+            '#15803d,#86efac'
+            ] %}
+
             {% for ep in settings.podcasts[:3] %}
-            <div class="podcast-card">
-                <p class="podcast-card__meta">
-                    Episode {{ ep['episode'] }} &middot; {{ ep['duration'] }}
-                </p>
-                <p class="podcast-card__title">{{ ep['title'] }}</p>
-                <p class="podcast-card__desc">
-                    {% set desc = ep['description'] | trim %}
-                    {{ desc[:200] }}{% if desc|length > 200 %}&hellip;{% endif %}
-                </p>
-                <p class="podcast-card__guest">
-                    {% for person in ep['people'] %}
-                        {% if person['status'] != 'host' %}
-                            {% if person['status'] == 'guest' %}Guest: {% elif person['status'] == 'co-host' %}Co-host: {% endif %}
-                            {{ person['name'] }}{% if person['info'] %} ({{ person['info'] }}){% endif %}
-                        {% endif %}
-                    {% endfor %}
-                </p>
-                <audio controls preload="none">
-                    <source src="{{ ep['link'] }}" type="audio/mpeg">
-                </audio>
-            </div>
+            {% set cover = covers[loop.index0 % 5] %}
+            {% set c = cover.split(',') %}
+            <article class="pc-card" style="--c1: {{ c[0] }}; --c2: {{ c[1] }}">
+                <div class="pc-card__cover">
+                    <span class="pc-card__num">{{ '%02d' | format(ep['episode']) }}</span>
+                    <svg class="pc-card__wave" viewBox="0 0 120 40" preserveAspectRatio="none">
+                        <path d="M0 20 Q10 5 20 20 T40 20 T60 20 T80 20 T100 20 T120 20" fill="none" stroke="rgba(255,255,255,.3)" stroke-width="2"/>
+                        <path d="M0 20 Q10 12 20 20 T40 20 T60 20 T80 20 T100 20 T120 20" fill="none" stroke="rgba(255,255,255,.5)" stroke-width="2"/>
+                    </svg>
+                </div>
+                <div class="pc-card__body">
+                    <div class="pc-card__meta">
+                        <span class="pc-card__ep">EP {{ ep['episode'] }}</span>
+                        <span class="pc-card__dur">{{ ep['duration'] }}</span>
+                    </div>
+                    <h3 class="pc-card__title">{{ ep['title'] }}</h3>
+                    <p class="pc-card__desc">
+                        {% set desc = ep['description'] | trim %}
+                        {{ desc[:160] }}{% if desc|length > 160 %}&hellip;{% endif %}
+                    </p>
+                    <div class="pc-card__guests">
+                        {% for person in ep['people'] %}
+                            {% if person['status'] != 'host' %}
+                            <span class="pc-chip pc-chip--{{ person['status'] }}">
+                                {{ person['name'] }}
+                            </span>
+                            {% endif %}
+                        {% endfor %}
+                    </div>
+                    <div class="pc-card__player">
+                        <button class="pc-play" data-src="{{ ep['link'] }}" aria-label="Play episode {{ ep['episode'] }}">
+                            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+                        </button>
+                        <audio controls preload="none" class="pc-audio">
+                            <source src="{{ ep['link'] }}" type="audio/mpeg">
+                        </audio>
+                    </div>
+                </div>
+            </article>
             {% endfor %}
         </div>
 
@@ -37,3 +63,163 @@
         </div>
     </div>
 </div>
+
+<style>
+.pc-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+}
+.pc-card {
+    background: var(--surface, #fff);
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    transition: box-shadow .2s ease, transform .2s ease;
+}
+.pc-card:hover {
+    box-shadow: 0 8px 24px rgba(0,0,0,.1);
+    transform: translateY(-3px);
+}
+.pc-card__cover {
+    background: linear-gradient(135deg, var(--c1), var(--c2));
+    padding: 1.25rem 1.25rem 0.75rem;
+    position: relative;
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    min-height: 90px;
+}
+.pc-card__num {
+    font-family: var(--font-title);
+    font-size: 2.2rem;
+    font-weight: 800;
+    color: rgba(255,255,255,.85);
+    line-height: 1;
+    letter-spacing: -0.02em;
+}
+.pc-card__wave {
+    width: 80px;
+    height: 30px;
+    opacity: 0.7;
+}
+.pc-card__body {
+    padding: 1.1rem 1.25rem 1.25rem;
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+}
+.pc-card__meta {
+    display: flex;
+    gap: 0.75rem;
+    margin-bottom: 0.5rem;
+}
+.pc-card__ep, .pc-card__dur {
+    font-size: 0.62rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    font-weight: 600;
+    color: var(--ink-muted);
+}
+.pc-card__ep {
+    background: var(--surface-alt, #f5f5f5);
+    padding: 0.15rem 0.5rem;
+    border-radius: 10px;
+}
+.pc-card__title {
+    font-family: var(--font-title);
+    font-size: 1.02rem;
+    font-weight: 700;
+    color: var(--ink);
+    line-height: 1.3;
+    margin: 0 0 0.5rem;
+}
+.pc-card__desc {
+    font-size: 0.82rem;
+    color: var(--ink-2);
+    line-height: 1.6;
+    flex-grow: 1;
+    margin: 0 0 0.75rem;
+}
+.pc-card__guests {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.35rem;
+    margin-bottom: 0.75rem;
+}
+.pc-chip {
+    font-size: 0.68rem;
+    padding: 0.2rem 0.55rem;
+    border-radius: 12px;
+    font-weight: 600;
+    border: 1px solid var(--line);
+    color: var(--ink-2);
+}
+.pc-chip--guest {
+    background: rgba(217,119,6,.08);
+    border-color: rgba(217,119,6,.25);
+    color: #b45309;
+}
+.pc-chip--co-host {
+    background: rgba(29,78,216,.08);
+    border-color: rgba(29,78,216,.25);
+    color: #1e40af;
+}
+.pc-card__player {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+.pc-play {
+    flex-shrink: 0;
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    border: none;
+    background: var(--c1);
+    color: #fff;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform .15s ease, box-shadow .15s ease;
+}
+.pc-play:hover {
+    transform: scale(1.08);
+    box-shadow: 0 2px 8px rgba(0,0,0,.2);
+}
+.pc-play svg {
+    width: 16px;
+    height: 16px;
+}
+.pc-audio {
+    flex: 1;
+    height: 34px;
+}
+
+@media (max-width: 768px) {
+    .pc-grid { grid-template-columns: 1fr; }
+}
+@media (max-width: 480px) {
+    .pc-card__num { font-size: 1.8rem; }
+    .pc-card__title { font-size: 0.95rem; }
+}
+</style>
+
+<script>
+document.querySelectorAll('.pc-play').forEach(function(btn) {
+    btn.addEventListener('click', function() {
+        var audio = this.parentElement.querySelector('.pc-audio');
+        var svg = this.querySelector('svg path');
+        if (audio.paused) {
+            audio.play();
+            svg.setAttribute('d', 'M6 4h4v16H6zM14 4h4v16h-4z');
+        } else {
+            audio.pause();
+            svg.setAttribute('d', 'M8 5v14l11-7z');
+        }
+    });
+});
+</script>
