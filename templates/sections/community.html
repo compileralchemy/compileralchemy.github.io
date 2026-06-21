@@ -7,14 +7,85 @@
         </header>
 
         <div class="container--narrow" style="margin: 0 auto;">
+            {% set c_badges = [
+            '<svg viewBox="0 0 52 60" class="cbadge__svg"><defs><linearGradient id="c1" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#fde68a"/><stop offset="1" stop-color="#d97706"/></linearGradient></defs><path d="M26 1 L51 15.5 L51 44.5 L26 59 L1 44.5 L1 15.5 Z" fill="url(#c1)" stroke="#92400e" stroke-width="1"/><path d="M26 5 L47 17.25 L47 42.75 L26 55 L5 42.75 L5 17.25 Z" fill="none" stroke="rgba(255,255,255,.35)" stroke-width=".6"/><circle cx="20" cy="26" r="3.5" fill="#fff"/><circle cx="32" cy="26" r="3.5" fill="#fff"/><path d="M14 38 C14 33 17 31 20 31 C23 31 26 33 26 38 Z" fill="#fff"/><path d="M26 38 C26 33 29 31 32 31 C35 31 38 33 38 38 Z" fill="#fff"/></svg>',
+            '<svg viewBox="0 0 52 60" class="cbadge__svg"><defs><linearGradient id="c2" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#fca5a5"/><stop offset="1" stop-color="#dc2626"/></linearGradient></defs><path d="M26 1 L51 15.5 L51 44.5 L26 59 L1 44.5 L1 15.5 Z" fill="url(#c2)" stroke="#991b1b" stroke-width="1"/><path d="M26 5 L47 17.25 L47 42.75 L26 55 L5 42.75 L5 17.25 Z" fill="none" stroke="rgba(255,255,255,.35)" stroke-width=".6"/><rect x="21" y="18" width="10" height="18" rx="5" fill="#fff"/><path d="M17 30 C17 36 21 39 26 39 C31 39 35 36 35 30" fill="none" stroke="#fff" stroke-width="2"/><line x1="26" y1="39" x2="26" y2="43" stroke="#fff" stroke-width="2"/><line x1="22" y1="43" x2="30" y2="43" stroke="#fff" stroke-width="2"/></svg>',
+            '<svg viewBox="0 0 52 60" class="cbadge__svg"><defs><linearGradient id="c3" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#a5b4fc"/><stop offset="1" stop-color="#4338ca"/></linearGradient></defs><path d="M26 1 L51 15.5 L51 44.5 L26 59 L1 44.5 L1 15.5 Z" fill="url(#c3)" stroke="#312e81" stroke-width="1"/><path d="M26 5 L47 17.25 L47 42.75 L26 55 L5 42.75 L5 17.25 Z" fill="none" stroke="rgba(255,255,255,.35)" stroke-width=".6"/><path d="M18 30 C18 25 22 22 26 22 C30 22 34 25 34 30" fill="none" stroke="#fff" stroke-width="2.5" stroke-linecap="round"/><circle cx="26" cy="30" r="2.5" fill="#fff"/><path d="M22 36 C22 33 24 31 26 31 C28 31 30 33 30 36" fill="none" stroke="#fff" stroke-width="2"/></svg>',
+            '<svg viewBox="0 0 52 60" class="cbadge__svg"><defs><linearGradient id="c4" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#93c5fd"/><stop offset="1" stop-color="#1d4ed8"/></linearGradient></defs><path d="M26 1 L51 15.5 L51 44.5 L26 59 L1 44.5 L1 15.5 Z" fill="url(#c4)" stroke="#1e3a8a" stroke-width="1"/><path d="M26 5 L47 17.25 L47 42.75 L26 55 L5 42.75 L5 17.25 Z" fill="none" stroke="rgba(255,255,255,.35)" stroke-width=".6"/><path d="M18 20 L26 20 L34 20 L34 40 L26 40 L18 40 Z" fill="none" stroke="#fff" stroke-width="2"/><line x1="22" y1="26" x2="30" y2="26" stroke="#fff" stroke-width="1.5"/><line x1="22" y1="30" x2="30" y2="30" stroke="#fff" stroke-width="1.5"/><line x1="22" y1="34" x2="28" y2="34" stroke="#fff" stroke-width="1.5"/></svg>',
+            '<svg viewBox="0 0 52 60" class="cbadge__svg"><defs><linearGradient id="c5" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#86efac"/><stop offset="1" stop-color="#15803d"/></linearGradient></defs><path d="M26 1 L51 15.5 L51 44.5 L26 59 L1 44.5 L1 15.5 Z" fill="url(#c5)" stroke="#14532d" stroke-width="1"/><path d="M26 5 L47 17.25 L47 42.75 L26 55 L5 42.75 L5 17.25 Z" fill="none" stroke="rgba(255,255,255,.35)" stroke-width=".6"/><path d="M18 32 L22 36 L34 24" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg>',
+            '<svg viewBox="0 0 52 60" class="cbadge__svg"><defs><linearGradient id="c6" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#c4b5fd"/><stop offset="1" stop-color="#7c3aed"/></linearGradient></defs><path d="M26 1 L51 15.5 L51 44.5 L26 59 L1 44.5 L1 15.5 Z" fill="url(#c6)" stroke="#5b21b6" stroke-width="1"/><path d="M26 5 L47 17.25 L47 42.75 L26 55 L5 42.75 L5 17.25 Z" fill="none" stroke="rgba(255,255,255,.35)" stroke-width=".6"/><rect x="16" y="22" width="20" height="14" rx="2" fill="none" stroke="#fff" stroke-width="2"/><polyline points="16,22 26,31 36,22" fill="none" stroke="#fff" stroke-width="2"/></svg>',
+            '<svg viewBox="0 0 52 60" class="cbadge__svg"><defs><linearGradient id="c7" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#f9a8d4"/><stop offset="1" stop-color="#be185d"/></linearGradient></defs><path d="M26 1 L51 15.5 L51 44.5 L26 59 L1 44.5 L1 15.5 Z" fill="url(#c7)" stroke="#831843" stroke-width="1"/><path d="M26 5 L47 17.25 L47 42.75 L26 55 L5 42.75 L5 17.25 Z" fill="none" stroke="rgba(255,255,255,.35)" stroke-width=".6"/><path d="M26 38 C20 33 16 30 16 25 C16 22 18 20 21 20 C23 20 25 21 26 23 C27 21 29 20 31 20 C34 20 36 22 36 25 C36 30 32 33 26 38 Z" fill="#fff"/></svg>'
+            ] %}
+
             {% for project in settings.community %}
-            <div class="community-item">
-                <p class="community-item__name">{{ project['initiative'] }}</p>
-                <div class="community-item__info md-to-html">
-                    {{ md_to_html(project['info']) | safe }}
+            <article class="ccard">
+                <div class="cbadge">{{ c_badges[loop.index0 % 7] }}</div>
+                <div class="ccard__body">
+                    <h3 class="ccard__name">{{ project['initiative'] }}</h3>
+                    <div class="ccard__info md-to-html">
+                        {{ md_to_html(project['info']) | safe }}
+                    </div>
                 </div>
-            </div>
+            </article>
             {% endfor %}
         </div>
     </div>
 </div>
+
+<style>
+.ccard {
+    display: flex;
+    gap: 1.25rem;
+    align-items: flex-start;
+    background: var(--surface, #fff);
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    padding: 1.25rem;
+    margin-bottom: 1rem;
+    transition: box-shadow .2s ease, transform .2s ease;
+}
+.ccard:hover {
+    box-shadow: 0 6px 20px rgba(0,0,0,.08);
+    transform: translateY(-2px);
+}
+.cbadge {
+    flex-shrink: 0;
+    width: 52px;
+}
+.cbadge__svg {
+    width: 52px;
+    height: 60px;
+    display: block;
+    filter: drop-shadow(0 2px 4px rgba(0,0,0,.12));
+}
+.ccard__body {
+    flex: 1;
+    min-width: 0;
+}
+.ccard__name {
+    font-family: var(--font-title);
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: var(--ink);
+    margin: 0 0 0.5rem;
+    line-height: 1.3;
+}
+.ccard__info {
+    color: var(--ink-2);
+    font-size: 0.88rem;
+    line-height: 1.7;
+}
+.ccard__info p { margin: 0 0 0.5rem; }
+.ccard__info p:last-child { margin-bottom: 0; }
+.ccard__info ul { padding-left: 1.2rem; margin: 0.25rem 0; }
+.ccard__info li { margin-bottom: 0.3rem; }
+.ccard__info a { color: var(--accent, #dc2626); }
+
+@media (max-width: 640px) {
+    .ccard { gap: 0.75rem; padding: 1rem; }
+    .cbadge { width: 36px; }
+    .cbadge__svg { width: 36px; height: 42px; }
+    .ccard__name { font-size: 0.95rem; }
+    .ccard__info { font-size: 0.82rem; }
+}
+</style>

@@ -1,40 +1,96 @@
 {%extends "pages/base.html"%}
 
 {%block head%}
-    <title>Abdur-Rahmaan's Blog: Software engineering, OpenSource, System design, Internals & Spicy takes</title>
+<title>Abdur-Rahmaan's Blog: Software engineering, OpenSource, System design, Internals & Spicy takes</title>
 {%endblock%}
+
 {%block body%}
-<div class="section is-white" id="writings">
+<div class="section section--alt" id="blog-section">
     <div class="container">
-        <div class="notification is-white">
-            <div class="notification is-white has-text-centered">
-                <br>
-                <p class="has-text-centered ">
-                    <span class="title has-background-white-ter  has-text-centered" style="width: 50px; height:50px; padding: 15px; border-radius: 50%;">
-                        📚
-                    </span>
-                </p><br>
-                <p class="title" ><a href="#" class="no-link-dec">Personal Blog</a></p>
-                <p class="subtitle">Musings</p>
-            </div>
-        </div>
-        <div class="writings notification is-white">
-            <p class="has-text-centered">
+        <header class="sec-head sec-head--center">
+            <span class="sec-kicker">Blog</span>
+            <h2 class="sec-title">Personal diary &amp; reflections</h2>
+            <p class="sec-sub">Musings on software, life, and everything in between</p>
+        </header>
+
+        <div class="container--narrow" style="margin: 0 auto;">
+            <p class="has-text-centered" style="margin-bottom: 1.5rem;">
                 {%include "snippets/substack.html"%}
             </p>
-            <br><br>
-            {%for data in title_slug%}
 
-                <span class="url p-0">{{str(data.num).zfill(3)}}.
-                     <a href="/blog/{{ data.slug }}/">{{ data.title }}</a></span>
-
-            {%endfor%}
-            <br>
-
+            <ul class="bl-grid">
+                {%for data in title_slug%}
+                <li class="bl-item">
+                    <a href="/blog/{{ data.slug }}/" class="bl-link">
+                        <span class="bl-num">{{ '%03d' | format(data.num) }}</span>
+                        <span class="bl-title">{{ data.title }}</span>
+                        <span class="bl-arrow">&rarr;</span>
+                    </a>
+                </li>
+                {%endfor%}
+            </ul>
         </div>
     </div>
-    
 </div>
 
 {% include "sections/footer.html" %}
+
+<style>
+.bl-grid {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: grid;
+    gap: 0.5rem;
+}
+.bl-item {
+    background: var(--surface, #fff);
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    overflow: hidden;
+    transition: box-shadow .2s ease, transform .2s ease;
+}
+.bl-item:hover {
+    box-shadow: 0 4px 16px rgba(0,0,0,.08);
+    transform: translateY(-1px);
+}
+.bl-link {
+    display: flex;
+    align-items: center;
+    gap: 0.85rem;
+    padding: 0.75rem 1rem;
+    text-decoration: none;
+    color: var(--ink);
+}
+.bl-num {
+    flex-shrink: 0;
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    color: var(--ink-muted);
+    background: var(--surface-alt, #f5f5f5);
+    padding: 0.2rem 0.5rem;
+    border-radius: 6px;
+    min-width: 2.6rem;
+    text-align: center;
+}
+.bl-title {
+    flex: 1;
+    font-size: 0.92rem;
+    font-weight: 500;
+    line-height: 1.4;
+}
+.bl-arrow {
+    flex-shrink: 0;
+    color: var(--ink-muted);
+    font-size: 0.9rem;
+    transition: transform .2s ease, color .2s ease;
+}
+.bl-item:hover .bl-arrow {
+    transform: translateX(4px);
+    color: var(--accent, #dc2626);
+}
+@media (max-width: 480px) {
+    .bl-title { font-size: 0.85rem; }
+}
+</style>
 {%endblock%}

@@ -1,43 +1,179 @@
-<div class="section" id="open-source">
+<div class="section section--alt" id="open-source">
     <div class="container">
         <header class="sec-head sec-head--center">
             <span class="sec-kicker">Open Source</span>
             <h2 class="sec-title">Tools, libraries, and frameworks</h2>
         </header>
 
-        <table class="projects-table">
-            <thead>
-                <tr>
-                    <th>Project</th>
-                </tr>
-            </thead>
-            <tbody>
-                {% for project in settings.github_projects %}
-                <tr>
-                    <td>
-                        <span class="project-name"><a href="{{ project['main_link'] }}">{{ project['name'] }}</a></span>
-                        <span class="project-links">
-                            {% for key in project['links'] %}
-                                {% set link = project['links'][key] %}
-                                [<a href="{{ link }}" target="_blank">{{ key.capitalize() }}</a>]
-                            {% endfor %}
-                        </span>
-                        {%if 'pepy' in project['badges']%}
-                            <a target="_blank" href="https://pepy.tech/project/{{project['name'].lower()}}">
-                                <img src="https://static.pepy.tech/personalized-badge/{{project['name'].lower()}}?period=total&units=international_system&left_color=black&right_color=green&left_text=Downloads" alt="PyPI downloads">
-                            </a>
-                        {%elif 'cratesio' in project['badges']%}
-                            <a target="_blank" href="https://crates.io/crates/{{project['name'].lower()}}">
-                                <img alt="Crates.io" src="https://img.shields.io/crates/d/{{project['name'].lower()}}">
-                            </a>
-                        {%endif%}
-                        <div class="project-info">
-                            {{ md_to_html(project['info']) | safe }}
-                        </div>
-                    </td>
-                </tr>
-                {% endfor %}
-            </tbody>
-        </table>
+        {% set projects = settings.github_projects %}
+
+        {% macro link_icon(key) %}
+            {% if key == 'github' %}<i class="fab fa-github"></i>
+            {% elif key == 'pypi' %}<i class="fas fa-box"></i>
+            {% elif key == 'docs' %}<i class="fas fa-book"></i>
+            {% elif key == 'chat' %}<i class="fas fa-comment"></i>
+            {% elif key == 'twitter' %}<i class="fab fa-twitter"></i>
+            {% elif key == 'cratesio' %}<i class="fas fa-cube"></i>
+            {% else %}<i class="fas fa-link"></i>{% endif %}
+        {% endmacro %}
+
+        <div class="ptable">
+            {% for p in projects %}
+            {% set s = p['name'][:2] | upper %}
+            {% set cat = 'ecosystem' if p['name'].lower().startswith('shopyo') or p['name'] in ['ShopCube','MarketFlow','pythoncms'] else
+                          'ai' if p['name'].lower().startswith('angel') or p['name'] == 'pageindex-open' else
+                          'game' if p['name'] in ['Hooman','Honeybot'] else
+                          'data' if p['name'] in ['meteomoris','newsmoris','finance-mauritius','Download-stats','phoning-home'] else
+                          'tool' if p['name'] in ['Kapsula','fastoo'] or p['name'] == 'Jamstack' else
+                          'terminal' if p['name'] in ['richterm','termcharts'] else
+                          'image' if p['name'] == 'oreiller' else
+                          'web' %}
+            {% set feat = 'featured' in p['features'] %}
+            <div class="pelem pelem--{{ cat }}{% if feat %} pelem--feat{% endif %}"
+                 title="{{ p['info'] | striptags | truncate(120) }}">
+                <div class="pelem__head">
+                    <span class="pelem__num">{{ cat | upper }}</span>
+                    <div class="pelem__sym">{{ s }}</div>
+                </div>
+                <div class="pelem__name">{{ p['name'] }}</div>
+                <div class="pelem__dl">
+                    {%if 'pepy' in p['badges']%}
+                    <a href="https://pepy.tech/projects/{{ p['name'].lower() }}" target="_blank" rel="noopener">
+                        <img src="https://static.pepy.tech/personalized-badge/{{ p['name'].lower() }}?period=total&units=INTERNATIONAL_SYSTEM&left_color=BLACK&right_color=GREEN&left_text=downloads" alt="downloads" loading="lazy">
+                    </a>
+                    {%elif 'cratesio' in p['badges']%}
+                    <a href="https://crates.io/crates/{{ p['name'].lower() }}" target="_blank" rel="noopener">
+                        <img src="https://img.shields.io/crates/d/{{ p['name'].lower() }}?color=c2410c" alt="downloads" loading="lazy">
+                    </a>
+                    {%endif%}
+                </div>
+                <div class="pelem__links">
+                    {% for key in p['links'] %}
+                    <a class="pelem__link" href="{{ p['links'][key] }}" target="_blank" rel="noopener" title="{{ key }}">
+                        {{ link_icon(key) }}
+                    </a>
+                    {% endfor %}
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+
     </div>
 </div>
+
+<style>
+.ptable {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    justify-content: center;
+    margin: 2.5rem 0;
+}
+
+.pelem {
+    width: 120px;
+    padding: 0.7rem 0.5rem 0.5rem;
+    border-radius: 6px;
+    background: var(--surface);
+    border: 1px solid var(--line);
+    text-align: center;
+    cursor: default;
+    transition: transform .12s, box-shadow .12s;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.pelem:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 20px rgba(0,0,0,.07);
+}
+
+.pelem--feat {
+    border-color: var(--accent);
+    border-width: 2px;
+}
+
+.pelem__head {
+    position: relative;
+    width: 100%;
+    margin-bottom: 0.2rem;
+}
+
+.pelem__num {
+    position: absolute;
+    top: -2px;
+    right: 0;
+    font-size: 0.5rem;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    opacity: 0.7;
+}
+
+.pelem__sym {
+    font-family: var(--font-title);
+    font-size: 1.6rem;
+    font-weight: 700;
+    line-height: 1.3;
+    color: var(--ink);
+}
+
+.pelem__name {
+    font-family: var(--font-main);
+    font-size: 0.64rem;
+    line-height: 1.3;
+    color: var(--ink);
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    max-width: 100%;
+    margin-bottom: 0.25rem;
+}
+
+.pelem__dl {
+    line-height: 0;
+    margin-bottom: 0.35rem;
+}
+
+.pelem__dl img {
+    height: 14px;
+    vertical-align: middle;
+    border-radius: 2px;
+}
+
+.pelem__links {
+    display: flex;
+    gap: 0.4rem;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.pelem__link {
+    color: var(--ink-muted);
+    font-size: 0.7rem;
+    transition: color .12s;
+    line-height: 1;
+}
+
+.pelem__link:hover {
+    color: var(--accent);
+}
+
+/* category accent colours */
+.pelem--web      .pelem__num { color: #3b82f6; }
+.pelem--ecosystem .pelem__num { color: #ec4899; }
+.pelem--ai       .pelem__num { color: #8b5cf6; }
+.pelem--game     .pelem__num { color: #f59e0b; }
+.pelem--data     .pelem__num { color: #10b981; }
+.pelem--tool     .pelem__num { color: #6366f1; }
+.pelem--terminal .pelem__num { color: #6b7280; }
+.pelem--image    .pelem__num { color: #f43f5e; }
+
+@media (max-width: 640px) {
+    .pelem { width: 100px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .pelem { transition: none; }
+}
+</style>

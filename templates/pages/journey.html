@@ -2,68 +2,154 @@
 
 {%block body%}
 
-<div id="facts" class="section">
-
+<div id="facts" class="section section--alt">
     <div class="container"><br><br>
-        <div class="has-text-centered">
-            <p class="has-text-centered">
-                <span class="title has-background-white-ter  has-text-centered"
-                    style="width: 50px; height:50px; padding: 20px; border-radius: 50%;">
-                    🎉
+        <header class="sec-head sec-head--center">
+            <span class="sec-kicker">Dev Journey</span>
+            <h2 class="sec-title">Milestones</h2>
+        </header>
+
+        <div class="container--narrow" style="margin: 0 auto;">
+            <div class="stat-row">
+                <span class="stat-tag">
+                    <span class="stat-tag__label">Dev.to article views</span>
+                    <span class="stat-tag__value">58k</span>
                 </span>
-            </p><br>
-            <p class="title"><a href="#facts" class="no-link-dec">Dev Journey</a></p>
-            <p class="subtitle">Milestones
-                </a>. </p>
-        </div>
-        <div class="">
-            <div class="container notification is-white">
-                <hr>
-                <div class="field is-grouped is-grouped-multiline">
-                    <div class="control">
-                        <div class="tags has-addons">
-                            <span class="tag is-dark">Dev.to article views</span>
-                            <span class="tag is-info">58k</span>
-                        </div>
-                    </div>
-                    <div class="control">
-                        <div class="tags has-addons">
-                            <span class="tag is-dark">Codementor.io article views</span>
-                            <span class="tag is-info">46k</span>
-                        </div>
-                    </div>
-                    <div class="control">
-                        <div class="tags has-addons">
-                            <span class="tag is-dark">Pypi downloads</span>
-                            <span class="tag is-info">125k</span>
-                        </div>
-                    </div>
-                </div>
-                <div style="">
-                    <div class="timeline">
-                        <header class="timeline-header">
-                          <span class="tag is-medium is-primary">End</span>
-                        </header>
-
-                        {% for fact in reversed(settings.facts) %}
-                        <div class="timeline-item">
-                          <div class="timeline-marker"></div>
-                          <div class="timeline-content">
-                            <p class="heading">[{{fact['date']}}] <a href="{{ fact['link'] }}">{{ fact['title'] }}</a></p>
-                            <p>{{fact['notes'] | safe }}</p>
-                          </div>
-                        </div>
-                        {%endfor%}
-                        <div class="timeline-header">
-                          <span class="tag is-medium is-primary">Start</span>
-                        </div>
-                      </div>
-
-                </div>
-                <!--Holder end-->
+                <span class="stat-tag">
+                    <span class="stat-tag__label">Codementor.io views</span>
+                    <span class="stat-tag__value">46k</span>
+                </span>
+                <span class="stat-tag">
+                    <span class="stat-tag__label">PyPI downloads</span>
+                    <span class="stat-tag__value">166k</span>
+                </span>
             </div>
+
+            <ul class="ms-list">
+                {% set badges = [
+                '<svg viewBox="0 0 52 60" class="ms-badge__svg"><defs><linearGradient id="g1" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#fde68a"/><stop offset="1" stop-color="#d97706"/></linearGradient></defs><path d="M26 1 L51 15.5 L51 44.5 L26 59 L1 44.5 L1 15.5 Z" fill="url(#g1)" stroke="#92400e" stroke-width="1"/><path d="M26 5 L47 17.25 L47 42.75 L26 55 L5 42.75 L5 17.25 Z" fill="none" stroke="rgba(255,255,255,.35)" stroke-width=".6"/><path d="M18 30 L24 36 L35 23" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg>',
+                '<svg viewBox="0 0 52 60" class="ms-badge__svg"><defs><linearGradient id="g2" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#93c5fd"/><stop offset="1" stop-color="#1d4ed8"/></linearGradient></defs><path d="M26 1 L51 15.5 L51 44.5 L26 59 L1 44.5 L1 15.5 Z" fill="url(#g2)" stroke="#1e3a8a" stroke-width="1"/><path d="M26 5 L47 17.25 L47 42.75 L26 55 L5 42.75 L5 17.25 Z" fill="none" stroke="rgba(255,255,255,.35)" stroke-width=".6"/><path d="M26 14 L29.5 22.5 L38.5 23 L31.5 29 L34 38 L26 33 L18 38 L20.5 29 L13.5 23 L22.5 22.5 Z" fill="#fff"/></svg>',
+                '<svg viewBox="0 0 52 60" class="ms-badge__svg"><defs><linearGradient id="g3" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#d8b4fe"/><stop offset="1" stop-color="#7e22ce"/></linearGradient></defs><path d="M26 1 L51 15.5 L51 44.5 L26 59 L1 44.5 L1 15.5 Z" fill="url(#g3)" stroke="#581c87" stroke-width="1"/><path d="M26 5 L47 17.25 L47 42.75 L26 55 L5 42.75 L5 17.25 Z" fill="none" stroke="rgba(255,255,255,.35)" stroke-width=".6"/><path d="M28 14 L18 32 L25 32 L22 46 L34 28 L27 28 Z" fill="#fff"/></svg>',
+                '<svg viewBox="0 0 52 60" class="ms-badge__svg"><defs><linearGradient id="g4" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#f3f4f6"/><stop offset="1" stop-color="#6b7280"/></linearGradient></defs><path d="M26 1 L51 15.5 L51 44.5 L26 59 L1 44.5 L1 15.5 Z" fill="url(#g4)" stroke="#374151" stroke-width="1"/><path d="M26 5 L47 17.25 L47 42.75 L26 55 L5 42.75 L5 17.25 Z" fill="none" stroke="rgba(255,255,255,.35)" stroke-width=".6"/><circle cx="26" cy="30" r="11" fill="none" stroke="#fff" stroke-width="2.5"/><circle cx="26" cy="30" r="5" fill="none" stroke="#fff" stroke-width="2.5"/><circle cx="26" cy="30" r="1.5" fill="#fff"/></svg>',
+                '<svg viewBox="0 0 52 60" class="ms-badge__svg"><defs><linearGradient id="g5" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#fdba74"/><stop offset="1" stop-color="#c2410c"/></linearGradient></defs><path d="M26 1 L51 15.5 L51 44.5 L26 59 L1 44.5 L1 15.5 Z" fill="url(#g5)" stroke="#7c2d12" stroke-width="1"/><path d="M26 5 L47 17.25 L47 42.75 L26 55 L5 42.75 L5 17.25 Z" fill="none" stroke="rgba(255,255,255,.35)" stroke-width=".6"/><path d="M20 40 L20 32 C16 30 16 24 20 22 C20 18 24 16 26 18 C28 16 32 18 32 22 C36 24 36 30 32 32 L32 40 Z" fill="#fff"/><rect x="22" y="40" width="8" height="3" rx="1" fill="#fff"/></svg>'
+                ] %}
+                {% set tiers = ['Gold', 'Platinum', 'Diamond', 'Silver', 'Bronze'] %}
+
+                {% for fact in reversed(settings.facts) %}
+                <li class="ms-item">
+                    <div class="ms-badge">
+                        {{ badges[loop.index0 % 5] }}
+                        <span class="ms-badge__tier">{{ tiers[loop.index0 % 5] }}</span>
+                    </div>
+                    <div class="ms-card">
+                        <span class="ms-date">{{ fact['date'] }}</span>
+                        <a class="ms-title" href="{{ fact['link'] }}">{{ fact['title'] }}</a>
+                        {% if fact['notes'] %}<p class="ms-notes">{{ fact['notes'] | safe }}</p>{% endif %}
+                    </div>
+                </li>
+                {%endfor%}
+            </ul>
         </div>
     </div>
 </div>
 {% include "sections/footer.html" %}
+
+<style>
+.ms-list {
+    list-style: none;
+    padding: 0;
+    margin: 2rem 0 0;
+    position: relative;
+}
+.ms-list::before {
+    content: '';
+    position: absolute;
+    left: 25px;
+    top: 0;
+    bottom: 0;
+    width: 2px;
+    background: linear-gradient(to bottom, var(--line), transparent);
+}
+.ms-item {
+    display: flex;
+    gap: 1.25rem;
+    align-items: flex-start;
+    position: relative;
+    padding-bottom: 1.75rem;
+}
+.ms-item:last-child { padding-bottom: 0; }
+.ms-badge {
+    flex-shrink: 0;
+    width: 52px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.25rem;
+    position: relative;
+    z-index: 2;
+}
+.ms-badge__svg {
+    width: 52px;
+    height: 60px;
+    display: block;
+    filter: drop-shadow(0 2px 4px rgba(0,0,0,.12));
+}
+.ms-badge__tier {
+    font-size: 0.5rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--ink-muted);
+    font-weight: 600;
+}
+.ms-card {
+    flex: 1;
+    background: var(--surface, #fff);
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    padding: 0.75rem 1rem;
+    margin-top: 0.5rem;
+    transition: box-shadow .2s ease, transform .2s ease;
+}
+.ms-card:hover {
+    box-shadow: 0 4px 16px rgba(0,0,0,.08);
+    transform: translateY(-1px);
+}
+.ms-date {
+    font-size: 0.6rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--ink-muted);
+    font-weight: 600;
+    display: block;
+    margin-bottom: 0.2rem;
+}
+.ms-title {
+    font-family: var(--font-title);
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: var(--ink);
+    text-decoration: none;
+    line-height: 1.3;
+    display: block;
+}
+.ms-title:hover { color: var(--accent, #dc2626); }
+.ms-notes {
+    font-size: 0.78rem;
+    color: var(--ink-muted);
+    line-height: 1.5;
+    margin: 0.35rem 0 0;
+}
+.ms-notes a { color: var(--accent, #dc2626); }
+
+@media (max-width: 640px) {
+    .ms-item { gap: 0.75rem; }
+    .ms-list::before { left: 17px; }
+    .ms-badge { width: 36px; }
+    .ms-badge__svg { width: 36px; height: 42px; }
+    .ms-badge__tier { font-size: 0.42rem; }
+    .ms-card { padding: 0.6rem 0.75rem; }
+    .ms-title { font-size: 0.85rem; }
+    .ms-notes { font-size: 0.72rem; }
+}
+</style>
 {%endblock%}

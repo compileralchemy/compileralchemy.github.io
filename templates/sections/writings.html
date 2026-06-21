@@ -11,12 +11,15 @@
                     <p>A technical newsletter read by engineers at <strong>Google, Amazon, Apple, IBM, VMWare, Facebook, Dell</strong>.</p>
                     <p>Selected in PyCoders Weekly, Awesome Python, Python Byte Podcast, DevOps Weekly, GitOps Weekly, SQLite news. HackerNews front page: 2.</p>
                 </div>
-                <ul class="writing-list">
+                <ul class="wl-grid">
                     {%for writing in writings%}
                     {% if loop.index <= 5 %}
-                    <li>
-                        <span class="num">{{str(loop.index).zfill(2)}}</span>
-                        <a href="{{ writing['url'] }}">{{ titlecase(writing['title']) }}</a>
+                    <li class="wl-item">
+                        <a href="{{ writing['url'] }}" class="wl-link">
+                            <span class="wl-num">{{ '%02d' | format(loop.index) }}</span>
+                            <span class="wl-title">{{ titlecase(writing['title']) }}</span>
+                            <span class="wl-arrow">&nearr;</span>
+                        </a>
                     </li>
                     {% endif %}
                     {%endfor%}
@@ -30,3 +33,63 @@
         </div>
     </div>
 </div>
+
+<style>
+.wl-grid {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 1.25rem;
+    display: grid;
+    gap: 0.5rem;
+}
+.wl-item {
+    background: var(--surface, #fff);
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    overflow: hidden;
+    transition: box-shadow .2s ease, transform .2s ease;
+}
+.wl-item:hover {
+    box-shadow: 0 4px 16px rgba(0,0,0,.08);
+    transform: translateY(-1px);
+}
+.wl-link {
+    display: flex;
+    align-items: center;
+    gap: 0.85rem;
+    padding: 0.75rem 1rem;
+    text-decoration: none;
+    color: var(--ink);
+}
+.wl-num {
+    flex-shrink: 0;
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    color: var(--ink-muted);
+    background: var(--surface-alt, #f5f5f5);
+    padding: 0.2rem 0.5rem;
+    border-radius: 6px;
+    min-width: 2.2rem;
+    text-align: center;
+}
+.wl-title {
+    flex: 1;
+    font-size: 0.88rem;
+    font-weight: 500;
+    line-height: 1.4;
+    word-wrap: break-word;
+}
+.wl-arrow {
+    flex-shrink: 0;
+    color: var(--ink-muted);
+    font-size: 0.9rem;
+    transition: transform .2s ease, color .2s ease;
+}
+.wl-item:hover .wl-arrow {
+    transform: translate(2px, -2px);
+    color: var(--accent, #dc2626);
+}
+@media (max-width: 480px) {
+    .wl-title { font-size: 0.82rem; }
+}
+</style>
