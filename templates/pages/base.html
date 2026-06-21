@@ -11,6 +11,83 @@
     {% include 'sections/navbar.html' %}
 
     {%block body%}{%endblock%}
+
+    <div class="crank" id="crank" aria-hidden="true">
+        <svg class="crank__svg" viewBox="0 0 56 56">
+            <!-- Base plate -->
+            <rect class="crank__base" x="6" y="6" width="44" height="44" rx="4"></rect>
+            <circle class="crank__bolt" cx="10" cy="10" r="1.2"></circle>
+            <circle class="crank__bolt" cx="46" cy="10" r="1.2"></circle>
+            <circle class="crank__bolt" cx="10" cy="46" r="1.2"></circle>
+            <circle class="crank__bolt" cx="46" cy="46" r="1.2"></circle>
+
+            <!-- Bushing (static) -->
+            <circle class="crank__bushing" cx="28" cy="28" r="4"></circle>
+            <circle class="crank__bushing-inner" cx="28" cy="28" r="2"></circle>
+
+            <!-- Rotor: gear + arm + handle (rotates as one unit) -->
+            <g class="crank__rotor" id="crank-rotor">
+                <!-- Gear: circle with dasharray teeth + inner detail -->
+                <circle class="crank__gear-fill" cx="28" cy="28" r="9"></circle>
+                <circle class="crank__gear" cx="28" cy="28" r="10" stroke-dasharray="1.8 1.5"></circle>
+                <circle class="crank__gear-line" cx="28" cy="28" r="6"></circle>
+                <line class="crank__gear-line" x1="28" y1="22" x2="28" y2="34"></line>
+                <line class="crank__gear-line" x1="22" y1="28" x2="34" y2="28"></line>
+
+                <!-- Crank arm extending from center -->
+                <line class="crank__arm" x1="28" y1="28" x2="28" y2="12"></line>
+                <!-- Handle ball at the end -->
+                <circle class="crank__handle-ring" cx="28" cy="10" r="4"></circle>
+                <circle class="crank__handle" cx="28" cy="10" r="2.5"></circle>
+            </g>
+        </svg>
+    </div>
+
+    <script>
+    (function() {
+        if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+        var rotor = document.getElementById('crank-rotor');
+        if (!rotor) return;
+
+        var angle = 0;          /* current rotation in degrees */
+        var velocity = 0;       /* angular velocity (deg/frame) */
+        var lastY = window.scrollY;
+        var lastTime = 0;
+
+        window.addEventListener('scroll', function() {
+            var y = window.scrollY;
+            var delta = y - lastY;
+            /* Scroll down → crank spins CCW (negative). Scroll up → CW (positive). */
+            velocity -= delta * 0.1;
+            lastY = y;
+        }, { passive: true });
+
+        function loop(now) {
+            if (!lastTime) lastTime = now;
+            /* dt normalized to ~60fps frame (1.0 = one frame at 60fps) */
+            var dt = Math.min((now - lastTime) / 16.667, 3);
+            lastTime = now;
+
+            /* Clamp velocity so a single big scroll burst doesn't fling it absurdly */
+            if (velocity > 40) velocity = 40;
+            if (velocity < -40) velocity = -40;
+
+            /* Apply velocity to angle, scaled by dt for frame-rate independence */
+            angle += velocity * dt;
+
+            /* Friction: velocity decays exponentially. 0.94/frame at 60fps
+               gives a smooth ~2s wind-down after a hard scroll. */
+            velocity *= Math.pow(0.94, dt);
+
+            /* Snap to rest when velocity is negligible */
+            if (Math.abs(velocity) < 0.01) velocity = 0;
+
+            rotor.setAttribute('transform', 'rotate(' + angle.toFixed(2) + ' 28 28)');
+            requestAnimationFrame(loop);
+        }
+        requestAnimationFrame(loop);
+    })();
+    </script>
 </body>
 
 </html>

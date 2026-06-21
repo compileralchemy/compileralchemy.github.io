@@ -1516,5 +1516,112 @@ h1, h2, h3, h4, .title {
 .hide_scroll::-webkit-scrollbar { display: none; }
 .hide_scroll { -ms-overflow-style: none; scrollbar-width: none; }
 
+/* Hide global scrollbar */
+html { scrollbar-width: none; -ms-overflow-style: none; }
+html::-webkit-scrollbar { display: none; width: 0; }
+
 .noround { border-radius: 0; }
 .center { text-align: center; margin: 0; }
+
+/* ----- Mechanical Crank ----- */
+
+.crank {
+    position: fixed;
+    bottom: 1.5rem;
+    right: 1.5rem;
+    width: 56px;
+    height: 56px;
+    z-index: 999;
+    pointer-events: none;
+    opacity: 0.45;
+    transition: opacity 0.3s ease;
+}
+
+.crank:hover {
+    opacity: 0.8;
+}
+
+.crank__svg {
+    width: 100%;
+    height: 100%;
+    display: block;
+    overflow: visible;
+}
+
+/* Static parts */
+.crank__base {
+    fill: #f5f1ec;
+    stroke: #78716c;
+    stroke-width: 0.8;
+}
+
+.crank__bolt {
+    fill: #78716c;
+}
+
+.crank__bushing {
+    fill: none;
+    stroke: #44403c;
+    stroke-width: 2;
+}
+
+.crank__bushing-inner {
+    fill: #44403c;
+}
+
+/* Rotating group */
+.crank__rotor {
+    will-change: transform;
+}
+
+.crank__gear {
+    fill: none;
+    stroke: #44403c;
+    stroke-width: 3;
+    stroke-dasharray: 1.8 1.5;
+}
+
+.crank__gear-fill {
+    fill: #f5f1ec;
+    stroke: #44403c;
+    stroke-width: 1;
+}
+
+.crank__gear-line {
+    stroke: #78716c;
+    stroke-width: 0.8;
+    fill: none;
+}
+
+.crank__arm {
+    stroke: #44403c;
+    stroke-width: 2.5;
+    stroke-linecap: round;
+    fill: none;
+}
+
+.crank__handle {
+    fill: #c2410c;
+    stroke: #9a3412;
+    stroke-width: 0.5;
+}
+
+.crank__handle-ring {
+    fill: none;
+    stroke: #9a3412;
+    stroke-width: 1;
+    opacity: 0.4;
+}
+
+@media (max-width: 768px) {
+    .crank {
+        width: 44px;
+        height: 44px;
+        bottom: 1rem;
+        right: 1rem;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .crank { display: none; }
+}
