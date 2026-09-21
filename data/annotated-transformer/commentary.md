@@ -690,9 +690,11 @@ transduction model relying entirely on self-attention to compute
 representations of its input and output without using sequence
 aligned RNNs or convolution. 
 
+<span id="transduction"></span>
+
 > **Commentary:**
 >
-> ** transduction model**: Models that map input to output sequences
+> ** transduction model**: Models that map input to output sequences 
 >
 > RNNs used previous steps and convolution used sliding windows, none of which is used by the transformer.
 
@@ -1112,8 +1114,26 @@ show_example(example_mask)
 
 An attention function can be described as mapping a query and a set
 of key-value pairs to an output, where the query, keys, values, and
-output are all vectors.  The output is computed as a weighted sum of
-the values, where the weight assigned to each value is computed by a
+output are all vectors.  ...
+
+> **Commentary:**
+>
+>     Q  [...]  ---┐
+>                  |---> [Attention func] ---> Output [...]
+>     KV [...]  ---┘
+>
+
+... The output is computed as a weighted sum of
+the values, ...
+
+> **Commentary:**
+>
+> **weighted sum of the values**: multiply each value vector by its attention weight and adding them together. If $A = [a_1, a_2, a_3]$ and $V = [v_1, v_2, v_3]$, then the weighted sum of the values is
+>
+> $$a_1v_1 + a_2v_2 + a_3v_3$$
+> 
+
+... where the weight assigned to each value is computed by a
 compatibility function of the query with the corresponding key.
 
 We call our particular attention "Scaled Dot-Product Attention".
@@ -1164,6 +1184,12 @@ dot-product attention is much faster and more space-efficient in
 practice, since it can be implemented using highly optimized matrix
 multiplication code.
 
+> **Commentary:**
+>
+> **since it can be implemented using highly optimized matrix
+multiplication code**: Since we can also compute attention using dot product,
+> we perfer it over additive attention as with the advent of GPUs, matrix multiplication
+> is done faster
 
 While for small values of $d_k$ the two mechanisms perform
 similarly, additive attention outperforms dot product attention
@@ -1204,17 +1230,17 @@ $$
 
 > **Commentary:**
 >
-> It means we concatenate the result of different heads and matrix multiply by Wo.
+> It means we concatenate the result of different heads and matrix multiply by $W_o$.
 >
-> Let's say we had head1 = [1, 2], head2 = [3, 4].
+> Let's say we had $head1 = [1, 2]$, $head2 = [3, 4]$.
 >
-> We concatenate them. concat = [1, 2, 3, 4]
+> We concatenate them. $concat = [1, 2, 3, 4]$
 > 
-> Just like Wq etc in the attention formula, Wo is a weight matrix learnt during training.
+> Just like $W_q$ etc in the attention formula, $W_o$ is a weight matrix learnt during training.
 >
-> Let's pretend it's [[3], [3], [3], [3]]  here.
+> Let's pretend it's $[[3], [3], [3], [3]]$ here.
 >
-> So we do  [1, 2, 3, 4] @ [[3], [3], [3], [3]] = [30]
+> So we do $[1, 2, 3, 4] @ [[3], [3], [3], [3]] = [30]$
 
 Where the projections are parameter matrices $W^Q_i \in
 \mathbb{R}^{d_{\text{model}} \times d_k}$, $W^K_i \in
@@ -1298,6 +1324,7 @@ class MultiHeadedAttention(nn.Module):
 ### Applications of Attention in our Model
 
 The Transformer uses multi-head attention in three different ways:
+
 1) In "encoder-decoder attention" layers, the queries come from the
 previous decoder layer, and the memory keys and values come from the
 output of the encoder.  This allows every position in the decoder to
@@ -1317,9 +1344,35 @@ layer of the encoder.
 position in the decoder to attend to all positions in the decoder up
 to and including that position.  We need to prevent leftward
 information flow in the decoder to preserve the auto-regressive
-property.  We implement this inside of scaled dot-product attention
+property.  ...
+
+> **Commentary:**
+> 
+> **autoregressive**: Predicting future values from past data.
+>
+
+... We implement this inside of scaled dot-product attention
 by masking out (setting to $-\infty$) all values in the input of the
 softmax which correspond to illegal connections.
+
+> **Commentary:**
+>
+> When going over each token, we don't let the decoder see next tokens. If we have attention scores as such
+>
+>               I    love   machine   learning
+>     I        0.2   0.8     0.3       0.7
+>     love     0.4   0.9     0.5       0.6
+>     machine  0.3   0.2     0.8       0.9
+>     learning 0.1   0.4     0.7       0.8
+>
+> We don't want to attend to learning when we are still at the `I` token. So, we mask the values by $-\infty$
+>
+>               I    love   machine   learning
+>     I        0.2    -∞      -∞        -∞
+>     love     0.4   0.9      -∞        -∞
+>     machine  0.3   0.2     0.8        -∞
+>     learning 0.1   0.4     0.7       0.8
+>
 
 ## Position-wise Feed-Forward Networks
 
@@ -1354,9 +1407,49 @@ class PositionwiseFeedForward(nn.Module):
 
 ```
 
+
+> **Commentary:**
+>
+> The code for Feed Forward Network `self.w_2(self.dropout(self.w_1(x).relu()))` does this
+>
+>       x   
+>       │
+>       │ 
+>       v
+>     [ w_1 (linear) ]
+>       │
+>       │ 
+>       v
+>     [ ReLU ]
+>       │
+>       │ 
+>       v
+>     [ Dropout ]  
+>       │
+>       │ 
+>       v
+>     [ w_2 (linear) ]
+>       │
+>       │ 
+>       v
+>     output
+> 
+> while the encoder layer does this
+>
+>      input --> [ self-attention ] --> [ Feed Forward Network ] --> output
+>
+> **"which is applied to each position separately and identically"**: 
+> Position here means token. Each token's vector gets passed through the FFN and gets transformed.
+> 
+> **"Another way of describing this is as two convolutions with
+kernel size 1"**:
+> The FFN can also be implemented as two 1×1 convolutions. Meaning, one 1x1 convolution
+> does the work of a linear layer.
+>
+
 ## Embeddings and Softmax
 
-Similarly to other sequence transduction models, we use learned
+Similarly to other sequence [transduction models](#transduction), we use learned
 embeddings to convert the input tokens and output tokens to vectors
 of dimension $d_{\text{model}}$.  We also use the usual learned
 linear transformation and softmax function to convert the decoder
@@ -1378,6 +1471,31 @@ class Embeddings(nn.Module):
 
 
 ```
+
+> **Commentary:**
+>
+> In the code, `lut` means '**l**ook **u**p **t**able'.
+> 
+>      def forward(self, x):
+>              return self.lut(x) * math.sqrt(self.d_model)
+> 
+> `self.lut = nn.Embedding(vocab, d_model)` This line creates an embedding matrix the size of the vocabulary * 512 (dimention of embedding vector).  Let's say we have
+> 
+>      i       [... size 512 ...]
+>      am      [... size 512 ...]
+>      a       [... size 512 ...]
+>      ...
+> 
+> Let's say we do conceptually `self.lut(0)` where 0 is an id, it will return the embedding vector for i. We look up the embedding by id.
+> When we have a sentence `self.lut([0, 1, 2])`, it will return `[[ vector for i], [vector for am], [vector for a]]` i.e. sequence length here 3, times 512.
+> In a real transformer, self.lut might take `[batch_size, sequence_length, 512]`.
+> 
+> `return self.lut(x) * math.sqrt(self.d_model)` This line multiplies each element of the embedding by the sqrt of 512.
+>
+> **"We also use the usual learned
+linear transformation and softmax function to convert the decoder
+output to predicted next-token probabilities."**: We have a lot to decode in this text. The decoded matrix is 512 in size but, we want probabilities for all words of the vocabulary. Let's say we have 1000 words. We need to convert a vector of size 512 into 1000. The formula is this one $z = hE^T + b$
+
 
 ## Positional Encoding
 
