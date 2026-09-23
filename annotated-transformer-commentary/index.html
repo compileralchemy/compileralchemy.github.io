@@ -1914,18 +1914,28 @@ In a real transformer, self.lut might take <code>[batch_size, sequence_length, 5
 <p><code>return self.lut(x) * math.sqrt(self.d_model)</code> This line multiplies each element of the embedding by the sqrt of 512.</p>
 <p><strong>&ldquo;We also use the usual learned
 linear transformation and softmax function to convert the decoder
-output to predicted next-token probabilities.&rdquo;</strong>: We have a lot to decode in this text. The decoded matrix is 512 in size but, we want probabilities for all words of the vocabulary. Let&rsquo;s say we have 1000 words. We need to convert a vector of size 512 into 1000. The formula is this one $z = hE^T + b$</p>
+output to predicted next-token probabilities.&rdquo;</strong>: We have a lot to decode in this text. The decoded matrix is 512 in size but, we want probabilities for all words of the vocabulary. Let&rsquo;s say we have 1000 words. We need to convert a vector of size 512 into 1000. The formula is this one $z = hW + b$ or $z = hE^T + b$ where we get logits. Then we do $softmax(z)$ to get the probabilities. $E$ is the embedding matrix (self.lut). $b$ is the bias that is just added to $h$, which is the output of the transformer.</p>
 </blockquote>
 <h2>Positional Encoding</h2>
 <p>Since our model contains no recurrence and no convolution, in order
 for the model to make use of the order of the sequence, we must
 inject some information about the relative or absolute position of
-the tokens in the sequence.  To this end, we add &ldquo;positional
+the tokens in the sequence.  &hellip;</p>
+<blockquote class="commentary"><p><span class="commentary-label">Commentary</span></p>
+<p><strong>Since our model contains no recurrence and no convolution</strong>: RNNs, by the nature
+of how it computes things (in &lsquo;loops&rsquo;), it tracks the position of tokens. Similarly,
+CNNs track the position of the token when it windoes over the matrix. Self-attention
+computes everything at once as a big matrix that can be parallelized. By design it&rsquo;s faster, but, loses positional info.</p>
+</blockquote>
+<p>&hellip; To this end, we add &ldquo;positional
 encodings&rdquo; to the input embeddings at the bottoms of the encoder and
 decoder stacks.  The positional encodings have the same dimension
 $d_{\text{model}}$ as the embeddings, so that the two can be summed.
 There are many choices of positional encodings, learned and fixed
 <a href="https://arxiv.org/pdf/1705.03122.pdf">(cite)</a>.</p>
+<blockquote class="commentary"><p><span class="commentary-label">Commentary</span></p>
+<p><strong>&ldquo;learned and fixed&rdquo;</strong>: Learned: learned as the model trains. Fixed: the opposite. The encoding is calculated. In this paper, the fixed version is used.</p>
+</blockquote>
 <p>In this work, we use sine and cosine functions of different frequencies:</p>
 <p>$$PE_{(pos,2i)} = \sin(pos / 10000^{2i/d_{\text{model}}})$$</p>
 <p>$$PE_{(pos,2i+1)} = \cos(pos / 10000^{2i/d_{\text{model}}})$$</p>
