@@ -1494,7 +1494,7 @@ class Embeddings(nn.Module):
 >
 > **"We also use the usual learned
 linear transformation and softmax function to convert the decoder
-output to predicted next-token probabilities."**: We have a lot to decode in this text. The decoded matrix is 512 in size but, we want probabilities for all words of the vocabulary. Let's say we have 1000 words. We need to convert a vector of size 512 into 1000. The formula is this one $z = hE^T + b$
+output to predicted next-token probabilities."**: We have a lot to decode in this text. The decoded matrix is 512 in size but, we want probabilities for all words of the vocabulary. Let's say we have 1000 words. We need to convert a vector of size 512 into 1000. The formula is this one $z = hW + b$ or $z = hE^T + b$ where we get logits. Then we do $softmax(z)$ to get the probabilities. $E$ is the embedding matrix (self.lut). $b$ is the bias that is just added to $h$, which is the output of the transformer.
 
 
 ## Positional Encoding
@@ -1502,12 +1502,25 @@ output to predicted next-token probabilities."**: We have a lot to decode in thi
 Since our model contains no recurrence and no convolution, in order
 for the model to make use of the order of the sequence, we must
 inject some information about the relative or absolute position of
-the tokens in the sequence.  To this end, we add "positional
+the tokens in the sequence.  ...
+
+> **Commentary:**
+>
+> **Since our model contains no recurrence and no convolution**: RNNs, by the nature
+> of how it computes things (in 'loops'), it tracks the position of tokens. Similarly,
+> CNNs track the position of the token when it windoes over the matrix. Self-attention
+> computes everything at once as a big matrix that can be parallelized. By design it's faster, but, loses positional info.
+
+... To this end, we add "positional
 encodings" to the input embeddings at the bottoms of the encoder and
 decoder stacks.  The positional encodings have the same dimension
 $d_{\text{model}}$ as the embeddings, so that the two can be summed.
 There are many choices of positional encodings, learned and fixed
 [(cite)](https://arxiv.org/pdf/1705.03122.pdf).
+
+> **Commentary:**
+>
+> **"learned and fixed"**: Learned: learned as the model trains. Fixed: the opposite. The encoding is calculated. In this paper, the fixed version is used.
 
 In this work, we use sine and cosine functions of different frequencies:
 
