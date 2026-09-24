@@ -1528,7 +1528,19 @@ $$PE_{(pos,2i)} = \sin(pos / 10000^{2i/d_{\text{model}}})$$
 
 $$PE_{(pos,2i+1)} = \cos(pos / 10000^{2i/d_{\text{model}}})$$
 
-where $pos$ is the position and $i$ is the dimension.  That is, each
+where $pos$ is the position and $i$ is the dimension.  ...
+
+> **Commentary:**
+>
+> For position 1 let's say we have 512 numbers [...].
+>
+> $PE_{(pos,2i)}$ caters for even positions. $PE_{(pos,2i+1)}$ caters for odd positions.
+>
+> [ $PE_{(pos,2i)}$, $PE_{(pos,2i+1)}$, $PE_{(pos,2i)}$, $PE_{(pos,2i+1)}$, ... ]
+>
+> I.e. even positions will be calculated using sines and odd positions using cos.
+
+... That is, each
 dimension of the positional encoding corresponds to a sinusoid.  The
 wavelengths form a geometric progression from $2\pi$ to $10000 \cdot
 2\pi$.  We chose this function because we hypothesized it would
@@ -1536,10 +1548,27 @@ allow the model to easily learn to attend by relative positions,
 since for any fixed offset $k$, $PE_{pos+k}$ can be represented as a
 linear function of $PE_{pos}$.
 
+
+> **Commentary:**
+>
+> Consider these identities:
+> 
+> $\sin(x+k) = \sin(x)\cos(k) + \cos(x)\sin(k)$
+>
+> $\cos(x+k) = \cos(x)\cos(k) - \sin(x)\sin(k)$
+>
+> If we are at position x and we want x + 2 or position x - 2,
+> we can calculate it using sin and cos. This is what is meant by "for any fixed offset $k$, $PE_{pos+k}$ can be represented as a
+linear function of $PE_{pos}$."
+
 In addition, we apply dropout to the sums of the embeddings and the
 positional encodings in both the encoder and decoder stacks.  For
 the base model, we use a rate of $P_{drop}=0.1$.
 
+> **Commentary:**
+>
+> Dropout as we learnt means that some values are randomly set to 0. A dropout rate
+> of 0.1 means 10% of values will be randomly set to 0.
 
 
 ```python
@@ -1612,6 +1641,11 @@ that the two versions produced nearly identical results.  We chose
 the sinusoidal version because it may allow the model to extrapolate
 to sequence lengths longer than the ones encountered during
 training.
+
+> **Commentary:**
+>
+> Since fixed positional embeddings are derived / calculated, we can calculate them for 
+> distances longer than what learned methods can achieve.
 
 ## Full Model
 
