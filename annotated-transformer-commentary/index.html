@@ -1939,16 +1939,35 @@ There are many choices of positional encodings, learned and fixed
 <p>In this work, we use sine and cosine functions of different frequencies:</p>
 <p>$$PE_{(pos,2i)} = \sin(pos / 10000^{2i/d_{\text{model}}})$$</p>
 <p>$$PE_{(pos,2i+1)} = \cos(pos / 10000^{2i/d_{\text{model}}})$$</p>
-<p>where $pos$ is the position and $i$ is the dimension.  That is, each
+<p>where $pos$ is the position and $i$ is the dimension.  &hellip;</p>
+<blockquote class="commentary"><p><span class="commentary-label">Commentary</span></p>
+<p>For position 1 let&rsquo;s say we have 512 numbers [&hellip;].</p>
+<p>$PE_{(pos,2i)}$ caters for even positions. $PE_{(pos,2i+1)}$ caters for odd positions.</p>
+<p>[ $PE_{(pos,2i)}$, $PE_{(pos,2i+1)}$, $PE_{(pos,2i)}$, $PE_{(pos,2i+1)}$, &hellip; ]</p>
+<p>I.e. even positions will be calculated using sines and odd positions using cos.</p>
+</blockquote>
+<p>&hellip; That is, each
 dimension of the positional encoding corresponds to a sinusoid.  The
 wavelengths form a geometric progression from $2\pi$ to $10000 \cdot
 2\pi$.  We chose this function because we hypothesized it would
 allow the model to easily learn to attend by relative positions,
 since for any fixed offset $k$, $PE_{pos+k}$ can be represented as a
 linear function of $PE_{pos}$.</p>
+<blockquote class="commentary"><p><span class="commentary-label">Commentary</span></p>
+<p>Consider these identities:</p>
+<p>$\sin(x+k) = \sin(x)\cos(k) + \cos(x)\sin(k)$</p>
+<p>$\cos(x+k) = \cos(x)\cos(k) - \sin(x)\sin(k)$</p>
+<p>If we are at position x and we want x + 2 or position x - 2,
+we can calculate it using sin and cos. This is what is meant by &ldquo;for any fixed offset $k$, $PE_{pos+k}$ can be represented as a
+linear function of $PE_{pos}$.&rdquo;</p>
+</blockquote>
 <p>In addition, we apply dropout to the sums of the embeddings and the
 positional encodings in both the encoder and decoder stacks.  For
 the base model, we use a rate of $P_{drop}=0.1$.</p>
+<blockquote class="commentary"><p><span class="commentary-label">Commentary</span></p>
+<p>Dropout as we learnt means that some values are randomly set to 0. A dropout rate
+of 0.1 means 10% of values will be randomly set to 0.</p>
+</blockquote>
 <pre><code class="language-python">class PositionalEncoding(nn.Module):
     &quot;Implement the PE function.&quot;
 
@@ -2014,6 +2033,10 @@ that the two versions produced nearly identical results.  We chose
 the sinusoidal version because it may allow the model to extrapolate
 to sequence lengths longer than the ones encountered during
 training.</p>
+<blockquote class="commentary"><p><span class="commentary-label">Commentary</span></p>
+<p>Since fixed positional embeddings are derived / calculated, we can calculate them for 
+distances longer than what learned methods can achieve.</p>
+</blockquote>
 <h2>Full Model</h2>
 <blockquote>
 <p>Here we define a function from hyperparameters to a full model.</p>
