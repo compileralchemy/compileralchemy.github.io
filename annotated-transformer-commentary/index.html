@@ -2373,7 +2373,11 @@ but, is smooth. $\epsilon_{ls}=0.1$ means it takes this amount and divides it ov
 Regularization is a technique used to stop a model from becoming too tied to its training data.
 This hurts perplexity i.e. the model is less sure about the correct answer (example from let&rsquo;s say 99% / 100% to maybe 90%) but, it improves accuracy overall i.e. the model is able to 
 perform well even in cases where it did not encounter in the training. BLEU score is a
-score for machine translations.</p>
+score for machine translations.
+</p>
+</blockquote>
+<p>.</p>
+<blockquote>
 <p>We implement label smoothing using the KL div loss. Instead of
 using a one-hot target distribution, we create a distribution that
 has <code>confidence</code> of the correct word and the rest of the
