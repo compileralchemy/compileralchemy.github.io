@@ -1841,7 +1841,16 @@ def run_epoch(
 We trained on the standard WMT 2014 English-German dataset
 consisting of about 4.5 million sentence pairs.  Sentences were
 encoded using byte-pair encoding, which has a shared source-target
-vocabulary of about 37000 tokens. For English-French, we used the
+vocabulary of about 37000 tokens. ...
+
+> **Commentary:**
+>
+> Byte-pair encoding was use to encode both English and German. 
+> Byte-pair encoding is much better than a traditional encoding as it will
+> break down even unknown words into known sub-components. 37, 000 is the number of 
+> shared token in their dataset between German and English.
+
+... For English-French, we used the
 significantly larger WMT 2014 English-French dataset consisting of
 36M sentences and split tokens into a 32000 word-piece vocabulary.
 
@@ -1861,8 +1870,32 @@ models, step time was 1.0 seconds.  The big models were trained for
 
 ## Optimizer
 
+> **Commentary:**
+>
+> In training, the output of the model is compared to the answer.
+> We see how right or how wrong the answer was. It's called the 
+> "loss". We want to minimise the loss. If we draw a curve, we want to
+> reach the lowest part of the slope.This is why we calculate the gradient.
+> To know where we are and in what direction we must encourage the weights to move towards.
+> An optimiser takes the gradient and decides by how much to change the weights.
+> Gradient descent is a famous optimiser. Here we used the Adam optimiser.
+
 We used the Adam optimizer [(cite)](https://arxiv.org/abs/1412.6980)
-with $\beta_1=0.9$, $\beta_2=0.98$ and $\epsilon=10^{-9}$.  We
+with $\beta_1=0.9$, $\beta_2=0.98$ and $\epsilon=10^{-9}$. ...
+
+> **Commentary:**
+>
+> The Adam optimiser calculates:
+>
+> 1. The first moment estimate and for that it needs $\beta_1$
+>
+> 2. The second moment estimate and for that it needs $\beta_2$
+>
+> 3. Bias correction
+>
+> 4. Parameter update and for that it needs $\epsilon$
+
+... We
 varied the learning rate over the course of training, according to
 the formula:
 
@@ -1970,6 +2003,22 @@ During training, we employed label smoothing of value
 $\epsilon_{ls}=0.1$ [(cite)](https://arxiv.org/abs/1512.00567).
 This hurts perplexity, as the model learns to be more unsure, but
 improves accuracy and BLEU score.
+
+> **Commentary:**
+> 
+> Label is what the model is supposed to predict. For example:
+> I went to the __ . It can be shop, it can be market.
+> Suppose the example in our training has label shop.
+> In this context, shop is 100% right, but, this does not mean that
+> I went to the market is wrong according to the phrase construction.
+> So, we need a way for the training to be resilient.
+> Smoothing of value means we give a certain amount of confidence to the wrong scores as well, so that the probability jump from right to wrong answers is not sudden (100% to 0),
+> but, is smooth. $\epsilon_{ls}=0.1$ means it takes this amount and divides it over the wrong answers. i.e. it takes 10% of the confidence and distributes it.
+> Regularization is a technique used to stop a model from becoming too tied to its training data.
+> This hurts perplexity i.e. the model is less sure about the correct answer (example from let's say 99% / 100% to maybe 90%) but, it improves accuracy overall i.e. the model is able to 
+> perform well even in cases where it did not encounter in the training. BLEU score is a
+> score for machine translations.
+
 
 
 > We implement label smoothing using the KL div loss. Instead of
