@@ -2018,8 +2018,9 @@ improves accuracy and BLEU score.
 > This hurts perplexity i.e. the model is less sure about the correct answer (example from let's say 99% / 100% to maybe 90%) but, it improves accuracy overall i.e. the model is able to 
 > perform well even in cases where it did not encounter in the training. BLEU score is a
 > score for machine translations.
+>
 
-
+.
 
 > We implement label smoothing using the KL div loss. Instead of
 > using a one-hot target distribution, we create a distribution that
