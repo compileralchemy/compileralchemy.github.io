@@ -33,9 +33,38 @@ def titlecase(s):
     return re.sub(r"[A-Za-z]+('[A-Za-z]+)?", lambda mo: mo.group(0).capitalize(), s)
 
 
-def md_to_html_raw(text, extentions=["extra", "smarty", "meta"]):
+MATH_SPAN = re.compile(r"\$\$.+?\$\$|\$[^$\n]+\$", re.S)
+
+
+def md_to_html_raw(
+    text, extentions=["extra", "smarty", "meta"], protect_math=False
+):
+    """Render markdown, optionally holding the $...$ formulas aside.
+
+    Markdown sees `_` as emphasis and smarty sees its quotes and dashes
+    inside a formula too; a stash of the raw text leaves both alone and
+    KaTeX reads the originals back off the page.
+    """
+    box = []
+    if protect_math:
+
+        def hold(m):
+            chunk = m.group(0)
+            head = text[text.rfind("\n", 0, m.start()) + 1 : m.start()]
+            if head.strip() == ">":
+                # Markdown takes the marker off every line a blockquote
+                # spans; the stash holds the original text, so it has to
+                # take them off itself or KaTeX reads them as maths.
+                chunk = re.sub(r"(?m)^> ?", "", chunk)
+            box.append(chunk)
+            return "\uE000%d\uE001" % (len(box) - 1)
+
+        text = MATH_SPAN.sub(hold, text)
     md = markdown.Markdown(extensions=extentions)
     html = md.convert(text)
+    if box:
+        for i, chunk in enumerate(box):
+            html = html.replace("\uE000%d\uE001" % i, chunk)
     metadata = md.Meta
     return html, metadata
 
@@ -704,6 +733,7 @@ def gen_seo():
         "/opensource/",
         "/papers/",
         "/annotated-transformer-commentary/",
+        "/flash-attention-commentary/",
     ]
 
     # Dynamically discover books
@@ -828,6 +858,23 @@ Sitemap: https://compileralchemy.com/sitemap.txt"""
         f.write("\n".join(sitemap_xml))
 
 
+def commentary_html(text):
+    """Render a commentary markdown file and tag its blockquote markers."""
+    content_html, _ = md_to_html_raw(text, protect_math=True)
+
+    # Post-process: add CSS classes to blockquotes containing commentary/dive markers
+    def add_commentary_class(m):
+        label = m.group(1)
+        css_class = "commentary" if "Commentary" in label else "deep-dive"
+        return f'<blockquote class="{css_class}"><p><span class="commentary-label">{label}</span>'
+
+    return re.sub(
+        r'<blockquote>\s*<p>\s*<strong>(Commentary|Deep Dive):</strong>',
+        add_commentary_class,
+        content_html,
+    )
+
+
 def gen_annotated_commentary():
     context_data = base_context()
     path_prefix = "../"
@@ -836,18 +883,7 @@ def gen_annotated_commentary():
     with open(commentary_md, encoding="utf-8") as f:
         text = f.read()
 
-    content_html, _ = md_to_html_raw(text)
-
-    # Post-process: add CSS classes to blockquotes containing commentary/dive markers
-    def add_commentary_class(m):
-        label = m.group(1)
-        css_class = "commentary" if "Commentary" in label else "deep-dive"
-        return f'<blockquote class="{css_class}"><p><span class="commentary-label">{label}</span>'
-    content_html = re.sub(
-        r'<blockquote>\s*<p>\s*<strong>(Commentary|Deep Dive):</strong>',
-        add_commentary_class,
-        content_html,
-    )
+    content_html = commentary_html(text)
 
     context_data.update(
         {
@@ -874,6 +910,47 @@ def gen_annotated_commentary():
         join(
             settings.OUTPUT_FOLDER,
             "annotated-transformer-commentary",
+            "index.html",
+        ),
+        **context_data,
+    )
+
+
+def gen_flash_commentary():
+    context_data = base_context()
+    path_prefix = "../"
+
+    commentary_md = "./data/flash-attention/commentary.md"
+    with open(commentary_md, encoding="utf-8") as f:
+        text = f.read()
+
+    content_html = commentary_html(text)
+
+    context_data.update(
+        {
+            "settings": settings,
+            "path": path_prefix,
+            "title": "Commentary of FlashAttention",
+            "content": content_html,
+            "seo_title": "FlashAttention with Commentary | Abdur-Rahmaan Janhangeer",
+            "seo_description": "A walkthrough of FlashAttention (Dao et al., 2022) -- exact attention made IO-aware, with added commentary and deep dives.",
+            "page_path": "flash-attention-commentary/",
+            "og_type": "article",
+        }
+    )
+
+    try:
+        os.mkdir(
+            os.path.join(settings.OUTPUT_FOLDER, "flash-attention-commentary")
+        )
+    except FileExistsError:
+        pass
+
+    generate(
+        "annotated_commentary.html",
+        join(
+            settings.OUTPUT_FOLDER,
+            "flash-attention-commentary",
             "index.html",
         ),
         **context_data,
@@ -942,6 +1019,7 @@ def main(args):
         gen_opensource()
         gen_papers()
         gen_annotated_commentary()
+        gen_flash_commentary()
         gen_seo()
 
     if len(args) > 1 and args[1] == "--server":
