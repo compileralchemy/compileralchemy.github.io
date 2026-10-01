@@ -10,6 +10,7 @@ https://www.compileralchemy.com/islamic-months-mauritius/
 https://www.compileralchemy.com/opensource/
 https://www.compileralchemy.com/papers/
 https://www.compileralchemy.com/annotated-transformer-commentary/
+https://www.compileralchemy.com/flash-attention-commentary/
 https://www.compileralchemy.com/books/python-everyday/
 https://www.compileralchemy.com/books/freelancing-codex/
 https://www.compileralchemy.com/books/sqlite-internals/

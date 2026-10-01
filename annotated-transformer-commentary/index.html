@@ -1102,27 +1102,27 @@ which is an identity matrix (if you multiply [1, 2], the result is [1, 2] so tha
 <p>$QK^{T}$ is the dot product of Q and Kt.
 $$QK^{T} =
 \begin{bmatrix}
-5 &amp; 7 &amp; 9 \\
-7 &amp; 10 &amp; 13 \\
-9 &amp; 13 &amp; 17
+5 & 7 & 9 \\\\
+7 & 10 & 13 \\\\
+9 & 13 & 17
 \end{bmatrix}$$</p>
 <p>Now $ d_k $ is the number of components in our vector. We used [1, 2], so we have 2 components. $ d_k $ is 2.</p>
 <p>$\frac{QK^{T}}{\sqrt{d_k}}$ means dividing each number in the matrix by $\sqrt{d_k}$.</p>
 <p>$$
 \frac{QK^{T}}{\sqrt{2}} =
 \begin{bmatrix}
-\frac{5}{\sqrt{2}} &amp; \frac{7}{\sqrt{2}} &amp; \frac{9}{\sqrt{2}} \\
-\frac{7}{\sqrt{2}} &amp; \frac{10}{\sqrt{2}} &amp; \frac{13}{\sqrt{2}} \\
-\frac{9}{\sqrt{2}} &amp; \frac{13}{\sqrt{2}} &amp; \frac{17}{\sqrt{2}}
+\frac{5}{\sqrt{2}} & \frac{7}{\sqrt{2}} & \frac{9}{\sqrt{2}} \\\\
+\frac{7}{\sqrt{2}} & \frac{10}{\sqrt{2}} & \frac{13}{\sqrt{2}} \\\\
+\frac{9}{\sqrt{2}} & \frac{13}{\sqrt{2}} & \frac{17}{\sqrt{2}}
 \end{bmatrix}
 $$</p>
 <p>We have</p>
 <p>$$
 \frac{QK^{T}}{\sqrt{2}} =
 \begin{bmatrix}
-3.5355 &amp; 4.9497 &amp; 6.3640 \\
-4.9497 &amp; 7.0711 &amp; 9.1924 \\
-6.3640 &amp; 9.1924 &amp; 12.0208
+3.5355 & 4.9497 & 6.3640 \\\\
+4.9497 & 7.0711 & 9.1924 \\\\
+6.3640 & 9.1924 & 12.0208
 \end{bmatrix}
 $$</p>
 <p>Now we have to apply softmax to this matrix.
@@ -1130,15 +1130,15 @@ $$
 \text{softmax}
 \left(
 \begin{bmatrix}
-5 &amp; 7 &amp; 9 \\
-7 &amp; 10 &amp; 13 \\
-9 &amp; 13 &amp; 17
+5 & 7 & 9 \\\\
+7 & 10 & 13 \\\\
+9 & 13 & 17
 \end{bmatrix}
 \right)
 =
 \begin{bmatrix}
-\text{softmax}([5,7,9]) \\
-\text{softmax}([7,10,13]) \\
+\text{softmax}([5,7,9]) \\\\
+\text{softmax}([7,10,13]) \\\\
 \text{softmax}([9,13,17])
 \end{bmatrix}
 $$</p>
@@ -1149,12 +1149,12 @@ $$</p>
 \frac{e^5}{e^5+e^7+e^9},
 \frac{e^7}{e^5+e^7+e^9},
 \frac{e^9}{e^5+e^7+e^9}
-\right] \\
+\right] \\\\
 \left[
 \frac{e^7}{e^7+e^{10}+e^{13}},
 \frac{e^{10}}{e^7+e^{10}+e^{13}},
 \frac{e^{13}}{e^7+e^{10}+e^{13}}
-\right] \\
+\right] \\\\
 \left[
 \frac{e^9}{e^9+e^{13}+e^{17}},
 \frac{e^{13}}{e^9+e^{13}+e^{17}},
@@ -1167,41 +1167,41 @@ $$</p>
 \text{softmax}\left(\frac{QK^T}{\sqrt{d_k}}\right)
 =
 \begin{bmatrix}
-0.0454 &amp; 0.1867 &amp; 0.7679 \\
-0.0127 &amp; 0.1057 &amp; 0.8816 \\
-0.0033 &amp; 0.0556 &amp; 0.9411
+0.0454 & 0.1867 & 0.7679 \\\\
+0.0127 & 0.1057 & 0.8816 \\\\
+0.0033 & 0.0556 & 0.9411
 \end{bmatrix}
 $$</p>
 <p>Now we need to multiply it by V (from the formula above softmax * V). We have V from the table above.</p>
 <p>$$
 V =
 \begin{bmatrix}
-1 &amp; 2 \\
-1 &amp; 3 \\
-1 &amp; 4
+1 & 2 \\\\
+1 & 3 \\\\
+1 & 4
 \end{bmatrix}
 $$</p>
 <p>Multiplying both gives</p>
 <p>$$
 softmax.V =
 \begin{bmatrix}
-0.0454 &amp; 0.1867 &amp; 0.7679 \\
-0.0127 &amp; 0.1057 &amp; 0.8816 \\
-0.0033 &amp; 0.0556 &amp; 0.9411
+0.0454 & 0.1867 & 0.7679 \\\\
+0.0127 & 0.1057 & 0.8816 \\\\
+0.0033 & 0.0556 & 0.9411
 \end{bmatrix}
 \begin{bmatrix}
-1 &amp; 2 \\
-1 &amp; 3 \\
-1 &amp; 4
+1 & 2 \\\\
+1 & 3 \\\\
+1 & 4
 \end{bmatrix}
 $$</p>
 <p>Finally</p>
 <p>$$
 softmax.V =
 \begin{bmatrix}
-1 &amp; 3.7225 \\
-1 &amp; 3.8689 \\
-1 &amp; 3.9378
+1 & 3.7225 \\\\
+1 & 3.8689 \\\\
+1 & 3.9378
 \end{bmatrix}
 $$</p>
 <p>This output is passed to the next layer.</p>
@@ -1273,10 +1273,10 @@ aligned RNNs or convolution. </p>
 <p>Most competitive neural sequence transduction models have an
 encoder-decoder structure
 <a href="https://arxiv.org/abs/1409.0473">(cite)</a>. Here, the encoder maps an
-input sequence of symbol representations $(x_1, &hellip;, x_n)$ to a
+input sequence of symbol representations $(x_1, ..., x_n)$ to a
 sequence of continuous representations $\mathbf{z} = (z_1, &hellip;,
 z_n)$. Given $\mathbf{z}$, the decoder then generates an output
-sequence $(y_1,&hellip;,y_m)$ of symbols one element at a time. &hellip;</p>
+sequence $(y_1,...,y_m)$ of symbols one element at a time. &hellip;</p>
 <blockquote class="commentary"><p><span class="commentary-label">Commentary</span></p>
 <pre><code>x - input
 |
@@ -1452,7 +1452,7 @@ and normalized.</p>
 <p>$( a \odot b )$ means element-wise multiplication. $
 [2,3] \odot [10,100] = [2 \times 10,, 3 \times 100] = [20,300]
 $</p>
-<p>Dropout has this formula $h&rsquo; = m \odot h$ where $m$ is a mask. A mask works like this. If you have [5, 10] and apply a mask of [1, 0]  you have [5, 0]. </p>
+<p>Dropout has this formula $h' = m \odot h$ where $m$ is a mask. A mask works like this. If you have [5, 10] and apply a mask of [1, 0]  you have [5, 0]. </p>
 <p>$$
 m \odot h = [1 \cdot 5,; 0 \cdot 10] = [5, 0]
 $$</p>
@@ -1696,7 +1696,7 @@ positions. With a single attention head, averaging inhibits this.</p>
 </blockquote>
 <p>$$
 \mathrm{MultiHead}(Q, K, V) =
-    \mathrm{Concat}(\mathrm{head_1}, &hellip;, \mathrm{head_h})W^O \\
+    \mathrm{Concat}(\mathrm{head_1}, ..., \mathrm{head_h})W^O \\\\
     \text{where}~\mathrm{head_i} = \mathrm{Attention}(QW^Q_i, KW^K_i, VW^V_i)
 $$</p>
 <blockquote class="commentary"><p><span class="commentary-label">Commentary</span></p>
@@ -2269,13 +2269,13 @@ varied the learning rate over the course of training, according to
 the formula:</p>
 <p>$$
 lrate = d_{\text{model}}^{-0.5} \cdot
-  \min({step_num}^{-0.5},
-    {step_num} \cdot {warmup_steps}^{-1.5})
+  \min({step\_num}^{-0.5},
+    {step\_num} \cdot {warmup\_steps}^{-1.5})
 $$</p>
 <p>This corresponds to increasing the learning rate linearly for the
-first $warmup_steps$ training steps, and decreasing it thereafter
+first $warmup\_steps$ training steps, and decreasing it thereafter
 proportionally to the inverse square root of the step number.  We
-used $warmup_steps=4000$.</p>
+used $warmup\_steps=4000$.</p>
 <blockquote>
 <p>Note: This part is very important. Need to train with this setup
 of the model.</p>
