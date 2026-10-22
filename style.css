@@ -17,7 +17,7 @@
     --radius-lg: 8px;
     --container: 920px;
     --reading: 680px;
-    --font-main: 'Comfortaa', system-ui, sans-serif;
+    --font-main: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
     --font-title: 'Raleway', system-ui, sans-serif;
     --font-mono: 'SF Mono', 'Fira Code', 'Consolas', monospace;
 }
