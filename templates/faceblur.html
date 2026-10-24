@@ -1,650 +1,1313 @@
+{% extends "pages/base.html" %}
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Faceblur</title>
-    <link rel="icon" href="../assets/COMP_ALC.png">
-    <meta name="description" content="Faceblur is a powerful tool to blur faces from videos in real-time using on-device AI. Protect privacy in your video content instantly.">
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;800&display=swap" rel="stylesheet">
-    <script src="https://cdn.jsdelivr.net/npm/@mediapipe/tasks-vision@0.10.3"></script>
-    <style>
-        body {
-            font-family: 'Plus Jakarta Sans', sans-serif;
-            background-color: #f1f5f9;
-            color: #1e293b;
-            margin: 0;
-            min-height: 100vh;
-            display: flex;
-            align-items: flex-start;
-            justify-content: center;
-            overflow-x: hidden;
-            overflow-y: auto;
-        }
-        .player-card {
-            background: #ffffff;
-            border: 1px solid #e2e8f0;
-            border-radius: 24px;
-            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.05), 0 8px 10px -6px rgba(0, 0, 0, 0.05);
-        }
-        .video-wrapper {
-            position: relative;
-            width: 100%;
-            background: #0f172a;
-            border-radius: 20px;
-            overflow: hidden;
-            aspect-ratio: 16/9;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
-        }
-        .video-wrapper.portrait {
-            aspect-ratio: 9/16;
-            max-width: 400px;
-        }
-        canvas {
-            width: 100%;
-            height: 100%;
-            object-fit: contain;
-            cursor: pointer;
-        }
-        #inputVideo {
-            position: fixed;
-            top: 0;
-            left: -100%;
-            width: 1px;
-            height: 1px;
-            pointer-events: none;
-            opacity: 0;
-        }
-        
-        .player-controls {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            background: linear-gradient(transparent, rgba(0,0,0,0.7));
-            padding: 24px;
-            padding-top: 60px;
-            opacity: 0;
-            transform: translateY(10px);
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            pointer-events: none;
-        }
-        .video-wrapper:hover .player-controls {
-            opacity: 1;
-            transform: translateY(0);
-            pointer-events: auto;
-        }
-        .control-btn {
-            background: rgba(255,255,255,0.2);
-            backdrop-filter: blur(12px);
-            border: 1px solid rgba(255,255,255,0.3);
-            border-radius: 12px;
-            padding: 10px;
-            transition: all 0.2s;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-        }
-        .control-btn:hover {
-            background: rgba(255, 255, 255, 0.4);
-            transform: scale(1.05);
-        }
-        .seek-bar {
-            width: 100%;
-            height: 6px;
-            background: rgba(255,255,255,0.2);
-            border-radius: 3px;
-            appearance: none;
-            outline: none;
-            cursor: pointer;
-            overflow: hidden;
-        }
-        .seek-bar::-webkit-slider-thumb {
-            appearance: none;
-            width: 0;
-            box-shadow: -100vw 0 0 100vw #3b82f6;
-        }
+{%block head%}
+<script src="https://cdn.jsdelivr.net/npm/onnxruntime-web@1.18.0/dist/ort.min.js"></script>
+<style>
+    .fb-wrap {
+        max-width: 1120px;
+        margin: 0 auto;
+    }
 
-        .control-knob::-webkit-slider-thumb {
-            -webkit-appearance: none;
-            height: 16px;
-            width: 16px;
-            border-radius: 50%;
-            background: #3b82f6;
-            cursor: pointer;
-            border: 2px solid white;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-        }
-        .status-glow {
-            width: 10px;
-            height: 10px;
-            border-radius: 50%;
-            transition: all 0.3s ease;
-        }
-        .status-glow.active { background: #10b981; box-shadow: 0 0 8px #10b981; }
-        .status-glow.loading { background: #f59e0b; box-shadow: 0 0 8px #f59e0b; animation: pulse 1s infinite; }
-        .status-glow.idle { background: #ef4444; box-shadow: 0 0 8px #ef4444; }
-        
-        @keyframes pulse { 0% { opacity: 0.4; } 50% { opacity: 1; } 100% { opacity: 0.4; } }
+    .fb-grid {
+        display: grid;
+        grid-template-columns: minmax(0, 320px) 1fr;
+        gap: 1.5rem;
+        align-items: start;
+    }
 
-        .loading-screen {
-            position: fixed;
-            inset: 0;
-            background: #ffffff;
-            z-index: 100;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-        }
+    @media (max-width: 900px) {
+        .fb-grid { grid-template-columns: 1fr; }
+    }
 
-        .error-log {
-            background: #fef2f2;
-            border: 1px solid #fee2e2;
-            border-radius: 12px;
-            padding: 16px;
-            margin-top: 16px;
-            display: none;
-        }
-        
-        .brand-watermark {
-            position: absolute;
-            top: 16px;
-            left: 16px;
-            pointer-events: none;
-            transition: opacity 0.3s;
-            z-index: 10;
-        }
-        .video-wrapper.playing .brand-watermark {
-            opacity: 0.6;
-        }
-        .back-btn {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            padding: 8px 12px;
-            border-radius: 10px;
-            color: #64748b;
-            font-size: 11px;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
-            transition: all 0.2s;
-            margin-bottom: 24px;
-            border: 1px solid #e2e8f0;
-            background: #f8fafc;
-        }
-        .back-btn:hover {
-            background: #f1f5f9;
-            color: #334155;
-            transform: translateX(-2px);
-        }
-    </style>
-</head>
-<body>
+    .fb-card {
+        background-color: var(--surface);
+        border: 1px solid var(--line);
+        border-radius: 8px;
+        padding: 1.5rem;
+    }
 
-    <div id="loading" class="loading-screen">
-        <div class="w-12 h-12 border-4 border-blue-100 border-t-blue-600 rounded-full animate-spin mb-4"></div>
-        <p class="text-sm font-bold text-slate-600 tracking-tight">Syncing Neural Core...</p>
-    </div>
+    .fb-block { margin-bottom: 1.5rem; }
+    .fb-block:last-child { margin-bottom: 0; }
 
-    <main class="w-full max-w-6xl grid grid-cols-1 lg:grid-cols-12 gap-8 items-start p-6 my-8">
-        
-        <!-- Sidebar -->
-        <div class="lg:col-span-4 space-y-6">
-            <div class="player-card p-8">
-                <a href="https://compileralchemy.com" class="back-btn">
-                    <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M10 19l-7-7m0 0l7-7m-7 7h18"/></svg>
-                    Back to site
-                </a>
+    .fb-label {
+        display: block;
+        font-family: var(--font-title);
+        font-size: 0.72rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.12em;
+        color: var(--ink-muted);
+        margin-bottom: 0.5rem;
+    }
 
-                <div class="flex items-center gap-4 mb-8">
-                    <div class="bg-blue-600 p-3 rounded-2xl shadow-lg shadow-blue-500/20 shrink-0">
-                        <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/></svg>
-                    </div>
-                    <div>
-                        <h1 class="text-xl font-bold tracking-tight text-slate-900 leading-none">Faceblur</h1>
-                        <p class="text-[10px] font-bold text-slate-400 uppercase tracking-widest mt-1">Neural Privacy V3.5</p>
-                    </div>
-                </div>
+    .fb-row { display: flex; gap: 0.5rem; }
 
-                <div class="space-y-6">
-                    <div>
-                        <label class="text-[11px] font-bold text-slate-500 uppercase tracking-widest block mb-3">Model Engine</label>
-                        <div class="grid grid-cols-2 gap-2 p-1 bg-slate-100 rounded-xl">
-                            <button onclick="changeModel('short_range')" id="btn-short" class="py-2.5 rounded-lg text-[10px] font-bold uppercase tracking-widest transition-all bg-white text-blue-600 shadow-sm">Lite</button>
-                            <button onclick="changeModel('full_range')" id="btn-full" class="py-2.5 rounded-lg text-[10px] font-bold uppercase tracking-widest transition-all text-slate-500 hover:text-slate-700">Pro</button>
-                        </div>
-                    </div>
+    .fb-input {
+        flex: 1;
+        min-width: 0;
+        padding: 0.5rem 0.75rem;
+        border: 1px solid var(--line);
+        border-radius: 4px;
+        background-color: var(--surface);
+        font-family: var(--font-main);
+        font-size: 0.85rem;
+        color: var(--ink);
+        outline: none;
+        transition: border-color 0.15s ease;
+    }
 
-                    <div>
-                        <label class="text-[11px] font-bold text-slate-500 uppercase tracking-widest block mb-3">Source URL</label>
-                        <div class="flex gap-2">
-                            <input id="urlInput" type="text" placeholder="Direct .mp4 Link" class="flex-1 bg-slate-50 border border-slate-200 rounded-xl px-4 py-2.5 text-sm focus:border-blue-500 focus:ring-2 focus:ring-blue-500/10 outline-none transition-all">
-                            <button onclick="loadFromUrl()" class="bg-blue-600 hover:bg-blue-700 px-5 rounded-xl text-[11px] font-bold text-white uppercase transition-all">Go</button>
-                        </div>
-                    </div>
+    .fb-input:focus { border-color: var(--accent); }
 
-                    <div class="flex gap-2">
-                        <button onclick="loadDemo()" class="flex-1 bg-slate-50 hover:bg-slate-100 py-3 rounded-xl text-[10px] font-bold text-slate-600 uppercase tracking-widest border border-slate-200 transition-all">Test Demo</button>
-                        <label class="flex-1 bg-slate-50 hover:bg-slate-100 py-3 rounded-xl text-[10px] font-bold text-slate-600 uppercase tracking-widest border border-slate-200 transition-all cursor-pointer text-center">
-                            Local File
-                            <input type="file" class="hidden" accept="video/*" onchange="handleFileUpload(event)">
+    .fb-btn {
+        display: inline-block;
+        padding: 0.5rem 1rem;
+        font-family: var(--font-title);
+        font-size: 0.78rem;
+        font-weight: 700;
+        border-radius: 4px;
+        border: 1px solid var(--accent);
+        background-color: var(--accent);
+        color: #fff;
+        cursor: pointer;
+        text-align: center;
+        transition: background-color 0.15s ease, border-color 0.15s ease, color 0.15s ease;
+    }
+
+    .fb-btn:hover {
+        background-color: var(--accent-hover);
+        border-color: var(--accent-hover);
+    }
+
+    .fb-btn--ghost {
+        background-color: transparent;
+        color: var(--accent);
+    }
+
+    .fb-btn--ghost:hover {
+        background-color: var(--accent-soft);
+        color: var(--accent-hover);
+    }
+
+    .fb-btn--file {
+        flex: 1;
+        position: relative;
+    }
+
+    .fb-hint {
+        font-size: 0.72rem;
+        color: var(--ink-muted);
+        margin: 0.5rem 0 0;
+    }
+
+    .fb-slider-head {
+        display: flex;
+        justify-content: space-between;
+        align-items: baseline;
+        margin-bottom: 0.4rem;
+    }
+
+    .fb-slider-head .fb-label { margin-bottom: 0; }
+
+    .fb-slider-val {
+        font-family: var(--font-title);
+        font-size: 0.78rem;
+        font-weight: 700;
+        color: var(--accent);
+    }
+
+    input[type=range] {
+        width: 100%;
+        accent-color: var(--accent);
+        cursor: pointer;
+    }
+
+    .fb-check {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        font-family: var(--font-title);
+        font-size: 0.72rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.12em;
+        color: var(--ink-muted);
+        cursor: pointer;
+    }
+
+    .fb-check input {
+        accent-color: var(--accent);
+        cursor: pointer;
+    }
+
+    .fb-diag {
+        background-color: var(--accent-soft);
+        border: 1px solid #fed7aa;
+        border-radius: 8px;
+        padding: 0.85rem 1rem;
+    }
+
+    .fb-diag__title {
+        font-family: var(--font-title);
+        font-size: 0.65rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.12em;
+        color: var(--accent);
+        margin: 0 0 0.5rem;
+    }
+
+    .fb-diag pre {
+        font-family: var(--font-mono);
+        font-size: 0.68rem;
+        line-height: 1.5;
+        color: #9a3412;
+        margin: 0;
+        white-space: pre-wrap;
+        word-break: break-word;
+    }
+
+    .fb-export {
+        border-top: 1px solid var(--line);
+        padding-top: 1.25rem;
+    }
+
+    .fb-record-status {
+        font-size: 0.72rem;
+        color: var(--ink-muted);
+        margin: 0.5rem 0 0;
+    }
+
+    #recordBtn { width: 100%; }
+    #downloadBtn { width: 100%; margin-top: 0.5rem; }
+    #exportBtn { width: 100%; margin-top: 0.5rem; }
+
+    .fb-progress {
+        display: none;
+        margin-top: 0.6rem;
+    }
+
+    .fb-progress__meta {
+        display: flex;
+        justify-content: space-between;
+        font-family: var(--font-title);
+        font-size: 0.65rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+        color: var(--ink-muted);
+        margin-bottom: 0.3rem;
+    }
+
+    .fb-progress__track {
+        height: 8px;
+        background-color: var(--line);
+        border-radius: 4px;
+        overflow: hidden;
+    }
+
+    .fb-progress__fill {
+        height: 100%;
+        width: 0%;
+        background-color: var(--accent);
+        border-radius: 4px;
+        transition: width 0.2s linear;
+    }
+
+    .fb-log {
+        display: none;
+        background-color: #fef2f2;
+        border: 1px solid #fecaca;
+        border-radius: 8px;
+        padding: 0.85rem 1rem;
+        margin-top: 1rem;
+    }
+
+    .fb-log__title {
+        font-family: var(--font-title);
+        font-size: 0.65rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.12em;
+        color: #b91c1c;
+        margin: 0 0 0.5rem;
+    }
+
+    .fb-log pre {
+        font-family: var(--font-mono);
+        font-size: 0.68rem;
+        line-height: 1.5;
+        color: #7f1d1d;
+        margin: 0;
+        white-space: pre-wrap;
+        word-break: break-all;
+        max-height: 150px;
+        overflow-y: auto;
+    }
+
+    .fb-log__copy {
+        margin-top: 0.75rem;
+        width: 100%;
+        padding: 0.4rem;
+        font-family: var(--font-title);
+        font-size: 0.68rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+        color: #b91c1c;
+        background: transparent;
+        border: 1px solid #fecaca;
+        border-radius: 4px;
+        cursor: pointer;
+        transition: background-color 0.15s ease;
+    }
+
+    .fb-log__copy:hover { background-color: #fef2f2; }
+
+    .fb-status {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        margin-bottom: 0.75rem;
+    }
+
+    .fb-status__text {
+        font-family: var(--font-title);
+        font-size: 0.72rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.12em;
+        color: var(--ink-muted);
+    }
+
+    .status-dot {
+        width: 9px;
+        height: 9px;
+        border-radius: 50%;
+    }
+
+    .status-dot.active { background-color: #16a34a; }
+    .status-dot.loading { background-color: #d97706; animation: fb-pulse 1s ease-in-out infinite; }
+    .status-dot.idle { background-color: #dc2626; }
+
+    @keyframes fb-pulse {
+        0%, 100% { opacity: 0.4; }
+        50% { opacity: 1; }
+    }
+
+    .fb-video {
+        position: relative;
+        width: 100%;
+        background-color: var(--ink);
+        border-radius: 8px;
+        overflow: hidden;
+        aspect-ratio: 16/9;
+    }
+
+    .fb-video.portrait {
+        aspect-ratio: 9/16;
+        max-width: 380px;
+        margin: 0 auto;
+    }
+
+    #outputCanvas {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+        display: block;
+        cursor: pointer;
+    }
+
+    #inputVideo {
+        position: fixed;
+        left: -9999px;
+        width: 1px;
+        height: 1px;
+    }
+
+    .fb-play-overlay {
+        position: absolute;
+        inset: 0;
+        display: none;
+        align-items: center;
+        justify-content: center;
+        background: rgba(28, 25, 23, 0.45);
+        cursor: pointer;
+    }
+
+    .fb-play-overlay__btn {
+        background: #fff;
+        padding: 1.1rem 1.25rem 1.1rem 1.4rem;
+        border-radius: 50%;
+        line-height: 0;
+        box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
+    }
+
+    .fb-play-overlay__btn svg {
+        width: 28px;
+        height: 28px;
+        fill: var(--accent);
+    }
+
+    .fb-transport {
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+        margin-top: 0.75rem;
+    }
+
+    #seekBar { flex: 1; }
+
+    .fb-time {
+        font-family: var(--font-mono);
+        font-size: 0.72rem;
+        color: var(--ink-muted);
+        white-space: nowrap;
+        font-variant-numeric: tabular-nums;
+    }
+
+    .fb-stats {
+        display: grid;
+        grid-template-columns: repeat(5, 1fr);
+        gap: 0.75rem;
+        margin-top: 1.5rem;
+    }
+
+    @media (max-width: 640px) {
+        .fb-stats { grid-template-columns: repeat(2, 1fr); }
+    }
+
+    .fb-stat {
+        background-color: var(--surface);
+        border: 1px solid var(--line);
+        border-radius: 8px;
+        padding: 0.85rem;
+        text-align: center;
+        transition: border-color 0.15s ease;
+    }
+
+    .fb-stat:hover { border-color: var(--accent); }
+
+    .fb-stat__label {
+        font-family: var(--font-title);
+        font-size: 0.62rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.12em;
+        color: var(--ink-muted);
+        margin: 0;
+    }
+
+    .fb-stat__value {
+        font-family: var(--font-title);
+        font-size: 1rem;
+        font-weight: 800;
+        color: var(--ink);
+        margin: 0.2rem 0 0;
+        font-variant-numeric: tabular-nums;
+    }
+
+    #loading {
+        position: fixed;
+        inset: 0;
+        background: var(--surface);
+        z-index: 50;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        gap: 0.75rem;
+    }
+
+    .fb-spinner {
+        width: 32px;
+        height: 32px;
+        border: 3px solid #fed7aa;
+        border-top-color: var(--accent);
+        border-radius: 50%;
+        animation: fb-spin 1s linear infinite;
+    }
+
+    @keyframes fb-spin { to { transform: rotate(360deg); } }
+
+    .fb-loading-text {
+        font-family: var(--font-title);
+        font-size: 0.72rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.12em;
+        color: var(--ink-muted);
+        margin: 0;
+    }
+</style>
+{%endblock%}
+
+{%block body%}
+<div id="loading">
+    <div class="fb-spinner"></div>
+    <p class="fb-loading-text">Loading model&hellip;</p>
+</div>
+
+<section class="section">
+    <div class="fb-wrap">
+        <header class="sec-head sec-head--center">
+            <span class="sec-kicker">Tools</span>
+            <h2 class="sec-title">Faceblur</h2>
+            <p class="sec-sub">Blur faces in video in real time &mdash; the YuNet detector runs entirely in your browser. Nothing is uploaded.</p>
+        </header>
+
+        <div class="fb-grid">
+
+            <div class="fb-card">
+                <div class="fb-block">
+                    <label class="fb-label">Model</label>
+                    <div class="fb-row">
+                        <button onclick="forceRedownload()" id="fetchModelBtn" class="fb-btn" style="flex:1;">Re-download</button>
+                        <label class="fb-btn fb-btn--ghost fb-btn--file">
+                            Local file
+                            <input type="file" style="display:none;" accept=".onnx" onchange="handleModelUpload(event)">
                         </label>
                     </div>
+                    <p id="modelState" class="fb-hint">No model loaded</p>
+                </div>
 
-                    <div class="pt-6 border-t border-slate-100">
-                        <div class="flex justify-between mb-3">
-                            <label class="text-[11px] font-bold text-slate-500 uppercase tracking-widest">Confidence</label>
-                            <span id="senseVal" class="text-xs font-bold text-blue-600">High</span>
+                <div class="fb-block">
+                    <label class="fb-label">Video URL</label>
+                    <div class="fb-row">
+                        <input id="urlInput" type="text" placeholder="https://.../video.mp4" class="fb-input">
+                        <button onclick="loadFromUrl()" class="fb-btn">Load</button>
+                    </div>
+                </div>
+
+                <div class="fb-block">
+                    <div class="fb-row">
+                        <button onclick="loadDemo()" class="fb-btn fb-btn--ghost" style="flex:1;">Demo</button>
+                        <label class="fb-btn fb-btn--ghost fb-btn--file">
+                            Open file
+                            <input type="file" style="display:none;" accept="video/*" onchange="handleFileUpload(event)">
+                        </label>
+                    </div>
+                </div>
+
+                <div class="fb-block">
+                    <div class="fb-slider-head">
+                        <label class="fb-label">Confidence</label>
+                        <span id="senseVal" class="fb-slider-val">High (0.70)</span>
+                    </div>
+                    <input id="senseSlider" type="range" min="40" max="95" value="70">
+                </div>
+
+                <div class="fb-block">
+                    <div class="fb-slider-head">
+                        <label class="fb-label">Blur radius</label>
+                        <span id="blurVal" class="fb-slider-val">100</span>
+                    </div>
+                    <input id="blurSlider" type="range" min="30" max="300" value="100">
+                </div>
+
+                <div class="fb-block">
+                    <label class="fb-check">
+                        <input id="debugToggle" type="checkbox" checked>
+                        Debug overlay
+                    </label>
+                </div>
+
+                <div class="fb-block fb-diag">
+                    <p class="fb-diag__title">Raw model output</p>
+                    <pre id="diagPanel">waiting&hellip;</pre>
+                </div>
+
+                <div class="fb-block fb-export">
+                    <label class="fb-label">Export</label>
+                    <button onclick="toggleRecording()" id="recordBtn" class="fb-btn">Start recording</button>
+                    <button onclick="downloadRecording()" id="downloadBtn" class="fb-btn fb-btn--ghost" style="display:none;">Download .webm</button>
+                    <button onclick="exportFullVideo()" id="exportBtn" class="fb-btn">Download full video</button>
+                    <div id="exportProgress" class="fb-progress">
+                        <div class="fb-progress__meta">
+                            <span id="exportLabel">Processing full video</span>
+                            <span id="exportPct">0%</span>
                         </div>
-                        <input id="senseSlider" type="range" min="1" max="40" value="5" class="w-full h-1.5 bg-slate-200 rounded-full appearance-none cursor-pointer control-knob">
+                        <div class="fb-progress__track"><div id="exportBar" class="fb-progress__fill"></div></div>
                     </div>
+                    <p id="recordStatus" class="fb-record-status">Not recording</p>
+                </div>
 
-                    <div class="pt-2">
-                        <div class="flex justify-between mb-3">
-                            <label class="text-[11px] font-bold text-slate-500 uppercase tracking-widest">Blur Radius</label>
-                            <span id="blurVal" class="text-xs font-bold text-blue-600">100</span>
-                        </div>
-                        <input id="blurSlider" type="range" min="30" max="300" value="100" class="w-full h-1.5 bg-slate-200 rounded-full appearance-none cursor-pointer control-knob">
-                    </div>
-
-                    <div id="errorArea" class="error-log">
-                        <p class="text-[10px] font-bold text-red-600 uppercase tracking-widest mb-2">Neural Link Failed</p>
-                        <p id="errorDetails" class="text-[10px] text-red-800 font-mono break-all leading-relaxed"></p>
-                        <button onclick="copyError()" class="mt-3 w-full py-2 bg-red-600 text-white text-[9px] font-bold uppercase tracking-widest rounded-lg hover:bg-red-700 transition-all">Copy Debug Data</button>
-                    </div>
+                <div id="errorArea" class="fb-log">
+                    <p class="fb-log__title">Log</p>
+                    <pre id="errorDetails"></pre>
+                    <button onclick="copyError()" class="fb-log__copy">Copy log</button>
                 </div>
             </div>
 
-            <div class="player-card p-6 flex items-center justify-between">
-                <div class="flex items-center gap-3">
-                    <div id="statusIndicator" class="status-glow idle"></div>
-                    <span class="text-[11px] font-bold uppercase tracking-widest text-slate-500" id="statusText">System Ready</span>
-                </div>
-                <div id="activeModelTag" class="text-[10px] font-bold text-blue-600/60 uppercase tracking-widest">Lite Engine</div>
-            </div>
-        </div>
-
-        <!-- Player Area -->
-        <div class="lg:col-span-8 space-y-6">
-            <div id="playerWrapper" class="video-wrapper group">
-                <!-- Branding icon watermark inside player -->
-                <div class="brand-watermark opacity-0 group-[.playing]:opacity-60 transition-opacity">
-                    <div class="bg-blue-600/80 p-2 rounded-xl backdrop-blur-sm shadow-lg">
-                        <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/></svg>
+            <div>
+                <div class="fb-card" style="padding: 1rem;">
+                    <div class="fb-status">
+                        <div id="statusIndicator" class="status-dot idle"></div>
+                        <span id="statusText" class="fb-status__text">Ready</span>
                     </div>
-                </div>
-
-                <video id="inputVideo" loop muted playsinline crossorigin="anonymous"></video>
-                <canvas id="outputCanvas"></canvas>
-                
-                <div id="playOverlay" class="absolute inset-0 flex items-center justify-center bg-black/40 cursor-pointer hidden">
-                    <div class="bg-white p-6 rounded-full shadow-2xl hover:scale-110 transition-all">
-                        <svg class="w-8 h-8 text-blue-600 fill-current" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
-                    </div>
-                </div>
-
-                <div class="player-controls">
-                    <div class="mb-4">
-                        <input type="range" id="seekBar" value="0" step="0.1" class="seek-bar">
-                    </div>
-                    <div class="flex items-center justify-between">
-                        <div class="flex items-center gap-4">
-                            <button id="togglePlayBtn" class="control-btn">
-                                <svg id="playIcon" class="w-5 h-5 fill-current" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
-                                <svg id="pauseIcon" class="w-5 h-5 fill-current hidden" viewBox="0 0 24 24"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg>
-                            </button>
-                            <div class="text-[11px] font-bold text-white tracking-tight">
-                                <span id="currentTime">00:00</span> / <span id="durationTime">00:00</span>
+                    <div id="playerWrapper" class="fb-video">
+                        <video id="inputVideo" loop muted playsinline crossorigin="anonymous"></video>
+                        <canvas id="outputCanvas"></canvas>
+                        <div id="playOverlay" class="fb-play-overlay">
+                            <div class="fb-play-overlay__btn">
+                                <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
                             </div>
                         </div>
-                        <div class="text-[10px] font-bold text-blue-400 uppercase tracking-widest">Neural Live Feed</div>
+                    </div>
+                    <div class="fb-transport">
+                        <button id="togglePlayBtn" class="fb-btn fb-btn--ghost" style="white-space:nowrap;">Play / Pause</button>
+                        <input type="range" id="seekBar" value="0" step="0.1">
+                        <span class="fb-time">
+                            <span id="currentTime">00:00</span> / <span id="durationTime">00:00</span>
+                        </span>
+                    </div>
+                </div>
+
+                <div class="fb-stats">
+                    <div class="fb-stat">
+                        <p class="fb-stat__label">FPS</p>
+                        <p id="fpsCounter" class="fb-stat__value">0</p>
+                    </div>
+                    <div class="fb-stat">
+                        <p class="fb-stat__label">Faces</p>
+                        <p id="faceCount" class="fb-stat__value">0</p>
+                    </div>
+                    <div class="fb-stat">
+                        <p class="fb-stat__label">Max score</p>
+                        <p id="maxScore" class="fb-stat__value">0.00</p>
+                    </div>
+                    <div class="fb-stat">
+                        <p class="fb-stat__label">Detections</p>
+                        <p id="detectCount" class="fb-stat__value">0</p>
+                    </div>
+                    <div class="fb-stat">
+                        <p class="fb-stat__label">Status</p>
+                        <p id="modeText" class="fb-stat__value">Idle</p>
                     </div>
                 </div>
             </div>
 
-            <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
-                <div class="player-card p-5 text-center border-b-4 border-transparent hover:border-blue-500 transition-all">
-                    <p class="text-[10px] font-bold text-slate-400 uppercase mb-1 tracking-widest">Render</p>
-                    <p id="fpsCounter" class="text-sm font-bold text-slate-900 tracking-tight">0 FPS</p>
-                </div>
-                <div class="player-card p-5 text-center border-b-4 border-transparent hover:border-blue-500 transition-all">
-                    <p class="text-[10px] font-bold text-slate-400 uppercase mb-1 tracking-widest">Active</p>
-                    <p id="faceCount" class="text-sm font-bold text-blue-600 tracking-tight">0 FACES</p>
-                </div>
-                <div class="player-card p-5 text-center border-b-4 border-transparent hover:border-blue-500 transition-all">
-                    <p class="text-[10px] font-bold text-slate-400 uppercase mb-1 tracking-widest">Latent</p>
-                    <p id="processTime" class="text-sm font-bold text-slate-900 tracking-tight">0ms</p>
-                </div>
-                <div class="player-card p-5 text-center border-b-4 border-transparent hover:border-green-500 transition-all">
-                    <p class="text-[10px] font-bold text-slate-400 uppercase mb-1 tracking-widest">Mode</p>
-                    <p class="text-sm font-bold text-green-600 tracking-tight uppercase italic">Secure</p>
-                </div>
-            </div>
-
-            <!-- SEO Descriptive Section -->
-            <div class="player-card p-8">
-                <h2 class="text-lg font-bold text-slate-900 mb-4">About Faceblur</h2>
-                <p class="text-slate-600 text-sm leading-relaxed mb-4">
-                    Faceblur is a professional <strong class="text-blue-600 font-semibold">tool to blur faces from videos</strong> directly in your browser. By utilizing advanced on-device neural networks, it ensures your sensitive video data never leaves your machine. 
-                </p>
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs text-slate-500 font-medium uppercase tracking-wide">
-                    <div class="flex items-center gap-2">
-                        <svg class="w-4 h-4 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"/></svg>
-                        Privacy-First Architecture
-                    </div>
-                    <div class="flex items-center gap-2">
-                        <svg class="w-4 h-4 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"/></svg>
-                        Real-time AI Processing
-                    </div>
-                    <div class="flex items-center gap-2">
-                        <svg class="w-4 h-4 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"/></svg>
-                        Supports Local & Remote Files
-                    </div>
-                    <div class="flex items-center gap-2">
-                        <svg class="w-4 h-4 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"/></svg>
-                        Customizable Blur intensity
-                    </div>
-                </div>
-            </div>
         </div>
-    </main>
+    </div>
+</section>
 
-    <script type="module">
-        import { FaceDetector, FaceLandmarker, FilesetResolver } from "https://cdn.jsdelivr.net/npm/@mediapipe/tasks-vision@0.10.3";
+{% include 'sections/footer.html' %}
 
-        const video = document.getElementById("inputVideo");
-        const canvas = document.getElementById("outputCanvas");
-        const playerWrapper = document.getElementById("playerWrapper");
-        const ctx = canvas.getContext("2d", { alpha: false });
-        
-        const togglePlayBtn = document.getElementById('togglePlayBtn');
-        const playIcon = document.getElementById('playIcon');
-        const pauseIcon = document.getElementById('pauseIcon');
-        const seekBar = document.getElementById('seekBar');
-        const currentTimeText = document.getElementById('currentTime');
-        const durationTimeText = document.getElementById('durationTime');
-        const errorArea = document.getElementById('errorArea');
-        const errorDetails = document.getElementById('errorDetails');
+<script type="module">
+const video = document.getElementById("inputVideo");
+const canvas = document.getElementById("outputCanvas");
+const playerWrapper = document.getElementById("playerWrapper");
+const ctx = canvas.getContext("2d", { alpha: false });
+const errorArea = document.getElementById('errorArea');
+const errorDetails = document.getElementById('errorDetails');
+const playOverlay = document.getElementById('playOverlay');
+const debugToggle = document.getElementById('debugToggle');
+const diagPanel = document.getElementById('diagPanel');
 
-        let detector;
-        let visionResolver;
-        let isReady = false;
-        let blurSize = 100;
-        let sensitivity = 0.05;
-        let currentModel = 'short_range';
-        let lastTimestamp = -1;
-        let lastFpsUpdate = 0;
-        let frameCount = 0;
-        
-        let trackedFaces = [];
-        const GHOST_DURATION = 800; 
-        const SMOOTHING_FACTOR = 0.45;
+ort.env.wasm.wasmPaths = "https://cdn.jsdelivr.net/npm/onnxruntime-web@1.18.0/dist/";
+ort.env.wasm.numThreads = 1;
+ort.env.wasm.simd = true;
 
-        async function initAI(modelType = 'short_range') {
-            isReady = false;
-            errorArea.style.display = 'none';
-            document.getElementById('statusIndicator').className = 'status-glow loading';
-            document.getElementById('statusText').innerText = `Syncing...`;
+let session = null;
+let modelInputW = 640;
+let modelInputH = 640;
+let isReady = false;
+let blurSize = 100;
+let sensitivity = 0.70;
+let lastTimestamp = -1;
+let lastFpsUpdate = 0;
+let frameCount = 0;
+let lastDetectionTime = -1;
+let isDetecting = false;
+let totalDetections = 0;
+let lastMaxScore = 0;
 
-            try {
-                if (!visionResolver) {
-                    visionResolver = await FilesetResolver.forVisionTasks(
-                        "https://cdn.jsdelivr.net/npm/@mediapipe/tasks-vision@0.10.3/wasm"
-                    );
-                }
-                
-                if (detector) {
-                    detector.close();
-                    detector = null;
-                }
+const TRACK_CONFIG = {
+  iouThreshold: 0.25, maxMissedFrames: 8, smoothingAlpha: 0.55,
+  sizeSmoothing: 0.35, velocityDecay: 0.85,
+  expandTop: 0.45, expandBottom: 0.30, expandSides: 0.35,
+  minBlurRadius: 12, blurRadiusFactor: 0.18,
+  // Detection sanity limits
+  maxFaceAreaRatio: 0.30,  // reject if box covers > 30% of frame
+  minFaceSizeRatio: 0.015, // reject if box is < 1.5% of frame width
+};
 
-                const modelPath = modelType === 'short_range' 
-                    ? "https://storage.googleapis.com/mediapipe-models/face_detector/blaze_face_short_range/float16/1/blaze_face_short_range.tflite"
-                    : "https://storage.googleapis.com/mediapipe-models/face_landmarker/face_landmarker/float16/1/face_landmarker.task";
+let nextTrackId = 1;
+let trackedFaces = [];
+let preBlurCanvas = null;
+let preBlurCtx = null;
+let rawDebugBoxes = [];
 
-                const baseOptions = {
-                    modelAssetPath: modelPath,
-                    delegate: "GPU"
-                };
+const workCanvas = document.createElement('canvas');
+const workCtx = workCanvas.getContext('2d', { willReadFrequently: true });
 
-                try {
-                    if (modelType === 'short_range') {
-                        detector = await FaceDetector.createFromOptions(visionResolver, {
-                            baseOptions, runningMode: "VIDEO", minDetectionConfidence: sensitivity
-                        });
-                    } else {
-                        detector = await FaceLandmarker.createFromOptions(visionResolver, {
-                            baseOptions, runningMode: "VIDEO", numFaces: 5, minFaceDetectionConfidence: sensitivity
-                        });
-                    }
-                } catch (gpuError) {
-                    baseOptions.delegate = "CPU";
-                    if (modelType === 'short_range') {
-                        detector = await FaceDetector.createFromOptions(visionResolver, {
-                            baseOptions, runningMode: "VIDEO", minDetectionConfidence: sensitivity
-                        });
-                    } else {
-                        detector = await FaceLandmarker.createFromOptions(visionResolver, {
-                            baseOptions, runningMode: "VIDEO", numFaces: 5, minFaceDetectionConfidence: sensitivity
-                        });
-                    }
-                }
-                
-                isReady = true;
-                currentModel = modelType;
-                document.getElementById('loading').style.display = 'none';
-                document.getElementById('statusIndicator').className = 'status-glow active';
-                document.getElementById('statusText').innerText = 'Shield Active';
-                document.getElementById('activeModelTag').innerText = modelType === 'short_range' ? 'Lite Engine' : 'Pro Engine';
-                
-                if (lastTimestamp === -1) requestAnimationFrame(loop);
-            } catch (err) {
-                console.error("Neural Sync Error Details:", err);
-                document.getElementById('statusText').innerText = 'Syncing Error';
-                document.getElementById('statusIndicator').className = 'status-glow idle';
-                errorArea.style.display = 'block';
-                errorDetails.innerText = `[${modelType}] ${err.message || 'Handshake failed'}. Verify connectivity.`;
-            }
+// ============ Logging ============
+const LOG_LINES = [];
+function log(...args) {
+  const line = args.map(a => {
+    if (typeof a === 'object') { try { return JSON.stringify(a); } catch { return String(a); } }
+    return String(a);
+  }).join(' ');
+  LOG_LINES.push(line);
+  if (LOG_LINES.length > 300) LOG_LINES.shift();
+  errorArea.style.display = 'block';
+  errorDetails.textContent = LOG_LINES.join('\n');
+  errorDetails.scrollTop = errorDetails.scrollHeight;
+  console.log(...args);
+}
+
+window.copyError = async () => {
+  const text = LOG_LINES.join('\n');
+  try {
+    if (navigator.clipboard?.writeText) { await navigator.clipboard.writeText(text); alert('Copied'); return; }
+  } catch (e) {}
+  try {
+    const ta = document.createElement('textarea');
+    ta.value = text; ta.style.position = 'fixed'; ta.style.left = '-9999px';
+    document.body.appendChild(ta); ta.select();
+    document.execCommand('copy'); document.body.removeChild(ta);
+    alert('Copied');
+  } catch (e) { alert('Copy failed'); }
+};
+
+// ============ Recording ============
+let mediaRecorder = null;
+let recordedChunks = [];
+let recordedBlob = null;
+
+let exporting = false;
+
+window.toggleRecording = async () => {
+  if (exporting) { log('Export in progress — recording is blocked.'); return; }
+  const btn = document.getElementById('recordBtn');
+  const downloadBtn = document.getElementById('downloadBtn');
+  const status = document.getElementById('recordStatus');
+
+  if (mediaRecorder && mediaRecorder.state === 'recording') {
+    mediaRecorder.stop();
+    btn.textContent = 'Start Recording'; btn.style.background = '#10b981';
+    status.textContent = 'Finalizing...';
+    return;
+  }
+  if (!isReady) { log('Load a model first.'); return; }
+  if (video.readyState < 2) { log('Load a video first.'); return; }
+
+  try {
+    video.currentTime = 0;
+    trackedFaces = []; totalDetections = 0;
+    const stream = canvas.captureStream(30);
+    recordedChunks = [];
+    const mimes = ['video/webm;codecs=vp9', 'video/webm;codecs=vp8', 'video/webm'];
+    let mimeType = '';
+    for (const m of mimes) { if (MediaRecorder.isTypeSupported(m)) { mimeType = m; break; } }
+    if (!mimeType) throw new Error('No supported MediaRecorder mime type');
+    mediaRecorder = new MediaRecorder(stream, { mimeType, videoBitsPerSecond: 4_000_000 });
+    mediaRecorder.ondataavailable = (e) => { if (e.data && e.data.size > 0) recordedChunks.push(e.data); };
+    mediaRecorder.onstop = () => {
+      video.loop = true;
+      recordedBlob = new Blob(recordedChunks, { type: mimeType });
+      downloadBtn.style.display = 'block';
+      status.textContent = `Recorded ${(recordedBlob.size / 1024 / 1024).toFixed(1)} MB`;
+    };
+    mediaRecorder.onerror = (e) => log('Recording error: ' + e.error?.message);
+    video.loop = false;
+    mediaRecorder.start(250);
+    video.play();
+    btn.textContent = 'Stop Recording'; btn.style.background = '#dc2626';
+    downloadBtn.style.display = 'none';
+    status.textContent = 'Recording...';
+    const onEnd = () => {
+      if (mediaRecorder && mediaRecorder.state === 'recording') {
+        mediaRecorder.stop();
+        btn.textContent = 'Start Recording'; btn.style.background = '#10b981';
+      }
+      video.removeEventListener('ended', onEnd);
+    };
+    video.addEventListener('ended', onEnd);
+  } catch (err) { log('Could not start recording: ' + err.message); }
+};
+
+window.downloadRecording = () => {
+  if (!recordedBlob) return;
+  const url = URL.createObjectURL(recordedBlob);
+  const a = document.createElement('a');
+  a.href = url; a.download = `faceblur-${Date.now()}.webm`; a.click();
+  setTimeout(() => URL.revokeObjectURL(url), 1000);
+};
+
+// ============ Full-video export ============
+function setControlsLocked(locked) {
+  document.getElementById('recordBtn').disabled = locked;
+  document.getElementById('exportBtn').disabled = locked;
+  document.getElementById('togglePlayBtn').disabled = locked;
+  document.getElementById('seekBar').disabled = locked;
+}
+
+window.exportFullVideo = async () => {
+  if (exporting) return;
+  if (mediaRecorder && mediaRecorder.state === 'recording') {
+    log('Stop the recording first — export and recording cannot run together.');
+    return;
+  }
+  if (!isReady) { log('Load a model first.'); return; }
+  if (video.readyState < 2) { log('Load a video first.'); return; }
+
+  const prog = document.getElementById('exportProgress');
+  const status = document.getElementById('recordStatus');
+
+  try {
+    exporting = true;
+    setControlsLocked(true);
+    video.pause();
+    video.loop = false;
+    video.currentTime = 0;
+    trackedFaces = []; totalDetections = 0; rawDebugBoxes = [];
+
+    prog.style.display = 'block';
+    document.getElementById('exportBar').style.width = '0%';
+    document.getElementById('exportPct').textContent = '0%';
+    document.getElementById('exportLabel').textContent = 'Processing full video';
+    status.textContent = 'Rendering full video...';
+
+    const stream = canvas.captureStream(30);
+    const chunks = [];
+    const mimes = ['video/webm;codecs=vp9', 'video/webm;codecs=vp8', 'video/webm'];
+    let mimeType = '';
+    for (const m of mimes) { if (MediaRecorder.isTypeSupported(m)) { mimeType = m; break; } }
+    if (!mimeType) throw new Error('No supported MediaRecorder mime type');
+    const recorder = new MediaRecorder(stream, { mimeType, videoBitsPerSecond: 4_000_000 });
+    recorder.ondataavailable = (e) => { if (e.data && e.data.size > 0) chunks.push(e.data); };
+    recorder.onerror = (e) => log('Export error: ' + (e.error?.message || 'unknown'));
+
+    const onEnd = async () => {
+      video.removeEventListener('ended', onEnd);
+      video.loop = true;
+      await new Promise((res) => {
+        recorder.onstop = res;
+        if (recorder.state !== 'inactive') recorder.stop(); else res();
+      });
+      const blob = new Blob(chunks, { type: mimeType });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url; a.download = `faceblur-full-${Date.now()}.webm`; a.click();
+      setTimeout(() => URL.revokeObjectURL(url), 10000);
+      document.getElementById('exportBar').style.width = '100%';
+      document.getElementById('exportPct').textContent = '100%';
+      document.getElementById('exportLabel').textContent = 'Done';
+      status.textContent = `Saved ${(blob.size / 1048576).toFixed(1)} MB`;
+      exporting = false;
+      setControlsLocked(false);
+      setTimeout(() => { prog.style.display = 'none'; }, 2000);
+    };
+    video.addEventListener('ended', onEnd);
+
+    recorder.start(250);
+    await video.play();
+  } catch (err) {
+    exporting = false;
+    setControlsLocked(false);
+    prog.style.display = 'none';
+    status.textContent = 'Not recording';
+    log('Export failed: ' + err.message);
+  }
+};
+
+// ============ Model cache ============
+const MODEL_CACHE_KEY = "yunet-v2023mar-v7";
+const MODEL_URLS = [
+  "https://media.githubusercontent.com/media/opencv/opencv_zoo/main/models/face_detection_yunet/face_detection_yunet_2023mar.onnx",
+];
+
+function openModelDB() {
+  return new Promise((resolve, reject) => {
+    const req = indexedDB.open("faceblur", 1);
+    req.onupgradeneeded = () => req.result.createObjectStore("models");
+    req.onsuccess = () => resolve(req.result);
+    req.onerror = () => reject(req.error);
+  });
+}
+async function saveModel(bytes) {
+  const db = await openModelDB();
+  await new Promise((res, rej) => {
+    const tx = db.transaction("models", "readwrite");
+    tx.objectStore("models").put(bytes, MODEL_CACHE_KEY);
+    tx.oncomplete = res; tx.onerror = () => rej(tx.error);
+  });
+}
+async function loadSavedModel() {
+  const db = await openModelDB();
+  return new Promise((res, rej) => {
+    const tx = db.transaction("models", "readonly");
+    const r = tx.objectStore("models").get(MODEL_CACHE_KEY);
+    r.onsuccess = () => res(r.result || null);
+    r.onerror = () => rej(r.error);
+  });
+}
+async function clearSavedModel() {
+  const db = await openModelDB();
+  await new Promise((res, rej) => {
+    const tx = db.transaction("models", "readwrite");
+    tx.objectStore("models").delete(MODEL_CACHE_KEY);
+    tx.oncomplete = res; tx.onerror = () => rej(tx.error);
+  });
+}
+
+function validateModelBytes(buf) {
+  if (!buf || buf.byteLength < 100_000) {
+    const head = new TextDecoder().decode(new Uint8Array(buf || []).slice(0, 200));
+    if (head.includes('version https://git-lfs')) return 'Git LFS pointer.';
+    return `Model too small (${buf?.byteLength || 0}B).`;
+  }
+  return null;
+}
+
+async function downloadModel() {
+  let lastErr = null;
+  for (const url of MODEL_URLS) {
+    try {
+      log('Fetching:', url);
+      const res = await fetch(url, { cache: "no-store" });
+      if (!res.ok) throw new Error(`HTTP ${res.status}`);
+      const buf = await res.arrayBuffer();
+      log('Got', buf.byteLength, 'bytes');
+      const err = validateModelBytes(buf);
+      if (err) throw new Error(err);
+      return buf;
+    } catch (err) { log('Failed:', err.message); lastErr = err; }
+  }
+  throw new Error(`All URLs failed. Last: ${lastErr?.message}`);
+}
+
+window.forceRedownload = async () => {
+  const btn = document.getElementById("fetchModelBtn");
+  btn.disabled = true; btn.textContent = "Downloading...";
+  try {
+    await clearSavedModel();
+    if (session) { await session.release(); session = null; }
+    const bytes = await downloadModel();
+    await saveModel(bytes);
+    await initAI();
+  } catch (err) { log(`Download failed: ${err.message}`); }
+  finally { btn.disabled = false; btn.textContent = "Re-download"; }
+};
+
+window.handleModelUpload = async (e) => {
+  const file = e.target.files[0];
+  if (!file) return;
+  try {
+    const bytes = await file.arrayBuffer();
+    if (session) { await session.release(); session = null; }
+    await saveModel(bytes);
+    await initAI();
+  } catch (err) { log(`Model load failed: ${err.message}`); }
+};
+
+async function initAI() {
+  isReady = false;
+  document.getElementById("statusIndicator").className = "status-dot loading";
+  document.getElementById("statusText").textContent = "Loading...";
+
+  try {
+    let bytes = await loadSavedModel().catch(() => null);
+    if (!bytes) {
+      document.getElementById("modelState").textContent = "Downloading...";
+      bytes = await downloadModel();
+      await saveModel(bytes);
+    }
+    if (!session) session = await ort.InferenceSession.create(bytes);
+
+    log('Outputs:', JSON.stringify(session.outputNames));
+    const inputName = session.inputNames[0];
+
+    for (const s of [640, 320, 224, 128]) {
+      try {
+        await session.run({ [inputName]: new ort.Tensor('float32', new Float32Array(3*s*s), [1,3,s,s]) });
+        modelInputW = s; modelInputH = s;
+        log('Accepted input size:', s);
+        break;
+      } catch (e) {}
+    }
+
+    isReady = true;
+    document.getElementById("loading").style.display = "none";
+    document.getElementById("statusIndicator").className = "status-dot active";
+    document.getElementById("statusText").textContent = "Ready";
+    document.getElementById("modelState").textContent =
+      `YuNet (${Math.round(bytes.byteLength / 1024)} KB) — ${modelInputW}×${modelInputH}`;
+    document.getElementById("modeText").textContent = "Active";
+
+    if (lastTimestamp === -1) requestAnimationFrame(loop);
+  } catch (err) {
+    document.getElementById("loading").style.display = "none";
+    document.getElementById("statusText").textContent = "Model error";
+    document.getElementById("statusIndicator").className = "status-dot idle";
+    log(`Init failed: ${err.message}`);
+  }
+}
+
+// ============ Detection ============
+async function detectFaces() {
+  const vw = video.videoWidth, vh = video.videoHeight;
+  const MW = modelInputW, MH = modelInputH;
+
+  const scale = Math.min(MW / vw, MH / vh);
+  const drawW = Math.round(vw * scale);
+  const drawH = Math.round(vh * scale);
+  const padX = Math.floor((MW - drawW) / 2);
+  const padY = Math.floor((MH - drawH) / 2);
+
+  workCanvas.width = MW; workCanvas.height = MH;
+  // YuNet expects raw BGR pixel values 0-255 with black padding (OpenCV blobFromImage defaults)
+  workCtx.fillStyle = '#000000';
+  workCtx.fillRect(0, 0, MW, MH);
+  workCtx.drawImage(video, 0, 0, vw, vh, padX, padY, drawW, drawH);
+
+  const px = workCtx.getImageData(0, 0, MW, MH).data;
+  const c = MW * MH;
+  const data = new Float32Array(c * 3);
+  for (let i = 0; i < c; i++) {
+    const p = i * 4;
+    data[i]         = px[p + 2]; // B, raw 0-255 (no /255, no mean subtraction)
+    data[c + i]     = px[p + 1]; // G
+    data[2 * c + i] = px[p];     // R
+  }
+  const tensor = new ort.Tensor('float32', data, [1, 3, MH, MW]);
+  const out = await session.run({ [session.inputNames[0]]: tensor });
+
+  const strides = [8, 16, 32];
+  const rawDets = [];
+  let globalMax = 0;
+  let diagLines = [];
+  let rejectedHuge = 0, rejectedPad = 0, rejectedSmall = 0, accepted = 0;
+
+  for (const s of strides) {
+    const cols = Math.floor(MW / s);
+    const rows = Math.floor(MH / s);
+    const n = cols * rows;
+    const clsRaw = out[`cls_${s}`].data;
+    const objRaw = out[`obj_${s}`].data;
+    const bboxRaw = out[`bbox_${s}`].data;
+
+    let clsMax = -Infinity, objMax = -Infinity;
+    for (let i = 0; i < n; i++) {
+      if (clsRaw[i] > clsMax) clsMax = clsRaw[i];
+      if (objRaw[i] > objMax) objMax = objRaw[i];
+    }
+    diagLines.push(`s${s}: n=${n} clsMax=${clsMax.toFixed(2)} objMax=${objMax.toFixed(2)}`);
+
+    for (let i = 0; i < n; i++) {
+      // YuNet score (matches OpenCV FaceDetectorYN): sqrt(clamp(cls) * clamp(obj)).
+      // Outputs are already activated — do NOT apply sigmoid again.
+      const score = Math.sqrt(
+        Math.min(Math.max(clsRaw[i], 0), 1) * Math.min(Math.max(objRaw[i], 0), 1));
+      if (score > globalMax) globalMax = score;
+      if (score < sensitivity) continue;
+
+      const col = i % cols;
+      const row = Math.floor(i / cols);
+
+      // Bbox offsets are raw (no sigmoid); only w/h go through exp
+      const bx = bboxRaw[i * 4 + 0];
+      const by = bboxRaw[i * 4 + 1];
+      const bw = Math.exp(bboxRaw[i * 4 + 2]);
+      const bh = Math.exp(bboxRaw[i * 4 + 3]);
+
+      const cx = (col + bx) * s;
+      const cy = (row + by) * s;
+      let w  = bw * s;
+      let h  = bh * s;
+
+      // Reject: infinite or extremely large
+      if (!isFinite(w) || !isFinite(h) || w > MW * 0.5 || h > MH * 0.5) {
+        rejectedHuge++;
+        continue;
+      }
+
+      // Reject: box center inside letterbox padding
+      if (cx < padX || cx > padX + drawW || cy < padY || cy > padY + drawH) {
+        rejectedPad++;
+        continue;
+      }
+
+      let x1 = cx - w / 2;
+      let y1 = cy - h / 2;
+      let x2 = cx + w / 2;
+      let y2 = cy + h / 2;
+
+      // Un-letterbox
+      x1 = (x1 - padX) / scale;
+      y1 = (y1 - padY) / scale;
+      x2 = (x2 - padX) / scale;
+      y2 = (y2 - padY) / scale;
+
+      // Clip to video frame
+      x1 = Math.max(0, x1); y1 = Math.max(0, y1);
+      x2 = Math.min(vw, x2); y2 = Math.min(vh, y2);
+      const fw = x2 - x1, fh = y2 - y1;
+
+      // Reject: too small
+      const minSize = Math.max(vw, vh) * TRACK_CONFIG.minFaceSizeRatio;
+      if (fw < minSize || fh < minSize) { rejectedSmall++; continue; }
+
+      // Reject: too large (covers > 30% of frame area)
+      const areaRatio = (fw * fh) / (vw * vh);
+      if (areaRatio > TRACK_CONFIG.maxFaceAreaRatio) { rejectedSmall++; continue; }
+
+      rawDebugBoxes.push({ s, x1, y1, x2, y2, score });
+      accepted++;
+      rawDets.push({ x: x1, y: y1, w: fw, h: fh, score });
+    }
+  }
+
+  lastMaxScore = globalMax;
+  diagPanel.textContent = diagLines.join('\n') +
+    `\nmaxScore=${globalMax.toFixed(3)}` +
+    `\nrejected: huge=${rejectedHuge} pad=${rejectedPad} small=${rejectedSmall}` +
+    `\naccepted=${accepted} rawDets=${rawDets.length}`;
+
+  // NMS
+  rawDets.sort((a, b) => b.score - a.score);
+  const kept = [];
+  for (const d of rawDets) {
+    let ok = true;
+    for (const k of kept) {
+      if (iouBox(d, k) > 0.3) { ok = false; break; }
+    }
+    if (ok) kept.push(d);
+  }
+
+  if (kept.length > 0) totalDetections += kept.length;
+  return kept.map(d => ({ originX: d.x, originY: d.y, width: d.w, height: d.h, score: d.score }));
+}
+
+function iouBox(a, b) {
+  const x1 = Math.max(a.x, b.x), y1 = Math.max(a.y, b.y);
+  const x2 = Math.min(a.x + a.w, b.x + b.w), y2 = Math.min(a.y + a.h, b.y + b.h);
+  const inter = Math.max(0, x2 - x1) * Math.max(0, y2 - y1);
+  const union = a.w * a.h + b.w * b.h - inter;
+  return union > 0 ? inter / union : 0;
+}
+
+// ============ Tracking ============
+function matchDetections(dets, tracks) {
+  const pairs = [];
+  for (let i = 0; i < dets.length; i++) {
+    for (let j = 0; j < tracks.length; j++) {
+      const t = tracks[j], d = dets[i];
+      const iouScore = iouBox(d, t);
+      const px = t.x + t.vx * 2, py = t.y + t.vy * 2;
+      const dcx = (d.originX + d.width/2) - (px + t.w/2);
+      const dcy = (d.originY + d.height/2) - (py + t.h/2);
+      const normDist = Math.hypot(dcx, dcy) / Math.max(d.width, d.height, 1);
+      if (iouScore > TRACK_CONFIG.iouThreshold || normDist < 0.6)
+        pairs.push({ i, j, score: iouScore - normDist * 0.2 });
+    }
+  }
+  pairs.sort((a, b) => b.score - a.score);
+  const usedDets = new Set(), usedTracks = new Set(), matches = [];
+  for (const p of pairs) {
+    if (usedDets.has(p.i) || usedTracks.has(p.j)) continue;
+    usedDets.add(p.i); usedTracks.add(p.j); matches.push(p);
+  }
+  return { matches, usedDets, usedTracks };
+}
+
+function updateTracks(detections, now) {
+  const { matches, usedDets, usedTracks } = matchDetections(detections, trackedFaces);
+  for (const { i, j } of matches) {
+    const d = detections[i], t = trackedFaces[j];
+    const dt = Math.max(1, now - (t.lastSeen || now)) / 16.67;
+    const rawVx = (d.originX - t.x) / dt, rawVy = (d.originY - t.y) / dt;
+    t.vx = t.vx * TRACK_CONFIG.velocityDecay + rawVx * (1 - TRACK_CONFIG.velocityDecay);
+    t.vy = t.vy * TRACK_CONFIG.velocityDecay + rawVy * (1 - TRACK_CONFIG.velocityDecay);
+    const a = TRACK_CONFIG.smoothingAlpha;
+    t.x += (d.originX - t.x) * a; t.y += (d.originY - t.y) * a;
+    const s = TRACK_CONFIG.sizeSmoothing;
+    t.w += (d.width - t.w) * s; t.h += (d.height - t.h) * s;
+    t.missed = 0; t.lastSeen = now;
+  }
+  for (let j = 0; j < trackedFaces.length; j++) {
+    if (usedTracks.has(j)) continue;
+    const t = trackedFaces[j];
+    t.missed++; t.x += t.vx; t.y += t.vy;
+    t.vx *= TRACK_CONFIG.velocityDecay; t.vy *= TRACK_CONFIG.velocityDecay;
+  }
+  for (let i = 0; i < detections.length; i++) {
+    if (usedDets.has(i)) continue;
+    const d = detections[i];
+    trackedFaces.push({ id: nextTrackId++, x: d.originX, y: d.originY, w: d.width, h: d.height, vx: 0, vy: 0, missed: 0, lastSeen: now });
+  }
+  trackedFaces = trackedFaces.filter(t => t.missed <= TRACK_CONFIG.maxMissedFrames);
+}
+
+// ============ Blur ============
+function computeBlurRadius(face) {
+  const resScale = canvas.height / 480;
+  return Math.max(TRACK_CONFIG.minBlurRadius * resScale,
+    face.w * TRACK_CONFIG.blurRadiusFactor * (blurSize / 100));
+}
+
+function blurFaceRegion(face) {
+  const maxW = canvas.width * 0.4;
+  const maxH = canvas.height * 0.4;
+
+  const expX = face.w * TRACK_CONFIG.expandSides;
+  const expTop = face.h * TRACK_CONFIG.expandTop;
+  const expBottom = face.h * TRACK_CONFIG.expandBottom;
+
+  let w = Math.min(face.w + expX * 2, maxW);
+  let h = Math.min(face.h + expTop + expBottom, maxH);
+
+  let x = Math.max(0, face.x - expX);
+  let y = Math.max(0, face.y - expTop);
+  w = Math.min(canvas.width - x, w);
+  h = Math.min(canvas.height - y, h);
+
+  if (w <= 0 || h <= 0) return;
+
+  const r = Math.min(w, h) * 0.25;
+  ctx.save();
+  ctx.beginPath();
+  if (ctx.roundRect) ctx.roundRect(x, y, w, h, r);
+  else {
+    ctx.moveTo(x + r, y); ctx.lineTo(x + w - r, y); ctx.quadraticCurveTo(x + w, y, x + w, y + r);
+    ctx.lineTo(x + w, y + h - r); ctx.quadraticCurveTo(x + w, y + h, x + w - r, y + h);
+    ctx.lineTo(x + r, y + h); ctx.quadraticCurveTo(x, y + h, x, y + h - r);
+    ctx.lineTo(x, y + r); ctx.quadraticCurveTo(x, y, x + r, y);
+  }
+  ctx.closePath();
+  ctx.clip();
+  ctx.drawImage(preBlurCanvas, x, y, w, h, x, y, w, h);
+  ctx.restore();
+}
+
+function loop(now) {
+  frameCount++;
+  if (now - lastFpsUpdate >= 1000) {
+    document.getElementById('fpsCounter').textContent = frameCount;
+    frameCount = 0; lastFpsUpdate = now;
+  }
+  if (video.readyState >= 2) {
+    if (canvas.width !== video.videoWidth || !preBlurCanvas) {
+      canvas.width = video.videoWidth; canvas.height = video.videoHeight;
+      if (!preBlurCanvas) {
+        preBlurCanvas = document.createElement('canvas');
+        preBlurCtx = preBlurCanvas.getContext('2d', { alpha: false });
+      }
+      preBlurCanvas.width = canvas.width; preBlurCanvas.height = canvas.height;
+      playerWrapper.classList.toggle('portrait', video.videoHeight > video.videoWidth);
+      document.getElementById('durationTime').textContent = formatTime(video.duration);
+      document.getElementById('seekBar').max = video.duration;
+    }
+    document.getElementById('currentTime').textContent = formatTime(video.currentTime);
+    document.getElementById('seekBar').value = video.currentTime;
+    if (exporting && isFinite(video.duration) && video.duration > 0) {
+      const p = Math.min(100, (video.currentTime / video.duration) * 100);
+      document.getElementById('exportBar').style.width = p + '%';
+      document.getElementById('exportPct').textContent = Math.floor(p) + '%';
+    }
+    ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
+
+    if (isReady && !video.paused && !isDetecting &&
+        (lastDetectionTime === -1 || now - lastDetectionTime > 45)) {
+      isDetecting = true; lastDetectionTime = now;
+      detectFaces()
+        .then(dets => {
+          updateTracks(dets, performance.now());
+          document.getElementById('maxScore').textContent = lastMaxScore.toFixed(2);
+        })
+        .catch(err => console.warn('detect error:', err.message))
+        .finally(() => { isDetecting = false; });
+    }
+    document.getElementById('faceCount').textContent = trackedFaces.length;
+    document.getElementById('detectCount').textContent = totalDetections;
+
+    // Debug draw
+    if (debugToggle.checked && rawDebugBoxes.length > 0) {
+      ctx.save();
+      ctx.lineWidth = 1.5;
+      for (const b of rawDebugBoxes) {
+        ctx.strokeStyle = b.s === 8 ? 'rgba(255,0,0,0.8)' : b.s === 16 ? 'rgba(0,255,0,0.8)' : 'rgba(0,100,255,0.8)';
+        ctx.strokeRect(b.x1, b.y1, b.x2 - b.x1, b.y2 - b.y1);
+        if (b.score > 0.1) {
+          ctx.fillStyle = 'yellow';
+          ctx.font = '11px monospace';
+          ctx.fillText(`s${b.s}:${b.score.toFixed(2)}`, b.x1, Math.max(12, b.y1 - 2));
         }
+      }
+      ctx.restore();
+    }
 
-        window.copyError = () => {
-            navigator.clipboard.writeText(errorDetails.innerText).then(() => alert("Error data copied."));
-        }
+    if (trackedFaces.length > 0) {
+      let maxBlur = 0;
+      for (const f of trackedFaces) maxBlur = Math.max(maxBlur, computeBlurRadius(f));
+      preBlurCtx.filter = `blur(${maxBlur}px)`;
+      preBlurCtx.drawImage(video, 0, 0, preBlurCanvas.width, preBlurCanvas.height);
+      preBlurCtx.filter = 'none';
+      for (const face of trackedFaces) blurFaceRegion(face);
+    }
+    rawDebugBoxes = [];
+  }
+  requestAnimationFrame(loop);
+}
 
-        function formatTime(seconds) {
-            const m = Math.floor(seconds / 60);
-            const s = Math.floor(seconds % 60);
-            return `${m.toString().padStart(2, '0')}:${s.toString().padStart(2, '0')}`;
-        }
+function formatTime(s) {
+  if (!isFinite(s)) return '00:00';
+  return `${String(Math.floor(s/60)).padStart(2,'0')}:${String(Math.floor(s%60)).padStart(2,'0')}`;
+}
 
-        function loop(now) {
-            frameCount++;
-            if (now - lastFpsUpdate >= 1000) {
-                document.getElementById('fpsCounter').innerText = frameCount + ' FPS';
-                frameCount = 0;
-                lastFpsUpdate = now;
-            }
+function togglePlay() { if (exporting) return; if (video.paused) video.play(); else video.pause(); }
+video.addEventListener('play', () => {
+  playOverlay.style.display = 'none';
+  document.getElementById('modeText').textContent = 'Active';
+});
+video.addEventListener('pause', () => {
+  if (video.readyState >= 2) playOverlay.style.display = 'none';
+  document.getElementById('modeText').textContent = 'Paused';
+});
 
-            if (video.readyState >= 2) {
-                if (canvas.width !== video.videoWidth) {
-                    canvas.width = video.videoWidth;
-                    canvas.height = video.videoHeight;
-                    playerWrapper.classList.toggle('portrait', video.videoHeight > video.videoWidth);
-                    durationTimeText.innerText = formatTime(video.duration);
-                    seekBar.max = video.duration;
-                }
+document.getElementById('togglePlayBtn').onclick = togglePlay;
+canvas.onclick = togglePlay;
+playOverlay.onclick = togglePlay;
+document.getElementById('seekBar').oninput = (e) => {
+  if (exporting) return;
+  video.currentTime = e.target.value; trackedFaces = [];
+};
 
-                currentTimeText.innerText = formatTime(video.currentTime);
-                seekBar.value = video.currentTime;
+window.loadFromUrl = () => {
+  const url = document.getElementById('urlInput').value.trim();
+  if (url) playMedia(url);
+};
+window.loadDemo = () => playMedia("https://raw.githubusercontent.com/intel-iot-devkit/sample-videos/master/head-pose-face-detection-female.mp4");
+window.handleFileUpload = (e) => {
+  const file = e.target.files[0];
+  if (file) playMedia(URL.createObjectURL(file));
+};
 
-                ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
+function playMedia(src) {
+  if (exporting) { log('Export in progress — loading is blocked.'); return; }
+  trackedFaces = []; totalDetections = 0; rawDebugBoxes = [];
+  playOverlay.style.display = 'none';
+  video.src = src;
+  video.load();
+  video.addEventListener('loadedmetadata', () => {
+    log('Video loaded:', video.videoWidth, 'x', video.videoHeight);
+  }, { once: true });
+  video.addEventListener('error', () => { log(`Video load error`); }, { once: true });
+  video.play().catch(() => { playOverlay.style.display = 'flex'; });
+}
 
-                const videoTimeMs = video.currentTime * 1000;
-                if (isReady && video.currentTime !== lastTimestamp && !video.paused) {
-                    const start = performance.now();
-                    
-                    try {
-                        let newDetections = [];
-                        if (currentModel === 'short_range') {
-                            const results = detector.detectForVideo(video, videoTimeMs);
-                            newDetections = results.detections.map(d => d.boundingBox);
-                        } else {
-                            const results = detector.detectForVideo(video, videoTimeMs);
-                            if (results.faceLandmarks) {
-                                newDetections = results.faceLandmarks.map(landmarks => {
-                                    const xs = landmarks.map(p => p.x * video.videoWidth);
-                                    const ys = landmarks.map(p => p.y * video.videoHeight);
-                                    const minX = Math.min(...xs);
-                                    const minY = Math.min(...ys);
-                                    return { 
-                                        originX: minX, 
-                                        originY: minY, 
-                                        width: Math.max(...xs) - minX, 
-                                        height: Math.max(...ys) - minY 
-                                    };
-                                });
-                            }
-                        }
-                        
-                        lastTimestamp = video.currentTime;
-                        
-                        if (newDetections.length > 0) {
-                            newDetections.forEach((b, i) => {
-                                const existing = trackedFaces[i];
-                                if (existing) {
-                                    existing.x += (b.originX - existing.x) * SMOOTHING_FACTOR;
-                                    existing.y += (b.originY - existing.y) * SMOOTHING_FACTOR;
-                                    existing.w += (b.width - existing.w) * SMOOTHING_FACTOR;
-                                    existing.h += (b.height - existing.h) * SMOOTHING_FACTOR;
-                                    existing.lastSeen = now;
-                                } else {
-                                    trackedFaces.push({
-                                        x: b.originX, y: b.originY, w: b.width, h: b.height,
-                                        vx: 0, vy: 0, lastSeen: now
-                                    });
-                                }
-                            });
-                            if (trackedFaces.length > newDetections.length) trackedFaces.length = newDetections.length;
-                        }
-                    } catch (e) {}
-                    document.getElementById('processTime').innerText = Math.round(performance.now() - start) + 'ms';
-                }
+document.getElementById('blurSlider').oninput = (e) => {
+  blurSize = e.target.value;
+  document.getElementById('blurVal').textContent = blurSize;
+};
+document.getElementById('senseSlider').oninput = (e) => {
+  const val = parseInt(e.target.value);
+  sensitivity = val / 100;
+  document.getElementById('senseVal').textContent =
+    val < 50 ? 'Low' : val < 65 ? 'Medium' : val < 80 ? 'High' : 'Strict';
+  document.getElementById('senseVal').textContent += ` (${sensitivity.toFixed(2)})`;
+};
 
-                trackedFaces = trackedFaces.filter(f => now - f.lastSeen < GHOST_DURATION);
-
-                document.getElementById('faceCount').innerText = trackedFaces.length + ' FACES';
-                if (trackedFaces.length > 0) {
-                    trackedFaces.forEach(face => {
-                        const expansionX = 2.0;
-                        const expansionY = 2.4;
-                        const w = face.w * expansionX;
-                        const h = face.h * expansionY;
-                        const x = face.x + (face.w / 2) - (w / 2);
-                        const y = face.y + (face.h / 2) - (h / 2);
-
-                        ctx.save();
-                        ctx.beginPath();
-                        ctx.ellipse(x + w/2, y + h/2, w/2, h/2, 0, 0, Math.PI * 2);
-                        ctx.clip();
-                        ctx.filter = `blur(${blurSize}px)`;
-                        ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
-                        ctx.restore();
-                    });
-                }
-            }
-            requestAnimationFrame(loop);
-        }
-
-        function togglePlay() {
-            if (video.paused) {
-                video.play();
-                playIcon.classList.add('hidden');
-                pauseIcon.classList.remove('hidden');
-                document.getElementById('playOverlay').classList.add('hidden');
-                playerWrapper.classList.add('playing');
-            } else {
-                video.pause();
-                playIcon.classList.remove('hidden');
-                pauseIcon.classList.add('hidden');
-                playerWrapper.classList.remove('playing');
-            }
-        }
-
-        togglePlayBtn.onclick = togglePlay;
-        canvas.onclick = togglePlay;
-        document.getElementById('playOverlay').onclick = togglePlay;
-
-        seekBar.oninput = (e) => {
-            video.currentTime = e.target.value;
-            trackedFaces = []; 
-        };
-
-        window.changeModel = async (type) => {
-            if (currentModel === type) return;
-            const btnShort = document.getElementById('btn-short');
-            const btnFull = document.getElementById('btn-full');
-            
-            if (type === 'short_range') {
-                btnShort.className = 'py-2.5 rounded-lg text-[10px] font-bold uppercase tracking-widest transition-all bg-white text-blue-600 shadow-sm';
-                btnFull.className = 'py-2.5 rounded-lg text-[10px] font-bold uppercase tracking-widest transition-all text-slate-500 hover:text-slate-700';
-            } else {
-                btnFull.className = 'py-2.5 rounded-lg text-[10px] font-bold uppercase tracking-widest transition-all bg-white text-blue-600 shadow-sm';
-                btnShort.className = 'py-2.5 rounded-lg text-[10px] font-bold uppercase tracking-widest transition-all text-slate-500 hover:text-slate-700';
-            }
-            await initAI(type);
-        };
-
-        window.loadFromUrl = () => {
-            const url = document.getElementById('urlInput').value.trim();
-            if (url) playMedia(url);
-        };
-
-        window.loadDemo = () => {
-            playMedia("https://storage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4");
-        };
-
-        window.handleFileUpload = (e) => {
-            const file = e.target.files[0];
-            if (file) playMedia(URL.createObjectURL(file));
-        };
-
-        function playMedia(src) {
-            trackedFaces = [];
-            video.src = src;
-            video.load();
-            video.play().then(() => {
-                document.getElementById('playOverlay').classList.add('hidden');
-                playIcon.classList.add('hidden');
-                pauseIcon.classList.remove('hidden');
-                playerWrapper.classList.add('playing');
-            }).catch(() => {
-                document.getElementById('playOverlay').classList.remove('hidden');
-                playerWrapper.classList.remove('playing');
-            });
-        }
-
-        document.getElementById('blurSlider').oninput = (e) => {
-            blurSize = e.target.value;
-            document.getElementById('blurVal').innerText = blurSize;
-        };
-
-        document.getElementById('senseSlider').oninput = async (e) => {
-            const val = parseInt(e.target.value);
-            sensitivity = val / 100;
-            document.getElementById('senseVal').innerText = val < 8 ? 'Extreme' : val < 15 ? 'High' : 'Normal';
-            if (detector && currentModel === 'short_range') await detector.setOptions({ minDetectionConfidence: sensitivity });
-            if (detector && currentModel === 'full_range') await detector.setOptions({ minFaceDetectionConfidence: sensitivity });
-        };
-
-        initAI('short_range');
-    </script>
-</body>
-</html>
+initAI();
+</script>
+{%endblock%}
