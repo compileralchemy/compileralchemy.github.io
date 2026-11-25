@@ -1,0 +1,16 @@
+{
+  "name": "Mauritius Speed Camera Map",
+  "short_name": "Speed Cams MU",
+  "description": "Map of fixed speed cameras in Mauritius with coordinates, road info and proximity beep alerts.",
+  "start_url": "/mauritius-map/",
+  "scope": "/mauritius-map/",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#f8fafc",
+  "theme_color": "#ffb74d",
+  "icons": [
+    { "src": "/assets/pwa-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
+    { "src": "/assets/pwa-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" },
+    { "src": "/assets/pwa-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+  ]
+}

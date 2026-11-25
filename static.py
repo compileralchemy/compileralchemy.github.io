@@ -1,6 +1,7 @@
 # https://github.com/pymug/website-AV19-AV20
 
 import datetime
+import shutil
 import sys
 import uuid
 from os.path import join
@@ -719,6 +720,48 @@ def gen_islamic_months():
     )
 
 
+def gen_mauritius_map():
+    cams = []
+    try:
+        with open("data/fixspeedcams.json", encoding="utf-8") as f:
+            cams = json.load(f)
+    except Exception as e:
+        print(f"Error processing fixspeedcams.json: {e}")
+
+    regions = sorted({cam["region"] for cam in cams if cam.get("region")})
+
+    map_context = context.copy()
+    map_context.update(
+        {
+            "path": "../",
+            "cams_data": cams,
+            "cams_count": len(cams),
+            "cams_data_json": json.dumps(cams),
+            "regions": regions,
+            "seo_title": "Mauritius Speed Camera Map | Fixed Camera Locations",
+            "seo_description": "Interactive map of the fixed speed cameras in Mauritius with coordinates, road info and proximity beep alerts.",
+            "page_path": "mauritius-map/",
+            "og_type": "website",
+        }
+    )
+
+    out_dir = join(settings.OUTPUT_FOLDER, "mauritius-map")
+    try:
+        os.mkdir(out_dir)
+    except Exception:
+        pass
+
+    generate(
+        "mauritius-map.html",
+        join(out_dir, "index.html"),
+        **map_context,
+    )
+
+    # PWA bits: manifest + service worker
+    shutil.copy("pwa/manifest.webmanifest", join(out_dir, "manifest.webmanifest"))
+    shutil.copy("pwa/sw.js", join(out_dir, "sw.js"))
+
+
 def gen_seo():
     urls = [
         "/",
@@ -730,6 +773,7 @@ def gen_seo():
         "/journey/",
         "/face-blur/",
         "/islamic-months-mauritius/",
+        "/mauritius-map/",
         "/opensource/",
         "/papers/",
         "/annotated-transformer-commentary/",
@@ -1016,6 +1060,7 @@ def main(args):
         )
         gen_faceblur()
         gen_islamic_months()
+        gen_mauritius_map()
         gen_opensource()
         gen_papers()
         gen_annotated_commentary()

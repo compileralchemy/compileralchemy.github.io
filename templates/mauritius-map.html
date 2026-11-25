@@ -1,0 +1,539 @@
+{% extends "pages/base.html" %}
+
+{% block head %}
+<script src="https://cdn.tailwindcss.com"></script>
+<link rel="manifest" href="manifest.webmanifest">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap"
+    rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css">
+<style>
+    body {
+        font-family: 'Plus Jakarta Sans', sans-serif;
+        background-color: #f8fafc;
+    }
+
+    #map {
+        height: 60vh;
+        min-height: 380px;
+        border-radius: 1rem;
+        z-index: 0;
+    }
+
+    .cam-pin {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 30px;
+        height: 30px;
+        background: #dc2626;
+        border: 2px solid #fff;
+        border-radius: 50% 50% 50% 0;
+        transform: rotate(-45deg);
+        box-shadow: 0 2px 6px rgba(0, 0, 0, .35);
+        font-size: 14px;
+    }
+
+    .cam-pin span {
+        transform: rotate(45deg);
+    }
+
+    .car-dot {
+        width: 22px;
+        height: 22px;
+        background: #2563eb;
+        border: 3px solid #fff;
+        border-radius: 50%;
+        box-shadow: 0 0 0 5px rgba(37, 99, 235, .25), 0 2px 6px rgba(0, 0, 0, .35);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #fff;
+        font-size: 9px;
+        line-height: 1;
+    }
+
+    .car-arrow {
+        transition: transform .3s linear;
+    }
+
+    .leaflet-popup-content {
+        font-family: 'Plus Jakarta Sans', sans-serif;
+        margin: 12px 14px;
+        min-width: 200px;
+    }
+
+    body.beep-flash #map {
+        outline: 6px solid rgba(220, 38, 38, .55);
+        outline-offset: -6px;
+    }
+</style>
+{% endblock %}
+
+{% block body %}
+<div class="min-h-screen py-12 px-4 sm:px-6 lg:px-8">
+    <div class="max-w-5xl mx-auto">
+
+        <div class="text-center mb-8">
+            <h1 class="text-4xl font-extrabold text-slate-900 tracking-tight sm:text-5xl mb-4">
+                Mauritius Speed Camera Map
+            </h1>
+            <p class="text-lg text-slate-600 max-w-2xl mx-auto">
+                {{ cams_count }} fixed speed cameras with coordinates and road info.
+                Beep on by default, your car shows as a blue dot on the map, screen stays awake while on.
+            </p>
+        </div>
+
+        <div class="flex flex-wrap items-center justify-center gap-3 mb-6">
+            <a href="{{ path }}"
+                class="inline-flex items-center justify-center px-6 py-3 border border-transparent text-sm font-medium rounded-xl text-emerald-700 bg-emerald-50 hover:bg-emerald-100 transition-all duration-200">
+                &larr; Visit homepage
+            </a>
+            <button id="installBtn" hidden
+                class="inline-flex items-center justify-center px-6 py-3 border border-transparent text-sm font-medium rounded-xl text-slate-700 bg-slate-100 hover:bg-slate-200 transition-all duration-200">
+                &#8681; Install app
+            </button>
+            <button id="beepBtn"
+                class="inline-flex items-center justify-center px-6 py-3 border border-transparent text-sm font-medium rounded-xl text-red-700 bg-red-50 hover:bg-red-100 transition-all duration-200">
+                &#128276; Beep: OFF
+            </button>
+            <button id="followBtn"
+                class="inline-flex items-center justify-center px-6 py-3 border border-transparent text-sm font-medium rounded-xl text-blue-700 bg-blue-50 hover:bg-blue-100 transition-all duration-200">
+                &#127919; Follow: ON
+            </button>
+            <a href="https://github.com/compileralchemy/compileralchemy.github.io/blob/source/data/fixspeedcams.json"
+                target="_blank"
+                class="inline-flex items-center justify-center px-6 py-3 border border-transparent text-sm font-medium rounded-xl text-emerald-700 bg-emerald-50 hover:bg-emerald-100 transition-all duration-200">
+                Contribute
+            </a>
+        </div>
+
+        <p id="geoStatus" class="text-center text-sm text-slate-500 mb-4 hidden"></p>
+        <p id="soundHint"
+            class="text-center text-sm font-medium text-amber-600 mb-4 hidden">&#128263; Tap anywhere once to
+            enable sound (iOS / browser rule)</p>
+
+        <div class="flex flex-col sm:flex-row gap-3 max-w-2xl mx-auto mb-6">
+            <div class="relative flex-1">
+                <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                    <svg class="h-5 w-5 text-slate-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"
+                        fill="currentColor" aria-hidden="true">
+                        <path fill-rule="evenodd"
+                            d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z"
+                            clip-rule="evenodd" />
+                    </svg>
+                </div>
+                <input type="text" id="camSearch" autocomplete="off"
+                    class="block w-full pl-10 pr-3 py-3 border border-slate-200 rounded-xl leading-5 bg-white placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-red-500/20 focus:border-red-500 sm:text-sm shadow-sm transition-all duration-200"
+                    placeholder="Search name, road, region...">
+            </div>
+            <select id="regionFilter"
+                class="py-3 px-3 border border-slate-200 rounded-xl bg-white text-sm text-slate-600 shadow-sm focus:outline-none focus:ring-2 focus:ring-red-500/20 focus:border-red-500">
+                <option value="">All regions</option>
+                {% for region in regions %}
+                <option value="{{ region }}">{{ region }}</option>
+                {% endfor %}
+            </select>
+        </div>
+
+        <div class="bg-white rounded-3xl shadow-xl shadow-slate-200/60 overflow-hidden border border-slate-100 mb-8">
+            <div class="p-4 border-b border-slate-100 bg-slate-50/50 flex justify-between items-center">
+                <div class="flex items-center gap-3">
+                    <div class="h-10 w-10 rounded-full bg-red-100 flex items-center justify-center text-red-600">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                            <path fill-rule="evenodd"
+                                d="M5 9V7a5 5 0 0110 0v2a2 2 0 012 2v5a2 2 0 01-2 2H5a2 2 0 01-2-2v-5a2 2 0 012-2zm8-2v2H7V7a3 3 0 016 0z"
+                                clip-rule="evenodd" />
+                        </svg>
+                    </div>
+                    <h2 class="text-lg font-bold text-slate-800">Fixed Cameras</h2>
+                </div>
+                <span id="camCount"
+                    class="bg-red-100 text-red-700 text-xs font-bold px-3 py-1.5 rounded-full uppercase tracking-wide">Showing
+                    {{ cams_count }} of {{ cams_count }}</span>
+            </div>
+            <div id="map"></div>
+        </div>
+
+        <div class="bg-white rounded-3xl shadow-xl shadow-slate-200/60 overflow-hidden border border-slate-100">
+            <div class="overflow-x-auto">
+                <table class="w-full text-left border-collapse">
+                    <thead>
+                        <tr
+                            class="bg-slate-50/50 border-b border-slate-200/60 text-xs uppercase tracking-wider text-slate-500 font-bold">
+                            <th class="px-6 py-4">Camera</th>
+                            <th class="px-6 py-4">Road</th>
+                            <th class="px-6 py-4">Region</th>
+                            <th class="px-6 py-4">Location</th>
+                            <th class="px-6 py-4 text-right">Coordinates</th>
+                        </tr>
+                    </thead>
+                    <tbody class="divide-y divide-slate-100" id="camTable">
+                        {% for cam in cams_data %}
+                        <tr class="hover:bg-red-50/60 transition-colors duration-200 group cursor-pointer"
+                            data-idx="{{ loop.index0 }}"
+                            data-region="{{ cam.region }}"
+                            data-text="{{ (cam.name ~ ' ' ~ cam.road ~ ' ' ~ cam.region ~ ' ' ~ cam.location) | lower }}"
+                            onclick="flyToCam({{ loop.index0 }})">
+                            <td class="px-6 py-4">
+                                <span class="font-bold text-slate-800 group-hover:text-red-700 transition-colors">{{
+                                    cam.name }}</span>
+                            </td>
+                            <td class="px-6 py-4 font-mono text-sm text-slate-600">{{ cam.road }}</td>
+                            <td class="px-6 py-4">
+                                <span
+                                    class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-slate-100 text-slate-800">
+                                    {{ cam.region }}
+                                </span>
+                            </td>
+                            <td class="px-6 py-4 text-sm text-slate-600">{{ cam.location }}</td>
+                            <td class="px-6 py-4 text-right font-mono text-xs text-slate-400">{{ cam.lat }},
+                                {{ cam.lng }}</td>
+                        </tr>
+                        {% else %}
+                        <tr>
+                            <td colspan="5" class="px-6 py-8 text-center text-slate-500 italic">
+                                No cameras found.
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+            <div
+                class="bg-slate-50 p-4 border-t border-slate-100 text-center text-xs text-slate-400 font-medium uppercase tracking-wide">
+                Compiler Alchemy &copy; Speed Camera Data - drive safe
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
+<script>
+    const cams = {{ cams_data_json | safe }};
+    const BEEP_RANGE_M = 150;
+    const BEEP_COOLDOWN_MS = 8000;
+
+    /* ---------- map ---------- */
+    const map = L.map('map', { zoomControl: true }).setView([-20.25, 57.55], 11);
+    L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        maxZoom: 19,
+        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+    }).addTo(map);
+
+    const camIcon = L.divIcon({
+        className: '',
+        html: '<div class="cam-pin"><span>&#128249;</span></div>',
+        iconSize: [30, 30],
+        iconAnchor: [15, 30],
+        popupAnchor: [0, -28]
+    });
+
+    const markerLayer = L.layerGroup().addTo(map);
+    const markers = [];
+
+    function popupHtml(cam) {
+        return `
+            <div>
+                <div class="font-bold text-slate-900 text-sm mb-1">${cam.name}</div>
+                <div class="text-xs text-slate-600 mb-1">Road <b>${cam.road}</b> &middot; ${cam.region}</div>
+                <div class="text-xs text-slate-500 mb-2">${cam.location}</div>
+                <div class="text-xs font-mono text-slate-400 mb-2">${cam.lat}, ${cam.lng}</div>
+                <a class="text-xs font-bold text-red-600 hover:underline"
+                   href="https://www.google.com/maps/dir/?api=1&destination=${cam.lat},${cam.lng}"
+                   target="_blank" rel="noopener">Directions &rarr;</a>
+            </div>`;
+    }
+
+    cams.forEach((cam, i) => {
+        const m = L.marker([cam.lat, cam.lng], { icon: camIcon }).bindPopup(popupHtml(cam));
+        markers.push(m);
+    });
+
+    function flyToCam(i) {
+        const m = markers[i];
+        if (!m) return;
+        map.flyTo(m.getLatLng(), 15, { duration: 0.8 });
+        setTimeout(() => m.openPopup(), 850);
+        document.getElementById('map').scrollIntoView({ behavior: 'smooth', block: 'center' });
+    }
+
+    /* ---------- filter ---------- */
+    const searchInput = document.getElementById('camSearch');
+    const regionFilter = document.getElementById('regionFilter');
+    const camCount = document.getElementById('camCount');
+    const rows = Array.from(document.querySelectorAll('#camTable tr[data-idx]'));
+
+    function applyFilter() {
+        const q = searchInput.value.trim().toLowerCase();
+        const region = regionFilter.value;
+        let shown = 0;
+        markerLayer.clearLayers();
+
+        rows.forEach((row) => {
+            const idx = parseInt(row.dataset.idx, 10);
+            const okRegion = !region || row.dataset.region === region;
+            const okText = !q || row.dataset.text.includes(q);
+            const visible = okRegion && okText;
+            row.classList.toggle('hidden', !visible);
+            if (visible) {
+                shown++;
+                markerLayer.addLayer(markers[idx]);
+            }
+        });
+
+        camCount.textContent = `Showing ${shown} of ${cams.length}`;
+        if (shown > 0 && shown < cams.length) {
+            const bounds = L.latLngBounds([]);
+            rows.forEach((row) => {
+                if (!row.classList.contains('hidden')) {
+                    bounds.extend(markers[parseInt(row.dataset.idx, 10)].getLatLng());
+                }
+            });
+            if (bounds.isValid()) map.fitBounds(bounds, { padding: [30, 30], maxZoom: 14 });
+        }
+    }
+
+    searchInput.addEventListener('input', applyFilter);
+    regionFilter.addEventListener('change', applyFilter);
+    applyFilter();
+
+    /* ---------- car position ---------- */
+    const followBtn = document.getElementById('followBtn');
+    let followMode = true;
+    let userMarker = null;
+    let accCircle = null;
+    let lastFollow = 0;
+
+    const carIcon = L.divIcon({
+        className: '',
+        html: '<div class="car-dot"><div class="car-arrow" id="carArrow">&#9650;</div></div>',
+        iconSize: [22, 22],
+        iconAnchor: [11, 11]
+    });
+
+    function setFollow(on) {
+        followMode = on;
+        followBtn.innerHTML = on ? '&#127919; Follow: ON' : '&#127919; Follow: OFF';
+        followBtn.classList.toggle('text-blue-700', on);
+        followBtn.classList.toggle('bg-blue-50', on);
+        followBtn.classList.toggle('hover:bg-blue-100', on);
+        followBtn.classList.toggle('text-slate-500', !on);
+        followBtn.classList.toggle('bg-slate-100', !on);
+        followBtn.classList.toggle('hover:bg-slate-200', !on);
+    }
+
+    function updateUserMarker(pos) {
+        const ll = [pos.coords.latitude, pos.coords.longitude];
+        if (!userMarker) {
+            userMarker = L.marker(ll, { icon: carIcon, zIndexOffset: 1000, interactive: false }).addTo(map);
+            accCircle = L.circle(ll, {
+                radius: pos.coords.accuracy || 20,
+                color: '#2563eb', weight: 1, fillOpacity: 0.12, interactive: false
+            }).addTo(map);
+        } else {
+            userMarker.setLatLng(ll);
+            accCircle.setLatLng(ll).setRadius(pos.coords.accuracy || 20);
+        }
+        const arrow = document.getElementById('carArrow');
+        if (arrow && typeof pos.coords.heading === 'number' && !isNaN(pos.coords.heading)) {
+            arrow.style.transform = 'rotate(' + pos.coords.heading + 'deg)';
+        }
+        if (followMode && Date.now() - lastFollow > 4000) {
+            lastFollow = Date.now();
+            map.setView(ll, Math.max(map.getZoom(), 14), { animate: true });
+        }
+    }
+
+    function removeUserMarker() {
+        if (userMarker) { map.removeLayer(userMarker); userMarker = null; }
+        if (accCircle) { map.removeLayer(accCircle); accCircle = null; }
+    }
+
+    followBtn.addEventListener('click', () => setFollow(!followMode));
+    /* dragging the map = user browsing, stop yanking the view */
+    map.on('dragstart', () => { if (followMode) setFollow(false); });
+
+    /* ---------- proximity beep ---------- */
+    const beepBtn = document.getElementById('beepBtn');
+    const geoStatus = document.getElementById('geoStatus');
+    const soundHint = document.getElementById('soundHint');
+    let watchId = null;
+    let lastBeep = 0;
+    let audioCtx = null;
+    let wakeLock = null;
+    let hiAcc = true;
+
+    function startWatch() {
+        if (watchId !== null) navigator.geolocation.clearWatch(watchId);
+        watchId = navigator.geolocation.watchPosition(onPosition, onGeoError, {
+            enableHighAccuracy: hiAcc,
+            maximumAge: hiAcc ? 5000 : 15000,
+            timeout: 20000
+        });
+    }
+
+    async function requestWakeLock() {
+        try {
+            if ('wakeLock' in navigator) wakeLock = await navigator.wakeLock.request('screen');
+        } catch (err) { /* screen lock denied, fine */ }
+    }
+
+    function releaseWakeLock() {
+        if (wakeLock) { try { wakeLock.release(); } catch (err) {} wakeLock = null; }
+    }
+
+    document.addEventListener('visibilitychange', () => {
+        if (document.visibilityState === 'visible' && watchId !== null) requestWakeLock();
+    });
+
+    /* iOS: sound only allowed after a real user gesture - unlock once */
+    ['touchend', 'click', 'keydown'].forEach((ev) => {
+        window.addEventListener(ev, () => {
+            if (audioCtx && audioCtx.state === 'suspended') audioCtx.resume();
+            soundHint.classList.add('hidden');
+        }, { passive: true });
+    });
+
+    function beep() {
+        try {
+            audioCtx = audioCtx || new (window.AudioContext || window.webkitAudioContext)();
+            if (audioCtx.state === 'suspended') audioCtx.resume();
+            const t = audioCtx.currentTime;
+            const osc = audioCtx.createOscillator();
+            const gain = audioCtx.createGain();
+            osc.type = 'square';
+            osc.frequency.setValueAtTime(1100, t);
+            gain.gain.setValueAtTime(0.0001, t);
+            gain.gain.exponentialRampToValueAtTime(0.25, t + 0.01);
+            gain.gain.exponentialRampToValueAtTime(0.0001, t + 0.3);
+            osc.connect(gain).connect(audioCtx.destination);
+            osc.start(t);
+            osc.stop(t + 0.32);
+            document.body.classList.add('beep-flash');
+            setTimeout(() => document.body.classList.remove('beep-flash'), 700);
+        } catch (err) { /* no audio, no problem */ }
+    }
+
+    function distanceM(lat1, lng1, lat2, lng2) {
+        const R = 6371000;
+        const toRad = (d) => d * Math.PI / 180;
+        const dLat = toRad(lat2 - lat1);
+        const dLng = toRad(lng2 - lng1);
+        const a = Math.sin(dLat / 2) ** 2 +
+            Math.cos(toRad(lat1)) * Math.cos(toRad(lat2)) * Math.sin(dLng / 2) ** 2;
+        return 2 * R * Math.asin(Math.sqrt(a));
+    }
+
+    function onPosition(pos) {
+        const { latitude, longitude, speed } = pos.coords;
+        updateUserMarker(pos);
+
+        let nearest = null;
+        let nearestDist = Infinity;
+        cams.forEach((cam) => {
+            const d = distanceM(latitude, longitude, cam.lat, cam.lng);
+            if (d < nearestDist) { nearestDist = d; nearest = cam; }
+        });
+
+        const kmh = typeof speed === 'number' && !isNaN(speed) ? Math.round(speed * 3.6) : null;
+        const moving = kmh === null || kmh > 15; /* no speed data = beep anyway */
+
+        if (nearest) {
+            geoStatus.classList.remove('hidden');
+            const distStr = nearestDist < 1000
+                ? `${Math.round(nearestDist)} m`
+                : `${(nearestDist / 1000).toFixed(1)} km`;
+            geoStatus.textContent = `Nearest camera: ${nearest.name} - ${distStr}` +
+                (kmh !== null ? ` - ${kmh} km/h` : '');
+        }
+
+        /* battery: low-accuracy GPS when far from cams, high-accuracy when close */
+        const wantHi = nearestDist < 800;
+        if (wantHi !== hiAcc) { hiAcc = wantHi; startWatch(); }
+
+        if (nearestDist <= BEEP_RANGE_M && moving && Date.now() - lastBeep > BEEP_COOLDOWN_MS) {
+            lastBeep = Date.now();
+            beep();
+        }
+    }
+
+    function onGeoError(err) {
+        geoStatus.classList.remove('hidden');
+        geoStatus.textContent = 'Location unavailable (' + (err && err.message ? err.message : 'denied') + '). Beep off.';
+        stopBeep();
+    }
+
+    function startBeep() {
+        if (!('geolocation' in navigator)) {
+            geoStatus.classList.remove('hidden');
+            geoStatus.textContent = 'Geolocation not supported here.';
+            return;
+        }
+        startWatch();
+        requestWakeLock();
+        beepBtn.innerHTML = '&#128276; Beep: ON';
+        beepBtn.classList.remove('text-red-700', 'bg-red-50', 'hover:bg-red-100');
+        beepBtn.classList.add('text-emerald-700', 'bg-emerald-50', 'hover:bg-emerald-100');
+        beep();
+        /* iOS: audio likely suspended until first tap - tell the user */
+        try {
+            audioCtx = audioCtx || new (window.AudioContext || window.webkitAudioContext)();
+            setTimeout(() => {
+                soundHint.classList.toggle('hidden', audioCtx.state !== 'suspended');
+            }, 700);
+        } catch (err) { /* no webaudio, no hint */ }
+    }
+
+    function stopBeep() {
+        if (watchId !== null) { navigator.geolocation.clearWatch(watchId); watchId = null; }
+        releaseWakeLock();
+        removeUserMarker();
+        beepBtn.innerHTML = '&#128276; Beep: OFF';
+        beepBtn.classList.add('text-red-700', 'bg-red-50', 'hover:bg-red-100');
+        beepBtn.classList.remove('text-emerald-700', 'bg-emerald-50', 'hover:bg-emerald-100');
+    }
+
+    function saveBeepPref(v) { try { localStorage.setItem('camBeep', v); } catch (err) {} }
+    function getBeepPref() { try { return localStorage.getItem('camBeep'); } catch (err) { return null; } }
+
+    beepBtn.addEventListener('click', () => {
+        if (watchId === null) {
+            startBeep();
+            saveBeepPref('on');
+        } else {
+            stopBeep();
+            saveBeepPref('off');
+        }
+    });
+
+    /* beep ON by default (user can still turn it off, we remember) */
+    if (getBeepPref() !== 'off') startBeep();
+
+    /* ---------- PWA: install + service worker ---------- */
+    let deferredInstall = null;
+    const installBtn = document.getElementById('installBtn');
+
+    window.addEventListener('beforeinstallprompt', (e) => {
+        e.preventDefault();
+        deferredInstall = e;
+        installBtn.hidden = false;
+    });
+
+    installBtn.addEventListener('click', async () => {
+        if (!deferredInstall) return;
+        deferredInstall.prompt();
+        await deferredInstall.userChoice;
+        deferredInstall = null;
+        installBtn.hidden = true;
+    });
+
+    window.addEventListener('appinstalled', () => { installBtn.hidden = true; });
+
+    if ('serviceWorker' in navigator) {
+        window.addEventListener('load', () => {
+            navigator.serviceWorker.register('sw.js').catch(() => { /* offline optional */ });
+        });
+    }
+</script>
+{% endblock %}
