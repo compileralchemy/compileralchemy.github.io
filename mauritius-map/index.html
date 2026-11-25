@@ -1,0 +1,2019 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-161612035-1"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+
+function gtag() { dataLayer.push(arguments); }
+gtag('js', new Date());
+gtag('config', 'UA-161612035-1');
+</script>
+
+
+
+
+
+<title>Mauritius Speed Camera Map | Fixed Camera Locations</title>
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="utf-8">
+<meta name="description" content="Interactive map of the fixed speed cameras in Mauritius with coordinates, road info and proximity beep alerts.">
+<meta name="author" content="Abdur-Rahmaan Janhangeer">
+<link rel="canonical" href="https://www.compileralchemy.com/mauritius-map/">
+
+<!-- Open Graph / Facebook -->
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://www.compileralchemy.com/mauritius-map/">
+<meta property="og:title" content="Mauritius Speed Camera Map | Fixed Camera Locations">
+<meta property="og:description" content="Interactive map of the fixed speed cameras in Mauritius with coordinates, road info and proximity beep alerts.">
+<meta property="og:image" content="https://www.compileralchemy.com/assets/COMP_ALC.png">
+
+<!-- Twitter -->
+<meta property="twitter:card" content="summary_large_image">
+<meta property="twitter:url" content="https://www.compileralchemy.com/mauritius-map/">
+<meta property="twitter:title" content="Mauritius Speed Camera Map | Fixed Camera Locations">
+<meta property="twitter:description" content="Interactive map of the fixed speed cameras in Mauritius with coordinates, road info and proximity beep alerts.">
+<meta property="twitter:image" content="https://www.compileralchemy.com/assets/COMP_ALC.png">
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "name": "Mauritius Speed Camera Map | Fixed Camera Locations",
+  "description": "Interactive map of the fixed speed cameras in Mauritius with coordinates, road info and proximity beep alerts.",
+  "url": "https://www.compileralchemy.com/mauritius-map/",
+  "author": {
+    "@type": "Person",
+    "name": "Abdur-Rahmaan Janhangeer"
+  }
+}
+</script>
+
+<meta name="theme-color" content="#ffb74d" />
+<link rel="icon" href="../assets/COMP_ALC.png">
+
+<!-- Performance Optimized Asset Loading -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preconnect" href="https://cdnjs.cloudflare.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Raleway:wght@700&family=Special+Elite&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.0/css/bulma.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+<!-- Global Editorial Styles -->
+<style type="text/css">
+    :root {
+        --accent: #c2410c;
+        --accent-soft: #fff7ed;
+        --accent-hover: #9a3412;
+        --ink: #1c1917;
+        --ink-2: #44403c;
+        --ink-muted: #78716c;
+        --line: #e7e5e4;
+        --line-soft: #f5f5f4;
+        --surface: #ffffff;
+        --surface-alt: #faf9f7;
+        --font-main: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+        --font-title: 'Raleway', sans-serif;
+        /* Backward-compatible aliases for older templates */
+        --primary-color: var(--accent);
+        --active-color: var(--accent-hover);
+        --text-main: var(--ink);
+        --text-muted: var(--ink-muted);
+        --reading-width: 680px;
+        --container-width: 920px;
+    }
+
+    body {
+        font-family: var(--font-main);
+        color: var(--ink);
+        line-height: 1.85;
+        -webkit-font-smoothing: antialiased;
+    }
+
+    h1, h2, h3, .title {
+        font-family: var(--font-title);
+        font-weight: 800;
+        letter-spacing: -0.02em;
+    }
+</style>
+
+<link rel="stylesheet" type="text/css" href="../style.css">
+<link rel="stylesheet" type="text/css" href="../bulma-timeline.min.css">
+
+<script defer src="https://use.fontawesome.com/releases/v5.8.2/js/all.js"></script>
+
+
+    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.css" />
+    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
+    <link rel="stylesheet" href="https://unpkg.com/swiper@6/swiper-bundle.min.css" />
+    <script src="https://unpkg.com/swiper@6/swiper-bundle.min.js"></script>
+    <style type="text/css">
+    .swiper-container {
+        width: 100%;
+        height: 100%;
+    }
+
+    .swiper-slide {
+        text-align: center;
+        font-size: 18px;
+        background: #fff;
+        /* Center slide text vertically */
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: -webkit-flex;
+        display: flex;
+        -webkit-box-pack: center;
+        -ms-flex-pack: center;
+        -webkit-justify-content: center;
+        justify-content: center;
+        -webkit-box-align: center;
+        -ms-flex-align: center;
+        -webkit-align-items: center;
+        align-items: center;
+    }
+    </style>
+    <script type="text/javascript">
+    (function(c, l, a, r, i, t, y) {
+        c[a] = c[a] || function() {
+            (c[a].q = c[a].q || []).push(arguments) };
+        t = l.createElement(r);
+        t.async = 1;
+        t.src = "https://www.clarity.ms/tag/" + i;
+        y = l.getElementsByTagName(r)[0];
+        y.parentNode.insertBefore(t, y);
+    })(window, document, "clarity", "script", "b2ltvgn5pp");
+    </script>
+
+<style type="text/css">
+    .hide_scroll::-webkit-scrollbar { display: none; }
+    .hide_scroll { -ms-overflow-style: none; scrollbar-width: none; }
+</style>
+
+<link href="https://assets.calendly.com/assets/external/widget.css" rel="stylesheet">
+<script src="https://assets.calendly.com/assets/external/widget.js" type="text/javascript" async></script>
+    
+<script src="https://cdn.tailwindcss.com"></script>
+<link rel="manifest" href="manifest.webmanifest">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap"
+    rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css">
+<style>
+    body {
+        font-family: 'Plus Jakarta Sans', sans-serif;
+        background-color: #f8fafc;
+    }
+
+    #map {
+        height: 60vh;
+        min-height: 380px;
+        border-radius: 1rem;
+        z-index: 0;
+    }
+
+    .cam-pin {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 30px;
+        height: 30px;
+        background: #dc2626;
+        border: 2px solid #fff;
+        border-radius: 50% 50% 50% 0;
+        transform: rotate(-45deg);
+        box-shadow: 0 2px 6px rgba(0, 0, 0, .35);
+        font-size: 14px;
+    }
+
+    .cam-pin span {
+        transform: rotate(45deg);
+    }
+
+    .car-dot {
+        width: 22px;
+        height: 22px;
+        background: #2563eb;
+        border: 3px solid #fff;
+        border-radius: 50%;
+        box-shadow: 0 0 0 5px rgba(37, 99, 235, .25), 0 2px 6px rgba(0, 0, 0, .35);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #fff;
+        font-size: 9px;
+        line-height: 1;
+    }
+
+    .car-arrow {
+        transition: transform .3s linear;
+    }
+
+    .leaflet-popup-content {
+        font-family: 'Plus Jakarta Sans', sans-serif;
+        margin: 12px 14px;
+        min-width: 200px;
+    }
+
+    body.beep-flash #map {
+        outline: 6px solid rgba(220, 38, 38, .55);
+        outline-offset: -6px;
+    }
+</style>
+
+</head>
+
+<body class="">
+
+    <nav class="navbar is-white" role="navigation" aria-label="main navigation">
+    <div class="container">
+        <div class="navbar-brand">
+            <a class="navbar-item" href="../">
+                <img src="../assets/COMP_ALC.png" alt="Compiler Alchemy" style="height: 40px;">
+            </a>
+            <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navMenu">
+                <span aria-hidden="true"></span>
+                <span aria-hidden="true"></span>
+                <span aria-hidden="true"></span>
+                <span aria-hidden="true"></span>
+            </a>
+        </div>
+        <div id="navMenu" class="navbar-menu">
+            <div class="navbar-end">
+                <a class="navbar-item " href="../blog/">Blog</a>
+                <a class="navbar-item " href="../articles/">Luminotes</a>
+                <a class="navbar-item " href="../books/">Books</a>
+                <a class="navbar-item " href="../talks/">Talks</a>
+                <a class="navbar-item " href="../opensource/">OpenSource</a>
+                <a class="navbar-item " href="../journey/">Journey</a>
+                <a class="navbar-item " href="../papers/">Papers</a>
+            </div>
+        </div>
+    </div>
+</nav>
+
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const burger = document.querySelector('.navbar-burger');
+        const menu = document.querySelector('#navMenu');
+        if (burger && menu) {
+            burger.addEventListener('click', () => {
+                burger.classList.toggle('is-active');
+                menu.classList.toggle('is-active');
+            });
+        }
+    });
+</script>
+
+    
+<div class="min-h-screen py-12 px-4 sm:px-6 lg:px-8">
+    <div class="max-w-5xl mx-auto">
+
+        <div class="text-center mb-8">
+            <h1 class="text-4xl font-extrabold text-slate-900 tracking-tight sm:text-5xl mb-4">
+                Mauritius Speed Camera Map
+            </h1>
+            <p class="text-lg text-slate-600 max-w-2xl mx-auto">
+                61 fixed speed cameras with coordinates and road info.
+                Beep on by default, your car shows as a blue dot on the map, screen stays awake while on.
+            </p>
+        </div>
+
+        <div class="flex flex-wrap items-center justify-center gap-3 mb-6">
+            <a href="../"
+                class="inline-flex items-center justify-center px-6 py-3 border border-transparent text-sm font-medium rounded-xl text-emerald-700 bg-emerald-50 hover:bg-emerald-100 transition-all duration-200">
+                &larr; Visit homepage
+            </a>
+            <button id="installBtn" hidden
+                class="inline-flex items-center justify-center px-6 py-3 border border-transparent text-sm font-medium rounded-xl text-slate-700 bg-slate-100 hover:bg-slate-200 transition-all duration-200">
+                &#8681; Install app
+            </button>
+            <button id="beepBtn"
+                class="inline-flex items-center justify-center px-6 py-3 border border-transparent text-sm font-medium rounded-xl text-red-700 bg-red-50 hover:bg-red-100 transition-all duration-200">
+                &#128276; Beep: OFF
+            </button>
+            <button id="followBtn"
+                class="inline-flex items-center justify-center px-6 py-3 border border-transparent text-sm font-medium rounded-xl text-blue-700 bg-blue-50 hover:bg-blue-100 transition-all duration-200">
+                &#127919; Follow: ON
+            </button>
+            <a href="https://github.com/compileralchemy/compileralchemy.github.io/blob/source/data/fixspeedcams.json"
+                target="_blank"
+                class="inline-flex items-center justify-center px-6 py-3 border border-transparent text-sm font-medium rounded-xl text-emerald-700 bg-emerald-50 hover:bg-emerald-100 transition-all duration-200">
+                Contribute
+            </a>
+        </div>
+
+        <p id="geoStatus" class="text-center text-sm text-slate-500 mb-4 hidden"></p>
+        <p id="soundHint"
+            class="text-center text-sm font-medium text-amber-600 mb-4 hidden">&#128263; Tap anywhere once to
+            enable sound (iOS / browser rule)</p>
+
+        <div class="flex flex-col sm:flex-row gap-3 max-w-2xl mx-auto mb-6">
+            <div class="relative flex-1">
+                <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                    <svg class="h-5 w-5 text-slate-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"
+                        fill="currentColor" aria-hidden="true">
+                        <path fill-rule="evenodd"
+                            d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z"
+                            clip-rule="evenodd" />
+                    </svg>
+                </div>
+                <input type="text" id="camSearch" autocomplete="off"
+                    class="block w-full pl-10 pr-3 py-3 border border-slate-200 rounded-xl leading-5 bg-white placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-red-500/20 focus:border-red-500 sm:text-sm shadow-sm transition-all duration-200"
+                    placeholder="Search name, road, region...">
+            </div>
+            <select id="regionFilter"
+                class="py-3 px-3 border border-slate-200 rounded-xl bg-white text-sm text-slate-600 shadow-sm focus:outline-none focus:ring-2 focus:ring-red-500/20 focus:border-red-500">
+                <option value="">All regions</option>
+                
+                <option value="Eastern">Eastern</option>
+                
+                <option value="Northern">Northern</option>
+                
+                <option value="Port Louis">Port Louis</option>
+                
+                <option value="Southern">Southern</option>
+                
+                <option value="Western">Western</option>
+                
+            </select>
+        </div>
+
+        <div class="bg-white rounded-3xl shadow-xl shadow-slate-200/60 overflow-hidden border border-slate-100 mb-8">
+            <div class="p-4 border-b border-slate-100 bg-slate-50/50 flex justify-between items-center">
+                <div class="flex items-center gap-3">
+                    <div class="h-10 w-10 rounded-full bg-red-100 flex items-center justify-center text-red-600">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                            <path fill-rule="evenodd"
+                                d="M5 9V7a5 5 0 0110 0v2a2 2 0 012 2v5a2 2 0 01-2 2H5a2 2 0 01-2-2v-5a2 2 0 012-2zm8-2v2H7V7a3 3 0 016 0z"
+                                clip-rule="evenodd" />
+                        </svg>
+                    </div>
+                    <h2 class="text-lg font-bold text-slate-800">Fixed Cameras</h2>
+                </div>
+                <span id="camCount"
+                    class="bg-red-100 text-red-700 text-xs font-bold px-3 py-1.5 rounded-full uppercase tracking-wide">Showing
+                    61 of 61</span>
+            </div>
+            <div id="map"></div>
+        </div>
+
+        <div class="bg-white rounded-3xl shadow-xl shadow-slate-200/60 overflow-hidden border border-slate-100">
+            <div class="overflow-x-auto">
+                <table class="w-full text-left border-collapse">
+                    <thead>
+                        <tr
+                            class="bg-slate-50/50 border-b border-slate-200/60 text-xs uppercase tracking-wider text-slate-500 font-bold">
+                            <th class="px-6 py-4">Camera</th>
+                            <th class="px-6 py-4">Road</th>
+                            <th class="px-6 py-4">Region</th>
+                            <th class="px-6 py-4">Location</th>
+                            <th class="px-6 py-4 text-right">Coordinates</th>
+                        </tr>
+                    </thead>
+                    <tbody class="divide-y divide-slate-100" id="camTable">
+                        
+                        <tr class="hover:bg-red-50/60 transition-colors duration-200 group cursor-pointer"
+                            data-idx="0"
+                            data-region="Southern"
+                            data-text="radar 11 a10-01 southern phoenix"
+                            onclick="flyToCam(0)">
+                            <td class="px-6 py-4">
+                                <span class="font-bold text-slate-800 group-hover:text-red-700 transition-colors">Radar 11</span>
+                            </td>
+                            <td class="px-6 py-4 font-mono text-sm text-slate-600">A10-01</td>
+                            <td class="px-6 py-4">
+                                <span
+                                    class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-slate-100 text-slate-800">
+                                    Southern
+                                </span>
+                            </td>
+                            <td class="px-6 py-4 text-sm text-slate-600">PHOENIX</td>
+                            <td class="px-6 py-4 text-right font-mono text-xs text-slate-400">-20.27953056,
+                                57.50133889</td>
+                        </tr>
+                        
+                        <tr class="hover:bg-red-50/60 transition-colors duration-200 group cursor-pointer"
+                            data-idx="1"
+                            data-region="Southern"
+                            data-text="radar 25 a10-02 southern union park"
+                            onclick="flyToCam(1)">
+                            <td class="px-6 py-4">
+                                <span class="font-bold text-slate-800 group-hover:text-red-700 transition-colors">Radar 25</span>
+                            </td>
+                            <td class="px-6 py-4 font-mono text-sm text-slate-600">A10-02</td>
+                            <td class="px-6 py-4">
+                                <span
+                                    class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-slate-100 text-slate-800">
+                                    Southern
+                                </span>
+                            </td>
+                            <td class="px-6 py-4 text-sm text-slate-600">UNION PARK</td>
+                            <td class="px-6 py-4 text-right font-mono text-xs text-slate-400">-20.38733333,
+                                57.58117778</td>
+                        </tr>
+                        
+                        <tr class="hover:bg-red-50/60 transition-colors duration-200 group cursor-pointer"
+                            data-idx="2"
+                            data-region="Southern"
+                            data-text="radar 45 a10-03 southern new grove"
+                            onclick="flyToCam(2)">
+                            <td class="px-6 py-4">
+                                <span class="font-bold text-slate-800 group-hover:text-red-700 transition-colors">Radar 45</span>
+                            </td>
+                            <td class="px-6 py-4 font-mono text-sm text-slate-600">A10-03</td>
+                            <td class="px-6 py-4">
+                                <span
+                                    class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-slate-100 text-slate-800">
+                                    Southern
+                                </span>
+                            </td>
+                            <td class="px-6 py-4 text-sm text-slate-600">NEW GROVE</td>
+                            <td class="px-6 py-4 text-right font-mono text-xs text-slate-400">-20.40866944,
+                                57.61286944</td>
+                        </tr>
+                        
+                        <tr class="hover:bg-red-50/60 transition-colors duration-200 group cursor-pointer"
+                            data-idx="3"
+                            data-region="Southern"
+                            data-text="radar 52 a10-04 southern mare d'albert"
+                            onclick="flyToCam(3)">
+                            <td class="px-6 py-4">
+                                <span class="font-bold text-slate-800 group-hover:text-red-700 transition-colors">Radar 52</span>
+                            </td>
+                            <td class="px-6 py-4 font-mono text-sm text-slate-600">A10-04</td>
+                            <td class="px-6 py-4">
+                                <span
+                                    class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-slate-100 text-slate-800">
+                                    Southern
+                                </span>
+                            </td>
+                            <td class="px-6 py-4 text-sm text-slate-600">MARE D'ALBERT</td>
+                            <td class="px-6 py-4 text-right font-mono text-xs text-slate-400">-20.4281,
+                                57.64269722</td>
+                        </tr>
+                        
+                        <tr class="hover:bg-red-50/60 transition-colors duration-200 group cursor-pointer"
+                            data-idx="4"
+                            data-region="Port Louis"
+                            data-text="radar 5 a1-01 port louis grand river north west"
+                            onclick="flyToCam(4)">
+                            <td class="px-6 py-4">
+                                <span class="font-bold text-slate-800 group-hover:text-red-700 transition-colors">Radar 5</span>
+                            </td>
+                            <td class="px-6 py-4 font-mono text-sm text-slate-600">A1-01</td>
+                            <td class="px-6 py-4">
+                                <span
+                                    class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-slate-100 text-slate-800">
+                                    Port Louis
+                                </span>
+                            </td>
+                            <td class="px-6 py-4 text-sm text-slate-600">GRAND RIVER NORTH WEST</td>
+                            <td class="px-6 py-4 text-right font-mono text-xs text-slate-400">-20.17806667,
+                                57.47046111</td>
+                        </tr>
+                        
+                        <tr class="hover:bg-red-50/60 transition-colors duration-200 group cursor-pointer"
+                            data-idx="5"
+                            data-region="Western"
+                            data-text="radar 6 a1-02 western montreal coromandel"
+                            onclick="flyToCam(5)">
+                            <td class="px-6 py-4">
+                                <span class="font-bold text-slate-800 group-hover:text-red-700 transition-colors">Radar 6</span>
+                            </td>
+                            <td class="px-6 py-4 font-mono text-sm text-slate-600">A1-02</td>
+                            <td class="px-6 py-4">
+                                <span
+                                    class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-slate-100 text-slate-800">
+                                    Western
+                                </span>
+                            </td>
+                            <td class="px-6 py-4 text-sm text-slate-600">MONTREAL COROMANDEL</td>
+                            <td class="px-6 py-4 text-right font-mono text-xs text-slate-400">-20.19759722,
+                                57.46997222</td>
+                        </tr>
+                        
+                        <tr class="hover:bg-red-50/60 transition-colors duration-200 group cursor-pointer"
+                            data-idx="6"
+                            data-region="Northern"
+                            data-text="radar 7 a2-01 northern le hochet"
+                            onclick="flyToCam(6)">
+                            <td class="px-6 py-4">
+                                <span class="font-bold text-slate-800 group-hover:text-red-700 transition-colors">Radar 7</span>
+                            </td>
+                            <td class="px-6 py-4 font-mono text-sm text-slate-600">A2-01</td>
+                            <td class="px-6 py-4">
+                                <span
+                                    class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-slate-100 text-slate-800">
+                                    Northern
+                                </span>
+                            </td>
+                            <td class="px-6 py-4 text-sm text-slate-600">LE HOCHET</td>
+                            <td class="px-6 py-4 text-right font-mono text-xs text-slate-400">-20.13761944,
+                                57.5265</td>
+                        </tr>
+                        
+                        <tr class="hover:bg-red-50/60 transition-colors duration-200 group cursor-pointer"
+                            data-idx="7"
+                            data-region="Eastern"
+                            data-text="radar 17 a2-03 eastern brisee verdiere"
+                            onclick="flyToCam(7)">
+                            <td class="px-6 py-4">
+                                <span class="font-bold text-slate-800 group-hover:text-red-700 transition-colors">Radar 17</span>
+                            </td>
+                            <td class="px-6 py-4 font-mono text-sm text-slate-600">A2-03</td>
+                            <td class="px-6 py-4">
+                                <span
+                                    class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-slate-100 text-slate-800">
+                                    Eastern
+                                </span>
+                            </td>
+                            <td class="px-6 py-4 text-sm text-slate-600">BRISEE VERDIERE</td>
+                            <td class="px-6 py-4 text-right font-mono text-xs text-slate-400">-20.17251944,
+                                57.66161944</td>
+                        </tr>
+                        
+                        <tr class="hover:bg-red-50/60 transition-colors duration-200 group cursor-pointer"
+                            data-idx="8"
+                            data-region="Northern"
+                            data-text="radar 33 a2-04 northern pamplemousses"
+                            onclick="flyToCam(8)">
+                            <td class="px-6 py-4">
+                                <span class="font-bold text-slate-800 group-hover:text-red-700 transition-colors">Radar 33</span>
+                            </td>
+                            <td class="px-6 py-4 font-mono text-sm text-slate-600">A2-04</td>
+                            <td class="px-6 py-4">
+                                <span
+                                    class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-slate-100 text-slate-800">
+                                    Northern
+                                </span>
+                            </td>
+                            <td class="px-6 py-4 text-sm text-slate-600">PAMPLEMOUSSES</td>
+                            <td class="px-6 py-4 text-right font-mono text-xs text-slate-400">-20.11296944,
+                                57.58621944</td>
+                        </tr>
+                        
+                        <tr class="hover:bg-red-50/60 transition-colors duration-200 group cursor-pointer"
+                            data-idx="9"
+                            data-region="Northern"
+                            data-text="radar 47 a2-05 northern callebasses"
+                            onclick="flyToCam(9)">
+                            <td class="px-6 py-4">
+                                <span class="font-bold text-slate-800 group-hover:text-red-700 transition-colors">Radar 47</span>
+                            </td>
+                            <td class="px-6 py-4 font-mono text-sm text-slate-600">A2-05</td>
+                            <td class="px-6 py-4">
+                                <span
+                                    class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-slate-100 text-slate-800">
+                                    Northern
+                                </span>
+                            </td>
+                            <td class="px-6 py-4 text-sm text-slate-600">CALLEBASSES</td>
+                            <td class="px-6 py-4 text-right font-mono text-xs text-slate-400">-20.11388056,
+                                57.562</td>
+                        </tr>
+                        
+                        <tr class="hover:bg-red-50/60 transition-colors duration-200 group cursor-pointer"
+                            data-idx="10"
+                            data-region="Eastern"
+                            data-text="radar 42 a2-06 eastern mare d'australia"
+                            onclick="flyToCam(10)">
+                            <td class="px-6 py-4">
+                                <span class="font-bold text-slate-800 group-hover:text-red-700 transition-colors">Radar 42</span>
+                            </td>
+                            <td class="px-6 py-4 font-mono text-sm text-slate-600">A2-06</td>
+                            <td class="px-6 py-4">
+                                <span
+                                    class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-slate-100 text-slate-800">
+                                    Eastern
+                                </span>
+                            </td>
+                            <td class="px-6 py-4 text-sm text-slate-600">MARE D'AUSTRALIA</td>
+                            <td class="px-6 py-4 text-right font-mono text-xs text-slate-400">-20.15461944,
+                                57.64696944</td>
+                        </tr>
+                        
+                        <tr class="hover:bg-red-50/60 transition-colors duration-200 group cursor-pointer"
+                            data-idx="11"
+                            data-region="Northern"
+                            data-text="radar 50 a2-07 northern terre rouge, melle laure"
+                            onclick="flyToCam(11)">
+                            <td class="px-6 py-4">
+                                <span class="font-bold text-slate-800 group-hover:text-red-700 transition-colors">Radar 50</span>
+                            </td>
+                            <td class="px-6 py-4 font-mono text-sm text-slate-600">A2-07</td>
+                            <td class="px-6 py-4">
+                                <span
+                                    class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-slate-100 text-slate-800">
+                                    Northern
+                                </span>
+                            </td>
+                            <td class="px-6 py-4 text-sm text-slate-600">TERRE ROUGE, MELLE LAURE</td>
+                            <td class="px-6 py-4 text-right font-mono text-xs text-slate-400">-20.12618889,
+                                57.54338056</td>
+                        </tr>
+                        
+                        <tr class="hover:bg-red-50/60 transition-colors duration-200 group cursor-pointer"
+                            data-idx="12"
+                            data-region="Western"
+                            data-text="radar 10 a3-01 western petite riviere"
+                            onclick="flyToCam(12)">
+                            <td class="px-6 py-4">
+                                <span class="font-bold text-slate-800 group-hover:text-red-700 transition-colors">Radar 10</span>
+                            </td>
+                            <td class="px-6 py-4 font-mono text-sm text-slate-600">A3-01</td>
+                            <td class="px-6 py-4">
+                                <span
+                                    class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-slate-100 text-slate-800">
+                                    Western
+                                </span>
+                            </td>
+                            <td class="px-6 py-4 text-sm text-slate-600">PETITE RIVIERE</td>
+                            <td class="px-6 py-4 text-right font-mono text-xs text-slate-400">-20.19793056,
+                                57.44476111</td>
+                        </tr>
+                        
+                        <tr class="hover:bg-red-50/60 transition-colors duration-200 group cursor-pointer"
+                            data-idx="13"
+                            data-region="Western"
+                            data-text="radar 9 a3-02 western la ferme bambous"
+                            onclick="flyToCam(13)">
+                            <td class="px-6 py-4">
+                                <span class="font-bold text-slate-800 group-hover:text-red-700 transition-colors">Radar 9</span>
+                            </td>
+                            <td class="px-6 py-4 font-mono text-sm text-slate-600">A3-02</td>
+                            <td class="px-6 py-4">
+                                <span
+                                    class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-slate-100 text-slate-800">
+                                    Western
+                                </span>
+                            </td>
+                            <td class="px-6 py-4 text-sm text-slate-600">LA FERME BAMBOUS</td>
+                            <td class="px-6 py-4 text-right font-mono text-xs text-slate-400">-20.24781111,
+                                57.42071944</td>
+                        </tr>
+                        
+                        <tr class="hover:bg-red-50/60 transition-colors duration-200 group cursor-pointer"
+                            data-idx="14"
+                            data-region="Western"
+                            data-text="radar 8 a3-03 western medine bambous"
+                            onclick="flyToCam(14)">
+                            <td class="px-6 py-4">
+                                <span class="font-bold text-slate-800 group-hover:text-red-700 transition-colors">Radar 8</span>
+                            </td>
+                            <td class="px-6 py-4 font-mono text-sm text-slate-600">A3-03</td>
+                            <td class="px-6 py-4">
+                                <span
+                                    class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-slate-100 text-slate-800">
+                                    Western
+                                </span>
+                            </td>
+                            <td class="px-6 py-4 text-sm text-slate-600">MEDINE BAMBOUS</td>
+                            <td class="px-6 py-4 text-right font-mono text-xs text-slate-400">-20.26103889,
+                                57.40756944</td>
+                        </tr>
+                        
+                        <tr class="hover:bg-red-50/60 transition-colors duration-200 group cursor-pointer"
+                            data-idx="15"
+                            data-region="Western"
+                            data-text="radar 27 a3-04r western xavier near casela"
+                            onclick="flyToCam(15)">
+                            <td class="px-6 py-4">
+                                <span class="font-bold text-slate-800 group-hover:text-red-700 transition-colors">Radar 27</span>
+                            </td>
+                            <td class="px-6 py-4 font-mono text-sm text-slate-600">A3-04R</td>
+                            <td class="px-6 py-4">
+                                <span
+                                    class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-slate-100 text-slate-800">
+                                    Western
+                                </span>
+                            </td>
+                            <td class="px-6 py-4 text-sm text-slate-600">XAVIER NEAR CASELA</td>
+                            <td class="px-6 py-4 text-right font-mono text-xs text-slate-400">-20.28918056,
+                                57.40265</td>
+                        </tr>
+                        
+                        <tr class="hover:bg-red-50/60 transition-colors duration-200 group cursor-pointer"
+                            data-idx="16"
+                            data-region="Western"
+                            data-text="radar 40 a3-05 western la balise black river"
+                            onclick="flyToCam(16)">
+                            <td class="px-6 py-4">
+                                <span class="font-bold text-slate-800 group-hover:text-red-700 transition-colors">Radar 40</span>
+                            </td>
+                            <td class="px-6 py-4 font-mono text-sm text-slate-600">A3-05</td>
+                            <td class="px-6 py-4">
+                                <span
+                                    class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-slate-100 text-slate-800">
+                                    Western
+                                </span>
+                            </td>
+                            <td class="px-6 py-4 text-sm text-slate-600">LA BALISE BLACK RIVER</td>
+                            <td class="px-6 py-4 text-right font-mono text-xs text-slate-400">-20.36225,
+                                57.37586944</td>
+                        </tr>
+                        
+                        <tr class="hover:bg-red-50/60 transition-colors duration-200 group cursor-pointer"
+                            data-idx="17"
+                            data-region="Western"
+                            data-text="radar 39 a3-06 western richelieu"
+                            onclick="flyToCam(17)">
+                            <td class="px-6 py-4">
+                                <span class="font-bold text-slate-800 group-hover:text-red-700 transition-colors">Radar 39</span>
+                            </td>
+                            <td class="px-6 py-4 font-mono text-sm text-slate-600">A3-06</td>
+                            <td class="px-6 py-4">
+                                <span
+                                    class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-slate-100 text-slate-800">
+                                    Western
+                                </span>
+                            </td>
+                            <td class="px-6 py-4 text-sm text-slate-600">RICHELIEU</td>
+                            <td class="px-6 py-4 text-right font-mono text-xs text-slate-400">-20.18441111,
+                                57.46233056</td>
+                        </tr>
+                        
+                        <tr class="hover:bg-red-50/60 transition-colors duration-200 group cursor-pointer"
+                            data-idx="18"
+                            data-region="Western"
+                            data-text="radar 56 a3-07 western case noyale"
+                            onclick="flyToCam(18)">
+                            <td class="px-6 py-4">
+                                <span class="font-bold text-slate-800 group-hover:text-red-700 transition-colors">Radar 56</span>
+                            </td>
+                            <td class="px-6 py-4 font-mono text-sm text-slate-600">A3-07</td>
+                            <td class="px-6 py-4">
+                                <span
+                                    class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-slate-100 text-slate-800">
+                                    Western
+                                </span>
+                            </td>
+                            <td class="px-6 py-4 text-sm text-slate-600">CASE NOYALE</td>
+                            <td class="px-6 py-4 text-right font-mono text-xs text-slate-400">-20.40754167,
+                                57.36938889</td>
+                        </tr>
+                        
+                        <tr class="hover:bg-red-50/60 transition-colors duration-200 group cursor-pointer"
+                            data-idx="19"
+                            data-region="Northern"
+                            data-text="radar 18 a4-01 northern triolet"
+                            onclick="flyToCam(19)">
+                            <td class="px-6 py-4">
+                                <span class="font-bold text-slate-800 group-hover:text-red-700 transition-colors">Radar 18</span>
+                            </td>
+                            <td class="px-6 py-4 font-mono text-sm text-slate-600">A4-01</td>
+                            <td class="px-6 py-4">
+                                <span
+                                    class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-slate-100 text-slate-800">
+                                    Northern
+                                </span>
+                            </td>
+                            <td class="px-6 py-4 text-sm text-slate-600">TRIOLET</td>
+                            <td class="px-6 py-4 text-right font-mono text-xs text-slate-400">-20.03968056,
+                                57.56081944</td>
+                        </tr>
+                        
+                        <tr class="hover:bg-red-50/60 transition-colors duration-200 group cursor-pointer"
+                            data-idx="20"
+                            data-region="Northern"
+                            data-text="radar 48 a4-02 northern arsenal"
+                            onclick="flyToCam(20)">
+                            <td class="px-6 py-4">
+                                <span class="font-bold text-slate-800 group-hover:text-red-700 transition-colors">Radar 48</span>
+                            </td>
+                            <td class="px-6 py-4 font-mono text-sm text-slate-600">A4-02</td>
+                            <td class="px-6 py-4">
+                                <span
+                                    class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-slate-100 text-slate-800">
+                                    Northern
+                                </span>
+                            </td>
+                            <td class="px-6 py-4 text-sm text-slate-600">ARSENAL</td>
+                            <td class="px-6 py-4 text-right font-mono text-xs text-slate-400">-20.11525,
+                                57.53466944</td>
+                        </tr>
+                        
+                        <tr class="hover:bg-red-50/60 transition-colors duration-200 group cursor-pointer"
+                            data-idx="21"
+                            data-region="Eastern"
+                            data-text="radar 15 a7-01 eastern camp garreau - boulet rouge"
+                            onclick="flyToCam(21)">
+                            <td class="px-6 py-4">
+                                <span class="font-bold text-slate-800 group-hover:text-red-700 transition-colors">Radar 15</span>
+                            </td>
+                            <td class="px-6 py-4 font-mono text-sm text-slate-600">A7-01</td>
+                            <td class="px-6 py-4">
+                                <span
+                                    class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-slate-100 text-slate-800">
+                                    Eastern
+                                </span>
+                            </td>
+                            <td class="px-6 py-4 text-sm text-slate-600">CAMP GARREAU - BOULET ROUGE</td>
+                            <td class="px-6 py-4 text-right font-mono text-xs text-slate-400">-20.20203889,
+                                57.71933889</td>
+                        </tr>
+                        
+                        <tr class="hover:bg-red-50/60 transition-colors duration-200 group cursor-pointer"
+                            data-idx="22"
+                            data-region="Eastern"
+                            data-text="radar 31 a7-02 eastern bonne mere - flacq"
+                            onclick="flyToCam(22)">
+                            <td class="px-6 py-4">
+                                <span class="font-bold text-slate-800 group-hover:text-red-700 transition-colors">Radar 31</span>
+                            </td>
+                            <td class="px-6 py-4 font-mono text-sm text-slate-600">A7-02</td>
+                            <td class="px-6 py-4">
+                                <span
+                                    class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-slate-100 text-slate-800">
+                                    Eastern
+                                </span>
+                            </td>
+                            <td class="px-6 py-4 text-sm text-slate-600">BONNE MERE - FLACQ</td>
+                            <td class="px-6 py-4 text-right font-mono text-xs text-slate-400">-20.21453889,
+                                57.70046111</td>
+                        </tr>
+                        
+                        <tr class="hover:bg-red-50/60 transition-colors duration-200 group cursor-pointer"
+                            data-idx="23"
+                            data-region="Eastern"
+                            data-text="radar 20 a7-03 eastern camp de masque"
+                            onclick="flyToCam(23)">
+                            <td class="px-6 py-4">
+                                <span class="font-bold text-slate-800 group-hover:text-red-700 transition-colors">Radar 20</span>
+                            </td>
+                            <td class="px-6 py-4 font-mono text-sm text-slate-600">A7-03</td>
+                            <td class="px-6 py-4">
+                                <span
+                                    class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-slate-100 text-slate-800">
+                                    Eastern
+                                </span>
+                            </td>
+                            <td class="px-6 py-4 text-sm text-slate-600">CAMP DE MASQUE</td>
+                            <td class="px-6 py-4 text-right font-mono text-xs text-slate-400">-20.23423889,
+                                57.67546111</td>
+                        </tr>
+                        
+                        <tr class="hover:bg-red-50/60 transition-colors duration-200 group cursor-pointer"
+                            data-idx="24"
+                            data-region="Eastern"
+                            data-text="radar 22 a7-04 eastern verdun"
+                            onclick="flyToCam(24)">
+                            <td class="px-6 py-4">
+                                <span class="font-bold text-slate-800 group-hover:text-red-700 transition-colors">Radar 22</span>
+                            </td>
+                            <td class="px-6 py-4 font-mono text-sm text-slate-600">A7-04</td>
+                            <td class="px-6 py-4">
+                                <span
+                                    class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-slate-100 text-slate-800">
+                                    Eastern
+                                </span>
+                            </td>
+                            <td class="px-6 py-4 text-sm text-slate-600">VERDUN</td>
+                            <td class="px-6 py-4 text-right font-mono text-xs text-slate-400">-20.23178889,
+                                57.55221944</td>
+                        </tr>
+                        
+                        <tr class="hover:bg-red-50/60 transition-colors duration-200 group cursor-pointer"
+                            data-idx="25"
+                            data-region="Southern"
+                            data-text="radar 38 a9-01 southern la flora"
+                            onclick="flyToCam(25)">
+                            <td class="px-6 py-4">
+                                <span class="font-bold text-slate-800 group-hover:text-red-700 transition-colors">Radar 38</span>
+                            </td>
+                            <td class="px-6 py-4 font-mono text-sm text-slate-600">A9-01</td>
+                            <td class="px-6 py-4">
+                                <span
+                                    class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-slate-100 text-slate-800">
+                                    Southern
+                                </span>
+                            </td>
+                            <td class="px-6 py-4 text-sm text-slate-600">LA FLORA</td>
+                            <td class="px-6 py-4 text-right font-mono text-xs text-slate-400">-20.41515,
+                                57.56251944</td>
+                        </tr>
+                        
+                        <tr class="hover:bg-red-50/60 transition-colors duration-200 group cursor-pointer"
+                            data-idx="26"
+                            data-region="Southern"
+                            data-text="radar 24 a9-02 southern beau climat"
+                            onclick="flyToCam(26)">
+                            <td class="px-6 py-4">
+                                <span class="font-bold text-slate-800 group-hover:text-red-700 transition-colors">Radar 24</span>
+                            </td>
+                            <td class="px-6 py-4 font-mono text-sm text-slate-600">A9-02</td>
+                            <td class="px-6 py-4">
+                                <span
+                                    class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-slate-100 text-slate-800">
+                                    Southern
+                                </span>
+                            </td>
+                            <td class="px-6 py-4 text-sm text-slate-600">BEAU CLIMAT</td>
+                            <td class="px-6 py-4 text-right font-mono text-xs text-slate-400">-20.40208056,
+                                57.56628889</td>
+                        </tr>
+                        
+                        <tr class="hover:bg-red-50/60 transition-colors duration-200 group cursor-pointer"
+                            data-idx="27"
+                            data-region="Northern"
+                            data-text="radar 49 b12-01 northern vale"
+                            onclick="flyToCam(27)">
+                            <td class="px-6 py-4">
+                                <span class="font-bold text-slate-800 group-hover:text-red-700 transition-colors">Radar 49</span>
+                            </td>
+                            <td class="px-6 py-4 font-mono text-sm text-slate-600">B12-01</td>
+                            <td class="px-6 py-4">
+                                <span
+                                    class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-slate-100 text-slate-800">
+                                    Northern
+                                </span>
+                            </td>
+                            <td class="px-6 py-4 text-sm text-slate-600">VALE</td>
+                            <td class="px-6 py-4 text-right font-mono text-xs text-slate-400">-20.02971111,
+                                57.60803056</td>
+                        </tr>
+                        
+                        <tr class="hover:bg-red-50/60 transition-colors duration-200 group cursor-pointer"
+                            data-idx="28"
+                            data-region="Western"
+                            data-text="radar 26 b130-01 western beau songes road"
+                            onclick="flyToCam(28)">
+                            <td class="px-6 py-4">
+                                <span class="font-bold text-slate-800 group-hover:text-red-700 transition-colors">Radar 26</span>
+                            </td>
+                            <td class="px-6 py-4 font-mono text-sm text-slate-600">B130-01</td>
+                            <td class="px-6 py-4">
+                                <span
+                                    class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-slate-100 text-slate-800">
+                                    Western
+                                </span>
+                            </td>
+                            <td class="px-6 py-4 text-sm text-slate-600">BEAU SONGES ROAD</td>
+                            <td class="px-6 py-4 text-right font-mono text-xs text-slate-400">-20.28021944,
+                                57.4195</td>
+                        </tr>
+                        
+                        <tr class="hover:bg-red-50/60 transition-colors duration-200 group cursor-pointer"
+                            data-idx="29"
+                            data-region="Western"
+                            data-text="radar 61 b130-02 western solferino"
+                            onclick="flyToCam(29)">
+                            <td class="px-6 py-4">
+                                <span class="font-bold text-slate-800 group-hover:text-red-700 transition-colors">Radar 61</span>
+                            </td>
+                            <td class="px-6 py-4 font-mono text-sm text-slate-600">B130-02</td>
+                            <td class="px-6 py-4">
+                                <span
+                                    class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-slate-100 text-slate-800">
+                                    Western
+                                </span>
+                            </td>
+                            <td class="px-6 py-4 text-sm text-slate-600">SOLFERINO</td>
+                            <td class="px-6 py-4 text-right font-mono text-xs text-slate-400">-20.288569,
+                                57.46931</td>
+                        </tr>
+                        
+                        <tr class="hover:bg-red-50/60 transition-colors duration-200 group cursor-pointer"
+                            data-idx="30"
+                            data-region="Northern"
+                            data-text="radar 43 b162 northern schoenfeld riv. du rempart"
+                            onclick="flyToCam(30)">
+                            <td class="px-6 py-4">
+                                <span class="font-bold text-slate-800 group-hover:text-red-700 transition-colors">Radar 43</span>
+                            </td>
+                            <td class="px-6 py-4 font-mono text-sm text-slate-600">B162</td>
+                            <td class="px-6 py-4">
+                                <span
+                                    class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-slate-100 text-slate-800">
+                                    Northern
+                                </span>
+                            </td>
+                            <td class="px-6 py-4 text-sm text-slate-600">SCHOENFELD RIV. DU REMPART</td>
+                            <td class="px-6 py-4 text-right font-mono text-xs text-slate-400">-20.10055,
+                                57.68661944</td>
+                        </tr>
+                        
+                        <tr class="hover:bg-red-50/60 transition-colors duration-200 group cursor-pointer"
+                            data-idx="31"
+                            data-region="Northern"
+                            data-text="radar 36 b17-01 northern piton"
+                            onclick="flyToCam(31)">
+                            <td class="px-6 py-4">
+                                <span class="font-bold text-slate-800 group-hover:text-red-700 transition-colors">Radar 36</span>
+                            </td>
+                            <td class="px-6 py-4 font-mono text-sm text-slate-600">B17-01</td>
+                            <td class="px-6 py-4">
+                                <span
+                                    class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-slate-100 text-slate-800">
+                                    Northern
+                                </span>
+                            </td>
+                            <td class="px-6 py-4 text-sm text-slate-600">PITON</td>
+                            <td class="px-6 py-4 text-right font-mono text-xs text-slate-400">-20.09551944,
+                                57.6317</td>
+                        </tr>
+                        
+                        <tr class="hover:bg-red-50/60 transition-colors duration-200 group cursor-pointer"
+                            data-idx="32"
+                            data-region="Northern"
+                            data-text="radar 58 b20-01 northern depinay"
+                            onclick="flyToCam(32)">
+                            <td class="px-6 py-4">
+                                <span class="font-bold text-slate-800 group-hover:text-red-700 transition-colors">Radar 58</span>
+                            </td>
+                            <td class="px-6 py-4 font-mono text-sm text-slate-600">B20-01</td>
+                            <td class="px-6 py-4">
+                                <span
+                                    class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-slate-100 text-slate-800">
+                                    Northern
+                                </span>
+                            </td>
+                            <td class="px-6 py-4 text-sm text-slate-600">DEPINAY</td>
+                            <td class="px-6 py-4 text-right font-mono text-xs text-slate-400">-20.12895,
+                                57.59555</td>
+                        </tr>
+                        
+                        <tr class="hover:bg-red-50/60 transition-colors duration-200 group cursor-pointer"
+                            data-idx="33"
+                            data-region="Eastern"
+                            data-text="radar 4 b22 eastern laventure"
+                            onclick="flyToCam(33)">
+                            <td class="px-6 py-4">
+                                <span class="font-bold text-slate-800 group-hover:text-red-700 transition-colors">Radar 4</span>
+                            </td>
+                            <td class="px-6 py-4 font-mono text-sm text-slate-600">B22</td>
+                            <td class="px-6 py-4">
+                                <span
+                                    class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-slate-100 text-slate-800">
+                                    Eastern
+                                </span>
+                            </td>
+                            <td class="px-6 py-4 text-sm text-slate-600">LAVENTURE</td>
+                            <td class="px-6 py-4 text-right font-mono text-xs text-slate-400">-20.143047,
+                                57.691571</td>
+                        </tr>
+                        
+                        <tr class="hover:bg-red-50/60 transition-colors duration-200 group cursor-pointer"
+                            data-idx="34"
+                            data-region="Eastern"
+                            data-text="radar 16 b23-01 eastern st julien village"
+                            onclick="flyToCam(34)">
+                            <td class="px-6 py-4">
+                                <span class="font-bold text-slate-800 group-hover:text-red-700 transition-colors">Radar 16</span>
+                            </td>
+                            <td class="px-6 py-4 font-mono text-sm text-slate-600">B23-01</td>
+                            <td class="px-6 py-4">
+                                <span
+                                    class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-slate-100 text-slate-800">
+                                    Eastern
+                                </span>
+                            </td>
+                            <td class="px-6 py-4 text-sm text-slate-600">ST JULIEN VILLAGE</td>
+                            <td class="px-6 py-4 text-right font-mono text-xs text-slate-400">-20.20293889,
+                                57.67223889</td>
+                        </tr>
+                        
+                        <tr class="hover:bg-red-50/60 transition-colors duration-200 group cursor-pointer"
+                            data-idx="35"
+                            data-region="Eastern"
+                            data-text="radar 21 b23-02 eastern belveder"
+                            onclick="flyToCam(35)">
+                            <td class="px-6 py-4">
+                                <span class="font-bold text-slate-800 group-hover:text-red-700 transition-colors">Radar 21</span>
+                            </td>
+                            <td class="px-6 py-4 font-mono text-sm text-slate-600">B23-02</td>
+                            <td class="px-6 py-4">
+                                <span
+                                    class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-slate-100 text-slate-800">
+                                    Eastern
+                                </span>
+                            </td>
+                            <td class="px-6 py-4 text-sm text-slate-600">BELVEDER</td>
+                            <td class="px-6 py-4 text-right font-mono text-xs text-slate-400">-20.18343056,
+                                57.66438889</td>
+                        </tr>
+                        
+                        <tr class="hover:bg-red-50/60 transition-colors duration-200 group cursor-pointer"
+                            data-idx="36"
+                            data-region="Eastern"
+                            data-text="radar 32 b23-03 eastern poste de flacq"
+                            onclick="flyToCam(36)">
+                            <td class="px-6 py-4">
+                                <span class="font-bold text-slate-800 group-hover:text-red-700 transition-colors">Radar 32</span>
+                            </td>
+                            <td class="px-6 py-4 font-mono text-sm text-slate-600">B23-03</td>
+                            <td class="px-6 py-4">
+                                <span
+                                    class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-slate-100 text-slate-800">
+                                    Eastern
+                                </span>
+                            </td>
+                            <td class="px-6 py-4 text-sm text-slate-600">POSTE DE FLACQ</td>
+                            <td class="px-6 py-4 text-right font-mono text-xs text-slate-400">-20.17136944,
+                                57.73008889</td>
+                        </tr>
+                        
+                        <tr class="hover:bg-red-50/60 transition-colors duration-200 group cursor-pointer"
+                            data-idx="37"
+                            data-region="Eastern"
+                            data-text="radar 41 b24-01 eastern st julien d'hotman"
+                            onclick="flyToCam(37)">
+                            <td class="px-6 py-4">
+                                <span class="font-bold text-slate-800 group-hover:text-red-700 transition-colors">Radar 41</span>
+                            </td>
+                            <td class="px-6 py-4 font-mono text-sm text-slate-600">B24-01</td>
+                            <td class="px-6 py-4">
+                                <span
+                                    class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-slate-100 text-slate-800">
+                                    Eastern
+                                </span>
+                            </td>
+                            <td class="px-6 py-4 text-sm text-slate-600">ST JULIEN D'HOTMAN</td>
+                            <td class="px-6 py-4 text-right font-mono text-xs text-slate-400">-20.23016111,
+                                57.63968056</td>
+                        </tr>
+                        
+                        <tr class="hover:bg-red-50/60 transition-colors duration-200 group cursor-pointer"
+                            data-idx="38"
+                            data-region="Eastern"
+                            data-text="radar 19 b28-01 eastern ecroignard, near bel air"
+                            onclick="flyToCam(38)">
+                            <td class="px-6 py-4">
+                                <span class="font-bold text-slate-800 group-hover:text-red-700 transition-colors">Radar 19</span>
+                            </td>
+                            <td class="px-6 py-4 font-mono text-sm text-slate-600">B28-01</td>
+                            <td class="px-6 py-4">
+                                <span
+                                    class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-slate-100 text-slate-800">
+                                    Eastern
+                                </span>
+                            </td>
+                            <td class="px-6 py-4 text-sm text-slate-600">ECROIGNARD, NEAR BEL AIR</td>
+                            <td class="px-6 py-4 text-right font-mono text-xs text-slate-400">-20.23406111,
+                                57.74561944</td>
+                        </tr>
+                        
+                        <tr class="hover:bg-red-50/60 transition-colors duration-200 group cursor-pointer"
+                            data-idx="39"
+                            data-region="Western"
+                            data-text="radar 53 b3-02 western bonne terre vacoas"
+                            onclick="flyToCam(39)">
+                            <td class="px-6 py-4">
+                                <span class="font-bold text-slate-800 group-hover:text-red-700 transition-colors">Radar 53</span>
+                            </td>
+                            <td class="px-6 py-4 font-mono text-sm text-slate-600">B3-02</td>
+                            <td class="px-6 py-4">
+                                <span
+                                    class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-slate-100 text-slate-800">
+                                    Western
+                                </span>
+                            </td>
+                            <td class="px-6 py-4 text-sm text-slate-600">BONNE TERRE VACOAS</td>
+                            <td class="px-6 py-4 text-right font-mono text-xs text-slate-400">-20.29448889,
+                                57.48311944</td>
+                        </tr>
+                        
+                        <tr class="hover:bg-red-50/60 transition-colors duration-200 group cursor-pointer"
+                            data-idx="40"
+                            data-region="Western"
+                            data-text="radar 59 b32-01 western intendance st, p-louis"
+                            onclick="flyToCam(40)">
+                            <td class="px-6 py-4">
+                                <span class="font-bold text-slate-800 group-hover:text-red-700 transition-colors">Radar 59</span>
+                            </td>
+                            <td class="px-6 py-4 font-mono text-sm text-slate-600">B32-01</td>
+                            <td class="px-6 py-4">
+                                <span
+                                    class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-slate-100 text-slate-800">
+                                    Western
+                                </span>
+                            </td>
+                            <td class="px-6 py-4 text-sm text-slate-600">INTENDANCE ST, P-LOUIS</td>
+                            <td class="px-6 py-4 text-right font-mono text-xs text-slate-400">-20.16301111,
+                                57.50304444</td>
+                        </tr>
+                        
+                        <tr class="hover:bg-red-50/60 transition-colors duration-200 group cursor-pointer"
+                            data-idx="41"
+                            data-region="Southern"
+                            data-text="radar 57 b34-02 southern flic en flac"
+                            onclick="flyToCam(41)">
+                            <td class="px-6 py-4">
+                                <span class="font-bold text-slate-800 group-hover:text-red-700 transition-colors">Radar 57</span>
+                            </td>
+                            <td class="px-6 py-4 font-mono text-sm text-slate-600">B34-02</td>
+                            <td class="px-6 py-4">
+                                <span
+                                    class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-slate-100 text-slate-800">
+                                    Southern
+                                </span>
+                            </td>
+                            <td class="px-6 py-4 text-sm text-slate-600">FLIC EN FLAC</td>
+                            <td class="px-6 py-4 text-right font-mono text-xs text-slate-400">-20.278325,
+                                57.39016944</td>
+                        </tr>
+                        
+                        <tr class="hover:bg-red-50/60 transition-colors duration-200 group cursor-pointer"
+                            data-idx="42"
+                            data-region="Northern"
+                            data-text="radar 12 b4-01 northern st paul"
+                            onclick="flyToCam(42)">
+                            <td class="px-6 py-4">
+                                <span class="font-bold text-slate-800 group-hover:text-red-700 transition-colors">Radar 12</span>
+                            </td>
+                            <td class="px-6 py-4 font-mono text-sm text-slate-600">B4-01</td>
+                            <td class="px-6 py-4">
+                                <span
+                                    class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-slate-100 text-slate-800">
+                                    Northern
+                                </span>
+                            </td>
+                            <td class="px-6 py-4 text-sm text-slate-600">ST PAUL</td>
+                            <td class="px-6 py-4 text-right font-mono text-xs text-slate-400">-20.2922,
+                                57.50598056</td>
+                        </tr>
+                        
+                        <tr class="hover:bg-red-50/60 transition-colors duration-200 group cursor-pointer"
+                            data-idx="43"
+                            data-region="Southern"
+                            data-text="radar 35 b42-01 southern poudre d'or hamlet"
+                            onclick="flyToCam(43)">
+                            <td class="px-6 py-4">
+                                <span class="font-bold text-slate-800 group-hover:text-red-700 transition-colors">Radar 35</span>
+                            </td>
+                            <td class="px-6 py-4 font-mono text-sm text-slate-600">B42-01</td>
+                            <td class="px-6 py-4">
+                                <span
+                                    class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-slate-100 text-slate-800">
+                                    Southern
+                                </span>
+                            </td>
+                            <td class="px-6 py-4 text-sm text-slate-600">POUDRE D'OR HAMLET</td>
+                            <td class="px-6 py-4 text-right font-mono text-xs text-slate-400">-20.0762,
+                                57.64876944</td>
+                        </tr>
+                        
+                        <tr class="hover:bg-red-50/60 transition-colors duration-200 group cursor-pointer"
+                            data-idx="44"
+                            data-region="Southern"
+                            data-text="radar 34 b5-01 southern mangalkhan floreal"
+                            onclick="flyToCam(44)">
+                            <td class="px-6 py-4">
+                                <span class="font-bold text-slate-800 group-hover:text-red-700 transition-colors">Radar 34</span>
+                            </td>
+                            <td class="px-6 py-4 font-mono text-sm text-slate-600">B5-01</td>
+                            <td class="px-6 py-4">
+                                <span
+                                    class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-slate-100 text-slate-800">
+                                    Southern
+                                </span>
+                            </td>
+                            <td class="px-6 py-4 text-sm text-slate-600">MANGALKHAN FLOREAL</td>
+                            <td class="px-6 py-4 text-right font-mono text-xs text-slate-400">-20.30273889,
+                                57.50506944</td>
+                        </tr>
+                        
+                        <tr class="hover:bg-red-50/60 transition-colors duration-200 group cursor-pointer"
+                            data-idx="45"
+                            data-region="Southern"
+                            data-text="radar 14 b63-01 southern curepipe"
+                            onclick="flyToCam(45)">
+                            <td class="px-6 py-4">
+                                <span class="font-bold text-slate-800 group-hover:text-red-700 transition-colors">Radar 14</span>
+                            </td>
+                            <td class="px-6 py-4 font-mono text-sm text-slate-600">B63-01</td>
+                            <td class="px-6 py-4">
+                                <span
+                                    class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-slate-100 text-slate-800">
+                                    Southern
+                                </span>
+                            </td>
+                            <td class="px-6 py-4 text-sm text-slate-600">CUREPIPE</td>
+                            <td class="px-6 py-4 text-right font-mono text-xs text-slate-400">-20.30863889,
+                                57.51516944</td>
+                        </tr>
+                        
+                        <tr class="hover:bg-red-50/60 transition-colors duration-200 group cursor-pointer"
+                            data-idx="46"
+                            data-region="Southern"
+                            data-text="radar 13 b63-02 southern sadally"
+                            onclick="flyToCam(46)">
+                            <td class="px-6 py-4">
+                                <span class="font-bold text-slate-800 group-hover:text-red-700 transition-colors">Radar 13</span>
+                            </td>
+                            <td class="px-6 py-4 font-mono text-sm text-slate-600">B63-02</td>
+                            <td class="px-6 py-4">
+                                <span
+                                    class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-slate-100 text-slate-800">
+                                    Southern
+                                </span>
+                            </td>
+                            <td class="px-6 py-4 text-sm text-slate-600">SADALLY</td>
+                            <td class="px-6 py-4 text-right font-mono text-xs text-slate-400">-20.3022,
+                                57.49611111</td>
+                        </tr>
+                        
+                        <tr class="hover:bg-red-50/60 transition-colors duration-200 group cursor-pointer"
+                            data-idx="47"
+                            data-region="Southern"
+                            data-text="radar 60 b8 southern trois boutique"
+                            onclick="flyToCam(47)">
+                            <td class="px-6 py-4">
+                                <span class="font-bold text-slate-800 group-hover:text-red-700 transition-colors">Radar 60</span>
+                            </td>
+                            <td class="px-6 py-4 font-mono text-sm text-slate-600">B8</td>
+                            <td class="px-6 py-4">
+                                <span
+                                    class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-slate-100 text-slate-800">
+                                    Southern
+                                </span>
+                            </td>
+                            <td class="px-6 py-4 text-sm text-slate-600">TROIS BOUTIQUE</td>
+                            <td class="px-6 py-4 text-right font-mono text-xs text-slate-400">-20.461332,
+                                57.625509</td>
+                        </tr>
+                        
+                        <tr class="hover:bg-red-50/60 transition-colors duration-200 group cursor-pointer"
+                            data-idx="48"
+                            data-region="Southern"
+                            data-text="radar 51 b69-01 southern nalletamby phoenix"
+                            onclick="flyToCam(48)">
+                            <td class="px-6 py-4">
+                                <span class="font-bold text-slate-800 group-hover:text-red-700 transition-colors">Radar 51</span>
+                            </td>
+                            <td class="px-6 py-4 font-mono text-sm text-slate-600">B69-01</td>
+                            <td class="px-6 py-4">
+                                <span
+                                    class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-slate-100 text-slate-800">
+                                    Southern
+                                </span>
+                            </td>
+                            <td class="px-6 py-4 text-sm text-slate-600">NALLETAMBY PHOENIX</td>
+                            <td class="px-6 py-4 text-right font-mono text-xs text-slate-400">-20.27958889,
+                                57.49728889</td>
+                        </tr>
+                        
+                        <tr class="hover:bg-red-50/60 transition-colors duration-200 group cursor-pointer"
+                            data-idx="49"
+                            data-region="Southern"
+                            data-text="radar 44 b8-01 southern la sourdine l'escalier"
+                            onclick="flyToCam(49)">
+                            <td class="px-6 py-4">
+                                <span class="font-bold text-slate-800 group-hover:text-red-700 transition-colors">Radar 44</span>
+                            </td>
+                            <td class="px-6 py-4 font-mono text-sm text-slate-600">B8-01</td>
+                            <td class="px-6 py-4">
+                                <span
+                                    class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-slate-100 text-slate-800">
+                                    Southern
+                                </span>
+                            </td>
+                            <td class="px-6 py-4 text-sm text-slate-600">LA SOURDINE L'ESCALIER</td>
+                            <td class="px-6 py-4 text-right font-mono text-xs text-slate-400">-20.48313056,
+                                57.62023056</td>
+                        </tr>
+                        
+                        <tr class="hover:bg-red-50/60 transition-colors duration-200 group cursor-pointer"
+                            data-idx="50"
+                            data-region="Southern"
+                            data-text="radar 46 b8-02 southern plaine magnien"
+                            onclick="flyToCam(50)">
+                            <td class="px-6 py-4">
+                                <span class="font-bold text-slate-800 group-hover:text-red-700 transition-colors">Radar 46</span>
+                            </td>
+                            <td class="px-6 py-4 font-mono text-sm text-slate-600">B8-02</td>
+                            <td class="px-6 py-4">
+                                <span
+                                    class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-slate-100 text-slate-800">
+                                    Southern
+                                </span>
+                            </td>
+                            <td class="px-6 py-4 text-sm text-slate-600">PLAINE MAGNIEN</td>
+                            <td class="px-6 py-4 text-right font-mono text-xs text-slate-400">-20.43367222,
+                                57.65775</td>
+                        </tr>
+                        
+                        <tr class="hover:bg-red-50/60 transition-colors duration-200 group cursor-pointer"
+                            data-idx="51"
+                            data-region="Western"
+                            data-text="radar 3 m1-01 western pellegrin"
+                            onclick="flyToCam(51)">
+                            <td class="px-6 py-4">
+                                <span class="font-bold text-slate-800 group-hover:text-red-700 transition-colors">Radar 3</span>
+                            </td>
+                            <td class="px-6 py-4 font-mono text-sm text-slate-600">M1-01</td>
+                            <td class="px-6 py-4">
+                                <span
+                                    class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-slate-100 text-slate-800">
+                                    Western
+                                </span>
+                            </td>
+                            <td class="px-6 py-4 text-sm text-slate-600">PELLEGRIN</td>
+                            <td class="px-6 py-4 text-right font-mono text-xs text-slate-400">-20.26076944,
+                                57.49033889</td>
+                        </tr>
+                        
+                        <tr class="hover:bg-red-50/60 transition-colors duration-200 group cursor-pointer"
+                            data-idx="52"
+                            data-region="Western"
+                            data-text="radar 2 m1-02 western trianon"
+                            onclick="flyToCam(52)">
+                            <td class="px-6 py-4">
+                                <span class="font-bold text-slate-800 group-hover:text-red-700 transition-colors">Radar 2</span>
+                            </td>
+                            <td class="px-6 py-4 font-mono text-sm text-slate-600">M1-02</td>
+                            <td class="px-6 py-4">
+                                <span
+                                    class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-slate-100 text-slate-800">
+                                    Western
+                                </span>
+                            </td>
+                            <td class="px-6 py-4 text-sm text-slate-600">TRIANON</td>
+                            <td class="px-6 py-4 text-right font-mono text-xs text-slate-400">-20.25322222,
+                                57.49113889</td>
+                        </tr>
+                        
+                        <tr class="hover:bg-red-50/60 transition-colors duration-200 group cursor-pointer"
+                            data-idx="53"
+                            data-region="Port Louis"
+                            data-text="radar 28 m1-03 port louis pailles"
+                            onclick="flyToCam(53)">
+                            <td class="px-6 py-4">
+                                <span class="font-bold text-slate-800 group-hover:text-red-700 transition-colors">Radar 28</span>
+                            </td>
+                            <td class="px-6 py-4 font-mono text-sm text-slate-600">M1-03</td>
+                            <td class="px-6 py-4">
+                                <span
+                                    class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-slate-100 text-slate-800">
+                                    Port Louis
+                                </span>
+                            </td>
+                            <td class="px-6 py-4 text-sm text-slate-600">PAILLES</td>
+                            <td class="px-6 py-4 text-right font-mono text-xs text-slate-400">-20.18996944,
+                                57.4822</td>
+                        </tr>
+                        
+                        <tr class="hover:bg-red-50/60 transition-colors duration-200 group cursor-pointer"
+                            data-idx="54"
+                            data-region="Port Louis"
+                            data-text="radar 29 m1-04 port louis camp chapelon"
+                            onclick="flyToCam(54)">
+                            <td class="px-6 py-4">
+                                <span class="font-bold text-slate-800 group-hover:text-red-700 transition-colors">Radar 29</span>
+                            </td>
+                            <td class="px-6 py-4 font-mono text-sm text-slate-600">M1-04</td>
+                            <td class="px-6 py-4">
+                                <span
+                                    class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-slate-100 text-slate-800">
+                                    Port Louis
+                                </span>
+                            </td>
+                            <td class="px-6 py-4 text-sm text-slate-600">CAMP CHAPELON</td>
+                            <td class="px-6 py-4 text-right font-mono text-xs text-slate-400">-20.18096944,
+                                57.48111111</td>
+                        </tr>
+                        
+                        <tr class="hover:bg-red-50/60 transition-colors duration-200 group cursor-pointer"
+                            data-idx="55"
+                            data-region="Port Louis"
+                            data-text="radar 1 m1-05 port louis cassis"
+                            onclick="flyToCam(55)">
+                            <td class="px-6 py-4">
+                                <span class="font-bold text-slate-800 group-hover:text-red-700 transition-colors">Radar 1</span>
+                            </td>
+                            <td class="px-6 py-4 font-mono text-sm text-slate-600">M1-05</td>
+                            <td class="px-6 py-4">
+                                <span
+                                    class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-slate-100 text-slate-800">
+                                    Port Louis
+                                </span>
+                            </td>
+                            <td class="px-6 py-4 text-sm text-slate-600">CASSIS</td>
+                            <td class="px-6 py-4 text-right font-mono text-xs text-slate-400">-20.16425833,
+                                57.48848333</td>
+                        </tr>
+                        
+                        <tr class="hover:bg-red-50/60 transition-colors duration-200 group cursor-pointer"
+                            data-idx="56"
+                            data-region="Southern"
+                            data-text="radar 54 m1-06r southern midlands"
+                            onclick="flyToCam(56)">
+                            <td class="px-6 py-4">
+                                <span class="font-bold text-slate-800 group-hover:text-red-700 transition-colors">Radar 54</span>
+                            </td>
+                            <td class="px-6 py-4 font-mono text-sm text-slate-600">M1-06R</td>
+                            <td class="px-6 py-4">
+                                <span
+                                    class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-slate-100 text-slate-800">
+                                    Southern
+                                </span>
+                            </td>
+                            <td class="px-6 py-4 text-sm text-slate-600">MIDLANDS</td>
+                            <td class="px-6 py-4 text-right font-mono text-xs text-slate-400">-20.34246944,
+                                57.56696111</td>
+                        </tr>
+                        
+                        <tr class="hover:bg-red-50/60 transition-colors duration-200 group cursor-pointer"
+                            data-idx="57"
+                            data-region="Port Louis"
+                            data-text="radar 37 m1-07r port louis soreze"
+                            onclick="flyToCam(57)">
+                            <td class="px-6 py-4">
+                                <span class="font-bold text-slate-800 group-hover:text-red-700 transition-colors">Radar 37</span>
+                            </td>
+                            <td class="px-6 py-4 font-mono text-sm text-slate-600">M1-07R</td>
+                            <td class="px-6 py-4">
+                                <span
+                                    class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-slate-100 text-slate-800">
+                                    Port Louis
+                                </span>
+                            </td>
+                            <td class="px-6 py-4 text-sm text-slate-600">SOREZE</td>
+                            <td class="px-6 py-4 text-right font-mono text-xs text-slate-400">-20.21481944,
+                                57.48081111</td>
+                        </tr>
+                        
+                        <tr class="hover:bg-red-50/60 transition-colors duration-200 group cursor-pointer"
+                            data-idx="58"
+                            data-region="Northern"
+                            data-text="radar 55 m3-01 northern valton 1"
+                            onclick="flyToCam(58)">
+                            <td class="px-6 py-4">
+                                <span class="font-bold text-slate-800 group-hover:text-red-700 transition-colors">Radar 55</span>
+                            </td>
+                            <td class="px-6 py-4 font-mono text-sm text-slate-600">M3-01</td>
+                            <td class="px-6 py-4">
+                                <span
+                                    class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-slate-100 text-slate-800">
+                                    Northern
+                                </span>
+                            </td>
+                            <td class="px-6 py-4 text-sm text-slate-600">VALTON 1</td>
+                            <td class="px-6 py-4 text-right font-mono text-xs text-slate-400">-20.12835,
+                                57.54770833</td>
+                        </tr>
+                        
+                        <tr class="hover:bg-red-50/60 transition-colors duration-200 group cursor-pointer"
+                            data-idx="59"
+                            data-region="Northern"
+                            data-text="radar 30 m3-02 northern valton 2"
+                            onclick="flyToCam(59)">
+                            <td class="px-6 py-4">
+                                <span class="font-bold text-slate-800 group-hover:text-red-700 transition-colors">Radar 30</span>
+                            </td>
+                            <td class="px-6 py-4 font-mono text-sm text-slate-600">M3-02</td>
+                            <td class="px-6 py-4">
+                                <span
+                                    class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-slate-100 text-slate-800">
+                                    Northern
+                                </span>
+                            </td>
+                            <td class="px-6 py-4 text-sm text-slate-600">VALTON 2</td>
+                            <td class="px-6 py-4 text-right font-mono text-xs text-slate-400">-20.16479167,
+                                57.57235556</td>
+                        </tr>
+                        
+                        <tr class="hover:bg-red-50/60 transition-colors duration-200 group cursor-pointer"
+                            data-idx="60"
+                            data-region="Northern"
+                            data-text="radar 23 m3-03 northern valton 3"
+                            onclick="flyToCam(60)">
+                            <td class="px-6 py-4">
+                                <span class="font-bold text-slate-800 group-hover:text-red-700 transition-colors">Radar 23</span>
+                            </td>
+                            <td class="px-6 py-4 font-mono text-sm text-slate-600">M3-03</td>
+                            <td class="px-6 py-4">
+                                <span
+                                    class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-slate-100 text-slate-800">
+                                    Northern
+                                </span>
+                            </td>
+                            <td class="px-6 py-4 text-sm text-slate-600">VALTON 3</td>
+                            <td class="px-6 py-4 text-right font-mono text-xs text-slate-400">-20.17652222,
+                                57.57499722</td>
+                        </tr>
+                        
+                    </tbody>
+                </table>
+            </div>
+            <div
+                class="bg-slate-50 p-4 border-t border-slate-100 text-center text-xs text-slate-400 font-medium uppercase tracking-wide">
+                Compiler Alchemy &copy; Speed Camera Data - drive safe
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
+<script>
+    const cams = [{"name": "Radar 11", "road": "A10-01", "region": "Southern", "location": "PHOENIX", "lat": -20.27953056, "lng": 57.50133889}, {"name": "Radar 25", "road": "A10-02", "region": "Southern", "location": "UNION PARK", "lat": -20.38733333, "lng": 57.58117778}, {"name": "Radar 45", "road": "A10-03", "region": "Southern", "location": "NEW GROVE", "lat": -20.40866944, "lng": 57.61286944}, {"name": "Radar 52", "road": "A10-04", "region": "Southern", "location": "MARE D'ALBERT", "lat": -20.4281, "lng": 57.64269722}, {"name": "Radar 5", "road": "A1-01", "region": "Port Louis", "location": "GRAND RIVER NORTH WEST", "lat": -20.17806667, "lng": 57.47046111}, {"name": "Radar 6", "road": "A1-02", "region": "Western", "location": "MONTREAL COROMANDEL", "lat": -20.19759722, "lng": 57.46997222}, {"name": "Radar 7", "road": "A2-01", "region": "Northern", "location": "LE HOCHET", "lat": -20.13761944, "lng": 57.5265}, {"name": "Radar 17", "road": "A2-03", "region": "Eastern", "location": "BRISEE VERDIERE", "lat": -20.17251944, "lng": 57.66161944}, {"name": "Radar 33", "road": "A2-04", "region": "Northern", "location": "PAMPLEMOUSSES", "lat": -20.11296944, "lng": 57.58621944}, {"name": "Radar 47", "road": "A2-05", "region": "Northern", "location": "CALLEBASSES", "lat": -20.11388056, "lng": 57.562}, {"name": "Radar 42", "road": "A2-06", "region": "Eastern", "location": "MARE D'AUSTRALIA", "lat": -20.15461944, "lng": 57.64696944}, {"name": "Radar 50", "road": "A2-07", "region": "Northern", "location": "TERRE ROUGE, MELLE LAURE", "lat": -20.12618889, "lng": 57.54338056}, {"name": "Radar 10", "road": "A3-01", "region": "Western", "location": "PETITE RIVIERE", "lat": -20.19793056, "lng": 57.44476111}, {"name": "Radar 9", "road": "A3-02", "region": "Western", "location": "LA FERME BAMBOUS", "lat": -20.24781111, "lng": 57.42071944}, {"name": "Radar 8", "road": "A3-03", "region": "Western", "location": "MEDINE BAMBOUS", "lat": -20.26103889, "lng": 57.40756944}, {"name": "Radar 27", "road": "A3-04R", "region": "Western", "location": "XAVIER NEAR CASELA", "lat": -20.28918056, "lng": 57.40265}, {"name": "Radar 40", "road": "A3-05", "region": "Western", "location": "LA BALISE BLACK RIVER", "lat": -20.36225, "lng": 57.37586944}, {"name": "Radar 39", "road": "A3-06", "region": "Western", "location": "RICHELIEU", "lat": -20.18441111, "lng": 57.46233056}, {"name": "Radar 56", "road": "A3-07", "region": "Western", "location": "CASE NOYALE", "lat": -20.40754167, "lng": 57.36938889}, {"name": "Radar 18", "road": "A4-01", "region": "Northern", "location": "TRIOLET", "lat": -20.03968056, "lng": 57.56081944}, {"name": "Radar 48", "road": "A4-02", "region": "Northern", "location": "ARSENAL", "lat": -20.11525, "lng": 57.53466944}, {"name": "Radar 15", "road": "A7-01", "region": "Eastern", "location": "CAMP GARREAU - BOULET ROUGE", "lat": -20.20203889, "lng": 57.71933889}, {"name": "Radar 31", "road": "A7-02", "region": "Eastern", "location": "BONNE MERE - FLACQ", "lat": -20.21453889, "lng": 57.70046111}, {"name": "Radar 20", "road": "A7-03", "region": "Eastern", "location": "CAMP DE MASQUE", "lat": -20.23423889, "lng": 57.67546111}, {"name": "Radar 22", "road": "A7-04", "region": "Eastern", "location": "VERDUN", "lat": -20.23178889, "lng": 57.55221944}, {"name": "Radar 38", "road": "A9-01", "region": "Southern", "location": "LA FLORA", "lat": -20.41515, "lng": 57.56251944}, {"name": "Radar 24", "road": "A9-02", "region": "Southern", "location": "BEAU CLIMAT", "lat": -20.40208056, "lng": 57.56628889}, {"name": "Radar 49", "road": "B12-01", "region": "Northern", "location": "VALE", "lat": -20.02971111, "lng": 57.60803056}, {"name": "Radar 26", "road": "B130-01", "region": "Western", "location": "BEAU SONGES ROAD", "lat": -20.28021944, "lng": 57.4195}, {"name": "Radar 61", "road": "B130-02", "region": "Western", "location": "SOLFERINO", "lat": -20.288569, "lng": 57.46931}, {"name": "Radar 43", "road": "B162", "region": "Northern", "location": "SCHOENFELD RIV. DU REMPART", "lat": -20.10055, "lng": 57.68661944}, {"name": "Radar 36", "road": "B17-01", "region": "Northern", "location": "PITON", "lat": -20.09551944, "lng": 57.6317}, {"name": "Radar 58", "road": "B20-01", "region": "Northern", "location": "DEPINAY", "lat": -20.12895, "lng": 57.59555}, {"name": "Radar 4", "road": "B22", "region": "Eastern", "location": "LAVENTURE", "lat": -20.143047, "lng": 57.691571}, {"name": "Radar 16", "road": "B23-01", "region": "Eastern", "location": "ST JULIEN VILLAGE", "lat": -20.20293889, "lng": 57.67223889}, {"name": "Radar 21", "road": "B23-02", "region": "Eastern", "location": "BELVEDER", "lat": -20.18343056, "lng": 57.66438889}, {"name": "Radar 32", "road": "B23-03", "region": "Eastern", "location": "POSTE DE FLACQ", "lat": -20.17136944, "lng": 57.73008889}, {"name": "Radar 41", "road": "B24-01", "region": "Eastern", "location": "ST JULIEN D'HOTMAN", "lat": -20.23016111, "lng": 57.63968056}, {"name": "Radar 19", "road": "B28-01", "region": "Eastern", "location": "ECROIGNARD, NEAR BEL AIR", "lat": -20.23406111, "lng": 57.74561944}, {"name": "Radar 53", "road": "B3-02", "region": "Western", "location": "BONNE TERRE VACOAS", "lat": -20.29448889, "lng": 57.48311944}, {"name": "Radar 59", "road": "B32-01", "region": "Western", "location": "INTENDANCE ST, P-LOUIS", "lat": -20.16301111, "lng": 57.50304444}, {"name": "Radar 57", "road": "B34-02", "region": "Southern", "location": "FLIC EN FLAC", "lat": -20.278325, "lng": 57.39016944}, {"name": "Radar 12", "road": "B4-01", "region": "Northern", "location": "ST PAUL", "lat": -20.2922, "lng": 57.50598056}, {"name": "Radar 35", "road": "B42-01", "region": "Southern", "location": "POUDRE D'OR HAMLET", "lat": -20.0762, "lng": 57.64876944}, {"name": "Radar 34", "road": "B5-01", "region": "Southern", "location": "MANGALKHAN FLOREAL", "lat": -20.30273889, "lng": 57.50506944}, {"name": "Radar 14", "road": "B63-01", "region": "Southern", "location": "CUREPIPE", "lat": -20.30863889, "lng": 57.51516944}, {"name": "Radar 13", "road": "B63-02", "region": "Southern", "location": "SADALLY", "lat": -20.3022, "lng": 57.49611111}, {"name": "Radar 60", "road": "B8", "region": "Southern", "location": "TROIS BOUTIQUE", "lat": -20.461332, "lng": 57.625509}, {"name": "Radar 51", "road": "B69-01", "region": "Southern", "location": "NALLETAMBY PHOENIX", "lat": -20.27958889, "lng": 57.49728889}, {"name": "Radar 44", "road": "B8-01", "region": "Southern", "location": "LA SOURDINE L'ESCALIER", "lat": -20.48313056, "lng": 57.62023056}, {"name": "Radar 46", "road": "B8-02", "region": "Southern", "location": "PLAINE MAGNIEN", "lat": -20.43367222, "lng": 57.65775}, {"name": "Radar 3", "road": "M1-01", "region": "Western", "location": "PELLEGRIN", "lat": -20.26076944, "lng": 57.49033889}, {"name": "Radar 2", "road": "M1-02", "region": "Western", "location": "TRIANON", "lat": -20.25322222, "lng": 57.49113889}, {"name": "Radar 28", "road": "M1-03", "region": "Port Louis", "location": "PAILLES", "lat": -20.18996944, "lng": 57.4822}, {"name": "Radar 29", "road": "M1-04", "region": "Port Louis", "location": "CAMP CHAPELON", "lat": -20.18096944, "lng": 57.48111111}, {"name": "Radar 1", "road": "M1-05", "region": "Port Louis", "location": "CASSIS", "lat": -20.16425833, "lng": 57.48848333}, {"name": "Radar 54", "road": "M1-06R", "region": "Southern", "location": "MIDLANDS", "lat": -20.34246944, "lng": 57.56696111}, {"name": "Radar 37", "road": "M1-07R", "region": "Port Louis", "location": "SOREZE", "lat": -20.21481944, "lng": 57.48081111}, {"name": "Radar 55", "road": "M3-01", "region": "Northern", "location": "VALTON 1", "lat": -20.12835, "lng": 57.54770833}, {"name": "Radar 30", "road": "M3-02", "region": "Northern", "location": "VALTON 2", "lat": -20.16479167, "lng": 57.57235556}, {"name": "Radar 23", "road": "M3-03", "region": "Northern", "location": "VALTON 3", "lat": -20.17652222, "lng": 57.57499722}];
+    const BEEP_RANGE_M = 150;
+    const BEEP_COOLDOWN_MS = 8000;
+
+    /* ---------- map ---------- */
+    const map = L.map('map', { zoomControl: true }).setView([-20.25, 57.55], 11);
+    L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        maxZoom: 19,
+        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+    }).addTo(map);
+
+    const camIcon = L.divIcon({
+        className: '',
+        html: '<div class="cam-pin"><span>&#128249;</span></div>',
+        iconSize: [30, 30],
+        iconAnchor: [15, 30],
+        popupAnchor: [0, -28]
+    });
+
+    const markerLayer = L.layerGroup().addTo(map);
+    const markers = [];
+
+    function popupHtml(cam) {
+        return `
+            <div>
+                <div class="font-bold text-slate-900 text-sm mb-1">${cam.name}</div>
+                <div class="text-xs text-slate-600 mb-1">Road <b>${cam.road}</b> &middot; ${cam.region}</div>
+                <div class="text-xs text-slate-500 mb-2">${cam.location}</div>
+                <div class="text-xs font-mono text-slate-400 mb-2">${cam.lat}, ${cam.lng}</div>
+                <a class="text-xs font-bold text-red-600 hover:underline"
+                   href="https://www.google.com/maps/dir/?api=1&destination=${cam.lat},${cam.lng}"
+                   target="_blank" rel="noopener">Directions &rarr;</a>
+            </div>`;
+    }
+
+    cams.forEach((cam, i) => {
+        const m = L.marker([cam.lat, cam.lng], { icon: camIcon }).bindPopup(popupHtml(cam));
+        markers.push(m);
+    });
+
+    function flyToCam(i) {
+        const m = markers[i];
+        if (!m) return;
+        map.flyTo(m.getLatLng(), 15, { duration: 0.8 });
+        setTimeout(() => m.openPopup(), 850);
+        document.getElementById('map').scrollIntoView({ behavior: 'smooth', block: 'center' });
+    }
+
+    /* ---------- filter ---------- */
+    const searchInput = document.getElementById('camSearch');
+    const regionFilter = document.getElementById('regionFilter');
+    const camCount = document.getElementById('camCount');
+    const rows = Array.from(document.querySelectorAll('#camTable tr[data-idx]'));
+
+    function applyFilter() {
+        const q = searchInput.value.trim().toLowerCase();
+        const region = regionFilter.value;
+        let shown = 0;
+        markerLayer.clearLayers();
+
+        rows.forEach((row) => {
+            const idx = parseInt(row.dataset.idx, 10);
+            const okRegion = !region || row.dataset.region === region;
+            const okText = !q || row.dataset.text.includes(q);
+            const visible = okRegion && okText;
+            row.classList.toggle('hidden', !visible);
+            if (visible) {
+                shown++;
+                markerLayer.addLayer(markers[idx]);
+            }
+        });
+
+        camCount.textContent = `Showing ${shown} of ${cams.length}`;
+        if (shown > 0 && shown < cams.length) {
+            const bounds = L.latLngBounds([]);
+            rows.forEach((row) => {
+                if (!row.classList.contains('hidden')) {
+                    bounds.extend(markers[parseInt(row.dataset.idx, 10)].getLatLng());
+                }
+            });
+            if (bounds.isValid()) map.fitBounds(bounds, { padding: [30, 30], maxZoom: 14 });
+        }
+    }
+
+    searchInput.addEventListener('input', applyFilter);
+    regionFilter.addEventListener('change', applyFilter);
+    applyFilter();
+
+    /* ---------- car position ---------- */
+    const followBtn = document.getElementById('followBtn');
+    let followMode = true;
+    let userMarker = null;
+    let accCircle = null;
+    let lastFollow = 0;
+
+    const carIcon = L.divIcon({
+        className: '',
+        html: '<div class="car-dot"><div class="car-arrow" id="carArrow">&#9650;</div></div>',
+        iconSize: [22, 22],
+        iconAnchor: [11, 11]
+    });
+
+    function setFollow(on) {
+        followMode = on;
+        followBtn.innerHTML = on ? '&#127919; Follow: ON' : '&#127919; Follow: OFF';
+        followBtn.classList.toggle('text-blue-700', on);
+        followBtn.classList.toggle('bg-blue-50', on);
+        followBtn.classList.toggle('hover:bg-blue-100', on);
+        followBtn.classList.toggle('text-slate-500', !on);
+        followBtn.classList.toggle('bg-slate-100', !on);
+        followBtn.classList.toggle('hover:bg-slate-200', !on);
+    }
+
+    function updateUserMarker(pos) {
+        const ll = [pos.coords.latitude, pos.coords.longitude];
+        if (!userMarker) {
+            userMarker = L.marker(ll, { icon: carIcon, zIndexOffset: 1000, interactive: false }).addTo(map);
+            accCircle = L.circle(ll, {
+                radius: pos.coords.accuracy || 20,
+                color: '#2563eb', weight: 1, fillOpacity: 0.12, interactive: false
+            }).addTo(map);
+        } else {
+            userMarker.setLatLng(ll);
+            accCircle.setLatLng(ll).setRadius(pos.coords.accuracy || 20);
+        }
+        const arrow = document.getElementById('carArrow');
+        if (arrow && typeof pos.coords.heading === 'number' && !isNaN(pos.coords.heading)) {
+            arrow.style.transform = 'rotate(' + pos.coords.heading + 'deg)';
+        }
+        if (followMode && Date.now() - lastFollow > 4000) {
+            lastFollow = Date.now();
+            map.setView(ll, Math.max(map.getZoom(), 14), { animate: true });
+        }
+    }
+
+    function removeUserMarker() {
+        if (userMarker) { map.removeLayer(userMarker); userMarker = null; }
+        if (accCircle) { map.removeLayer(accCircle); accCircle = null; }
+    }
+
+    followBtn.addEventListener('click', () => setFollow(!followMode));
+    /* dragging the map = user browsing, stop yanking the view */
+    map.on('dragstart', () => { if (followMode) setFollow(false); });
+
+    /* ---------- proximity beep ---------- */
+    const beepBtn = document.getElementById('beepBtn');
+    const geoStatus = document.getElementById('geoStatus');
+    const soundHint = document.getElementById('soundHint');
+    let watchId = null;
+    let lastBeep = 0;
+    let audioCtx = null;
+    let wakeLock = null;
+    let hiAcc = true;
+
+    function startWatch() {
+        if (watchId !== null) navigator.geolocation.clearWatch(watchId);
+        watchId = navigator.geolocation.watchPosition(onPosition, onGeoError, {
+            enableHighAccuracy: hiAcc,
+            maximumAge: hiAcc ? 5000 : 15000,
+            timeout: 20000
+        });
+    }
+
+    async function requestWakeLock() {
+        try {
+            if ('wakeLock' in navigator) wakeLock = await navigator.wakeLock.request('screen');
+        } catch (err) { /* screen lock denied, fine */ }
+    }
+
+    function releaseWakeLock() {
+        if (wakeLock) { try { wakeLock.release(); } catch (err) {} wakeLock = null; }
+    }
+
+    document.addEventListener('visibilitychange', () => {
+        if (document.visibilityState === 'visible' && watchId !== null) requestWakeLock();
+    });
+
+    /* iOS: sound only allowed after a real user gesture - unlock once */
+    ['touchend', 'click', 'keydown'].forEach((ev) => {
+        window.addEventListener(ev, () => {
+            if (audioCtx && audioCtx.state === 'suspended') audioCtx.resume();
+            soundHint.classList.add('hidden');
+        }, { passive: true });
+    });
+
+    function beep() {
+        try {
+            audioCtx = audioCtx || new (window.AudioContext || window.webkitAudioContext)();
+            if (audioCtx.state === 'suspended') audioCtx.resume();
+            const t = audioCtx.currentTime;
+            const osc = audioCtx.createOscillator();
+            const gain = audioCtx.createGain();
+            osc.type = 'square';
+            osc.frequency.setValueAtTime(1100, t);
+            gain.gain.setValueAtTime(0.0001, t);
+            gain.gain.exponentialRampToValueAtTime(0.25, t + 0.01);
+            gain.gain.exponentialRampToValueAtTime(0.0001, t + 0.3);
+            osc.connect(gain).connect(audioCtx.destination);
+            osc.start(t);
+            osc.stop(t + 0.32);
+            document.body.classList.add('beep-flash');
+            setTimeout(() => document.body.classList.remove('beep-flash'), 700);
+        } catch (err) { /* no audio, no problem */ }
+    }
+
+    function distanceM(lat1, lng1, lat2, lng2) {
+        const R = 6371000;
+        const toRad = (d) => d * Math.PI / 180;
+        const dLat = toRad(lat2 - lat1);
+        const dLng = toRad(lng2 - lng1);
+        const a = Math.sin(dLat / 2) ** 2 +
+            Math.cos(toRad(lat1)) * Math.cos(toRad(lat2)) * Math.sin(dLng / 2) ** 2;
+        return 2 * R * Math.asin(Math.sqrt(a));
+    }
+
+    function onPosition(pos) {
+        const { latitude, longitude, speed } = pos.coords;
+        updateUserMarker(pos);
+
+        let nearest = null;
+        let nearestDist = Infinity;
+        cams.forEach((cam) => {
+            const d = distanceM(latitude, longitude, cam.lat, cam.lng);
+            if (d < nearestDist) { nearestDist = d; nearest = cam; }
+        });
+
+        const kmh = typeof speed === 'number' && !isNaN(speed) ? Math.round(speed * 3.6) : null;
+        const moving = kmh === null || kmh > 15; /* no speed data = beep anyway */
+
+        if (nearest) {
+            geoStatus.classList.remove('hidden');
+            const distStr = nearestDist < 1000
+                ? `${Math.round(nearestDist)} m`
+                : `${(nearestDist / 1000).toFixed(1)} km`;
+            geoStatus.textContent = `Nearest camera: ${nearest.name} - ${distStr}` +
+                (kmh !== null ? ` - ${kmh} km/h` : '');
+        }
+
+        /* battery: low-accuracy GPS when far from cams, high-accuracy when close */
+        const wantHi = nearestDist < 800;
+        if (wantHi !== hiAcc) { hiAcc = wantHi; startWatch(); }
+
+        if (nearestDist <= BEEP_RANGE_M && moving && Date.now() - lastBeep > BEEP_COOLDOWN_MS) {
+            lastBeep = Date.now();
+            beep();
+        }
+    }
+
+    function onGeoError(err) {
+        geoStatus.classList.remove('hidden');
+        geoStatus.textContent = 'Location unavailable (' + (err && err.message ? err.message : 'denied') + '). Beep off.';
+        stopBeep();
+    }
+
+    function startBeep() {
+        if (!('geolocation' in navigator)) {
+            geoStatus.classList.remove('hidden');
+            geoStatus.textContent = 'Geolocation not supported here.';
+            return;
+        }
+        startWatch();
+        requestWakeLock();
+        beepBtn.innerHTML = '&#128276; Beep: ON';
+        beepBtn.classList.remove('text-red-700', 'bg-red-50', 'hover:bg-red-100');
+        beepBtn.classList.add('text-emerald-700', 'bg-emerald-50', 'hover:bg-emerald-100');
+        beep();
+        /* iOS: audio likely suspended until first tap - tell the user */
+        try {
+            audioCtx = audioCtx || new (window.AudioContext || window.webkitAudioContext)();
+            setTimeout(() => {
+                soundHint.classList.toggle('hidden', audioCtx.state !== 'suspended');
+            }, 700);
+        } catch (err) { /* no webaudio, no hint */ }
+    }
+
+    function stopBeep() {
+        if (watchId !== null) { navigator.geolocation.clearWatch(watchId); watchId = null; }
+        releaseWakeLock();
+        removeUserMarker();
+        beepBtn.innerHTML = '&#128276; Beep: OFF';
+        beepBtn.classList.add('text-red-700', 'bg-red-50', 'hover:bg-red-100');
+        beepBtn.classList.remove('text-emerald-700', 'bg-emerald-50', 'hover:bg-emerald-100');
+    }
+
+    function saveBeepPref(v) { try { localStorage.setItem('camBeep', v); } catch (err) {} }
+    function getBeepPref() { try { return localStorage.getItem('camBeep'); } catch (err) { return null; } }
+
+    beepBtn.addEventListener('click', () => {
+        if (watchId === null) {
+            startBeep();
+            saveBeepPref('on');
+        } else {
+            stopBeep();
+            saveBeepPref('off');
+        }
+    });
+
+    /* beep ON by default (user can still turn it off, we remember) */
+    if (getBeepPref() !== 'off') startBeep();
+
+    /* ---------- PWA: install + service worker ---------- */
+    let deferredInstall = null;
+    const installBtn = document.getElementById('installBtn');
+
+    window.addEventListener('beforeinstallprompt', (e) => {
+        e.preventDefault();
+        deferredInstall = e;
+        installBtn.hidden = false;
+    });
+
+    installBtn.addEventListener('click', async () => {
+        if (!deferredInstall) return;
+        deferredInstall.prompt();
+        await deferredInstall.userChoice;
+        deferredInstall = null;
+        installBtn.hidden = true;
+    });
+
+    window.addEventListener('appinstalled', () => { installBtn.hidden = true; });
+
+    if ('serviceWorker' in navigator) {
+        window.addEventListener('load', () => {
+            navigator.serviceWorker.register('sw.js').catch(() => { /* offline optional */ });
+        });
+    }
+</script>
+
+
+    <div class="crank" id="crank" aria-hidden="true">
+        <svg class="crank__svg" viewBox="0 0 56 56">
+            <!-- Base plate -->
+            <rect class="crank__base" x="6" y="6" width="44" height="44" rx="4"></rect>
+            <circle class="crank__bolt" cx="10" cy="10" r="1.2"></circle>
+            <circle class="crank__bolt" cx="46" cy="10" r="1.2"></circle>
+            <circle class="crank__bolt" cx="10" cy="46" r="1.2"></circle>
+            <circle class="crank__bolt" cx="46" cy="46" r="1.2"></circle>
+
+            <!-- Bushing (static) -->
+            <circle class="crank__bushing" cx="28" cy="28" r="4"></circle>
+            <circle class="crank__bushing-inner" cx="28" cy="28" r="2"></circle>
+
+            <!-- Rotor: gear + arm + handle (rotates as one unit) -->
+            <g class="crank__rotor" id="crank-rotor">
+                <!-- Gear: circle with dasharray teeth + inner detail -->
+                <circle class="crank__gear-fill" cx="28" cy="28" r="9"></circle>
+                <circle class="crank__gear" cx="28" cy="28" r="10" stroke-dasharray="1.8 1.5"></circle>
+                <circle class="crank__gear-line" cx="28" cy="28" r="6"></circle>
+                <line class="crank__gear-line" x1="28" y1="22" x2="28" y2="34"></line>
+                <line class="crank__gear-line" x1="22" y1="28" x2="34" y2="28"></line>
+
+                <!-- Crank arm extending from center -->
+                <line class="crank__arm" x1="28" y1="28" x2="28" y2="12"></line>
+                <!-- Handle ball at the end -->
+                <circle class="crank__handle-ring" cx="28" cy="10" r="4"></circle>
+                <circle class="crank__handle" cx="28" cy="10" r="2.5"></circle>
+            </g>
+        </svg>
+    </div>
+
+    <script>
+    (function() {
+        if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+        var rotor = document.getElementById('crank-rotor');
+        if (!rotor) return;
+
+        var angle = 0;          /* current rotation in degrees */
+        var velocity = 0;       /* angular velocity (deg/frame) */
+        var lastY = window.scrollY;
+        var lastTime = 0;
+
+        window.addEventListener('scroll', function() {
+            var y = window.scrollY;
+            var delta = y - lastY;
+            /* Scroll down → crank spins CCW (negative). Scroll up → CW (positive). */
+            velocity -= delta * 0.1;
+            lastY = y;
+        }, { passive: true });
+
+        function loop(now) {
+            if (!lastTime) lastTime = now;
+            /* dt normalized to ~60fps frame (1.0 = one frame at 60fps) */
+            var dt = Math.min((now - lastTime) / 16.667, 3);
+            lastTime = now;
+
+            /* Clamp velocity so a single big scroll burst doesn't fling it absurdly */
+            if (velocity > 40) velocity = 40;
+            if (velocity < -40) velocity = -40;
+
+            /* Apply velocity to angle, scaled by dt for frame-rate independence */
+            angle += velocity * dt;
+
+            /* Friction: velocity decays exponentially. 0.94/frame at 60fps
+               gives a smooth ~2s wind-down after a hard scroll. */
+            velocity *= Math.pow(0.94, dt);
+
+            /* Snap to rest when velocity is negligible */
+            if (Math.abs(velocity) < 0.01) velocity = 0;
+
+            rotor.setAttribute('transform', 'rotate(' + angle.toFixed(2) + ' 28 28)');
+            requestAnimationFrame(loop);
+        }
+        requestAnimationFrame(loop);
+    })();
+    </script>
+</body>
+
+</html>
