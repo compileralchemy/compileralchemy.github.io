@@ -12,11 +12,19 @@
         background-color: #f8fafc;
     }
 
+    /* map = the dashboard: biggest thing on screen, thumb bar below */
     #map {
-        height: 60vh;
-        min-height: 380px;
-        border-radius: 1rem;
+        height: calc(100vh - 250px);
+        height: calc(100dvh - 250px);
+        min-height: 300px;
         z-index: 0;
+    }
+
+    @media (min-width: 640px) {
+        #map {
+            height: 60vh;
+            min-height: 380px;
+        }
     }
 
     .cam-pin {
@@ -62,160 +70,193 @@
         min-width: 200px;
     }
 
-    body.beep-flash #map {
-        outline: 6px solid rgba(220, 38, 38, .55);
+    body.beep-flash #mapWrap {
+        outline: 6px solid rgba(220, 38, 38, .65);
         outline-offset: -6px;
     }
 </style>
 {% endblock %}
 
 {% block body %}
-<div class="min-h-screen py-12 px-4 sm:px-6 lg:px-8">
+<div class="min-h-screen pb-48 px-0 sm:px-6 lg:px-8">
     <div class="max-w-5xl mx-auto">
 
-        <div class="text-center mb-8">
-            <h1 class="text-4xl font-extrabold text-slate-900 tracking-tight sm:text-5xl mb-4">
+        <!-- slim dashboard header -->
+        <header class="px-4 pt-4 pb-1 text-center sm:pt-10">
+            <h1 class="text-2xl sm:text-4xl font-extrabold text-slate-900 tracking-tight">
                 Mauritius Speed Camera Map
             </h1>
-            <p class="text-lg text-slate-600 max-w-2xl mx-auto">
-                {{ cams_count }} fixed speed cameras with coordinates and road info.
-                Beep on by default, your car shows as a blue dot on the map, screen stays awake while on.
+            <p class="text-xs sm:text-sm text-slate-500 mt-1">
+                {{ cams_count }} fixed cams &middot; warn beeps from your set distance &middot; drive safe
             </p>
-        </div>
-
-        <div class="flex flex-wrap items-center justify-center gap-3 mb-6">
-            <a href="{{ path }}"
-                class="inline-flex items-center justify-center px-6 py-3 border border-transparent text-sm font-medium rounded-xl text-emerald-700 bg-emerald-50 hover:bg-emerald-100 transition-all duration-200">
-                &larr; Visit homepage
-            </a>
-            <button id="installBtn" hidden
-                class="inline-flex items-center justify-center px-6 py-3 border border-transparent text-sm font-medium rounded-xl text-slate-700 bg-slate-100 hover:bg-slate-200 transition-all duration-200">
-                &#8681; Install app
-            </button>
-            <button id="beepBtn"
-                class="inline-flex items-center justify-center px-6 py-3 border border-transparent text-sm font-medium rounded-xl text-red-700 bg-red-50 hover:bg-red-100 transition-all duration-200">
-                &#128276; Beep: OFF
-            </button>
-            <button id="followBtn"
-                class="inline-flex items-center justify-center px-6 py-3 border border-transparent text-sm font-medium rounded-xl text-blue-700 bg-blue-50 hover:bg-blue-100 transition-all duration-200">
-                &#127919; Follow: ON
-            </button>
             <a href="https://github.com/compileralchemy/compileralchemy.github.io/blob/source/data/fixspeedcams.json"
-                target="_blank"
-                class="inline-flex items-center justify-center px-6 py-3 border border-transparent text-sm font-medium rounded-xl text-emerald-700 bg-emerald-50 hover:bg-emerald-100 transition-all duration-200">
+                target="_blank" rel="noopener"
+                class="inline-flex items-center justify-center mt-2 px-4 py-1.5 text-xs font-bold rounded-full text-slate-600 bg-slate-100 hover:bg-slate-200 transition-all duration-200">
                 Contribute
             </a>
-        </div>
+        </header>
 
-        <p id="geoStatus" class="text-center text-sm text-slate-500 mb-4 hidden"></p>
-        <p id="soundHint"
-            class="text-center text-sm font-medium text-amber-600 mb-4 hidden">&#128263; Tap anywhere once to
-            enable sound (iOS / browser rule)</p>
+        <p id="geoStatus" class="px-4 text-center text-xs text-slate-500 mt-1 hidden"></p>
+        <p id="soundHint" class="px-4 text-center text-xs font-medium text-amber-600 mt-1 hidden">
+            &#128263; Tap anywhere once to enable sound (iOS / browser rule)
+        </p>
 
-        <div class="flex flex-col sm:flex-row gap-3 max-w-2xl mx-auto mb-6">
-            <div class="relative flex-1">
-                <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                    <svg class="h-5 w-5 text-slate-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"
-                        fill="currentColor" aria-hidden="true">
-                        <path fill-rule="evenodd"
-                            d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z"
-                            clip-rule="evenodd" />
-                    </svg>
+        <!-- MAP: central, full-bleed on mobile -->
+        <div id="mapWrap" class="relative -mx-0 sm:mx-0 mt-3 sm:mt-4 bg-slate-900 overflow-hidden sm:rounded-2xl">
+            <div id="map"></div>
+
+            <!-- HUD: speed + next cam, floats over map -->
+            <div class="absolute top-2 left-1/2 -translate-x-1/2 z-[1100] pointer-events-none text-center">
+                <div id="speedo"
+                    class="bg-slate-900/85 border border-white/10 rounded-2xl px-6 py-2 shadow-2xl backdrop-blur-sm">
+                    <span id="speedVal"
+                        class="block text-5xl sm:text-6xl font-extrabold leading-none text-emerald-400">&ndash;</span>
+                    <span class="block text-[10px] font-bold uppercase tracking-widest text-white/60 mt-1">km/h</span>
                 </div>
-                <input type="text" id="camSearch" autocomplete="off"
-                    class="block w-full pl-10 pr-3 py-3 border border-slate-200 rounded-xl leading-5 bg-white placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-red-500/20 focus:border-red-500 sm:text-sm shadow-sm transition-all duration-200"
-                    placeholder="Search name, road, region...">
+                <div id="camDist"
+                    class="hidden mt-1.5 inline-block max-w-[92vw] truncate bg-red-600 text-white text-[11px] font-bold px-3 py-1 rounded-full shadow-lg">
+                </div>
             </div>
-            <select id="regionFilter"
-                class="py-3 px-3 border border-slate-200 rounded-xl bg-white text-sm text-slate-600 shadow-sm focus:outline-none focus:ring-2 focus:ring-red-500/20 focus:border-red-500">
-                <option value="">All regions</option>
-                {% for region in regions %}
-                <option value="{{ region }}">{{ region }}</option>
-                {% endfor %}
-            </select>
         </div>
 
-        <div class="bg-white rounded-3xl shadow-xl shadow-slate-200/60 overflow-hidden border border-slate-100 mb-8">
-            <div class="p-4 border-b border-slate-100 bg-slate-50/50 flex justify-between items-center">
-                <div class="flex items-center gap-3">
-                    <div class="h-10 w-10 rounded-full bg-red-100 flex items-center justify-center text-red-600">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+        <!-- browse section (secondary, under the dash) -->
+        <section class="px-4 mt-6 sm:px-0">
+            <div class="flex items-center justify-between mb-3">
+                <h2 class="text-xs sm:text-sm font-extrabold uppercase tracking-wider text-slate-500">Browse
+                    cameras</h2>
+                <span id="camCount"
+                    class="bg-red-100 text-red-700 text-[11px] font-bold px-3 py-1 rounded-full uppercase tracking-wide">Showing
+                    {{ cams_count }} of {{ cams_count }}</span>
+            </div>
+
+            <div class="flex flex-col sm:flex-row gap-3 mb-4">
+                <div class="relative flex-1">
+                    <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                        <svg class="h-5 w-5 text-slate-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"
+                            fill="currentColor" aria-hidden="true">
                             <path fill-rule="evenodd"
-                                d="M5 9V7a5 5 0 0110 0v2a2 2 0 012 2v5a2 2 0 01-2 2H5a2 2 0 01-2-2v-5a2 2 0 012-2zm8-2v2H7V7a3 3 0 016 0z"
+                                d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z"
                                 clip-rule="evenodd" />
                         </svg>
                     </div>
-                    <h2 class="text-lg font-bold text-slate-800">Fixed Cameras</h2>
+                    <input type="text" id="camSearch" autocomplete="off"
+                        class="block w-full pl-10 pr-3 py-3 border border-slate-200 rounded-xl leading-5 bg-white placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-red-500/20 focus:border-red-500 sm:text-sm shadow-sm transition-all duration-200"
+                        placeholder="Search name, road, region...">
                 </div>
-                <span id="camCount"
-                    class="bg-red-100 text-red-700 text-xs font-bold px-3 py-1.5 rounded-full uppercase tracking-wide">Showing
-                    {{ cams_count }} of {{ cams_count }}</span>
+                <select id="regionFilter"
+                    class="py-3 px-3 border border-slate-200 rounded-xl bg-white text-sm text-slate-600 shadow-sm focus:outline-none focus:ring-2 focus:ring-red-500/20 focus:border-red-500">
+                    <option value="">All regions</option>
+                    {% for region in regions %}
+                    <option value="{{ region }}">{{ region }}</option>
+                    {% endfor %}
+                </select>
             </div>
-            <div id="map"></div>
-        </div>
 
-        <div class="bg-white rounded-3xl shadow-xl shadow-slate-200/60 overflow-hidden border border-slate-100">
-            <div class="overflow-x-auto">
-                <table class="w-full text-left border-collapse">
-                    <thead>
-                        <tr
-                            class="bg-slate-50/50 border-b border-slate-200/60 text-xs uppercase tracking-wider text-slate-500 font-bold">
-                            <th class="px-6 py-4">Camera</th>
-                            <th class="px-6 py-4">Road</th>
-                            <th class="px-6 py-4">Region</th>
-                            <th class="px-6 py-4">Location</th>
-                            <th class="px-6 py-4 text-right">Coordinates</th>
-                        </tr>
-                    </thead>
-                    <tbody class="divide-y divide-slate-100" id="camTable">
-                        {% for cam in cams_data %}
-                        <tr class="hover:bg-red-50/60 transition-colors duration-200 group cursor-pointer"
-                            data-idx="{{ loop.index0 }}"
-                            data-region="{{ cam.region }}"
-                            data-text="{{ (cam.name ~ ' ' ~ cam.road ~ ' ' ~ cam.region ~ ' ' ~ cam.location) | lower }}"
-                            onclick="flyToCam({{ loop.index0 }})">
-                            <td class="px-6 py-4">
-                                <span class="font-bold text-slate-800 group-hover:text-red-700 transition-colors">{{
-                                    cam.name }}</span>
-                            </td>
-                            <td class="px-6 py-4 font-mono text-sm text-slate-600">{{ cam.road }}</td>
-                            <td class="px-6 py-4">
-                                <span
-                                    class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-slate-100 text-slate-800">
-                                    {{ cam.region }}
-                                </span>
-                            </td>
-                            <td class="px-6 py-4 text-sm text-slate-600">{{ cam.location }}</td>
-                            <td class="px-6 py-4 text-right font-mono text-xs text-slate-400">{{ cam.lat }},
-                                {{ cam.lng }}</td>
-                        </tr>
-                        {% else %}
-                        <tr>
-                            <td colspan="5" class="px-6 py-8 text-center text-slate-500 italic">
-                                No cameras found.
-                            </td>
-                        </tr>
-                        {% endfor %}
-                    </tbody>
-                </table>
+            <div class="bg-white rounded-3xl shadow-xl shadow-slate-200/60 overflow-hidden border border-slate-100">
+                <div class="overflow-x-auto">
+                    <table class="w-full text-left border-collapse">
+                        <thead>
+                            <tr
+                                class="bg-slate-50/50 border-b border-slate-200/60 text-xs uppercase tracking-wider text-slate-500 font-bold">
+                                <th class="px-4 py-3 sm:px-6 sm:py-4">Camera</th>
+                                <th class="px-4 py-3 sm:px-6 sm:py-4">Road</th>
+                                <th class="px-4 py-3 sm:px-6 sm:py-4">Region</th>
+                                <th class="px-4 py-3 sm:px-6 sm:py-4">Location</th>
+                                <th class="px-4 py-3 sm:px-6 sm:py-4 text-right">Coordinates</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-slate-100" id="camTable">
+                            {% for cam in cams_data %}
+                            <tr class="hover:bg-red-50/60 transition-colors duration-200 group cursor-pointer"
+                                data-idx="{{ loop.index0 }}"
+                                data-region="{{ cam.region }}"
+                                data-text="{{ (cam.name ~ ' ' ~ cam.road ~ ' ' ~ cam.region ~ ' ' ~ cam.location) | lower }}"
+                                onclick="flyToCam({{ loop.index0 }})">
+                                <td class="px-4 py-3 sm:px-6 sm:py-4">
+                                    <span class="font-bold text-slate-800 group-hover:text-red-700 transition-colors">{{
+                                        cam.name }}</span>
+                                </td>
+                                <td class="px-4 py-3 sm:px-6 sm:py-4 font-mono text-sm text-slate-600">{{ cam.road }}
+                                </td>
+                                <td class="px-4 py-3 sm:px-6 sm:py-4">
+                                    <span
+                                        class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-slate-100 text-slate-800">
+                                        {{ cam.region }}
+                                    </span>
+                                </td>
+                                <td class="px-4 py-3 sm:px-6 sm:py-4 text-sm text-slate-600">{{ cam.location }}</td>
+                                <td class="px-4 py-3 sm:px-6 sm:py-4 text-right font-mono text-xs text-slate-400">{{
+                                    cam.lat }},
+                                    {{ cam.lng }}</td>
+                            </tr>
+                            {% else %}
+                            <tr>
+                                <td colspan="5" class="px-6 py-8 text-center text-slate-500 italic">
+                                    No cameras found.
+                                </td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+                <div
+                    class="bg-slate-50 p-4 border-t border-slate-100 text-center text-xs text-slate-400 font-medium uppercase tracking-wide">
+                    Compiler Alchemy &copy; Speed Camera Data &middot;
+                    <a class="text-emerald-600 hover:underline"
+                        href="https://github.com/compileralchemy/compileralchemy.github.io/blob/source/data/fixspeedcams.json"
+                        target="_blank" rel="noopener">Contribute</a>
+                </div>
             </div>
-            <div
-                class="bg-slate-50 p-4 border-t border-slate-100 text-center text-xs text-slate-400 font-medium uppercase tracking-wide">
-                Compiler Alchemy &copy; Speed Camera Data - drive safe
-            </div>
-        </div>
+        </section>
 
+    </div>
+</div>
+
+<!-- fixed thumb bar: dashboard controls, always reachable -->
+<div class="fixed bottom-0 inset-x-0 z-[1300] bg-white/95 backdrop-blur border-t border-slate-200 shadow-[0_-6px_20px_rgba(15,23,42,.12)]">
+    <div class="max-w-5xl mx-auto px-4 pt-2" style="padding-bottom: max(8px, env(safe-area-inset-bottom));">
+        <div class="flex items-center gap-3 mb-2">
+            <span class="text-[10px] font-bold uppercase tracking-wider text-slate-400 whitespace-nowrap">Warn
+                from</span>
+            <input type="range" id="warnRange" min="100" max="1000" step="50" value="600"
+                class="flex-1 accent-red-600 h-1.5 cursor-pointer">
+            <span class="text-xs font-extrabold text-slate-800 w-14 text-right whitespace-nowrap"><span
+                    id="rangeVal">600</span> m</span>
+        </div>
+        <div class="flex gap-2">
+            <button id="beepBtn"
+                class="flex-1 flex flex-col items-center gap-0.5 py-2.5 rounded-xl bg-red-50 text-red-700 active:scale-95 transition">
+                <span class="text-lg leading-none">&#128276;</span>
+                <span id="beepLabel" class="text-[10px] font-bold uppercase tracking-wide">OFF</span>
+            </button>
+            <button id="followBtn"
+                class="flex-1 flex flex-col items-center gap-0.5 py-2.5 rounded-xl bg-blue-50 text-blue-700 active:scale-95 transition">
+                <span class="text-lg leading-none">&#127919;</span>
+                <span id="followLabel" class="text-[10px] font-bold uppercase tracking-wide">ON</span>
+            </button>
+            <a href="{{ path }}"
+                class="flex-1 flex flex-col items-center gap-0.5 py-2.5 rounded-xl bg-slate-100 text-slate-700 active:scale-95 transition">
+                <span class="text-lg leading-none">&#8962;</span>
+                <span class="text-[10px] font-bold uppercase tracking-wide">Home</span>
+            </a>
+            <button id="installBtn"
+                class="hidden flex-1 flex-col items-center gap-0.5 py-2.5 rounded-xl bg-emerald-50 text-emerald-700 active:scale-95 transition">
+                <span class="text-lg leading-none">&#8681;</span>
+                <span class="text-[10px] font-bold uppercase tracking-wide">Install</span>
+            </button>
+        </div>
     </div>
 </div>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
 <script>
     const cams = {{ cams_data_json | safe }};
-    const BEEP_RANGE_M = 150;
+    const FINAL_ZONE_M = 150;
     const BEEP_COOLDOWN_MS = 8000;
+    let warnRange = 600;
 
     /* ---------- map ---------- */
-    const map = L.map('map', { zoomControl: true }).setView([-20.25, 57.55], 11);
+    const map = L.map('map', { zoomControl: true, attributionControl: true }).setView([-20.25, 57.55], 11);
     L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
         maxZoom: 19,
         attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>'
@@ -255,7 +296,7 @@
         if (!m) return;
         map.flyTo(m.getLatLng(), 15, { duration: 0.8 });
         setTimeout(() => m.openPopup(), 850);
-        document.getElementById('map').scrollIntoView({ behavior: 'smooth', block: 'center' });
+        document.getElementById('mapWrap').scrollIntoView({ behavior: 'smooth', block: 'center' });
     }
 
     /* ---------- filter ---------- */
@@ -300,6 +341,7 @@
 
     /* ---------- car position ---------- */
     const followBtn = document.getElementById('followBtn');
+    const followLabel = document.getElementById('followLabel');
     let followMode = true;
     let userMarker = null;
     let accCircle = null;
@@ -314,13 +356,11 @@
 
     function setFollow(on) {
         followMode = on;
-        followBtn.innerHTML = on ? '&#127919; Follow: ON' : '&#127919; Follow: OFF';
-        followBtn.classList.toggle('text-blue-700', on);
+        followLabel.textContent = on ? 'ON' : 'OFF';
         followBtn.classList.toggle('bg-blue-50', on);
-        followBtn.classList.toggle('hover:bg-blue-100', on);
-        followBtn.classList.toggle('text-slate-500', !on);
+        followBtn.classList.toggle('text-blue-700', on);
         followBtn.classList.toggle('bg-slate-100', !on);
-        followBtn.classList.toggle('hover:bg-slate-200', !on);
+        followBtn.classList.toggle('text-slate-500', !on);
     }
 
     function updateUserMarker(pos) {
@@ -356,6 +396,7 @@
 
     /* ---------- proximity beep ---------- */
     const beepBtn = document.getElementById('beepBtn');
+    const beepLabel = document.getElementById('beepLabel');
     const geoStatus = document.getElementById('geoStatus');
     const soundHint = document.getElementById('soundHint');
     let watchId = null;
@@ -395,21 +436,27 @@
         }, { passive: true });
     });
 
-    function beep() {
+    function tone(t, freq, dur) {
+        const osc = audioCtx.createOscillator();
+        const gain = audioCtx.createGain();
+        osc.type = 'square';
+        osc.frequency.setValueAtTime(freq, t);
+        gain.gain.setValueAtTime(0.0001, t);
+        gain.gain.exponentialRampToValueAtTime(0.25, t + 0.01);
+        gain.gain.exponentialRampToValueAtTime(0.0001, t + dur);
+        osc.connect(gain).connect(audioCtx.destination);
+        osc.start(t);
+        osc.stop(t + dur + 0.02);
+    }
+
+    function beep(freq, doublePulse) {
         try {
             audioCtx = audioCtx || new (window.AudioContext || window.webkitAudioContext)();
             if (audioCtx.state === 'suspended') audioCtx.resume();
+            freq = freq || 1100;
             const t = audioCtx.currentTime;
-            const osc = audioCtx.createOscillator();
-            const gain = audioCtx.createGain();
-            osc.type = 'square';
-            osc.frequency.setValueAtTime(1100, t);
-            gain.gain.setValueAtTime(0.0001, t);
-            gain.gain.exponentialRampToValueAtTime(0.25, t + 0.01);
-            gain.gain.exponentialRampToValueAtTime(0.0001, t + 0.3);
-            osc.connect(gain).connect(audioCtx.destination);
-            osc.start(t);
-            osc.stop(t + 0.32);
+            tone(t, freq, 0.28);
+            if (doublePulse) tone(t + 0.35, freq, 0.28);
             document.body.classList.add('beep-flash');
             setTimeout(() => document.body.classList.remove('beep-flash'), 700);
         } catch (err) { /* no audio, no problem */ }
@@ -423,6 +470,64 @@
         const a = Math.sin(dLat / 2) ** 2 +
             Math.cos(toRad(lat1)) * Math.cos(toRad(lat2)) * Math.sin(dLng / 2) ** 2;
         return 2 * R * Math.asin(Math.sqrt(a));
+    }
+
+    /* ---------- warn milestones: 600-500-400-300-200, alarm inside 150 ---------- */
+    let warnSession = false;
+    let fired = {};
+    let lastMilestoneBeep = 0;
+
+    function resetWarnSession() { warnSession = false; fired = {}; }
+
+    /* closer beeper = higher pitch */
+    function pitchFor(t) { return 750 + (600 - Math.min(t, 600)) * 1.5; }
+
+    function proximityWarn(dist) {
+        if (dist > warnRange) { resetWarnSession(); return; }
+        const thrs = [];
+        for (let t = 100; t <= warnRange; t += 100) thrs.push(t);
+        const now = Date.now();
+        /* re-arm thresholds once clearly past them again */
+        thrs.forEach((t) => { if (dist > t + 30) fired[t] = false; });
+
+        const crossed = thrs.filter((t) => dist <= t);
+
+        if (!warnSession) {
+            /* first fix inside the zone: one beep at nearest milestone, no spam */
+            if (!crossed.length) return;
+            warnSession = true;
+            crossed.forEach((t) => { fired[t] = true; });
+            const lowest = Math.min(...crossed);
+            lastMilestoneBeep = now;
+            beep(pitchFor(lowest), lowest <= 200);
+            return;
+        }
+
+        crossed.forEach((t) => {
+            if (!fired[t]) {
+                fired[t] = true;
+                if (now - lastMilestoneBeep > 1200) {
+                    lastMilestoneBeep = now;
+                    beep(pitchFor(t), t <= 200);
+                }
+            }
+        });
+    }
+
+    /* ---------- HUD: speed + next cam ---------- */
+    const speedo = document.getElementById('speedo');
+    const speedVal = document.getElementById('speedVal');
+    const camDist = document.getElementById('camDist');
+
+    function updateSpeedo(kmh) {
+        speedo.classList.remove('hidden');
+        if (kmh === null) {
+            speedVal.textContent = '–';
+            return;
+        }
+        speedVal.textContent = kmh;
+        speedVal.className = 'block text-5xl sm:text-6xl font-extrabold leading-none ' +
+            (kmh > 100 ? 'text-red-400' : kmh > 60 ? 'text-amber-400' : 'text-emerald-400');
     }
 
     function onPosition(pos) {
@@ -439,22 +544,27 @@
         const kmh = typeof speed === 'number' && !isNaN(speed) ? Math.round(speed * 3.6) : null;
         const moving = kmh === null || kmh > 15; /* no speed data = beep anyway */
 
+        updateSpeedo(kmh);
+
         if (nearest) {
-            geoStatus.classList.remove('hidden');
             const distStr = nearestDist < 1000
                 ? `${Math.round(nearestDist)} m`
                 : `${(nearestDist / 1000).toFixed(1)} km`;
-            geoStatus.textContent = `Nearest camera: ${nearest.name} - ${distStr}` +
-                (kmh !== null ? ` - ${kmh} km/h` : '');
+            camDist.classList.remove('hidden');
+            camDist.textContent = `CAM ${distStr} · ${nearest.name}`;
         }
 
         /* battery: low-accuracy GPS when far from cams, high-accuracy when close */
         const wantHi = nearestDist < 800;
         if (wantHi !== hiAcc) { hiAcc = wantHi; startWatch(); }
 
-        if (nearestDist <= BEEP_RANGE_M && moving && Date.now() - lastBeep > BEEP_COOLDOWN_MS) {
-            lastBeep = Date.now();
-            beep();
+        if (moving) {
+            proximityWarn(nearestDist);
+            /* final zone: repeating alarm */
+            if (nearestDist <= FINAL_ZONE_M && Date.now() - lastBeep > BEEP_COOLDOWN_MS) {
+                lastBeep = Date.now();
+                beep(1500, true);
+            }
         }
     }
 
@@ -472,9 +582,9 @@
         }
         startWatch();
         requestWakeLock();
-        beepBtn.innerHTML = '&#128276; Beep: ON';
-        beepBtn.classList.remove('text-red-700', 'bg-red-50', 'hover:bg-red-100');
-        beepBtn.classList.add('text-emerald-700', 'bg-emerald-50', 'hover:bg-emerald-100');
+        beepLabel.textContent = 'ON';
+        beepBtn.classList.remove('bg-red-50', 'text-red-700');
+        beepBtn.classList.add('bg-emerald-50', 'text-emerald-700');
         beep();
         /* iOS: audio likely suspended until first tap - tell the user */
         try {
@@ -489,9 +599,9 @@
         if (watchId !== null) { navigator.geolocation.clearWatch(watchId); watchId = null; }
         releaseWakeLock();
         removeUserMarker();
-        beepBtn.innerHTML = '&#128276; Beep: OFF';
-        beepBtn.classList.add('text-red-700', 'bg-red-50', 'hover:bg-red-100');
-        beepBtn.classList.remove('text-emerald-700', 'bg-emerald-50', 'hover:bg-emerald-100');
+        beepLabel.textContent = 'OFF';
+        beepBtn.classList.add('bg-red-50', 'text-red-700');
+        beepBtn.classList.remove('bg-emerald-50', 'text-emerald-700');
     }
 
     function saveBeepPref(v) { try { localStorage.setItem('camBeep', v); } catch (err) {} }
@@ -507,6 +617,25 @@
         }
     });
 
+    /* ---------- warn distance slider (default 600 m) ---------- */
+    const warnRangeInput = document.getElementById('warnRange');
+    const rangeVal = document.getElementById('rangeVal');
+
+    function applyRange(v, save) {
+        const n = parseInt(v, 10);
+        warnRange = Math.min(Math.max(isNaN(n) ? 600 : n, 100), 1000);
+        warnRangeInput.value = warnRange;
+        rangeVal.textContent = warnRange;
+        resetWarnSession();
+        if (save) { try { localStorage.setItem('camRange', String(warnRange)); } catch (err) {} }
+    }
+
+    warnRangeInput.addEventListener('input', () => applyRange(warnRangeInput.value, true));
+
+    let savedRange = null;
+    try { savedRange = localStorage.getItem('camRange'); } catch (err) {}
+    applyRange(savedRange || 600, false);
+
     /* beep ON by default (user can still turn it off, we remember) */
     if (getBeepPref() !== 'off') startBeep();
 
@@ -517,7 +646,8 @@
     window.addEventListener('beforeinstallprompt', (e) => {
         e.preventDefault();
         deferredInstall = e;
-        installBtn.hidden = false;
+        installBtn.classList.remove('hidden');
+        installBtn.classList.add('flex');
     });
 
     installBtn.addEventListener('click', async () => {
@@ -525,10 +655,14 @@
         deferredInstall.prompt();
         await deferredInstall.userChoice;
         deferredInstall = null;
-        installBtn.hidden = true;
+        installBtn.classList.add('hidden');
+        installBtn.classList.remove('flex');
     });
 
-    window.addEventListener('appinstalled', () => { installBtn.hidden = true; });
+    window.addEventListener('appinstalled', () => {
+        installBtn.classList.add('hidden');
+        installBtn.classList.remove('flex');
+    });
 
     if ('serviceWorker' in navigator) {
         window.addEventListener('load', () => {
