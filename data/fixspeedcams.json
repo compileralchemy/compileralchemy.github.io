@@ -1,0 +1,490 @@
+[
+ {
+  "name": "Radar 11",
+  "road": "A10-01",
+  "region": "Southern",
+  "location": "PHOENIX",
+  "lat": -20.27953056,
+  "lng": 57.50133889
+ },
+ {
+  "name": "Radar 25",
+  "road": "A10-02",
+  "region": "Southern",
+  "location": "UNION PARK",
+  "lat": -20.38733333,
+  "lng": 57.58117778
+ },
+ {
+  "name": "Radar 45",
+  "road": "A10-03",
+  "region": "Southern",
+  "location": "NEW GROVE",
+  "lat": -20.40866944,
+  "lng": 57.61286944
+ },
+ {
+  "name": "Radar 52",
+  "road": "A10-04",
+  "region": "Southern",
+  "location": "MARE D'ALBERT",
+  "lat": -20.4281,
+  "lng": 57.64269722
+ },
+ {
+  "name": "Radar 5",
+  "road": "A1-01",
+  "region": "Port Louis",
+  "location": "GRAND RIVER NORTH WEST",
+  "lat": -20.17806667,
+  "lng": 57.47046111
+ },
+ {
+  "name": "Radar 6",
+  "road": "A1-02",
+  "region": "Western",
+  "location": "MONTREAL COROMANDEL",
+  "lat": -20.19759722,
+  "lng": 57.46997222
+ },
+ {
+  "name": "Radar 7",
+  "road": "A2-01",
+  "region": "Northern",
+  "location": "LE HOCHET",
+  "lat": -20.13761944,
+  "lng": 57.5265
+ },
+ {
+  "name": "Radar 17",
+  "road": "A2-03",
+  "region": "Eastern",
+  "location": "BRISEE VERDIERE",
+  "lat": -20.17251944,
+  "lng": 57.66161944
+ },
+ {
+  "name": "Radar 33",
+  "road": "A2-04",
+  "region": "Northern",
+  "location": "PAMPLEMOUSSES",
+  "lat": -20.11296944,
+  "lng": 57.58621944
+ },
+ {
+  "name": "Radar 47",
+  "road": "A2-05",
+  "region": "Northern",
+  "location": "CALLEBASSES",
+  "lat": -20.11388056,
+  "lng": 57.562
+ },
+ {
+  "name": "Radar 42",
+  "road": "A2-06",
+  "region": "Eastern",
+  "location": "MARE D'AUSTRALIA",
+  "lat": -20.15461944,
+  "lng": 57.64696944
+ },
+ {
+  "name": "Radar 50",
+  "road": "A2-07",
+  "region": "Northern",
+  "location": "TERRE ROUGE, MELLE LAURE",
+  "lat": -20.12618889,
+  "lng": 57.54338056
+ },
+ {
+  "name": "Radar 10",
+  "road": "A3-01",
+  "region": "Western",
+  "location": "PETITE RIVIERE",
+  "lat": -20.19793056,
+  "lng": 57.44476111
+ },
+ {
+  "name": "Radar 9",
+  "road": "A3-02",
+  "region": "Western",
+  "location": "LA FERME BAMBOUS",
+  "lat": -20.24781111,
+  "lng": 57.42071944
+ },
+ {
+  "name": "Radar 8",
+  "road": "A3-03",
+  "region": "Western",
+  "location": "MEDINE BAMBOUS",
+  "lat": -20.26103889,
+  "lng": 57.40756944
+ },
+ {
+  "name": "Radar 27",
+  "road": "A3-04R",
+  "region": "Western",
+  "location": "XAVIER NEAR CASELA",
+  "lat": -20.28918056,
+  "lng": 57.40265
+ },
+ {
+  "name": "Radar 40",
+  "road": "A3-05",
+  "region": "Western",
+  "location": "LA BALISE BLACK RIVER",
+  "lat": -20.36225,
+  "lng": 57.37586944
+ },
+ {
+  "name": "Radar 39",
+  "road": "A3-06",
+  "region": "Western",
+  "location": "RICHELIEU",
+  "lat": -20.18441111,
+  "lng": 57.46233056
+ },
+ {
+  "name": "Radar 56",
+  "road": "A3-07",
+  "region": "Western",
+  "location": "CASE NOYALE",
+  "lat": -20.40754167,
+  "lng": 57.36938889
+ },
+ {
+  "name": "Radar 18",
+  "road": "A4-01",
+  "region": "Northern",
+  "location": "TRIOLET",
+  "lat": -20.03968056,
+  "lng": 57.56081944
+ },
+ {
+  "name": "Radar 48",
+  "road": "A4-02",
+  "region": "Northern",
+  "location": "ARSENAL",
+  "lat": -20.11525,
+  "lng": 57.53466944
+ },
+ {
+  "name": "Radar 15",
+  "road": "A7-01",
+  "region": "Eastern",
+  "location": "CAMP GARREAU - BOULET ROUGE",
+  "lat": -20.20203889,
+  "lng": 57.71933889
+ },
+ {
+  "name": "Radar 31",
+  "road": "A7-02",
+  "region": "Eastern",
+  "location": "BONNE MERE - FLACQ",
+  "lat": -20.21453889,
+  "lng": 57.70046111
+ },
+ {
+  "name": "Radar 20",
+  "road": "A7-03",
+  "region": "Eastern",
+  "location": "CAMP DE MASQUE",
+  "lat": -20.23423889,
+  "lng": 57.67546111
+ },
+ {
+  "name": "Radar 22",
+  "road": "A7-04",
+  "region": "Eastern",
+  "location": "VERDUN",
+  "lat": -20.23178889,
+  "lng": 57.55221944
+ },
+ {
+  "name": "Radar 38",
+  "road": "A9-01",
+  "region": "Southern",
+  "location": "LA FLORA",
+  "lat": -20.41515,
+  "lng": 57.56251944
+ },
+ {
+  "name": "Radar 24",
+  "road": "A9-02",
+  "region": "Southern",
+  "location": "BEAU CLIMAT",
+  "lat": -20.40208056,
+  "lng": 57.56628889
+ },
+ {
+  "name": "Radar 49",
+  "road": "B12-01",
+  "region": "Northern",
+  "location": "VALE",
+  "lat": -20.02971111,
+  "lng": 57.60803056
+ },
+ {
+  "name": "Radar 26",
+  "road": "B130-01",
+  "region": "Western",
+  "location": "BEAU SONGES ROAD",
+  "lat": -20.28021944,
+  "lng": 57.4195
+ },
+ {
+  "name": "Radar 61",
+  "road": "B130-02",
+  "region": "Western",
+  "location": "SOLFERINO",
+  "lat": -20.288569,
+  "lng": 57.46931
+ },
+ {
+  "name": "Radar 43",
+  "road": "B162",
+  "region": "Northern",
+  "location": "SCHOENFELD RIV. DU REMPART",
+  "lat": -20.10055,
+  "lng": 57.68661944
+ },
+ {
+  "name": "Radar 36",
+  "road": "B17-01",
+  "region": "Northern",
+  "location": "PITON",
+  "lat": -20.09551944,
+  "lng": 57.6317
+ },
+ {
+  "name": "Radar 58",
+  "road": "B20-01",
+  "region": "Northern",
+  "location": "DEPINAY",
+  "lat": -20.12895,
+  "lng": 57.59555
+ },
+ {
+  "name": "Radar 4",
+  "road": "B22",
+  "region": "Eastern",
+  "location": "LAVENTURE",
+  "lat": -20.143047,
+  "lng": 57.691571
+ },
+ {
+  "name": "Radar 16",
+  "road": "B23-01",
+  "region": "Eastern",
+  "location": "ST JULIEN VILLAGE",
+  "lat": -20.20293889,
+  "lng": 57.67223889
+ },
+ {
+  "name": "Radar 21",
+  "road": "B23-02",
+  "region": "Eastern",
+  "location": "BELVEDER",
+  "lat": -20.18343056,
+  "lng": 57.66438889
+ },
+ {
+  "name": "Radar 32",
+  "road": "B23-03",
+  "region": "Eastern",
+  "location": "POSTE DE FLACQ",
+  "lat": -20.17136944,
+  "lng": 57.73008889
+ },
+ {
+  "name": "Radar 41",
+  "road": "B24-01",
+  "region": "Eastern",
+  "location": "ST JULIEN D'HOTMAN",
+  "lat": -20.23016111,
+  "lng": 57.63968056
+ },
+ {
+  "name": "Radar 19",
+  "road": "B28-01",
+  "region": "Eastern",
+  "location": "ECROIGNARD, NEAR BEL AIR",
+  "lat": -20.23406111,
+  "lng": 57.74561944
+ },
+ {
+  "name": "Radar 53",
+  "road": "B3-02",
+  "region": "Western",
+  "location": "BONNE TERRE VACOAS",
+  "lat": -20.29448889,
+  "lng": 57.48311944
+ },
+ {
+  "name": "Radar 59",
+  "road": "B32-01",
+  "region": "Western",
+  "location": "INTENDANCE ST, P-LOUIS",
+  "lat": -20.16301111,
+  "lng": 57.50304444
+ },
+ {
+  "name": "Radar 57",
+  "road": "B34-02",
+  "region": "Southern",
+  "location": "FLIC EN FLAC",
+  "lat": -20.278325,
+  "lng": 57.39016944
+ },
+ {
+  "name": "Radar 12",
+  "road": "B4-01",
+  "region": "Northern",
+  "location": "ST PAUL",
+  "lat": -20.2922,
+  "lng": 57.50598056
+ },
+ {
+  "name": "Radar 35",
+  "road": "B42-01",
+  "region": "Southern",
+  "location": "POUDRE D'OR HAMLET",
+  "lat": -20.0762,
+  "lng": 57.64876944
+ },
+ {
+  "name": "Radar 34",
+  "road": "B5-01",
+  "region": "Southern",
+  "location": "MANGALKHAN FLOREAL",
+  "lat": -20.30273889,
+  "lng": 57.50506944
+ },
+ {
+  "name": "Radar 14",
+  "road": "B63-01",
+  "region": "Southern",
+  "location": "CUREPIPE",
+  "lat": -20.30863889,
+  "lng": 57.51516944
+ },
+ {
+  "name": "Radar 13",
+  "road": "B63-02",
+  "region": "Southern",
+  "location": "SADALLY",
+  "lat": -20.3022,
+  "lng": 57.49611111
+ },
+ {
+  "name": "Radar 60",
+  "road": "B8",
+  "region": "Southern",
+  "location": "TROIS BOUTIQUE",
+  "lat": -20.461332,
+  "lng": 57.625509
+ },
+ {
+  "name": "Radar 51",
+  "road": "B69-01",
+  "region": "Southern",
+  "location": "NALLETAMBY PHOENIX",
+  "lat": -20.27958889,
+  "lng": 57.49728889
+ },
+ {
+  "name": "Radar 44",
+  "road": "B8-01",
+  "region": "Southern",
+  "location": "LA SOURDINE L'ESCALIER",
+  "lat": -20.48313056,
+  "lng": 57.62023056
+ },
+ {
+  "name": "Radar 46",
+  "road": "B8-02",
+  "region": "Southern",
+  "location": "PLAINE MAGNIEN",
+  "lat": -20.43367222,
+  "lng": 57.65775
+ },
+ {
+  "name": "Radar 3",
+  "road": "M1-01",
+  "region": "Western",
+  "location": "PELLEGRIN",
+  "lat": -20.26076944,
+  "lng": 57.49033889
+ },
+ {
+  "name": "Radar 2",
+  "road": "M1-02",
+  "region": "Western",
+  "location": "TRIANON",
+  "lat": -20.25322222,
+  "lng": 57.49113889
+ },
+ {
+  "name": "Radar 28",
+  "road": "M1-03",
+  "region": "Port Louis",
+  "location": "PAILLES",
+  "lat": -20.18996944,
+  "lng": 57.4822
+ },
+ {
+  "name": "Radar 29",
+  "road": "M1-04",
+  "region": "Port Louis",
+  "location": "CAMP CHAPELON",
+  "lat": -20.18096944,
+  "lng": 57.48111111
+ },
+ {
+  "name": "Radar 1",
+  "road": "M1-05",
+  "region": "Port Louis",
+  "location": "CASSIS",
+  "lat": -20.16425833,
+  "lng": 57.48848333
+ },
+ {
+  "name": "Radar 54",
+  "road": "M1-06R",
+  "region": "Southern",
+  "location": "MIDLANDS",
+  "lat": -20.34246944,
+  "lng": 57.56696111
+ },
+ {
+  "name": "Radar 37",
+  "road": "M1-07R",
+  "region": "Port Louis",
+  "location": "SOREZE",
+  "lat": -20.21481944,
+  "lng": 57.48081111
+ },
+ {
+  "name": "Radar 55",
+  "road": "M3-01",
+  "region": "Northern",
+  "location": "VALTON 1",
+  "lat": -20.12835,
+  "lng": 57.54770833
+ },
+ {
+  "name": "Radar 30",
+  "road": "M3-02",
+  "region": "Northern",
+  "location": "VALTON 2",
+  "lat": -20.16479167,
+  "lng": 57.57235556
+ },
+ {
+  "name": "Radar 23",
+  "road": "M3-03",
+  "region": "Northern",
+  "location": "VALTON 3",
+  "lat": -20.17652222,
+  "lng": 57.57499722
+ }
+]
