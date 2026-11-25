@@ -79,7 +79,8 @@
             </h1>
             <p class="text-lg text-slate-600 max-w-2xl mx-auto">
                 {{ cams_count }} fixed speed cameras with coordinates and road info.
-                Beep on by default, your car shows as a blue dot on the map, screen stays awake while on.
+                Warning beeps start from your chosen distance (default 600 m) and get faster as you close in,
+                big speedometer shows your speed, car shows as a blue dot.
             </p>
         </div>
 
@@ -135,6 +136,15 @@
             </select>
         </div>
 
+        <div class="max-w-md mx-auto mb-6 px-1">
+            <div class="flex justify-between text-xs font-bold uppercase tracking-wide text-slate-400 mb-1">
+                <span>Warn me from</span>
+                <span><span id="rangeVal">600</span> m</span>
+            </div>
+            <input type="range" id="warnRange" min="100" max="1000" step="50" value="600"
+                class="w-full accent-red-600 cursor-pointer">
+        </div>
+
         <div class="bg-white rounded-3xl shadow-xl shadow-slate-200/60 overflow-hidden border border-slate-100 mb-8">
             <div class="p-4 border-b border-slate-100 bg-slate-50/50 flex justify-between items-center">
                 <div class="flex items-center gap-3">
@@ -151,7 +161,14 @@
                     class="bg-red-100 text-red-700 text-xs font-bold px-3 py-1.5 rounded-full uppercase tracking-wide">Showing
                     {{ cams_count }} of {{ cams_count }}</span>
             </div>
-            <div id="map"></div>
+            <div class="relative">
+                <div id="map"></div>
+                <div id="speedo"
+                    class="hidden absolute top-3 right-3 z-[1100] bg-slate-900/85 text-white rounded-2xl px-5 py-3 text-center shadow-xl border border-white/10 pointer-events-none">
+                    <span id="speedVal" class="block text-4xl font-extrabold leading-none text-emerald-400">0</span>
+                    <span class="block text-[10px] font-bold uppercase tracking-widest text-white/60 mt-1">km/h</span>
+                </div>
+            </div>
         </div>
 
         <div class="bg-white rounded-3xl shadow-xl shadow-slate-200/60 overflow-hidden border border-slate-100">
@@ -211,8 +228,9 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
 <script>
     const cams = {{ cams_data_json | safe }};
-    const BEEP_RANGE_M = 150;
+    const FINAL_ZONE_M = 150;
     const BEEP_COOLDOWN_MS = 8000;
+    let warnRange = 600;
 
     /* ---------- map ---------- */
     const map = L.map('map', { zoomControl: true }).setView([-20.25, 57.55], 11);
@@ -395,21 +413,27 @@
         }, { passive: true });
     });
 
-    function beep() {
+    function tone(t, freq, dur) {
+        const osc = audioCtx.createOscillator();
+        const gain = audioCtx.createGain();
+        osc.type = 'square';
+        osc.frequency.setValueAtTime(freq, t);
+        gain.gain.setValueAtTime(0.0001, t);
+        gain.gain.exponentialRampToValueAtTime(0.25, t + 0.01);
+        gain.gain.exponentialRampToValueAtTime(0.0001, t + dur);
+        osc.connect(gain).connect(audioCtx.destination);
+        osc.start(t);
+        osc.stop(t + dur + 0.02);
+    }
+
+    function beep(freq, doublePulse) {
         try {
             audioCtx = audioCtx || new (window.AudioContext || window.webkitAudioContext)();
             if (audioCtx.state === 'suspended') audioCtx.resume();
+            freq = freq || 1100;
             const t = audioCtx.currentTime;
-            const osc = audioCtx.createOscillator();
-            const gain = audioCtx.createGain();
-            osc.type = 'square';
-            osc.frequency.setValueAtTime(1100, t);
-            gain.gain.setValueAtTime(0.0001, t);
-            gain.gain.exponentialRampToValueAtTime(0.25, t + 0.01);
-            gain.gain.exponentialRampToValueAtTime(0.0001, t + 0.3);
-            osc.connect(gain).connect(audioCtx.destination);
-            osc.start(t);
-            osc.stop(t + 0.32);
+            tone(t, freq, 0.28);
+            if (doublePulse) tone(t + 0.35, freq, 0.28);
             document.body.classList.add('beep-flash');
             setTimeout(() => document.body.classList.remove('beep-flash'), 700);
         } catch (err) { /* no audio, no problem */ }
@@ -423,6 +447,63 @@
         const a = Math.sin(dLat / 2) ** 2 +
             Math.cos(toRad(lat1)) * Math.cos(toRad(lat2)) * Math.sin(dLng / 2) ** 2;
         return 2 * R * Math.asin(Math.sqrt(a));
+    }
+
+    /* ---------- warn milestones: 600-500-400-300-200, alarm inside 150 ---------- */
+    let warnSession = false;
+    let fired = {};
+    let lastMilestoneBeep = 0;
+
+    function resetWarnSession() { warnSession = false; fired = {}; }
+
+    /* closer beeper = higher pitch */
+    function pitchFor(t) { return 750 + (600 - Math.min(t, 600)) * 1.5; }
+
+    function proximityWarn(dist) {
+        if (dist > warnRange) { resetWarnSession(); return; }
+        const thrs = [];
+        for (let t = 100; t <= warnRange; t += 100) thrs.push(t);
+        const now = Date.now();
+        /* re-arm thresholds once clearly past them again */
+        thrs.forEach((t) => { if (dist > t + 30) fired[t] = false; });
+
+        const crossed = thrs.filter((t) => dist <= t);
+
+        if (!warnSession) {
+            /* first fix inside the zone: one beep at nearest milestone, no spam */
+            if (!crossed.length) return;
+            warnSession = true;
+            crossed.forEach((t) => { fired[t] = true; });
+            const lowest = Math.min(...crossed);
+            lastMilestoneBeep = now;
+            beep(pitchFor(lowest), lowest <= 200);
+            return;
+        }
+
+        crossed.forEach((t) => {
+            if (!fired[t]) {
+                fired[t] = true;
+                if (now - lastMilestoneBeep > 1200) {
+                    lastMilestoneBeep = now;
+                    beep(pitchFor(t), t <= 200);
+                }
+            }
+        });
+    }
+
+    /* ---------- speedo ---------- */
+    const speedo = document.getElementById('speedo');
+    const speedVal = document.getElementById('speedVal');
+
+    function updateSpeedo(kmh) {
+        speedo.classList.remove('hidden');
+        if (kmh === null) {
+            speedVal.textContent = '–';
+            return;
+        }
+        speedVal.textContent = kmh;
+        speedVal.className = 'block text-4xl font-extrabold leading-none ' +
+            (kmh > 100 ? 'text-red-400' : kmh > 60 ? 'text-amber-400' : 'text-emerald-400');
     }
 
     function onPosition(pos) {
@@ -439,22 +520,27 @@
         const kmh = typeof speed === 'number' && !isNaN(speed) ? Math.round(speed * 3.6) : null;
         const moving = kmh === null || kmh > 15; /* no speed data = beep anyway */
 
+        updateSpeedo(kmh);
+
         if (nearest) {
             geoStatus.classList.remove('hidden');
             const distStr = nearestDist < 1000
                 ? `${Math.round(nearestDist)} m`
                 : `${(nearestDist / 1000).toFixed(1)} km`;
-            geoStatus.textContent = `Nearest camera: ${nearest.name} - ${distStr}` +
-                (kmh !== null ? ` - ${kmh} km/h` : '');
+            geoStatus.textContent = `Nearest camera: ${nearest.name} - ${distStr}`;
         }
 
         /* battery: low-accuracy GPS when far from cams, high-accuracy when close */
         const wantHi = nearestDist < 800;
         if (wantHi !== hiAcc) { hiAcc = wantHi; startWatch(); }
 
-        if (nearestDist <= BEEP_RANGE_M && moving && Date.now() - lastBeep > BEEP_COOLDOWN_MS) {
-            lastBeep = Date.now();
-            beep();
+        if (moving) {
+            proximityWarn(nearestDist);
+            /* final zone: repeating alarm */
+            if (nearestDist <= FINAL_ZONE_M && Date.now() - lastBeep > BEEP_COOLDOWN_MS) {
+                lastBeep = Date.now();
+                beep(1500, true);
+            }
         }
     }
 
@@ -506,6 +592,25 @@
             saveBeepPref('off');
         }
     });
+
+    /* ---------- warn distance slider (default 600 m) ---------- */
+    const warnRangeInput = document.getElementById('warnRange');
+    const rangeVal = document.getElementById('rangeVal');
+
+    function applyRange(v, save) {
+        const n = parseInt(v, 10);
+        warnRange = Math.min(Math.max(isNaN(n) ? 600 : n, 100), 1000);
+        warnRangeInput.value = warnRange;
+        rangeVal.textContent = warnRange;
+        resetWarnSession();
+        if (save) { try { localStorage.setItem('camRange', String(warnRange)); } catch (err) {} }
+    }
+
+    warnRangeInput.addEventListener('input', () => applyRange(warnRangeInput.value, true));
+
+    let savedRange = null;
+    try { savedRange = localStorage.getItem('camRange'); } catch (err) {}
+    applyRange(savedRange || 600, false);
 
     /* beep ON by default (user can still turn it off, we remember) */
     if (getBeepPref() !== 'off') startBeep();
