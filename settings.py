@@ -1375,7 +1375,35 @@ An editor for .po translations
             "github": "https://github.com/Abdur-rahmaanJ/aidre",
         },
         'badges': []
-    }
+    },
+    {
+    "name": "laith",
+    "info": '''
+Compile Python into native Kotlin and C++ to build Android apps without bundling a Python interpreter.
+''',
+    "features": [],
+    "main_link": "https://github.com/Abdur-rahmaanJ/laith",
+    "logo_link": "",
+    "links": {
+        "github": "https://github.com/Abdur-rahmaanJ/laith",
+        "pypi": "https://pypi.org/project/laith/",
+    },
+    "badges": ['pepy']
+},
+{
+    "name": "pageindex-open",
+    "info": '''
+Open-source, vectorless RAG for PDFs. Builds hierarchical document trees and uses LLM reasoning to retrieve relevant sections instead of embedding-based chunking.
+''',
+    "features": [],
+    "main_link": "https://github.com/Abdur-rahmaanJ/pageindex-open",
+    "logo_link": "",
+    "links": {
+        "github": "https://github.com/Abdur-rahmaanJ/pageindex-open",
+        "pypi": "https://pypi.org/project/pageindex-open/",
+    },
+    "badges": ['pepy']
+}
 ]
 
 
